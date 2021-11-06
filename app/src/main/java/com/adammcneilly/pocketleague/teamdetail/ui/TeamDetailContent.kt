@@ -1,29 +1,56 @@
-package com.adammcneilly.pocketleague.player.ui
+package com.adammcneilly.pocketleague.teamdetail.ui
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Divider
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.R
+import com.adammcneilly.pocketleague.core.ui.PocketLeagueImage
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.player.ui.PlayerDisplayModel
+import com.adammcneilly.pocketleague.player.ui.PlayerList
 import com.murgupluoglu.flagkit.FlagKit
 
 @Composable
-fun PlayerList(
-    players: List<PlayerDisplayModel>,
+fun TeamDetailContent(
+    team: TeamDetailDisplayModel,
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier
+            .padding(16.dp)
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        players.map { player ->
-            PlayerListItem(player = player)
+        PocketLeagueImage(
+            image = team.logo,
+            contentDescription = "Team Logo",
+            modifier = Modifier
+                .size(120.dp),
+        )
 
-            Divider()
-        }
+        Text(
+            text = team.name,
+            style = MaterialTheme.typography.headlineLarge,
+        )
+
+        PlayerList(team.players)
     }
 }
 
@@ -36,9 +63,9 @@ fun PlayerList(
     uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
 @Composable
-private fun PlayerListPreview() {
+private fun TeamDetailContentPreview() {
     val sosa = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagResId = FlagKit.getResId(LocalContext.current, "ca"),
         gamerTag = "Sosa",
         realName = "(Testing McTestFace)",
         notes = null,
@@ -80,11 +107,15 @@ private fun PlayerListPreview() {
         lando,
     )
 
+    val teamDetail = TeamDetailDisplayModel(
+        name = "Pittsburgh Knights",
+        logo = UIImage.Resource(R.drawable.us),
+        players = players,
+    )
+
     PocketLeagueTheme {
         Surface {
-            PlayerList(
-                players = players,
-            )
+            TeamDetailContent(team = teamDetail)
         }
     }
 }

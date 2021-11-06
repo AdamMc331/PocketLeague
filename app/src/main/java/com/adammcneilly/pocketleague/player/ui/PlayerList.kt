@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.murgupluoglu.flagkit.FlagKit
 
@@ -37,36 +38,42 @@ fun PlayerList(
 )
 @Composable
 private fun PlayerListPreview() {
+    val caFlag = FlagKit.getResId(LocalContext.current, "ca")
+    val usFlag = FlagKit.getResId(LocalContext.current, "us")
+
+    val caFlagImage = UIImage.Resource(caFlag)
+    val usFlagImage = UIImage.Resource(usFlag)
+
     val sosa = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = caFlagImage,
         gamerTag = "Sosa",
         realName = "(Testing McTestFace)",
         notes = null,
     )
 
     val kep = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = usFlagImage,
         gamerTag = "AlphaKep",
         realName = "(Testing McTestFace)",
         notes = null,
     )
 
     val omar = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = usFlagImage,
         gamerTag = "ElOmarMaton",
         realName = "(Testing McTestFace)",
         notes = null,
     )
 
     val dino = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = usFlagImage,
         gamerTag = "Dino",
         realName = "(Testing McTestFace)",
         notes = "(Substitute)",
     )
 
     val lando = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = usFlagImage,
         gamerTag = "McLando",
         realName = "(Testing McTestFace)",
         notes = "(Coach)",

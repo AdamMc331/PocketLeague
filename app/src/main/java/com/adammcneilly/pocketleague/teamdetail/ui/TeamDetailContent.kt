@@ -64,36 +64,42 @@ fun TeamDetailContent(
 )
 @Composable
 private fun TeamDetailContentPreview() {
+    val caFlag = FlagKit.getResId(LocalContext.current, "ca")
+    val usFlag = FlagKit.getResId(LocalContext.current, "us")
+
+    val caFlagImage = UIImage.Resource(caFlag)
+    val usFlagImage = UIImage.Resource(usFlag)
+
     val sosa = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "ca"),
+        flagImage = caFlagImage,
         gamerTag = "Sosa",
         realName = "(Testing McTestFace)",
         notes = null,
     )
 
     val kep = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = usFlagImage,
         gamerTag = "AlphaKep",
         realName = "(Testing McTestFace)",
         notes = null,
     )
 
     val omar = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = usFlagImage,
         gamerTag = "ElOmarMaton",
         realName = "(Testing McTestFace)",
         notes = null,
     )
 
     val dino = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = usFlagImage,
         gamerTag = "Dino",
         realName = "(Testing McTestFace)",
         notes = "(Substitute)",
     )
 
     val lando = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = usFlagImage,
         gamerTag = "McLando",
         realName = "(Testing McTestFace)",
         notes = "(Coach)",

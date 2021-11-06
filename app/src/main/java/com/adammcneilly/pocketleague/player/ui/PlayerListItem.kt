@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.player.ui
 
 import android.content.res.Configuration
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,10 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.core.ui.PocketLeagueImage
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.murgupluoglu.flagkit.FlagKit
 
@@ -30,8 +30,8 @@ fun PlayerListItem(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Image(
-            painterResource(id = player.flagResId),
+        PocketLeagueImage(
+            image = player.flagImage,
             contentDescription = "Country Flag",
         )
 
@@ -84,8 +84,9 @@ private fun PlayerNameRow(player: PlayerDisplayModel) {
 )
 @Composable
 private fun PlayerListItemPreviewWithNotes() {
+    val usFlag = FlagKit.getResId(LocalContext.current, "us")
     val player = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = UIImage.Resource(usFlag),
         gamerTag = "Tstn",
         realName = "(Testing McTestFace)",
         notes = "(Coach)",
@@ -110,8 +111,9 @@ private fun PlayerListItemPreviewWithNotes() {
 )
 @Composable
 private fun PlayerListItemPreviewWithoutNotes() {
+    val usFlag = FlagKit.getResId(LocalContext.current, "us")
     val player = PlayerDisplayModel(
-        flagResId = FlagKit.getResId(LocalContext.current, "us"),
+        flagImage = UIImage.Resource(usFlag),
         gamerTag = "Tstn",
         realName = "(Testing McTestFace)",
         notes = null,

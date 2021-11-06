@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.theme
+package com.adammcneilly.pocketleague.core.ui.theme
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme

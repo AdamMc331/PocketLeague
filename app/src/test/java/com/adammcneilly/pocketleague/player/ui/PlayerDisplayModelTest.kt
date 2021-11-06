@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.player.ui
 
 import com.adammcneilly.pocketleague.core.models.Player
 import com.adammcneilly.pocketleague.core.ui.FakeFlagResProvider
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -24,7 +25,7 @@ class PlayerDisplayModelTest {
         val displayModel = player.toDisplayModel(flagResProvider)
 
         with(displayModel) {
-            assertThat(flagResId).isEqualTo(mockFlagRes)
+            assertThat(flagImage).isEqualTo(UIImage.Resource(mockFlagRes))
             assertThat(gamerTag).isEqualTo("Testy")
             assertThat(realName).isEqualTo("(McTestFace)")
             assertThat(notes).isNull()
@@ -48,7 +49,7 @@ class PlayerDisplayModelTest {
         val displayModel = player.toDisplayModel(flagResProvider)
 
         with(displayModel) {
-            assertThat(flagResId).isEqualTo(mockFlagRes)
+            assertThat(flagImage).isEqualTo(UIImage.Resource(mockFlagRes))
             assertThat(gamerTag).isEqualTo("Testy")
             assertThat(realName).isEqualTo("(McTestFace)")
             assertThat(notes).isEqualTo("(Coach)")

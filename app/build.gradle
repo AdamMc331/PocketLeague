@@ -54,6 +54,7 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.ext.versions.material"
     implementation "androidx.compose.ui:ui:$rootProject.ext.versions.compose"
     implementation "androidx.compose.material:material:$rootProject.ext.versions.compose"
+    implementation "androidx.compose.material3:material3:$rootProject.ext.versions.composeMaterial3"
     implementation "androidx.compose.ui:ui-tooling-preview:$rootProject.ext.versions.compose"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.ext.versions.lifecycle"
     implementation "androidx.activity:activity-compose:$rootProject.ext.versions.activityCompose"

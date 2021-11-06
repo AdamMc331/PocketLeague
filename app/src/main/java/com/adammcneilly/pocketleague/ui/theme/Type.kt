@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.theme
+package com.adammcneilly.pocketleague.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

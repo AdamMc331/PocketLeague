@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.pocketleague.theme
+package com.adammcneilly.pocketleague.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,4 @@
-package com.template.theme
+package com.adammcneilly.pocketleague.theme
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -14,7 +14,7 @@ import androidx.core.os.BuildCompat
 
 @SuppressLint("NewApi")
 @Composable
-fun TemplateTheme(
+fun PocketLeagueTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamic: Boolean = BuildCompat.isAtLeastS(),
     content: @Composable () -> Unit

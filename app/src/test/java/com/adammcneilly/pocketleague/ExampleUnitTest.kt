@@ -1,4 +1,4 @@
-package com.template
+package com.adammcneilly.pocketleague
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

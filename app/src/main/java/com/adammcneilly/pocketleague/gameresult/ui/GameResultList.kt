@@ -2,12 +2,11 @@ package com.adammcneilly.pocketleague.gameresult.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Divider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.adammcneilly.pocketleague.core.ui.Material3Divider
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
 @Composable
@@ -23,9 +22,7 @@ fun GameResultList(
                 result = gameResult,
             )
 
-            Divider(
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12F),
-            )
+            Material3Divider()
         }
     }
 }

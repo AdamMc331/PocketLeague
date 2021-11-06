@@ -20,5 +20,7 @@ ext {
             material        : "1.4.0",
             // https://developer.android.com/jetpack/androidx/releases/compose-material3
             composeMaterial3: "1.0.0-alpha01",
+            // https://github.com/google/truth/releases
+            truth           : "1.1.3",
     ]
 }

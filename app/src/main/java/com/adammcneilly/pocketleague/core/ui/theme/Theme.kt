@@ -68,11 +68,12 @@ fun PocketLeagueTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (!useDarkTheme) {
-        LightThemeColors
-    } else {
-        DarkThemeColors
-    }
+//    val colors = if (!useDarkTheme) {
+//        LightThemeColors
+//    } else {
+//        DarkThemeColors
+//    }
+    val colors = LightThemeColors
 
     MaterialTheme(
         colorScheme = colors,

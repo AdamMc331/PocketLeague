@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +31,8 @@ fun TeamOverviewListItem(
         PocketLeagueImage(
             team.logoImage,
             contentDescription = "Team Logo",
+            modifier = Modifier
+                .size(24.dp),
         )
 
         Text(

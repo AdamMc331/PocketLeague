@@ -2,8 +2,9 @@ package com.adammcneilly.pocketleague.teamlist.data
 
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.models.Team
+import javax.inject.Inject
 
-class DemoTeamListService : TeamListService {
+class DemoTeamListService @Inject constructor() : TeamListService {
     override suspend fun fetchAllTeams(): Result<List<Team>> {
         val teams = listOf(
             Team(

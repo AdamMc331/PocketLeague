@@ -16,8 +16,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.Material3Divider
 import com.adammcneilly.pocketleague.core.ui.Material3VerticalDivider
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.seriesoverview.ui.SeriesOverviewDisplayModel
 import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewDisplayModel
@@ -106,9 +108,11 @@ private fun BracketSeriesOverviewItemPreview() {
     val overview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(
             name = "G2",
+            logoImage = UIImage.Resource(R.drawable.us),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "GG",
+            logoImage = UIImage.Resource(R.drawable.us),
         ),
         teamOneWins = 4,
         teamTwoWins = 2,

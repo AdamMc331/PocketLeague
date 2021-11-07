@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.seriesresult.ui
+package com.adammcneilly.pocketleague.seriesdetail.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -24,7 +24,7 @@ import com.adammcneilly.pocketleague.teamdetail.ui.TeamDetailDisplayModel
 
 @Composable
 fun SeriesResultContent(
-    result: SeriesResultDisplayModel,
+    result: SeriesDetailDisplayModel,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -122,7 +122,7 @@ private fun SeriesResultContentPreview() {
         players = emptyList(),
     )
 
-    val result = SeriesResultDisplayModel(
+    val result = SeriesDetailDisplayModel(
         gameTime = "October 29, 2021 - 18:30",
         games = games,
         teamOne = teamOne,

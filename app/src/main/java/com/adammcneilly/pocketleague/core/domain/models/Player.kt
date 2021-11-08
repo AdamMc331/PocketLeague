@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.models
+package com.adammcneilly.pocketleague.core.domain.models
 
 data class Player(
     val countryCode: String,

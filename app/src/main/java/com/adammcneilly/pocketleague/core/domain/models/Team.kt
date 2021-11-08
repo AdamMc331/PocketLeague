@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.models
+package com.adammcneilly.pocketleague.core.domain.models
 
 data class Team(
     val name: String,

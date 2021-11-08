@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import coil.compose.rememberImagePainter
 
 /**
  * A custom composable for an [Image] that will set the painter based on the [image] supplied.
@@ -23,7 +24,11 @@ fun PocketLeagueImage(
             )
         }
         is UIImage.Remote -> {
-            // Coming soon
+            Image(
+                rememberImagePainter(data = image.imageUrl),
+                contentDescription = contentDescription,
+                modifier = modifier,
+            )
         }
     }
 }

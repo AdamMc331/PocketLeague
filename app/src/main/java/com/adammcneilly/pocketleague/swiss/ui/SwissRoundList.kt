@@ -10,7 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.Material3Divider
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.seriesoverview.ui.SeriesOverviewDisplayModel
 import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewDisplayModel
@@ -55,9 +57,11 @@ private fun SwissRoundListPreview() {
     val torV1Overview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(
             name = "TOR",
+            logoImage = UIImage.Resource(R.drawable.us),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "V1",
+            logoImage = UIImage.Resource(R.drawable.us),
         ),
         teamOneWins = 1,
         teamTwoWins = 3,
@@ -66,9 +70,11 @@ private fun SwissRoundListPreview() {
     val fazeSSGOverview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(
             name = "FAZE",
+            logoImage = UIImage.Resource(R.drawable.us),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "SSG",
+            logoImage = UIImage.Resource(R.drawable.us),
         ),
         teamOneWins = 1,
         teamTwoWins = 3,
@@ -77,9 +83,11 @@ private fun SwissRoundListPreview() {
     val ghostVIBOverview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(
             name = "GG",
+            logoImage = UIImage.Resource(R.drawable.us),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "VIB",
+            logoImage = UIImage.Resource(R.drawable.us),
         ),
         teamOneWins = 3,
         teamTwoWins = 1,

@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.teamoverview.ui
 
-import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.core.ui.UIImage
 
 data class TeamOverviewDisplayModel(

@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.teamlist.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.teamlist.domain.models.FetchTeamListResult
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCase
 import com.adammcneilly.pocketleague.teamoverview.ui.toOverviewDisplayModel

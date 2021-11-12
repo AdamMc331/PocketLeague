@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.teamoverview.ui
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.ui.Material3Divider
@@ -10,10 +11,10 @@ fun TeamOverviewList(
     teams: List<TeamOverviewDisplayModel>,
     modifier: Modifier = Modifier,
 ) {
-    Column(
+    LazyColumn(
         modifier = modifier,
     ) {
-        teams.forEach { team ->
+        items(teams) { team ->
             TeamOverviewListItem(
                 team = team,
             )

@@ -22,7 +22,7 @@ fun Team.toDetailDisplayModel(
 ): TeamDetailDisplayModel {
     return TeamDetailDisplayModel(
         name = this.name,
-        logo = UIImage.Remote(this.logoImageUrl),
+        logo = UIImage.Remote(this.lightThemeLogoImageUrl),
         players = this.roster.map { player ->
             player.toDisplayModel(flagResProvider)
         },

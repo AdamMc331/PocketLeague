@@ -26,7 +26,7 @@ class TeamDetailDisplayModelTest {
 
         val team = Team(
             name = "PK",
-            logoImageUrl = "LogoURL",
+            lightThemeLogoImageUrl = "LogoURL",
             roster = listOf(player),
         )
 
@@ -34,7 +34,7 @@ class TeamDetailDisplayModelTest {
 
         with(displayModel) {
             assertThat(name).isEqualTo(team.name)
-            assertThat(logo).isEqualTo(UIImage.Remote(team.logoImageUrl))
+            assertThat(logo).isEqualTo(UIImage.Remote(team.lightThemeLogoImageUrl))
             assertThat(players).isEqualTo(listOf(player.toDisplayModel(flagResProvider)))
         }
     }

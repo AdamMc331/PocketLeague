@@ -36,12 +36,14 @@ class LiquipediaTeamListService @Inject constructor(
 
     private fun parseTeam(teamNode: Element): Team? {
         val teamName = parseTeamName(teamNode)
-        val logoImage = parseLightModeImageUrl(teamNode)
+        val lightImage = parseLightModeImageUrl(teamNode)
+        val darkImage = parseDarkModeImageUrl(teamNode)
 
-        return if (teamName != null && logoImage != null) {
+        return if (teamName != null) {
             Team(
                 name = teamName,
-                logoImageUrl = logoImage,
+                lightThemeLogoImageUrl = lightImage.orEmpty(),
+                darkThemeLogoImageUrl = darkImage.orEmpty(),
                 roster = emptyList(),
             )
         } else {
@@ -65,6 +67,20 @@ class LiquipediaTeamListService @Inject constructor(
 
             baseUrl + teamNode
                 .selectFirst("span.team-template-lightmode")
+                .selectFirst("img")
+                .attributes()
+                .get("src")
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private fun parseDarkModeImageUrl(teamNode: Element): String? {
+        return try {
+            val baseUrl = "https://liquipedia.net/"
+
+            baseUrl + teamNode
+                .selectFirst("span.team-template-darkmode")
                 .selectFirst("img")
                 .attributes()
                 .get("src")

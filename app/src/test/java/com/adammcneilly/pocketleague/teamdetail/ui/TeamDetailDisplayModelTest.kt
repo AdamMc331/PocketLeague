@@ -27,6 +27,7 @@ class TeamDetailDisplayModelTest {
         val team = Team(
             name = "PK",
             lightThemeLogoImageUrl = "LogoURL",
+            darkThemeLogoImageUrl = "LogoURL",
             roster = listOf(player),
         )
 

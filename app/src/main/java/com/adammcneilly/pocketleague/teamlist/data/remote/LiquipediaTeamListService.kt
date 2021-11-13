@@ -61,7 +61,9 @@ class LiquipediaTeamListService @Inject constructor(
 
     private fun parseLightModeImageUrl(teamNode: Element): String? {
         return try {
-            teamNode
+            val baseUrl = "https://liquipedia.net/"
+
+            baseUrl + teamNode
                 .selectFirst("span.team-template-lightmode")
                 .selectFirst("img")
                 .attributes()

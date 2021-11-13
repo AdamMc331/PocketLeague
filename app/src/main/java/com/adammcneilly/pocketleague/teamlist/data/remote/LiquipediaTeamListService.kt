@@ -5,6 +5,7 @@ import com.adammcneilly.pocketleague.core.data.remote.liquipedia.LiquipediaRetro
 import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.teamlist.data.TeamListService
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Element
 import javax.inject.Inject
 
 class LiquipediaTeamListService @Inject constructor(
@@ -21,19 +22,52 @@ class LiquipediaTeamListService @Inject constructor(
         if (body != null) {
             val doc = Jsoup.parse(body)
 
-            val teamNames = doc.select("span[class*=team-template-text]")
+            val teamNodes = doc.select("div[class*=template-box]")
 
-            teamNames.forEach {
-                teams.add(
-                    Team(
-                        name = it.text(),
-                        logoImageUrl = "",
-                        roster = emptyList(),
-                    )
-                )
+            val parsedTeams = teamNodes.mapNotNull { teamNode ->
+                parseTeam(teamNode)
             }
+
+            teams.addAll(parsedTeams)
         }
 
         return Result.Success(teams.toList())
+    }
+
+    private fun parseTeam(teamNode: Element): Team? {
+        val teamName = parseTeamName(teamNode)
+        val logoImage = parseLightModeImageUrl(teamNode)
+
+        return if (teamName != null && logoImage != null) {
+            Team(
+                name = teamName,
+                logoImageUrl = logoImage,
+                roster = emptyList(),
+            )
+        } else {
+            null
+        }
+    }
+
+    private fun parseTeamName(teamNode: Element): String? {
+        return try {
+            teamNode
+                .selectFirst("span[class*=team-template-text]")
+                .text()
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private fun parseLightModeImageUrl(teamNode: Element): String? {
+        return try {
+            teamNode
+                .selectFirst("span.team-template-lightmode")
+                .selectFirst("img")
+                .attributes()
+                .get("src")
+        } catch (e: Exception) {
+            null
+        }
     }
 }

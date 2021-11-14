@@ -15,7 +15,7 @@ fun TeamOverviewList(
         modifier = modifier,
     ) {
         items(teams) { team ->
-            TeamOverviewListItem(
+            ToggleableTeamOverviewListItem(
                 team = team,
             )
 

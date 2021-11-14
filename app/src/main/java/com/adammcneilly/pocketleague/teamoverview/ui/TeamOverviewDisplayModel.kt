@@ -11,6 +11,6 @@ data class TeamOverviewDisplayModel(
 fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
     return TeamOverviewDisplayModel(
         name = this.name,
-        logoImage = UIImage.Remote(this.logoImageUrl)
+        logoImage = UIImage.Remote(this.lightThemeLogoImageUrl)
     )
 }

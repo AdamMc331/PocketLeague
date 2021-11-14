@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.teamlist.data.remote
 
-import android.util.Log
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.data.remote.liquipedia.LiquipediaRetrofitAPI
 import com.adammcneilly.pocketleague.core.domain.models.Player
@@ -40,18 +39,14 @@ class LiquipediaTeamListService @Inject constructor(
         val teamName = parseTeamName(teamNode)
         val lightImage = parseLightModeImageUrl(teamNode)
         val darkImage = parseDarkModeImageUrl(teamNode)
-
-        if (teamName == "Pittsburgh Knights") {
-            val roster = parseRoster(teamNode)
-            Log.d("LiquipediaService", "PK roster: $roster")
-        }
+        val roster = parseRoster(teamNode)
 
         return if (teamName != null) {
             Team(
                 name = teamName,
                 lightThemeLogoImageUrl = lightImage.orEmpty(),
                 darkThemeLogoImageUrl = darkImage.orEmpty(),
-                roster = emptyList(),
+                roster = roster,
             )
         } else {
             null

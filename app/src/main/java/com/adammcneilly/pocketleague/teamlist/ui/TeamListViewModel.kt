@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.teamlist.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.core.ui.FlagResProvider
 import com.adammcneilly.pocketleague.teamlist.domain.models.FetchTeamListResult
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCase
 import com.adammcneilly.pocketleague.teamoverview.ui.toOverviewDisplayModel
@@ -15,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TeamListViewModel @Inject constructor(
     private val fetchAllTeamsUseCase: FetchAllTeamsUseCase,
+    private val flagResProvider: FlagResProvider,
 ) : ViewModel() {
 
     private val _viewState = MutableStateFlow(TeamListViewState())
@@ -47,7 +48,9 @@ class TeamListViewModel @Inject constructor(
         _viewState.value = _viewState.value.copy(
             showLoading = false,
             showContent = true,
-            teams = allTeamsResult.teams.map(Team::toOverviewDisplayModel),
+            teams = allTeamsResult.teams.map { team ->
+                team.toOverviewDisplayModel(flagResProvider)
+            },
         )
     }
 }

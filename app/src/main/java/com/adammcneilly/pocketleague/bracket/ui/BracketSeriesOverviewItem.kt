@@ -109,10 +109,12 @@ private fun BracketSeriesOverviewItemPreview() {
         teamOne = TeamOverviewDisplayModel(
             name = "G2",
             logoImage = UIImage.Resource(R.drawable.us),
+            roster = emptyList(),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "GG",
             logoImage = UIImage.Resource(R.drawable.us),
+            roster = emptyList(),
         ),
         teamOneWins = 4,
         teamTwoWins = 2,

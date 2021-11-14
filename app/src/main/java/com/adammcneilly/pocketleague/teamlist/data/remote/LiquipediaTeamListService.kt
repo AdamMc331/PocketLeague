@@ -57,7 +57,7 @@ class LiquipediaTeamListService @Inject constructor(
         return try {
             teamNode
                 .selectFirst("span[class*=team-template-text]")
-                .text()
+                ?.text()
         } catch (e: Exception) {
             null
         }
@@ -69,9 +69,9 @@ class LiquipediaTeamListService @Inject constructor(
 
             baseUrl + teamNode
                 .selectFirst("span.team-template-lightmode")
-                .selectFirst("img")
-                .attributes()
-                .get("src")
+                ?.selectFirst("img")
+                ?.attributes()
+                ?.get("src")
         } catch (e: Exception) {
             null
         }
@@ -83,9 +83,9 @@ class LiquipediaTeamListService @Inject constructor(
 
             baseUrl + teamNode
                 .selectFirst("span.team-template-darkmode")
-                .selectFirst("img")
-                .attributes()
-                .get("src")
+                ?.selectFirst("img")
+                ?.attributes()
+                ?.get("src")
         } catch (e: Exception) {
             null
         }

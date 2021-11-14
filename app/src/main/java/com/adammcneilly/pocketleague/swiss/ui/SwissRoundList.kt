@@ -58,10 +58,12 @@ private fun SwissRoundListPreview() {
         teamOne = TeamOverviewDisplayModel(
             name = "TOR",
             logoImage = UIImage.Resource(R.drawable.us),
+            roster = emptyList(),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "V1",
             logoImage = UIImage.Resource(R.drawable.us),
+            roster = emptyList(),
         ),
         teamOneWins = 1,
         teamTwoWins = 3,
@@ -71,10 +73,12 @@ private fun SwissRoundListPreview() {
         teamOne = TeamOverviewDisplayModel(
             name = "FAZE",
             logoImage = UIImage.Resource(R.drawable.us),
+            roster = emptyList(),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "SSG",
             logoImage = UIImage.Resource(R.drawable.us),
+            roster = emptyList(),
         ),
         teamOneWins = 1,
         teamTwoWins = 3,
@@ -84,10 +88,12 @@ private fun SwissRoundListPreview() {
         teamOne = TeamOverviewDisplayModel(
             name = "GG",
             logoImage = UIImage.Resource(R.drawable.us),
+            roster = emptyList(),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "VIB",
             logoImage = UIImage.Resource(R.drawable.us),
+            roster = emptyList(),
         ),
         teamOneWins = 3,
         teamTwoWins = 1,

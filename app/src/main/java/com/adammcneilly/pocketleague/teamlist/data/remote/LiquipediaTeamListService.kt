@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.teamlist.data.remote
 
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.data.remote.liquipedia.LiquipediaRetrofitAPI
+import com.adammcneilly.pocketleague.core.domain.models.Player
 import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.teamlist.data.TeamListService
 import org.jsoup.Jsoup
@@ -38,13 +39,14 @@ class LiquipediaTeamListService @Inject constructor(
         val teamName = parseTeamName(teamNode)
         val lightImage = parseLightModeImageUrl(teamNode)
         val darkImage = parseDarkModeImageUrl(teamNode)
+        val roster = parseRoster(teamNode)
 
         return if (teamName != null) {
             Team(
                 name = teamName,
                 lightThemeLogoImageUrl = lightImage.orEmpty(),
                 darkThemeLogoImageUrl = darkImage.orEmpty(),
-                roster = emptyList(),
+                roster = roster,
             )
         } else {
             null
@@ -85,6 +87,31 @@ class LiquipediaTeamListService @Inject constructor(
                 .attributes()
                 .get("src")
         } catch (e: Exception) {
+            null
+        }
+    }
+
+    private fun parseRoster(teamNode: Element): List<Player> {
+        return teamNode.select("tr").mapNotNull { playerRow ->
+            parsePlayer(playerRow)
+        }
+    }
+
+    private fun parsePlayer(playerRow: Element): Player? {
+        val cells = playerRow.select("td")
+
+        val gamerTag = cells.getOrNull(0)?.text()
+        val playerName = cells.getOrNull(1)?.text()
+        val notes = cells.getOrNull(2)?.text()
+
+        return if (gamerTag != null && playerName != null) {
+            Player(
+                countryCode = "us",
+                gamerTag = gamerTag,
+                realName = playerName,
+                notes = notes,
+            )
+        } else {
             null
         }
     }

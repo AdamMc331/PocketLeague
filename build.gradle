@@ -14,6 +14,9 @@ buildscript {
     // https://developer.android.com/jetpack/androidx/releases/hilt
     ext.hiltVersion = "2.40.1"
 
+    // https://github.com/Kotlin/kotlinx-kover/releases
+    ext.koverVersion = "0.4.1"
+
     repositories {
         google()
         mavenCentral()
@@ -32,6 +35,7 @@ buildscript {
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
         classpath "com.github.ben-manes:gradle-versions-plugin:$versionsPluginVersion"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
+        classpath "org.jetbrains.kotlinx:kover:$koverVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -45,6 +49,7 @@ subprojects {
     apply from: "../buildscripts/ktlint.gradle"
     apply from: "../buildscripts/detekt.gradle"
     apply from: "../buildscripts/versionsplugin.gradle"
+    apply from: "../buildscripts/kover.gradle"
 }
 
 task clean(type: Delete) {

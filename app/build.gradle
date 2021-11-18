@@ -86,6 +86,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$rootProject.ext.versions.retrofit"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.versions.okhttp"
     implementation "com.squareup.moshi:moshi-kotlin:$rootProject.ext.versions.moshi"
+    implementation "com.google.accompanist:accompanist-insets-ui:$rootProject.ext.versions.accompanist"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$rootProject.ext.versions.accompanist"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
     testImplementation "junit:junit:$rootProject.ext.versions.junit"
     testImplementation "com.google.truth:truth:$rootProject.ext.versions.truth"

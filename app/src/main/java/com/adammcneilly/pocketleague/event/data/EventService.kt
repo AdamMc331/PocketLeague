@@ -1,9 +1,9 @@
 package com.adammcneilly.pocketleague.event.data
 
-import com.adammcneilly.pocketleague.swiss.ui.SwissRound
+import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
 
 interface EventService {
-    suspend fun fetchSwissRounds(
+    suspend fun fetchSwissStage(
         eventName: String,
-    ): List<SwissRound>
+    ): SwissStage
 }

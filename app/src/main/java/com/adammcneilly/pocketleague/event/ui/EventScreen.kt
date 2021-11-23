@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.event.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 
@@ -9,5 +10,10 @@ fun EventScreen(
     modifier: Modifier = Modifier,
     viewModel: EventViewModel = hiltViewModel(),
 ) {
-    // Nothing yet.
+    val viewState = viewModel.viewState.collectAsState()
+
+    EventContent(
+        viewState = viewState.value,
+        modifier = modifier,
+    )
 }

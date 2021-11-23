@@ -12,6 +12,14 @@ data class TeamOverviewDisplayModel(
     val roster: List<PlayerDisplayModel>,
 )
 
+fun Team.toOverviewDisplayModelWithoutRoster(): TeamOverviewDisplayModel {
+    return TeamOverviewDisplayModel(
+        name = this.name,
+        logoImage = UIImage.Remote(this.lightThemeLogoImageUrl),
+        roster = emptyList(),
+    )
+}
+
 fun Team.toOverviewDisplayModel(
     flagResProvider: FlagResProvider,
 ): TeamOverviewDisplayModel {

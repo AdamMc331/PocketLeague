@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -75,11 +76,7 @@ private fun FirstTeamResult(
         FontWeight.Normal
     }
 
-    val backgroundColor = if (isWinner) {
-        MaterialTheme.colorScheme.surface
-    } else {
-        MaterialTheme.colorScheme.primary
-    }
+    val backgroundColor = isWinner.toBackgroundColor()
 
     Surface(
         color = backgroundColor,
@@ -123,11 +120,7 @@ private fun SecondTeamResult(
         FontWeight.Normal
     }
 
-    val backgroundColor = if (isWinner) {
-        MaterialTheme.colorScheme.surface
-    } else {
-        MaterialTheme.colorScheme.primary
-    }
+    val backgroundColor = isWinner.toBackgroundColor()
 
     Surface(
         color = backgroundColor,
@@ -155,6 +148,15 @@ private fun SecondTeamResult(
                 textAlign = TextAlign.Center,
             )
         }
+    }
+}
+
+@Composable
+private fun Boolean.toBackgroundColor(): Color {
+    return if (this) {
+        MaterialTheme.colorScheme.primary
+    } else {
+        MaterialTheme.colorScheme.surface
     }
 }
 

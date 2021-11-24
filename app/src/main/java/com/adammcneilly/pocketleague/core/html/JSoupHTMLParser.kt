@@ -1,8 +1,9 @@
 package com.adammcneilly.pocketleague.core.html
 
 import org.jsoup.Jsoup
+import javax.inject.Inject
 
-class JSoupHTMLParser : HTMLParser {
+class JSoupHTMLParser @Inject constructor() : HTMLParser {
     private lateinit var document: HTMLDocument
 
     override fun setHTML(html: String) {

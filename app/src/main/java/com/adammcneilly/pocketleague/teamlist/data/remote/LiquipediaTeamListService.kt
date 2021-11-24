@@ -61,17 +61,14 @@ class LiquipediaTeamListService @Inject constructor(
 
     private fun parseTeamName(teamNode: HTMLElement): String? {
         return teamNode
-            .selectAll("span", "team-template-text")
-            .firstOrNull()
+            .selectFirst("span", "team-template-text")
             ?.getText()
     }
 
     private fun parseLightModeImageUrl(teamNode: HTMLElement): String {
         val imageUrl = teamNode
-            .selectAll("span", "team-template-lightmode")
-            .firstOrNull()
-            ?.selectAll("img", "")
-            ?.firstOrNull()
+            .selectFirst("span", "team-template-lightmode")
+            ?.selectFirst("img", "")
             ?.getAttribute("src")
 
         return "https://liquipedia.net/$imageUrl"
@@ -79,10 +76,8 @@ class LiquipediaTeamListService @Inject constructor(
 
     private fun parseDarkModeImageUrl(teamNode: HTMLElement): String {
         val imageUrl = teamNode
-            .selectAll("span", "team-template-darkmode")
-            .firstOrNull()
-            ?.selectAll("img", "")
-            ?.firstOrNull()
+            .selectFirst("span", "team-template-darkmode")
+            ?.selectFirst("img", "")
             ?.getAttribute("src")
 
         return "https://liquipedia.net/$imageUrl"

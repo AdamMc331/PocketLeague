@@ -23,6 +23,10 @@ class JSoupHTMLElement(
         }
     }
 
+    override fun selectFirst(elementType: String, elementClass: String): HTMLElement? {
+        return selectAll(elementType, elementClass).firstOrNull()
+    }
+
     override fun getAttribute(attributeKey: String): String {
         return element
             .attributes()

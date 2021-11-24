@@ -8,6 +8,11 @@ interface HTMLElement {
         elementClass: String,
     ): List<HTMLElement>
 
+    fun selectFirst(
+        elementType: String,
+        elementClass: String,
+    ): HTMLElement?
+
     fun getAttribute(
         attributeKey: String,
     ): String

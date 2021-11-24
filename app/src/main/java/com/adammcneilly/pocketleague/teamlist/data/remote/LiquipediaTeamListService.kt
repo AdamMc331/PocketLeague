@@ -14,7 +14,9 @@ class LiquipediaTeamListService @Inject constructor(
 ) : TeamListService {
 
     override suspend fun fetchAllTeams(): Result<List<Team>> {
-        val liquipediaResponse = api.fetchTeamsPage()
+        val liquipediaResponse = api.fetchPage(
+            page = "Portal:Teams",
+        )
 
         val body = liquipediaResponse.body()?.parse?.text?.x
 

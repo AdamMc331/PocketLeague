@@ -10,7 +10,4 @@ interface LiquipediaRetrofitAPI {
     suspend fun fetchPage(
         @Query("page") page: String,
     ): Response<LiquipediaPageParseResponseDTO>
-
-    @GET("/rocketleague/api.php?action=parse&page=Portal:Teams&format=json")
-    suspend fun fetchTeamsPage(): Response<LiquipediaPageParseResponseDTO>
 }

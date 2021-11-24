@@ -2,16 +2,17 @@ package com.adammcneilly.pocketleague.event.data.remote
 
 import com.adammcneilly.pocketleague.core.data.remote.liquipedia.LiquipediaRetrofitAPI
 import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.core.html.HTMLElement
+import com.adammcneilly.pocketleague.core.html.HTMLParser
 import com.adammcneilly.pocketleague.event.data.EventService
 import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Element
 import javax.inject.Inject
 
 class LiquipediaEventService @Inject constructor(
     private val api: LiquipediaRetrofitAPI,
+    private val htmlParser: HTMLParser,
 ) : EventService {
 
     override suspend fun fetchSwissStage(eventName: String): SwissStage {
@@ -24,9 +25,12 @@ class LiquipediaEventService @Inject constructor(
         val rounds = mutableListOf<SwissRound>()
 
         if (body != null) {
-            val doc = Jsoup.parse(body)
+            htmlParser.setHTML(body)
 
-            val brackets = doc.select("div.brkts-matchlist")
+            val brackets = htmlParser.selectAll(
+                elementType = "div",
+                elementClass = "brkts-matchlist",
+            )
 
             val parsedRounds = brackets.map { bracket ->
                 parseRound(bracket)
@@ -40,10 +44,16 @@ class LiquipediaEventService @Inject constructor(
         )
     }
 
-    private fun parseRound(bracket: Element): SwissRound {
-        val title = bracket.selectFirst("div.brkts-matchlist-title")?.text()
+    private fun parseRound(bracket: HTMLElement): SwissRound {
+        val title = bracket.selectFirst(
+            elementType = "div",
+            elementClass = "brkts-matchlist-title",
+        )?.getText()
 
-        val matches = bracket.select("div.brkts-matchlist-match")
+        val matches = bracket.selectAll(
+            elementType = "div",
+            elementClass = "brkts-matchlist-match",
+        )
 
         val seriesOverviews = matches.map { match ->
             parseSeriesOverview(match)
@@ -55,9 +65,16 @@ class LiquipediaEventService @Inject constructor(
         )
     }
 
-    private fun parseSeriesOverview(match: Element): SeriesOverview {
-        val teams = match.select("div.brkts-matchlist-opponent").map { it.text() }
-        val scores = match.select("div.brkts-matchlist-score").map { it.text() }
+    private fun parseSeriesOverview(match: HTMLElement): SeriesOverview {
+        val teams = match.selectAll(
+            elementType = "div",
+            elementClass = "brkts-matchlist-opponent",
+        ).map { it.getText() }
+
+        val scores = match.selectAll(
+            elementType = "div",
+            elementClass = "brkts-matchlist-score",
+        ).map { it.getText() }
 
         val teamOne = Team(
             name = teams[0],

@@ -19,6 +19,10 @@ import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * The [MainActivity] is the user's main entry point into the application. This will be launched
+ * when the application is first started.
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)

@@ -5,5 +5,8 @@ package com.adammcneilly.pocketleague.core.ui
  * country code.
  */
 interface FlagResProvider {
+    /**
+     * Given a [countryCode], fetch the corresponding drawable resource for that country's flag.
+     */
     fun getFlagRes(countryCode: String): Int
 }

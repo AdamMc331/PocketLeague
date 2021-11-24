@@ -63,6 +63,9 @@ private val DarkThemeColors = darkColorScheme(
     inverseSurface = md_theme_dark_inverseSurface,
 )
 
+/**
+ * Creates our custom [MaterialTheme] for the pocket league application.
+ */
 @Composable
 fun PocketLeagueTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),

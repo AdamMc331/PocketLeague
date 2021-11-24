@@ -17,6 +17,10 @@ import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.seriesoverview.ui.SeriesOverviewDisplayModel
 import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewDisplayModel
 
+/**
+ * Given a [SwissRoundDisplayModel], create a list of all series that
+ * occurred during that swiss round.
+ */
 @Composable
 fun SwissRoundList(
     swissRound: SwissRoundDisplayModel,

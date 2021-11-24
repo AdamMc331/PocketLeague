@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.event.ui.EventScreen
+import com.adammcneilly.pocketleague.teamlist.ui.TeamListScreen
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -33,11 +33,16 @@ class MainActivity : ComponentActivity() {
 
                 ProvideWindowInsets {
                     Scaffold { paddingValues ->
-                        EventScreen(
+                        TeamListScreen(
                             modifier = Modifier
                                 .padding(paddingValues)
                                 .statusBarsPadding()
                         )
+//                        EventScreen(
+//                            modifier = Modifier
+//                                .padding(paddingValues)
+//                                .statusBarsPadding()
+//                        )
                     }
                 }
             }

@@ -4,26 +4,32 @@ import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.data.remote.liquipedia.LiquipediaRetrofitAPI
 import com.adammcneilly.pocketleague.core.domain.models.Player
 import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.core.html.HTMLElement
+import com.adammcneilly.pocketleague.core.html.HTMLParser
 import com.adammcneilly.pocketleague.teamlist.data.TeamListService
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Element
 import javax.inject.Inject
 
 class LiquipediaTeamListService @Inject constructor(
     private val api: LiquipediaRetrofitAPI,
+    private val htmlParser: HTMLParser,
 ) : TeamListService {
 
     override suspend fun fetchAllTeams(): Result<List<Team>> {
-        val liquipediaResponse = api.fetchTeamsPage()
+        val liquipediaResponse = api.fetchPage(
+            page = "Portal:Teams",
+        )
 
         val body = liquipediaResponse.body()?.parse?.text?.x
 
         val teams = mutableListOf<Team>()
 
         if (body != null) {
-            val doc = Jsoup.parse(body)
+            htmlParser.setHTML(body)
 
-            val teamNodes = doc.select("div[class*=template-box]")
+            val teamNodes = htmlParser.selectAll(
+                elementType = "div",
+                elementClass = "template-box",
+            )
 
             val parsedTeams = teamNodes.mapNotNull { teamNode ->
                 parseTeam(teamNode)
@@ -35,7 +41,7 @@ class LiquipediaTeamListService @Inject constructor(
         return Result.Success(teams.toList())
     }
 
-    private fun parseTeam(teamNode: Element): Team? {
+    private fun parseTeam(teamNode: HTMLElement): Team? {
         val teamName = parseTeamName(teamNode)
         val lightImage = parseLightModeImageUrl(teamNode)
         val darkImage = parseDarkModeImageUrl(teamNode)
@@ -44,8 +50,8 @@ class LiquipediaTeamListService @Inject constructor(
         return if (teamName != null) {
             Team(
                 name = teamName,
-                lightThemeLogoImageUrl = lightImage.orEmpty(),
-                darkThemeLogoImageUrl = darkImage.orEmpty(),
+                lightThemeLogoImageUrl = lightImage,
+                darkThemeLogoImageUrl = darkImage,
                 roster = roster,
             )
         } else {
@@ -53,56 +59,42 @@ class LiquipediaTeamListService @Inject constructor(
         }
     }
 
-    private fun parseTeamName(teamNode: Element): String? {
-        return try {
-            teamNode
-                .selectFirst("span[class*=team-template-text]")
-                ?.text()
-        } catch (e: Exception) {
-            null
-        }
+    private fun parseTeamName(teamNode: HTMLElement): String? {
+        return teamNode
+            .selectFirst("span", "team-template-text")
+            ?.getText()
     }
 
-    private fun parseLightModeImageUrl(teamNode: Element): String? {
-        return try {
-            val baseUrl = "https://liquipedia.net/"
+    private fun parseLightModeImageUrl(teamNode: HTMLElement): String {
+        val imageUrl = teamNode
+            .selectFirst("span", "team-template-lightmode")
+            ?.selectFirst("img", "")
+            ?.getAttribute("src")
 
-            baseUrl + teamNode
-                .selectFirst("span.team-template-lightmode")
-                ?.selectFirst("img")
-                ?.attributes()
-                ?.get("src")
-        } catch (e: Exception) {
-            null
-        }
+        return "https://liquipedia.net/$imageUrl"
     }
 
-    private fun parseDarkModeImageUrl(teamNode: Element): String? {
-        return try {
-            val baseUrl = "https://liquipedia.net/"
+    private fun parseDarkModeImageUrl(teamNode: HTMLElement): String {
+        val imageUrl = teamNode
+            .selectFirst("span", "team-template-darkmode")
+            ?.selectFirst("img", "")
+            ?.getAttribute("src")
 
-            baseUrl + teamNode
-                .selectFirst("span.team-template-darkmode")
-                ?.selectFirst("img")
-                ?.attributes()
-                ?.get("src")
-        } catch (e: Exception) {
-            null
-        }
+        return "https://liquipedia.net/$imageUrl"
     }
 
-    private fun parseRoster(teamNode: Element): List<Player> {
-        return teamNode.select("tr").mapNotNull { playerRow ->
+    private fun parseRoster(teamNode: HTMLElement): List<Player> {
+        return teamNode.selectAll("tr", "").mapNotNull { playerRow ->
             parsePlayer(playerRow)
         }
     }
 
-    private fun parsePlayer(playerRow: Element): Player? {
-        val cells = playerRow.select("td")
+    private fun parsePlayer(playerRow: HTMLElement): Player? {
+        val cells = playerRow.selectAll("td", "")
 
-        val gamerTag = cells.getOrNull(0)?.text()
-        val playerName = cells.getOrNull(1)?.text()
-        val notes = cells.getOrNull(2)?.text()
+        val gamerTag = cells.getOrNull(0)?.getText()
+        val playerName = cells.getOrNull(1)?.getText()
+        val notes = cells.getOrNull(2)?.getText()
 
         return if (gamerTag != null && playerName != null) {
             Player(

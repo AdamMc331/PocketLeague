@@ -7,7 +7,13 @@ class JSoupHTMLDocument(
 ) : HTMLDocument {
 
     override fun selectAll(elementType: String, elementClass: String): List<HTMLElement> {
-        val elements = document.select("$elementType[class*=$elementClass]")
+        val selector = StringBuilder(elementType).apply {
+            if (elementClass.isNotEmpty()) {
+                append(".$elementClass")
+            }
+        }.toString()
+
+        val elements = document.select(selector)
 
         return elements.map { element ->
             JSoupHTMLElement(element)

@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.teamoverview.ui
 
 import android.content.res.Configuration
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,7 +36,7 @@ fun TeamOverviewListItem(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             PocketLeagueImage(
-                team.logoImage,
+                team.logoImage(),
                 contentDescription = "Team Logo",
                 modifier = Modifier
                     .size(24.dp),
@@ -54,6 +55,15 @@ fun TeamOverviewListItem(
     }
 }
 
+@Composable
+private fun TeamOverviewDisplayModel.logoImage(): UIImage {
+    return if (isSystemInDarkTheme()) {
+        this.darkLogoImage
+    } else {
+        this.lightLogoImage
+    }
+}
+
 @Preview(
     name = "Night Mode",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
@@ -66,7 +76,7 @@ fun TeamOverviewListItem(
 private fun TeamOverviewListItemPreview() {
     val team = TeamOverviewDisplayModel(
         name = "Pittsburgh Knights",
-        logoImage = UIImage.Resource(R.drawable.us),
+        lightLogoImage = UIImage.Resource(R.drawable.us),
         roster = emptyList(),
     )
 

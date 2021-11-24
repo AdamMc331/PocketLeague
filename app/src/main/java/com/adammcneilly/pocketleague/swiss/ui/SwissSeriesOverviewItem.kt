@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.swiss.ui
 
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -173,12 +172,12 @@ private fun SwissSeriesOverviewItemPreview() {
     val overview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(
             name = "G2",
-            logoImage = UIImage.Resource(R.drawable.us),
+            lightLogoImage = UIImage.Resource(R.drawable.us),
             roster = emptyList(),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "GG",
-            logoImage = UIImage.Resource(R.drawable.us),
+            lightLogoImage = UIImage.Resource(R.drawable.us),
             roster = emptyList(),
         ),
         teamOneWins = 4,

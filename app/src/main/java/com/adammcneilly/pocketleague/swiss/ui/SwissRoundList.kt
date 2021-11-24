@@ -57,12 +57,12 @@ private fun SwissRoundListPreview() {
     val torV1Overview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(
             name = "TOR",
-            logoImage = UIImage.Resource(R.drawable.us),
+            lightLogoImage = UIImage.Resource(R.drawable.us),
             roster = emptyList(),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "V1",
-            logoImage = UIImage.Resource(R.drawable.us),
+            lightLogoImage = UIImage.Resource(R.drawable.us),
             roster = emptyList(),
         ),
         teamOneWins = 1,
@@ -72,12 +72,12 @@ private fun SwissRoundListPreview() {
     val fazeSSGOverview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(
             name = "FAZE",
-            logoImage = UIImage.Resource(R.drawable.us),
+            lightLogoImage = UIImage.Resource(R.drawable.us),
             roster = emptyList(),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "SSG",
-            logoImage = UIImage.Resource(R.drawable.us),
+            lightLogoImage = UIImage.Resource(R.drawable.us),
             roster = emptyList(),
         ),
         teamOneWins = 1,
@@ -87,12 +87,12 @@ private fun SwissRoundListPreview() {
     val ghostVIBOverview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(
             name = "GG",
-            logoImage = UIImage.Resource(R.drawable.us),
+            lightLogoImage = UIImage.Resource(R.drawable.us),
             roster = emptyList(),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "VIB",
-            logoImage = UIImage.Resource(R.drawable.us),
+            lightLogoImage = UIImage.Resource(R.drawable.us),
             roster = emptyList(),
         ),
         teamOneWins = 3,

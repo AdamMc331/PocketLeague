@@ -10,9 +10,13 @@ class JSoupHTMLElement(
     }
 
     override fun selectAll(elementType: String, elementClass: String): List<HTMLElement> {
-        val elements = element.select(
-            "$elementType[class*=$elementClass]"
-        )
+        val selector = StringBuilder(elementType).apply {
+            if (elementClass.isNotEmpty()) {
+                append(".$elementClass")
+            }
+        }.toString()
+
+        val elements = element.select(selector)
 
         return elements.map { element ->
             JSoupHTMLElement(element)

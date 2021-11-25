@@ -7,8 +7,12 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
+/**
+ * A collection of all use case dependencies in the application.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
+@Suppress("UndocumentedPublicFunction")
 abstract class UseCaseModule {
     @Binds
     abstract fun bindFetchAllTeamsUseCase(

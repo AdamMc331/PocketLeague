@@ -7,6 +7,9 @@ import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewList
 
+/**
+ * Renders the actual content of the team list screen given the [viewState].
+ */
 @Composable
 fun TeamListContent(
     viewState: TeamListViewState,

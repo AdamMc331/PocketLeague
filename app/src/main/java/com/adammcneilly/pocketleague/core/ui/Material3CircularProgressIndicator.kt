@@ -27,6 +27,10 @@ fun Material3CircularProgressIndicator(
     )
 }
 
+/**
+ * A custom implementation of [Material3CircularProgressIndicator] that will center it within the
+ * [BoxScope].
+ */
 @Composable
 fun BoxScope.CenteredMaterial3CircularProgressIndicator() {
     Material3CircularProgressIndicator(

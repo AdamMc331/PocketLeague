@@ -12,6 +12,9 @@ import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.murgupluoglu.flagkit.FlagKit
 
+/**
+ * Given a list of [players], render that collection on the UI.
+ */
 @Composable
 fun PlayerList(
     players: List<PlayerDisplayModel>,

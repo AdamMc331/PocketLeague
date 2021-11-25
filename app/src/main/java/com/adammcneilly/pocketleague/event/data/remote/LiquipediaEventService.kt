@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.event.data.remote
 
+import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.data.remote.liquipedia.LiquipediaRetrofitAPI
 import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.core.html.HTMLElement
@@ -10,12 +11,15 @@ import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
 import javax.inject.Inject
 
+/**
+ * A concrete implementation of an [EventService] that interacts with the Liquipedia [api].
+ */
 class LiquipediaEventService @Inject constructor(
     private val api: LiquipediaRetrofitAPI,
     private val htmlParser: HTMLParser,
 ) : EventService {
 
-    override suspend fun fetchSwissStage(eventName: String): SwissStage {
+    override suspend fun fetchSwissStage(eventName: String): Result<SwissStage> {
         val liquipediaResponse = api.fetchPage(
             page = eventName,
         )
@@ -39,8 +43,10 @@ class LiquipediaEventService @Inject constructor(
             rounds.addAll(parsedRounds)
         }
 
-        return SwissStage(
-            rounds = rounds,
+        return Result.Success(
+            SwissStage(
+                rounds = rounds,
+            )
         )
     }
 

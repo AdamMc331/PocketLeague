@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * The UI state management container for the team list screen.
+ */
 @HiltViewModel
 class TeamListViewModel @Inject constructor(
     private val fetchAllTeamsUseCase: FetchAllTeamsUseCase,

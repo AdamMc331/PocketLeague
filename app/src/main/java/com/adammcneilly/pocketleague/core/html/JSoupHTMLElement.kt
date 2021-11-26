@@ -2,6 +2,9 @@ package com.adammcneilly.pocketleague.core.html
 
 import org.jsoup.nodes.Element
 
+/**
+ * A concrete implementation of an [HTMLElement] that is backed by a jsoup [Element].
+ */
 class JSoupHTMLElement(
     private val element: Element,
 ) : HTMLElement {

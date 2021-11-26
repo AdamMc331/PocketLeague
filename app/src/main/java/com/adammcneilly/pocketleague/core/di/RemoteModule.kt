@@ -13,8 +13,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
+/**
+ * A module to provide all dependencies related to remote data requests.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
+@Suppress("UndocumentedPublicFunction")
 object RemoteModule {
 
     @Provides

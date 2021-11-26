@@ -10,6 +10,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * A UI State management class for the event detail screen.
+ */
 @HiltViewModel
 class EventViewModel @Inject constructor(
     private val eventService: EventService,

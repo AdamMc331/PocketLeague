@@ -9,7 +9,13 @@ package com.adammcneilly.pocketleague.core.data
  * exceptions will be wrapped inside an [Error] class.
  */
 sealed class Result<out T> {
+    /**
+     * A successful result which implies we will have some [data] returned.
+     */
     data class Success<out T>(val data: T) : Result<T>()
 
+    /**
+     * An unsuccessful result because some [error] occurred.
+     */
     data class Error(val error: Throwable) : Result<Nothing>()
 }

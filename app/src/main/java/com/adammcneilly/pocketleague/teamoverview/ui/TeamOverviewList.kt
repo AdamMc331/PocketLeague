@@ -6,6 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.ui.Material3Divider
 
+/**
+ * Consumes a list of [teams] and displays their overview information.
+ */
 @Composable
 fun TeamOverviewList(
     teams: List<TeamOverviewDisplayModel>,

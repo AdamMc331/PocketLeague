@@ -6,6 +6,9 @@ import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.player.ui.PlayerDisplayModel
 import com.adammcneilly.pocketleague.player.ui.toDisplayModel
 
+/**
+ * A class that presents a team in a user friendly fashion.
+ */
 data class TeamDetailDisplayModel(
     val name: String,
     val logo: UIImage,

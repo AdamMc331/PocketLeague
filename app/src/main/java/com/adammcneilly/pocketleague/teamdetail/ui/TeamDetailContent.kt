@@ -25,6 +25,9 @@ import com.adammcneilly.pocketleague.player.ui.PlayerDisplayModel
 import com.adammcneilly.pocketleague.player.ui.PlayerList
 import com.murgupluoglu.flagkit.FlagKit
 
+/**
+ * The UI content of the team detail screen based on the supplied [team].
+ */
 @Composable
 fun TeamDetailContent(
     team: TeamDetailDisplayModel,

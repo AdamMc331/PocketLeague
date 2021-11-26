@@ -24,6 +24,9 @@ import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.seriesoverview.ui.SeriesOverviewDisplayModel
 import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewDisplayModel
 
+/**
+ * A [seriesOverview] between two teams that occurred inside a bracket format.
+ */
 @Composable
 fun BracketSeriesOverviewItem(
     seriesOverview: SeriesOverviewDisplayModel,

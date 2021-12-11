@@ -12,7 +12,7 @@ buildscript {
     ext.versionsPluginVersion = "0.29.0"
 
     // https://developer.android.com/jetpack/androidx/releases/hilt
-    ext.hiltVersion = "2.40.1"
+    ext.hiltVersion = "2.40.5"
 
     // https://github.com/Kotlin/kotlinx-kover/releases
     ext.koverVersion = "0.4.1"

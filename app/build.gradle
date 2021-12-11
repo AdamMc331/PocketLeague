@@ -3,6 +3,7 @@ plugins {
     id "kotlin-android"
     id "kotlin-kapt"
     id "dagger.hilt.android.plugin"
+    id "com.apollographql.apollo" version "2.5.11"
 }
 
 android {
@@ -88,6 +89,8 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$rootProject.ext.versions.moshi"
     implementation "com.google.accompanist:accompanist-insets-ui:$rootProject.ext.versions.accompanist"
     implementation "com.google.accompanist:accompanist-systemuicontroller:$rootProject.ext.versions.accompanist"
+    implementation "com.apollographql.apollo:apollo-runtime:$rootProject.ext.versions.apollo"
+    implementation "com.apollographql.apollo:apollo-coroutines-support:$rootProject.ext.versions.apollo"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
     testImplementation "junit:junit:$rootProject.ext.versions.junit"
     testImplementation "com.google.truth:truth:$rootProject.ext.versions.truth"

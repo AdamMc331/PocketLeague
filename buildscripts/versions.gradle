@@ -28,6 +28,9 @@ ext {
             okhttp          : "4.9.3",
             // https://github.com/square/moshi/releases
             moshi           : "1.12.0",
+            // https://github.com/google/accompanist/releases
             accompanist     : "0.20.2",
+            // https://github.com/apollographql/apollo-android/releases
+            apollo          : "2.5.11",
     ]
 }

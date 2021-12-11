@@ -8,7 +8,6 @@ import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
 import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.await
 import javax.inject.Inject
@@ -21,7 +20,7 @@ class SmashGGEventService @Inject constructor(
 ) : EventService {
 
     override suspend fun fetchSwissStage(eventName: String): Result<SwissStage> {
-        val query = TournamentDetailQuery(slug = eventName.toInput(), perPage = Input.fromNullable(33))
+        val query = TournamentDetailQuery(slug = eventName.toInput())
 
         val result = api.query(query).await()
 
@@ -55,7 +54,7 @@ class SmashGGEventService @Inject constructor(
     }
 }
 
-fun TournamentDetailQuery.Node.toSeriesOverview(): SeriesOverview? {
+private fun TournamentDetailQuery.Node.toSeriesOverview(): SeriesOverview? {
     val slotOne = this.slots!!.get(0)
     val slotTwo = this.slots!!.get(1)
 
@@ -77,7 +76,7 @@ fun TournamentDetailQuery.Node.toSeriesOverview(): SeriesOverview? {
     }
 }
 
-fun TournamentDetailQuery.Entrant.toTeam(): Team {
+private fun TournamentDetailQuery.Entrant.toTeam(): Team {
     return Team(
         name = this.name.orEmpty(),
         lightThemeLogoImageUrl = "",

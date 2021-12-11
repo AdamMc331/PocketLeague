@@ -16,10 +16,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Qualifier
 
+/**
+ * A [Qualifier] annotation for the Liquipedia OkHttp client dependency.
+ */
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class LiquipediaOkHttpClient
 
+/**
+ * A [Qualifier] annotation for the Smash.gg OkHttp client dependency.
+ */
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class SmashGGOkHttpClient

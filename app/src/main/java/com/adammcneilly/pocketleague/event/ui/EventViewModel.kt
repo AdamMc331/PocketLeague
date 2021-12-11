@@ -24,7 +24,7 @@ class EventViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val regional3Rounds = eventService.fetchSwissStage(
-                eventName = "Rocket_League_Championship_Series/2021-22/Fall/North_America/3",
+                eventName = "rlcs-2021-22-season-fall-split-regional-3-north-america",
             )
 
             _viewState.value = when (regional3Rounds) {

@@ -9,6 +9,9 @@ plugins {
 android {
     compileSdk 31
 
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
     defaultConfig {
         applicationId "com.adammcneilly.pocketleague"
         minSdk 21
@@ -17,9 +20,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField("String", "SMASH_GG_API_KEY", properties.getProperty("SmashGGAPIKey"))
     }
 
     buildTypes {
@@ -28,22 +34,27 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
         coreLibraryDesugaringEnabled true
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
         useIR = true
     }
+
     buildFeatures {
         compose true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion rootProject.ext.versions.compose
         kotlinCompilerVersion kotlinVersion
     }
+
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -99,4 +110,8 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$rootProject.ext.versions.compose"
     debugImplementation "androidx.compose.ui:ui-tooling:$rootProject.ext.versions.compose"
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+}
+
+apollo {
+    generateKotlinModels = true
 }

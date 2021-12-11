@@ -5,8 +5,8 @@ import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
 /**
  * This represents one individual round of a [SwissStage].
  *
- * @param[roundDescription] The description of this round, such as "Round 1 Matches", "Round 2 Low Matches", etc.
- * @param[series] All of the [SeriesOverview] entities for this particular swiss round.
+ * @property[roundDescription] The description of this round, such as "Round 1 Matches", "Round 2 Low Matches", etc.
+ * @property[series] All of the [SeriesOverview] entities for this particular swiss round.
  */
 data class SwissRound(
     val roundDescription: String,

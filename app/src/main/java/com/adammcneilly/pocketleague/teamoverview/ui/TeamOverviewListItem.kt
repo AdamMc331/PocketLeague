@@ -23,7 +23,9 @@ import com.adammcneilly.pocketleague.player.ui.PlayerList
 /**
  * Shows a specific [team] item within a list of teams.
  *
+ * @param[team] The [TeamOverviewDisplayModel] of the team we want to display.
  * @param[showRosterList] If true, shows the roster information as well as the team.
+ * @param[modifier] An optional [Modifier] to customize this list item if necessary.
  */
 @Composable
 fun TeamOverviewListItem(

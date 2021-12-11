@@ -6,7 +6,7 @@ buildscript {
     ext.ktlintPluginVersion = "10.0.0"
 
     // https://github.com/detekt/detekt/releases
-    ext.detektVersion = "1.17.0"
+    ext.detektVersion = "1.19.0"
 
     // https://github.com/ben-manes/gradle-versions-plugin
     ext.versionsPluginVersion = "0.29.0"

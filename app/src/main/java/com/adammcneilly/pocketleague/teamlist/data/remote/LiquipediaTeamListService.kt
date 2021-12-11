@@ -9,6 +9,9 @@ import com.adammcneilly.pocketleague.core.html.HTMLParser
 import com.adammcneilly.pocketleague.teamlist.data.TeamListService
 import javax.inject.Inject
 
+/**
+ * A concrete implementation of [TeamListService] that will interact with the liquipedia [api].
+ */
 class LiquipediaTeamListService @Inject constructor(
     private val api: LiquipediaRetrofitAPI,
     private val htmlParser: HTMLParser,

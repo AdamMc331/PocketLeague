@@ -19,6 +19,10 @@ import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.murgupluoglu.flagkit.FlagKit
 
+/**
+ * Given a [player], render the UI to show information about that player
+ * within a list.
+ */
 @Composable
 fun PlayerListItem(
     player: PlayerDisplayModel,

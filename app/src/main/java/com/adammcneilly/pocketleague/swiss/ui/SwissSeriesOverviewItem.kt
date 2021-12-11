@@ -24,6 +24,10 @@ import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.seriesoverview.ui.SeriesOverviewDisplayModel
 import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewDisplayModel
 
+/**
+ * Given a [seriesOverview], render that on the UI. This is intended to be used inside a list of
+ * series.
+ */
 @Composable
 fun SwissSeriesOverviewItem(
     seriesOverview: SeriesOverviewDisplayModel,

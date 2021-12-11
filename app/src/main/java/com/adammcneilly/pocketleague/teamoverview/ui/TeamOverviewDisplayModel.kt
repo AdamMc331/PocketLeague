@@ -6,6 +6,9 @@ import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.player.ui.PlayerDisplayModel
 import com.adammcneilly.pocketleague.player.ui.toDisplayModel
 
+/**
+ * Defines UI information for a team item to be shown at a high level.
+ */
 data class TeamOverviewDisplayModel(
     val name: String,
     val lightLogoImage: UIImage,
@@ -13,6 +16,9 @@ data class TeamOverviewDisplayModel(
     val roster: List<PlayerDisplayModel>,
 )
 
+/**
+ * Converts a [Team] entity to a [TeamOverviewDisplayModel] without roster information.
+ */
 fun Team.toOverviewDisplayModelWithoutRoster(): TeamOverviewDisplayModel {
     return TeamOverviewDisplayModel(
         name = this.name,
@@ -22,6 +28,9 @@ fun Team.toOverviewDisplayModelWithoutRoster(): TeamOverviewDisplayModel {
     )
 }
 
+/**
+ * Converts a [Team] entity to a [TeamOverviewDisplayModel] including roster information.
+ */
 fun Team.toOverviewDisplayModel(
     flagResProvider: FlagResProvider,
 ): TeamOverviewDisplayModel {

@@ -6,6 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 
+/**
+ * A wrapper around a [TeamOverviewListItem] which maintains state
+ * about whether or not to show the roster list.
+ */
 @Composable
 fun ToggleableTeamOverviewListItem(
     team: TeamOverviewDisplayModel,

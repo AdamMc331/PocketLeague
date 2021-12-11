@@ -11,6 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 
+/**
+ * A custom implementation of a [CircularProgressIndicator] that abides by material 3 theming.
+ */
 @Composable
 fun Material3CircularProgressIndicator(
     modifier: Modifier = Modifier,
@@ -24,6 +27,10 @@ fun Material3CircularProgressIndicator(
     )
 }
 
+/**
+ * A custom implementation of [Material3CircularProgressIndicator] that will center it within the
+ * [BoxScope].
+ */
 @Composable
 fun BoxScope.CenteredMaterial3CircularProgressIndicator() {
     Material3CircularProgressIndicator(

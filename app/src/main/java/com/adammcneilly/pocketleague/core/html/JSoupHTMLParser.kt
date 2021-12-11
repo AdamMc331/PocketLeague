@@ -3,6 +3,9 @@ package com.adammcneilly.pocketleague.core.html
 import org.jsoup.Jsoup
 import javax.inject.Inject
 
+/**
+ * A concrete implementation of an [HTMLParser] that is backed by the [Jsoup] library.
+ */
 class JSoupHTMLParser @Inject constructor() : HTMLParser {
     private lateinit var document: HTMLDocument
 

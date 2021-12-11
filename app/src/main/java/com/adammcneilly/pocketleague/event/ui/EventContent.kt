@@ -11,6 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.swiss.ui.SwissRoundList
 
+/**
+ * The concrete UI content for the event screen based on the supplied [viewState].
+ */
 @Composable
 fun EventContent(
     viewState: EventViewState,

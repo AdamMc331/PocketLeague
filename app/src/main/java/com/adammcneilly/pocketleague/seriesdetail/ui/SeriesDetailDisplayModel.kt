@@ -3,6 +3,9 @@ package com.adammcneilly.pocketleague.seriesdetail.ui
 import com.adammcneilly.pocketleague.gameresult.ui.GameResultDisplayModel
 import com.adammcneilly.pocketleague.teamdetail.ui.TeamDetailDisplayModel
 
+/**
+ * A class to present series details in a user friendly fashion.
+ */
 data class SeriesDetailDisplayModel(
     val gameTime: String,
     val games: List<GameResultDisplayModel>,

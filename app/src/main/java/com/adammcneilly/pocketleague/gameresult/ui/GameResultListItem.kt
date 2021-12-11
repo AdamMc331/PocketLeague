@@ -20,6 +20,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
+/**
+ * Given a [result], render information on the UI. This is intended to be used in a list
+ * of games.
+ */
 @Composable
 fun GameResultListItem(
     result: GameResultDisplayModel,

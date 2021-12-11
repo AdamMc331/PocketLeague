@@ -11,6 +11,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+/**
+ * A custom implementation of a divider that uses the Material 3 theme and also applies a
+ * vertical orientation to the divider.
+ */
 @Composable
 fun Material3VerticalDivider(
     modifier: Modifier = Modifier,

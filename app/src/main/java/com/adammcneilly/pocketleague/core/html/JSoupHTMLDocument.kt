@@ -2,6 +2,9 @@ package com.adammcneilly.pocketleague.core.html
 
 import org.jsoup.nodes.Document
 
+/**
+ * A concrete implementation of an [HTMLDocument] that is backed by a jsoup [document].
+ */
 class JSoupHTMLDocument(
     private val document: Document,
 ) : HTMLDocument {

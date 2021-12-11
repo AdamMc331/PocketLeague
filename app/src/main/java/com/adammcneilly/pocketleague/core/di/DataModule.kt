@@ -9,8 +9,12 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
+/**
+ * Defines all dependencies related to our data layer.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
+@Suppress("UndocumentedPublicFunction")
 abstract class DataModule {
     @Binds
     abstract fun bindTeamListService(

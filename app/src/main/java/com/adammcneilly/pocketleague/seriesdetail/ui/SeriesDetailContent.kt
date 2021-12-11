@@ -22,6 +22,9 @@ import com.adammcneilly.pocketleague.gameresult.ui.GameResultDisplayModel
 import com.adammcneilly.pocketleague.gameresult.ui.GameResultList
 import com.adammcneilly.pocketleague.teamdetail.ui.TeamDetailDisplayModel
 
+/**
+ * Shows the UI content for a [result] of a series between two teams.
+ */
 @Composable
 fun SeriesResultContent(
     result: SeriesDetailDisplayModel,

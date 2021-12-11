@@ -36,7 +36,7 @@ class SmashGGEventService @Inject constructor(
             setNode!!.fullRoundText
         }
 
-        val swissRoundsList = nodesByRound!!.map { entry ->
+        val swissRoundsList = nodesByRound.map { entry ->
             val name = entry.key
             val rounds = entry.value.mapNotNull { it!!.toSeriesOverview() }
 
@@ -48,31 +48,31 @@ class SmashGGEventService @Inject constructor(
 
         return Result.Success(
             data = SwissStage(
-                rounds = swissRoundsList.orEmpty(),
+                rounds = swissRoundsList,
             )
         )
     }
 }
 
 private fun TournamentDetailQuery.Node.toSeriesOverview(): SeriesOverview? {
-    val slotOne = this.slots!!.get(0)
-    val slotTwo = this.slots!!.get(1)
+    val slotOne = this.slots!![0]
+    val slotTwo = this.slots[1]
 
     val teamOne = slotOne!!.entrant!!.toTeam()
     val teamTwo = slotTwo!!.entrant!!.toTeam()
 
-    val teamOneScore = slotOne!!.standing!!.stats!!.score!!.displayValue
-    val teamTwoScore = slotTwo!!.standing!!.stats!!.score!!.displayValue
+    val teamOneScore = slotOne.standing!!.stats!!.score!!.displayValue
+    val teamTwoScore = slotTwo.standing!!.stats!!.score!!.displayValue
 
-    if (teamOne != null && teamTwo != null && teamOneScore != null && teamTwoScore != null) {
-        return SeriesOverview(
+    return if (teamOneScore != null && teamTwoScore != null) {
+        SeriesOverview(
             teamOne = teamOne,
             teamTwo = teamTwo,
             teamOneWins = teamOneScore.toInt(),
             teamTwoWins = teamTwoScore.toInt(),
         )
     } else {
-        return null
+        null
     }
 }
 

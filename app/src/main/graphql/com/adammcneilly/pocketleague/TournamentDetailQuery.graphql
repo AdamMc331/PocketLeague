@@ -1,4 +1,4 @@
-query TournamentDetailQuery($slug: String, $perPage: Int) {
+query TournamentDetailQuery($slug: String) {
     tournament(slug: $slug){
         id
         name

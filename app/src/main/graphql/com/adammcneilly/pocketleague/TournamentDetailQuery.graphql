@@ -1,0 +1,47 @@
+query TournamentDetailQuery($slug: String) {
+    tournament(slug: $slug){
+        id
+        name
+        events {
+            id
+            type
+            name
+            phases {
+                name
+                bracketType
+                waves {
+                    id
+                    identifier
+                }
+                groupCount
+                sets {
+                    nodes {
+                        fullRoundText
+                        setGamesType
+                        slots {
+                            entrant {
+                                id
+                                name
+                            }
+                            prereqId
+                            prereqType
+                            slotIndex
+                            standing {
+                                stats {
+                                    score {
+                                        label
+                                        value
+                                        displayValue
+                                    }
+                                }
+                            }
+                        }
+                        totalGames
+                        displayScore
+                        winnerId
+                    }
+                }
+            }
+        }
+    }
+}

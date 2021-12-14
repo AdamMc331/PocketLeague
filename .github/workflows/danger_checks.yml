@@ -19,6 +19,11 @@ jobs:
         with:
           ruby-version: 2.6
 
+      - name: Generate local.properties
+        env:
+          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+        run: echo $LOCAL_PROPERTIES > ./local.properties
+
       - name: Danger Checks
         run: |
           ./gradlew dependencyUpdates

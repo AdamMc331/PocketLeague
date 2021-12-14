@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.event.data
 
 import com.adammcneilly.pocketleague.core.data.Result
+import com.adammcneilly.pocketleague.event.domain.models.Event
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
 
 /**
@@ -14,4 +15,11 @@ interface EventService {
     suspend fun fetchSwissStage(
         eventName: String,
     ): Result<SwissStage>
+
+    /**
+     * Given a [leagueSlug], find all [Event] entities for that league.
+     */
+    suspend fun fetchAllEvents(
+        leagueSlug: String,
+    ): Result<List<Event>>
 }

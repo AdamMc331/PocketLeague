@@ -1,12 +1,15 @@
 package com.adammcneilly.pocketleague.event.data.remote
 
+import com.adammcneilly.pocketleague.EventListQuery
 import com.adammcneilly.pocketleague.TournamentDetailQuery
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.event.data.EventService
+import com.adammcneilly.pocketleague.event.domain.models.Event
 import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
+import com.adammcneilly.pocketleague.type.LeagueEventsQuery
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.await
@@ -52,6 +55,37 @@ class SmashGGEventService @Inject constructor(
             )
         )
     }
+
+    override suspend fun fetchAllEvents(leagueSlug: String): Result<List<Event>> {
+        val query = EventListQuery(
+            leagueSlug = leagueSlug.toInput(),
+            eventsQuery = LeagueEventsQuery(
+                page = 2.toInput(),
+            ).toInput(),
+        )
+
+        val response = api.query(query).await()
+
+        val events = response
+            .data
+            ?.league
+            ?.events
+            ?.nodes
+            ?.mapNotNull {
+                it?.toEvent()
+            }
+            .orEmpty()
+
+        return Result.Success(events)
+    }
+}
+
+private fun EventListQuery.Node.toEvent(): Event {
+    return Event(
+        id = this.id.orEmpty(),
+        eventName = this.name.orEmpty(),
+        tournamentName = this.tournament?.name.orEmpty(),
+    )
 }
 
 private fun TournamentDetailQuery.Node.toSeriesOverview(): SeriesOverview? {

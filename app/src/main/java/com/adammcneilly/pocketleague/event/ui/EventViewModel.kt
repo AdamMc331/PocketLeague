@@ -24,7 +24,7 @@ class EventViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val events = eventService.fetchAllEvents(leagueSlug = "rlcs-2021-22-1")
+            val events = eventService.fetchUpcomingEvents(leagueSlug = "rlcs-2021-22-1")
 
             Log.d("Test", events.toString())
 

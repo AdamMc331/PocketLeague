@@ -1,0 +1,35 @@
+package com.adammcneilly.pocketleague.eventsummary.ui
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
+import com.adammcneilly.pocketleague.core.ui.getValue
+import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
+
+@Composable
+fun EventSummaryListContent(
+    viewState: EventSummaryListViewState,
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier = modifier,
+    ) {
+        when (viewState) {
+            EventSummaryListViewState.Loading -> {
+                CenteredMaterial3CircularProgressIndicator()
+            }
+            is EventSummaryListViewState.Success -> {
+                EventSummaryList(
+                    displayModels = viewState.events.map(EventSummary::toDisplayModel),
+                )
+            }
+            is EventSummaryListViewState.Error -> {
+                Text(
+                    text = viewState.errorMessage.getValue(),
+                )
+            }
+        }
+    }
+}

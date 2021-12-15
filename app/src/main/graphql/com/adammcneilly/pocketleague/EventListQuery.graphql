@@ -11,6 +11,7 @@ query EventListQuery($leagueSlug: String, $eventsQuery: LeagueEventsQuery) {
                 tournament {
                     name
                 }
+                startAt
             }
         }
     }

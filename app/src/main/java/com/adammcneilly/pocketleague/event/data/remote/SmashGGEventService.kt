@@ -5,14 +5,18 @@ import com.adammcneilly.pocketleague.TournamentDetailQuery
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.event.data.EventService
-import com.adammcneilly.pocketleague.event.domain.models.Event
+import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
+import com.adammcneilly.pocketleague.type.LeagueEventsFilter
 import com.adammcneilly.pocketleague.type.LeagueEventsQuery
 import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.api.BigDecimal
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.await
+import java.time.Instant
+import java.time.ZoneOffset
 import javax.inject.Inject
 
 /**
@@ -56,12 +60,18 @@ class SmashGGEventService @Inject constructor(
         )
     }
 
-    override suspend fun fetchAllEvents(leagueSlug: String): Result<List<Event>> {
+    override suspend fun fetchUpcomingEvents(leagueSlug: String): Result<List<EventSummary>> {
+        val upcomingFilter = LeagueEventsFilter(
+            upcoming = true.toInput(),
+        ).toInput()
+
+        val eventsQuery = LeagueEventsQuery(
+            filter = upcomingFilter,
+        ).toInput()
+
         val query = EventListQuery(
             leagueSlug = leagueSlug.toInput(),
-            eventsQuery = LeagueEventsQuery(
-                page = 2.toInput(),
-            ).toInput(),
+            eventsQuery = eventsQuery,
         )
 
         val response = api.query(query).await()
@@ -80,11 +90,12 @@ class SmashGGEventService @Inject constructor(
     }
 }
 
-private fun EventListQuery.Node.toEvent(): Event {
-    return Event(
+private fun EventListQuery.Node.toEvent(): EventSummary {
+    return EventSummary(
         id = this.id.orEmpty(),
         eventName = this.name.orEmpty(),
         tournamentName = this.tournament?.name.orEmpty(),
+        startDate = Instant.ofEpochSecond((this.startAt as BigDecimal).toLong()).atOffset(ZoneOffset.UTC).toLocalDate(),
     )
 }
 

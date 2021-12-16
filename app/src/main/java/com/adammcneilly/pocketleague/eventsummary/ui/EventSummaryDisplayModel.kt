@@ -13,6 +13,9 @@ data class EventSummaryDisplayModel(
     val eventName: String,
 )
 
+/**
+ * converts an [EventSummary] entity to its relevant [EventSummaryDisplayModel].
+ */
 fun EventSummary.toDisplayModel(
     dateTimeHelper: DateTimeHelper = DateUtils,
 ): EventSummaryDisplayModel {

@@ -4,16 +4,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.ui.UIText
-import com.adammcneilly.pocketleague.eventsummary.domain.usecases.GetUpcomingEventsUseCase
+import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * A state management container for the [EventSummaryListScreen].
+ */
 @HiltViewModel
 class EventSummaryListViewModel @Inject constructor(
-    private val getUpcomingEventsUseCase: GetUpcomingEventsUseCase,
+    private val fetchUpcomingEventsUseCase: FetchUpcomingEventsUseCase,
 ) : ViewModel() {
 
     private val _viewState: MutableStateFlow<EventSummaryListViewState> =
@@ -22,7 +25,7 @@ class EventSummaryListViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val result = getUpcomingEventsUseCase()
+            val result = fetchUpcomingEventsUseCase()
 
             _viewState.value = when (result) {
                 is Result.Success -> {

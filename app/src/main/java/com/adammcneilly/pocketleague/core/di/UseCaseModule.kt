@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.core.di
 
-import com.adammcneilly.pocketleague.eventsummary.domain.usecases.GetUpcomingEventsUseCase
-import com.adammcneilly.pocketleague.eventsummary.domain.usecases.GetUpcomingEventsUseCaseImpl
+import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
+import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCaseImpl
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCase
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCaseImpl
 import dagger.Binds
@@ -23,6 +23,6 @@ abstract class UseCaseModule {
 
     @Binds
     abstract fun bindGetUpcomingEventsUseCase(
-        getUpcomingEventsUseCase: GetUpcomingEventsUseCaseImpl
-    ): GetUpcomingEventsUseCase
+        getUpcomingEventsUseCase: FetchUpcomingEventsUseCaseImpl
+    ): FetchUpcomingEventsUseCase
 }

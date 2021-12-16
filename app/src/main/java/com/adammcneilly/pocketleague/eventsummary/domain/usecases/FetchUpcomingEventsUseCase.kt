@@ -6,10 +6,10 @@ import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 /**
  * Requests a list of upcoming RLCS events.
  */
-interface GetUpcomingEventsUseCase {
+interface FetchUpcomingEventsUseCase {
 
     /**
-     * @see [GetUpcomingEventsUseCase]
+     * @see [FetchUpcomingEventsUseCase]
      */
     suspend operator fun invoke(): Result<List<EventSummary>>
 }

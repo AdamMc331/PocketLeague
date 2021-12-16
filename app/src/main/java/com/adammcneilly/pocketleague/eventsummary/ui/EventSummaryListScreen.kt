@@ -6,6 +6,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 
+/**
+ * The screen composable for [EventSummaryListContent] that manages state from the given [viewModel].
+ */
 @Composable
 fun EventSummaryListScreen(
     modifier: Modifier = Modifier,

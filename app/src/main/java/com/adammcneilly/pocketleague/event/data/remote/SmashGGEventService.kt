@@ -1,11 +1,12 @@
 package com.adammcneilly.pocketleague.event.data.remote
 
-import com.adammcneilly.pocketleague.EventListQuery
+import com.adammcneilly.pocketleague.EventSummaryListQuery
 import com.adammcneilly.pocketleague.TournamentDetailQuery
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.event.data.EventService
 import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
+import com.adammcneilly.pocketleague.fragment.EventSummaryFragment
 import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
@@ -69,7 +70,7 @@ class SmashGGEventService @Inject constructor(
             filter = upcomingFilter,
         ).toInput()
 
-        val query = EventListQuery(
+        val query = EventSummaryListQuery(
             leagueSlug = leagueSlug.toInput(),
             eventsQuery = eventsQuery,
         )
@@ -82,7 +83,7 @@ class SmashGGEventService @Inject constructor(
             ?.events
             ?.nodes
             ?.mapNotNull {
-                it?.toEvent()
+                it?.fragments?.eventSummaryFragment?.toEvent()
             }
             .orEmpty()
 
@@ -90,7 +91,7 @@ class SmashGGEventService @Inject constructor(
     }
 }
 
-private fun EventListQuery.Node.toEvent(): EventSummary {
+private fun EventSummaryFragment.toEvent(): EventSummary {
     val startSeconds = (this.startAt as BigDecimal).toLong()
     val startDate = Instant.ofEpochSecond(startSeconds).atOffset(ZoneOffset.UTC)
 

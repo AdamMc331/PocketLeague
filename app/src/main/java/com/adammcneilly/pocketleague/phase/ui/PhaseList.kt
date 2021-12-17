@@ -11,6 +11,9 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.ui.Material3Card
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
+/**
+ * Displays a collection of [phases].
+ */
 @Composable
 fun PhaseList(
     phases: List<PhaseDisplayModel>,

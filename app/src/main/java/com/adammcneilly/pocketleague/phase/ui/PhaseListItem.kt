@@ -17,6 +17,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
+private const val PHASE_INFO_WIDTH_PERCENTAGE = 0.75F
+
+/**
+ * Displays information about the supplied [phase].
+ */
 @Composable
 fun PhaseListItem(
     phase: PhaseDisplayModel,
@@ -33,7 +38,7 @@ fun PhaseListItem(
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
-                .fillMaxWidth(0.75F),
+                .fillMaxWidth(PHASE_INFO_WIDTH_PERCENTAGE),
         ) {
             InfoItemLabel(infoKey = "pools", infoValue = phase.numPools)
 

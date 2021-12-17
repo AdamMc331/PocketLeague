@@ -10,6 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * Displays a summary of an [event] overview, if that makes sense lol. Shows the event name, date,
+ * intended to appear at the top of [EventOverviewcontent].
+ */
 @Composable
 fun EventOverviewHeader(
     event: EventOverviewDisplayModel,

@@ -11,6 +11,9 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+/**
+ * A Material 3 version of a Card composable, until it's implemented by Google.
+ */
 @Composable
 fun Material3Card(
     modifier: Modifier = Modifier,
@@ -19,7 +22,7 @@ fun Material3Card(
     contentColor: Color = contentColorFor(backgroundColor),
     border: BorderStroke? = null,
     elevation: Dp = 1.dp,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Surface(
         modifier = modifier,

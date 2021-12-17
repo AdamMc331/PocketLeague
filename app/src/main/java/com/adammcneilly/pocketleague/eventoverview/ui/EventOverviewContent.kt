@@ -16,6 +16,9 @@ import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
 import com.adammcneilly.pocketleague.phase.ui.PhaseList
 
+/**
+ * Displays overview information about an [event] including its info, phases, and standings.
+ */
 @Composable
 fun EventOverviewContent(
     event: EventOverviewDisplayModel,
@@ -26,26 +29,41 @@ fun EventOverviewContent(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        Text(
-            text = "Summary",
-            style = MaterialTheme.typography.headlineLarge,
-        )
+        SummaryHeaderLabel()
 
-        Material3Card {
-            EventOverviewHeader(
-                event = event,
-            )
-        }
+        EventOverviewHeader(event)
 
-        Text(
-            text = "Brackets",
-            style = MaterialTheme.typography.headlineLarge,
-        )
+        BracketsHeaderLabel()
 
         PhaseList(
             phases = event.phases,
         )
     }
+}
+
+@Composable
+private fun BracketsHeaderLabel() {
+    Text(
+        text = "Brackets",
+        style = MaterialTheme.typography.headlineLarge,
+    )
+}
+
+@Composable
+private fun EventOverviewHeader(event: EventOverviewDisplayModel) {
+    Material3Card {
+        EventOverviewHeader(
+            event = event,
+        )
+    }
+}
+
+@Composable
+private fun SummaryHeaderLabel() {
+    Text(
+        text = "Summary",
+        style = MaterialTheme.typography.headlineLarge,
+    )
 }
 
 @Preview(

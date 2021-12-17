@@ -61,7 +61,11 @@ private fun SuccessContent(
     ) {
         SummaryHeaderLabel()
 
-        EventOverviewHeader(event)
+        Material3Card {
+            EventOverviewHeader(
+                event = event,
+            )
+        }
 
         BracketsHeaderLabel()
 
@@ -77,15 +81,6 @@ private fun BracketsHeaderLabel() {
         text = "Brackets",
         style = MaterialTheme.typography.headlineLarge,
     )
-}
-
-@Composable
-private fun EventOverviewHeader(event: EventOverviewDisplayModel) {
-    Material3Card {
-        EventOverviewHeader(
-            event = event,
-        )
-    }
 }
 
 @Composable
@@ -122,6 +117,7 @@ private fun EventOverviewContentPreview() {
                 numEntrants = "8",
             ),
         ),
+        startDate = "November 12, 2021",
     )
 
     val viewState = EventOverviewViewState.Success(

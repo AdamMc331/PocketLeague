@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.ui.UIText
+import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
 import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCase
 import com.adammcneilly.pocketleague.phase.domain.models.Phase
@@ -21,6 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class EventOverviewViewModel @Inject constructor(
     private val fetchEventOverviewUseCase: FetchEventOverviewUseCase,
+    private val dateTimeHelper: DateTimeHelper,
 ) : ViewModel() {
     private val _viewState: MutableStateFlow<EventOverviewViewState> =
         MutableStateFlow(EventOverviewViewState.Loading)
@@ -35,7 +37,7 @@ class EventOverviewViewModel @Inject constructor(
             _viewState.value = when (response) {
                 is Result.Success -> {
                     EventOverviewViewState.Success(
-                        event = response.data.toDisplayModel(),
+                        event = response.data.toDisplayModel(dateTimeHelper),
                     )
                 }
                 is Result.Error -> {
@@ -48,12 +50,15 @@ class EventOverviewViewModel @Inject constructor(
     }
 }
 
-private fun EventOverview.toDisplayModel(): EventOverviewDisplayModel {
+private fun EventOverview.toDisplayModel(
+    dateTimeHelper: DateTimeHelper,
+): EventOverviewDisplayModel {
     return EventOverviewDisplayModel(
         eventName = this.name,
         phases = this.phases.map { phase ->
             phase.toDisplayModel()
         },
+        startDate = dateTimeHelper.getEventDayString(this.startDate),
     )
 }
 

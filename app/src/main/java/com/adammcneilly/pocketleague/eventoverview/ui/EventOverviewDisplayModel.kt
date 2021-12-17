@@ -8,5 +8,6 @@ import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
  */
 data class EventOverviewDisplayModel(
     val eventName: String,
+    val startDate: String,
     val phases: List<PhaseDisplayModel>,
 )

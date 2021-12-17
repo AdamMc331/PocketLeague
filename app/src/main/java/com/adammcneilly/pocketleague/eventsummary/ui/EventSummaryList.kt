@@ -43,6 +43,7 @@ private fun EventSummaryListPreview() {
         startDate = "Nov 12, 2021",
         eventName = "Main Event",
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
+        subtitle = "16 Teams",
     )
 
     val displayModels = (1..10).map {

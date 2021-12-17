@@ -12,6 +12,8 @@ query EventListQuery($leagueSlug: String, $eventsQuery: LeagueEventsQuery) {
                     name
                 }
                 startAt
+                numEntrants
+                isOnline
             }
         }
     }

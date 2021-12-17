@@ -35,7 +35,21 @@ fun EventSummaryListItem(
         TournamentNameLabel(tournamentName = displayModel.tournamentName)
 
         EventNameLabel(eventName = displayModel.eventName)
+
+        if (displayModel.subtitle != null) {
+            EventSubtitleLabel(eventSubtitle = displayModel.subtitle)
+        }
     }
+}
+
+@Composable
+private fun EventSubtitleLabel(
+    eventSubtitle: String,
+) {
+    Text(
+        text = eventSubtitle,
+        style = MaterialTheme.typography.bodySmall,
+    )
 }
 
 @Composable
@@ -82,6 +96,7 @@ private fun EventSummaryListItemPreview() {
         startDate = "Nov 12, 2021",
         eventName = "Main Event",
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
+        subtitle = "16 Teams",
     )
 
     PocketLeagueTheme {

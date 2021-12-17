@@ -99,6 +99,8 @@ private fun EventListQuery.Node.toEvent(): EventSummary {
         eventName = this.name.orEmpty(),
         tournamentName = this.tournament?.name.orEmpty(),
         startDate = startDate.toZonedDateTime(),
+        numEntrants = this.numEntrants,
+        isOnline = this.isOnline == true,
     )
 }
 

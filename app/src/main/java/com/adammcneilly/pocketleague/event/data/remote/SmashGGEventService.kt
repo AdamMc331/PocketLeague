@@ -139,7 +139,7 @@ private fun PhaseGroupFragment.toPhase(): Phase {
         numPools = this.phase?.groupCount ?: 0,
         numParticipants = this.phase?.numSeeds ?: 0,
         name = this.phase?.name.orEmpty(),
-        bracketType = this.bracketType?.toBracketType(),
+        bracketType = this.bracketType?.toBracketType() ?: BracketType.Unknown,
         phaseOrder = this.phase?.phaseOrder ?: 0,
     )
 }

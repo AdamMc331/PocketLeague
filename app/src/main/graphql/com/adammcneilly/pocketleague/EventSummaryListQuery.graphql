@@ -1,0 +1,24 @@
+fragment EventSummaryFragment on Event {
+    id
+    name
+    slug
+    tournament {
+        name
+    }
+    startAt
+    numEntrants
+    isOnline
+}
+
+query EventSummaryListQuery($leagueSlug: String, $eventsQuery: LeagueEventsQuery) {
+    league(slug: $leagueSlug) {
+        events(query: $eventsQuery) {
+            pageInfo {
+                ...PageInfoFragment
+            }
+            nodes {
+                ...EventSummaryFragment
+            }
+        }
+    }
+}

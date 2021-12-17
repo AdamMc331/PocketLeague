@@ -9,4 +9,5 @@ data class EventSummaryDisplayModel(
     val startDate: String,
     val tournamentName: String,
     val eventName: String,
+    val subtitle: String?,
 )

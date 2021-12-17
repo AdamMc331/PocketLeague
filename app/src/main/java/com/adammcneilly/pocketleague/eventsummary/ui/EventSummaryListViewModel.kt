@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
+import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,11 +34,7 @@ class EventSummaryListViewModel @Inject constructor(
                 is Result.Success -> {
                     EventSummaryListViewState.Success(
                         events = result.data.map { event ->
-                            EventSummaryDisplayModel(
-                                startDate = dateTimeHelper.getEventDayString(event.startDate),
-                                tournamentName = event.tournamentName,
-                                eventName = event.eventName,
-                            )
+                            event.toSummaryDisplayModel(dateTimeHelper = dateTimeHelper)
                         },
                     )
                 }
@@ -48,5 +45,28 @@ class EventSummaryListViewModel @Inject constructor(
                 }
             }
         }
+    }
+}
+
+/**
+ * Converts an [EventSummary] domain object to a user friendly [EventSummaryDisplayModel].
+ */
+private fun EventSummary.toSummaryDisplayModel(
+    dateTimeHelper: DateTimeHelper,
+): EventSummaryDisplayModel {
+    return EventSummaryDisplayModel(
+        startDate = dateTimeHelper.getEventDayString(this.startDate),
+        tournamentName = this.tournamentName,
+        eventName = this.eventName,
+        subtitle = this.buildSubtitle(),
+    )
+}
+
+/**
+ * Generates a user friendly subtitle for an [EventSummary] intended to be passed to an [EventSummaryDisplayModel].
+ */
+private fun EventSummary.buildSubtitle(): String? {
+    return this.numEntrants?.let { numEntrants ->
+        "$numEntrants Teams"
     }
 }

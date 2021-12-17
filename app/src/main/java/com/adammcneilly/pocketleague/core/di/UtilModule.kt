@@ -5,6 +5,9 @@ import com.adammcneilly.pocketleague.core.html.HTMLParser
 import com.adammcneilly.pocketleague.core.html.JSoupHTMLParser
 import com.adammcneilly.pocketleague.core.ui.FlagKitFlagResProvider
 import com.adammcneilly.pocketleague.core.ui.FlagResProvider
+import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
+import com.adammcneilly.pocketleague.core.utils.DateUtils
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,17 +20,24 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 @Suppress("UndocumentedPublicFunction")
-object UtilModule {
+abstract class UtilModule {
 
-    @Provides
-    fun provideFlagResProvider(
-        @ApplicationContext applicationContext: Context,
-    ): FlagResProvider {
-        return FlagKitFlagResProvider(applicationContext)
-    }
+    @Binds
+    abstract fun bindHTMLParser(
+        htmlParser: JSoupHTMLParser,
+    ): HTMLParser
 
-    @Provides
-    fun provideHTMLParser(): HTMLParser {
-        return JSoupHTMLParser()
+    companion object {
+        @Provides
+        fun provideDateTimeHelper(): DateTimeHelper {
+            return DateUtils
+        }
+
+        @Provides
+        fun provideFlagResProvider(
+            @ApplicationContext applicationContext: Context,
+        ): FlagResProvider {
+            return FlagKitFlagResProvider(applicationContext)
+        }
     }
 }

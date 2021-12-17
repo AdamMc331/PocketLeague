@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.event.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.core.data.Result
@@ -23,6 +24,10 @@ class EventViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            val events = eventService.fetchUpcomingEvents(leagueSlug = "rlcs-2021-22-1")
+
+            Log.d("Test", events.toString())
+
             val regional3Rounds = eventService.fetchSwissStage(
                 eventName = "rlcs-2021-22-season-fall-split-regional-3-north-america",
             )

@@ -1,0 +1,18 @@
+query EventListQuery($leagueSlug: String, $eventsQuery: LeagueEventsQuery) {
+    league(slug: $leagueSlug) {
+        events(query: $eventsQuery) {
+            pageInfo {
+                ...PageInfoFragment
+            }
+            nodes {
+                id
+                name
+                slug
+                tournament {
+                    name
+                }
+                startAt
+            }
+        }
+    }
+}

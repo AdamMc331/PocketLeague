@@ -4,10 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ramcosta.composedestinations.annotation.Destination
 
 /**
  * Displays the [EventOverviewContent] with the view state pulled from the supplied [viewModel].
  */
+@Destination
 @Composable
 fun EventOverviewScreen(
     modifier: Modifier = Modifier,

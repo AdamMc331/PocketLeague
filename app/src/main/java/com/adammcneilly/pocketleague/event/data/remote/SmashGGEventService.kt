@@ -91,11 +91,14 @@ class SmashGGEventService @Inject constructor(
 }
 
 private fun EventListQuery.Node.toEvent(): EventSummary {
+    val startSeconds = (this.startAt as BigDecimal).toLong()
+    val startDate = Instant.ofEpochSecond(startSeconds).atOffset(ZoneOffset.UTC)
+
     return EventSummary(
         id = this.id.orEmpty(),
         eventName = this.name.orEmpty(),
         tournamentName = this.tournament?.name.orEmpty(),
-        startDate = Instant.ofEpochSecond((this.startAt as BigDecimal).toLong()).atOffset(ZoneOffset.UTC).toLocalDate(),
+        startDate = startDate.toZonedDateTime(),
     )
 }
 

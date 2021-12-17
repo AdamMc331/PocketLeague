@@ -5,6 +5,8 @@ import com.adammcneilly.pocketleague.core.html.HTMLParser
 import com.adammcneilly.pocketleague.core.html.JSoupHTMLParser
 import com.adammcneilly.pocketleague.core.ui.FlagKitFlagResProvider
 import com.adammcneilly.pocketleague.core.ui.FlagResProvider
+import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
+import com.adammcneilly.pocketleague.core.utils.DateUtils
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,5 +31,10 @@ object UtilModule {
     @Provides
     fun provideHTMLParser(): HTMLParser {
         return JSoupHTMLParser()
+    }
+
+    @Provides
+    fun provideDateTimeHelper(): DateTimeHelper {
+        return DateUtils
     }
 }

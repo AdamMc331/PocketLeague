@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.core.utils
 
-import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 /**
@@ -16,7 +16,7 @@ object DateUtils : DateTimeHelper {
         return DateTimeFormatter.ofPattern(SERIES_DAY_TIME_FORMAT).format(date)
     }
 
-    override fun getEventDayString(date: LocalDate): String {
+    override fun getEventDayString(date: ZonedDateTime): String {
         return DateTimeFormatter.ofPattern(EVENT_DAY_FORMAT).format(date)
     }
 }

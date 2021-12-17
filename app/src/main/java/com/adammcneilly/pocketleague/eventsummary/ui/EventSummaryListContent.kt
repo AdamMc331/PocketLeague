@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.core.ui.getValue
-import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 
 /**
  * Displays the content of an event summary list based on the supplied [viewState].
@@ -25,7 +24,7 @@ fun EventSummaryListContent(
             }
             is EventSummaryListViewState.Success -> {
                 EventSummaryList(
-                    displayModels = viewState.events.map(EventSummary::toDisplayModel),
+                    displayModels = viewState.events,
                 )
             }
             is EventSummaryListViewState.Error -> {

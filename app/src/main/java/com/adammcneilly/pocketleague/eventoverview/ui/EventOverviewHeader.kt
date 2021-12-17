@@ -26,7 +26,7 @@ fun EventOverviewHeader(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
-            text = "November 12th, 2021",
+            text = event.startDate,
         )
 
         Text(

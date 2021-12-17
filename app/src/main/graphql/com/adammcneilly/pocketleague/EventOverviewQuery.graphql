@@ -21,6 +21,7 @@ fragment EventOverviewFragment on Event {
     phaseGroups {
         ...PhaseGroupFragment
     }
+    startAt
 }
 
 query EventOverviewQuery($eventSlug: String) {

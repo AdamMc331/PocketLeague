@@ -8,8 +8,8 @@ import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
  */
 data class Phase(
     val numPools: Int,
-    val numParticipants: Int,
+    val numEntrants: Int,
     val name: String,
     val phaseOrder: Int,
-    val bracketType: BracketType?,
+    val bracketType: BracketType,
 )

@@ -121,6 +121,9 @@ class SmashGGEventService @Inject constructor(
 }
 
 private fun EventOverviewFragment.toEventOverview(): EventOverview {
+    val startSeconds = (this.startAt as BigDecimal).toLong()
+    val startDate = Instant.ofEpochSecond(startSeconds).atOffset(ZoneOffset.UTC)
+
     return EventOverview(
         name = this.name.orEmpty(),
         phases = this.phaseGroups
@@ -131,15 +134,16 @@ private fun EventOverviewFragment.toEventOverview(): EventOverview {
                 it.phaseOrder
             }
             .orEmpty(),
+        startDate = startDate.toZonedDateTime(),
     )
 }
 
 private fun PhaseGroupFragment.toPhase(): Phase {
     return Phase(
         numPools = this.phase?.groupCount ?: 0,
-        numParticipants = this.phase?.numSeeds ?: 0,
+        numEntrants = this.phase?.numSeeds ?: 0,
         name = this.phase?.name.orEmpty(),
-        bracketType = this.bracketType?.toBracketType(),
+        bracketType = this.bracketType?.toBracketType() ?: BracketType.UNKNOWN,
         phaseOrder = this.phase?.phaseOrder ?: 0,
     )
 }

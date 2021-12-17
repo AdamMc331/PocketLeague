@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague
+package com.adammcneilly.pocketleague.eventoverview.domain.models
 
 import com.adammcneilly.pocketleague.phase.domain.models.Phase
 

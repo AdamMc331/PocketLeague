@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.event.data.remote
 
-import com.adammcneilly.pocketleague.EventOverview
 import com.adammcneilly.pocketleague.EventOverviewQuery
 import com.adammcneilly.pocketleague.EventSummaryListQuery
 import com.adammcneilly.pocketleague.TournamentDetailQuery
@@ -8,6 +7,7 @@ import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.event.data.EventService
+import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.fragment.EventOverviewFragment
 import com.adammcneilly.pocketleague.fragment.EventSummaryFragment

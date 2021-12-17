@@ -1,12 +1,18 @@
 package com.adammcneilly.pocketleague.event.data.remote
 
+import com.adammcneilly.pocketleague.EventOverviewQuery
 import com.adammcneilly.pocketleague.EventSummaryListQuery
 import com.adammcneilly.pocketleague.TournamentDetailQuery
+import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.event.data.EventService
+import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
+import com.adammcneilly.pocketleague.fragment.EventOverviewFragment
 import com.adammcneilly.pocketleague.fragment.EventSummaryFragment
+import com.adammcneilly.pocketleague.fragment.PhaseGroupFragment
+import com.adammcneilly.pocketleague.phase.domain.models.Phase
 import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
@@ -19,6 +25,8 @@ import com.apollographql.apollo.coroutines.await
 import java.time.Instant
 import java.time.ZoneOffset
 import javax.inject.Inject
+
+typealias ApolloBracketType = com.adammcneilly.pocketleague.type.BracketType
 
 /**
  * A concrete [EventService] that makes its calls to the Smash.gg [api].
@@ -88,6 +96,60 @@ class SmashGGEventService @Inject constructor(
             .orEmpty()
 
         return Result.Success(events)
+    }
+
+    override suspend fun fetchEventOverview(eventSlug: String): Result<EventOverview> {
+        val query = EventOverviewQuery(
+            eventSlug = eventSlug.toInput(),
+        )
+
+        val response = api.query(query).await()
+
+        val overview = response
+            .data
+            ?.event
+            ?.fragments
+            ?.eventOverviewFragment
+            ?.toEventOverview()
+
+        return if (overview != null) {
+            Result.Success(overview)
+        } else {
+            Result.Error(Throwable("Invalid Event Overview"))
+        }
+    }
+}
+
+private fun EventOverviewFragment.toEventOverview(): EventOverview {
+    return EventOverview(
+        name = this.name.orEmpty(),
+        phases = this.phaseGroups
+            ?.mapNotNull {
+                it?.fragments?.phaseGroupFragment?.toPhase()
+            }
+            ?.sortedBy {
+                it.phaseOrder
+            }
+            .orEmpty(),
+    )
+}
+
+private fun PhaseGroupFragment.toPhase(): Phase {
+    return Phase(
+        numPools = this.phase?.groupCount ?: 0,
+        numParticipants = this.phase?.numSeeds ?: 0,
+        name = this.phase?.name.orEmpty(),
+        bracketType = this.bracketType?.toBracketType(),
+        phaseOrder = this.phase?.phaseOrder ?: 0,
+    )
+}
+
+private fun ApolloBracketType.toBracketType(): BracketType {
+    return when (this) {
+        ApolloBracketType.CUSTOM_SCHEDULE -> BracketType.CUSTOM
+        ApolloBracketType.SINGLE_ELIMINATION -> BracketType.SINGLE_ELIMINATION
+        ApolloBracketType.DOUBLE_ELIMINATION -> BracketType.DOUBLE_ELIMINATION
+        else -> BracketType.UNKNOWN
     }
 }
 

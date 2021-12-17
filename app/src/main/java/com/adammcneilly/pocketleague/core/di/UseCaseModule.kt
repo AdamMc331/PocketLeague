@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.core.di
 
+import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCase
+import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCaseImpl
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCaseImpl
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCase
@@ -18,11 +20,16 @@ import dagger.hilt.components.SingletonComponent
 abstract class UseCaseModule {
     @Binds
     abstract fun bindFetchAllTeamsUseCase(
-        fetchAllTeamsUseCase: FetchAllTeamsUseCaseImpl
+        fetchAllTeamsUseCase: FetchAllTeamsUseCaseImpl,
     ): FetchAllTeamsUseCase
 
     @Binds
-    abstract fun bindGetUpcomingEventsUseCase(
-        getUpcomingEventsUseCase: FetchUpcomingEventsUseCaseImpl
+    abstract fun bindFetchUpcomingEventsUseCase(
+        fetchUpcomingEventsUseCase: FetchUpcomingEventsUseCaseImpl,
     ): FetchUpcomingEventsUseCase
+
+    @Binds
+    abstract fun bindFetchEventOverviewUseCase(
+        fetchEventOverviewUseCase: FetchEventOverviewUseCaseImpl,
+    ): FetchEventOverviewUseCase
 }

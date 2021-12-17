@@ -1,0 +1,30 @@
+fragment PhaseGroupFragment on PhaseGroup {
+    bracketType
+    displayIdentifier
+    numRounds
+    phase {
+        groupCount
+        numSeeds
+        name
+        phaseOrder
+        bracketType
+    }
+}
+
+fragment EventOverviewFragment on Event {
+    id
+    name
+    slug
+    tournament {
+        name
+    }
+    phaseGroups {
+        ...PhaseGroupFragment
+    }
+}
+
+query EventOverviewQuery($eventSlug: String) {
+    event(slug: $eventSlug) {
+        ...EventOverviewFragment
+    }
+}

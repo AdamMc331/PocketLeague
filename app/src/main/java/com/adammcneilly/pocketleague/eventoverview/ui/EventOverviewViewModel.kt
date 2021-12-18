@@ -6,20 +6,16 @@ import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.domain.models.Player
-import com.adammcneilly.pocketleague.core.domain.models.Team
-import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
 import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCase
 import com.adammcneilly.pocketleague.phase.domain.models.Phase
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
-import com.adammcneilly.pocketleague.player.ui.PlayerDisplayModel
 import com.adammcneilly.pocketleague.standings.domain.models.Standings
 import com.adammcneilly.pocketleague.standings.domain.models.StandingsPlacement
 import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
 import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
-import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewDisplayModel
 import com.ramcosta.composedestinations.EventOverviewScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -60,24 +56,6 @@ class EventOverviewViewModel @Inject constructor(
             }
         }
     }
-}
-
-private fun Player.toDisplayModel(): PlayerDisplayModel {
-    return PlayerDisplayModel(
-        flagImage = UIImage.Remote(""),
-        gamerTag = this.gamerTag,
-        realName = "",
-        notes = null,
-    )
-}
-
-private fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
-    return TeamOverviewDisplayModel(
-        name = this.name,
-        lightLogoImage = UIImage.Remote(this.lightThemeLogoImageUrl),
-        darkLogoImage = UIImage.Remote(this.darkThemeLogoImageUrl),
-        roster = this.roster.map(Player::toDisplayModel)
-    )
 }
 
 private fun StandingsPlacement.toDisplayModel(): StandingsPlacementDisplayModel {

@@ -5,11 +5,14 @@ import com.adammcneilly.pocketleague.EventSummaryListQuery
 import com.adammcneilly.pocketleague.TournamentDetailQuery
 import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
 import com.adammcneilly.pocketleague.core.data.Result
+import com.adammcneilly.pocketleague.core.domain.models.Player
 import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.event.data.EventService
 import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
+import com.adammcneilly.pocketleague.fragment.EventEntrantFragment
 import com.adammcneilly.pocketleague.fragment.EventOverviewFragment
+import com.adammcneilly.pocketleague.fragment.EventPlayerFragment
 import com.adammcneilly.pocketleague.fragment.EventSummaryFragment
 import com.adammcneilly.pocketleague.fragment.PhaseGroupFragment
 import com.adammcneilly.pocketleague.fragment.StandingsPlacementFragment
@@ -125,10 +128,29 @@ class SmashGGEventService @Inject constructor(
     }
 }
 
+private fun EventPlayerFragment.toPlayer(): Player {
+    return Player(
+        countryCode = "",
+        gamerTag = this.gamerTag.orEmpty(),
+        realName = "",
+    )
+}
+
+private fun EventEntrantFragment.toTeam(): Team {
+    return Team(
+        name = this.name.orEmpty(),
+        lightThemeLogoImageUrl = "",
+        darkThemeLogoImageUrl = "",
+        roster = this.team?.members?.mapNotNull { member ->
+            member?.player?.fragments?.eventPlayerFragment?.toPlayer()
+        }.orEmpty(),
+    )
+}
+
 private fun StandingsPlacementFragment.toStandingsPlacement(): StandingsPlacement {
     return StandingsPlacement(
         placement = this.placement ?: 0,
-        teamName = this.entrant?.name.orEmpty(),
+        team = this.entrant?.fragments?.eventEntrantFragment?.toTeam()!!,
     )
 }
 

@@ -15,7 +15,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.player.ui.PlayerDisplayModel
+import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewDisplayModel
 
 private const val PLACEMENT_WEIGHT = 1F
 private const val TEAM_WEIGHT = 6F
@@ -45,7 +48,7 @@ fun StandingsPlacementListItem(
         )
 
         Text(
-            text = placement.teamName,
+            text = placement.team.name,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .weight(TEAM_WEIGHT)
@@ -65,7 +68,31 @@ fun StandingsPlacementListItem(
 private fun StandingsListItemPreview() {
     val displayModel = StandingsPlacementDisplayModel(
         placement = "1",
-        teamName = "Pittsburgh Knights",
+        team = TeamOverviewDisplayModel(
+            name = "Pittsburgh Knights",
+            lightLogoImage = UIImage.Remote(""),
+            darkLogoImage = UIImage.Remote(""),
+            roster = listOf(
+                PlayerDisplayModel(
+                    flagImage = UIImage.Remote(""),
+                    gamerTag = "sosa",
+                    realName = "",
+                    notes = null,
+                ),
+                PlayerDisplayModel(
+                    flagImage = UIImage.Remote(""),
+                    gamerTag = "AlphaKep",
+                    realName = "",
+                    notes = null,
+                ),
+                PlayerDisplayModel(
+                    flagImage = UIImage.Remote(""),
+                    gamerTag = "ElOmarMaton",
+                    realName = "",
+                    notes = null,
+                ),
+            ),
+        )
     )
 
     PocketLeagueTheme {

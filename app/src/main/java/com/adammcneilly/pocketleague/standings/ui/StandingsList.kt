@@ -14,14 +14,14 @@ import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
  */
 @Composable
 fun StandingsList(
-    standings: List<StandingsListItemDisplayModel>,
+    standings: StandingsDisplayModel,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
     ) {
-        standings.forEach { standingsListItem ->
-            StandingsListItem(displayModel = standingsListItem)
+        standings.placements.forEach { placement ->
+            StandingsPlacementListItem(placement = placement)
 
             Material3Divider()
         }
@@ -38,17 +38,21 @@ fun StandingsList(
 )
 @Composable
 private fun StandingsListPreview() {
-    val displayModels = (1..10).map {
-        StandingsListItemDisplayModel(
+    val placements = (1..10).map {
+        StandingsPlacementDisplayModel(
             placement = it.toString(),
             teamName = "Pittsburgh Knights",
         )
     }
 
+    val standings = StandingsDisplayModel(
+        placements = placements,
+    )
+
     PocketLeagueTheme {
         Surface {
             StandingsList(
-                standings = displayModels,
+                standings = standings,
             )
         }
     }

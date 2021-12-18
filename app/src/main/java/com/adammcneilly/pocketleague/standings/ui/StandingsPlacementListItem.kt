@@ -21,11 +21,11 @@ private const val PLACEMENT_WEIGHT = 1F
 private const val TEAM_WEIGHT = 6F
 
 /**
- * Given a [displayModel], render information about a team's standing within some event.
+ * Given a [placement], render information about a team's standing within some event.
  */
 @Composable
-fun StandingsListItem(
-    displayModel: StandingsListItemDisplayModel,
+fun StandingsPlacementListItem(
+    placement: StandingsPlacementDisplayModel,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -36,7 +36,7 @@ fun StandingsListItem(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
-            text = displayModel.placement,
+            text = placement.placement,
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.headlineSmall,
             textAlign = TextAlign.Center,
@@ -45,7 +45,7 @@ fun StandingsListItem(
         )
 
         Text(
-            text = displayModel.teamName,
+            text = placement.teamName,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .weight(TEAM_WEIGHT)
@@ -63,15 +63,15 @@ fun StandingsListItem(
 )
 @Composable
 private fun StandingsListItemPreview() {
-    val displayModel = StandingsListItemDisplayModel(
+    val displayModel = StandingsPlacementDisplayModel(
         placement = "1",
         teamName = "Pittsburgh Knights",
     )
 
     PocketLeagueTheme {
         Surface {
-            StandingsListItem(
-                displayModel = displayModel,
+            StandingsPlacementListItem(
+                placement = displayModel,
             )
         }
     }

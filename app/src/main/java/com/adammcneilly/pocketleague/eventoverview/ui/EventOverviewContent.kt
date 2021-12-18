@@ -21,6 +21,9 @@ import com.adammcneilly.pocketleague.core.ui.getValue
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
 import com.adammcneilly.pocketleague.phase.ui.PhaseList
+import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
+import com.adammcneilly.pocketleague.standings.ui.StandingsList
+import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
 
 /**
  * Displays the event overview information given the [viewState].
@@ -62,7 +65,9 @@ private fun SuccessContent(
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        SummaryHeaderLabel()
+        HeaderLabel(
+            text = "Summary",
+        )
 
         Material3Card {
             EventOverviewHeader(
@@ -70,26 +75,32 @@ private fun SuccessContent(
             )
         }
 
-        BracketsHeaderLabel()
+        HeaderLabel(
+            text = "Brackets",
+        )
 
         PhaseList(
             phases = event.phases,
         )
+
+        HeaderLabel(
+            text = "Standings",
+        )
+
+        Material3Card {
+            StandingsList(
+                standings = event.standings,
+            )
+        }
     }
 }
 
 @Composable
-private fun BracketsHeaderLabel() {
+private fun HeaderLabel(
+    text: String,
+) {
     Text(
-        text = "Brackets",
-        style = MaterialTheme.typography.headlineMedium,
-    )
-}
-
-@Composable
-private fun SummaryHeaderLabel() {
-    Text(
-        text = "Summary",
+        text = text,
         style = MaterialTheme.typography.headlineMedium,
     )
 }
@@ -104,6 +115,17 @@ private fun SummaryHeaderLabel() {
 )
 @Composable
 private fun EventOverviewContentPreview() {
+    val placements = (1..10).map {
+        StandingsPlacementDisplayModel(
+            placement = it.toString(),
+            teamName = "Pittsburgh Knights",
+        )
+    }
+
+    val standings = StandingsDisplayModel(
+        placements = placements,
+    )
+
     val event = EventOverviewDisplayModel(
         eventName = "Main Event",
         phases = listOf(
@@ -121,6 +143,7 @@ private fun EventOverviewContentPreview() {
             ),
         ),
         startDate = "November 12, 2021",
+        standings = standings,
     )
 
     val viewState = EventOverviewViewState.Success(

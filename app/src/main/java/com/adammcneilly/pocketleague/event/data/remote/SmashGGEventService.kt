@@ -12,12 +12,16 @@ import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.fragment.EventOverviewFragment
 import com.adammcneilly.pocketleague.fragment.EventSummaryFragment
 import com.adammcneilly.pocketleague.fragment.PhaseGroupFragment
+import com.adammcneilly.pocketleague.fragment.StandingsPlacementFragment
 import com.adammcneilly.pocketleague.phase.domain.models.Phase
 import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
+import com.adammcneilly.pocketleague.standings.domain.models.Standings
+import com.adammcneilly.pocketleague.standings.domain.models.StandingsPlacement
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
 import com.adammcneilly.pocketleague.type.LeagueEventsFilter
 import com.adammcneilly.pocketleague.type.LeagueEventsQuery
+import com.adammcneilly.pocketleague.type.StandingPaginationQuery
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.BigDecimal
 import com.apollographql.apollo.api.toInput
@@ -101,6 +105,7 @@ class SmashGGEventService @Inject constructor(
     override suspend fun fetchEventOverview(eventId: String): Result<EventOverview> {
         val query = EventOverviewQuery(
             eventId = eventId.toInput(),
+            standingsQuery = StandingPaginationQuery(),
         )
 
         val response = api.query(query).await()
@@ -118,6 +123,13 @@ class SmashGGEventService @Inject constructor(
             Result.Error(Throwable("Invalid Event Overview"))
         }
     }
+}
+
+private fun StandingsPlacementFragment.toStandingsPlacement(): StandingsPlacement {
+    return StandingsPlacement(
+        placement = this.placement ?: 0,
+        teamName = this.entrant?.name.orEmpty(),
+    )
 }
 
 private fun EventOverviewFragment.toEventOverview(): EventOverview {
@@ -138,6 +150,17 @@ private fun EventOverviewFragment.toEventOverview(): EventOverview {
             }
             .orEmpty(),
         startDate = startDate.toZonedDateTime(),
+        standings = Standings(
+            placements = this.standings
+                ?.nodes
+                ?.mapNotNull { node ->
+                    node
+                        ?.fragments
+                        ?.standingsPlacementFragment
+                        ?.toStandingsPlacement()
+                }
+                .orEmpty()
+        ),
     )
 }
 

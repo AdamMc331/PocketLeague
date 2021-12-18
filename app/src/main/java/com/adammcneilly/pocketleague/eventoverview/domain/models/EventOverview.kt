@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.eventoverview.domain.models
 
 import com.adammcneilly.pocketleague.phase.domain.models.Phase
+import com.adammcneilly.pocketleague.standings.domain.models.Standings
 import java.time.ZonedDateTime
 
 /**
@@ -10,4 +11,5 @@ data class EventOverview(
     val name: String,
     val startDate: ZonedDateTime,
     val phases: List<Phase>,
+    val standings: Standings,
 )

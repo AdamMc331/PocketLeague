@@ -11,6 +11,10 @@ import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCase
 import com.adammcneilly.pocketleague.phase.domain.models.Phase
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
+import com.adammcneilly.pocketleague.standings.domain.models.Standings
+import com.adammcneilly.pocketleague.standings.domain.models.StandingsPlacement
+import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
+import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
 import com.ramcosta.composedestinations.EventOverviewScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -53,6 +57,19 @@ class EventOverviewViewModel @Inject constructor(
     }
 }
 
+private fun StandingsPlacement.toDisplayModel(): StandingsPlacementDisplayModel {
+    return StandingsPlacementDisplayModel(
+        placement = this.placement.toString(),
+        teamName = this.teamName,
+    )
+}
+
+private fun Standings.toDisplayModel(): StandingsDisplayModel {
+    return StandingsDisplayModel(
+        placements = this.placements.map(StandingsPlacement::toDisplayModel)
+    )
+}
+
 private fun EventOverview.toDisplayModel(
     dateTimeHelper: DateTimeHelper,
 ): EventOverviewDisplayModel {
@@ -62,6 +79,7 @@ private fun EventOverview.toDisplayModel(
             phase.toDisplayModel()
         },
         startDate = dateTimeHelper.getEventDayString(this.startDate),
+        standings = this.standings.toDisplayModel(),
     )
 }
 

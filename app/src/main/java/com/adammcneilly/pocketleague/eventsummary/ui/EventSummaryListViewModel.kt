@@ -34,7 +34,19 @@ class EventSummaryListViewModel @Inject constructor(
                 is Result.Success -> {
                     EventSummaryListViewState.Success(
                         events = result.data.map { event ->
-                            event.toSummaryDisplayModel(dateTimeHelper = dateTimeHelper)
+                            event.toSummaryDisplayModel(
+                                dateTimeHelper = dateTimeHelper,
+                                onClick = {
+                                    val currentState =
+                                        _viewState.value as? EventSummaryListViewState.Success
+
+                                    if (currentState != null) {
+                                        _viewState.value = currentState.copy(
+                                            selectedEvent = event
+                                        )
+                                    }
+                                },
+                            )
                         },
                     )
                 }
@@ -53,12 +65,14 @@ class EventSummaryListViewModel @Inject constructor(
  */
 private fun EventSummary.toSummaryDisplayModel(
     dateTimeHelper: DateTimeHelper,
+    onClick: () -> Unit,
 ): EventSummaryDisplayModel {
     return EventSummaryDisplayModel(
         startDate = dateTimeHelper.getEventDayString(this.startDate),
         tournamentName = this.tournamentName,
         eventName = this.eventName,
         subtitle = this.buildSubtitle(),
+        onClick = onClick,
     )
 }
 

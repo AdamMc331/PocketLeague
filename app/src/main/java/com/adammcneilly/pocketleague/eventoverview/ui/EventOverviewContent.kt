@@ -17,16 +17,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.core.ui.Material3Card
-import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.getValue
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
 import com.adammcneilly.pocketleague.phase.ui.PhaseList
-import com.adammcneilly.pocketleague.player.ui.PlayerDisplayModel
 import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
 import com.adammcneilly.pocketleague.standings.ui.StandingsList
 import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
-import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewDisplayModel
 
 /**
  * Displays the event overview information given the [viewState].
@@ -122,31 +119,8 @@ private fun EventOverviewContentPreview() {
     val placements = (1..10).map {
         StandingsPlacementDisplayModel(
             placement = it.toString(),
-            team = TeamOverviewDisplayModel(
-                name = "Pittsburgh Knights",
-                lightLogoImage = UIImage.Remote(""),
-                darkLogoImage = UIImage.Remote(""),
-                roster = listOf(
-                    PlayerDisplayModel(
-                        flagImage = UIImage.Remote(""),
-                        gamerTag = "sosa",
-                        realName = "",
-                        notes = null,
-                    ),
-                    PlayerDisplayModel(
-                        flagImage = UIImage.Remote(""),
-                        gamerTag = "AlphaKep",
-                        realName = "",
-                        notes = null,
-                    ),
-                    PlayerDisplayModel(
-                        flagImage = UIImage.Remote(""),
-                        gamerTag = "ElOmarMaton",
-                        realName = "",
-                        notes = null,
-                    ),
-                ),
-            )
+            teamName = "Pittsburgh Knights",
+            roster = "sosa / AlphaKep / ElOmarMaton",
         )
     }
 

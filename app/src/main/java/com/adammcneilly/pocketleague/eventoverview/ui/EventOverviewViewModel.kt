@@ -83,7 +83,8 @@ private fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
 private fun StandingsPlacement.toDisplayModel(): StandingsPlacementDisplayModel {
     return StandingsPlacementDisplayModel(
         placement = this.placement.toString(),
-        team = this.team.toOverviewDisplayModel(),
+        teamName = this.team.name,
+        roster = this.team.roster.map(Player::gamerTag).joinToString(separator = " / "),
     )
 }
 

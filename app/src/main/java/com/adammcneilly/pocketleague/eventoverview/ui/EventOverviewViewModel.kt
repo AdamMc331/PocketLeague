@@ -29,10 +29,10 @@ class EventOverviewViewModel @Inject constructor(
     val viewState = _viewState.asStateFlow()
 
     init {
-        val regional3Slug = "tournament/rlcs-2021-22-season-fall-split-regional-3-north-america/event/main-event"
+        val regional3Id = "620491"
 
         viewModelScope.launch {
-            val response = fetchEventOverviewUseCase(regional3Slug)
+            val response = fetchEventOverviewUseCase(regional3Id)
 
             _viewState.value = when (response) {
                 is Result.Success -> {

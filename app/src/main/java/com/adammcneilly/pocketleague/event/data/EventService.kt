@@ -25,9 +25,9 @@ interface EventService {
     ): Result<List<EventSummary>>
 
     /**
-     * Given an [eventSlug], fetch the overview information about this event.
+     * Given an [eventId], fetch the overview information about this event.
      */
     suspend fun fetchEventOverview(
-        eventSlug: String,
+        eventId: String,
     ): Result<EventOverview>
 }

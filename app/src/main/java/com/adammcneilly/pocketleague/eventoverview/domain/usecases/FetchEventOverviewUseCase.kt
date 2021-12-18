@@ -10,5 +10,5 @@ interface FetchEventOverviewUseCase {
     /**
      * @see [FetchEventOverviewUseCase]
      */
-    suspend operator fun invoke(eventSlug: String): Result<EventOverview>
+    suspend operator fun invoke(eventId: String): Result<EventOverview>
 }

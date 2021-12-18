@@ -13,7 +13,7 @@ class FetchEventOverviewUseCaseImpl @Inject constructor(
     private val service: EventService,
 ) : FetchEventOverviewUseCase {
 
-    override suspend fun invoke(eventSlug: String): Result<EventOverview> {
-        return service.fetchEventOverview(eventSlug = eventSlug)
+    override suspend fun invoke(eventId: String): Result<EventOverview> {
+        return service.fetchEventOverview(eventId = eventId)
     }
 }

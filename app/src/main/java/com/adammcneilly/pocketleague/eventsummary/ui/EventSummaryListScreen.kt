@@ -26,7 +26,11 @@ fun EventSummaryListScreen(
         val selectedEvent = (viewState.value as? EventSummaryListViewState.Success)?.selectedEvent
 
         if (selectedEvent != null) {
-            navigator.navigate(EventOverviewScreenDestination)
+            navigator.navigate(
+                EventOverviewScreenDestination(
+                    eventId = selectedEvent.id,
+                )
+            )
         }
     }
 

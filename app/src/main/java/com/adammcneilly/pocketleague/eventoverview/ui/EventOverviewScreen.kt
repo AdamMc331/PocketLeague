@@ -9,7 +9,9 @@ import com.ramcosta.composedestinations.annotation.Destination
 /**
  * Displays the [EventOverviewContent] with the view state pulled from the supplied [viewModel].
  */
-@Destination
+@Destination(
+    navArgsDelegate = EventOverviewNavArgs::class,
+)
 @Composable
 fun EventOverviewScreen(
     modifier: Modifier = Modifier,

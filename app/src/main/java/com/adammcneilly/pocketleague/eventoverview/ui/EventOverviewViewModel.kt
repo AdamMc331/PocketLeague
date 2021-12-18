@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.eventoverview.ui
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
@@ -10,6 +11,7 @@ import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCase
 import com.adammcneilly.pocketleague.phase.domain.models.Phase
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
+import com.ramcosta.composedestinations.EventOverviewScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,16 +25,17 @@ import javax.inject.Inject
 class EventOverviewViewModel @Inject constructor(
     private val fetchEventOverviewUseCase: FetchEventOverviewUseCase,
     private val dateTimeHelper: DateTimeHelper,
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     private val _viewState: MutableStateFlow<EventOverviewViewState> =
         MutableStateFlow(EventOverviewViewState.Loading)
     val viewState = _viewState.asStateFlow()
 
-    init {
-        val regional3Id = "620491"
+    private val navArgs = EventOverviewScreenDestination.argsFrom(savedStateHandle)
 
+    init {
         viewModelScope.launch {
-            val response = fetchEventOverviewUseCase(regional3Id)
+            val response = fetchEventOverviewUseCase(navArgs.eventId)
 
             _viewState.value = when (response) {
                 is Result.Success -> {

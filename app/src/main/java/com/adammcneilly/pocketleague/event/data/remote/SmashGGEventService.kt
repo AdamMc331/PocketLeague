@@ -98,9 +98,9 @@ class SmashGGEventService @Inject constructor(
         return Result.Success(events)
     }
 
-    override suspend fun fetchEventOverview(eventSlug: String): Result<EventOverview> {
+    override suspend fun fetchEventOverview(eventId: String): Result<EventOverview> {
         val query = EventOverviewQuery(
-            eventSlug = eventSlug.toInput(),
+            eventId = eventId.toInput(),
         )
 
         val response = api.query(query).await()

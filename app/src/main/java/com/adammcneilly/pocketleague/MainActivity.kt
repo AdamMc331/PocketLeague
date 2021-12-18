@@ -13,10 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewScreen
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
 
                 ProvideWindowInsets {
                     Scaffold { paddingValues ->
-                        EventOverviewScreen(
+                        DestinationsNavHost(
                             modifier = Modifier
                                 .padding(paddingValues)
                                 .statusBarsPadding(),

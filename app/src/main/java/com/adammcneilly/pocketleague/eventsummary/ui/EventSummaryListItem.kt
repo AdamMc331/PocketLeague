@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.eventsummary.ui
 
 import android.content.res.Configuration
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +27,7 @@ fun EventSummaryListItem(
 ) {
     Column(
         modifier = modifier
+            .clickable(onClick = displayModel.onClick)
             .fillMaxWidth()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -97,6 +99,7 @@ private fun EventSummaryListItemPreview() {
         eventName = "Main Event",
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
         subtitle = "16 Teams",
+        onClick = {},
     )
 
     PocketLeagueTheme {

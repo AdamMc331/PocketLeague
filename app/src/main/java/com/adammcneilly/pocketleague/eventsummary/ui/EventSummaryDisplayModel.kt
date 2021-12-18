@@ -10,4 +10,5 @@ data class EventSummaryDisplayModel(
     val tournamentName: String,
     val eventName: String,
     val subtitle: String?,
+    val onClick: () -> Unit,
 )

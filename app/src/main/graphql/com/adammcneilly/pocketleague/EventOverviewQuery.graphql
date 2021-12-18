@@ -24,8 +24,8 @@ fragment EventOverviewFragment on Event {
     startAt
 }
 
-query EventOverviewQuery($eventSlug: String) {
-    event(slug: $eventSlug) {
+query EventOverviewQuery($eventId: ID) {
+    event(id: $eventId) {
         ...EventOverviewFragment
     }
 }

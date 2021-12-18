@@ -4,6 +4,18 @@ plugins {
     id "kotlin-kapt"
     id "dagger.hilt.android.plugin"
     id "com.apollographql.apollo" version "2.5.11"
+    id "com.google.devtools.ksp" version "1.5.31-1.0.0"
+}
+
+kotlin {
+    sourceSets {
+        debug {
+            kotlin.srcDir("build/generated/ksp/debug/kotlin")
+        }
+        release {
+            kotlin.srcDir("build/generated/ksp/release/kotlin")
+        }
+    }
 }
 
 android {
@@ -102,6 +114,9 @@ dependencies {
     implementation "com.google.accompanist:accompanist-systemuicontroller:$rootProject.ext.versions.accompanist"
     implementation "com.apollographql.apollo:apollo-runtime:$rootProject.ext.versions.apollo"
     implementation "com.apollographql.apollo:apollo-coroutines-support:$rootProject.ext.versions.apollo"
+    implementation "io.github.raamcosta.compose-destinations:core:$rootProject.ext.versions.composeDestinations"
+    implementation "androidx.navigation:navigation-compose:$rootProject.ext.versions.composeNavigation"
+    ksp "io.github.raamcosta.compose-destinations:ksp:$rootProject.ext.versions.composeDestinations"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
     testImplementation "junit:junit:$rootProject.ext.versions.junit"
     testImplementation "com.google.truth:truth:$rootProject.ext.versions.truth"

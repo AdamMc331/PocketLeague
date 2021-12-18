@@ -53,7 +53,7 @@ fun PhaseListItem(
 private fun PhaseNameLabel(phase: PhaseDisplayModel) {
     Text(
         text = phase.phaseName,
-        style = MaterialTheme.typography.headlineMedium,
+        style = MaterialTheme.typography.headlineSmall,
     )
 }
 

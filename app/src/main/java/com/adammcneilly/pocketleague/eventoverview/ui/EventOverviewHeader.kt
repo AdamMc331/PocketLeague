@@ -31,7 +31,7 @@ fun EventOverviewHeader(
 
         Text(
             text = event.eventName,
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.headlineSmall,
         )
     }
 }

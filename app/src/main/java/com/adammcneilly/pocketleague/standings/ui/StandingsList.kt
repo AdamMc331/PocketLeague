@@ -9,6 +9,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.adammcneilly.pocketleague.core.ui.Material3Divider
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
+/**
+ * Shows a collection of [standings] for some event.
+ */
 @Composable
 fun StandingsList(
     standings: List<StandingsListItemDisplayModel>,

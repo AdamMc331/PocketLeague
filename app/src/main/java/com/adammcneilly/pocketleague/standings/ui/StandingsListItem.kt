@@ -17,6 +17,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
+private const val PLACEMENT_WEIGHT = 1F
+private const val TEAM_WEIGHT = 6F
+
+/**
+ * Given a [displayModel], render information about a team's standing within some event.
+ */
 @Composable
 fun StandingsListItem(
     displayModel: StandingsListItemDisplayModel,
@@ -35,14 +41,14 @@ fun StandingsListItem(
             style = MaterialTheme.typography.headlineSmall,
             textAlign = TextAlign.Center,
             modifier = Modifier
-                .weight(1F)
+                .weight(PLACEMENT_WEIGHT)
         )
 
         Text(
             text = displayModel.teamName,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
-                .weight(6F)
+                .weight(TEAM_WEIGHT)
         )
     }
 }

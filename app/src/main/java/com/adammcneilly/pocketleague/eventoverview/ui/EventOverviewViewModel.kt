@@ -46,7 +46,19 @@ class EventOverviewViewModel @Inject constructor(
             _viewState.value = when (response) {
                 is Result.Success -> {
                     EventOverviewViewState.Success(
-                        event = response.data.toDisplayModel(dateTimeHelper),
+                        event = response.data.toDisplayModel(
+                            dateTimeHelper = dateTimeHelper,
+                            onPhaseClicked = { phase ->
+                                val currentState =
+                                    _viewState.value as? EventOverviewViewState.Success
+
+                                if (currentState != null) {
+                                    _viewState.value = currentState.copy(
+                                        selectedPhase = phase
+                                    )
+                                }
+                            },
+                        ),
                     )
                 }
                 is Result.Error -> {
@@ -76,18 +88,25 @@ private fun Standings.toDisplayModel(): StandingsDisplayModel {
 
 private fun EventOverview.toDisplayModel(
     dateTimeHelper: DateTimeHelper,
+    onPhaseClicked: (Phase) -> Unit,
 ): EventOverviewDisplayModel {
     return EventOverviewDisplayModel(
         eventName = this.name,
         phases = this.phases.map { phase ->
-            phase.toDisplayModel()
+            phase.toDisplayModel(
+                onClick = {
+                    onPhaseClicked(phase)
+                },
+            )
         },
         startDate = dateTimeHelper.getEventDayString(this.startDate),
         standings = this.standings.toDisplayModel(),
     )
 }
 
-private fun Phase.toDisplayModel(): PhaseDisplayModel {
+private fun Phase.toDisplayModel(
+    onClick: () -> Unit,
+): PhaseDisplayModel {
     return PhaseDisplayModel(
         phaseName = this.name,
         numPools = this.numPools.toString(),
@@ -98,5 +117,6 @@ private fun Phase.toDisplayModel(): PhaseDisplayModel {
             BracketType.UNKNOWN -> "Unknown"
         },
         numEntrants = this.numEntrants.toString(),
+        onClick = onClick,
     )
 }

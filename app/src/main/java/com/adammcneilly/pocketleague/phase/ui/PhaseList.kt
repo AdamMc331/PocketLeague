@@ -49,12 +49,14 @@ private fun PhaseListPreview() {
             numPools = "1",
             bracketType = "Custom",
             numEntrants = "16",
+            onClick = {},
         ),
         PhaseDisplayModel(
             phaseName = "Day 2-3: Single Elimination",
             numPools = "1",
             bracketType = "SE",
             numEntrants = "8",
+            onClick = {},
         ),
     )
 

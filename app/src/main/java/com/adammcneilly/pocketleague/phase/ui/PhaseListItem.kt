@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.phase.ui
 
 import android.content.res.Configuration
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,6 +30,9 @@ fun PhaseListItem(
 ) {
     Column(
         modifier = modifier
+            .clickable(
+                onClick = phase.onClick,
+            )
             .fillMaxWidth()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -89,6 +93,7 @@ private fun PhaseListItemPreview() {
         numPools = "1",
         bracketType = "Custom",
         numEntrants = "16",
+        onClick = {},
     )
 
     PocketLeagueTheme {

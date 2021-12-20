@@ -40,16 +40,10 @@ fragment PhaseGroupFragment on PhaseGroup {
 }
 
 fragment EventOverviewFragment on Event {
-    id
-    name
-    slug
-    tournament {
-        name
-    }
+    ...EventSummaryFragment
     phaseGroups {
         ...PhaseGroupFragment
     }
-    startAt
     standings(query: $standingsQuery) {
         nodes {
             ...StandingsPlacementFragment

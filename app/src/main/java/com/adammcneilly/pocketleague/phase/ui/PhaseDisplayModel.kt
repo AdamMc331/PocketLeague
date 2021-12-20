@@ -10,4 +10,5 @@ data class PhaseDisplayModel(
     val numPools: String,
     val bracketType: String,
     val numEntrants: String,
+    val onClick: () -> Unit,
 )

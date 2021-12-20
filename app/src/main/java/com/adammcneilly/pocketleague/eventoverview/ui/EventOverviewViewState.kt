@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.eventoverview.ui
 
 import com.adammcneilly.pocketleague.core.ui.UIText
+import com.adammcneilly.pocketleague.phase.domain.models.Phase
 
 /**
  * A collection of possible view states for [EventOverviewScreen].
@@ -16,6 +17,7 @@ sealed class EventOverviewViewState {
      */
     data class Success(
         val event: EventOverviewDisplayModel,
+        val selectedPhase: Phase? = null,
     ) : EventOverviewViewState()
 
     /**

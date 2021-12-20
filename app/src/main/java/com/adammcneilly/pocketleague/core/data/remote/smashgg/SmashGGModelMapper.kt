@@ -26,11 +26,11 @@ class SmashGGModelMapper @Inject constructor() {
      * Convert the supplied [eventOverview] to an [EventOverview] entity.
      */
     fun eventOverviewFragmentToEventOverview(eventOverview: EventOverviewFragment?): EventOverview {
-        val startSeconds = (eventOverview?.startAt as BigDecimal).toLong()
+        val startSeconds = (eventOverview?.fragments?.eventSummaryFragment?.startAt as BigDecimal).toLong()
         val startDate = Instant.ofEpochSecond(startSeconds).atOffset(ZoneOffset.UTC)
 
         return EventOverview(
-            name = eventOverview.name.orEmpty(),
+            name = eventOverview.fragments.eventSummaryFragment.name.orEmpty(),
             phases = eventOverview.phaseGroups
                 ?.mapNotNull {
                     it?.fragments?.phaseGroupFragment.let(PhaseGroupFragment?::toPhase)

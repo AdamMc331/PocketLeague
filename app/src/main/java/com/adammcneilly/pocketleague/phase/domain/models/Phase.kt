@@ -7,6 +7,8 @@ import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
  * be sorted by the [phaseOrder] property.
  */
 data class Phase(
+    val id: String,
+    val groupId: String,
     val numPools: Int,
     val numEntrants: Int,
     val name: String,

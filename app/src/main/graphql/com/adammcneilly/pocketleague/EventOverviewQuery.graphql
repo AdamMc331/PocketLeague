@@ -25,10 +25,12 @@ fragment StandingsPlacementFragment on Standing {
 }
 
 fragment PhaseGroupFragment on PhaseGroup {
+    id
     bracketType
     displayIdentifier
     numRounds
     phase {
+        id
         groupCount
         numSeeds
         name

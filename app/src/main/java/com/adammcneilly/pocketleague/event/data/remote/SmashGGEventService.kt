@@ -188,6 +188,8 @@ private fun EventOverviewFragment.toEventOverview(): EventOverview {
 
 private fun PhaseGroupFragment.toPhase(): Phase {
     return Phase(
+        id = this.phase?.id.orEmpty(),
+        groupId = this.id.orEmpty(),
         numPools = this.phase?.groupCount ?: 0,
         numEntrants = this.phase?.numSeeds ?: 0,
         name = this.phase?.name.orEmpty(),

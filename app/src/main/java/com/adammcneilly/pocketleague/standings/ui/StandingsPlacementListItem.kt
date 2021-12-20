@@ -17,10 +17,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.core.ui.PocketLeagueImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
 private const val PLACEMENT_WEIGHT = 1F
@@ -53,23 +55,7 @@ fun StandingsPlacementListItem(
             )
         }
 
-        Box(
-            modifier = Modifier
-                .size(48.dp)
-                .clip(CircleShape)
-                .background(
-                    color = MaterialTheme.colorScheme.secondaryContainer,
-                ),
-        ) {
-            Text(
-                text = placement.teamName.first().toString(),
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-                modifier = Modifier
-                    .align(Alignment.Center),
-            )
-        }
+        LetterCircle(placement)
 
         Column(
             modifier = Modifier
@@ -90,6 +76,38 @@ fun StandingsPlacementListItem(
     }
 }
 
+@Composable
+private fun LetterCircle(placement: StandingsPlacementDisplayModel) {
+    Box(
+        modifier = Modifier
+            .size(48.dp)
+            .clip(CircleShape)
+            .background(
+                color = MaterialTheme.colorScheme.secondaryContainer,
+            ),
+    ) {
+        Text(
+            text = placement.teamName.first().toString(),
+            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.headlineSmall,
+            color = MaterialTheme.colorScheme.onSecondaryContainer,
+            modifier = Modifier
+                .align(Alignment.Center),
+        )
+
+        if (placement.teamLogo != null) {
+            PocketLeagueImage(
+                image = placement.teamLogo,
+                modifier = Modifier
+                    .size(48.dp)
+                    .clip(CircleShape),
+                contentDescription = "Team Logo",
+                contentScale = ContentScale.Crop,
+            )
+        }
+    }
+}
+
 @Preview(
     name = "Night Mode",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
@@ -104,6 +122,7 @@ private fun StandingsListItemPreview() {
         placement = "1",
         teamName = "Pittsburgh Knights",
         roster = "sosa / AlphaKep / ElOmarMaton",
+        teamLogo = null,
     )
 
     PocketLeagueTheme {

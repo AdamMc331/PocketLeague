@@ -11,6 +11,9 @@ fragment EventEntrantFragment on Entrant {
                 ...EventPlayerFragment
             }
         }
+        images {
+            url
+        }
     }
 }
 

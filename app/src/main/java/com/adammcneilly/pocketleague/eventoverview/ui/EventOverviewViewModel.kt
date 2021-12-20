@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.domain.models.Player
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
 import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
@@ -63,6 +64,7 @@ private fun StandingsPlacement.toDisplayModel(): StandingsPlacementDisplayModel 
         placement = this.placement.toString(),
         teamName = this.team.name,
         roster = this.team.roster.map(Player::gamerTag).joinToString(separator = " / "),
+        teamLogo = this.team.lightThemeLogoImageUrl?.let(UIImage::Remote),
     )
 }
 

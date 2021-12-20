@@ -139,8 +139,8 @@ private fun EventPlayerFragment.toPlayer(): Player {
 private fun EventEntrantFragment.toTeam(): Team {
     return Team(
         name = this.name.orEmpty(),
-        lightThemeLogoImageUrl = "",
-        darkThemeLogoImageUrl = "",
+        lightThemeLogoImageUrl = this.team?.images?.firstOrNull()?.url,
+        darkThemeLogoImageUrl = this.team?.images?.firstOrNull()?.url,
         roster = this.team?.members?.mapNotNull { member ->
             member?.player?.fragments?.eventPlayerFragment?.toPlayer()
         }.orEmpty(),

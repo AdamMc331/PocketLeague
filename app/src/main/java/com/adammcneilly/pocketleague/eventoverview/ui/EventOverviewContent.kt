@@ -121,6 +121,7 @@ private fun EventOverviewContentPreview() {
             placement = it.toString(),
             teamName = "Pittsburgh Knights",
             roster = "sosa / AlphaKep / ElOmarMaton",
+            teamLogo = null,
         )
     }
 

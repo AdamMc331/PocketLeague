@@ -35,7 +35,7 @@ class TeamDetailDisplayModelTest {
 
         with(displayModel) {
             assertThat(name).isEqualTo(team.name)
-            assertThat(logo).isEqualTo(UIImage.Remote(team.lightThemeLogoImageUrl))
+            assertThat(logo).isEqualTo(UIImage.Remote(team.lightThemeLogoImageUrl.orEmpty()))
             assertThat(players).isEqualTo(listOf(player.toDisplayModel(flagResProvider)))
         }
     }

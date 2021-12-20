@@ -1,7 +1,25 @@
+fragment EventPlayerFragment on Player {
+    gamerTag
+}
+
+fragment EventEntrantFragment on Entrant {
+    id
+    name
+    team {
+        members {
+            player {
+                ...EventPlayerFragment
+            }
+        }
+        images {
+            url
+        }
+    }
+}
+
 fragment StandingsPlacementFragment on Standing {
     entrant {
-        id
-        name
+        ...EventEntrantFragment
     }
     placement
 }

@@ -114,11 +114,14 @@ private fun HeaderLabel(
     uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
 @Composable
+@Suppress("LongMethod")
 private fun EventOverviewContentPreview() {
     val placements = (1..10).map {
         StandingsPlacementDisplayModel(
             placement = it.toString(),
             teamName = "Pittsburgh Knights",
+            roster = "sosa / AlphaKep / ElOmarMaton",
+            teamLogo = null,
         )
     }
 

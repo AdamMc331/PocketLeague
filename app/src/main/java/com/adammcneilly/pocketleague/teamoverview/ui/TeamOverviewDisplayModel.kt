@@ -22,8 +22,8 @@ data class TeamOverviewDisplayModel(
 fun Team.toOverviewDisplayModelWithoutRoster(): TeamOverviewDisplayModel {
     return TeamOverviewDisplayModel(
         name = this.name,
-        lightLogoImage = UIImage.Remote(this.lightThemeLogoImageUrl),
-        darkLogoImage = UIImage.Remote(this.darkThemeLogoImageUrl),
+        lightLogoImage = UIImage.Remote(this.lightThemeLogoImageUrl.orEmpty()),
+        darkLogoImage = UIImage.Remote(this.darkThemeLogoImageUrl.orEmpty()),
         roster = emptyList(),
     )
 }
@@ -36,8 +36,8 @@ fun Team.toOverviewDisplayModel(
 ): TeamOverviewDisplayModel {
     return TeamOverviewDisplayModel(
         name = this.name,
-        lightLogoImage = UIImage.Remote(this.lightThemeLogoImageUrl),
-        darkLogoImage = UIImage.Remote(this.darkThemeLogoImageUrl),
+        lightLogoImage = UIImage.Remote(this.lightThemeLogoImageUrl.orEmpty()),
+        darkLogoImage = UIImage.Remote(this.darkThemeLogoImageUrl.orEmpty()),
         roster = this.roster.map { player ->
             player.toDisplayModel(flagResProvider)
         },

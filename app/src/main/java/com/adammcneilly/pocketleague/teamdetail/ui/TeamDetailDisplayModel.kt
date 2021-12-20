@@ -25,7 +25,7 @@ fun Team.toDetailDisplayModel(
 ): TeamDetailDisplayModel {
     return TeamDetailDisplayModel(
         name = this.name,
-        logo = UIImage.Remote(this.lightThemeLogoImageUrl),
+        logo = UIImage.Remote(this.lightThemeLogoImageUrl.orEmpty()),
         players = this.roster.map { player ->
             player.toDisplayModel(flagResProvider)
         },

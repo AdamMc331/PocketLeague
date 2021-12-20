@@ -1,26 +1,30 @@
 package com.adammcneilly.pocketleague.standings.ui
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
 private const val PLACEMENT_WEIGHT = 1F
-private const val TEAM_WEIGHT = 6F
+private const val TEAM_WEIGHT = 7F
 
 /**
  * Given a [placement], render information about a team's standing within some event.
@@ -37,14 +41,35 @@ fun StandingsPlacementListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        Text(
-            text = placement.placement,
-            fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.headlineSmall,
-            textAlign = TextAlign.Center,
+        Box(
             modifier = Modifier
-                .weight(PLACEMENT_WEIGHT)
-        )
+                .weight(PLACEMENT_WEIGHT),
+        ) {
+            Text(
+                text = placement.placement,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.align(Alignment.Center),
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .size(48.dp)
+                .clip(CircleShape)
+                .background(
+                    color = MaterialTheme.colorScheme.secondaryContainer,
+                ),
+        ) {
+            Text(
+                text = placement.teamName.first().toString(),
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.headlineSmall,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                modifier = Modifier
+                    .align(Alignment.Center),
+            )
+        }
 
         Column(
             modifier = Modifier

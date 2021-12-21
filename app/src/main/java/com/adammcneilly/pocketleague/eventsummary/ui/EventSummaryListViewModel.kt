@@ -58,6 +58,21 @@ class EventSummaryListViewModel @Inject constructor(
             }
         }
     }
+
+    /**
+     * When we navigate to an event overview, we should clear our selected event so that we don't
+     * continue to show it.
+     */
+    fun navigatedToEventOverview() {
+        val currentState =
+            _viewState.value as? EventSummaryListViewState.Success
+
+        if (currentState != null) {
+            _viewState.value = currentState.copy(
+                selectedEvent = null,
+            )
+        }
+    }
 }
 
 /**

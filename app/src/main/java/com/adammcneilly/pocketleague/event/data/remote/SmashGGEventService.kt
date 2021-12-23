@@ -111,9 +111,13 @@ class SmashGGEventService @Inject constructor(
             ?.event
             ?.fragments
             ?.eventOverviewFragment
-            .let(modelMapper::eventOverviewFragmentToEventOverview)
+            ?.let(modelMapper::eventOverviewFragmentToEventOverview)
 
-        return Result.Success(overview)
+        return if (overview != null) {
+            Result.Success(overview)
+        } else {
+            Result.Error(Throwable("Invalid Event Overview Response"))
+        }
     }
 }
 

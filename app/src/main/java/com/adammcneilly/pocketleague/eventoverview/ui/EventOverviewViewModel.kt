@@ -17,7 +17,6 @@ import com.adammcneilly.pocketleague.standings.domain.models.Standings
 import com.adammcneilly.pocketleague.standings.domain.models.StandingsPlacement
 import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
 import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
-import com.ramcosta.composedestinations.EventOverviewScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,11 +36,15 @@ class EventOverviewViewModel @Inject constructor(
         MutableStateFlow(EventOverviewViewState.Loading)
     val viewState = _viewState.asStateFlow()
 
-    private val navArgs = EventOverviewScreenDestination.argsFrom(savedStateHandle)
-
     init {
+        fetchEventOverview(savedStateHandle.get<String>("eventId").orEmpty())
+    }
+
+    fun fetchEventOverview(eventId: String) {
+        _viewState.value = EventOverviewViewState.Loading
+
         viewModelScope.launch {
-            val response = fetchEventOverviewUseCase(navArgs.eventId)
+            val response = fetchEventOverviewUseCase(eventId)
 
             _viewState.value = when (response) {
                 is Result.Success -> {

@@ -29,7 +29,7 @@ fun EventSummaryListDetailScreen(
         val selectedEvent = (eventSummaryListViewState.value as? EventSummaryListViewState.Success)?.selectedEvent
 
         if (selectedEvent != null) {
-            eventOverviewViewModel.fetchEventOverview(selectedEvent.id)
+            eventOverviewViewModel.eventSelected(selectedEvent.id)
         }
     }
 
@@ -41,14 +41,14 @@ fun EventSummaryListDetailScreen(
             viewState = eventSummaryListViewState.value,
             modifier = Modifier
                 .fillMaxSize()
-                .weight(2F),
+                .weight(1F),
         )
 
         EventOverviewContent(
             viewState = eventOverviewViewState.value,
             modifier = Modifier
                 .fillMaxSize()
-                .weight(4F),
+                .weight(1F),
         )
     }
 }

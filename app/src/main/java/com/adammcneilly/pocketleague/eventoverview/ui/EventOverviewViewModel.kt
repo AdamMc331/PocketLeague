@@ -37,10 +37,18 @@ class EventOverviewViewModel @Inject constructor(
     val viewState = _viewState.asStateFlow()
 
     init {
-        fetchEventOverview(savedStateHandle.get<String>("eventId").orEmpty())
+        val initialEventId = savedStateHandle.get<String>("eventId")
+
+        if (initialEventId != null) {
+            eventSelected(initialEventId)
+        }
     }
 
-    fun fetchEventOverview(eventId: String) {
+    /**
+     * Indicates that the user selected an event with the given [eventId] and we should fetch the
+     * overview information.
+     */
+    fun eventSelected(eventId: String) {
         _viewState.value = EventOverviewViewState.Loading
 
         viewModelScope.launch {

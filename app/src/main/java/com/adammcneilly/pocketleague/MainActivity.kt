@@ -11,12 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.core.view.WindowCompat
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.EventSummaryListDetailScreenDestination
+import com.ramcosta.composedestinations.EventSummaryListScreenDestination
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -37,10 +41,20 @@ class MainActivity : ComponentActivity() {
 
                 ProvideWindowInsets {
                     Scaffold { paddingValues ->
+                        val isTablet = LocalConfiguration.current.smallestScreenWidthDp >= 600
+
+                        val startDestination = if (isTablet) {
+                            EventSummaryListDetailScreenDestination
+                        } else {
+                            EventSummaryListScreenDestination
+                        }
+
                         DestinationsNavHost(
                             modifier = Modifier
                                 .padding(paddingValues)
-                                .statusBarsPadding(),
+                                .statusBarsPadding()
+                                .navigationBarsPadding(),
+                            startDestination = startDestination,
                         )
                     }
                 }

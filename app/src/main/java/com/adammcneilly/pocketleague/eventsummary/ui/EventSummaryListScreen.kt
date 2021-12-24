@@ -13,7 +13,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 /**
  * The screen composable for [EventSummaryListContent] that manages state from the given [viewModel].
  */
-@Destination // (start = true)
+@Destination(start = true)
 @Composable
 fun EventSummaryListScreen(
     navigator: DestinationsNavigator,

@@ -15,7 +15,7 @@ import com.ramcosta.composedestinations.annotation.Destination
  * A [Composable] screen that combines state from the [eventSummaryViewModel] as well as the
  * [eventOverviewViewModel].
  */
-@Destination(start = true)
+@Destination
 @Composable
 fun EventSummaryListDetailScreen(
     modifier: Modifier = Modifier,

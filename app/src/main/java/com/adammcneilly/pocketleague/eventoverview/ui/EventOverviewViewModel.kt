@@ -69,6 +69,21 @@ class EventOverviewViewModel @Inject constructor(
             }
         }
     }
+
+    /**
+     * When we navigate to a phase, we should clear our selected phase so that we don't
+     * continue to show it.
+     */
+    fun navigatedToPhase() {
+        val currentState =
+            _viewState.value as? EventOverviewViewState.Success
+
+        if (currentState != null) {
+            _viewState.value = currentState.copy(
+                selectedPhase = null,
+            )
+        }
+    }
 }
 
 private fun StandingsPlacement.toDisplayModel(): StandingsPlacementDisplayModel {

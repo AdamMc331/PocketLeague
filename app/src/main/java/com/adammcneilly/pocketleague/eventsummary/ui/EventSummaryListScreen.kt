@@ -31,6 +31,8 @@ fun EventSummaryListScreen(
                     eventId = selectedEvent.id,
                 )
             )
+
+            viewModel.navigatedToEventOverview()
         }
     }
 

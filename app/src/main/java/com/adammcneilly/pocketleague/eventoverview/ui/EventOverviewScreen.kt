@@ -32,6 +32,8 @@ fun EventOverviewScreen(
                     phaseId = selectedPhase.id
                 )
             )
+
+            viewModel.navigatedToPhase()
         }
     }
 

@@ -23,6 +23,8 @@ import com.ramcosta.composedestinations.EventSummaryListDetailScreenDestination
 import com.ramcosta.composedestinations.EventSummaryListScreenDestination
 import dagger.hilt.android.AndroidEntryPoint
 
+private const val TABLET_MIN_WIDTH_DP = 600
+
 /**
  * The [MainActivity] is the user's main entry point into the application. This will be launched
  * when the application is first started.
@@ -41,7 +43,8 @@ class MainActivity : ComponentActivity() {
 
                 ProvideWindowInsets {
                     Scaffold { paddingValues ->
-                        val isTablet = LocalConfiguration.current.smallestScreenWidthDp >= 600
+                        val isTablet =
+                            LocalConfiguration.current.smallestScreenWidthDp >= TABLET_MIN_WIDTH_DP
 
                         val startDestination = if (isTablet) {
                             EventSummaryListDetailScreenDestination

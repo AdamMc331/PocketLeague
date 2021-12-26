@@ -116,6 +116,7 @@ dependencies {
     implementation "com.apollographql.apollo:apollo-coroutines-support:$rootProject.ext.versions.apollo"
     implementation "io.github.raamcosta.compose-destinations:core:$rootProject.ext.versions.composeDestinations"
     implementation "androidx.navigation:navigation-compose:$rootProject.ext.versions.composeNavigation"
+    implementation "com.google.accompanist:accompanist-pager:$rootProject.ext.versions.accompanist"
     ksp "io.github.raamcosta.compose-destinations:ksp:$rootProject.ext.versions.composeDestinations"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
     testImplementation "junit:junit:$rootProject.ext.versions.junit"

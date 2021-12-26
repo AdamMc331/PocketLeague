@@ -1,46 +1,37 @@
 package com.adammcneilly.pocketleague.bracket.ui
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.seriesoverview.ui.SeriesOverviewDisplayModel
 import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewDisplayModel
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
 
 /**
- * Displays a round of a bracket UI.
+ * Shows a collection of bracket rounds from the supplied [phase].
  */
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun BracketRoundContent(
-    bracket: BracketRoundDisplayModel,
+fun BracketPhaseContent(
+    phase: BracketPhaseDisplayModel,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(24.dp)
-    ) {
-
-        Text(
-            text = bracket.roundName,
-            style = MaterialTheme.typography.headlineSmall,
+    HorizontalPager(
+        count = phase.rounds.size,
+        modifier = modifier,
+    ) { pageIndex ->
+        BracketRoundList(
+            bracket = phase.rounds[pageIndex],
+            modifier = Modifier
+                .fillMaxSize(),
         )
-
-        bracket.series.forEach { series ->
-            BracketSeriesOverviewItem(seriesOverview = series)
-        }
     }
 }
 
@@ -53,7 +44,7 @@ fun BracketRoundContent(
     uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
 @Composable
-private fun BracketRoundContentPreview() {
+private fun BracketPhaseContentPreview() {
     val seriesOverview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(
             name = "G2",
@@ -69,15 +60,27 @@ private fun BracketRoundContentPreview() {
         teamTwoWins = 2,
     )
 
-    val bracket = BracketRoundDisplayModel(
-        roundName = "Quarter-Final",
-        series = listOf(seriesOverview, seriesOverview, seriesOverview, seriesOverview),
+    val rounds = listOf(
+        BracketRoundDisplayModel(
+            roundName = "Quarter-Final",
+            series = listOf(seriesOverview, seriesOverview, seriesOverview, seriesOverview),
+        ),
+        BracketRoundDisplayModel(
+            roundName = "Semi-Final",
+            series = listOf(seriesOverview, seriesOverview),
+        ),
+        BracketRoundDisplayModel(
+            roundName = "Final",
+            series = listOf(seriesOverview),
+        ),
     )
 
     PocketLeagueTheme {
         Surface {
-            BracketRoundContent(
-                bracket = bracket,
+            BracketPhaseContent(
+                phase = BracketPhaseDisplayModel(
+                    rounds = rounds,
+                ),
             )
         }
     }

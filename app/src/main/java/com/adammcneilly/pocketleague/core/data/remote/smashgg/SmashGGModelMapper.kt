@@ -63,6 +63,9 @@ class SmashGGModelMapper @Inject constructor() {
         )
     }
 
+    /**
+     * Convert the supplied [phaseDetail] to a [PhaseDetail] entity.
+     */
     fun phaseDetailFragmentToPhaseDetail(phaseDetail: PhaseDetailFragment?): PhaseDetail {
         val phaseOverview = phaseDetail?.fragments?.phaseOverviewFragment
 

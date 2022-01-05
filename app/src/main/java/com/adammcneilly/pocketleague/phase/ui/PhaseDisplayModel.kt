@@ -1,9 +1,9 @@
 package com.adammcneilly.pocketleague.phase.ui
 
-import com.adammcneilly.pocketleague.phase.domain.models.Phase
+import com.adammcneilly.pocketleague.phase.domain.models.PhaseOverview
 
 /**
- * A user friendly representation of a [Phase] to be displayed on the UI.
+ * A user friendly representation of a [PhaseOverview] to be displayed on the UI.
  */
 data class PhaseDisplayModel(
     val phaseName: String,

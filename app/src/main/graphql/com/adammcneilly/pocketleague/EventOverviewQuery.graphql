@@ -24,18 +24,22 @@ fragment StandingsPlacementFragment on Standing {
     placement
 }
 
+fragment PhaseOverviewFragment on Phase {
+    id
+    groupCount
+    numSeeds
+    name
+    phaseOrder
+    bracketType
+}
+
 fragment PhaseGroupFragment on PhaseGroup {
     id
     bracketType
     displayIdentifier
     numRounds
     phase {
-        id
-        groupCount
-        numSeeds
-        name
-        phaseOrder
-        bracketType
+        ...PhaseOverviewFragment
     }
 }
 

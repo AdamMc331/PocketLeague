@@ -11,7 +11,7 @@ import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
 import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCase
-import com.adammcneilly.pocketleague.phase.domain.models.Phase
+import com.adammcneilly.pocketleague.phase.domain.models.PhaseOverview
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
 import com.adammcneilly.pocketleague.standings.domain.models.Standings
 import com.adammcneilly.pocketleague.standings.domain.models.StandingsPlacement
@@ -103,7 +103,7 @@ private fun Standings.toDisplayModel(): StandingsDisplayModel {
 
 private fun EventOverview.toDisplayModel(
     dateTimeHelper: DateTimeHelper,
-    onPhaseClicked: (Phase) -> Unit,
+    onPhaseClicked: (PhaseOverview) -> Unit,
 ): EventOverviewDisplayModel {
     return EventOverviewDisplayModel(
         eventName = this.name,
@@ -119,7 +119,7 @@ private fun EventOverview.toDisplayModel(
     )
 }
 
-private fun Phase.toDisplayModel(
+private fun PhaseOverview.toDisplayModel(
     onClick: () -> Unit,
 ): PhaseDisplayModel {
     return PhaseDisplayModel(

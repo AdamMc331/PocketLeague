@@ -3,10 +3,10 @@ package com.adammcneilly.pocketleague.phase.domain.models
 import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
 
 /**
- * A [Phase] is a portion of an event. An example could be a Swiss stage and a Bracket stage. They'll
+ * A [PhaseOverview] is a portion of an event. An example could be a Swiss stage and a Bracket stage. They'll
  * be sorted by the [phaseOrder] property.
  */
-data class Phase(
+data class PhaseOverview(
     val id: String,
     val groupId: String,
     val numPools: Int,

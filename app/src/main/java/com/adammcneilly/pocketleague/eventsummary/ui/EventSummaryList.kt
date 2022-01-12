@@ -7,7 +7,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.Material3Divider
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
 /**
@@ -45,6 +47,7 @@ private fun EventSummaryListPreview() {
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
         subtitle = "16 Teams",
         onClick = {},
+        image = UIImage.Resource(R.drawable.us),
     )
 
     val displayModels = (1..10).map {

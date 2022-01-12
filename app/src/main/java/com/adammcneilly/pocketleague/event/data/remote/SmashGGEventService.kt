@@ -128,6 +128,7 @@ private fun EventSummaryFragment.toEvent(): EventSummary {
         startDate = startDate.toZonedDateTime(),
         numEntrants = this.numEntrants,
         isOnline = this.isOnline == true,
+        tournamentImageUrl = this.tournament?.images?.firstOrNull()?.url.orEmpty(),
     )
 }
 

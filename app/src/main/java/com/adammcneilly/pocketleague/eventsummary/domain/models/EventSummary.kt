@@ -18,6 +18,7 @@ data class EventSummary(
     val id: String,
     val eventName: String,
     val tournamentName: String,
+    val tournamentImageUrl: String,
     val startDate: ZonedDateTime,
     val numEntrants: Int?,
     val isOnline: Boolean,

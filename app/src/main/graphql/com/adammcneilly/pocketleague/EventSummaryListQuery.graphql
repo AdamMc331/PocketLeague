@@ -4,6 +4,9 @@ fragment EventSummaryFragment on Event {
     slug
     tournament {
         name
+        images {
+            url
+        }
     }
     startAt
     numEntrants

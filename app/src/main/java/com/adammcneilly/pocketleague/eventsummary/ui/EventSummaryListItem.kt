@@ -15,6 +15,8 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.R
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
 /**
@@ -100,6 +102,7 @@ private fun EventSummaryListItemPreview() {
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
         subtitle = "16 Teams",
         onClick = {},
+        image = UIImage.Resource(R.drawable.us),
     )
 
     PocketLeagueTheme {

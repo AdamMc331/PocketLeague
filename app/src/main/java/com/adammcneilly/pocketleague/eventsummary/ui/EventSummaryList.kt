@@ -1,12 +1,15 @@
 package com.adammcneilly.pocketleague.eventsummary.ui
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.Material3Divider
 import com.adammcneilly.pocketleague.core.ui.UIImage
@@ -22,6 +25,8 @@ fun EventSummaryList(
 ) {
     LazyColumn(
         modifier = modifier,
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(displayModels) { displayModel ->
             EventSummaryListItem(displayModel = displayModel)

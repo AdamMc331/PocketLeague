@@ -9,6 +9,7 @@ import java.time.ZonedDateTime
  * @property[eventName] The name for the event, which can be "Open Qualifier" or "Main Event".
  * @property[tournamentName] The broader name for the tournament being captured, such as
  * "RLCS 2021-22 Season - Winter Split Regional 1 - North America".
+ * @property[tournamentImageUrl] An image URL to some image that will be used to identify this tournament.
  * @property[startDate] The [ZonedDateTime] that this event starts on.
  * @property[numEntrants] The number of teams registered or participating in this event. Optional if
  * no one has registered yet.

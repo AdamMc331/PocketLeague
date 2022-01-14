@@ -18,6 +18,10 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
+/**
+ * Creates a [stateFlowMutator] which will consume [EventSummaryListAction] entities and map them
+ * to the correct [EventSummaryListViewState].
+ */
 fun eventSummaryListStateMutator(
     scope: CoroutineScope,
     fetchUpcomingEventsUseCase: FetchUpcomingEventsUseCase,

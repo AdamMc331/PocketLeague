@@ -1,7 +1,5 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.state
 
-import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
-
 /**
  * A collection of possible domain actions that can occur within the event summary list feature.
  */
@@ -12,10 +10,10 @@ sealed class EventSummaryListAction {
     object FetchUpcomingEvents : EventSummaryListAction()
 
     /**
-     * Action fired when the user clicks on a specific [event].
+     * Action fired when the user clicks on a specific [eventId].
      */
     data class SelectedEvent(
-        val event: EventSummary,
+        val eventId: String,
     ) : EventSummaryListAction()
 
     /**

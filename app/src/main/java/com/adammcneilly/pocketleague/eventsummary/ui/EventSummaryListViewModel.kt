@@ -40,4 +40,13 @@ class EventSummaryListViewModel @Inject constructor(
 
         mutator.accept(action)
     }
+
+    /**
+     * Whenever a user clicks an event we consume that [eventId] and update state accordingly.
+     */
+    fun eventClicked(eventId: String) {
+        val action = EventSummaryListAction.SelectedEvent(eventId)
+
+        mutator.accept(action)
+    }
 }

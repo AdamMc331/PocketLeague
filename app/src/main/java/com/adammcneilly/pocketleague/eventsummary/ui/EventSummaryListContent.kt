@@ -13,6 +13,7 @@ import com.adammcneilly.pocketleague.core.ui.getValue
 @Composable
 fun EventSummaryListContent(
     viewState: EventSummaryListViewState,
+    eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -25,6 +26,7 @@ fun EventSummaryListContent(
         if (viewState.events.isNotEmpty()) {
             EventSummaryList(
                 displayModels = viewState.events,
+                eventClicked = eventClicked,
             )
         }
 

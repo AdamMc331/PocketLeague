@@ -87,9 +87,6 @@ private suspend fun FlowCollector<Mutation<EventSummaryListViewState>>.emitSucce
             events = events.map { event ->
                 event.toSummaryDisplayModel(
                     dateTimeHelper = dateTimeHelper,
-                    onClick = {
-                        // Coming soon
-                    },
                 )
             }
         )
@@ -106,10 +103,11 @@ private suspend fun FlowCollector<Mutation<EventSummaryListViewState>>.emitLoadi
 
 private fun Flow<EventSummaryListAction.NavigatedToEventOverview>.clearEventMutations():
     Flow<Mutation<EventSummaryListViewState>> {
+
     return this.map {
         Mutation {
             copy(
-                selectedEvent = null,
+                selectedEventId = null,
             )
         }
     }
@@ -117,10 +115,11 @@ private fun Flow<EventSummaryListAction.NavigatedToEventOverview>.clearEventMuta
 
 private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
     Flow<Mutation<EventSummaryListViewState>> {
+
     return this.map { action ->
         Mutation {
             copy(
-                selectedEvent = action.event,
+                selectedEventId = action.eventId,
             )
         }
     }
@@ -131,9 +130,9 @@ private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
  */
 private fun EventSummary.toSummaryDisplayModel(
     dateTimeHelper: DateTimeHelper,
-    onClick: () -> Unit,
 ): EventSummaryDisplayModel {
     return EventSummaryDisplayModel(
+        eventId = this.id,
         startDate = dateTimeHelper.getEventDayString(this.startDate),
         tournamentName = this.tournamentName,
         eventName = this.eventName,
@@ -141,7 +140,6 @@ private fun EventSummary.toSummaryDisplayModel(
         image = UIImage.Remote(
             imageUrl = this.tournamentImageUrl,
         ),
-        onClick = onClick,
     )
 }
 

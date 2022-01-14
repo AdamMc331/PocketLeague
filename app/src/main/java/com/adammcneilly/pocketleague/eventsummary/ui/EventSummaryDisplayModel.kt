@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.eventsummary.ui
 
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 
 /**
@@ -10,5 +11,6 @@ data class EventSummaryDisplayModel(
     val tournamentName: String,
     val eventName: String,
     val subtitle: String?,
+    val image: UIImage,
     val onClick: () -> Unit,
 )

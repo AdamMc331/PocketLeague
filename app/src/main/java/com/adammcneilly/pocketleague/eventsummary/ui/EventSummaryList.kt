@@ -1,13 +1,17 @@
 package com.adammcneilly.pocketleague.eventsummary.ui
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.adammcneilly.pocketleague.core.ui.Material3Divider
+import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.R
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
 /**
@@ -20,11 +24,11 @@ fun EventSummaryList(
 ) {
     LazyColumn(
         modifier = modifier,
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(displayModels) { displayModel ->
             EventSummaryListItem(displayModel = displayModel)
-
-            Material3Divider()
         }
     }
 }
@@ -45,6 +49,7 @@ private fun EventSummaryListPreview() {
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
         subtitle = "16 Teams",
         onClick = {},
+        image = UIImage.Resource(R.drawable.us),
     )
 
     val displayModels = (1..10).map {

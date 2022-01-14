@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.eventsummary.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.core.data.Result
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
 import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
@@ -87,6 +88,9 @@ private fun EventSummary.toSummaryDisplayModel(
         tournamentName = this.tournamentName,
         eventName = this.eventName,
         subtitle = this.buildSubtitle(),
+        image = UIImage.Remote(
+            imageUrl = this.tournamentImageUrl,
+        ),
         onClick = onClick,
     )
 }

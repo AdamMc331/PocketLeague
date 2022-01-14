@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pocket League</string>
+    <string name="event_image_content_description">Event Image</string>
 </resources>

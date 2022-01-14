@@ -23,7 +23,7 @@ fun EventSummaryListScreen(
     val viewState = viewModel.viewState.collectAsState()
 
     LaunchedEffect(viewState.value) {
-        val selectedEvent = (viewState.value as? EventSummaryListViewState.Success)?.selectedEvent
+        val selectedEvent = viewState.value.selectedEvent
 
         if (selectedEvent != null) {
             navigator.navigate(

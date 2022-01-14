@@ -29,7 +29,7 @@ class EventSummaryListViewModel @Inject constructor(
 
     private val mutator = stateFlowMutator<EventSummaryListAction, EventSummaryListViewState>(
         scope = viewModelScope,
-        initialState = EventSummaryListViewState.Loading,
+        initialState = EventSummaryListViewState(),
         transform = { actions ->
             actions.toMutationStream {
                 when (val action = type()) {
@@ -39,38 +39,41 @@ class EventSummaryListViewModel @Inject constructor(
                                 flow<Mutation<EventSummaryListViewState>> {
                                     emit(
                                         Mutation {
-                                            EventSummaryListViewState.Loading
+                                            copy(
+                                                showLoading = true,
+                                            )
                                         }
                                     )
 
                                     val result = fetchUpcomingEventsUseCase.invoke()
 
-                                    val viewState = when (result) {
+                                    when (result) {
                                         is Result.Success -> {
-                                            EventSummaryListViewState.Success(
-                                                events = mapEventsToDisplayModel(result.data),
+                                            emit(
+                                                Mutation {
+                                                    this.copy(
+                                                        events = mapEventsToDisplayModel(result.data),
+                                                    )
+                                                }
                                             )
                                         }
                                         is Result.Error -> {
-                                            EventSummaryListViewState.Error(
-                                                errorMessage = UIText.StringText("Fetching upcoming events failed."),
+                                            emit(
+                                                Mutation {
+                                                    copy(
+                                                        errorMessage = UIText.StringText("Fetching upcoming events failed."),
+                                                    )
+                                                }
                                             )
                                         }
                                     }
-
-                                    emit(
-                                        Mutation {
-                                            viewState
-                                        }
-                                    )
                                 }
                             }
                     is EventSummaryListAction.NavigatedToEventOverview ->
                         action.flow
                             .map {
                                 Mutation {
-                                    EventSummaryListViewState.Success(
-                                        events = (this as? EventSummaryListViewState.Success)?.events.orEmpty(),
+                                    copy(
                                         selectedEvent = null,
                                     )
                                 }
@@ -79,8 +82,7 @@ class EventSummaryListViewModel @Inject constructor(
                         action.flow
                             .map {
                                 Mutation {
-                                    EventSummaryListViewState.Success(
-                                        events = (this as? EventSummaryListViewState.Success)?.events.orEmpty(),
+                                    copy(
                                         selectedEvent = it.event,
                                     )
                                 }

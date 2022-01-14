@@ -18,20 +18,20 @@ fun EventSummaryListContent(
     Box(
         modifier = modifier,
     ) {
-        when (viewState) {
-            EventSummaryListViewState.Loading -> {
-                CenteredMaterial3CircularProgressIndicator()
-            }
-            is EventSummaryListViewState.Success -> {
-                EventSummaryList(
-                    displayModels = viewState.events,
-                )
-            }
-            is EventSummaryListViewState.Error -> {
-                Text(
-                    text = viewState.errorMessage.getValue(),
-                )
-            }
+        if (viewState.showLoading) {
+            CenteredMaterial3CircularProgressIndicator()
+        }
+
+        if (viewState.events.isNotEmpty()) {
+            EventSummaryList(
+                displayModels = viewState.events,
+            )
+        }
+
+        if (viewState.errorMessage != null) {
+            Text(
+                text = viewState.errorMessage.getValue(),
+            )
         }
     }
 }

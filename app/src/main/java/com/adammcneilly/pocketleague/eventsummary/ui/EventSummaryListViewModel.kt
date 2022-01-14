@@ -6,8 +6,8 @@ import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
-import com.adammcneilly.pocketleague.eventsummary.domain.EventSummaryListAction
 import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
+import com.adammcneilly.pocketleague.eventsummary.domain.state.EventSummaryListAction
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
@@ -61,7 +61,9 @@ class EventSummaryListViewModel @Inject constructor(
                                             emit(
                                                 Mutation {
                                                     copy(
-                                                        errorMessage = UIText.StringText("Fetching upcoming events failed."),
+                                                        errorMessage = UIText.StringText(
+                                                            "Fetching upcoming events failed."
+                                                        ),
                                                     )
                                                 }
                                             )

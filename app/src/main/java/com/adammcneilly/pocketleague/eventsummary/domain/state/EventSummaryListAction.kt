@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.eventsummary.domain
+package com.adammcneilly.pocketleague.eventsummary.domain.state
 
 import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 

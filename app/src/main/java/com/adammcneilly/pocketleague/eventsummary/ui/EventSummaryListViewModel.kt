@@ -6,12 +6,16 @@ import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
+import com.adammcneilly.pocketleague.eventsummary.domain.EventSummaryListAction
 import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
+import com.tunjid.mutator.Mutation
+import com.tunjid.mutator.coroutines.stateFlowMutator
+import com.tunjid.mutator.coroutines.toMutationStream
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 /**
@@ -23,40 +27,88 @@ class EventSummaryListViewModel @Inject constructor(
     private val dateTimeHelper: DateTimeHelper,
 ) : ViewModel() {
 
-    private val _viewState: MutableStateFlow<EventSummaryListViewState> =
-        MutableStateFlow(EventSummaryListViewState.Loading)
-    val viewState = _viewState.asStateFlow()
+    private val mutator = stateFlowMutator<EventSummaryListAction, EventSummaryListViewState>(
+        scope = viewModelScope,
+        initialState = EventSummaryListViewState.Loading,
+        transform = { actions ->
+            actions.toMutationStream {
+                when (val action = type()) {
+                    is EventSummaryListAction.FetchUpcomingEvents ->
+                        action.flow
+                            .flatMapLatest {
+                                flow<Mutation<EventSummaryListViewState>> {
+                                    emit(
+                                        Mutation {
+                                            EventSummaryListViewState.Loading
+                                        }
+                                    )
 
-    init {
-        viewModelScope.launch {
-            val result = fetchUpcomingEventsUseCase()
+                                    val result = fetchUpcomingEventsUseCase.invoke()
 
-            _viewState.value = when (result) {
-                is Result.Success -> {
-                    EventSummaryListViewState.Success(
-                        events = result.data.map { event ->
-                            event.toSummaryDisplayModel(
-                                dateTimeHelper = dateTimeHelper,
-                                onClick = {
-                                    val currentState =
-                                        _viewState.value as? EventSummaryListViewState.Success
-
-                                    if (currentState != null) {
-                                        _viewState.value = currentState.copy(
-                                            selectedEvent = event
-                                        )
+                                    val viewState = when (result) {
+                                        is Result.Success -> {
+                                            EventSummaryListViewState.Success(
+                                                events = mapEventsToDisplayModel(result.data),
+                                            )
+                                        }
+                                        is Result.Error -> {
+                                            EventSummaryListViewState.Error(
+                                                errorMessage = UIText.StringText("Fetching upcoming events failed."),
+                                            )
+                                        }
                                     }
-                                },
-                            )
-                        },
-                    )
-                }
-                is Result.Error -> {
-                    EventSummaryListViewState.Error(
-                        errorMessage = UIText.StringText("Fetching upcoming events failed."),
-                    )
+
+                                    emit(
+                                        Mutation {
+                                            viewState
+                                        }
+                                    )
+                                }
+                            }
+                    is EventSummaryListAction.NavigatedToEventOverview ->
+                        action.flow
+                            .map {
+                                Mutation {
+                                    EventSummaryListViewState.Success(
+                                        events = (this as? EventSummaryListViewState.Success)?.events.orEmpty(),
+                                        selectedEvent = null,
+                                    )
+                                }
+                            }
+                    is EventSummaryListAction.SelectedEvent ->
+                        action.flow
+                            .map {
+                                Mutation {
+                                    EventSummaryListViewState.Success(
+                                        events = (this as? EventSummaryListViewState.Success)?.events.orEmpty(),
+                                        selectedEvent = it.event,
+                                    )
+                                }
+                            }
                 }
             }
+        }
+    )
+
+    val viewState = mutator.state
+
+    init {
+        val fetchAction = EventSummaryListAction.FetchUpcomingEvents
+        mutator.accept(fetchAction)
+    }
+
+    private fun mapEventsToDisplayModel(
+        events: List<EventSummary>,
+    ): List<EventSummaryDisplayModel> {
+        return events.map { event ->
+            event.toSummaryDisplayModel(
+                dateTimeHelper = dateTimeHelper,
+                onClick = {
+                    val action = EventSummaryListAction.SelectedEvent(event = event)
+
+                    mutator.accept(action)
+                },
+            )
         }
     }
 
@@ -65,14 +117,9 @@ class EventSummaryListViewModel @Inject constructor(
      * continue to show it.
      */
     fun navigatedToEventOverview() {
-        val currentState =
-            _viewState.value as? EventSummaryListViewState.Success
+        val action = EventSummaryListAction.NavigatedToEventOverview
 
-        if (currentState != null) {
-            _viewState.value = currentState.copy(
-                selectedEvent = null,
-            )
-        }
+        mutator.accept(action)
     }
 }
 

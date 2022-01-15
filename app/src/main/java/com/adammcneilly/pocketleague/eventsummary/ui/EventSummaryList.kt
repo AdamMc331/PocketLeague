@@ -20,6 +20,7 @@ import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 @Composable
 fun EventSummaryList(
     displayModels: List<EventSummaryDisplayModel>,
+    eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -28,7 +29,10 @@ fun EventSummaryList(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(displayModels) { displayModel ->
-            EventSummaryListItem(displayModel = displayModel)
+            EventSummaryListItem(
+                displayModel = displayModel,
+                eventClicked = eventClicked,
+            )
         }
     }
 }
@@ -44,11 +48,11 @@ fun EventSummaryList(
 @Composable
 private fun EventSummaryListPreview() {
     val displayModel = EventSummaryDisplayModel(
+        eventId = "1234",
         startDate = "Nov 12, 2021",
         eventName = "Main Event",
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
         subtitle = "16 Teams",
-        onClick = {},
         image = UIImage.Resource(R.drawable.us),
     )
 
@@ -60,6 +64,7 @@ private fun EventSummaryListPreview() {
         Surface {
             EventSummaryList(
                 displayModels = displayModels,
+                eventClicked = {},
             )
         }
     }

@@ -13,25 +13,27 @@ import com.adammcneilly.pocketleague.core.ui.getValue
 @Composable
 fun EventSummaryListContent(
     viewState: EventSummaryListViewState,
+    eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier,
     ) {
-        when (viewState) {
-            EventSummaryListViewState.Loading -> {
-                CenteredMaterial3CircularProgressIndicator()
-            }
-            is EventSummaryListViewState.Success -> {
-                EventSummaryList(
-                    displayModels = viewState.events,
-                )
-            }
-            is EventSummaryListViewState.Error -> {
-                Text(
-                    text = viewState.errorMessage.getValue(),
-                )
-            }
+        if (viewState.showLoading) {
+            CenteredMaterial3CircularProgressIndicator()
+        }
+
+        if (viewState.events.isNotEmpty()) {
+            EventSummaryList(
+                displayModels = viewState.events,
+                eventClicked = eventClicked,
+            )
+        }
+
+        if (viewState.errorMessage != null) {
+            Text(
+                text = viewState.errorMessage.getValue(),
+            )
         }
     }
 }

@@ -2,16 +2,11 @@ package com.adammcneilly.pocketleague.eventsummary.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.adammcneilly.pocketleague.core.data.Result
-import com.adammcneilly.pocketleague.core.ui.UIImage
-import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
-import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
+import com.adammcneilly.pocketleague.eventsummary.domain.state.EventSummaryListAction
+import com.adammcneilly.pocketleague.eventsummary.domain.state.eventSummaryListStateMutator
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -19,45 +14,21 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class EventSummaryListViewModel @Inject constructor(
-    private val fetchUpcomingEventsUseCase: FetchUpcomingEventsUseCase,
-    private val dateTimeHelper: DateTimeHelper,
+    fetchUpcomingEventsUseCase: FetchUpcomingEventsUseCase,
+    dateTimeHelper: DateTimeHelper,
 ) : ViewModel() {
 
-    private val _viewState: MutableStateFlow<EventSummaryListViewState> =
-        MutableStateFlow(EventSummaryListViewState.Loading)
-    val viewState = _viewState.asStateFlow()
+    private val mutator = eventSummaryListStateMutator(
+        scope = viewModelScope,
+        fetchUpcomingEventsUseCase = fetchUpcomingEventsUseCase,
+        dateTimeHelper = dateTimeHelper,
+    )
+
+    val viewState = mutator.state
 
     init {
-        viewModelScope.launch {
-            val result = fetchUpcomingEventsUseCase()
-
-            _viewState.value = when (result) {
-                is Result.Success -> {
-                    EventSummaryListViewState.Success(
-                        events = result.data.map { event ->
-                            event.toSummaryDisplayModel(
-                                dateTimeHelper = dateTimeHelper,
-                                onClick = {
-                                    val currentState =
-                                        _viewState.value as? EventSummaryListViewState.Success
-
-                                    if (currentState != null) {
-                                        _viewState.value = currentState.copy(
-                                            selectedEvent = event
-                                        )
-                                    }
-                                },
-                            )
-                        },
-                    )
-                }
-                is Result.Error -> {
-                    EventSummaryListViewState.Error(
-                        errorMessage = UIText.StringText("Fetching upcoming events failed."),
-                    )
-                }
-            }
-        }
+        val fetchAction = EventSummaryListAction.FetchUpcomingEvents
+        mutator.accept(fetchAction)
     }
 
     /**
@@ -65,41 +36,17 @@ class EventSummaryListViewModel @Inject constructor(
      * continue to show it.
      */
     fun navigatedToEventOverview() {
-        val currentState =
-            _viewState.value as? EventSummaryListViewState.Success
+        val action = EventSummaryListAction.NavigatedToEventOverview
 
-        if (currentState != null) {
-            _viewState.value = currentState.copy(
-                selectedEvent = null,
-            )
-        }
+        mutator.accept(action)
     }
-}
 
-/**
- * Converts an [EventSummary] domain object to a user friendly [EventSummaryDisplayModel].
- */
-private fun EventSummary.toSummaryDisplayModel(
-    dateTimeHelper: DateTimeHelper,
-    onClick: () -> Unit,
-): EventSummaryDisplayModel {
-    return EventSummaryDisplayModel(
-        startDate = dateTimeHelper.getEventDayString(this.startDate),
-        tournamentName = this.tournamentName,
-        eventName = this.eventName,
-        subtitle = this.buildSubtitle(),
-        image = UIImage.Remote(
-            imageUrl = this.tournamentImageUrl,
-        ),
-        onClick = onClick,
-    )
-}
+    /**
+     * Whenever a user clicks an event we consume that [eventId] and update state accordingly.
+     */
+    fun eventClicked(eventId: String) {
+        val action = EventSummaryListAction.SelectedEvent(eventId)
 
-/**
- * Generates a user friendly subtitle for an [EventSummary] intended to be passed to an [EventSummaryDisplayModel].
- */
-private fun EventSummary.buildSubtitle(): String? {
-    return this.numEntrants?.let { numEntrants ->
-        "$numEntrants Teams"
+        mutator.accept(action)
     }
 }

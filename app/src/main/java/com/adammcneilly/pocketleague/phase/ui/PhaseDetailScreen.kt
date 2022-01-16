@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.phase.ui
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -9,12 +9,18 @@ import com.ramcosta.composedestinations.annotation.Destination
 /**
  * A screen for phase detail information managed by the supplied [viewModel].
  */
-@Destination
+@Destination(
+    navArgsDelegate = PhaseDetailNavArgs::class,
+)
 @Composable
 fun PhaseDetailScreen(
-    phaseId: String,
     modifier: Modifier = Modifier,
     viewModel: PhaseDetailViewModel = hiltViewModel(),
 ) {
-    Text(text = "Phase detail: $phaseId")
+    val viewState = viewModel.viewState.collectAsState()
+
+    PhaseDetailContent(
+        viewState = viewState.value,
+        modifier = modifier,
+    )
 }

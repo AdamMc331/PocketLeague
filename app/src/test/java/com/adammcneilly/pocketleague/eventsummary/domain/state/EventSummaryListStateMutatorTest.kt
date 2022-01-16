@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.eventsummary.domain.state
 import app.cash.turbine.test
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.ui.UIImage
+import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.FakeDateTimeHelper
 import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FakeFetchUpcomingEventsUseCase
@@ -45,7 +46,7 @@ class EventSummaryListStateMutatorTest {
         dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDate, fakeEventDateString)
 
         // Expectations
-        val loadingState = EventSummaryListViewState()
+        val initialState = EventSummaryListViewState()
         val expectedEventDisplayModel = EventSummaryDisplayModel(
             eventId = fakeEvent.id,
             startDate = fakeEventDateString,
@@ -54,7 +55,7 @@ class EventSummaryListStateMutatorTest {
             subtitle = null,
             image = UIImage.Remote(fakeEvent.tournamentImageUrl)
         )
-        val successState = EventSummaryListViewState(
+        val successState = initialState.copy(
             showLoading = false,
             events = listOf(expectedEventDisplayModel),
         )
@@ -64,7 +65,71 @@ class EventSummaryListStateMutatorTest {
             .test {
                 mutator.accept(EventSummaryListAction.FetchUpcomingEvents)
 
-                val expectedStates = listOf(loadingState, successState)
+                val expectedStates = listOf(initialState, successState)
+
+                expectedStates.forEach { state ->
+                    assertThat(state).isEqualTo(awaitItem())
+                }
+
+                cancelAndIgnoreRemainingEvents()
+            }
+    }
+
+    @Test
+    fun fetchEventsFailure() = runTest {
+        // Inputs
+        val fakeEventListResult: Result<List<EventSummary>> = Result.Error(
+            Throwable("Whoops"),
+        )
+
+        // Mocks
+        fetchUpcomingEventsUseCase.mockResult = fakeEventListResult
+
+        // Expectations
+        val initialState = EventSummaryListViewState()
+        val errorState = initialState.copy(
+            showLoading = false,
+            errorMessage = UIText.StringText(
+                "Fetching upcoming events failed.",
+            ),
+        )
+
+        // Test
+        mutator.state
+            .test {
+                mutator.accept(EventSummaryListAction.FetchUpcomingEvents)
+
+                val expectedStates = listOf(initialState, errorState)
+
+                expectedStates.forEach { state ->
+                    assertThat(state).isEqualTo(awaitItem())
+                }
+
+                cancelAndIgnoreRemainingEvents()
+            }
+    }
+
+    @Test
+    fun selectAndNavigateToEvent() = runTest {
+        // Inputs
+        val fakeEventId = "1234"
+
+        // Expectations
+        val initialState = EventSummaryListViewState()
+        val selectedState = initialState.copy(
+            selectedEventId = fakeEventId,
+        )
+        val navigatedState = initialState.copy(
+            selectedEventId = null,
+        )
+
+        // Test
+        mutator.state
+            .test {
+                mutator.accept(EventSummaryListAction.SelectedEvent(fakeEventId))
+                mutator.accept(EventSummaryListAction.NavigatedToEventOverview)
+
+                val expectedStates = listOf(initialState, selectedState, navigatedState)
 
                 expectedStates.forEach { state ->
                     assertThat(state).isEqualTo(awaitItem())

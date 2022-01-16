@@ -123,6 +123,8 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
     testImplementation "junit:junit:$rootProject.ext.versions.junit"
     testImplementation "com.google.truth:truth:$rootProject.ext.versions.truth"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.ext.versions.coroutines"
+    testImplementation "app.cash.turbine:turbine:$rootProject.ext.versions.turbine"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.ext.versions.androidxTest"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.versions.espresso"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$rootProject.ext.versions.compose"

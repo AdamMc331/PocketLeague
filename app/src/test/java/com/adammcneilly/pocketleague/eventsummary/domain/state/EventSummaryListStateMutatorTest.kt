@@ -64,11 +64,11 @@ class EventSummaryListStateMutatorTest {
             .test {
                 mutator.accept(EventSummaryListAction.FetchUpcomingEvents)
 
-                val first = awaitItem()
-                assertThat(first).isEqualTo(loadingState)
+                val expectedStates = listOf(loadingState, successState)
 
-                val second = awaitItem()
-                assertThat(second).isEqualTo(successState)
+                expectedStates.forEach { state ->
+                    assertThat(state).isEqualTo(awaitItem())
+                }
 
                 cancelAndIgnoreRemainingEvents()
             }

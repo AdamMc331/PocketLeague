@@ -34,6 +34,7 @@ class EventOverviewStateMutatorTest {
         dateTimeHelper = dateTimeHelper,
     )
 
+    @Suppress("LongMethod")
     @Test
     fun fetchEventOverviewSuccess() = runTest {
         // Inputs

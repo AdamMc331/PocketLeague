@@ -37,20 +37,20 @@ fun EventOverviewContent(
         modifier = modifier
             .fillMaxSize(),
     ) {
-        when (viewState) {
-            is EventOverviewViewState.Loading -> {
-                CenteredMaterial3CircularProgressIndicator()
-            }
-            is EventOverviewViewState.Success -> {
-                SuccessContent(
-                    event = viewState.event,
-                )
-            }
-            is EventOverviewViewState.Error -> {
-                Text(
-                    text = viewState.errorMessage.getValue(),
-                )
-            }
+        if (viewState.showLoading) {
+            CenteredMaterial3CircularProgressIndicator()
+        }
+
+        if (viewState.event != null) {
+            SuccessContent(
+                event = viewState.event,
+            )
+        }
+
+        if (viewState.errorMessage != null) {
+            Text(
+                text = viewState.errorMessage.getValue(),
+            )
         }
     }
 }
@@ -151,7 +151,8 @@ private fun EventOverviewContentPreview() {
         standings = standings,
     )
 
-    val viewState = EventOverviewViewState.Success(
+    val viewState = EventOverviewViewState(
+        showLoading = false,
         event = event,
     )
 

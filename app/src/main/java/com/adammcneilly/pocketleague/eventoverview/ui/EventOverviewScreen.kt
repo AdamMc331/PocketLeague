@@ -24,12 +24,12 @@ fun EventOverviewScreen(
     val viewState = viewModel.viewState.collectAsState()
 
     LaunchedEffect(viewState.value) {
-        val selectedPhase = (viewState.value as? EventOverviewViewState.Success)?.selectedPhase
+        val selectedPhaseId = viewState.value.selectedPhaseId
 
-        if (selectedPhase != null) {
+        if (selectedPhaseId != null) {
             navigator.navigate(
                 PhaseDetailScreenDestination(
-                    phaseId = selectedPhase.id
+                    phaseId = selectedPhaseId
                 )
             )
 

@@ -5,6 +5,7 @@ import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.domain.models.Player
 import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.FakeDateTimeHelper
 import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
@@ -99,7 +100,7 @@ class EventOverviewStateMutatorTest {
                         placement = "0",
                         teamName = "Team Name",
                         roster = "AdamMc331",
-                        teamLogo = null,
+                        teamLogo = UIImage.Remote("Light"),
                     ),
                 ),
             ),
@@ -143,7 +144,7 @@ class EventOverviewStateMutatorTest {
         val errorState = initialState.copy(
             showLoading = false,
             errorMessage = UIText.StringText(
-                "Fetching upcoming events failed.",
+                "Fetching event overview failed.",
             ),
         )
 

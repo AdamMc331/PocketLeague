@@ -11,4 +11,22 @@ data class PhaseDisplayModel(
     val bracketType: String,
     val numEntrants: String,
     val onClick: () -> Unit,
-)
+) {
+
+    /**
+     * This is needed for testing just until we can remove onClick.
+     */
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as PhaseDisplayModel
+
+        if (phaseName != other.phaseName) return false
+        if (numPools != other.numPools) return false
+        if (bracketType != other.bracketType) return false
+        if (numEntrants != other.numEntrants) return false
+
+        return true
+    }
+}

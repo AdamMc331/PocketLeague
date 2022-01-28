@@ -137,6 +137,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.versions.espresso"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$rootProject.ext.versions.compose"
     debugImplementation "androidx.compose.ui:ui-tooling:$rootProject.ext.versions.compose"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$rootProject.ext.versions.compose"
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }
 

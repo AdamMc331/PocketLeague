@@ -8,4 +8,4 @@ The [Android Build](/.github/workflows/android_build.yml) workflow automates the
 
 ## Android UI Tests
 
-The [Android UI Tests](/.github/workflows/android_ui_tests.yml) is a separate workflow that is set to only run on pull request. This is because UI tests are slow and take up a lot of resources, so we only want to validate them when we're ready to merge changes into our base branch. 
+The [Android UI Tests](/.github/workflows/android_coverage.yml) is a separate workflow that is set to only run on pull request. This is because UI tests are slow and take up a lot of resources, so we only want to validate them when we're ready to merge changes into our base branch. 

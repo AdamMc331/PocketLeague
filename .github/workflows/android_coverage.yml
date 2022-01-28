@@ -1,6 +1,10 @@
-name: Android UI Tests
+name: Android Coverage
 
-on: pull_request
+on:
+  push:
+    branches:
+      - development
+  pull_request:
 
 jobs:
   android-test:
@@ -23,4 +27,5 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: ./gradlew app:connectedCheck
+          script: |
+            ./gradlew app:coveralls

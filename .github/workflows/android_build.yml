@@ -21,8 +21,5 @@ jobs:
       - name: Build Project
         run: ./gradlew assemble
 
-      - name: Run Tests
-        run: ./gradlew test
-
       - name: Lint Checks
         run: ./gradlew detekt ktlintCheck lint

@@ -7,6 +7,9 @@ plugins {
     id "com.google.devtools.ksp" version "1.5.31-1.0.0"
 }
 
+apply from: "../buildscripts/jacoco.gradle"
+apply from: "../buildscripts/jacocoCoverage.gradle"
+
 kotlin {
     sourceSets {
         debug {
@@ -41,6 +44,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"

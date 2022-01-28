@@ -36,5 +36,9 @@ ext {
             composeDestinations: "0.9.4-beta",
             // https://developer.android.com/jetpack/androidx/releases/navigation
             composeNavigation  : "2.4.0-beta02",
+            // https://github.com/Kotlin/kotlinx.coroutines/releases
+            coroutines         : "1.6.0",
+            // https://github.com/cashapp/turbine/releases
+            turbine            : "0.7.0",
     ]
 }

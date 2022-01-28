@@ -115,6 +115,7 @@ private suspend fun FlowCollector<Mutation<EventOverviewViewState>>.emitLoading(
 private suspend fun FlowCollector<Mutation<EventOverviewViewState>>.emitError() = this.emit(
     Mutation {
         copy(
+            showLoading = false,
             errorMessage = UIText.StringText(
                 "Fetching event overview failed.",
             ),
@@ -128,6 +129,7 @@ private suspend fun FlowCollector<Mutation<EventOverviewViewState>>.emitSuccess(
 ) = this.emit(
     Mutation {
         copy(
+            showLoading = false,
             event = event.toDisplayModel(dateTimeHelper),
         )
     }

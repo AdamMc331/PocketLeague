@@ -71,6 +71,7 @@ private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations
 private suspend fun FlowCollector<Mutation<EventSummaryListViewState>>.emitError() = this.emit(
     Mutation {
         copy(
+            showLoading = false,
             errorMessage = UIText.StringText(
                 "Fetching upcoming events failed.",
             ),
@@ -84,6 +85,7 @@ private suspend fun FlowCollector<Mutation<EventSummaryListViewState>>.emitSucce
 ) = this.emit(
     Mutation {
         copy(
+            showLoading = false,
             events = events.map { event ->
                 event.toSummaryDisplayModel(
                     dateTimeHelper = dateTimeHelper,

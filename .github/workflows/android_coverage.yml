@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  android-test:
+  android-coverage:
     runs-on: macos-latest
     steps:
       - name: Checkout

@@ -24,6 +24,8 @@ jobs:
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
       - name: Run Tests
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29

@@ -29,7 +29,7 @@ fun eventSummaryListStateMutator(
 ) = stateFlowMutator<EventSummaryListAction, EventSummaryListViewState>(
     scope = scope,
     initialState = EventSummaryListViewState(),
-    transform = { actions ->
+    actionTransform = { actions ->
         actions.toMutationStream {
             when (val action = type()) {
                 is EventSummaryListAction.FetchUpcomingEvents -> action.flow.fetchEventMutations(

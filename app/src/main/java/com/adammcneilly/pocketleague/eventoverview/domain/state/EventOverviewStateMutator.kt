@@ -39,7 +39,7 @@ fun eventOverviewStateMutator(
 ) = stateFlowMutator<EventOverviewAction, EventOverviewViewState>(
     scope = scope,
     initialState = EventOverviewViewState(),
-    transform = { actions ->
+    actionTransform = { actions ->
         actions.toMutationStream {
             when (val action = type()) {
                 is EventOverviewAction.FetchEventOverview ->

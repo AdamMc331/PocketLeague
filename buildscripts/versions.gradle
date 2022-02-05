@@ -17,7 +17,7 @@ ext {
             // https://developer.android.com/jetpack/androidx/releases/test
             espresso           : "3.4.0",
             // https://github.com/material-components/material-components-android/releases
-            material           : "1.4.0",
+            material           : "1.5.0",
             // https://developer.android.com/jetpack/androidx/releases/compose-material3
             composeMaterial3   : "1.0.0-alpha03",
             // https://github.com/google/truth/releases
@@ -35,7 +35,7 @@ ext {
             // https://github.com/raamcosta/compose-destinations/releases
             composeDestinations: "0.9.4-beta",
             // https://developer.android.com/jetpack/androidx/releases/navigation
-            composeNavigation  : "2.4.0-beta02",
+            composeNavigation  : "2.4.0",
             // https://github.com/Kotlin/kotlinx.coroutines/releases
             coroutines         : "1.6.0",
             // https://github.com/cashapp/turbine/releases

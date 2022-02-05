@@ -13,10 +13,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.core.ui.Material3Card
+import com.adammcneilly.pocketleague.core.ui.TextCard
 import com.adammcneilly.pocketleague.core.ui.getValue
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
@@ -66,7 +69,7 @@ private fun SuccessContent(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         HeaderLabel(
-            text = "Summary",
+            text = stringResource(R.string.summary),
         )
 
         Material3Card {
@@ -76,20 +79,32 @@ private fun SuccessContent(
         }
 
         HeaderLabel(
-            text = "Brackets",
+            text = stringResource(R.string.brackets),
         )
 
-        PhaseList(
-            phases = event.phases,
-        )
+        if (event.phases.isNotEmpty()) {
+            PhaseList(
+                phases = event.phases,
+            )
+        } else {
+            TextCard(
+                text = stringResource(R.string.bracket_information_unavailable),
+            )
+        }
 
         HeaderLabel(
-            text = "Standings",
+            text = stringResource(R.string.standings),
         )
 
-        Material3Card {
-            StandingsList(
-                standings = event.standings,
+        if (event.standings.placements.isNotEmpty()) {
+            Material3Card {
+                StandingsList(
+                    standings = event.standings,
+                )
+            }
+        } else {
+            TextCard(
+                text = stringResource(R.string.standings_information_unavailable),
             )
         }
     }
@@ -147,6 +162,40 @@ private fun EventOverviewContentPreview() {
                 onClick = {},
             ),
         ),
+        startDate = "November 12, 2021",
+        standings = standings,
+    )
+
+    val viewState = EventOverviewViewState(
+        showLoading = false,
+        event = event,
+    )
+
+    PocketLeagueTheme {
+        Surface {
+            EventOverviewContent(viewState)
+        }
+    }
+}
+
+@Preview(
+    name = "Night Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
+@Preview(
+    name = "Day Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+)
+@Composable
+@Suppress("LongMethod")
+private fun EventOverviewUpcomingContentPreview() {
+    val standings = StandingsDisplayModel(
+        placements = emptyList(),
+    )
+
+    val event = EventOverviewDisplayModel(
+        eventName = "Main Event",
+        phases = emptyList(),
         startDate = "November 12, 2021",
         standings = standings,
     )

@@ -18,7 +18,7 @@ fun phaseDetailStateMutator(
 ) = stateFlowMutator<PhaseDetailAction, PhaseDetailViewState>(
     scope = scope,
     initialState = PhaseDetailViewState(),
-    transform = { actions ->
+    actionTransform = { actions ->
         actions.toMutationStream {
             when (val action = type()) {
                 is PhaseDetailAction.FetchPhaseDetail ->

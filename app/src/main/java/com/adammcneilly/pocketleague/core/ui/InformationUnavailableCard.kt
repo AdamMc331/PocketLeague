@@ -13,6 +13,10 @@ import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
 private const val CARD_ASPECT_RATIO = 4.0F
 
+/**
+ * An instance of a [Material3Card] that presents a label explaining that we don't have
+ * information we're trying to show in a section.
+ */
 @Composable
 fun InformationUnavailableCard(
     modifier: Modifier = Modifier,

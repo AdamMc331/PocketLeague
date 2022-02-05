@@ -14,11 +14,11 @@ import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 private const val CARD_ASPECT_RATIO = 4.0F
 
 /**
- * An instance of a [Material3Card] that presents a label explaining that we don't have
- * information we're trying to show in a section.
+ * An instance of a [Material3Card] that presents some [text] to the user.
  */
 @Composable
-fun InformationUnavailableCard(
+fun TextCard(
+    text: String,
     modifier: Modifier = Modifier,
 ) {
     Material3Card(
@@ -28,7 +28,7 @@ fun InformationUnavailableCard(
     ) {
         Box {
             Text(
-                text = "This information is currently unavailable.",
+                text = text,
                 modifier = Modifier
                     .align(Alignment.Center),
             )
@@ -46,8 +46,10 @@ fun InformationUnavailableCard(
 )
 @Composable
 @Suppress("UnusedPrivateMember")
-private fun InformationUnavailableCardPreview() {
+private fun TextCardPreview() {
     PocketLeagueTheme {
-        InformationUnavailableCard()
+        TextCard(
+            text = "This information is currently unavailable."
+        )
     }
 }

@@ -13,10 +13,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
-import com.adammcneilly.pocketleague.core.ui.InformationUnavailableCard
+import com.adammcneilly.pocketleague.core.ui.TextCard
 import com.adammcneilly.pocketleague.core.ui.Material3Card
 import com.adammcneilly.pocketleague.core.ui.getValue
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
@@ -67,7 +69,7 @@ private fun SuccessContent(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         HeaderLabel(
-            text = "Summary",
+            text = stringResource(R.string.summary),
         )
 
         Material3Card {
@@ -77,7 +79,7 @@ private fun SuccessContent(
         }
 
         HeaderLabel(
-            text = "Brackets",
+            text = stringResource(R.string.brackets),
         )
 
         if (event.phases.isNotEmpty()) {
@@ -85,11 +87,13 @@ private fun SuccessContent(
                 phases = event.phases,
             )
         } else {
-            InformationUnavailableCard()
+            TextCard(
+                text = stringResource(R.string.bracket_information_unavailable),
+            )
         }
 
         HeaderLabel(
-            text = "Standings",
+            text = stringResource(R.string.standings),
         )
 
         if (event.standings.placements.isNotEmpty()) {
@@ -99,7 +103,9 @@ private fun SuccessContent(
                 )
             }
         } else {
-            InformationUnavailableCard()
+            TextCard(
+                text = stringResource(R.string.standings_information_unavailable),
+            )
         }
     }
 }

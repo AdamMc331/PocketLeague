@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
+import com.adammcneilly.pocketleague.core.ui.InformationUnavailableCard
 import com.adammcneilly.pocketleague.core.ui.Material3Card
 import com.adammcneilly.pocketleague.core.ui.getValue
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
@@ -79,18 +80,26 @@ private fun SuccessContent(
             text = "Brackets",
         )
 
-        PhaseList(
-            phases = event.phases,
-        )
+        if (event.phases.isNotEmpty()) {
+            PhaseList(
+                phases = event.phases,
+            )
+        } else {
+            InformationUnavailableCard()
+        }
 
         HeaderLabel(
             text = "Standings",
         )
 
-        Material3Card {
-            StandingsList(
-                standings = event.standings,
-            )
+        if (event.standings.placements.isNotEmpty()) {
+            Material3Card {
+                StandingsList(
+                    standings = event.standings,
+                )
+            }
+        } else {
+            InformationUnavailableCard()
         }
     }
 }
@@ -147,6 +156,40 @@ private fun EventOverviewContentPreview() {
                 onClick = {},
             ),
         ),
+        startDate = "November 12, 2021",
+        standings = standings,
+    )
+
+    val viewState = EventOverviewViewState(
+        showLoading = false,
+        event = event,
+    )
+
+    PocketLeagueTheme {
+        Surface {
+            EventOverviewContent(viewState)
+        }
+    }
+}
+
+@Preview(
+    name = "Night Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
+@Preview(
+    name = "Day Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+)
+@Composable
+@Suppress("LongMethod")
+private fun EventOverviewUpcomingContentPreview() {
+    val standings = StandingsDisplayModel(
+        placements = emptyList(),
+    )
+
+    val event = EventOverviewDisplayModel(
+        eventName = "Main Event",
+        phases = emptyList(),
         startDate = "November 12, 2021",
         standings = standings,
     )

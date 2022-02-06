@@ -2,6 +2,8 @@ package com.adammcneilly.pocketleague.core.di
 
 import com.adammcneilly.pocketleague.event.data.EventService
 import com.adammcneilly.pocketleague.event.data.remote.SmashGGEventService
+import com.adammcneilly.pocketleague.phase.data.PhaseService
+import com.adammcneilly.pocketleague.phase.data.remote.SmashGGPhaseService
 import com.adammcneilly.pocketleague.teamlist.data.MockTeamListService
 import com.adammcneilly.pocketleague.teamlist.data.TeamListService
 import dagger.Binds
@@ -25,4 +27,9 @@ abstract class DataModule {
     abstract fun bindEventService(
         eventService: SmashGGEventService,
     ): EventService
+
+    @Binds
+    abstract fun bindPhaseService(
+        phaseService: SmashGGPhaseService,
+    ): PhaseService
 }

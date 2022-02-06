@@ -8,11 +8,12 @@ import com.adammcneilly.pocketleague.phase.domain.models.PhaseDetail
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.await
+import javax.inject.Inject
 
 /**
  * A concrete implementation of a [PhaseService] that fetches information from the Smash.gg [api].
  */
-class SmashGGPhaseService(
+class SmashGGPhaseService @Inject constructor(
     private val api: ApolloClient,
     private val modelMapper: SmashGGModelMapper,
 ) : PhaseService {

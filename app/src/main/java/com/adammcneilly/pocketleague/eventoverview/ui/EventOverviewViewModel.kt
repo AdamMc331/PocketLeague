@@ -38,6 +38,9 @@ class EventOverviewViewModel @Inject constructor(
         mutator.accept(fetchAction)
     }
 
+    /**
+     * Whenever the user clicks on a phase with the given [phaseId], capture that as selected.
+     */
     fun onPhaseClicked(phaseId: String) {
         val selectPhaseAction = EventOverviewAction.SelectPhase(
             phaseId = phaseId,

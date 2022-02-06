@@ -26,12 +26,15 @@ private const val PHASE_INFO_WIDTH_PERCENTAGE = 0.75F
 @Composable
 fun PhaseListItem(
     phase: PhaseDisplayModel,
+    onPhaseClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .clickable(
-                onClick = phase.onClick,
+                onClick = {
+                    onPhaseClicked.invoke(phase.phaseId)
+                },
             )
             .fillMaxWidth()
             .padding(16.dp),
@@ -89,17 +92,18 @@ private fun InfoItemLabel(
 @Composable
 private fun PhaseListItemPreview() {
     val phase = PhaseDisplayModel(
+        phaseId = "123",
         phaseName = "Day 1: Swiss Matches",
         numPools = "1",
         bracketType = "Custom",
         numEntrants = "16",
-        onClick = {},
     )
 
     PocketLeagueTheme {
         Surface {
             PhaseListItem(
                 phase = phase,
+                onPhaseClicked = {},
             )
         }
     }

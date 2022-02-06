@@ -140,22 +140,15 @@ private fun EventOverview.toDisplayModel(
 ): EventOverviewDisplayModel {
     return EventOverviewDisplayModel(
         eventName = this.name,
-        phases = this.phases.map { phase ->
-            phase.toDisplayModel(
-                onClick = {
-                    // Coming soon
-                },
-            )
-        },
+        phases = this.phases.map(PhaseOverview::toDisplayModel),
         startDate = dateTimeHelper.getEventDayString(this.startDate),
         standings = this.standings.toDisplayModel(),
     )
 }
 
-private fun PhaseOverview.toDisplayModel(
-    onClick: () -> Unit,
-): PhaseDisplayModel {
+private fun PhaseOverview.toDisplayModel(): PhaseDisplayModel {
     return PhaseDisplayModel(
+        phaseId = this.id,
         phaseName = this.name,
         numPools = this.numPools.toString(),
         bracketType = when (this.bracketType) {
@@ -165,7 +158,6 @@ private fun PhaseOverview.toDisplayModel(
             BracketType.UNKNOWN -> "Unknown"
         },
         numEntrants = this.numEntrants.toString(),
-        onClick = onClick,
     )
 }
 

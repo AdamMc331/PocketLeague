@@ -71,7 +71,7 @@ class SmashGGEventService @Inject constructor(
 
     override suspend fun fetchUpcomingEvents(leagueSlug: String): Result<List<EventSummary>> {
         val upcomingFilter = LeagueEventsFilter(
-            upcoming = true.toInput(),
+            upcoming = false.toInput(),
         ).toInput()
 
         val eventsQuery = LeagueEventsQuery(

@@ -64,6 +64,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         useIR = true
+
+        freeCompilerArgs += [
+                "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xopt-in=kotlin.contracts.ExperimentalContracts"
+        ]
     }
 
     buildFeatures {

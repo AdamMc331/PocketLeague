@@ -38,6 +38,14 @@ class EventOverviewViewModel @Inject constructor(
         mutator.accept(fetchAction)
     }
 
+    fun onPhaseClicked(phaseId: String) {
+        val selectPhaseAction = EventOverviewAction.SelectPhase(
+            phaseId = phaseId,
+        )
+
+        mutator.accept(selectPhaseAction)
+    }
+
     /**
      * When we navigate to a phase, we should clear our selected phase so that we don't
      * continue to show it.

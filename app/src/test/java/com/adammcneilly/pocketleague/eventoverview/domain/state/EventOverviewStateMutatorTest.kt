@@ -88,11 +88,11 @@ class EventOverviewStateMutatorTest {
             startDate = fakeEventDateString,
             phases = listOf(
                 PhaseDisplayModel(
+                    phaseId = "Phase ID",
                     phaseName = "Phase Name",
                     numPools = "0",
                     bracketType = "Unknown",
                     numEntrants = "0",
-                    onClick = {},
                 ),
             ),
             standings = StandingsDisplayModel(

@@ -2,8 +2,8 @@ package com.adammcneilly.pocketleague.eventoverview.domain.usecases
 
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.event.data.FakeEventService
-import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
-import com.adammcneilly.pocketleague.standings.domain.models.Standings
+import com.adammcneilly.pocketleague.models.EventOverview
+import com.adammcneilly.pocketleague.models.Standings
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -21,7 +21,7 @@ class FetchEventOverviewUseCaseImplTest {
 
         val testOverview = EventOverview(
             name = "Event Name",
-            startDate = ZonedDateTime.now(),
+            startDateEpochSeconds = ZonedDateTime.now(),
             phases = listOf(),
             standings = Standings(
                 placements = listOf(),

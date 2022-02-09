@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.teamlist.domain.models
 
-import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.models.Team
 
 /**
  * A collection of possible result types for fetching a list of teams.

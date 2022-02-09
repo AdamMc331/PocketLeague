@@ -1,10 +1,6 @@
 package com.adammcneilly.pocketleague.core.data.remote.smashgg
 
-import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
-import com.adammcneilly.pocketleague.core.domain.models.Player
-import com.adammcneilly.pocketleague.core.domain.models.Team
 import com.adammcneilly.pocketleague.event.data.remote.ApolloBracketType
-import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.fragment.EventEntrantFragment
 import com.adammcneilly.pocketleague.fragment.EventOverviewFragment
 import com.adammcneilly.pocketleague.fragment.EventPlayerFragment
@@ -13,12 +9,16 @@ import com.adammcneilly.pocketleague.fragment.PhaseDetailFragment
 import com.adammcneilly.pocketleague.fragment.PhaseGroupFragment
 import com.adammcneilly.pocketleague.fragment.SetSlotFragment
 import com.adammcneilly.pocketleague.fragment.StandingsPlacementFragment
+import com.adammcneilly.pocketleague.models.BracketType
+import com.adammcneilly.pocketleague.models.EventOverview
+import com.adammcneilly.pocketleague.models.PhaseOverview
+import com.adammcneilly.pocketleague.models.Player
+import com.adammcneilly.pocketleague.models.Standings
+import com.adammcneilly.pocketleague.models.StandingsPlacement
+import com.adammcneilly.pocketleague.models.Team
 import com.adammcneilly.pocketleague.phase.domain.models.PhaseDetail
-import com.adammcneilly.pocketleague.phase.domain.models.PhaseOverview
 import com.adammcneilly.pocketleague.set.domain.models.EventSet
 import com.adammcneilly.pocketleague.set.domain.models.SetSlot
-import com.adammcneilly.pocketleague.standings.domain.models.Standings
-import com.adammcneilly.pocketleague.standings.domain.models.StandingsPlacement
 import com.apollographql.apollo.api.BigDecimal
 import java.time.Instant
 import java.time.ZoneOffset
@@ -48,7 +48,7 @@ class SmashGGModelMapper @Inject constructor() {
                     phase.phaseOrder
                 }
                 .orEmpty(),
-            startDate = startDate.toZonedDateTime(),
+            startDateEpochSeconds = startDate.toZonedDateTime(),
             standings = Standings(
                 placements = eventOverview.standings
                     ?.nodes

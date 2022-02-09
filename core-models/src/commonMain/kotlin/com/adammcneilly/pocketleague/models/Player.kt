@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.domain.models
+package com.adammcneilly.pocketleague.models
 
 /**
  * The domain information regarding any RLCS player.

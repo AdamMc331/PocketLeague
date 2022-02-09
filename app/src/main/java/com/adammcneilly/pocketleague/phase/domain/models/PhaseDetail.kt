@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.phase.domain.models
 
-import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
+import com.adammcneilly.pocketleague.models.BracketType
 import com.adammcneilly.pocketleague.set.domain.models.EventSet
 
 /**

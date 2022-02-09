@@ -5,10 +5,10 @@ import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.FakeDateTimeHelper
-import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FakeFetchUpcomingEventsUseCase
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState
+import com.adammcneilly.pocketleague.models.EventSummary
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runTest
@@ -33,7 +33,7 @@ class EventSummaryListStateMutatorTest {
             eventName = "Event Name",
             tournamentName = "Tournament Name",
             tournamentImageUrl = "Tournament Image URL",
-            startDate = ZonedDateTime.now(),
+            startDateEpochSeconds = ZonedDateTime.now(),
             numEntrants = null,
             isOnline = true,
         )
@@ -43,7 +43,7 @@ class EventSummaryListStateMutatorTest {
 
         // Mocks
         fetchUpcomingEventsUseCase.mockResult = fakeEventListResult
-        dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDate, fakeEventDateString)
+        dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDateEpochSeconds, fakeEventDateString)
 
         // Expectations
         val initialState = EventSummaryListViewState()

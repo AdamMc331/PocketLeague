@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.phase.ui
 
-import com.adammcneilly.pocketleague.phase.domain.models.PhaseOverview
+import com.adammcneilly.pocketleague.models.PhaseOverview
 
 /**
  * A user friendly representation of a [PhaseOverview] to be displayed on the UI.

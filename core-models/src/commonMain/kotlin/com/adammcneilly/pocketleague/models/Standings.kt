@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.standings.domain.models
+package com.adammcneilly.pocketleague.models
 
 /**
  * Represents the standings [placements] for some event.

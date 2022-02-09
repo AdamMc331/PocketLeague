@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.teamlist.data
 
 import com.adammcneilly.pocketleague.core.data.Result
-import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.models.Team
 
 class FakeTeamListService : TeamListService {
     private lateinit var mockAllTeamsResult: Result<List<Team>>

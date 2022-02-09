@@ -4,10 +4,10 @@ import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
-import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState
+import com.adammcneilly.pocketleague.models.EventSummary
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream
@@ -135,7 +135,7 @@ private fun EventSummary.toSummaryDisplayModel(
 ): EventSummaryDisplayModel {
     return EventSummaryDisplayModel(
         eventId = this.id,
-        startDate = dateTimeHelper.getEventDayString(this.startDate),
+        startDate = dateTimeHelper.getEventDayString(this.startDateEpochSeconds),
         tournamentName = this.tournamentName,
         eventName = this.eventName,
         subtitle = this.buildSubtitle(),

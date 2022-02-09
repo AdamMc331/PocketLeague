@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.player.ui
 
-import com.adammcneilly.pocketleague.core.domain.models.Player
 import com.adammcneilly.pocketleague.core.ui.FakeFlagResProvider
 import com.adammcneilly.pocketleague.core.ui.UIImage
+import com.adammcneilly.pocketleague.models.Player
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 

@@ -1,9 +1,9 @@
-name: Shared Build
+name: Build
 
 on: push
 
 jobs:
-  shared-build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -19,4 +19,4 @@ jobs:
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
       - name: Build Project
-        run: ./gradlew shared-models:assemble
+        run: ./gradlew assemble

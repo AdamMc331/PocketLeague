@@ -19,7 +19,7 @@ jobs:
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
       - name: Build Project
-        run: ./gradlew assemble
+        run: ./gradlew app:assemble
 
       - name: Lint Checks
-        run: ./gradlew detekt ktlintCheck lint
+        run: ./gradlew app:detekt app:ktlintCheck app:lint

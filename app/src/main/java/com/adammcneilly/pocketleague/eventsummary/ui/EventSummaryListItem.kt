@@ -4,23 +4,18 @@ import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.Material3Card
-import com.adammcneilly.pocketleague.core.ui.PocketLeagueImage
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 
@@ -42,14 +37,16 @@ fun EventSummaryListItem(
             ),
     ) {
         Column {
-            PocketLeagueImage(
-                image = displayModel.image,
-                contentDescription = stringResource(R.string.event_image_content_description),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1F),
-                contentScale = ContentScale.Crop,
-            )
+            // Removing this for the time being, I don't think it was as good as I expected.
+            // But I think I could benefit from this code in the future.
+//            PocketLeagueImage(
+//                image = displayModel.image,
+//                contentDescription = stringResource(R.string.event_image_content_description),
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .aspectRatio(1F),
+//                contentScale = ContentScale.Crop,
+//            )
 
             SummaryInfo(displayModel)
         }

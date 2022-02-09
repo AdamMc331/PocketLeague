@@ -1,32 +1,23 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
     id("com.android.library")
 }
 
-version = "1.0"
-
 kotlin {
     android()
-    iosX64()
-    iosArm64()
-    // iosSimulatorArm64() sure all ios dependencies support this target
 
-    cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        ios.deploymentTarget = "14.1"
-        framework {
+    listOf(
+        iosX64(),
+        iosArm64(),
+        // iosSimulatorArm64() sure all ios dependencies support this target
+    ).forEach {
+        it.binaries.framework {
             baseName = "core-models"
         }
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
-            }
-        }
+        val commonMain by getting
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))

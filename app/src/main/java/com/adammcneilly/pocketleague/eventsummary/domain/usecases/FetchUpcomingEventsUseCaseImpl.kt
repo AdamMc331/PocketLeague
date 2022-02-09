@@ -12,7 +12,7 @@ class FetchUpcomingEventsUseCaseImpl @Inject constructor(
     private val service: EventService,
 ) : FetchUpcomingEventsUseCase {
 
-    override suspend fun invoke(): Result<List<com.adammcneilly.pocketleague.core.models.EventSummary>> {
+    override suspend fun invoke(): Result<List<EventSummary>> {
         val leagueSlug = "rlcs-2021-22-1"
 
         return service.fetchUpcomingEvents(

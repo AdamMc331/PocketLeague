@@ -83,7 +83,7 @@ class EventSummaryListStateMutatorTest {
     @Test
     fun fetchEventsFailure() = runTest {
         // Inputs
-        val fakeEventListResult: Result<List<com.adammcneilly.pocketleague.core.models.EventSummary>> = Result.Error(
+        val fakeEventListResult: Result<List<EventSummary>> = Result.Error(
             Throwable("Whoops"),
         )
 

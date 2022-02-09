@@ -11,5 +11,5 @@ interface FetchUpcomingEventsUseCase {
     /**
      * @see [FetchUpcomingEventsUseCase]
      */
-    suspend operator fun invoke(): Result<List<com.adammcneilly.pocketleague.core.models.EventSummary>>
+    suspend operator fun invoke(): Result<List<EventSummary>>
 }

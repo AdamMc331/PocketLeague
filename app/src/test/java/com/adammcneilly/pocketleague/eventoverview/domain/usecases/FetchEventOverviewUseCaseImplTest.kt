@@ -7,7 +7,6 @@ import com.adammcneilly.pocketleague.models.Standings
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import java.time.ZonedDateTime
 
 class FetchEventOverviewUseCaseImplTest {
     private val fakeEventService = FakeEventService()
@@ -21,7 +20,7 @@ class FetchEventOverviewUseCaseImplTest {
 
         val testOverview = EventOverview(
             name = "Event Name",
-            startDateEpochSeconds = ZonedDateTime.now(),
+            startDateEpochSeconds = 123L,
             phases = listOf(),
             standings = Standings(
                 placements = listOf(),

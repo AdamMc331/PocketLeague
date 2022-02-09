@@ -13,7 +13,8 @@ import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import java.time.ZonedDateTime
+import java.time.Instant
+import java.time.ZoneOffset
 
 class EventSummaryListStateMutatorTest {
     private val fetchUpcomingEventsUseCase = FakeFetchUpcomingEventsUseCase()
@@ -33,7 +34,7 @@ class EventSummaryListStateMutatorTest {
             eventName = "Event Name",
             tournamentName = "Tournament Name",
             tournamentImageUrl = "Tournament Image URL",
-            startDateEpochSeconds = ZonedDateTime.now(),
+            startDateEpochSeconds = 123L,
             numEntrants = null,
             isOnline = true,
         )
@@ -43,7 +44,8 @@ class EventSummaryListStateMutatorTest {
 
         // Mocks
         fetchUpcomingEventsUseCase.mockResult = fakeEventListResult
-        dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDateEpochSeconds, fakeEventDateString)
+        val zonedDateTime = Instant.ofEpochSecond(fakeEvent.startDateEpochSeconds).atZone(ZoneOffset.UTC)
+        dateTimeHelper.mockEventDayStringForDate(zonedDateTime, fakeEventDateString)
 
         // Expectations
         val initialState = EventSummaryListViewState()

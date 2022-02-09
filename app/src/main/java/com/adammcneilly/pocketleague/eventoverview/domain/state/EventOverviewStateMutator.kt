@@ -27,6 +27,8 @@ import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import java.time.Instant
+import java.time.ZoneOffset
 
 /**
  * A state management controller for the event overview screen that consumes [EventOverviewAction]s
@@ -138,6 +140,8 @@ private suspend fun FlowCollector<Mutation<EventOverviewViewState>>.emitSuccess(
 private fun EventOverview.toDisplayModel(
     dateTimeHelper: DateTimeHelper,
 ): EventOverviewDisplayModel {
+    val startZonedDate = Instant.ofEpochSecond(this.startDateEpochSeconds).atZone(ZoneOffset.UTC)
+
     return EventOverviewDisplayModel(
         eventName = this.name,
         phases = this.phases.map { phase ->
@@ -147,7 +151,7 @@ private fun EventOverview.toDisplayModel(
                 },
             )
         },
-        startDate = dateTimeHelper.getEventDayString(this.startDateEpochSeconds),
+        startDate = dateTimeHelper.getEventDayString(startZonedDate),
         standings = this.standings.toDisplayModel(),
     )
 }

@@ -20,8 +20,6 @@ import com.adammcneilly.pocketleague.phase.domain.models.PhaseDetail
 import com.adammcneilly.pocketleague.set.domain.models.EventSet
 import com.adammcneilly.pocketleague.set.domain.models.SetSlot
 import com.apollographql.apollo.api.BigDecimal
-import java.time.Instant
-import java.time.ZoneOffset
 import javax.inject.Inject
 
 /**
@@ -33,7 +31,6 @@ class SmashGGModelMapper @Inject constructor() {
      */
     fun eventOverviewFragmentToEventOverview(eventOverview: EventOverviewFragment?): EventOverview {
         val startSeconds = (eventOverview?.fragments?.eventSummaryFragment?.startAt as BigDecimal).toLong()
-        val startDate = Instant.ofEpochSecond(startSeconds).atOffset(ZoneOffset.UTC)
 
         return EventOverview(
             name = eventOverview.fragments.eventSummaryFragment.name.orEmpty(),
@@ -48,7 +45,7 @@ class SmashGGModelMapper @Inject constructor() {
                     phase.phaseOrder
                 }
                 .orEmpty(),
-            startDateEpochSeconds = startDate.toZonedDateTime(),
+            startDateEpochSeconds = startSeconds,
             standings = Standings(
                 placements = eventOverview.standings
                     ?.nodes

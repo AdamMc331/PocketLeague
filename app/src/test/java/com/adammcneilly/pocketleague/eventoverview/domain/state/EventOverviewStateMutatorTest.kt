@@ -22,7 +22,8 @@ import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import java.time.ZonedDateTime
+import java.time.Instant
+import java.time.ZoneOffset
 
 class EventOverviewStateMutatorTest {
     private val fetchEventOverviewUseCase = FakeFetchEventOverviewUseCase()
@@ -41,7 +42,7 @@ class EventOverviewStateMutatorTest {
         val fakeEventId = "1234"
         val fakeEvent = EventOverview(
             name = "Event Name",
-            startDateEpochSeconds = ZonedDateTime.now(),
+            startDateEpochSeconds = 123L,
             phases = listOf(
                 PhaseOverview(
                     id = "Phase ID",
@@ -79,7 +80,8 @@ class EventOverviewStateMutatorTest {
 
         // Mocks
         fetchEventOverviewUseCase.mockResultForEvent(fakeEventId, fakeEventOverviewResult)
-        dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDateEpochSeconds, fakeEventDateString)
+        val zonedDateTime = Instant.ofEpochSecond(fakeEvent.startDateEpochSeconds).atZone(ZoneOffset.UTC)
+        dateTimeHelper.mockEventDayStringForDate(zonedDateTime, fakeEventDateString)
 
         // Expectations
         val initialState = EventOverviewViewState()

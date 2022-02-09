@@ -1,7 +1,5 @@
 package com.adammcneilly.pocketleague.models
 
-import kotlinx.datetime.Instant
-
 /**
  * Represents an individual RLCS Event. Example params below.
  *

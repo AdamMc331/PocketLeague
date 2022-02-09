@@ -1,12 +1,11 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.usecases
 
 import com.adammcneilly.pocketleague.core.data.Result
+import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.event.data.FakeEventService
-import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import java.time.ZonedDateTime
 
 class FetchUpcomingEventsUseCaseImplTest {
     private val fakeEventService = FakeEventService()
@@ -24,7 +23,7 @@ class FetchUpcomingEventsUseCaseImplTest {
             eventName = "Event Name",
             tournamentName = "Tournament Name",
             tournamentImageUrl = "Tournament Image URL",
-            startDate = ZonedDateTime.now(),
+            startDateEpochSeconds = 123L,
             numEntrants = 1,
             isOnline = true,
         )

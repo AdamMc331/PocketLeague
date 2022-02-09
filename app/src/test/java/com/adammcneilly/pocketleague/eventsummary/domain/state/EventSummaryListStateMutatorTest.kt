@@ -2,10 +2,10 @@ package com.adammcneilly.pocketleague.eventsummary.domain.state
 
 import app.cash.turbine.test
 import com.adammcneilly.pocketleague.core.data.Result
+import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.FakeDateTimeHelper
-import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FakeFetchUpcomingEventsUseCase
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState
@@ -13,7 +13,8 @@ import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import java.time.ZonedDateTime
+import java.time.Instant
+import java.time.ZoneOffset
 
 class EventSummaryListStateMutatorTest {
     private val fetchUpcomingEventsUseCase = FakeFetchUpcomingEventsUseCase()
@@ -33,7 +34,7 @@ class EventSummaryListStateMutatorTest {
             eventName = "Event Name",
             tournamentName = "Tournament Name",
             tournamentImageUrl = "Tournament Image URL",
-            startDate = ZonedDateTime.now(),
+            startDateEpochSeconds = 123L,
             numEntrants = null,
             isOnline = true,
         )
@@ -43,7 +44,11 @@ class EventSummaryListStateMutatorTest {
 
         // Mocks
         fetchUpcomingEventsUseCase.mockResult = fakeEventListResult
-        dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDate, fakeEventDateString)
+        val startDate = Instant
+            .ofEpochSecond(fakeEvent.startDateEpochSeconds)
+            .atOffset(ZoneOffset.UTC)
+            .toZonedDateTime()
+        dateTimeHelper.mockEventDayStringForDate(startDate, fakeEventDateString)
 
         // Expectations
         val initialState = EventSummaryListViewState()
@@ -78,7 +83,7 @@ class EventSummaryListStateMutatorTest {
     @Test
     fun fetchEventsFailure() = runTest {
         // Inputs
-        val fakeEventListResult: Result<List<EventSummary>> = Result.Error(
+        val fakeEventListResult: Result<List<com.adammcneilly.pocketleague.core.models.EventSummary>> = Result.Error(
             Throwable("Whoops"),
         )
 

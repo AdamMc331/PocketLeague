@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.state
 
 import com.adammcneilly.pocketleague.core.data.Result
+import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
-import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState
@@ -17,6 +17,8 @@ import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import java.time.Instant
+import java.time.ZoneOffset
 
 /**
  * Creates a [stateFlowMutator] which will consume [EventSummaryListAction] entities and map them
@@ -133,9 +135,14 @@ private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
 private fun EventSummary.toSummaryDisplayModel(
     dateTimeHelper: DateTimeHelper,
 ): EventSummaryDisplayModel {
+    val startDate = Instant
+        .ofEpochSecond(this.startDateEpochSeconds)
+        .atOffset(ZoneOffset.UTC)
+        .toZonedDateTime()
+
     return EventSummaryDisplayModel(
         eventId = this.id,
-        startDate = dateTimeHelper.getEventDayString(this.startDate),
+        startDate = dateTimeHelper.getEventDayString(startDate),
         tournamentName = this.tournamentName,
         eventName = this.eventName,
         subtitle = this.buildSubtitle(),

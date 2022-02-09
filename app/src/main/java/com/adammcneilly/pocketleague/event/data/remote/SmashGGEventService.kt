@@ -3,13 +3,12 @@ package com.adammcneilly.pocketleague.event.data.remote
 import com.adammcneilly.pocketleague.EventOverviewQuery
 import com.adammcneilly.pocketleague.EventSummaryListQuery
 import com.adammcneilly.pocketleague.TournamentDetailQuery
-import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.data.remote.smashgg.SmashGGModelMapper
 import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.event.data.EventService
 import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
-import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import com.adammcneilly.pocketleague.fragment.EventSummaryFragment
 import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
@@ -21,8 +20,6 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.BigDecimal
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.await
-import java.time.Instant
-import java.time.ZoneOffset
 import javax.inject.Inject
 
 typealias ApolloBracketType = com.adammcneilly.pocketleague.type.BracketType
@@ -119,13 +116,12 @@ class SmashGGEventService @Inject constructor(
 
 private fun EventSummaryFragment.toEvent(): EventSummary {
     val startSeconds = (this.startAt as BigDecimal).toLong()
-    val startDate = Instant.ofEpochSecond(startSeconds).atOffset(ZoneOffset.UTC)
 
     return EventSummary(
         id = this.id.orEmpty(),
         eventName = this.name.orEmpty(),
         tournamentName = this.tournament?.name.orEmpty(),
-        startDate = startDate.toZonedDateTime(),
+        startDateEpochSeconds = startSeconds,
         numEntrants = this.numEntrants,
         isOnline = this.isOnline == true,
         tournamentImageUrl = this.tournament?.images?.firstOrNull()?.url.orEmpty(),

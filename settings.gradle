@@ -13,3 +13,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Pocket League"
 include ':app'
+include ':core-models'

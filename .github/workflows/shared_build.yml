@@ -1,9 +1,9 @@
-name: Android Build
+name: Shared Build
 
 on: push
 
 jobs:
-  build:
+  shared-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -19,7 +19,4 @@ jobs:
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
       - name: Build Project
-        run: ./gradlew assemble
-
-      - name: Lint Checks
-        run: ./gradlew detekt ktlintCheck lint
+        run: ./gradlew shared-models:assemble

@@ -1,0 +1,22 @@
+name: Lint Checks
+
+on: push
+
+jobs:
+  lint-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+
+      - name: Generate local.properties
+        env:
+          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+        run: echo $LOCAL_PROPERTIES > ./local.properties
+
+      - name: Lint Checks
+        run: ./gradlew detekt ktlintCheck lint

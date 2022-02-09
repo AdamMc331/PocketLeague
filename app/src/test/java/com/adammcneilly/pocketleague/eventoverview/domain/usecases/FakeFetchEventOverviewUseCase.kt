@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.eventoverview.domain.usecases
 
 import com.adammcneilly.pocketleague.core.data.Result
-import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
+import com.adammcneilly.pocketleague.core.models.EventOverview
 
 class FakeFetchEventOverviewUseCase : FetchEventOverviewUseCase {
 

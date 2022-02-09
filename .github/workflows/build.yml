@@ -1,4 +1,4 @@
-name: Android Build
+name: Build
 
 on: push
 
@@ -20,6 +20,3 @@ jobs:
 
       - name: Build Project
         run: ./gradlew assemble
-
-      - name: Lint Checks
-        run: ./gradlew detekt ktlintCheck lint

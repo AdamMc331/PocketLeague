@@ -1,6 +1,4 @@
-package com.adammcneilly.pocketleague.phase.domain.models
-
-import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * A [PhaseOverview] is a portion of an event. An example could be a Swiss stage and a Bracket stage. They'll

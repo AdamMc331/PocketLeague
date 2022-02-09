@@ -1,7 +1,4 @@
-package com.adammcneilly.pocketleague.phase.domain.models
-
-import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
-import com.adammcneilly.pocketleague.set.domain.models.EventSet
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * A [PhaseDetail] is a portion of an event. An example could be a Swiss stage and a Bracket stage. They'll

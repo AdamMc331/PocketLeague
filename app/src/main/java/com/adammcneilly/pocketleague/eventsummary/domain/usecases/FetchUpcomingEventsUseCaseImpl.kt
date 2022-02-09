@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.usecases
 
 import com.adammcneilly.pocketleague.core.data.Result
+import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.event.data.EventService
-import com.adammcneilly.pocketleague.eventsummary.domain.models.EventSummary
 import javax.inject.Inject
 
 /**

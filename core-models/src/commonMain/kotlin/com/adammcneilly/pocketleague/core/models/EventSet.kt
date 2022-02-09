@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.set.domain.models
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * A [EventSet] represents a series or collection of series between two teams in an event.

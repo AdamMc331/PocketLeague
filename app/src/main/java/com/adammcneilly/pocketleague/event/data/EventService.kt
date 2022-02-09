@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.event.data
 
 import com.adammcneilly.pocketleague.core.data.Result
+import com.adammcneilly.pocketleague.core.models.EventOverview
 import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
 
 /**

@@ -3,8 +3,8 @@ package com.adammcneilly.pocketleague.phase.data.remote
 import com.adammcneilly.pocketleague.PhaseDetailQuery
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.data.remote.smashgg.SmashGGModelMapper
+import com.adammcneilly.pocketleague.core.models.PhaseDetail
 import com.adammcneilly.pocketleague.phase.data.PhaseService
-import com.adammcneilly.pocketleague.phase.domain.models.PhaseDetail
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.await

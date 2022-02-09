@@ -1,28 +1,27 @@
 package com.adammcneilly.pocketleague.eventoverview.domain.state
 
 import app.cash.turbine.test
-import com.adammcneilly.pocketleague.bracket.domain.models.BracketType
 import com.adammcneilly.pocketleague.core.data.Result
-import com.adammcneilly.pocketleague.core.domain.models.Player
-import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.core.models.BracketType
+import com.adammcneilly.pocketleague.core.models.EventOverview
+import com.adammcneilly.pocketleague.core.models.PhaseOverview
+import com.adammcneilly.pocketleague.core.models.Player
+import com.adammcneilly.pocketleague.core.models.Standings
+import com.adammcneilly.pocketleague.core.models.StandingsPlacement
+import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.FakeDateTimeHelper
-import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FakeFetchEventOverviewUseCase
 import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewDisplayModel
 import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewViewState
-import com.adammcneilly.pocketleague.phase.domain.models.PhaseOverview
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
-import com.adammcneilly.pocketleague.standings.domain.models.Standings
-import com.adammcneilly.pocketleague.standings.domain.models.StandingsPlacement
 import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
 import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import java.time.ZonedDateTime
 
 class EventOverviewStateMutatorTest {
     private val fetchEventOverviewUseCase = FakeFetchEventOverviewUseCase()
@@ -41,7 +40,7 @@ class EventOverviewStateMutatorTest {
         val fakeEventId = "1234"
         val fakeEvent = EventOverview(
             name = "Event Name",
-            startDate = ZonedDateTime.now(),
+            startDateEpochSeconds = 123L,
             phases = listOf(
                 PhaseOverview(
                     id = "Phase ID",
@@ -79,7 +78,7 @@ class EventOverviewStateMutatorTest {
 
         // Mocks
         fetchEventOverviewUseCase.mockResultForEvent(fakeEventId, fakeEventOverviewResult)
-        dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDate, fakeEventDateString)
+        dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDateEpochSeconds, fakeEventDateString)
 
         // Expectations
         val initialState = EventOverviewViewState()

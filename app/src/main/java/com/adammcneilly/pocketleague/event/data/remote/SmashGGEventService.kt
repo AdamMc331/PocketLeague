@@ -5,10 +5,10 @@ import com.adammcneilly.pocketleague.EventSummaryListQuery
 import com.adammcneilly.pocketleague.TournamentDetailQuery
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.data.remote.smashgg.SmashGGModelMapper
-import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.core.models.EventOverview
 import com.adammcneilly.pocketleague.core.models.EventSummary
+import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.event.data.EventService
-import com.adammcneilly.pocketleague.eventoverview.domain.models.EventOverview
 import com.adammcneilly.pocketleague.fragment.EventSummaryFragment
 import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound

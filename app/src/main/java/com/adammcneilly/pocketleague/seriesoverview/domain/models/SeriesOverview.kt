@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.seriesoverview.domain.models
 
-import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.core.models.Team
 
 /**
  * An overview of a series between two teams and how many wins each team had.

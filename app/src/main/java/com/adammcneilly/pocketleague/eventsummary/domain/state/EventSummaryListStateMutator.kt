@@ -17,8 +17,6 @@ import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import java.time.Instant
-import java.time.ZoneOffset
 
 /**
  * Creates a [stateFlowMutator] which will consume [EventSummaryListAction] entities and map them
@@ -135,14 +133,9 @@ private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
 private fun EventSummary.toSummaryDisplayModel(
     dateTimeHelper: DateTimeHelper,
 ): EventSummaryDisplayModel {
-    val startDate = Instant
-        .ofEpochSecond(this.startDateEpochSeconds)
-        .atOffset(ZoneOffset.UTC)
-        .toZonedDateTime()
-
     return EventSummaryDisplayModel(
         eventId = this.id,
-        startDate = dateTimeHelper.getEventDayString(startDate),
+        startDate = dateTimeHelper.getEventDayString(this.startDateEpochSeconds),
         tournamentName = this.tournamentName,
         eventName = this.eventName,
         subtitle = this.buildSubtitle(),

@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.teamdetail.ui
 
-import com.adammcneilly.pocketleague.core.domain.models.Team
+import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.core.ui.FlagResProvider
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.player.ui.PlayerDisplayModel

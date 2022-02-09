@@ -1,25 +1,24 @@
 package com.adammcneilly.pocketleague.core.utils
 
 import java.time.LocalDateTime
-import java.time.ZonedDateTime
 
 class FakeDateTimeHelper : DateTimeHelper {
     private val seriesDayTimeStringResults: MutableMap<LocalDateTime, String> = mutableMapOf()
-    private val eventDayStringResults: MutableMap<ZonedDateTime, String> = mutableMapOf()
+    private val eventDayStringResults: MutableMap<Long, String> = mutableMapOf()
 
     fun mockSeriesDayTimeStringForDate(date: LocalDateTime, result: String) {
         seriesDayTimeStringResults[date] = result
     }
 
-    fun mockEventDayStringForDate(date: ZonedDateTime, result: String) {
-        eventDayStringResults[date] = result
+    fun mockEventDayStringForDate(epochSeconds: Long, result: String) {
+        eventDayStringResults[epochSeconds] = result
     }
 
     override fun getSeriesDayTimeString(date: LocalDateTime): String {
         return seriesDayTimeStringResults[date].toString()
     }
 
-    override fun getEventDayString(date: ZonedDateTime): String {
-        return eventDayStringResults[date].toString()
+    override fun getEventDayString(epochSeconds: Long): String {
+        return eventDayStringResults[epochSeconds].toString()
     }
 }

@@ -1,6 +1,4 @@
-package com.adammcneilly.pocketleague.set.domain.models
-
-import com.adammcneilly.pocketleague.core.domain.models.Team
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * An entry within a [EventSet] that contains the [team] and their respective [slotIndex].

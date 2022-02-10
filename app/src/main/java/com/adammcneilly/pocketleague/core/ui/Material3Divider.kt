@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.core.ui
 
-import androidx.compose.material.Divider
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,8 +16,6 @@ fun Material3Divider(
 ) {
     Divider(
         modifier = modifier,
-        color = color.copy(alpha = DIVIDER_ALPHA),
+        color = color,
     )
 }
-
-private const val DIVIDER_ALPHA = 0.12F

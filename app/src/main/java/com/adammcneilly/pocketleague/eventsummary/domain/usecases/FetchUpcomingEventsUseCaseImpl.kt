@@ -1,21 +1,21 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.usecases
 
-import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.event.data.EventService
+import com.adammcneilly.pocketleague.core.models.PLResult
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryService
 import javax.inject.Inject
 
 /**
  * A concrete implementation of [FetchUpcomingEventsUseCase] that fetches events via the supplied [service].
  */
 class FetchUpcomingEventsUseCaseImpl @Inject constructor(
-    private val service: EventService,
+    private val service: EventSummaryService,
 ) : FetchUpcomingEventsUseCase {
 
-    override suspend fun invoke(): Result<List<EventSummary>> {
+    override suspend fun invoke(): PLResult<List<EventSummary>> {
         val leagueSlug = "rlcs-2021-22-1"
 
-        return service.fetchUpcomingEvents(
+        return service.fetchUpcomingEventSummaries(
             leagueSlug = leagueSlug,
         )
     }

@@ -4,7 +4,7 @@ plugins {
     id "kotlin-kapt"
     id "dagger.hilt.android.plugin"
     id "com.apollographql.apollo" version "2.5.11"
-    id "com.google.devtools.ksp" version "1.5.31-1.0.0"
+    id "com.google.devtools.ksp" version "1.6.10-1.0.2"
 }
 
 apply from: "../buildscripts/jacoco.gradle"

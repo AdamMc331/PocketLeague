@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.ExcludeFromJacocoGeneratedReport
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.Material3Divider
 import com.adammcneilly.pocketleague.core.ui.Material3VerticalDivider
@@ -116,6 +117,7 @@ private fun TeamResult(
     uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
 @Composable
+@ExcludeFromJacocoGeneratedReport
 private fun BracketSeriesOverviewItemPreview() {
     val overview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(

@@ -1,17 +1,17 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.usecases
 
-import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.event.data.FakeEventService
+import com.adammcneilly.pocketleague.core.models.PLResult
+import com.adammcneilly.pocketleague.event.data.FakeEventSummaryService
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 class FetchUpcomingEventsUseCaseImplTest {
-    private val fakeEventService = FakeEventService()
+    private val fakeEventSummaryService = FakeEventSummaryService()
 
     private val useCase = FetchUpcomingEventsUseCaseImpl(
-        service = fakeEventService,
+        service = fakeEventSummaryService,
     )
 
     @Test
@@ -28,9 +28,9 @@ class FetchUpcomingEventsUseCaseImplTest {
             isOnline = true,
         )
 
-        val mockResult = Result.Success(listOf(testEventSummary))
+        val mockResult = PLResult.Success(listOf(testEventSummary))
 
-        fakeEventService.mockUpcomingEventsForLeague(
+        fakeEventSummaryService.mockUpcomingEventsForLeague(
             leagueSlug = leagueSlug,
             upcomingEvents = mockResult,
         )

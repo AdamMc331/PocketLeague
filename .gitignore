@@ -10,3 +10,5 @@
 local.properties
 /app/src/main/graphql/com/adammcneilly/pocketleague/.graphqlconfig
 /core-models/build/
+/eventsummary/src/commonMain/kotlin/com/adammcneilly/pocketleague/eventsummary/Keys.kt
+/eventsummary/build/

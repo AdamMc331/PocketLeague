@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.ExcludeFromJacocoGeneratedReport
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.core.ui.Material3Card
@@ -130,6 +131,7 @@ private fun HeaderLabel(
 )
 @Composable
 @Suppress("LongMethod")
+@ExcludeFromJacocoGeneratedReport
 private fun EventOverviewContentPreview() {
     val placements = (1..10).map {
         StandingsPlacementDisplayModel(
@@ -188,6 +190,7 @@ private fun EventOverviewContentPreview() {
 )
 @Composable
 @Suppress("LongMethod")
+@ExcludeFromJacocoGeneratedReport
 private fun EventOverviewUpcomingContentPreview() {
     val standings = StandingsDisplayModel(
         placements = emptyList(),

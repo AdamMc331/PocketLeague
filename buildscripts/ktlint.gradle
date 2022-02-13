@@ -11,4 +11,9 @@ ktlint {
     }
 
     outputColorName = "RED"
+
+    filter {
+        exclude("**/generated/**")
+        exclude("**/build/**")
+    }
 }

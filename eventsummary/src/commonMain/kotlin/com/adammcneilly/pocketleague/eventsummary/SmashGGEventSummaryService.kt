@@ -2,10 +2,10 @@ package com.adammcneilly.pocketleague.eventsummary
 
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.models.PLResult
-import com.adammcneilly.pocketleague.graphql.EventSummaryListQuery
-import com.adammcneilly.pocketleague.graphql.fragment.EventSummaryFragment
-import com.adammcneilly.pocketleague.graphql.type.LeagueEventsFilter
-import com.adammcneilly.pocketleague.graphql.type.LeagueEventsQuery
+import com.adammcneilly.pocketleague.eventsummary.graphql.EventSummaryListQuery
+import com.adammcneilly.pocketleague.eventsummary.graphql.fragment.EventSummaryFragment
+import com.adammcneilly.pocketleague.eventsummary.graphql.type.LeagueEventsFilter
+import com.adammcneilly.pocketleague.eventsummary.graphql.type.LeagueEventsQuery
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 

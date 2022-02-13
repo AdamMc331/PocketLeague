@@ -72,7 +72,7 @@ android {
 }
 
 apollo {
-    packageName.set("com.adammcneilly.pocketleague.graphql")
+    packageName.set("com.adammcneilly.pocketleague.eventsummary.graphql")
 }
 
 buildkonfig {

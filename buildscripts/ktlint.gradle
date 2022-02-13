@@ -13,7 +13,6 @@ ktlint {
     outputColorName = "RED"
 
     filter {
-        exclude("**/generated/**")
-        exclude("**/build/**")
+        exclude { element -> element.file.path.contains("generated/") }
     }
 }

@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.eventsummary
 
 import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.core.models.PLResult
 import com.adammcneilly.pocketleague.eventsummary.graphql.EventSummaryListQuery
 import com.adammcneilly.pocketleague.eventsummary.graphql.fragment.EventSummaryFragment
 import com.adammcneilly.pocketleague.eventsummary.graphql.type.LeagueEventsFilter

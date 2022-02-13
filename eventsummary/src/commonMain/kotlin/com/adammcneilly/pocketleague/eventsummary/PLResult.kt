@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.models
+package com.adammcneilly.pocketleague.eventsummary
 
 /**
  * This is a sealed class that represents two options for a data response, where the response is

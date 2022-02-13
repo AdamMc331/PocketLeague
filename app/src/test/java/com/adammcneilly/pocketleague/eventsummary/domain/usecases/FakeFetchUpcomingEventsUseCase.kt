@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.usecases
 
 import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.core.models.PLResult
+import com.adammcneilly.pocketleague.eventsummary.PLResult
 
 class FakeFetchUpcomingEventsUseCase : FetchUpcomingEventsUseCase {
     lateinit var mockResult: PLResult<List<EventSummary>>

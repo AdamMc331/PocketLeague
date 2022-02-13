@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.event.data
 
 import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.core.models.PLResult
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryService
+import com.adammcneilly.pocketleague.eventsummary.PLResult
 
 class FakeEventSummaryService : EventSummaryService {
     private val upcomingEventsForLeagueResponses: MutableMap<String, PLResult<List<EventSummary>>> = mutableMapOf()

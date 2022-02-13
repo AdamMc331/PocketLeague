@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.eventsummary
 
 import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.core.models.PLResult
 
 /**
  * Data layer for requesting information about event summary information.

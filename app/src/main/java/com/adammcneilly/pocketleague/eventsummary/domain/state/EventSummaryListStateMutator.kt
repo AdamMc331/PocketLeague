@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.state
 
 import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.core.models.PLResult
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
+import com.adammcneilly.pocketleague.eventsummary.PLResult
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState

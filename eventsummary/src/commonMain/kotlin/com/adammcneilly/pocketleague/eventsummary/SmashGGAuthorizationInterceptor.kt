@@ -14,7 +14,7 @@ class SmashGGAuthorizationInterceptor : HttpInterceptor {
         request: HttpRequest,
         chain: HttpInterceptorChain
     ): HttpResponse {
-        val authToken = SMASH_GG_API_KEY
+        val authToken = BuildKonfig.SMASH_GG_API_KEY
 
         val newRequest = request
             .newBuilder()

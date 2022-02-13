@@ -11,15 +11,14 @@ import com.adammcneilly.pocketleague.core.models.Standings
 import com.adammcneilly.pocketleague.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.event.data.remote.ApolloBracketType
-import com.adammcneilly.pocketleague.fragment.EventEntrantFragment
-import com.adammcneilly.pocketleague.fragment.EventOverviewFragment
-import com.adammcneilly.pocketleague.fragment.EventPlayerFragment
-import com.adammcneilly.pocketleague.fragment.EventSetFragment
-import com.adammcneilly.pocketleague.fragment.PhaseDetailFragment
-import com.adammcneilly.pocketleague.fragment.PhaseGroupFragment
-import com.adammcneilly.pocketleague.fragment.SetSlotFragment
-import com.adammcneilly.pocketleague.fragment.StandingsPlacementFragment
-import com.apollographql.apollo.api.BigDecimal
+import com.adammcneilly.pocketleague.graphql.fragment.EventEntrantFragment
+import com.adammcneilly.pocketleague.graphql.fragment.EventOverviewFragment
+import com.adammcneilly.pocketleague.graphql.fragment.EventPlayerFragment
+import com.adammcneilly.pocketleague.graphql.fragment.EventSetFragment
+import com.adammcneilly.pocketleague.graphql.fragment.PhaseDetailFragment
+import com.adammcneilly.pocketleague.graphql.fragment.PhaseGroupFragment
+import com.adammcneilly.pocketleague.graphql.fragment.SetSlotFragment
+import com.adammcneilly.pocketleague.graphql.fragment.StandingsPlacementFragment
 import javax.inject.Inject
 
 /**
@@ -30,13 +29,13 @@ class SmashGGModelMapper @Inject constructor() {
      * Convert the supplied [eventOverview] to an [EventOverview] entity.
      */
     fun eventOverviewFragmentToEventOverview(eventOverview: EventOverviewFragment?): EventOverview {
-        val startSeconds = (eventOverview?.fragments?.eventSummaryFragment?.startAt as BigDecimal).toLong()
+        val startSeconds = (eventOverview?.eventSummaryFragment?.startAt as Int).toLong()
 
         return EventOverview(
-            name = eventOverview.fragments.eventSummaryFragment.name.orEmpty(),
+            name = eventOverview.eventSummaryFragment.name.orEmpty(),
             phases = eventOverview.phaseGroups
                 ?.mapNotNull {
-                    it?.fragments?.phaseGroupFragment.let(PhaseGroupFragment?::toPhase)
+                    it?.phaseGroupFragment.let(PhaseGroupFragment?::toPhase)
                 }
                 ?.sortedBy {
                     it.phaseOrder
@@ -51,7 +50,6 @@ class SmashGGModelMapper @Inject constructor() {
                     ?.nodes
                     ?.mapNotNull { node ->
                         node
-                            ?.fragments
                             ?.standingsPlacementFragment
                             .let(StandingsPlacementFragment?::toStandingsPlacement)
                     }
@@ -64,7 +62,7 @@ class SmashGGModelMapper @Inject constructor() {
      * Convert the supplied [phaseDetail] to a [PhaseDetail] entity.
      */
     fun phaseDetailFragmentToPhaseDetail(phaseDetail: PhaseDetailFragment?): PhaseDetail {
-        val phaseOverview = phaseDetail?.fragments?.phaseOverviewFragment
+        val phaseOverview = phaseDetail?.phaseOverviewFragment
 
         return PhaseDetail(
             id = phaseOverview?.id.orEmpty(),
@@ -75,7 +73,7 @@ class SmashGGModelMapper @Inject constructor() {
             phaseOrder = phaseOverview?.phaseOrder ?: 0,
             bracketType = phaseOverview?.bracketType?.toBracketType() ?: BracketType.UNKNOWN,
             sets = phaseDetail?.sets?.nodes?.mapNotNull { set ->
-                set?.fragments?.eventSetFragment.toEventSet()
+                set?.eventSetFragment.toEventSet()
             }.orEmpty(),
         )
     }
@@ -88,14 +86,14 @@ private fun EventSetFragment?.toEventSet(): EventSet {
         round = this?.round.toString(),
         winnerId = this?.winnerId.toString(),
         slots = this?.slots?.mapNotNull { setSlot ->
-            setSlot?.fragments?.setSlotFragment?.toSetSlot()
+            setSlot?.setSlotFragment?.toSetSlot()
         }.orEmpty(),
     )
 }
 
 private fun SetSlotFragment?.toSetSlot(): SetSlot {
     return SetSlot(
-        team = this?.entrant?.fragments?.eventEntrantFragment.toTeam(),
+        team = this?.entrant?.eventEntrantFragment.toTeam(),
         slotIndex = this?.slotIndex ?: 0,
     )
 }
@@ -114,7 +112,7 @@ private fun EventEntrantFragment?.toTeam(): Team {
         lightThemeLogoImageUrl = this?.team?.images?.firstOrNull()?.url,
         darkThemeLogoImageUrl = this?.team?.images?.firstOrNull()?.url,
         roster = this?.team?.members?.mapNotNull { member ->
-            member?.player?.fragments?.eventPlayerFragment.let(EventPlayerFragment?::toPlayer)
+            member?.player?.eventPlayerFragment.let(EventPlayerFragment?::toPlayer)
         }.orEmpty(),
     )
 }
@@ -122,12 +120,12 @@ private fun EventEntrantFragment?.toTeam(): Team {
 private fun StandingsPlacementFragment?.toStandingsPlacement(): StandingsPlacement {
     return StandingsPlacement(
         placement = this?.placement ?: 0,
-        team = this?.entrant?.fragments?.eventEntrantFragment.let(EventEntrantFragment?::toTeam),
+        team = this?.entrant?.eventEntrantFragment.let(EventEntrantFragment?::toTeam),
     )
 }
 
 private fun PhaseGroupFragment?.toPhase(): PhaseOverview {
-    val overview = this?.phase?.fragments?.phaseOverviewFragment
+    val overview = this?.phase?.phaseOverviewFragment
 
     return PhaseOverview(
         id = overview?.id.orEmpty(),

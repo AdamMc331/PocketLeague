@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DD3C9B7527B8403F00AAEA7A /* PocketLeagueiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9B7427B8403F00AAEA7A /* PocketLeagueiOSApp.swift */; };
+		DD3C9B7727B8403F00AAEA7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9B7627B8403F00AAEA7A /* ContentView.swift */; };
+		DD3C9B7927B8404200AAEA7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD3C9B7827B8404200AAEA7A /* Assets.xcassets */; };
+		DD3C9B7C27B8404200AAEA7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD3C9B7B27B8404200AAEA7A /* Preview Assets.xcassets */; };
+		DD3C9B8627B8404200AAEA7A /* PocketLeagueiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9B8527B8404200AAEA7A /* PocketLeagueiOSTests.swift */; };
+		DD3C9B9027B8404200AAEA7A /* PocketLeagueiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9B8F27B8404200AAEA7A /* PocketLeagueiOSUITests.swift */; };
+		DD3C9B9227B8404200AAEA7A /* PocketLeagueiOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9B9127B8404200AAEA7A /* PocketLeagueiOSUITestsLaunchTests.swift */; };
+		DD3C9BA027B84D1800AAEA7A /* EventSummaryListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9B9F27B84D1800AAEA7A /* EventSummaryListItem.swift */; };
+		DD3C9BA227B84D3C00AAEA7A /* EventSummaryDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9BA127B84D3C00AAEA7A /* EventSummaryDisplayModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD3C9B8227B8404200AAEA7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD3C9B6927B8403F00AAEA7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD3C9B7027B8403F00AAEA7A;
+			remoteInfo = PocketLeagueiOS;
+		};
+		DD3C9B8C27B8404200AAEA7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD3C9B6927B8403F00AAEA7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD3C9B7027B8403F00AAEA7A;
+			remoteInfo = PocketLeagueiOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DD3C9B7127B8403F00AAEA7A /* PocketLeagueiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketLeagueiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD3C9B7427B8403F00AAEA7A /* PocketLeagueiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketLeagueiOSApp.swift; sourceTree = "<group>"; };
+		DD3C9B7627B8403F00AAEA7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DD3C9B7827B8404200AAEA7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DD3C9B7B27B8404200AAEA7A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DD3C9B8127B8404200AAEA7A /* PocketLeagueiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketLeagueiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD3C9B8527B8404200AAEA7A /* PocketLeagueiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketLeagueiOSTests.swift; sourceTree = "<group>"; };
+		DD3C9B8B27B8404200AAEA7A /* PocketLeagueiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketLeagueiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD3C9B8F27B8404200AAEA7A /* PocketLeagueiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketLeagueiOSUITests.swift; sourceTree = "<group>"; };
+		DD3C9B9127B8404200AAEA7A /* PocketLeagueiOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketLeagueiOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DD3C9B9F27B84D1800AAEA7A /* EventSummaryListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSummaryListItem.swift; sourceTree = "<group>"; };
+		DD3C9BA127B84D3C00AAEA7A /* EventSummaryDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSummaryDisplayModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD3C9B6E27B8403F00AAEA7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD3C9B7E27B8404200AAEA7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD3C9B8827B8404200AAEA7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DD3C9B6827B8403F00AAEA7A = {
+			isa = PBXGroup;
+			children = (
+				DD3C9B7327B8403F00AAEA7A /* PocketLeagueiOS */,
+				DD3C9B8427B8404200AAEA7A /* PocketLeagueiOSTests */,
+				DD3C9B8E27B8404200AAEA7A /* PocketLeagueiOSUITests */,
+				DD3C9B7227B8403F00AAEA7A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DD3C9B7227B8403F00AAEA7A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD3C9B7127B8403F00AAEA7A /* PocketLeagueiOS.app */,
+				DD3C9B8127B8404200AAEA7A /* PocketLeagueiOSTests.xctest */,
+				DD3C9B8B27B8404200AAEA7A /* PocketLeagueiOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD3C9B7327B8403F00AAEA7A /* PocketLeagueiOS */ = {
+			isa = PBXGroup;
+			children = (
+				DD3C9B7427B8403F00AAEA7A /* PocketLeagueiOSApp.swift */,
+				DD3C9B7627B8403F00AAEA7A /* ContentView.swift */,
+				DD3C9B7827B8404200AAEA7A /* Assets.xcassets */,
+				DD3C9B7A27B8404200AAEA7A /* Preview Content */,
+				DD3C9B9F27B84D1800AAEA7A /* EventSummaryListItem.swift */,
+				DD3C9BA127B84D3C00AAEA7A /* EventSummaryDisplayModel.swift */,
+			);
+			path = PocketLeagueiOS;
+			sourceTree = "<group>";
+		};
+		DD3C9B7A27B8404200AAEA7A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DD3C9B7B27B8404200AAEA7A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DD3C9B8427B8404200AAEA7A /* PocketLeagueiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD3C9B8527B8404200AAEA7A /* PocketLeagueiOSTests.swift */,
+			);
+			path = PocketLeagueiOSTests;
+			sourceTree = "<group>";
+		};
+		DD3C9B8E27B8404200AAEA7A /* PocketLeagueiOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DD3C9B8F27B8404200AAEA7A /* PocketLeagueiOSUITests.swift */,
+				DD3C9B9127B8404200AAEA7A /* PocketLeagueiOSUITestsLaunchTests.swift */,
+			);
+			path = PocketLeagueiOSUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD3C9B7027B8403F00AAEA7A /* PocketLeagueiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD3C9B9527B8404200AAEA7A /* Build configuration list for PBXNativeTarget "PocketLeagueiOS" */;
+			buildPhases = (
+				DD3C9B9E27B8405800AAEA7A /* Run Script */,
+				DD3C9B6D27B8403F00AAEA7A /* Sources */,
+				DD3C9B6E27B8403F00AAEA7A /* Frameworks */,
+				DD3C9B6F27B8403F00AAEA7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PocketLeagueiOS;
+			productName = PocketLeagueiOS;
+			productReference = DD3C9B7127B8403F00AAEA7A /* PocketLeagueiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DD3C9B8027B8404200AAEA7A /* PocketLeagueiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD3C9B9827B8404200AAEA7A /* Build configuration list for PBXNativeTarget "PocketLeagueiOSTests" */;
+			buildPhases = (
+				DD3C9B7D27B8404200AAEA7A /* Sources */,
+				DD3C9B7E27B8404200AAEA7A /* Frameworks */,
+				DD3C9B7F27B8404200AAEA7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD3C9B8327B8404200AAEA7A /* PBXTargetDependency */,
+			);
+			name = PocketLeagueiOSTests;
+			productName = PocketLeagueiOSTests;
+			productReference = DD3C9B8127B8404200AAEA7A /* PocketLeagueiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DD3C9B8A27B8404200AAEA7A /* PocketLeagueiOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD3C9B9B27B8404200AAEA7A /* Build configuration list for PBXNativeTarget "PocketLeagueiOSUITests" */;
+			buildPhases = (
+				DD3C9B8727B8404200AAEA7A /* Sources */,
+				DD3C9B8827B8404200AAEA7A /* Frameworks */,
+				DD3C9B8927B8404200AAEA7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD3C9B8D27B8404200AAEA7A /* PBXTargetDependency */,
+			);
+			name = PocketLeagueiOSUITests;
+			productName = PocketLeagueiOSUITests;
+			productReference = DD3C9B8B27B8404200AAEA7A /* PocketLeagueiOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DD3C9B6927B8403F00AAEA7A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					DD3C9B7027B8403F00AAEA7A = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					DD3C9B8027B8404200AAEA7A = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = DD3C9B7027B8403F00AAEA7A;
+					};
+					DD3C9B8A27B8404200AAEA7A = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = DD3C9B7027B8403F00AAEA7A;
+					};
+				};
+			};
+			buildConfigurationList = DD3C9B6C27B8403F00AAEA7A /* Build configuration list for PBXProject "PocketLeagueiOS" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DD3C9B6827B8403F00AAEA7A;
+			productRefGroup = DD3C9B7227B8403F00AAEA7A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD3C9B7027B8403F00AAEA7A /* PocketLeagueiOS */,
+				DD3C9B8027B8404200AAEA7A /* PocketLeagueiOSTests */,
+				DD3C9B8A27B8404200AAEA7A /* PocketLeagueiOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD3C9B6F27B8403F00AAEA7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD3C9B7C27B8404200AAEA7A /* Preview Assets.xcassets in Resources */,
+				DD3C9B7927B8404200AAEA7A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD3C9B7F27B8404200AAEA7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD3C9B8927B8404200AAEA7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DD3C9B9E27B8405800AAEA7A /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :eventsummary:embedAndSignAppleFrameworkForXcode\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD3C9B6D27B8403F00AAEA7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD3C9BA227B84D3C00AAEA7A /* EventSummaryDisplayModel.swift in Sources */,
+				DD3C9B7727B8403F00AAEA7A /* ContentView.swift in Sources */,
+				DD3C9BA027B84D1800AAEA7A /* EventSummaryListItem.swift in Sources */,
+				DD3C9B7527B8403F00AAEA7A /* PocketLeagueiOSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD3C9B7D27B8404200AAEA7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD3C9B8627B8404200AAEA7A /* PocketLeagueiOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD3C9B8727B8404200AAEA7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD3C9B9027B8404200AAEA7A /* PocketLeagueiOSUITests.swift in Sources */,
+				DD3C9B9227B8404200AAEA7A /* PocketLeagueiOSUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD3C9B8327B8404200AAEA7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD3C9B7027B8403F00AAEA7A /* PocketLeagueiOS */;
+			targetProxy = DD3C9B8227B8404200AAEA7A /* PBXContainerItemProxy */;
+		};
+		DD3C9B8D27B8404200AAEA7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD3C9B7027B8403F00AAEA7A /* PocketLeagueiOS */;
+			targetProxy = DD3C9B8C27B8404200AAEA7A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DD3C9B9327B8404200AAEA7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DD3C9B9427B8404200AAEA7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DD3C9B9627B8404200AAEA7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PocketLeagueiOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../eventsummary/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					eventsummary,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.PocketLeagueiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DD3C9B9727B8404200AAEA7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PocketLeagueiOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../eventsummary/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					eventsummary,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.PocketLeagueiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DD3C9B9927B8404200AAEA7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.PocketLeagueiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PocketLeagueiOS.app/PocketLeagueiOS";
+			};
+			name = Debug;
+		};
+		DD3C9B9A27B8404200AAEA7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.PocketLeagueiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PocketLeagueiOS.app/PocketLeagueiOS";
+			};
+			name = Release;
+		};
+		DD3C9B9C27B8404200AAEA7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.PocketLeagueiOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PocketLeagueiOS;
+			};
+			name = Debug;
+		};
+		DD3C9B9D27B8404200AAEA7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.PocketLeagueiOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PocketLeagueiOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DD3C9B6C27B8403F00AAEA7A /* Build configuration list for PBXProject "PocketLeagueiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD3C9B9327B8404200AAEA7A /* Debug */,
+				DD3C9B9427B8404200AAEA7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD3C9B9527B8404200AAEA7A /* Build configuration list for PBXNativeTarget "PocketLeagueiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD3C9B9627B8404200AAEA7A /* Debug */,
+				DD3C9B9727B8404200AAEA7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD3C9B9827B8404200AAEA7A /* Build configuration list for PBXNativeTarget "PocketLeagueiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD3C9B9927B8404200AAEA7A /* Debug */,
+				DD3C9B9A27B8404200AAEA7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD3C9B9B27B8404200AAEA7A /* Build configuration list for PBXNativeTarget "PocketLeagueiOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD3C9B9C27B8404200AAEA7A /* Debug */,
+				DD3C9B9D27B8404200AAEA7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DD3C9B6927B8403F00AAEA7A /* Project object */;
+}

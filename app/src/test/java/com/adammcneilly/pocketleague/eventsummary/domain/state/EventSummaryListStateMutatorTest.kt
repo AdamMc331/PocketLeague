@@ -1,11 +1,11 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.state
 
 import app.cash.turbine.test
-import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.FakeDateTimeHelper
+import com.adammcneilly.pocketleague.eventsummary.PLResult
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FakeFetchUpcomingEventsUseCase
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState
@@ -37,7 +37,7 @@ class EventSummaryListStateMutatorTest {
             isOnline = true,
         )
         val fakeEventList = listOf(fakeEvent)
-        val fakeEventListResult = Result.Success(fakeEventList)
+        val fakeEventListResult = PLResult.Success(fakeEventList)
         val fakeEventDateString = "Today"
 
         // Mocks
@@ -77,7 +77,7 @@ class EventSummaryListStateMutatorTest {
     @Test
     fun fetchEventsFailure() = runTest {
         // Inputs
-        val fakeEventListResult: Result<List<EventSummary>> = Result.Error(
+        val fakeEventListResult: PLResult<List<EventSummary>> = PLResult.Error(
             Throwable("Whoops"),
         )
 

@@ -2,7 +2,8 @@ package com.adammcneilly.pocketleague.core.di
 
 import com.adammcneilly.pocketleague.BuildConfig
 import com.adammcneilly.pocketleague.core.data.remote.smashgg.SmashGGAuthorizationInterceptor
-import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.network.okHttpClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,7 +57,7 @@ object RemoteModule {
         @SmashGGOkHttpClient
         client: OkHttpClient,
     ): ApolloClient {
-        return ApolloClient.builder()
+        return ApolloClient.Builder()
             .serverUrl("https://api.smash.gg/gql/alpha")
             .okHttpClient(client)
             .build()

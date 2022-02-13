@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.state
 
-import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
+import com.adammcneilly.pocketleague.eventsummary.PLResult
 import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState
@@ -54,13 +54,13 @@ private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations
             val result = fetchUpcomingEventsUseCase.invoke()
 
             when (result) {
-                is Result.Success -> {
+                is PLResult.Success -> {
                     emitSuccess(
                         events = result.data,
                         dateTimeHelper = dateTimeHelper,
                     )
                 }
-                is Result.Error -> {
+                is PLResult.Error -> {
                     emitError()
                 }
             }

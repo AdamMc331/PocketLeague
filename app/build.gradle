@@ -3,7 +3,7 @@ plugins {
     id "kotlin-android"
     id "kotlin-kapt"
     id "dagger.hilt.android.plugin"
-    id "com.apollographql.apollo" version "2.5.11"
+    id "com.apollographql.apollo3" version "3.1.0"
     id "com.google.devtools.ksp" version "1.6.10-1.0.2"
 }
 
@@ -101,6 +101,7 @@ android {
 dependencies {
 
     implementation project(":core-models")
+    implementation project(":eventsummary")
     implementation "androidx.core:core-ktx:$rootProject.ext.versions.ktxCore"
     implementation "androidx.appcompat:appcompat:$rootProject.ext.versions.appCompat"
     implementation "com.google.android.material:material:$rootProject.ext.versions.material"
@@ -121,8 +122,7 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$rootProject.ext.versions.moshi"
     implementation "com.google.accompanist:accompanist-insets-ui:$rootProject.ext.versions.accompanist"
     implementation "com.google.accompanist:accompanist-systemuicontroller:$rootProject.ext.versions.accompanist"
-    implementation "com.apollographql.apollo:apollo-runtime:$rootProject.ext.versions.apollo"
-    implementation "com.apollographql.apollo:apollo-coroutines-support:$rootProject.ext.versions.apollo"
+    implementation("com.apollographql.apollo3:apollo-runtime:3.1.0")
     implementation "io.github.raamcosta.compose-destinations:core:$rootProject.ext.versions.composeDestinations"
     implementation "androidx.navigation:navigation-compose:$rootProject.ext.versions.composeNavigation"
     implementation "com.google.accompanist:accompanist-pager:$rootProject.ext.versions.accompanist"
@@ -144,4 +144,6 @@ dependencies {
 
 apollo {
     generateKotlinModels = true
+
+    packageName.set("com.adammcneilly.pocketleague.graphql")
 }

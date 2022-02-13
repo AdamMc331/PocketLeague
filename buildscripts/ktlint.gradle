@@ -11,4 +11,8 @@ ktlint {
     }
 
     outputColorName = "RED"
+
+    filter {
+        exclude { element -> element.file.path.contains("build/") }
+    }
 }

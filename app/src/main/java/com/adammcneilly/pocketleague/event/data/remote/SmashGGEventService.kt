@@ -1,28 +1,26 @@
 package com.adammcneilly.pocketleague.event.data.remote
 
-import com.adammcneilly.pocketleague.EventOverviewQuery
-import com.adammcneilly.pocketleague.EventSummaryListQuery
-import com.adammcneilly.pocketleague.TournamentDetailQuery
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.data.remote.smashgg.SmashGGModelMapper
 import com.adammcneilly.pocketleague.core.models.EventOverview
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.event.data.EventService
-import com.adammcneilly.pocketleague.fragment.EventSummaryFragment
+import com.adammcneilly.pocketleague.graphql.EventOverviewQuery
+import com.adammcneilly.pocketleague.graphql.EventSummaryListQuery
+import com.adammcneilly.pocketleague.graphql.TournamentDetailQuery
+import com.adammcneilly.pocketleague.graphql.fragment.EventSummaryFragment
+import com.adammcneilly.pocketleague.graphql.type.LeagueEventsFilter
+import com.adammcneilly.pocketleague.graphql.type.LeagueEventsQuery
+import com.adammcneilly.pocketleague.graphql.type.StandingPaginationQuery
 import com.adammcneilly.pocketleague.seriesoverview.domain.models.SeriesOverview
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
-import com.adammcneilly.pocketleague.type.LeagueEventsFilter
-import com.adammcneilly.pocketleague.type.LeagueEventsQuery
-import com.adammcneilly.pocketleague.type.StandingPaginationQuery
-import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.api.BigDecimal
-import com.apollographql.apollo.api.toInput
-import com.apollographql.apollo.coroutines.await
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.api.Optional
 import javax.inject.Inject
 
-typealias ApolloBracketType = com.adammcneilly.pocketleague.type.BracketType
+typealias ApolloBracketType = com.adammcneilly.pocketleague.graphql.type.BracketType
 
 /**
  * A concrete [EventService] that makes its calls to the Smash.gg [api].
@@ -33,9 +31,9 @@ class SmashGGEventService @Inject constructor(
 ) : EventService {
 
     override suspend fun fetchSwissStage(eventName: String): Result<SwissStage> {
-        val query = TournamentDetailQuery(slug = eventName.toInput())
+        val query = TournamentDetailQuery(slug = Optional.Present(eventName))
 
-        val result = api.query(query).await()
+        val result = api.query(query).execute()
 
         val mainEvent = result.data!!.tournament!!.events!!.firstOrNull { event ->
             event!!.name == "Main Event"
@@ -67,20 +65,24 @@ class SmashGGEventService @Inject constructor(
     }
 
     override suspend fun fetchUpcomingEvents(leagueSlug: String): Result<List<EventSummary>> {
-        val upcomingFilter = LeagueEventsFilter(
-            upcoming = true.toInput(),
-        ).toInput()
+        val upcomingFilter = Optional.Present(
+            LeagueEventsFilter(
+                upcoming = Optional.Present(true),
+            )
+        )
 
-        val eventsQuery = LeagueEventsQuery(
-            filter = upcomingFilter,
-        ).toInput()
+        val eventsQuery = Optional.Present(
+            LeagueEventsQuery(
+                filter = upcomingFilter,
+            )
+        )
 
         val query = EventSummaryListQuery(
-            leagueSlug = leagueSlug.toInput(),
+            leagueSlug = Optional.Present(leagueSlug),
             eventsQuery = eventsQuery,
         )
 
-        val response = api.query(query).await()
+        val response = api.query(query).execute()
 
         val events = response
             .data
@@ -88,7 +90,7 @@ class SmashGGEventService @Inject constructor(
             ?.events
             ?.nodes
             ?.mapNotNull {
-                it?.fragments?.eventSummaryFragment?.toEvent()
+                it?.eventSummaryFragment?.toEvent()
             }
             .orEmpty()
 
@@ -97,16 +99,15 @@ class SmashGGEventService @Inject constructor(
 
     override suspend fun fetchEventOverview(eventId: String): Result<EventOverview> {
         val query = EventOverviewQuery(
-            eventId = eventId.toInput(),
+            eventId = Optional.Present(eventId),
             standingsQuery = StandingPaginationQuery(),
         )
 
-        val response = api.query(query).await()
+        val response = api.query(query).execute()
 
         val overview = response
             .data
             ?.event
-            ?.fragments
             ?.eventOverviewFragment
             .let(modelMapper::eventOverviewFragmentToEventOverview)
 
@@ -115,7 +116,7 @@ class SmashGGEventService @Inject constructor(
 }
 
 private fun EventSummaryFragment.toEvent(): EventSummary {
-    val startSeconds = (this.startAt as BigDecimal).toLong()
+    val startSeconds = (this.startAt as Int).toLong()
 
     return EventSummary(
         id = this.id.orEmpty(),

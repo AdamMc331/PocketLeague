@@ -1,3 +1,4 @@
-rootProject.name = "Pocket League"
+rootProject.name = "PocketLeague"
 include ':app'
 include ':core-models'
+include ':eventsummary'

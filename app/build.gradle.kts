@@ -49,34 +49,32 @@ android {
 
     buildTypes {
         debug {
-//            testCoverageEnabled.set(true)
+            isTestCoverageEnabled = true
         }
 
         release {
-//            minifyEnabled = false
-//            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
     compileOptions {
         sourceCompatibility(JavaVersion.VERSION_1_8)
         targetCompatibility(JavaVersion.VERSION_1_8)
-//        coreLibraryDesugaringEnabled = true
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
         jvmTarget = "1.8"
-//        useIR = true
     }
 
     buildFeatures {
         compose = true
     }
 
-//    composeOptions {
-//        kotlinCompilerExtensionVersion = rootProject.ext.versions.compose
-//        kotlinCompilerVersion = kotlinVersion
-//    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.1.0"
+    }
 
     packagingOptions {
         resources {
@@ -84,21 +82,21 @@ android {
         }
     }
 
-//    testOptions {
-//        unitTests.all {
-//            kover {
-//                enabled = true
-//                excludes = [
-//                        "dagger.hilt.internal.aggregatedroot.codegen.*",
-//                        "hilt_aggregated_deps.*",
-//                        ".*ComposableSingletons.*",
-//                        ".*Hilt.*",
-//                        ".*BuildConfig.*",
-//                        ".*_Factory.*",
-//                ]
-//            }
-//        }
-//    }
+    testOptions {
+        unitTests.all {
+            it.extensions.configure(kotlinx.kover.api.KoverTaskExtension::class) {
+                isEnabled = true
+                excludes = listOf(
+                    "dagger.hilt.internal.aggregatedroot.codegen.*",
+                    "hilt_aggregated_deps.*",
+                    ".*ComposableSingletons.*",
+                    ".*Hilt.*",
+                    ".*BuildConfig.*",
+                    ".*_Factory.*",
+                )
+            }
+        }
+    }
 }
 
 dependencies {

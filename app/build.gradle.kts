@@ -84,69 +84,69 @@ android {
         }
     }
 
-    testOptions {
-        unitTests.all {
-            kover {
-                enabled = true
-                excludes = [
-                        "dagger.hilt.internal.aggregatedroot.codegen.*",
-                        "hilt_aggregated_deps.*",
-                        ".*ComposableSingletons.*",
-                        ".*Hilt.*",
-                        ".*BuildConfig.*",
-                        ".*_Factory.*",
-                ]
-            }
-        }
-    }
+//    testOptions {
+//        unitTests.all {
+//            kover {
+//                enabled = true
+//                excludes = [
+//                        "dagger.hilt.internal.aggregatedroot.codegen.*",
+//                        "hilt_aggregated_deps.*",
+//                        ".*ComposableSingletons.*",
+//                        ".*Hilt.*",
+//                        ".*BuildConfig.*",
+//                        ".*_Factory.*",
+//                ]
+//            }
+//        }
+//    }
 }
 
 dependencies {
 
     implementation(project(":core-models"))
     implementation(project(":eventsummary"))
-    implementation("androidx.core:core-ktx:${rootProject.ext.versions.ktxCore}")
-    implementation("androidx.appcompat:appcompat:${rootProject.ext.versions.appCompat}")
-    implementation("com.google.android.material:material:${rootProject.ext.versions.material}")
-    implementation("androidx.compose.ui:ui:${rootProject.ext.versions.compose}")
-    implementation("androidx.compose.material:material:${rootProject.ext.versions.compose}")
-    implementation("androidx.compose.material3:material3:${rootProject.ext.versions.composeMaterial3}")
-    implementation("androidx.compose.ui:ui-tooling-preview:${rootProject.ext.versions.compose}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${rootProject.ext.versions.lifecycle}")
-    implementation("androidx.activity:activity-compose:${rootProject.ext.versions.activityCompose}")
+    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("com.google.android.material:material:1.5.0")
+    implementation("androidx.compose.ui:ui:1.1.0")
+    implementation("androidx.compose.material:material:1.1.0")
+    implementation("androidx.compose.material3:material3:1.0.0-alpha05")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.1.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+    implementation("androidx.activity:activity-compose:1.4.0")
     implementation("com.github.murgupluoglu:flagkit-android:1.0.2")
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    implementation("com.google.dagger:hilt-android:2.40.5")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("io.coil-kt:coil-compose:1.4.0")
     implementation("org.jsoup:jsoup:1.14.3")
-    implementation("com.squareup.retrofit2:retrofit:${rootProject.ext.versions.retrofit}")
-    implementation("com.squareup.retrofit2:converter-moshi:${rootProject.ext.versions.retrofit}")
-    implementation("com.squareup.okhttp3:logging-interceptor:${rootProject.ext.versions.okhttp}")
-    implementation("com.squareup.moshi:moshi-kotlin:${rootProject.ext.versions.moshi}")
-    implementation("com.google.accompanist:accompanist-insets-ui:${rootProject.ext.versions.accompanist}")
-    implementation("com.google.accompanist:accompanist-systemuicontroller:${rootProject.ext.versions.accompanist}")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
+    implementation("com.google.accompanist:accompanist-insets-ui:0.30.3")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.3")
     implementation("com.apollographql.apollo3:apollo-runtime:3.1.0")
-    implementation("io.github.raamcosta.compose-destinations:core:${rootProject.ext.versions.composeDestinations}")
-    implementation("androidx.navigation:navigation-compose:${rootProject.ext.versions.composeNavigation}")
-    implementation("com.google.accompanist:accompanist-pager:${rootProject.ext.versions.accompanist}")
+    implementation("io.github.raamcosta.compose-destinations:core:0.9.4-beta")
+    implementation("androidx.navigation:navigation-compose:2.4.0")
+    implementation("com.google.accompanist:accompanist-pager:0.30.3")
     implementation("com.tunjid.mutator:core:0.0.1")
     implementation("com.tunjid.mutator:coroutines:0.0.1")
-    ksp("io.github.raamcosta.compose-destinations:ksp:${rootProject.ext.versions.composeDestinations}")
-    kapt("com.google.dagger:hilt-compiler:$hiltVersion")
-    testimplementation("junit:junit:${rootProject.ext.versions.junit}")
-    testimplementation("com.google.truth:truth:${rootProject.ext.versions.truth}")
-    testimplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${rootProject.ext.versions.coroutines}")
-    testimplementation("app.cash.turbine:turbine:${rootProject.ext.versions.turbine}")
-    androidTestimplementation("androidx.test.ext:junit:${rootProject.ext.versions.androidxTest}")
-    androidTestimplementation("androidx.test.espresso:espresso-core:${rootProject.ext.versions.espresso}")
-    androidTestimplementation("androidx.compose.ui:ui-test-junit4:${rootProject.ext.versions.compose}")
-    debugimplementation("androidx.compose.ui:ui-tooling:${rootProject.ext.versions.compose}")
-    debugimplementation("androidx.compose.ui:ui-test-manifest:${rootProject.ext.versions.compose}")
+    ksp("io.github.raamcosta.compose-destinations:ksp:0.9.4-beta")
+    kapt("com.google.dagger:hilt-compiler:2.40.5")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("com.google.truth:truth:1.1.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+    testImplementation("app.cash.turbine:turbine:0.7.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.1.0")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.1.0")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.1.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 }
 
 apollo {
-    generateKotlinModels = true
+    generateKotlinModels.set(true)
 
     packageName.set("com.adammcneilly.pocketleague.graphql")
 }

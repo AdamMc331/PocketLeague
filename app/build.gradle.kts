@@ -26,15 +26,15 @@ kotlin {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = AndroidConfig.compileSDK
 
     val properties = Properties()
     properties.load(FileInputStream(project.rootProject.file("local.properties")))
 
     defaultConfig {
         applicationId = "com.adammcneilly.pocketleague"
-        minSdk = 21
-        targetSdk = 31
+        minSdk = AndroidConfig.minSDK
+        targetSdk = AndroidConfig.targetSDK
         versionCode = 1
         versionName = "1.0.0"
 

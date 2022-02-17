@@ -38,7 +38,6 @@ allprojects {
 
 subprojects {
     apply(from = "../buildscripts/ktlint.gradle")
-    apply(from = "../buildscripts/detekt.gradle")
     apply(from = "../buildscripts/versionsplugin.gradle")
     apply(from = "../buildscripts/kover.gradle")
 }
@@ -51,5 +50,22 @@ afterEvaluate {
     // We install the hook at the first occasion
     tasks.named("clean") {
         dependsOn(":installGitHooks")
+    }
+}
+
+plugins {
+    id("io.gitlab.arturbosch.detekt").version("1.0.1")
+}
+
+tasks {
+    val detektAll by registering(io.gitlab.arturbosch.detekt.Detekt::class) {
+        parallel = true
+        setSource(files(projectDir))
+        include("**/*.kt")
+        include("**/*.kts")
+        exclude("**/resources/**")
+        exclude("**/build/**")
+        config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+        buildUponDefaultConfig = false
     }
 }

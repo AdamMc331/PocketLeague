@@ -1,3 +1,6 @@
+/**
+ * A collection of version numbers used throughout the project.
+ */
 object Versions {
     // https://developer.android.com/jetpack/androidx/releases/compose
     const val compose = "1.1.0"

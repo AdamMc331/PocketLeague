@@ -1,8 +1,4 @@
-const val composeVersion = "1.1.0"
-
 object Versions {
-    const val ktxCore = "1.7.0"
-    const val appCompat = "1.4.1"
     const val compose = "1.1.0"
 //    ext {
 //        versions = [

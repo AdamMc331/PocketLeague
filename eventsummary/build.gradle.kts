@@ -1,11 +1,6 @@
-import java.io.FileInputStream
-import java.util.Properties
-
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("com.apollographql.apollo3").version("3.1.0")
-    id("com.codingfeline.buildkonfig").version("0.11.0")
 }
 
 kotlin {
@@ -24,8 +19,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core-models"))
-                implementation("com.apollographql.apollo3:apollo-runtime:3.1.0")
+                implementation(project(":event-api"))
             }
         }
         val commonTest by getting {
@@ -68,28 +62,5 @@ android {
     defaultConfig {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
-    }
-}
-
-apollo {
-    packageName.set("com.adammcneilly.pocketleague.eventsummary.graphql")
-}
-
-buildkonfig {
-    val secretsFile = File("../local.properties")
-    val properties = Properties()
-
-    if (secretsFile.exists()) {
-        properties.load(FileInputStream(secretsFile))
-    }
-
-    defaultConfigs {
-        packageName = "com.adammcneilly.pocketleague.eventsummary"
-
-        buildConfigField(
-            type = com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
-            name = "SMASH_GG_API_KEY",
-            value = properties["SmashGGAPIKey"].toString(),
-        )
     }
 }

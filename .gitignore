@@ -12,3 +12,6 @@ local.properties
 /core-models/build/
 /eventsummary/build/
 /buildSrc/build/
+/core-data/build/
+/event-api/build/
+/event-implementation/build/

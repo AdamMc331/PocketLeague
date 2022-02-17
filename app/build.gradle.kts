@@ -114,7 +114,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:${Versions.activityCompose}")
     implementation("com.github.murgupluoglu:flagkit-android:1.0.2")
     implementation("com.google.dagger:hilt-android:2.40.5")
-    implementation("androidx.hilt:hilt-navigation-compose:${Versions.compose}")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("io.coil-kt:coil-compose:1.4.0")
     implementation("org.jsoup:jsoup:1.14.3")
     implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")

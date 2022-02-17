@@ -106,7 +106,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("com.google.android.material:material:1.5.0")
-    implementation("androidx.compose.ui:ui:1.1.0")
+    implementation("androidx.compose.ui:ui:${Versions.compose}")
     implementation("androidx.compose.material:material:1.1.0")
     implementation("androidx.compose.material3:material3:1.0.0-alpha05")
     implementation("androidx.compose.ui:ui-tooling-preview:1.1.0")

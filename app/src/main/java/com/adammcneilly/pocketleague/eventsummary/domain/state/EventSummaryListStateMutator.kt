@@ -12,10 +12,9 @@ import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 
 /**
  * Creates a [stateFlowMutator] which will consume [EventSummaryListAction] entities and map them
@@ -47,60 +46,55 @@ private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations
     dateTimeHelper: DateTimeHelper,
 ): Flow<Mutation<EventSummaryListViewState>> {
     return this.flatMapLatest { action ->
-        flow {
-            emitLoading()
-
-            getUpcomingEventsUseCase.invoke(action.leagueSlug).map { result ->
+        getUpcomingEventsUseCase
+            .invoke(action.leagueSlug)
+            .onStart {
+                loadingMutation()
+            }
+            .map { result ->
                 when (result) {
                     is GetUpcomingEventSummariesUseCase.Result.Success -> {
-                        emitSuccess(
+                        successMutation(
                             events = result.events,
                             dateTimeHelper = dateTimeHelper,
                         )
                     }
                     is GetUpcomingEventSummariesUseCase.Result.Error -> {
-                        emitError()
+                        errorMutation()
                     }
                 }
             }
-        }
     }
 }
 
-private suspend fun FlowCollector<Mutation<EventSummaryListViewState>>.emitError() = this.emit(
-    Mutation {
-        copy(
-            showLoading = false,
-            errorMessage = UIText.StringText(
-                "Fetching upcoming events failed.",
-            ),
-        )
-    }
-)
+private fun errorMutation() = Mutation<EventSummaryListViewState> {
+    copy(
+        showLoading = false,
+        errorMessage = UIText.StringText(
+            "Fetching upcoming events failed.",
+        ),
+    )
+}
 
-private suspend fun FlowCollector<Mutation<EventSummaryListViewState>>.emitSuccess(
+private fun successMutation(
     events: List<EventSummary>,
     dateTimeHelper: DateTimeHelper,
-) = this.emit(
-    Mutation {
-        copy(
-            showLoading = false,
-            events = events.map { event ->
-                event.toSummaryDisplayModel(
-                    dateTimeHelper = dateTimeHelper,
-                )
-            }
-        )
-    }
-)
+) = Mutation<EventSummaryListViewState> {
+    copy(
+        showLoading = false,
+        events = events.map { event ->
+            event.toSummaryDisplayModel(
+                dateTimeHelper = dateTimeHelper,
+            )
+        }
+    )
+}
 
-private suspend fun FlowCollector<Mutation<EventSummaryListViewState>>.emitLoading() = this.emit(
-    Mutation {
-        copy(
-            showLoading = true,
-        )
-    }
-)
+private fun loadingMutation() = Mutation<EventSummaryListViewState> {
+    copy(
+        showLoading = true,
+    )
+}
 
 private fun Flow<EventSummaryListAction.NavigatedToEventOverview>.clearEventMutations():
     Flow<Mutation<EventSummaryListViewState>> {

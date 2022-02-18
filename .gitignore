@@ -15,3 +15,4 @@ local.properties
 /core-data/build/
 /event-api/build/
 /event-implementation/build/
+/event-implementation/event.properties

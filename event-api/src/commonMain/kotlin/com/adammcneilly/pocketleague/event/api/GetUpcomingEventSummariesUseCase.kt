@@ -8,11 +8,24 @@ import kotlinx.coroutines.flow.Flow
  */
 interface GetUpcomingEventSummariesUseCase {
 
+    /**
+     * @see [GetUpcomingEventSummariesUseCase]
+     */
     fun invoke(leagueSlug: String): Flow<Result>
 
+    /**
+     * All possible response variations for the [GetUpcomingEventSummariesUseCase].
+     */
     sealed class Result {
+        /**
+         * This is returned when our use case is successful and we have a list of [events] to
+         * provide.
+         */
         data class Success(val events: List<EventSummary>) : Result()
 
+        /**
+         * This is returned when our use case is unsuccessful and some [errorMessage] occurred.
+         */
         data class Error(val errorMessage: String?) : Result()
     }
 }

@@ -102,7 +102,8 @@ private suspend fun FlowCollector<Mutation<EventSummaryListViewState>>.emitLoadi
     }
 )
 
-private fun Flow<EventSummaryListAction.NavigatedToEventOverview>.clearEventMutations(): Flow<Mutation<EventSummaryListViewState>> {
+private fun Flow<EventSummaryListAction.NavigatedToEventOverview>.clearEventMutations():
+    Flow<Mutation<EventSummaryListViewState>> {
 
     return this.map {
         Mutation {
@@ -113,7 +114,8 @@ private fun Flow<EventSummaryListAction.NavigatedToEventOverview>.clearEventMuta
     }
 }
 
-private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations(): Flow<Mutation<EventSummaryListViewState>> {
+private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
+    Flow<Mutation<EventSummaryListViewState>> {
 
     return this.map { action ->
         Mutation {

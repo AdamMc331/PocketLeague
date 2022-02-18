@@ -107,7 +107,6 @@ android {
 dependencies {
 
     implementation(project(":core-models"))
-    implementation(project(":eventsummary"))
     implementation(project(":event-api"))
     implementation(project(":event-implementation"))
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")

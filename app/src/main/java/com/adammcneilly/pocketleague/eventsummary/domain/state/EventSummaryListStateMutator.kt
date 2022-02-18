@@ -48,9 +48,6 @@ private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations
     return this.flatMapLatest { action ->
         getUpcomingEventsUseCase
             .invoke(action.leagueSlug)
-            .onStart {
-                loadingMutation()
-            }
             .map { result ->
                 when (result) {
                     is GetUpcomingEventSummariesUseCase.Result.Success -> {
@@ -63,6 +60,9 @@ private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations
                         errorMutation()
                     }
                 }
+            }
+            .onStart {
+                emit(loadingMutation())
             }
     }
 }

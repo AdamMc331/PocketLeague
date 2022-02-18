@@ -7,7 +7,9 @@ sealed class EventSummaryListAction {
     /**
      * This action will trigger the loading of event summaries.
      */
-    object FetchUpcomingEvents : EventSummaryListAction()
+    data class FetchUpcomingEvents(
+        val leagueSlug: String,
+    ) : EventSummaryListAction()
 
     /**
      * Action fired when the user clicks on a specific [eventId].

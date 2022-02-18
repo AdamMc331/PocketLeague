@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.map
  * A concrete implementation of [EventRepository] that will request information
  * from the smash.gg API.
  */
-class SmashGGEventSummaryService : EventRepository {
+class SmashGGEventService : EventRepository {
 
     private val apolloClient = ApolloClient.Builder()
         .serverUrl("https://api.smash.gg/gql/alpha")

@@ -4,8 +4,7 @@ import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
-import com.adammcneilly.pocketleague.eventsummary.PLResult
-import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FetchUpcomingEventsUseCase
+import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState
 import com.tunjid.mutator.Mutation
@@ -24,7 +23,7 @@ import kotlinx.coroutines.flow.map
  */
 fun eventSummaryListStateMutator(
     scope: CoroutineScope,
-    fetchUpcomingEventsUseCase: FetchUpcomingEventsUseCase,
+    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
     dateTimeHelper: DateTimeHelper,
 ) = stateFlowMutator<EventSummaryListAction, EventSummaryListViewState>(
     scope = scope,
@@ -33,7 +32,7 @@ fun eventSummaryListStateMutator(
         actions.toMutationStream {
             when (val action = type()) {
                 is EventSummaryListAction.FetchUpcomingEvents -> action.flow.fetchEventMutations(
-                    fetchUpcomingEventsUseCase = fetchUpcomingEventsUseCase,
+                    getUpcomingEventsUseCase = getUpcomingEventsUseCase,
                     dateTimeHelper = dateTimeHelper,
                 )
                 is EventSummaryListAction.NavigatedToEventOverview -> action.flow.clearEventMutations()
@@ -44,24 +43,24 @@ fun eventSummaryListStateMutator(
 )
 
 private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations(
-    fetchUpcomingEventsUseCase: FetchUpcomingEventsUseCase,
+    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
     dateTimeHelper: DateTimeHelper,
 ): Flow<Mutation<EventSummaryListViewState>> {
-    return this.flatMapLatest {
+    return this.flatMapLatest { action ->
         flow {
             emitLoading()
 
-            val result = fetchUpcomingEventsUseCase.invoke()
-
-            when (result) {
-                is PLResult.Success -> {
-                    emitSuccess(
-                        events = result.data,
-                        dateTimeHelper = dateTimeHelper,
-                    )
-                }
-                is PLResult.Error -> {
-                    emitError()
+            getUpcomingEventsUseCase.invoke(action.leagueSlug).map { result ->
+                when (result) {
+                    is GetUpcomingEventSummariesUseCase.Result.Success -> {
+                        emitSuccess(
+                            events = result.events,
+                            dateTimeHelper = dateTimeHelper,
+                        )
+                    }
+                    is GetUpcomingEventSummariesUseCase.Result.Error -> {
+                        emitError()
+                    }
                 }
             }
         }
@@ -103,8 +102,7 @@ private suspend fun FlowCollector<Mutation<EventSummaryListViewState>>.emitLoadi
     }
 )
 
-private fun Flow<EventSummaryListAction.NavigatedToEventOverview>.clearEventMutations():
-    Flow<Mutation<EventSummaryListViewState>> {
+private fun Flow<EventSummaryListAction.NavigatedToEventOverview>.clearEventMutations(): Flow<Mutation<EventSummaryListViewState>> {
 
     return this.map {
         Mutation {
@@ -115,8 +113,7 @@ private fun Flow<EventSummaryListAction.NavigatedToEventOverview>.clearEventMuta
     }
 }
 
-private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
-    Flow<Mutation<EventSummaryListViewState>> {
+private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations(): Flow<Mutation<EventSummaryListViewState>> {
 
     return this.map { action ->
         Mutation {

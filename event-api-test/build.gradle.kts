@@ -1,11 +1,6 @@
-import java.io.FileInputStream
-import java.util.Properties
-
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("com.apollographql.apollo3").version(Versions.apollo)
-    id("com.codingfeline.buildkonfig").version(Versions.buildKonfig)
 }
 
 kotlin {
@@ -17,7 +12,7 @@ kotlin {
         // iosSimulatorArm64() sure all ios dependencies support this target
     ).forEach {
         it.binaries.framework {
-            baseName = "event-implementation"
+            baseName = "event-api-test"
         }
     }
 
@@ -25,17 +20,12 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":event-api"))
-                implementation("com.apollographql.apollo3:apollo-runtime:${Versions.apollo}")
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation(project(":core-models-test"))
-                implementation(project(":event-api-test"))
-                implementation("app.cash.turbine:turbine:${Versions.turbine}")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
             }
         }
         val androidMain by getting
@@ -72,28 +62,5 @@ android {
     defaultConfig {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
-    }
-}
-
-apollo {
-    packageName.set("com.adammcneilly.pocketleague.event.graphql")
-}
-
-buildkonfig {
-    val secretsFile = File("event-implementation/local.properties")
-    val properties = Properties()
-
-    if (secretsFile.exists()) {
-        properties.load(FileInputStream(secretsFile))
-    }
-
-    defaultConfigs {
-        packageName = "com.adammcneilly.pocketleague.event.implementation"
-
-        buildConfigField(
-            type = com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
-            name = "SMASH_GG_API_KEY",
-            value = properties["SmashGGAPIKey"].toString(),
-        )
     }
 }

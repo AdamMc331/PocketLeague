@@ -24,7 +24,7 @@ import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
  */
 @Composable
 fun EventSummaryListItem(
-    displayModel: EventSummaryDisplayModel,
+    displayModel: com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel,
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -55,7 +55,7 @@ fun EventSummaryListItem(
 
 @Composable
 private fun SummaryInfo(
-    displayModel: EventSummaryDisplayModel
+    displayModel: com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
 ) {
     Column(
         modifier = Modifier
@@ -68,8 +68,10 @@ private fun SummaryInfo(
 
         EventNameLabel(eventName = displayModel.eventName)
 
-        if (displayModel.subtitle != null) {
-            EventSubtitleLabel(eventSubtitle = displayModel.subtitle)
+        val subtitle = displayModel.subtitle
+
+        if (subtitle != null) {
+            EventSubtitleLabel(eventSubtitle = subtitle)
         }
     }
 }
@@ -124,13 +126,13 @@ private fun EventNameLabel(
 )
 @Composable
 private fun EventSummaryListItemPreview() {
-    val displayModel = EventSummaryDisplayModel(
+    val displayModel = com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel(
         eventId = "1234",
         startDate = "Nov 12, 2021",
         eventName = "Main Event",
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
         subtitle = "16 Teams",
-        image = UIImage.Resource(R.drawable.us),
+        image = UIImage.AndroidResource(R.drawable.us),
     )
 
     PocketLeagueTheme {

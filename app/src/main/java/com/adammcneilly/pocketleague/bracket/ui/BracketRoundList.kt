@@ -57,12 +57,12 @@ private fun BracketRoundContentPreview() {
     val seriesOverview = SeriesOverviewDisplayModel(
         teamOne = TeamOverviewDisplayModel(
             name = "G2",
-            lightLogoImage = UIImage.Resource(R.drawable.us),
+            lightLogoImage = UIImage.AndroidResource(R.drawable.us),
             roster = emptyList(),
         ),
         teamTwo = TeamOverviewDisplayModel(
             name = "GG",
-            lightLogoImage = UIImage.Resource(R.drawable.us),
+            lightLogoImage = UIImage.AndroidResource(R.drawable.us),
             roster = emptyList(),
         ),
         teamOneWins = 4,

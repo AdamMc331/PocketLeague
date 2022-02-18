@@ -70,8 +70,8 @@ private fun TeamDetailContentPreview() {
     val caFlag = FlagKit.getResId(LocalContext.current, "ca")
     val usFlag = FlagKit.getResId(LocalContext.current, "us")
 
-    val caFlagImage = UIImage.Resource(caFlag)
-    val usFlagImage = UIImage.Resource(usFlag)
+    val caFlagImage = UIImage.AndroidResource(caFlag)
+    val usFlagImage = UIImage.AndroidResource(usFlag)
 
     val sosa = PlayerDisplayModel(
         flagImage = caFlagImage,
@@ -118,7 +118,7 @@ private fun TeamDetailContentPreview() {
 
     val teamDetail = TeamDetailDisplayModel(
         name = "Pittsburgh Knights",
-        logo = UIImage.Resource(R.drawable.us),
+        logo = UIImage.AndroidResource(R.drawable.us),
         players = players,
     )
 

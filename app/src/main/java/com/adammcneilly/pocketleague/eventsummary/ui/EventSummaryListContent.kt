@@ -12,7 +12,7 @@ import com.adammcneilly.pocketleague.core.ui.getValue
  */
 @Composable
 fun EventSummaryListContent(
-    viewState: EventSummaryListViewState,
+    viewState: com.adammcneilly.pocketleague.eventsummary.EventSummaryListViewState,
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -30,9 +30,11 @@ fun EventSummaryListContent(
             )
         }
 
-        if (viewState.errorMessage != null) {
+        val errorMessage = viewState.errorMessage
+
+        if (errorMessage != null) {
             Text(
-                text = viewState.errorMessage.getValue(),
+                text = errorMessage.getValue(),
             )
         }
     }

@@ -115,13 +115,13 @@ private fun SeriesResultContentPreview() {
 
     val teamOne = TeamDetailDisplayModel(
         name = "NRG",
-        logo = UIImage.Resource(R.drawable.us),
+        logo = UIImage.AndroidResource(R.drawable.us),
         players = emptyList(),
     )
 
     val teamTwo = TeamDetailDisplayModel(
         name = "NV",
-        logo = UIImage.Resource(R.drawable.ca),
+        logo = UIImage.AndroidResource(R.drawable.ca),
         players = emptyList(),
     )
 

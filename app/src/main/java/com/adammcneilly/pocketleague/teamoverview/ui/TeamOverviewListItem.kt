@@ -83,7 +83,7 @@ private fun TeamOverviewDisplayModel.logoImage(): UIImage {
 private fun TeamOverviewListItemPreview() {
     val team = TeamOverviewDisplayModel(
         name = "Pittsburgh Knights",
-        lightLogoImage = UIImage.Resource(R.drawable.us),
+        lightLogoImage = UIImage.AndroidResource(R.drawable.us),
         roster = emptyList(),
     )
 

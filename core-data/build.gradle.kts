@@ -12,16 +12,12 @@ kotlin {
         // iosSimulatorArm64() sure all ios dependencies support this target
     ).forEach {
         it.binaries.framework {
-            baseName = "eventsummary"
+            baseName = "core-data"
         }
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(project(":event-api"))
-            }
-        }
+        val commonMain by getting
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))

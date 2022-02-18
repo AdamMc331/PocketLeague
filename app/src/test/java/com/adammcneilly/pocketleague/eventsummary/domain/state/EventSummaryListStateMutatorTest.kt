@@ -1,47 +1,40 @@
 package com.adammcneilly.pocketleague.eventsummary.domain.state
 
 import app.cash.turbine.test
-import com.adammcneilly.pocketleague.core.models.EventSummary
+import com.adammcneilly.pocketleague.core.models.test.testEventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.FakeDateTimeHelper
-import com.adammcneilly.pocketleague.eventsummary.PLResult
-import com.adammcneilly.pocketleague.eventsummary.domain.usecases.FakeFetchUpcomingEventsUseCase
+import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
+import com.adammcneilly.pocketleague.event.api.test.FakeGetUpcomingEventSummariesUseCase
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState
 import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 class EventSummaryListStateMutatorTest {
-    private val fetchUpcomingEventsUseCase = FakeFetchUpcomingEventsUseCase()
+    private val getUpcomingEventsUseCase = FakeGetUpcomingEventSummariesUseCase()
     private val dateTimeHelper = FakeDateTimeHelper()
 
     private val mutator = eventSummaryListStateMutator(
         scope = TestCoroutineScope(),
-        fetchUpcomingEventsUseCase = fetchUpcomingEventsUseCase,
+        getUpcomingEventsUseCase = getUpcomingEventsUseCase,
         dateTimeHelper = dateTimeHelper,
     )
 
     @Test
     fun fetchEventsSuccess() = runTest {
-        // Inputs
-        val fakeEvent = EventSummary(
-            id = "1234",
-            eventName = "Event Name",
-            tournamentName = "Tournament Name",
-            tournamentImageUrl = "Tournament Image URL",
-            startDateEpochSeconds = 123L,
-            numEntrants = null,
-            isOnline = true,
-        )
-        val fakeEventList = listOf(fakeEvent)
-        val fakeEventListResult = PLResult.Success(fakeEventList)
+        val leagueSlug = "rlcs-2021-22-1"
+        val fakeEvent = testEventSummary
+        val events = listOf(fakeEvent)
+        val useCaseResult = GetUpcomingEventSummariesUseCase.Result.Success(events)
         val fakeEventDateString = "Today"
 
         // Mocks
-        fetchUpcomingEventsUseCase.mockResult = fakeEventListResult
+        getUpcomingEventsUseCase.resultsForLeague[leagueSlug] = flowOf(useCaseResult)
         dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDateEpochSeconds, fakeEventDateString)
 
         // Expectations
@@ -51,7 +44,7 @@ class EventSummaryListStateMutatorTest {
             startDate = fakeEventDateString,
             tournamentName = fakeEvent.tournamentName,
             eventName = fakeEvent.eventName,
-            subtitle = null,
+            subtitle = "${fakeEvent.numEntrants} Teams",
             image = UIImage.Remote(fakeEvent.tournamentImageUrl)
         )
         val successState = initialState.copy(
@@ -62,7 +55,7 @@ class EventSummaryListStateMutatorTest {
         // Test
         mutator.state
             .test {
-                mutator.accept(EventSummaryListAction.FetchUpcomingEvents)
+                mutator.accept(EventSummaryListAction.FetchUpcomingEvents(leagueSlug))
 
                 val expectedStates = listOf(initialState, successState)
 
@@ -76,13 +69,11 @@ class EventSummaryListStateMutatorTest {
 
     @Test
     fun fetchEventsFailure() = runTest {
-        // Inputs
-        val fakeEventListResult: PLResult<List<EventSummary>> = PLResult.Error(
-            Throwable("Whoops"),
-        )
+        val leagueSlug = "rlcs-2021-22-1"
+        val useCaseResult = GetUpcomingEventSummariesUseCase.Result.Error("Whoops")
 
         // Mocks
-        fetchUpcomingEventsUseCase.mockResult = fakeEventListResult
+        getUpcomingEventsUseCase.resultsForLeague[leagueSlug] = flowOf(useCaseResult)
 
         // Expectations
         val initialState = EventSummaryListViewState()
@@ -96,7 +87,7 @@ class EventSummaryListStateMutatorTest {
         // Test
         mutator.state
             .test {
-                mutator.accept(EventSummaryListAction.FetchUpcomingEvents)
+                mutator.accept(EventSummaryListAction.FetchUpcomingEvents(leagueSlug))
 
                 val expectedStates = listOf(initialState, errorState)
 

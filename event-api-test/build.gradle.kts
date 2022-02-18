@@ -12,7 +12,7 @@ kotlin {
         // iosSimulatorArm64() sure all ios dependencies support this target
     ).forEach {
         it.binaries.framework {
-            baseName = "eventsummary"
+            baseName = "event-api-test"
         }
     }
 

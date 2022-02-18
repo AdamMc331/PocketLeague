@@ -61,4 +61,7 @@ object Versions {
 
     // https://github.com/cashapp/turbine/releases
     const val turbine = "0.7.0"
+
+    // https://github.com/yshrsmz/BuildKonfig/releases
+    const val buildKonfig = "0.11.0"
 }

@@ -4,22 +4,52 @@ import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
-import com.tunjid.mutator.Mutation
-import com.tunjid.mutator.coroutines.stateFlowMutator
-import com.tunjid.mutator.coroutines.toMutationStream
+import com.adammcneilly.pocketleague.event.implementation.GetUpcomingEventSummariesUseCaseImpl
+import com.adammcneilly.pocketleague.event.implementation.SmashGGEventService
+import com.adammcneilly.pocketleague.eventsummary.mutator.Mutation
+import com.adammcneilly.pocketleague.eventsummary.mutator.Mutator
+import com.adammcneilly.pocketleague.eventsummary.mutator.stateFlowMutator
+import com.adammcneilly.pocketleague.eventsummary.mutator.toMutationStream
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
+
+fun defaultMutator() = eventSummaryListStateMutator()
+
+// class CoreViewModel {
+//  internal val mutableStateFlow: MutableStateFlow(AppState())
+//  val stateFlow: StateFlow<AppState>
+//      get() = mutableStateFlow
+//
+//  fun onChange(provideNewState: ((AppState) -> Unit)) {
+//      stateFlow.onEach {
+//          provideNewState.invoke(it)
+//      }.launchIn(CoroutineScope(Dispatchers.Main))
+//  }
+// }
+
+fun Mutator<EventSummaryListAction, StateFlow<EventSummaryListViewState>>.onChange(
+    onChange: ((EventSummaryListViewState) -> Unit)
+) {
+    this.state.onEach {
+        onChange.invoke(it)
+    }.launchIn(MainScope())
+}
 
 /**
  * Creates a [stateFlowMutator] which will consume [EventSummaryListAction] entities and map them
  * to the correct [EventSummaryListViewState].
  */
 fun eventSummaryListStateMutator(
-    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
+    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase = GetUpcomingEventSummariesUseCaseImpl(
+        repository = SmashGGEventService(),
+    ),
     scope: CoroutineScope = MainScope(),
 ) = stateFlowMutator<EventSummaryListAction, EventSummaryListViewState>(
     scope = scope,

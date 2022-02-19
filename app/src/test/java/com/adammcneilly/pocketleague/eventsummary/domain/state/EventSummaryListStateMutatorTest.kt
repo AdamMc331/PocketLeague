@@ -8,7 +8,9 @@ import com.adammcneilly.pocketleague.core.utils.FakeDateTimeHelper
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
 import com.adammcneilly.pocketleague.event.api.test.FakeGetUpcomingEventSummariesUseCase
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryListAction
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryListViewState
+import com.adammcneilly.pocketleague.eventsummary.eventSummaryListStateMutator
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineScope
@@ -22,7 +24,6 @@ class EventSummaryListStateMutatorTest {
     private val mutator = eventSummaryListStateMutator(
         scope = TestCoroutineScope(),
         getUpcomingEventsUseCase = getUpcomingEventsUseCase,
-        dateTimeHelper = dateTimeHelper,
     )
 
     @Test
@@ -31,7 +32,7 @@ class EventSummaryListStateMutatorTest {
         val fakeEvent = testEventSummary
         val events = listOf(fakeEvent)
         val useCaseResult = GetUpcomingEventSummariesUseCase.Result.Success(events)
-        val fakeEventDateString = "Today"
+        val fakeEventDateString = "TODO: Start Date"
 
         // Mocks
         getUpcomingEventsUseCase.resultsForLeague[leagueSlug] = flowOf(useCaseResult)
@@ -61,7 +62,7 @@ class EventSummaryListStateMutatorTest {
                 val expectedStates = listOf(initialState, successState)
 
                 expectedStates.forEach { state ->
-                    assertThat(state).isEqualTo(awaitItem())
+                    assertThat(awaitItem()).isEqualTo(state)
                 }
 
                 cancelAndIgnoreRemainingEvents()

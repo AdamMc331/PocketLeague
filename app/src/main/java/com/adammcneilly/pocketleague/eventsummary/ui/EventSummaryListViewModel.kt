@@ -2,10 +2,9 @@ package com.adammcneilly.pocketleague.eventsummary.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
-import com.adammcneilly.pocketleague.eventsummary.domain.state.EventSummaryListAction
-import com.adammcneilly.pocketleague.eventsummary.domain.state.eventSummaryListStateMutator
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryListAction
+import com.adammcneilly.pocketleague.eventsummary.eventSummaryListStateMutator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -15,13 +14,11 @@ import javax.inject.Inject
 @HiltViewModel
 class EventSummaryListViewModel @Inject constructor(
     getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
-    dateTimeHelper: DateTimeHelper,
 ) : ViewModel() {
 
     private val mutator = eventSummaryListStateMutator(
         scope = viewModelScope,
         getUpcomingEventsUseCase = getUpcomingEventsUseCase,
-        dateTimeHelper = dateTimeHelper,
     )
 
     val viewState = mutator.state

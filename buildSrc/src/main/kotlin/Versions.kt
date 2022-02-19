@@ -64,4 +64,7 @@ object Versions {
 
     // https://github.com/yshrsmz/BuildKonfig/releases
     const val buildKonfig = "0.11.0"
+
+    // https://github.com/tunjid/mutator
+    const val mutator = "0.0.1"
 }

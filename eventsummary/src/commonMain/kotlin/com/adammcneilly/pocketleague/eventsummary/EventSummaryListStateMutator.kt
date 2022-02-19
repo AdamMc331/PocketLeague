@@ -1,4 +1,4 @@
-@file:Suppress("TooManyFunction")
+@file:Suppress("TooManyFunctions")
 
 package com.adammcneilly.pocketleague.eventsummary
 

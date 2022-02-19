@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName")
+
 package com.adammcneilly.pocketleague.eventsummary.mutator
 
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +17,6 @@ import kotlinx.coroutines.flow.scan
  * Use typically involves invoking [type] to identify the [Action] stream being transformed, and
  * subsequently invoking [flow] to perform a custom transformation on the split out [Flow].
  */
-@Suppress("MatchingDeclarationName")
 data class TransformationContext<Action : Any>(
     private val type: Action,
     val backing: Flow<Action>

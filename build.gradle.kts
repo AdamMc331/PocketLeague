@@ -29,9 +29,9 @@ apply(from = "buildscripts/githooks.gradle")
 
 allprojects {
     repositories {
+        mavenLocal()
         google()
         mavenCentral()
-        mavenLocal()
         maven(url = "https://jitpack.io")
         maven(url = "https://packages.jetbrains.team/maven/p/ij/intellij-dependencies")
     }

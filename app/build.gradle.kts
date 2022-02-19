@@ -109,6 +109,7 @@ dependencies {
     implementation(project(":core-models"))
     implementation(project(":event-api"))
     implementation(project(":event-implementation"))
+    implementation(project(":eventsummary"))
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")
     implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
     implementation("com.google.android.material:material:${Versions.material}")

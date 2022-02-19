@@ -18,7 +18,7 @@ fun PocketLeagueImage(
     contentScale: ContentScale = ContentScale.Fit,
 ) {
     when (image) {
-        is UIImage.Resource -> {
+        is UIImage.AndroidResource -> {
             Image(
                 painterResource(id = image.drawableRes),
                 contentDescription = contentDescription,

@@ -44,8 +44,8 @@ private fun PlayerListPreview() {
     val caFlag = FlagKit.getResId(LocalContext.current, "ca")
     val usFlag = FlagKit.getResId(LocalContext.current, "us")
 
-    val caFlagImage = UIImage.Resource(caFlag)
-    val usFlagImage = UIImage.Resource(usFlag)
+    val caFlagImage = UIImage.AndroidResource(caFlag)
+    val usFlagImage = UIImage.AndroidResource(usFlag)
 
     val sosa = PlayerDisplayModel(
         flagImage = caFlagImage,

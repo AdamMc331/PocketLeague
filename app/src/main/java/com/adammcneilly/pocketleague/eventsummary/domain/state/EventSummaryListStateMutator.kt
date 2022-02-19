@@ -5,8 +5,8 @@ import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
-import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
-import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryListViewState
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream

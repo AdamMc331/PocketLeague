@@ -18,6 +18,7 @@ import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.Material3Card
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
 
 /**
  * Renders a [displayModel] to show a summary of an RLCS event.
@@ -68,8 +69,10 @@ private fun SummaryInfo(
 
         EventNameLabel(eventName = displayModel.eventName)
 
-        if (displayModel.subtitle != null) {
-            EventSubtitleLabel(eventSubtitle = displayModel.subtitle)
+        val subtitle = displayModel.subtitle
+
+        if (subtitle != null) {
+            EventSubtitleLabel(eventSubtitle = subtitle)
         }
     }
 }
@@ -130,7 +133,7 @@ private fun EventSummaryListItemPreview() {
         eventName = "Main Event",
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
         subtitle = "16 Teams",
-        image = UIImage.Resource(R.drawable.us),
+        image = UIImage.AndroidResource(R.drawable.us),
     )
 
     PocketLeagueTheme {

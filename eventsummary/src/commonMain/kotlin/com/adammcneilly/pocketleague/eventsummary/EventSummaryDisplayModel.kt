@@ -1,6 +1,5 @@
-package com.adammcneilly.pocketleague.eventsummary.ui
+package com.adammcneilly.pocketleague.eventsummary
 
-import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 
 /**

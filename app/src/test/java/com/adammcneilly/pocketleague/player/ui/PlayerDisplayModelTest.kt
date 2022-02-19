@@ -25,7 +25,7 @@ class PlayerDisplayModelTest {
         val displayModel = player.toDisplayModel(flagResProvider)
 
         with(displayModel) {
-            assertThat(flagImage).isEqualTo(UIImage.Resource(mockFlagRes))
+            assertThat(flagImage).isEqualTo(UIImage.AndroidResource(mockFlagRes))
             assertThat(gamerTag).isEqualTo("Testy")
             assertThat(realName).isEqualTo("(McTestFace)")
             assertThat(notes).isNull()
@@ -49,7 +49,7 @@ class PlayerDisplayModelTest {
         val displayModel = player.toDisplayModel(flagResProvider)
 
         with(displayModel) {
-            assertThat(flagImage).isEqualTo(UIImage.Resource(mockFlagRes))
+            assertThat(flagImage).isEqualTo(UIImage.AndroidResource(mockFlagRes))
             assertThat(gamerTag).isEqualTo("Testy")
             assertThat(realName).isEqualTo("(McTestFace)")
             assertThat(notes).isEqualTo("(Coach)")

@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.core.ui.getValue
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryListViewState
 
 /**
  * Displays the content of an event summary list based on the supplied [viewState].
@@ -30,9 +31,11 @@ fun EventSummaryListContent(
             )
         }
 
-        if (viewState.errorMessage != null) {
+        val errorMessage = viewState.errorMessage
+
+        if (errorMessage != null) {
             Text(
-                text = viewState.errorMessage.getValue(),
+                text = errorMessage.getValue(),
             )
         }
     }

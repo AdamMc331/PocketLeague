@@ -7,8 +7,8 @@ import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.FakeDateTimeHelper
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
 import com.adammcneilly.pocketleague.event.api.test.FakeGetUpcomingEventSummariesUseCase
-import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryDisplayModel
-import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewState
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryListViewState
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineScope
@@ -39,14 +39,15 @@ class EventSummaryListStateMutatorTest {
 
         // Expectations
         val initialState = EventSummaryListViewState()
-        val expectedEventDisplayModel = EventSummaryDisplayModel(
-            eventId = fakeEvent.id,
-            startDate = fakeEventDateString,
-            tournamentName = fakeEvent.tournamentName,
-            eventName = fakeEvent.eventName,
-            subtitle = "${fakeEvent.numEntrants} Teams",
-            image = UIImage.Remote(fakeEvent.tournamentImageUrl)
-        )
+        val expectedEventDisplayModel =
+            EventSummaryDisplayModel(
+                eventId = fakeEvent.id,
+                startDate = fakeEventDateString,
+                tournamentName = fakeEvent.tournamentName,
+                eventName = fakeEvent.eventName,
+                subtitle = "${fakeEvent.numEntrants} Teams",
+                image = UIImage.Remote(fakeEvent.tournamentImageUrl)
+            )
         val successState = initialState.copy(
             showLoading = false,
             events = listOf(expectedEventDisplayModel),

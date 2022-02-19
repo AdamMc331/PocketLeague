@@ -90,7 +90,7 @@ private fun PlayerNameRow(player: PlayerDisplayModel) {
 private fun PlayerListItemPreviewWithNotes() {
     val usFlag = FlagKit.getResId(LocalContext.current, "us")
     val player = PlayerDisplayModel(
-        flagImage = UIImage.Resource(usFlag),
+        flagImage = UIImage.AndroidResource(usFlag),
         gamerTag = "Tstn",
         realName = "(Testing McTestFace)",
         notes = "(Coach)",
@@ -117,7 +117,7 @@ private fun PlayerListItemPreviewWithNotes() {
 private fun PlayerListItemPreviewWithoutNotes() {
     val usFlag = FlagKit.getResId(LocalContext.current, "us")
     val player = PlayerDisplayModel(
-        flagImage = UIImage.Resource(usFlag),
+        flagImage = UIImage.AndroidResource(usFlag),
         gamerTag = "Tstn",
         realName = "(Testing McTestFace)",
         notes = null,

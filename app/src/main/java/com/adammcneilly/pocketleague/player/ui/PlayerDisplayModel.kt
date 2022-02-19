@@ -26,7 +26,7 @@ fun Player.toDisplayModel(
 ): PlayerDisplayModel {
     val flagResId = flagResProvider.getFlagRes(this.countryCode)
     return PlayerDisplayModel(
-        flagImage = UIImage.Resource(flagResId),
+        flagImage = UIImage.AndroidResource(flagResId),
         gamerTag = this.gamerTag,
         realName = "(${this.realName})",
         notes = this.notes?.let { notes ->

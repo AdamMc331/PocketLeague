@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.eventsummary.ui
+package com.adammcneilly.pocketleague.eventsummary
 
 import com.adammcneilly.pocketleague.core.ui.UIText
 

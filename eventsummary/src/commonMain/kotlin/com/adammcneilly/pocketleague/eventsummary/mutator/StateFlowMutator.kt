@@ -76,4 +76,5 @@ fun <Action : Any, State : Any> State.asNoOpStateFlowMutator(): Mutator<Action, 
         override val state: StateFlow<State> = MutableStateFlow(this@asNoOpStateFlowMutator)
     }
 
+@Suppress("TopLevelPropertyNaming")
 private const val DefaultStopTimeoutMillis = 5000L

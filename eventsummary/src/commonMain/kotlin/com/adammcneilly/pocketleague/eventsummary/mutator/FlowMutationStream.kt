@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.scan
  * Use typically involves invoking [type] to identify the [Action] stream being transformed, and
  * subsequently invoking [flow] to perform a custom transformation on the split out [Flow].
  */
+@Suppress("MatchingDeclarationName")
 data class TransformationContext<Action : Any>(
     private val type: Action,
     val backing: Flow<Action>
@@ -103,6 +104,7 @@ fun <Input : Any, Selector : Any, Output : Any> Flow<Input>.splitByType(
             transform = { it }
         )
 
+@Suppress("UndocumentedPublicFunction")
 fun <State : Any> Flow<Mutation<State>>.reduceInto(initialState: State): Flow<State> =
     scan(initialState) { state, mutation -> mutation.mutate(state) }
 

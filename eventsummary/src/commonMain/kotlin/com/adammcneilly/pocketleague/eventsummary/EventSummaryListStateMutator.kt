@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunction")
+
 package com.adammcneilly.pocketleague.eventsummary
 
 import com.adammcneilly.pocketleague.core.models.EventSummary
@@ -20,20 +22,17 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 
+/**
+ * Helper function to create a mutator with default values so that it can be created in xcode easily.
+ */
 fun defaultMutator() = eventSummaryListStateMutator()
 
-// class CoreViewModel {
-//  internal val mutableStateFlow: MutableStateFlow(AppState())
-//  val stateFlow: StateFlow<AppState>
-//      get() = mutableStateFlow
-//
-//  fun onChange(provideNewState: ((AppState) -> Unit)) {
-//      stateFlow.onEach {
-//          provideNewState.invoke(it)
-//      }.launchIn(CoroutineScope(Dispatchers.Main))
-//  }
-// }
-
+/**
+ * An extension function on mutator that has a lambda invoked every time the value changes.
+ * This is needed to support iOS.
+ *
+ * https://youtrack.jetbrains.com/issue/KT-41953
+ */
 fun Mutator<EventSummaryListAction, StateFlow<EventSummaryListViewState>>.onChange(
     onChange: ((EventSummaryListViewState) -> Unit)
 ) {

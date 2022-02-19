@@ -18,3 +18,4 @@ local.properties
 /event-implementation/event.properties
 /core-models-test/build/
 /event-api-test/build/
+/core-ui/build/

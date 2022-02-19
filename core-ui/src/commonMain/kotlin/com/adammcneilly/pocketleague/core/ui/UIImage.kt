@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.core.ui
 
-
 /**
  * This sealed class defines all of the different formats an image can be represented in UI code.
  */

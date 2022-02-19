@@ -8,10 +8,10 @@ import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
 import com.adammcneilly.pocketleague.event.implementation.GetUpcomingEventSummariesUseCaseImpl
 import com.adammcneilly.pocketleague.event.implementation.SmashGGEventService
-import com.adammcneilly.pocketleague.eventsummary.mutator.Mutation
-import com.adammcneilly.pocketleague.eventsummary.mutator.Mutator
-import com.adammcneilly.pocketleague.eventsummary.mutator.stateFlowMutator
-import com.adammcneilly.pocketleague.eventsummary.mutator.toMutationStream
+import com.tunjid.mutator.Mutation
+import com.tunjid.mutator.Mutator
+import com.tunjid.mutator.coroutines.stateFlowMutator
+import com.tunjid.mutator.coroutines.toMutationStream
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.Flow

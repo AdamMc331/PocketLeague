@@ -31,6 +31,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        mavenLocal()
         maven(url = "https://jitpack.io")
         maven(url = "https://packages.jetbrains.team/maven/p/ij/intellij-dependencies")
     }

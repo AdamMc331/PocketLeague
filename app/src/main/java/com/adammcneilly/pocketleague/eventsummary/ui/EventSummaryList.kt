@@ -13,13 +13,14 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
 
 /**
  * Renders a scrollable list of [displayModels] for event summaries.
  */
 @Composable
 fun EventSummaryList(
-    displayModels: List<com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel>,
+    displayModels: List<EventSummaryDisplayModel>,
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -47,7 +48,7 @@ fun EventSummaryList(
 )
 @Composable
 private fun EventSummaryListPreview() {
-    val displayModel = com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel(
+    val displayModel = EventSummaryDisplayModel(
         eventId = "1234",
         startDate = "Nov 12, 2021",
         eventName = "Main Event",

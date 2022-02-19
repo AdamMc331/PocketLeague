@@ -125,8 +125,8 @@ private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
  */
 private fun EventSummary.toSummaryDisplayModel(
     dateTimeHelper: DateTimeHelper,
-): com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel {
-    return com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel(
+): EventSummaryDisplayModel {
+    return EventSummaryDisplayModel(
         eventId = this.id,
         startDate = dateTimeHelper.getEventDayString(this.startDateEpochSeconds),
         tournamentName = this.tournamentName,

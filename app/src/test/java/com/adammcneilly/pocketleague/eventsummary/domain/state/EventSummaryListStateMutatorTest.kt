@@ -38,9 +38,9 @@ class EventSummaryListStateMutatorTest {
         dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDateEpochSeconds, fakeEventDateString)
 
         // Expectations
-        val initialState = com.adammcneilly.pocketleague.eventsummary.EventSummaryListViewState()
+        val initialState = EventSummaryListViewState()
         val expectedEventDisplayModel =
-            com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel(
+            EventSummaryDisplayModel(
                 eventId = fakeEvent.id,
                 startDate = fakeEventDateString,
                 tournamentName = fakeEvent.tournamentName,
@@ -77,7 +77,7 @@ class EventSummaryListStateMutatorTest {
         getUpcomingEventsUseCase.resultsForLeague[leagueSlug] = flowOf(useCaseResult)
 
         // Expectations
-        val initialState = com.adammcneilly.pocketleague.eventsummary.EventSummaryListViewState()
+        val initialState = EventSummaryListViewState()
         val errorState = initialState.copy(
             showLoading = false,
             errorMessage = UIText.StringText(
@@ -106,7 +106,7 @@ class EventSummaryListStateMutatorTest {
         val fakeEventId = "1234"
 
         // Expectations
-        val initialState = com.adammcneilly.pocketleague.eventsummary.EventSummaryListViewState()
+        val initialState = EventSummaryListViewState()
         val selectedState = initialState.copy(
             selectedEventId = fakeEventId,
         )

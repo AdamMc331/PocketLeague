@@ -18,13 +18,14 @@ import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.Material3Card
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
 
 /**
  * Renders a [displayModel] to show a summary of an RLCS event.
  */
 @Composable
 fun EventSummaryListItem(
-    displayModel: com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel,
+    displayModel: EventSummaryDisplayModel,
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -55,7 +56,7 @@ fun EventSummaryListItem(
 
 @Composable
 private fun SummaryInfo(
-    displayModel: com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
+    displayModel: EventSummaryDisplayModel
 ) {
     Column(
         modifier = Modifier
@@ -126,7 +127,7 @@ private fun EventNameLabel(
 )
 @Composable
 private fun EventSummaryListItemPreview() {
-    val displayModel = com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel(
+    val displayModel = EventSummaryDisplayModel(
         eventId = "1234",
         startDate = "Nov 12, 2021",
         eventName = "Main Event",

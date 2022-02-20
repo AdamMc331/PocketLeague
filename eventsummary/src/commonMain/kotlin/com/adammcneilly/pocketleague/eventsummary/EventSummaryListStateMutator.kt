@@ -6,50 +6,22 @@ import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
-import com.adammcneilly.pocketleague.event.implementation.GetUpcomingEventSummariesUseCaseImpl
-import com.adammcneilly.pocketleague.event.implementation.SmashGGEventService
 import com.tunjid.mutator.Mutation
-import com.tunjid.mutator.Mutator
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
-
-/**
- * Helper function to create a mutator with default values so that it can be created in xcode easily.
- */
-fun defaultMutator() = eventSummaryListStateMutator()
-
-/**
- * An extension function on mutator that has a lambda invoked every time the value changes.
- * This is needed to support iOS.
- *
- * https://youtrack.jetbrains.com/issue/KT-41953
- */
-fun Mutator<EventSummaryListAction, StateFlow<EventSummaryListViewState>>.onChange(
-    onChange: ((EventSummaryListViewState) -> Unit)
-) {
-    this.state.onEach {
-        onChange.invoke(it)
-    }.launchIn(MainScope())
-}
 
 /**
  * Creates a [stateFlowMutator] which will consume [EventSummaryListAction] entities and map them
  * to the correct [EventSummaryListViewState].
  */
 fun eventSummaryListStateMutator(
-    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase = GetUpcomingEventSummariesUseCaseImpl(
-        repository = SmashGGEventService(),
-    ),
-    scope: CoroutineScope = MainScope(),
+    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
+    scope: CoroutineScope,
 ) = stateFlowMutator<EventSummaryListAction, EventSummaryListViewState>(
     scope = scope,
     initialState = EventSummaryListViewState(),

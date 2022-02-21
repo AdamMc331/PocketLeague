@@ -33,6 +33,17 @@ class EventSummaryListviewModel: ObservableObject {
     @Published var eventNames: [String] = []
     
     func fetchUpcomingEvents() async {
+        let mutator = EventSummaryListStateMutatorKt.defaultMutator()
+        
+        EventSummaryListStateMutatorKt.onChange(mutator, onChange: { newState in
+            self.eventNames = newState.events.map {
+                $0.tournamentName
+            }
+        })
         eventNames = ["Testy", "McTest"]
+        
+        let action = EventSummaryListAction.FetchUpcomingEvents(leagueSlug: "rlcs-2021-22-1")
+        
+        mutator.accept(action)
     }
 }

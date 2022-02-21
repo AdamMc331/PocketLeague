@@ -1,12 +1,11 @@
-package com.adammcneilly.pocketleague.eventsummary.domain.state
+@file:Suppress("TooManyFunctions")
+
+package com.adammcneilly.pocketleague.eventsummary
 
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
-import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
-import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
-import com.adammcneilly.pocketleague.eventsummary.EventSummaryListViewState
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream
@@ -21,9 +20,8 @@ import kotlinx.coroutines.flow.onStart
  * to the correct [EventSummaryListViewState].
  */
 fun eventSummaryListStateMutator(
-    scope: CoroutineScope,
     getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
-    dateTimeHelper: DateTimeHelper,
+    scope: CoroutineScope,
 ) = stateFlowMutator<EventSummaryListAction, EventSummaryListViewState>(
     scope = scope,
     initialState = EventSummaryListViewState(),
@@ -32,7 +30,6 @@ fun eventSummaryListStateMutator(
             when (val action = type()) {
                 is EventSummaryListAction.FetchUpcomingEvents -> action.flow.fetchEventMutations(
                     getUpcomingEventsUseCase = getUpcomingEventsUseCase,
-                    dateTimeHelper = dateTimeHelper,
                 )
                 is EventSummaryListAction.NavigatedToEventOverview -> action.flow.clearEventMutations()
                 is EventSummaryListAction.SelectedEvent -> action.flow.selectEventMutations()
@@ -43,7 +40,6 @@ fun eventSummaryListStateMutator(
 
 private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations(
     getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
-    dateTimeHelper: DateTimeHelper,
 ): Flow<Mutation<EventSummaryListViewState>> {
     return this.flatMapLatest { action ->
         getUpcomingEventsUseCase
@@ -53,7 +49,6 @@ private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations
                     is GetUpcomingEventSummariesUseCase.Result.Success -> {
                         successMutation(
                             events = result.events,
-                            dateTimeHelper = dateTimeHelper,
                         )
                     }
                     is GetUpcomingEventSummariesUseCase.Result.Error -> {
@@ -78,14 +73,11 @@ private fun errorMutation() = Mutation<EventSummaryListViewState> {
 
 private fun successMutation(
     events: List<EventSummary>,
-    dateTimeHelper: DateTimeHelper,
 ) = Mutation<EventSummaryListViewState> {
     copy(
         showLoading = false,
         events = events.map { event ->
-            event.toSummaryDisplayModel(
-                dateTimeHelper = dateTimeHelper,
-            )
+            event.toSummaryDisplayModel()
         }
     )
 }
@@ -123,12 +115,10 @@ private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
 /**
  * Converts an [EventSummary] domain object to a user friendly [EventSummaryDisplayModel].
  */
-private fun EventSummary.toSummaryDisplayModel(
-    dateTimeHelper: DateTimeHelper,
-): EventSummaryDisplayModel {
+private fun EventSummary.toSummaryDisplayModel(): EventSummaryDisplayModel {
     return EventSummaryDisplayModel(
         eventId = this.id,
-        startDate = dateTimeHelper.getEventDayString(this.startDateEpochSeconds),
+        startDate = "TODO: Start Date",
         tournamentName = this.tournamentName,
         eventName = this.eventName,
         subtitle = this.buildSubtitle(),

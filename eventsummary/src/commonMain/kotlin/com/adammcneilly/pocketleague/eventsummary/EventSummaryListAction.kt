@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.eventsummary.domain.state
+package com.adammcneilly.pocketleague.eventsummary
 
 /**
  * A collection of possible domain actions that can occur within the event summary list feature.

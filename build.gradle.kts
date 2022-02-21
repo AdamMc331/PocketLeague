@@ -29,6 +29,7 @@ apply(from = "buildscripts/githooks.gradle")
 
 allprojects {
     repositories {
+        mavenLocal()
         google()
         mavenCentral()
         maven(url = "https://jitpack.io")

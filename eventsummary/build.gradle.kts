@@ -20,6 +20,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":core-ui"))
+                implementation(project(":event-api"))
+                implementation("com.tunjid.mutator:core:${Versions.mutator}")
+                implementation("com.tunjid.mutator:coroutines:${Versions.mutator}")
             }
         }
         val commonTest by getting {
@@ -43,6 +46,13 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             // iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}-native-mt") {
+                    version {
+                        strictly("${Versions.coroutines}-native-mt")
+                    }
+                }
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting

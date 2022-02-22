@@ -2,10 +2,11 @@
 
 package com.adammcneilly.pocketleague.eventsummary
 
+import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
-import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
+import com.adammcneilly.pocketleague.event.api.EventRepository
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream
@@ -20,7 +21,7 @@ import kotlinx.coroutines.flow.onStart
  * to the correct [EventSummaryListViewState].
  */
 fun eventSummaryListStateMutator(
-    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
+    eventRepository: EventRepository,
     scope: CoroutineScope,
 ) = stateFlowMutator<EventSummaryListAction, EventSummaryListViewState>(
     scope = scope,
@@ -29,7 +30,7 @@ fun eventSummaryListStateMutator(
         actions.toMutationStream {
             when (val action = type()) {
                 is EventSummaryListAction.FetchUpcomingEvents -> action.flow.fetchEventMutations(
-                    getUpcomingEventsUseCase = getUpcomingEventsUseCase,
+                    eventRepository = eventRepository,
                 )
                 is EventSummaryListAction.NavigatedToEventOverview -> action.flow.clearEventMutations()
                 is EventSummaryListAction.SelectedEvent -> action.flow.selectEventMutations()
@@ -39,19 +40,19 @@ fun eventSummaryListStateMutator(
 )
 
 private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations(
-    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
+    eventRepository: EventRepository,
 ): Flow<Mutation<EventSummaryListViewState>> {
     return this.flatMapLatest { action ->
-        getUpcomingEventsUseCase
-            .invoke(action.leagueSlug)
+        eventRepository
+            .fetchUpcomingEventSummaries(action.leagueSlug)
             .map { result ->
                 when (result) {
-                    is GetUpcomingEventSummariesUseCase.Result.Success -> {
+                    is Result.Success -> {
                         successMutation(
-                            events = result.events,
+                            events = result.data,
                         )
                     }
-                    is GetUpcomingEventSummariesUseCase.Result.Error -> {
+                    is Result.Error -> {
                         errorMutation()
                     }
                 }

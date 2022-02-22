@@ -1,13 +1,11 @@
 package com.adammcneilly.pocketleague.core.di
 
-import com.adammcneilly.pocketleague.event.api.EventRepository
 import com.adammcneilly.pocketleague.event.data.EventService
 import com.adammcneilly.pocketleague.event.data.remote.SmashGGEventService
 import com.adammcneilly.pocketleague.teamlist.data.MockTeamListService
 import com.adammcneilly.pocketleague.teamlist.data.TeamListService
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
@@ -27,11 +25,4 @@ abstract class DataModule {
     abstract fun bindEventService(
         eventService: SmashGGEventService,
     ): EventService
-
-    companion object {
-        @Provides
-        fun provideEventRepository(): EventRepository {
-            return com.adammcneilly.pocketleague.event.implementation.SmashGGEventService()
-        }
-    }
 }

@@ -24,7 +24,6 @@ buildscript {
     }
 }
 
-apply(from = "buildscripts/versions.gradle")
 apply(from = "buildscripts/githooks.gradle")
 
 allprojects {

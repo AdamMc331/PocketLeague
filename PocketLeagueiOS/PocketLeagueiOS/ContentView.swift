@@ -13,10 +13,15 @@ struct ContentView: View {
     @StateObject var viewModel = EventSummaryListviewModel()
     
     var body: some View {
-        Text(viewModel.viewState.events.map { $0.tournamentName }.joined(separator: "\n"))
-            .onAppear {
-                viewModel.fetchUpcomingEvents()
-            }
+        let displayModels = viewModel.viewState.events.map {
+            IdentifiableEventSummaryDisplayModel(eventSummary: $0)
+        }
+        List(displayModels) { event in
+            EventSummaryListItem(eventSummary: event.eventSummary)
+        }
+        .onAppear {
+            viewModel.fetchUpcomingEvents()
+        }
     }
 }
 
@@ -24,6 +29,12 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+struct IdentifiableEventSummaryDisplayModel : Identifiable {
+    var id = UUID()
+    
+    var eventSummary: eventsummary.EventSummaryDisplayModel
 }
 
 @MainActor

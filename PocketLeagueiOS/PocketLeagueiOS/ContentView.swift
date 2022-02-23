@@ -13,12 +13,15 @@ struct ContentView: View {
     @StateObject var viewModel = EventSummaryListviewModel()
     
     var body: some View {
-        Text(viewModel.eventNames.joined(separator: "\n"))
-            .onAppear {
-                async {
-                    await viewModel.fetchUpcomingEvents()
-                }
-            }
+        let displayModels = viewModel.viewState.events.map {
+            IdentifiableEventSummaryDisplayModel(eventSummary: $0)
+        }
+        List(displayModels) { event in
+            EventSummaryListItem(eventSummary: event.eventSummary)
+        }
+        .onAppear {
+            viewModel.fetchUpcomingEvents()
+        }
     }
 }
 
@@ -28,19 +31,20 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+struct IdentifiableEventSummaryDisplayModel : Identifiable {
+    var id = UUID()
+    
+    var eventSummary: eventsummary.EventSummaryDisplayModel
+}
+
 @MainActor
 class EventSummaryListviewModel: ObservableObject {
-    @Published var eventNames: [String] = []
+    @Published var viewState: EventSummaryListViewState = EventSummaryListViewState(showLoading: false, events: [], selectedEventId: nil, errorMessage: nil)
     
-    func fetchUpcomingEvents() async {
-        let mutator = EventSummaryListStateMutatorKt.defaultMutator()
-        
-        EventSummaryListStateMutatorKt.onChange(mutator, onChange: { newState in
-            self.eventNames = newState.events.map {
-                $0.tournamentName
-            }
+    func fetchUpcomingEvents() {
+        let mutator = IOSEventSummaryListStateMutatorKt.iOSEventSummaryListStateMutator(onChange: { newState in
+            self.viewState = newState
         })
-        eventNames = ["Testy", "McTest"]
         
         let action = EventSummaryListAction.FetchUpcomingEvents(leagueSlug: "rlcs-2021-22-1")
         

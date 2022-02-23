@@ -15,7 +15,6 @@
 		DD3C9B9027B8404200AAEA7A /* PocketLeagueiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9B8F27B8404200AAEA7A /* PocketLeagueiOSUITests.swift */; };
 		DD3C9B9227B8404200AAEA7A /* PocketLeagueiOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9B9127B8404200AAEA7A /* PocketLeagueiOSUITestsLaunchTests.swift */; };
 		DD3C9BA027B84D1800AAEA7A /* EventSummaryListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9B9F27B84D1800AAEA7A /* EventSummaryListItem.swift */; };
-		DD3C9BA227B84D3C00AAEA7A /* EventSummaryDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C9BA127B84D3C00AAEA7A /* EventSummaryDisplayModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +46,6 @@
 		DD3C9B8F27B8404200AAEA7A /* PocketLeagueiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketLeagueiOSUITests.swift; sourceTree = "<group>"; };
 		DD3C9B9127B8404200AAEA7A /* PocketLeagueiOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketLeagueiOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DD3C9B9F27B84D1800AAEA7A /* EventSummaryListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSummaryListItem.swift; sourceTree = "<group>"; };
-		DD3C9BA127B84D3C00AAEA7A /* EventSummaryDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSummaryDisplayModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +101,6 @@
 				DD3C9B7827B8404200AAEA7A /* Assets.xcassets */,
 				DD3C9B7A27B8404200AAEA7A /* Preview Content */,
 				DD3C9B9F27B84D1800AAEA7A /* EventSummaryListItem.swift */,
-				DD3C9BA127B84D3C00AAEA7A /* EventSummaryDisplayModel.swift */,
 			);
 			path = PocketLeagueiOS;
 			sourceTree = "<group>";
@@ -285,7 +282,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD3C9BA227B84D3C00AAEA7A /* EventSummaryDisplayModel.swift in Sources */,
 				DD3C9B7727B8403F00AAEA7A /* ContentView.swift in Sources */,
 				DD3C9BA027B84D1800AAEA7A /* EventSummaryListItem.swift in Sources */,
 				DD3C9B7527B8403F00AAEA7A /* PocketLeagueiOSApp.swift in Sources */,

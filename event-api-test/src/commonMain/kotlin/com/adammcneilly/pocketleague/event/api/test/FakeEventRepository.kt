@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.event.api.test
 
 import com.adammcneilly.pocketleague.core.data.Result
+import com.adammcneilly.pocketleague.core.models.EventOverview
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.event.api.EventRepository
 import kotlinx.coroutines.flow.Flow
@@ -11,8 +12,13 @@ import kotlinx.coroutines.flow.Flow
  */
 class FakeEventRepository : EventRepository {
     val upcomingEventSummariesByLeagues: MutableMap<String, Flow<Result<List<EventSummary>>>> = mutableMapOf()
+    val eventOverviewsById: MutableMap<String, Flow<Result<EventOverview>>> = mutableMapOf()
 
     override fun fetchUpcomingEventSummaries(leagueSlug: String): Flow<Result<List<EventSummary>>> {
         return upcomingEventSummariesByLeagues[leagueSlug]!!
+    }
+
+    override fun fetchEventOverview(eventId: String): Flow<Result<EventOverview>> {
+        return eventOverviewsById[eventId]!!
     }
 }

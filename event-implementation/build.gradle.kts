@@ -24,7 +24,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":event-api"))
+                api(project(":event-api"))
                 implementation("com.apollographql.apollo3:apollo-runtime:${Versions.apollo}")
             }
         }

@@ -20,7 +20,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":core-ui"))
-                implementation(project(":event-api"))
+                implementation(project(":event-implementation"))
                 implementation("com.tunjid.mutator:core:${Versions.mutator}")
                 implementation("com.tunjid.mutator:coroutines:${Versions.mutator}")
             }

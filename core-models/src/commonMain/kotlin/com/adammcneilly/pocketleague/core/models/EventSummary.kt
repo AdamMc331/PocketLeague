@@ -11,7 +11,8 @@ import kotlinx.datetime.TimeZone
  * @property[tournamentName] The broader name for the tournament being captured, such as
  * "RLCS 2021-22 Season - Winter Split Regional 1 - North America".
  * @property[tournamentImageUrl] An image URL to some image that will be used to identify this tournament.
- * @property[startDateEpochSeconds] The time, in seconds since epoch, that this event begins.
+ * @property[startDate] The local date time, in the [timeZone], that this event will begin.
+ * @property[timeZone] The [TimeZone] that this event is scheduled in, so we can map [startDate] to the proper instant.
  * @property[numEntrants] The number of teams registered or participating in this event. Optional if
  * no one has registered yet.
  * @property[isOnline] True if this is an event taking place digitally, false if in person LAN.

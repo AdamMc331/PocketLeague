@@ -19,6 +19,9 @@ import com.adammcneilly.pocketleague.graphql.fragment.PhaseDetailFragment
 import com.adammcneilly.pocketleague.graphql.fragment.PhaseGroupFragment
 import com.adammcneilly.pocketleague.graphql.fragment.SetSlotFragment
 import com.adammcneilly.pocketleague.graphql.fragment.StandingsPlacementFragment
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import javax.inject.Inject
 
 /**
@@ -29,7 +32,9 @@ class SmashGGModelMapper @Inject constructor() {
      * Convert the supplied [eventOverview] to an [EventOverview] entity.
      */
     fun eventOverviewFragmentToEventOverview(eventOverview: EventOverviewFragment?): EventOverview {
+        val eventTimeZone = TimeZone.UTC
         val startSeconds = (eventOverview?.eventSummaryFragment?.startAt as Int).toLong()
+        val startDate = Instant.fromEpochSeconds(startSeconds).toLocalDateTime(eventTimeZone)
 
         return EventOverview(
             name = eventOverview.eventSummaryFragment.name.orEmpty(),
@@ -44,7 +49,8 @@ class SmashGGModelMapper @Inject constructor() {
                     phase.phaseOrder
                 }
                 .orEmpty(),
-            startDateEpochSeconds = startSeconds,
+            startDate = startDate,
+            timeZone = eventTimeZone,
             standings = Standings(
                 placements = eventOverview.standings
                     ?.nodes

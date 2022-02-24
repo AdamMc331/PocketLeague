@@ -6,6 +6,9 @@ import com.adammcneilly.pocketleague.core.models.Standings
 import com.adammcneilly.pocketleague.event.data.FakeEventService
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.runTest
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.junit.Test
 
 class FetchEventOverviewUseCaseImplTest {
@@ -20,7 +23,8 @@ class FetchEventOverviewUseCaseImplTest {
 
         val testOverview = EventOverview(
             name = "Event Name",
-            startDateEpochSeconds = 123L,
+            startDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
+            timeZone = TimeZone.currentSystemDefault(),
             phases = listOf(),
             standings = Standings(
                 placements = listOf(),

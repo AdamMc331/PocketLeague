@@ -147,7 +147,7 @@ private fun EventOverview.toDisplayModel(
                 },
             )
         },
-        startDate = dateTimeHelper.getEventDayString(this.startDateEpochSeconds),
+        startDate = "TODO: Event Overview Start Date",
         standings = this.standings.toDisplayModel(),
     )
 }

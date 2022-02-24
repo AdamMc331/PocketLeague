@@ -11,6 +11,9 @@ import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 /**
  * A concrete implementation of [EventRepository] that will request information
@@ -61,12 +64,15 @@ class SmashGGEventService : EventRepository {
 
 private fun EventSummaryFragment.toEvent(): EventSummary {
     val startSeconds = (this.startAt as Int).toLong()
+    val eventTimeZone = TimeZone.UTC
+    val startDate = Instant.fromEpochSeconds(startSeconds).toLocalDateTime(eventTimeZone)
 
     return EventSummary(
         id = this.id.orEmpty(),
         eventName = this.name.orEmpty(),
         tournamentName = this.tournament?.name.orEmpty(),
-        startDateEpochSeconds = startSeconds,
+        startDate = startDate,
+        timeZone = eventTimeZone,
         numEntrants = this.numEntrants,
         isOnline = this.isOnline == true,
         tournamentImageUrl = this.tournament?.images?.firstOrNull()?.url.orEmpty(),

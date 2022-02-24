@@ -1,5 +1,8 @@
 package com.adammcneilly.pocketleague.core.models
 
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+
 /**
  * Represents an individual RLCS Event. Example params below.
  *
@@ -18,7 +21,8 @@ data class EventSummary(
     val eventName: String,
     val tournamentName: String,
     val tournamentImageUrl: String,
-    val startDateEpochSeconds: Long,
+    val startDate: LocalDateTime,
+    val timeZone: TimeZone,
     val numEntrants: Int?,
     val isOnline: Boolean,
 )

@@ -70,4 +70,7 @@ object Versions {
 
     // https://developer.android.com/jetpack/androidx/releases/hilt
     const val hilt = "2.41"
+
+    // https://github.com/Kotlin/kotlinx-datetime/releases
+    const val kotlinxDatetime = "0.3.2"
 }

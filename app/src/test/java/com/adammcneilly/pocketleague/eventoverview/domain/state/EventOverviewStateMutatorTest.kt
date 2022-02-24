@@ -21,6 +21,9 @@ import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runTest
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.junit.Test
 
 class EventOverviewStateMutatorTest {
@@ -40,7 +43,8 @@ class EventOverviewStateMutatorTest {
         val fakeEventId = "1234"
         val fakeEvent = EventOverview(
             name = "Event Name",
-            startDateEpochSeconds = 123L,
+            startDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
+            timeZone = TimeZone.currentSystemDefault(),
             phases = listOf(
                 PhaseOverview(
                     id = "Phase ID",
@@ -78,13 +82,13 @@ class EventOverviewStateMutatorTest {
 
         // Mocks
         fetchEventOverviewUseCase.mockResultForEvent(fakeEventId, fakeEventOverviewResult)
-        dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDateEpochSeconds, fakeEventDateString)
+//        dateTimeHelper.mockEventDayStringForDate(fakeEvent.startDateEpochSeconds, fakeEventDateString)
 
         // Expectations
         val initialState = EventOverviewViewState()
         val expectedEventDisplayModel = EventOverviewDisplayModel(
             eventName = fakeEvent.name,
-            startDate = fakeEventDateString,
+            startDate = "TODO: Event Overview Start Date",
             phases = listOf(
                 PhaseDisplayModel(
                     phaseName = "Phase Name",

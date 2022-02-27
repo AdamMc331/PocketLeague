@@ -26,6 +26,7 @@ import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -107,7 +108,7 @@ private fun EventOverviewFragment.toEventOverview(): EventOverview {
 
     return EventOverview(
         name = summaryFragment.name.orEmpty(),
-        startDateEpochSeconds = (summaryFragment.startAt as Int).toLong(),
+        startDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
         phases = this.phaseGroups
             ?.mapNotNull { phaseGroup ->
                 phaseGroup?.phaseGroupFragment?.toPhase()
@@ -122,7 +123,8 @@ private fun EventOverviewFragment.toEventOverview(): EventOverview {
                         .let(StandingsPlacementFragment?::toStandingsPlacement)
                 }
                 .orEmpty()
-        )
+        ),
+        timeZone = TimeZone.UTC,
     )
 }
 

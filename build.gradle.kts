@@ -14,7 +14,7 @@ buildscript {
         classpath("org.jlleitschuh.gradle:ktlint-gradle:10.0.0")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.19.0")
         classpath("com.github.ben-manes:gradle-versions-plugin:0.29.0")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.40.5")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}")
         classpath("org.jetbrains.kotlinx:kover:0.4.1")
         classpath("com.hiya:jacoco-android:0.2")
         classpath("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.12.0")
@@ -24,7 +24,6 @@ buildscript {
     }
 }
 
-apply(from = "buildscripts/versions.gradle")
 apply(from = "buildscripts/githooks.gradle")
 
 allprojects {

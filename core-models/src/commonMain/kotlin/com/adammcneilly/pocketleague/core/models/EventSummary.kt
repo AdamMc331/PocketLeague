@@ -1,5 +1,8 @@
 package com.adammcneilly.pocketleague.core.models
 
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+
 /**
  * Represents an individual RLCS Event. Example params below.
  *
@@ -8,7 +11,8 @@ package com.adammcneilly.pocketleague.core.models
  * @property[tournamentName] The broader name for the tournament being captured, such as
  * "RLCS 2021-22 Season - Winter Split Regional 1 - North America".
  * @property[tournamentImageUrl] An image URL to some image that will be used to identify this tournament.
- * @property[startDateEpochSeconds] The time, in seconds since epoch, that this event begins.
+ * @property[startDate] The local date time, in the [timeZone], that this event will begin.
+ * @property[timeZone] The [TimeZone] that this event is scheduled in, so we can map [startDate] to the proper instant.
  * @property[numEntrants] The number of teams registered or participating in this event. Optional if
  * no one has registered yet.
  * @property[isOnline] True if this is an event taking place digitally, false if in person LAN.
@@ -18,7 +22,8 @@ data class EventSummary(
     val eventName: String,
     val tournamentName: String,
     val tournamentImageUrl: String,
-    val startDateEpochSeconds: Long,
+    val startDate: LocalDateTime,
+    val timeZone: TimeZone,
     val numEntrants: Int?,
     val isOnline: Boolean,
 )

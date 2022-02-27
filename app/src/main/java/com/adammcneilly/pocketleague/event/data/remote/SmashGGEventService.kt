@@ -18,6 +18,9 @@ import com.adammcneilly.pocketleague.swiss.domain.models.SwissRound
 import com.adammcneilly.pocketleague.swiss.domain.models.SwissStage
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import javax.inject.Inject
 
 typealias ApolloBracketType = com.adammcneilly.pocketleague.graphql.type.BracketType
@@ -116,13 +119,16 @@ class SmashGGEventService @Inject constructor(
 }
 
 private fun EventSummaryFragment.toEvent(): EventSummary {
+    val eventTimeZone = TimeZone.UTC
     val startSeconds = (this.startAt as Int).toLong()
+    val startDate = Instant.fromEpochSeconds(startSeconds).toLocalDateTime(eventTimeZone)
 
     return EventSummary(
         id = this.id.orEmpty(),
         eventName = this.name.orEmpty(),
         tournamentName = this.tournament?.name.orEmpty(),
-        startDateEpochSeconds = startSeconds,
+        startDate = startDate,
+        timeZone = eventTimeZone,
         numEntrants = this.numEntrants,
         isOnline = this.isOnline == true,
         tournamentImageUrl = this.tournament?.images?.firstOrNull()?.url.orEmpty(),

@@ -7,7 +7,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("com.apollographql.apollo3").version("3.1.0")
-    id("com.google.devtools.ksp").version("1.6.10-1.0.2")
+    id("com.google.devtools.ksp").version("1.6.10-1.0.4")
 }
 
 apply(from = "../buildscripts/jacoco.gradle")
@@ -73,7 +73,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.0"
+        kotlinCompilerExtensionVersion = Versions.compose
     }
 
     packagingOptions {
@@ -120,7 +120,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
     implementation("androidx.activity:activity-compose:${Versions.activityCompose}")
     implementation("com.github.murgupluoglu:flagkit-android:1.0.2")
-    implementation("com.google.dagger:hilt-android:2.40.5")
+    implementation("com.google.dagger:hilt-android:${Versions.hilt}")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("io.coil-kt:coil-compose:1.4.0")
     implementation("org.jsoup:jsoup:1.14.3")
@@ -137,7 +137,7 @@ dependencies {
     implementation("com.tunjid.mutator:core:0.0.1")
     implementation("com.tunjid.mutator:coroutines:0.0.1")
     ksp("io.github.raamcosta.compose-destinations:ksp:${Versions.composeDestinations}")
-    kapt("com.google.dagger:hilt-compiler:2.40.5")
+    kapt("com.google.dagger:hilt-compiler:${Versions.hilt}")
     testImplementation("junit:junit:${Versions.junit}")
     testImplementation("com.google.truth:truth:${Versions.truth}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")

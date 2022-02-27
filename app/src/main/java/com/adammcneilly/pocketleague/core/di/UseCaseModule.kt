@@ -1,8 +1,10 @@
 package com.adammcneilly.pocketleague.core.di
 
+import com.adammcneilly.pocketleague.event.api.EventRepository
+import com.adammcneilly.pocketleague.event.api.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
+import com.adammcneilly.pocketleague.event.implementation.GetEventOverviewUseCaseImpl
 import com.adammcneilly.pocketleague.event.implementation.GetUpcomingEventSummariesUseCaseImpl
-import com.adammcneilly.pocketleague.event.implementation.SmashGGEventService
 import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCase
 import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCaseImpl
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCase
@@ -32,9 +34,20 @@ abstract class UseCaseModule {
 
     companion object {
         @Provides
-        fun provideGetUpcomingEventSummariesUseCase(): GetUpcomingEventSummariesUseCase {
+        fun provideGetUpcomingEventSummariesUseCase(
+            repository: EventRepository,
+        ): GetUpcomingEventSummariesUseCase {
             return GetUpcomingEventSummariesUseCaseImpl(
-                repository = SmashGGEventService(),
+                repository = repository,
+            )
+        }
+
+        @Provides
+        fun provideGetEventOverviewUseCase(
+            repository: EventRepository,
+        ): GetEventOverviewUseCase {
+            return GetEventOverviewUseCaseImpl(
+                repository = repository,
             )
         }
     }

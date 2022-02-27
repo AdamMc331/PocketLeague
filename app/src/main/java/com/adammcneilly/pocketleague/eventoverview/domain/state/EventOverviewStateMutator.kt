@@ -2,7 +2,6 @@
 
 package com.adammcneilly.pocketleague.eventoverview.domain.state
 
-import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.models.BracketType
 import com.adammcneilly.pocketleague.core.models.EventOverview
 import com.adammcneilly.pocketleague.core.models.PhaseOverview
@@ -12,7 +11,7 @@ import com.adammcneilly.pocketleague.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
-import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCase
+import com.adammcneilly.pocketleague.event.api.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewDisplayModel
 import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewViewState
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
@@ -23,10 +22,9 @@ import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 
 /**
  * A state management controller for the event overview screen that consumes [EventOverviewAction]s
@@ -34,7 +32,7 @@ import kotlinx.coroutines.flow.map
  */
 fun eventOverviewStateMutator(
     scope: CoroutineScope,
-    fetchEventOverviewUseCase: FetchEventOverviewUseCase,
+    getEventOverviewUseCase: GetEventOverviewUseCase,
     dateTimeHelper: DateTimeHelper,
 ) = stateFlowMutator<EventOverviewAction, EventOverviewViewState>(
     scope = scope,
@@ -45,7 +43,7 @@ fun eventOverviewStateMutator(
                 is EventOverviewAction.FetchEventOverview ->
                     action.flow
                         .fetchEventOverviewMutations(
-                            fetchEventOverviewUseCase,
+                            getEventOverviewUseCase,
                             dateTimeHelper,
                         )
                 is EventOverviewAction.SelectPhase -> action.flow.selectPhaseMutations()
@@ -80,60 +78,54 @@ private fun Flow<EventOverviewAction.NavigatedToPhaseDetail>.clearPhaseMutations
 }
 
 private fun Flow<EventOverviewAction.FetchEventOverview>.fetchEventOverviewMutations(
-    fetchEventOverviewUseCase: FetchEventOverviewUseCase,
+    getEventOverviewUseCase: GetEventOverviewUseCase,
     dateTimeHelper: DateTimeHelper,
 ): Flow<Mutation<EventOverviewViewState>> {
     return this.flatMapLatest { action ->
-        flow {
-            emitLoading()
-
-            val result = fetchEventOverviewUseCase.invoke(action.eventId)
-
-            when (result) {
-                is Result.Success -> {
-                    emitSuccess(
-                        event = result.data,
-                        dateTimeHelper = dateTimeHelper,
-                    )
-                }
-                is Result.Error -> {
-                    emitError()
+        getEventOverviewUseCase.invoke(action.eventId)
+            .map { result ->
+                when (result) {
+                    is GetEventOverviewUseCase.Result.Success -> {
+                        successMutation(
+                            event = result.eventOverview,
+                            dateTimeHelper = dateTimeHelper,
+                        )
+                    }
+                    is GetEventOverviewUseCase.Result.Error -> {
+                        errorMutation()
+                    }
                 }
             }
-        }
+            .onStart {
+                emit(loadingMutation())
+            }
     }
 }
 
-private suspend fun FlowCollector<Mutation<EventOverviewViewState>>.emitLoading() = this.emit(
-    Mutation {
-        copy(
-            showLoading = true,
-        )
-    }
-)
+private fun loadingMutation() = Mutation<EventOverviewViewState> {
+    copy(
+        showLoading = true,
+    )
+}
 
-private suspend fun FlowCollector<Mutation<EventOverviewViewState>>.emitError() = this.emit(
-    Mutation {
-        copy(
-            showLoading = false,
-            errorMessage = UIText.StringText(
-                "Fetching event overview failed.",
-            ),
-        )
-    }
-)
+private fun errorMutation() = Mutation<EventOverviewViewState> {
+    copy(
+        showLoading = false,
+        errorMessage = UIText.StringText(
+            "Fetching event overview failed.",
+        ),
+    )
+}
 
-private suspend fun FlowCollector<Mutation<EventOverviewViewState>>.emitSuccess(
+private fun successMutation(
     event: EventOverview,
     dateTimeHelper: DateTimeHelper,
-) = this.emit(
-    Mutation {
-        copy(
-            showLoading = false,
-            event = event.toDisplayModel(dateTimeHelper),
-        )
-    }
-)
+) = Mutation<EventOverviewViewState> {
+    copy(
+        showLoading = false,
+        event = event.toDisplayModel(dateTimeHelper),
+    )
+}
 
 private fun EventOverview.toDisplayModel(
     dateTimeHelper: DateTimeHelper,

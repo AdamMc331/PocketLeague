@@ -4,9 +4,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
+import com.adammcneilly.pocketleague.event.api.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.eventoverview.domain.state.EventOverviewAction
 import com.adammcneilly.pocketleague.eventoverview.domain.state.eventOverviewStateMutator
-import com.adammcneilly.pocketleague.eventoverview.domain.usecases.FetchEventOverviewUseCase
 import com.ramcosta.composedestinations.EventOverviewScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -16,13 +16,13 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class EventOverviewViewModel @Inject constructor(
-    fetchEventOverviewUseCase: FetchEventOverviewUseCase,
+    getEventOverviewUseCase: GetEventOverviewUseCase,
     dateTimeHelper: DateTimeHelper,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     private val mutator = eventOverviewStateMutator(
         scope = viewModelScope,
-        fetchEventOverviewUseCase = fetchEventOverviewUseCase,
+        getEventOverviewUseCase = getEventOverviewUseCase,
         dateTimeHelper = dateTimeHelper,
     )
 

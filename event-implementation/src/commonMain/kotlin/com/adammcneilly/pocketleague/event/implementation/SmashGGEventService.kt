@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.event.implementation
 
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.models.EventSummary
+import com.adammcneilly.pocketleague.event.api.EventListRequestBody
 import com.adammcneilly.pocketleague.event.api.EventRepository
 import com.adammcneilly.pocketleague.event.graphql.EventSummaryListQuery
 import com.adammcneilly.pocketleague.event.graphql.fragment.EventSummaryFragment
@@ -26,16 +27,20 @@ class SmashGGEventService : EventRepository {
         .addHttpInterceptor(SmashGGAuthorizationInterceptor())
         .build()
 
-    override fun fetchUpcomingEventSummaries(leagueSlug: String): Flow<Result<List<EventSummary>>> {
+    override fun fetchEventSummaries(
+        leagueSlug: String,
+        requestBody: EventListRequestBody,
+    ): Flow<Result<List<EventSummary>>> {
         val upcomingFilter = Optional.Present(
             LeagueEventsFilter(
-                upcoming = Optional.Present(true),
+                upcoming = Optional.presentIfNotNull(requestBody.upcoming),
             )
         )
 
         val eventsQuery = Optional.Present(
             LeagueEventsQuery(
                 filter = upcomingFilter,
+                perPage = Optional.presentIfNotNull(requestBody.numEvents),
             )
         )
 

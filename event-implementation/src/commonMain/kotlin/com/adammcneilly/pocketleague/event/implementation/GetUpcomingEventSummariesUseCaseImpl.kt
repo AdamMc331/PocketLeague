@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.event.implementation
 
 import com.adammcneilly.pocketleague.core.data.Result
+import com.adammcneilly.pocketleague.event.api.EventListRequestBody
 import com.adammcneilly.pocketleague.event.api.EventRepository
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
 import kotlinx.coroutines.flow.Flow
@@ -14,8 +15,14 @@ class GetUpcomingEventSummariesUseCaseImpl(
     private val repository: EventRepository,
 ) : GetUpcomingEventSummariesUseCase {
 
-    override fun invoke(leagueSlug: String): Flow<GetUpcomingEventSummariesUseCase.Result> {
-        return repository.fetchUpcomingEventSummaries(leagueSlug).map { repositoryResult ->
+    override fun invoke(
+        leagueSlug: String,
+    ): Flow<GetUpcomingEventSummariesUseCase.Result> {
+        val requestBody = EventListRequestBody(
+            upcoming = true,
+        )
+
+        return repository.fetchEventSummaries(leagueSlug, requestBody).map { repositoryResult ->
             when (repositoryResult) {
                 is Result.Success -> {
                     GetUpcomingEventSummariesUseCase.Result.Success(repositoryResult.data)

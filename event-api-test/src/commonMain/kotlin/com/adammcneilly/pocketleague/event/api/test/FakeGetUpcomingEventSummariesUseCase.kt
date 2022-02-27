@@ -9,7 +9,9 @@ import kotlinx.coroutines.flow.Flow
 class FakeGetUpcomingEventSummariesUseCase : GetUpcomingEventSummariesUseCase {
     val resultsForLeague: MutableMap<String, Flow<GetUpcomingEventSummariesUseCase.Result>> = mutableMapOf()
 
-    override fun invoke(leagueSlug: String): Flow<GetUpcomingEventSummariesUseCase.Result> {
+    override fun invoke(
+        leagueSlug: String,
+    ): Flow<GetUpcomingEventSummariesUseCase.Result> {
         return resultsForLeague[leagueSlug]!!
     }
 }

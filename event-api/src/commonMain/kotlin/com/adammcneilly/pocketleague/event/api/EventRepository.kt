@@ -10,10 +10,11 @@ import kotlinx.coroutines.flow.Flow
  */
 interface EventRepository {
     /**
-     * Given a [leagueSlug], fetch the [EventSummary] entities for all upcoming events.
+     * Given a [leagueSlug], fetch the [EventSummary] entities that match the supplied [requestBody].
      */
-    fun fetchUpcomingEventSummaries(
+    fun fetchEventSummaries(
         leagueSlug: String,
+        requestBody: EventListRequestBody,
     ): Flow<Result<List<EventSummary>>>
 
     /**

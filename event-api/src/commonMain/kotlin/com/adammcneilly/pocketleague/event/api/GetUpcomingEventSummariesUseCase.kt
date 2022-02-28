@@ -11,7 +11,9 @@ interface GetUpcomingEventSummariesUseCase {
     /**
      * @see [GetUpcomingEventSummariesUseCase]
      */
-    fun invoke(leagueSlug: String): Flow<Result>
+    fun invoke(
+        leagueSlug: String,
+    ): Flow<Result>
 
     /**
      * All possible response variations for the [GetUpcomingEventSummariesUseCase].

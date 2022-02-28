@@ -10,7 +10,6 @@ import com.adammcneilly.pocketleague.core.models.SetSlot
 import com.adammcneilly.pocketleague.core.models.Standings
 import com.adammcneilly.pocketleague.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.core.models.Team
-import com.adammcneilly.pocketleague.event.data.remote.ApolloBracketType
 import com.adammcneilly.pocketleague.graphql.fragment.EventEntrantFragment
 import com.adammcneilly.pocketleague.graphql.fragment.EventOverviewFragment
 import com.adammcneilly.pocketleague.graphql.fragment.EventPlayerFragment
@@ -23,6 +22,8 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import javax.inject.Inject
+
+typealias ApolloBracketType = com.adammcneilly.pocketleague.graphql.type.BracketType
 
 /**
  * A helper class that maps smash.gg DTO models to a corresponding Pocket League domain model.

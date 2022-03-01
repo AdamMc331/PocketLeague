@@ -26,6 +26,7 @@ class EventOverviewContentTest {
         composeTestRule.setContent {
             EventOverviewContent(
                 viewState = viewState,
+                onPhaseClicked = {},
             )
         }
 
@@ -46,6 +47,7 @@ class EventOverviewContentTest {
         composeTestRule.setContent {
             EventOverviewContent(
                 viewState = viewState,
+                onPhaseClicked = {},
             )
         }
 
@@ -76,6 +78,7 @@ class EventOverviewContentTest {
         composeTestRule.setContent {
             EventOverviewContent(
                 viewState = viewState,
+                onPhaseClicked = {},
             )
         }
 

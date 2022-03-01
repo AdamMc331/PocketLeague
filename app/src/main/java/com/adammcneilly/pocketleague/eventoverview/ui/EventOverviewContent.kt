@@ -35,6 +35,7 @@ import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
 @Composable
 fun EventOverviewContent(
     viewState: EventOverviewViewState,
+    onPhaseClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -48,6 +49,7 @@ fun EventOverviewContent(
         if (viewState.event != null) {
             SuccessContent(
                 event = viewState.event,
+                onPhaseClicked = onPhaseClicked,
             )
         }
 
@@ -61,7 +63,8 @@ fun EventOverviewContent(
 
 @Composable
 private fun SuccessContent(
-    event: EventOverviewDisplayModel
+    event: EventOverviewDisplayModel,
+    onPhaseClicked: (String) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -86,6 +89,7 @@ private fun SuccessContent(
         if (event.phases.isNotEmpty()) {
             PhaseList(
                 phases = event.phases,
+                onPhaseClicked = onPhaseClicked,
             )
         } else {
             TextCard(
@@ -150,18 +154,18 @@ private fun EventOverviewContentPreview() {
         eventName = "Main Event",
         phases = listOf(
             PhaseDisplayModel(
+                phaseId = "123",
                 phaseName = "Day 1: Swiss Matches",
                 numPools = "1",
                 bracketType = "Custom",
                 numEntrants = "16",
-                onClick = {},
             ),
             PhaseDisplayModel(
+                phaseId = "123",
                 phaseName = "Day 2-3: Single Elimination",
                 numPools = "1",
                 bracketType = "SE",
                 numEntrants = "8",
-                onClick = {},
             ),
         ),
         startDate = "November 12, 2021",
@@ -175,7 +179,10 @@ private fun EventOverviewContentPreview() {
 
     PocketLeagueTheme {
         Surface {
-            EventOverviewContent(viewState)
+            EventOverviewContent(
+                viewState = viewState,
+                onPhaseClicked = {},
+            )
         }
     }
 }
@@ -210,7 +217,10 @@ private fun EventOverviewUpcomingContentPreview() {
 
     PocketLeagueTheme {
         Surface {
-            EventOverviewContent(viewState)
+            EventOverviewContent(
+                viewState = viewState,
+                onPhaseClicked = {},
+            )
         }
     }
 }

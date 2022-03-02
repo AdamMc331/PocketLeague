@@ -14,9 +14,7 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
-import com.adammcneilly.pocketleague.core.ui.LocalWindowSize
 import com.adammcneilly.pocketleague.core.ui.UIImage
-import com.adammcneilly.pocketleague.core.ui.WindowSize
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
 
@@ -33,11 +31,6 @@ fun EventSummaryList(
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val itemWidthPercentage = when (LocalWindowSize.current) {
-        WindowSize.Compact -> COMPACT_ITEM_WIDTH_PERCENTAGE
-        WindowSize.Medium -> MEDIUM_ITEM_WIDTH_PERCENTAGE
-        WindowSize.Expanded -> EXPANDED_ITEM_WIDTH_PERCENTAGE
-    }
 
     LazyColumn(
         modifier = modifier

@@ -73,4 +73,7 @@ object Versions {
 
     // https://github.com/Kotlin/kotlinx-datetime/releases
     const val kotlinxDatetime = "0.3.2"
+
+    // https://developer.android.com/jetpack/androidx/releases/window
+    const val windowManager = "1.0.0"
 }

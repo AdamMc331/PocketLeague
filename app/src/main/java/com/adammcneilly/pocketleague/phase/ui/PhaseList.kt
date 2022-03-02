@@ -17,6 +17,7 @@ import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 @Composable
 fun PhaseList(
     phases: List<PhaseDisplayModel>,
+    onPhaseClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -27,6 +28,7 @@ fun PhaseList(
             Material3Card {
                 PhaseListItem(
                     phase = phase,
+                    onPhaseClicked = onPhaseClicked,
                 )
             }
         }
@@ -45,18 +47,18 @@ fun PhaseList(
 private fun PhaseListPreview() {
     val phases = listOf(
         PhaseDisplayModel(
+            phaseId = "123",
             phaseName = "Day 1: Swiss Matches",
             numPools = "1",
             bracketType = "Custom",
             numEntrants = "16",
-            onClick = {},
         ),
         PhaseDisplayModel(
+            phaseId = "123",
             phaseName = "Day 2-3: Single Elimination",
             numPools = "1",
             bracketType = "SE",
             numEntrants = "8",
-            onClick = {},
         ),
     )
 
@@ -64,6 +66,7 @@ private fun PhaseListPreview() {
         Surface {
             PhaseList(
                 phases = phases,
+                onPhaseClicked = {},
             )
         }
     }

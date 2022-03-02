@@ -39,6 +39,7 @@ fun EventOverviewScreen(
 
     EventOverviewContent(
         viewState = viewState.value,
+        onPhaseClicked = viewModel::phaseClicked,
         modifier = modifier,
     )
 }

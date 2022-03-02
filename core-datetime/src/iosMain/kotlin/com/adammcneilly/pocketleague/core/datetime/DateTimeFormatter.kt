@@ -5,8 +5,14 @@ import kotlinx.datetime.toNSDateComponents
 import platform.Foundation.NSCalendar
 import platform.Foundation.NSDateFormatter
 
+/**
+ * See commonMain documentation.
+ */
 actual class DateTimeFormatter actual constructor() {
 
+    /**
+     * See commonMain documentation.
+     */
     actual fun formatLocalDate(
         localDate: LocalDate,
         formatPattern: String,

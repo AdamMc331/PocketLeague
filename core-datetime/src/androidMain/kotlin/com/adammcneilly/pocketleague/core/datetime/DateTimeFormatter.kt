@@ -4,7 +4,14 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.toJavaLocalDate
 import java.time.format.DateTimeFormatter
 
+/**
+ * See commonMain documentation.
+ */
 actual class DateTimeFormatter actual constructor() {
+
+    /**
+     * See commonMain documentation.
+     */
     actual fun formatLocalDate(
         localDate: LocalDate,
         formatPattern: String,

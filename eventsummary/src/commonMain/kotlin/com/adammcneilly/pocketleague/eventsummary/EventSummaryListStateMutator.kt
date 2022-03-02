@@ -2,6 +2,7 @@
 
 package com.adammcneilly.pocketleague.eventsummary
 
+import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
@@ -118,7 +119,10 @@ private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
 private fun EventSummary.toSummaryDisplayModel(): EventSummaryDisplayModel {
     return EventSummaryDisplayModel(
         eventId = this.id,
-        startDate = "TODO: Start Date",
+        startDate = DateTimeFormatter().formatLocalDateTime(
+            this.startDate,
+            EventSummaryDisplayModel.START_DATE_FORMAT,
+        ).orEmpty(),
         tournamentName = this.tournamentName,
         eventName = this.eventName,
         subtitle = this.buildSubtitle(),

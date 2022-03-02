@@ -12,4 +12,9 @@ data class EventSummaryDisplayModel(
     val eventName: String,
     val subtitle: String?,
     val image: UIImage?,
-)
+) {
+
+    companion object {
+        const val START_DATE_FORMAT = "MMM dd, yyyy"
+    }
+}

@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.core.datetime
 
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.toJavaLocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.toJavaLocalDateTime
 import java.time.format.DateTimeFormatter
 
 /**
@@ -12,12 +12,12 @@ actual class DateTimeFormatter actual constructor() {
     /**
      * See commonMain documentation.
      */
-    actual fun formatLocalDate(
-        localDate: LocalDate,
+    actual fun formatLocalDateTime(
+        localDateTime: LocalDateTime,
         formatPattern: String,
     ): String? {
         val dateTimeFormatter = DateTimeFormatter.ofPattern(formatPattern)
 
-        return localDate.toJavaLocalDate().format(dateTimeFormatter)
+        return localDateTime.toJavaLocalDateTime().format(dateTimeFormatter)
     }
 }

@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.core.datetime
 
-import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.toNSDateComponents
 import platform.Foundation.NSCalendar
 import platform.Foundation.NSDateFormatter
@@ -13,11 +13,11 @@ actual class DateTimeFormatter actual constructor() {
     /**
      * See commonMain documentation.
      */
-    actual fun formatLocalDate(
-        localDate: LocalDate,
+    actual fun formatLocalDateTime(
+        localDateTime: LocalDateTime,
         formatPattern: String,
     ): String? {
-        val nsComponents = localDate.toNSDateComponents()
+        val nsComponents = localDateTime.toNSDateComponents()
         val nsDate = NSCalendar.currentCalendar.dateFromComponents(nsComponents)
 
         val formatter = NSDateFormatter().apply {

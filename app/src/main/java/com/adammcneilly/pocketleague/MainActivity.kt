@@ -8,13 +8,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
-import com.adammcneilly.pocketleague.core.ui.LocalWindowSize
-import com.adammcneilly.pocketleague.core.ui.rememberWindowSizeClass
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.statusBarsPadding
@@ -35,20 +32,16 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            val windowSize = rememberWindowSizeClass()
+            PocketLeagueTheme {
+                SetSystemBarsTransparent()
 
-            CompositionLocalProvider(LocalWindowSize provides windowSize) {
-                PocketLeagueTheme {
-                    SetSystemBarsTransparent()
-
-                    ProvideWindowInsets {
-                        Scaffold { paddingValues ->
-                            DestinationsNavHost(
-                                modifier = Modifier
-                                    .padding(paddingValues)
-                                    .statusBarsPadding(),
-                            )
-                        }
+                ProvideWindowInsets {
+                    Scaffold { paddingValues ->
+                        DestinationsNavHost(
+                            modifier = Modifier
+                                .padding(paddingValues)
+                                .statusBarsPadding(),
+                        )
                     }
                 }
             }

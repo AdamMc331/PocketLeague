@@ -2,7 +2,6 @@ package com.adammcneilly.pocketleague.core.ui
 
 import android.app.Activity
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.toComposeRect
@@ -62,5 +61,3 @@ fun getWindowSizeClass(windowDpSize: DpSize): WindowSize = when {
     windowDpSize.width < 840.dp -> WindowSize.Medium
     else -> WindowSize.Expanded
 }
-
-val LocalWindowSize = compositionLocalOf { WindowSize.Compact }

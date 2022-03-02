@@ -10,12 +10,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
-import com.adammcneilly.pocketleague.core.ui.LocalWindowSize
 import com.adammcneilly.pocketleague.core.ui.UIImage
-import com.adammcneilly.pocketleague.core.ui.WindowSize
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
 
@@ -32,15 +31,9 @@ fun EventSummaryList(
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val itemWidthPercentage = when (LocalWindowSize.current) {
-        WindowSize.Compact -> COMPACT_ITEM_WIDTH_PERCENTAGE
-        WindowSize.Medium -> MEDIUM_ITEM_WIDTH_PERCENTAGE
-        WindowSize.Expanded -> EXPANDED_ITEM_WIDTH_PERCENTAGE
-    }
-
     LazyColumn(
         modifier = modifier
-            .fillMaxWidth(),
+            .adaptiveWidth(),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -50,7 +43,7 @@ fun EventSummaryList(
                 displayModel = displayModel,
                 eventClicked = eventClicked,
                 modifier = Modifier
-                    .fillMaxWidth(fraction = itemWidthPercentage),
+                    .fillMaxWidth(),
             )
         }
     }
@@ -64,6 +57,21 @@ fun EventSummaryList(
     name = "Day Mode",
     uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
+@Preview(
+    name = "Compact",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    widthDp = 500,
+)
+@Preview(
+    name = "Medium",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    widthDp = 800,
+)
+@Preview(
+    name = "Expanded",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    widthDp = 900,
+)
 @Composable
 private fun EventSummaryListPreview() {
     val displayModel = EventSummaryDisplayModel(
@@ -75,7 +83,7 @@ private fun EventSummaryListPreview() {
         image = UIImage.AndroidResource(R.drawable.us),
     )
 
-    val displayModels = (1..10).map {
+    val displayModels = (1..2).map {
         displayModel
     }
 
@@ -88,3 +96,28 @@ private fun EventSummaryListPreview() {
         }
     }
 }
+
+private fun Modifier.adaptiveWidth(): Modifier = this
+    .layout { measurable, constraints ->
+        val widthRatio = when {
+            constraints.maxWidth < 600.dp.toPx() -> COMPACT_ITEM_WIDTH_PERCENTAGE
+            constraints.maxWidth < 840.dp.toPx() -> MEDIUM_ITEM_WIDTH_PERCENTAGE
+            else -> EXPANDED_ITEM_WIDTH_PERCENTAGE
+        }
+
+        val modifiedWidth = constraints.maxWidth * widthRatio
+
+        val modifiedConstraints = constraints.copy(
+            minWidth = modifiedWidth.toInt(),
+            maxWidth = modifiedWidth.toInt(),
+        )
+
+        val placeable = measurable.measure(modifiedConstraints)
+
+        val totalMargins = constraints.maxWidth - modifiedWidth
+        val startMargin = totalMargins / 2
+
+        layout(constraints.maxWidth, placeable.height) {
+            placeable.place(x = startMargin.toInt(), y = 0)
+        }
+    }

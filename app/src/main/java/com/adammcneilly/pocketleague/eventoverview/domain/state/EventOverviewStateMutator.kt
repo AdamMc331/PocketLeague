@@ -10,7 +10,6 @@ import com.adammcneilly.pocketleague.core.models.Standings
 import com.adammcneilly.pocketleague.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
-import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
 import com.adammcneilly.pocketleague.event.api.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewDisplayModel
 import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewViewState
@@ -33,7 +32,6 @@ import kotlinx.coroutines.flow.onStart
 fun eventOverviewStateMutator(
     scope: CoroutineScope,
     getEventOverviewUseCase: GetEventOverviewUseCase,
-    dateTimeHelper: DateTimeHelper,
 ) = stateFlowMutator<EventOverviewAction, EventOverviewViewState>(
     scope = scope,
     initialState = EventOverviewViewState(),
@@ -44,7 +42,6 @@ fun eventOverviewStateMutator(
                     action.flow
                         .fetchEventOverviewMutations(
                             getEventOverviewUseCase,
-                            dateTimeHelper,
                         )
                 is EventOverviewAction.SelectPhase -> action.flow.selectPhaseMutations()
                 is EventOverviewAction.NavigatedToPhaseDetail -> action.flow.clearPhaseMutations()
@@ -79,7 +76,6 @@ private fun Flow<EventOverviewAction.NavigatedToPhaseDetail>.clearPhaseMutations
 
 private fun Flow<EventOverviewAction.FetchEventOverview>.fetchEventOverviewMutations(
     getEventOverviewUseCase: GetEventOverviewUseCase,
-    dateTimeHelper: DateTimeHelper,
 ): Flow<Mutation<EventOverviewViewState>> {
     return this.flatMapLatest { action ->
         getEventOverviewUseCase.invoke(action.eventId)
@@ -88,7 +84,6 @@ private fun Flow<EventOverviewAction.FetchEventOverview>.fetchEventOverviewMutat
                     is GetEventOverviewUseCase.Result.Success -> {
                         successMutation(
                             event = result.eventOverview,
-                            dateTimeHelper = dateTimeHelper,
                         )
                     }
                     is GetEventOverviewUseCase.Result.Error -> {
@@ -119,35 +114,25 @@ private fun errorMutation() = Mutation<EventOverviewViewState> {
 
 private fun successMutation(
     event: EventOverview,
-    dateTimeHelper: DateTimeHelper,
 ) = Mutation<EventOverviewViewState> {
     copy(
         showLoading = false,
-        event = event.toDisplayModel(dateTimeHelper),
+        event = event.toDisplayModel(),
     )
 }
 
-private fun EventOverview.toDisplayModel(
-    dateTimeHelper: DateTimeHelper,
-): EventOverviewDisplayModel {
+private fun EventOverview.toDisplayModel(): EventOverviewDisplayModel {
     return EventOverviewDisplayModel(
         eventName = this.name,
-        phases = this.phases.map { phase ->
-            phase.toDisplayModel(
-                onClick = {
-                    // Coming soon
-                },
-            )
-        },
+        phases = this.phases.map(PhaseOverview::toDisplayModel),
         startDate = "TODO: Event Overview Start Date",
         standings = this.standings.toDisplayModel(),
     )
 }
 
-private fun PhaseOverview.toDisplayModel(
-    onClick: () -> Unit,
-): PhaseDisplayModel {
+private fun PhaseOverview.toDisplayModel(): PhaseDisplayModel {
     return PhaseDisplayModel(
+        phaseId = this.id,
         phaseName = this.name,
         numPools = this.numPools.toString(),
         bracketType = when (this.bracketType) {
@@ -157,13 +142,12 @@ private fun PhaseOverview.toDisplayModel(
             BracketType.UNKNOWN -> "Unknown"
         },
         numEntrants = this.numEntrants.toString(),
-        onClick = onClick,
     )
 }
 
 private fun Standings.toDisplayModel(): StandingsDisplayModel {
     return StandingsDisplayModel(
-        placements = this.placements.map(com.adammcneilly.pocketleague.core.models.StandingsPlacement::toDisplayModel)
+        placements = this.placements.map(StandingsPlacement::toDisplayModel)
     )
 }
 

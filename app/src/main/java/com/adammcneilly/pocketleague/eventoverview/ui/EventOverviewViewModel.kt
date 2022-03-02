@@ -3,7 +3,6 @@ package com.adammcneilly.pocketleague.eventoverview.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.adammcneilly.pocketleague.core.utils.DateTimeHelper
 import com.adammcneilly.pocketleague.event.api.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.eventoverview.domain.state.EventOverviewAction
 import com.adammcneilly.pocketleague.eventoverview.domain.state.eventOverviewStateMutator
@@ -17,13 +16,11 @@ import javax.inject.Inject
 @HiltViewModel
 class EventOverviewViewModel @Inject constructor(
     getEventOverviewUseCase: GetEventOverviewUseCase,
-    dateTimeHelper: DateTimeHelper,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     private val mutator = eventOverviewStateMutator(
         scope = viewModelScope,
         getEventOverviewUseCase = getEventOverviewUseCase,
-        dateTimeHelper = dateTimeHelper,
     )
 
     val viewState = mutator.state
@@ -36,6 +33,15 @@ class EventOverviewViewModel @Inject constructor(
         )
 
         mutator.accept(fetchAction)
+    }
+
+    /**
+     * Triggered whenever the user clicks on a phase section with the given [phaseId].
+     */
+    fun phaseClicked(phaseId: String) {
+        val selectAction = EventOverviewAction.SelectPhase(phaseId = phaseId)
+
+        mutator.accept(selectAction)
     }
 
     /**

@@ -19,6 +19,10 @@ import com.adammcneilly.pocketleague.core.ui.WindowSize
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
 
+private const val COMPACT_ITEM_WIDTH_PERCENTAGE = 1F
+private const val MEDIUM_ITEM_WIDTH_PERCENTAGE = 0.75F
+private const val EXPANDED_ITEM_WIDTH_PERCENTAGE = 0.5F
+
 /**
  * Renders a scrollable list of [displayModels] for event summaries.
  */
@@ -29,9 +33,9 @@ fun EventSummaryList(
     modifier: Modifier = Modifier,
 ) {
     val itemWidthPercentage = when (LocalWindowSize.current) {
-        WindowSize.Compact -> 1F
-        WindowSize.Medium -> 0.75F
-        WindowSize.Expanded -> 0.5F
+        WindowSize.Compact -> COMPACT_ITEM_WIDTH_PERCENTAGE
+        WindowSize.Medium -> MEDIUM_ITEM_WIDTH_PERCENTAGE
+        WindowSize.Expanded -> EXPANDED_ITEM_WIDTH_PERCENTAGE
     }
 
     LazyColumn(

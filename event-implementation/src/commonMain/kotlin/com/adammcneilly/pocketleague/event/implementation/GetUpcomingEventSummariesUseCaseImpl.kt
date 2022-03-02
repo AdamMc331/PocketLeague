@@ -19,7 +19,7 @@ class GetUpcomingEventSummariesUseCaseImpl(
         leagueSlug: String,
     ): Flow<GetUpcomingEventSummariesUseCase.Result> {
         val requestBody = EventListRequestBody(
-            upcoming = true,
+            upcoming = false,
         )
 
         return repository.fetchEventSummaries(leagueSlug, requestBody).map { repositoryResult ->

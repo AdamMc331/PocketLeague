@@ -136,6 +136,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-pager:${Versions.accompanist}")
     implementation("com.tunjid.mutator:core:0.0.1")
     implementation("com.tunjid.mutator:coroutines:0.0.1")
+    implementation("androidx.window:window:${Versions.windowManager}")
     ksp("io.github.raamcosta.compose-destinations:ksp:${Versions.composeDestinations}")
     kapt("com.google.dagger:hilt-compiler:${Versions.hilt}")
     testImplementation("junit:junit:${Versions.junit}")

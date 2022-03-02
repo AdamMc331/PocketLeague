@@ -3,15 +3,19 @@ package com.adammcneilly.pocketleague.eventsummary.ui
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
+import com.adammcneilly.pocketleague.core.ui.LocalWindowSize
 import com.adammcneilly.pocketleague.core.ui.UIImage
+import com.adammcneilly.pocketleague.core.ui.WindowSize
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
 
@@ -24,15 +28,25 @@ fun EventSummaryList(
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val itemWidthPercentage = when (LocalWindowSize.current) {
+        WindowSize.Compact -> 1F
+        WindowSize.Medium -> 0.75F
+        WindowSize.Expanded -> 0.5F
+    }
+
     LazyColumn(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxWidth(),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         items(displayModels) { displayModel ->
             EventSummaryListItem(
                 displayModel = displayModel,
                 eventClicked = eventClicked,
+                modifier = Modifier
+                    .fillMaxWidth(fraction = itemWidthPercentage),
             )
         }
     }

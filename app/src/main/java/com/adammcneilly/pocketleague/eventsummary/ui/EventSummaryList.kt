@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.ExcludeFromJacocoGeneratedReport
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
@@ -74,6 +75,7 @@ fun EventSummaryList(
     widthDp = 900,
 )
 @Composable
+@ExcludeFromJacocoGeneratedReport
 private fun EventSummaryListPreview() {
     val displayModel = EventSummaryDisplayModel(
         eventId = "1234",

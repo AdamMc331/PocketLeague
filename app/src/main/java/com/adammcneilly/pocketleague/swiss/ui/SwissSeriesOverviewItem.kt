@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.core.ui.Material3VerticalDivider
 import com.adammcneilly.pocketleague.core.ui.UIImage
-import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.seriesoverview.ui.SeriesOverviewDisplayModel
 import com.adammcneilly.pocketleague.teamoverview.ui.TeamOverviewDisplayModel
 

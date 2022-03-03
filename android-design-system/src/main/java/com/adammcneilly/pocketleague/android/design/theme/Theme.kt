@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.ui.theme
+package com.adammcneilly.pocketleague.android.design.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

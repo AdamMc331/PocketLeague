@@ -12,7 +12,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
-import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController

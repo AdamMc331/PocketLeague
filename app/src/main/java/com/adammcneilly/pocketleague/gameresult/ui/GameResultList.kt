@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.adammcneilly.pocketleague.core.ui.Material3Divider
-import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 
 /**
  * Shows a list of [games] between two teams. Could be used for a bracket series, swiss series, etc.

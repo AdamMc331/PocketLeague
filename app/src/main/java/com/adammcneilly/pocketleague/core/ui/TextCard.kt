@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.adammcneilly.pocketleague.ExcludeFromJacocoGeneratedReport
-import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 
 private const val CARD_ASPECT_RATIO = 4.0F
 

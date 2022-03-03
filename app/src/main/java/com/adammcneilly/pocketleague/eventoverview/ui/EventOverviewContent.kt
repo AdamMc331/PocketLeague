@@ -22,7 +22,7 @@ import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIn
 import com.adammcneilly.pocketleague.core.ui.Material3Card
 import com.adammcneilly.pocketleague.core.ui.TextCard
 import com.adammcneilly.pocketleague.core.ui.getValue
-import com.adammcneilly.pocketleague.core.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
 import com.adammcneilly.pocketleague.phase.ui.PhaseList
 import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel

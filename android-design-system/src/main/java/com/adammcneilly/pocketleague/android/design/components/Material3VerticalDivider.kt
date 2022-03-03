@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.ui
+package com.adammcneilly.pocketleague.android.design.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

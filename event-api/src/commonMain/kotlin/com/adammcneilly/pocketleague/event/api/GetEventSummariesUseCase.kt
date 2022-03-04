@@ -4,19 +4,29 @@ import com.adammcneilly.pocketleague.core.models.EventSummary
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Use case to request a list of upcoming event summaries
+ * Use case to request a list of event summaries.
  */
-interface GetUpcomingEventSummariesUseCase {
+interface GetEventSummariesUseCase {
 
     /**
-     * @see [GetUpcomingEventSummariesUseCase]
+     * @see [GetEventSummariesUseCase]
      */
     fun invoke(
         leagueSlug: String,
+        request: Request,
     ): Flow<Result>
 
     /**
-     * All possible response variations for the [GetUpcomingEventSummariesUseCase].
+     * Data class to define all of the request parameters for fetching a list of event summaries.
+     *
+     * @param[upcoming] True if we want to request the upcoming events, false otherwise.
+     */
+    data class Request(
+        val upcoming: Boolean,
+    )
+
+    /**
+     * All possible response variations for the [GetEventSummariesUseCase].
      */
     sealed class Result {
         /**

@@ -31,15 +31,15 @@ fun EventSummaryListContent(
             CenteredMaterial3CircularProgressIndicator()
         }
 
-        if (viewState.events.isNotEmpty()) {
-            Column {
-                EventSummaryListSortToggle(
-                    selectedSort = viewState.currentSort,
-                    onSortChanged = onSortChanged,
-                    modifier = Modifier
-                        .padding(16.dp),
-                )
+        Column {
+            EventSummaryListSortToggle(
+                selectedSort = viewState.currentSort,
+                onSortChanged = onSortChanged,
+                modifier = Modifier
+                    .padding(16.dp),
+            )
 
+            if (viewState.events.isNotEmpty()) {
                 EventSummaryList(
                     displayModels = viewState.events,
                     eventClicked = eventClicked,

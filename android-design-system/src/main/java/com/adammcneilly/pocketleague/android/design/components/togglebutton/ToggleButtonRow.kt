@@ -12,7 +12,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.adammcneilly.pocketleague.android.design.adaptiveWidth
+import com.adammcneilly.pocketleague.android.design.getValue
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.core.ui.UIText
 
 /**
  * A row of [ToggleButton] entities that allows the user to select one of the supplied [options].
@@ -27,6 +29,7 @@ import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 @Composable
 fun ToggleButtonRow(
     options: List<ToggleButtonOption>,
+    onOptionSelected: (ToggleButtonOption) -> Unit,
     modifier: Modifier = Modifier,
     selectedOption: ToggleButtonOption = options.first(),
     cornerRadiusPercent: Int = 50,
@@ -64,8 +67,10 @@ fun ToggleButtonRow(
 
             ToggleButton(
                 shape = shapeToUse,
-                onClick = {},
-                text = option.text,
+                onClick = {
+                    onOptionSelected.invoke(option)
+                },
+                text = option.text.getValue(),
                 selected = isOptionSelected,
                 modifier = Modifier
                     .adjustOffsetZIndex(
@@ -96,12 +101,16 @@ private fun Modifier.adjustOffsetZIndex(
 
     return when (indexInRow) {
         0 -> {
-            this.offset(0.dp, 0.dp).zIndex(zIndex)
+            this
+                .offset(0.dp, 0.dp)
+                .zIndex(zIndex)
         }
         else -> {
             val offset = -1 * indexInRow
 
-            this.offset(offset.dp, 0.dp).zIndex(zIndex)
+            this
+                .offset(offset.dp, 0.dp)
+                .zIndex(zIndex)
         }
     }
 }
@@ -126,8 +135,8 @@ private fun Modifier.adjustOffsetZIndex(
 )
 @Composable
 private fun ToggleButtonRowPreview() {
-    val upcoming = ToggleButtonOption("Upcoming")
-    val past = ToggleButtonOption("Past")
+    val upcoming = ToggleButtonOption(UIText.StringText("Upcoming"))
+    val past = ToggleButtonOption(UIText.StringText("Past"))
 
     PocketLeagueTheme {
         Surface {
@@ -136,6 +145,7 @@ private fun ToggleButtonRowPreview() {
                 selectedOption = upcoming,
                 modifier = Modifier
                     .padding(16.dp),
+                onOptionSelected = {},
             )
         }
     }

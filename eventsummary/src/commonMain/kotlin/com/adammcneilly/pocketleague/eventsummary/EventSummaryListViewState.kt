@@ -10,4 +10,5 @@ data class EventSummaryListViewState(
     val events: List<EventSummaryDisplayModel> = emptyList(),
     val selectedEventId: String? = null,
     val errorMessage: UIText? = null,
+    val currentSort: EventSummaryListSort = EventSummaryListSort.UPCOMING,
 )

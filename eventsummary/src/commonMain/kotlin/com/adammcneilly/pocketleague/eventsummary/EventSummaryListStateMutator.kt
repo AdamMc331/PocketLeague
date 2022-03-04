@@ -34,10 +34,19 @@ fun eventSummaryListStateMutator(
                 )
                 is EventSummaryListAction.NavigatedToEventOverview -> action.flow.clearEventMutations()
                 is EventSummaryListAction.SelectedEvent -> action.flow.selectEventMutations()
+                is EventSummaryListAction.SelectedSort -> action.flow.selectSortMutations()
             }
         }
     }
 )
+
+private fun Flow<EventSummaryListAction.SelectedSort>.selectSortMutations() = this.map { action ->
+    Mutation<EventSummaryListViewState> {
+        copy(
+            currentSort = action.sort,
+        )
+    }
+}
 
 private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations(
     getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,

@@ -1,8 +1,9 @@
-package com.adammcneilly.pocketleague.core.ui
+package com.adammcneilly.pocketleague.android.design
 
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.adammcneilly.pocketleague.core.ui.UIText
 
 /**
  * Given a [context], look up the String res if necessary, or resolve it right from the

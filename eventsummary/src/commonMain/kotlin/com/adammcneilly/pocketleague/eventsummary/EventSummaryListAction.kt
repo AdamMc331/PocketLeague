@@ -19,6 +19,13 @@ sealed class EventSummaryListAction {
     ) : EventSummaryListAction()
 
     /**
+     * Action fired when the user changes their sort selection for an event summary list.
+     */
+    data class SelectedSort(
+        val sort: EventSummaryListSort,
+    ) : EventSummaryListAction()
+
+    /**
      * Once we know the user has navigated to an event overview, we can clear the selected event
      * to avoid navigating again.
      */

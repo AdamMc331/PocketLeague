@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryListAction
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryListSort
 import com.adammcneilly.pocketleague.eventsummary.eventSummaryListStateMutator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -45,6 +46,15 @@ class EventSummaryListViewModel @Inject constructor(
      */
     fun eventClicked(eventId: String) {
         val action = EventSummaryListAction.SelectedEvent(eventId)
+
+        mutator.accept(action)
+    }
+
+    /**
+     * Whenever the user toggles the sort option for the summary list.
+     */
+    fun sortChanged(sort: EventSummaryListSort) {
+        val action = EventSummaryListAction.SelectedSort(sort)
 
         mutator.accept(action)
     }

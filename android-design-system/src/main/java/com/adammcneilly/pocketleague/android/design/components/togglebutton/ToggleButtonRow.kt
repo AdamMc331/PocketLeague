@@ -20,6 +20,7 @@ import com.adammcneilly.pocketleague.core.ui.UIText
  * A row of [ToggleButton] entities that allows the user to select one of the supplied [options].
  *
  * @param[options] All possible selections the user can make in this button row.
+ * @param[onOptionSelected] A callback triggered whenever we want to change the [selectedOption].
  * @param[modifier] An optional [Modifier] to configure this button row.
  * @param[selectedOption] The currently selected choice by the user. Defaults to the first item in
  * the [options] list.

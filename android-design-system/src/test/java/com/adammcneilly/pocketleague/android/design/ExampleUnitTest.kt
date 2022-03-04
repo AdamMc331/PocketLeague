@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.android.design
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**

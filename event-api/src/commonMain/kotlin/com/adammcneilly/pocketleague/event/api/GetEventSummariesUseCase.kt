@@ -19,7 +19,7 @@ interface GetEventSummariesUseCase {
     /**
      * Data class to define all of the request parameters for fetching a list of event summaries.
      *
-     * @param[upcoming] True if we want to request the upcoming events, false otherwise.
+     * @property[upcoming] True if we want to request the upcoming events, false otherwise.
      */
     data class Request(
         val upcoming: Boolean,

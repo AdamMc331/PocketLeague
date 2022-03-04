@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.ExcludeFromJacocoGeneratedReport
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.design.adaptiveWidth
+import com.adammcneilly.pocketleague.android.design.components.togglebutton.ToggleButtonOption
+import com.adammcneilly.pocketleague.android.design.components.togglebutton.ToggleButtonRow
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
@@ -28,7 +30,6 @@ fun EventSummaryList(
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-
     LazyColumn(
         modifier = modifier
             .adaptiveWidth(),
@@ -36,6 +37,10 @@ fun EventSummaryList(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        item {
+            EventSummaryListSortToggle()
+        }
+
         items(displayModels) { displayModel ->
             EventSummaryListItem(
                 displayModel = displayModel,
@@ -47,6 +52,16 @@ fun EventSummaryList(
     }
 }
 
+@Composable
+private fun EventSummaryListSortToggle() {
+    val upcoming = ToggleButtonOption("Upcoming")
+    val past = ToggleButtonOption("Past")
+
+    ToggleButtonRow(
+        options = listOf(upcoming, past),
+    )
+}
+
 @Preview(
     name = "Night Mode",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
@@ -54,11 +69,6 @@ fun EventSummaryList(
 @Preview(
     name = "Day Mode",
     uiMode = Configuration.UI_MODE_NIGHT_NO,
-)
-@Preview(
-    name = "Compact",
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    widthDp = 500,
 )
 @Preview(
     name = "Medium",

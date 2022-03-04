@@ -13,7 +13,14 @@ import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 
 /**
- * TBD
+ * A single button component that appears inside of our [ToggleButtonRow].
+ *
+ * @param[shape] The bounding shape of the button. This will be rounded at the ends, but flat in the
+ * middle.
+ * @param[onClick] A callback invoked when the user clicks on this button.
+ * @param[text] The text to display inside this button.
+ * @param[selected] True if this is the currently selected option in the button row, false otherwise.
+ * @param[modifier] An optional [Modifier] to configure this button.
  */
 @Composable
 fun ToggleButton(

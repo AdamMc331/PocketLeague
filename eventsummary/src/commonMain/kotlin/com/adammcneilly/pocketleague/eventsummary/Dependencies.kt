@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.eventsummary
 
 import com.adammcneilly.pocketleague.event.api.EventRepository
-import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
-import com.adammcneilly.pocketleague.event.implementation.GetUpcomingEventSummariesUseCaseImpl
+import com.adammcneilly.pocketleague.event.api.GetEventSummariesUseCase
+import com.adammcneilly.pocketleague.event.implementation.GetEventSummariesUseCaseImpl
 import com.adammcneilly.pocketleague.event.implementation.SmashGGEventService
 
 /**
@@ -12,8 +12,8 @@ internal object Dependencies {
     val eventRepository: EventRepository
         get() = SmashGGEventService()
 
-    val getUpcomingEventSummariesUseCase: GetUpcomingEventSummariesUseCase
-        get() = GetUpcomingEventSummariesUseCaseImpl(
+    val getEventSummariesUseCase: GetEventSummariesUseCase
+        get() = GetEventSummariesUseCaseImpl(
             repository = eventRepository,
         )
 }

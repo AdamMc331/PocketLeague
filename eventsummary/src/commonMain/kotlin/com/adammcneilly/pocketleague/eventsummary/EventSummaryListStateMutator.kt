@@ -6,7 +6,7 @@ import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
-import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
+import com.adammcneilly.pocketleague.event.api.GetEventSummariesUseCase
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream
@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.onStart
  * to the correct [EventSummaryListViewState].
  */
 fun eventSummaryListStateMutator(
-    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
+    getEventsUseCase: GetEventSummariesUseCase,
     scope: CoroutineScope,
 ) = stateFlowMutator<EventSummaryListAction, EventSummaryListViewState>(
     scope = scope,
@@ -29,30 +29,42 @@ fun eventSummaryListStateMutator(
     actionTransform = { actions ->
         actions.toMutationStream {
             when (val action = type()) {
-                is EventSummaryListAction.FetchUpcomingEvents -> action.flow.fetchEventMutations(
-                    getUpcomingEventsUseCase = getUpcomingEventsUseCase,
+                is EventSummaryListAction.FetchEventSummaries -> action.flow.fetchEventMutations(
+                    getEventsUseCase = getEventsUseCase,
                 )
                 is EventSummaryListAction.NavigatedToEventOverview -> action.flow.clearEventMutations()
                 is EventSummaryListAction.SelectedEvent -> action.flow.selectEventMutations()
+                is EventSummaryListAction.SelectedSort -> action.flow.selectSortMutations()
             }
         }
     }
 )
 
-private fun Flow<EventSummaryListAction.FetchUpcomingEvents>.fetchEventMutations(
-    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
+private fun Flow<EventSummaryListAction.SelectedSort>.selectSortMutations() = this.map { action ->
+    Mutation<EventSummaryListViewState> {
+        copy(
+            currentSort = action.sort,
+        )
+    }
+}
+
+private fun Flow<EventSummaryListAction.FetchEventSummaries>.fetchEventMutations(
+    getEventsUseCase: GetEventSummariesUseCase,
 ): Flow<Mutation<EventSummaryListViewState>> {
     return this.flatMapLatest { action ->
-        getUpcomingEventsUseCase
-            .invoke(action.leagueSlug)
+        getEventsUseCase
+            .invoke(
+                action.leagueSlug,
+                action.request,
+            )
             .map { result ->
                 when (result) {
-                    is GetUpcomingEventSummariesUseCase.Result.Success -> {
+                    is GetEventSummariesUseCase.Result.Success -> {
                         successMutation(
                             events = result.events,
                         )
                     }
-                    is GetUpcomingEventSummariesUseCase.Result.Error -> {
+                    is GetEventSummariesUseCase.Result.Error -> {
                         errorMutation()
                     }
                 }

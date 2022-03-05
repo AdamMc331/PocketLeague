@@ -2,9 +2,9 @@ package com.adammcneilly.pocketleague.core.di
 
 import com.adammcneilly.pocketleague.event.api.EventRepository
 import com.adammcneilly.pocketleague.event.api.GetEventOverviewUseCase
-import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
+import com.adammcneilly.pocketleague.event.api.GetEventSummariesUseCase
 import com.adammcneilly.pocketleague.event.implementation.GetEventOverviewUseCaseImpl
-import com.adammcneilly.pocketleague.event.implementation.GetUpcomingEventSummariesUseCaseImpl
+import com.adammcneilly.pocketleague.event.implementation.GetEventSummariesUseCaseImpl
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCase
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCaseImpl
 import dagger.Binds
@@ -29,8 +29,8 @@ abstract class UseCaseModule {
         @Provides
         fun provideGetUpcomingEventSummariesUseCase(
             repository: EventRepository,
-        ): GetUpcomingEventSummariesUseCase {
-            return GetUpcomingEventSummariesUseCaseImpl(
+        ): GetEventSummariesUseCase {
+            return GetEventSummariesUseCaseImpl(
                 repository = repository,
             )
         }

@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.onEach
 fun iOSEventSummaryListStateMutator(
     onChange: (EventSummaryListViewState) -> Unit,
 ) = eventSummaryListStateMutator(
-    getUpcomingEventsUseCase = Dependencies.getUpcomingEventSummariesUseCase,
+    getEventsUseCase = Dependencies.getEventSummariesUseCase,
     scope = MainScope(),
 ).apply {
     this.state

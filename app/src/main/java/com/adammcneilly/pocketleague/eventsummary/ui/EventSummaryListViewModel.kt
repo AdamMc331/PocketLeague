@@ -2,10 +2,15 @@ package com.adammcneilly.pocketleague.eventsummary.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.adammcneilly.pocketleague.event.api.GetUpcomingEventSummariesUseCase
+import com.adammcneilly.pocketleague.event.api.GetEventSummariesUseCase
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryListAction
+import com.adammcneilly.pocketleague.eventsummary.EventSummaryListSort
 import com.adammcneilly.pocketleague.eventsummary.eventSummaryListStateMutator
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 /**
@@ -13,21 +18,40 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class EventSummaryListViewModel @Inject constructor(
-    getUpcomingEventsUseCase: GetUpcomingEventSummariesUseCase,
+    getEventsUseCase: GetEventSummariesUseCase,
 ) : ViewModel() {
 
     private val mutator = eventSummaryListStateMutator(
         scope = viewModelScope,
-        getUpcomingEventsUseCase = getUpcomingEventsUseCase,
+        getEventsUseCase = getEventsUseCase,
     )
 
     val viewState = mutator.state
 
+    private val eventSummaryRequestFlow = viewState
+        .map { viewState ->
+            val isUpcoming = when (viewState.currentSort) {
+                EventSummaryListSort.UPCOMING -> true
+                EventSummaryListSort.PAST -> false
+            }
+
+            GetEventSummariesUseCase.Request(
+                upcoming = isUpcoming
+            )
+        }
+
     init {
-        val fetchAction = EventSummaryListAction.FetchUpcomingEvents(
-            leagueSlug = "rlcs-2021-22-1",
-        )
-        mutator.accept(fetchAction)
+        eventSummaryRequestFlow
+            .distinctUntilChanged()
+            .onEach { request ->
+                val fetchAction = EventSummaryListAction.FetchEventSummaries(
+                    leagueSlug = "rlcs-2021-22-1",
+                    request = request,
+                )
+
+                mutator.accept(fetchAction)
+            }
+            .launchIn(viewModelScope)
     }
 
     /**
@@ -45,6 +69,15 @@ class EventSummaryListViewModel @Inject constructor(
      */
     fun eventClicked(eventId: String) {
         val action = EventSummaryListAction.SelectedEvent(eventId)
+
+        mutator.accept(action)
+    }
+
+    /**
+     * Whenever the user toggles the sort option for the summary list.
+     */
+    fun sortChanged(sort: EventSummaryListSort) {
+        val action = EventSummaryListAction.SelectedSort(sort)
 
         mutator.accept(action)
     }

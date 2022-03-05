@@ -33,7 +33,6 @@ kotlin {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation(project(":core-models-test"))
-                implementation(project(":event-api-test"))
                 implementation("app.cash.turbine:turbine:${Versions.turbine}")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
             }

@@ -76,4 +76,10 @@ object Versions {
 
     // https://developer.android.com/jetpack/androidx/releases/window
     const val windowManager = "1.0.0"
+
+    // https://github.com/russhwolf/multiplatform-settings/releases
+    const val settings = "0.8.1"
+
+    // https://github.com/Kotlin/kotlinx.serialization/releases
+    const val serialization = "1.3.2"
 }

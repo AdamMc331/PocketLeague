@@ -4,11 +4,13 @@ import com.russhwolf.settings.Settings
 import com.russhwolf.settings.long
 import com.russhwolf.settings.string
 
-class PocketLeagueSettings(s: Settings) {
+/**
+ * A class to manage the user's local settings.
+ *
+ * Will read and write values from the supplied [settings].
+ */
+class PocketLeagueSettings(settings: Settings) {
 
-    // here we define all our local settings properties,
-    // by using the MultiplatformSettings library delegated properties
-
-    var listCacheTimestamp by s.long(defaultValue = 0)
-    var savedLevel1URI by s.string(defaultValue = Level1Navigation.EventSummaries.screenIdentifier.URI)
+    var listCacheTimestamp by settings.long(defaultValue = 0)
+    var savedLevel1URI by settings.string(defaultValue = Level1Navigation.EventSummaries.screenIdentifier.uri)
 }

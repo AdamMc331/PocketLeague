@@ -6,15 +6,20 @@ import kotlin.native.concurrent.ThreadLocal
 @ThreadLocal
 val debugLogger by lazy { DebugLogger("D-KMP SAMPLE") }
 
-class DKMPViewModel(repo: Repository) {
+/**
+ * ViewModel to manage the state of our entire application.
+ */
+class DKMPViewModel(repository: Repository) {
 
-    companion object Factory {
-        // factory methods are defined in the platform-specific shared code (androidMain and iosMain)
-    }
+    /**
+     * Factory methods are defined inside the platform-specific shared code (androidMain and iosMain).
+     */
+    companion object Factory
 
     val stateFlow: StateFlow<AppState>
         get() = stateManager.mutableStateFlow
 
-    private val stateManager by lazy { StateManager(repo) }
+    private val stateManager by lazy { StateManager(repository) }
+
     val navigation by lazy { Navigation(stateManager) }
 }

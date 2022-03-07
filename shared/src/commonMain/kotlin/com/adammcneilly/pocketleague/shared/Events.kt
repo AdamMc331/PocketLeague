@@ -1,13 +1,23 @@
 package com.adammcneilly.pocketleague.shared
 
-class Events(val stateManager: StateManager) {
+/**
+ * Class used to manage events that can occur in our application to update state.
+ *
+ * They will typically be run using [screenCoroutine] and if necessary can make data requests through
+ * the [dataRepository].
+ */
+class Events(
+    private val stateManager: StateManager
+) {
 
-    val dataRepository
+    private val dataRepository
         get() = stateManager.dataRepository
 
-    // we run each event function on a Dispatchers.Main coroutine
-    fun screenCoroutine(block: suspend () -> Unit) {
-        debugLogger.log("/" + stateManager.currentScreenIdentifier.URI + ": an Event is called")
+    /**
+     * Runs the supplied [block] inside of a coroutine associated with the scope for our screen.
+     */
+    private fun screenCoroutine(block: suspend () -> Unit) {
+        debugLogger.log("/" + stateManager.currentScreenIdentifier.uri + ": an Event is called")
         stateManager.runInScreenScope { block() }
     }
 }

@@ -32,7 +32,7 @@ class Navigation(
     private val dataRepository
         get() = stateManager.dataRepository
 
-    private val currentScreenIdentifier: ScreenIdentifier
+    val currentScreenIdentifier: ScreenIdentifier
         get() = stateManager.currentScreenIdentifier
 
     val currentLevel1ScreenIdentifier: ScreenIdentifier
@@ -60,7 +60,7 @@ class Navigation(
     val level1ScreenIdentifiers: List<ScreenIdentifier>
         get() = stateManager.getLevel1ScreenIdentifiers()
 
-    private fun getNavigationLevelsMap(level1ScreenIdentifier: ScreenIdentifier): Map<Int, ScreenIdentifier>? {
+    fun getNavigationLevelsMap(level1ScreenIdentifier: ScreenIdentifier): Map<Int, ScreenIdentifier>? {
         return stateManager.verticalNavigationLevels[level1ScreenIdentifier.uri]
     }
 

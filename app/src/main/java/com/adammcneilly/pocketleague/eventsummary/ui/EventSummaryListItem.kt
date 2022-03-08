@@ -18,7 +18,7 @@ import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.ui.Material3Card
 import com.adammcneilly.pocketleague.core.ui.UIImage
-import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryDisplayModel
 
 /**
  * Renders a [displayModel] to show a summary of an RLCS event.

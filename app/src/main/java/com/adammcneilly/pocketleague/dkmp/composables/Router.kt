@@ -4,6 +4,7 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.shared.Navigation
 
@@ -11,13 +12,17 @@ import com.adammcneilly.pocketleague.shared.Navigation
  * A Router for [Navigation] that will be used to determine which screens should be rendered.
  */
 @Composable
-fun Navigation.Router() {
+fun Navigation.Router(
+    modifier: Modifier = Modifier,
+) {
 
     val screenUIsStateHolder = rememberSaveableStateHolder()
 
     val twoPaneWidthThreshold = 1000.dp
 
-    BoxWithConstraints {
+    BoxWithConstraints(
+        modifier = modifier,
+    ) {
         OnePane(screenUIsStateHolder)
 //        if (maxWidth < maxHeight || maxWidth<twopaneWidthThreshold) {
 //            OnePane(screenUIsStateHolder)

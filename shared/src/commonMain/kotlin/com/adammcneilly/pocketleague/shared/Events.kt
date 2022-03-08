@@ -7,16 +7,16 @@ package com.adammcneilly.pocketleague.shared
  * the [dataRepository].
  */
 class Events(
-    private val stateManager: StateManager
+    val stateManager: StateManager
 ) {
 
-    private val dataRepository
+    val dataRepository
         get() = stateManager.dataRepository
 
     /**
      * Runs the supplied [block] inside of a coroutine associated with the scope for our screen.
      */
-    private fun screenCoroutine(block: suspend () -> Unit) {
+    fun screenCoroutine(block: suspend () -> Unit) {
         debugLogger.log("/" + stateManager.currentScreenIdentifier.uri + ": an Event is called")
         stateManager.runInScreenScope { block() }
     }

@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared
 
+import com.adammcneilly.pocketleague.shared.datalayer.sources._graphql.SmashGGApolloClient
 import com.russhwolf.settings.Settings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -17,6 +18,7 @@ class Repository(
 //    internal val localDb by lazy { LocalDb(sqlDriver) }
     internal val localSettings by lazy { PocketLeagueSettings(settings) }
 //    internal val runtimeCache get() = CacheObjects
+    internal val smashGGApi by lazy { SmashGGApolloClient() }
 
     /**
      * Each repository function should be run on [Dispatchers.Default] coroutine scope. However,

@@ -40,10 +40,10 @@ fun EventSummaryListContent(
             )
 
             if (viewState.events.isNotEmpty()) {
-                EventSummaryList(
-                    displayModels = viewState.events,
-                    eventClicked = eventClicked,
-                )
+//                EventSummaryList(
+//                    displayModels = viewState.events,
+//                    eventClicked = eventClicked,
+//                )
             }
         }
 

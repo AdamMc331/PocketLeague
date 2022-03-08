@@ -7,10 +7,13 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.dkmp.composables.MainComposable
+import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +33,12 @@ class MainActivity : ComponentActivity() {
             PocketLeagueTheme {
                 SetSystemBarsTransparent()
 
-                MainComposable(viewModel = (application as PocketLeagueApp).viewModel)
+                ProvideWindowInsets {
+                    MainComposable(
+                        viewModel = (application as PocketLeagueApp).viewModel,
+                        modifier = Modifier.statusBarsPadding(),
+                    )
+                }
 
 //                ProvideWindowInsets {
 //                    Scaffold { paddingValues ->

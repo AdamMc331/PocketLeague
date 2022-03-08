@@ -29,7 +29,7 @@ class Navigation(
         return screenInitSettings.title
     }
 
-    private val dataRepository
+    val dataRepository
         get() = stateManager.dataRepository
 
     val currentScreenIdentifier: ScreenIdentifier

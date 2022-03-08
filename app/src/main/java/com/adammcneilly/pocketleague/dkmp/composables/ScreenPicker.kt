@@ -15,7 +15,15 @@ fun Navigation.ScreenPicker(
 
     when (screenIdentifier.screen) {
         Screens.EventSummaryList -> {
-            EventSummaryListScreen(state = stateProvider.get(screenIdentifier))
+            EventSummaryListScreen(
+                viewState = stateProvider.get(screenIdentifier),
+                eventClicked = {
+                    // ...
+                },
+                onSortChanged = {
+                    // ...
+                },
+            )
         }
         Screens.EventOverview -> {
             EventOverviewScreen(state = stateProvider.get(screenIdentifier))

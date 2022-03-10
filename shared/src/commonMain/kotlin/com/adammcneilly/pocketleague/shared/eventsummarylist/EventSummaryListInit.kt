@@ -17,5 +17,4 @@ fun Navigation.initEventSummaryList() = ScreenInitSettings(
 
         events.getEvents(defaultRequestBody)
     },
-    reInitOnEachNavigation = true,
 )

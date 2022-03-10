@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import com.adammcneilly.pocketleague.shared.Navigation
 import com.adammcneilly.pocketleague.shared.ScreenIdentifier
 import com.adammcneilly.pocketleague.shared.Screens
+import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewParams
 
 /**
  * Given a [screenIdentifier], render that screen.
@@ -17,8 +18,11 @@ fun Navigation.ScreenPicker(
         Screens.EventSummaryList -> {
             EventSummaryListScreen(
                 viewState = stateProvider.get(screenIdentifier),
-                eventClicked = {
-                    // ...
+                eventClicked = { eventId ->
+                    navigate(
+                        screen = Screens.EventOverview,
+                        params = EventOverviewParams(eventId),
+                    )
                 },
                 onSortChanged = {
                     // ...
@@ -28,16 +32,5 @@ fun Navigation.ScreenPicker(
         Screens.EventOverview -> {
             EventOverviewScreen(state = stateProvider.get(screenIdentifier))
         }
-//        CountriesList ->
-//            CountriesListScreen(
-//                countriesListState = stateProvider.get(screenIdentifier),
-//                onListItemClick = { navigate(CountryDetail, CountryDetailParams(countryName = it)) },
-//                onFavoriteIconClick = { events.selectFavorite(countryName = it) },
-//            )
-//
-//        CountryDetail ->
-//            CountryDetailScreen(
-//                countryDetailState = stateProvider.get(screenIdentifier)
-//            )
     }
 }

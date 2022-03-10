@@ -10,7 +10,6 @@ import com.adammcneilly.pocketleague.shared.graphql.type.LeagueEventsFilter
 import com.adammcneilly.pocketleague.shared.graphql.type.LeagueEventsQuery
 import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -37,21 +36,19 @@ fun SmashGGApolloClient.fetchEventSummaries(
         eventsQuery = eventsQuery,
     )
 
-    val response = apolloClient.query(query).toFlow()
-
-    return response.map { dataResponse ->
-        val events = dataResponse
-            .data
-            ?.league
-            ?.events
-            ?.nodes
-            ?.mapNotNull {
-                it?.eventSummaryFragment?.toEvent()
-            }
-            .orEmpty()
-
-        Result.Success(events)
-    }
+    return observeQuery(
+        query = query,
+        transform = { responseData ->
+            responseData
+                .league
+                ?.events
+                ?.nodes
+                ?.mapNotNull {
+                    it?.eventSummaryFragment?.toEvent()
+                }
+                .orEmpty()
+        }
+    )
 }
 
 private fun EventSummaryFragment.toEvent(): EventSummary {

@@ -14,6 +14,6 @@ fun EventOverviewScreen(
     modifier: Modifier = Modifier,
 ) {
     Text(
-        text = "This is the event overview screen.",
+        text = "This is the event overview screen: ${state.eventId}.",
     )
 }

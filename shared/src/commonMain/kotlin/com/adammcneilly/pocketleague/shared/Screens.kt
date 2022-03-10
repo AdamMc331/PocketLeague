@@ -21,11 +21,12 @@ enum class Screens(
         asString = "eventsummarieslist",
         navigationLevel = 1,
         initSettings = { initEventSummaryList() },
+        stackableInstances = true,
     ),
 
     EventOverview(
         asString = "eventoverview",
         navigationLevel = 2,
-        initSettings = { initEventOverview() },
+        initSettings = { initEventOverview(it.params()) },
     ),
 }

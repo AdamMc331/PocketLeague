@@ -6,7 +6,7 @@ import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.shared.Events
 import com.adammcneilly.pocketleague.shared.datalayer.objects.EventListRequestBody
-import com.adammcneilly.pocketleague.shared.datalayer.sources._graphql.requests.fetchEventSummaries
+import com.adammcneilly.pocketleague.shared.datalayer.sources.graphql.requests.fetchEventSummaries
 import kotlinx.coroutines.flow.collectLatest
 
 fun Events.getEvents(requestBody: EventListRequestBody) = screenCoroutine {
@@ -27,6 +27,7 @@ fun Events.getEvents(requestBody: EventListRequestBody) = screenCoroutine {
                 is Result.Error -> {
                     currentState.copy(
                         showLoading = false,
+                        errorMessage = result.error.message,
                     )
                 }
             }

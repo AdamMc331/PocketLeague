@@ -1,9 +1,9 @@
-package com.adammcneilly.pocketleague.shared.datalayer.sources._graphql.requests
+package com.adammcneilly.pocketleague.shared.datalayer.sources.graphql.requests
 
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.shared.datalayer.objects.EventListRequestBody
-import com.adammcneilly.pocketleague.shared.datalayer.sources._graphql.SmashGGApolloClient
+import com.adammcneilly.pocketleague.shared.datalayer.sources.graphql.SmashGGApolloClient
 import com.adammcneilly.pocketleague.shared.graphql.EventSummaryListQuery
 import com.adammcneilly.pocketleague.shared.graphql.fragment.EventSummaryFragment
 import com.adammcneilly.pocketleague.shared.graphql.type.LeagueEventsFilter

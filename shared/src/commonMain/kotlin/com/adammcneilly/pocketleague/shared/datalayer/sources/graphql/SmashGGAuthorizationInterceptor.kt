@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.datalayer.sources._graphql
+package com.adammcneilly.pocketleague.shared.datalayer.sources.graphql
 
 import com.adammcneilly.pocketleague.shared.BuildKonfig
 import com.apollographql.apollo3.api.http.HttpRequest

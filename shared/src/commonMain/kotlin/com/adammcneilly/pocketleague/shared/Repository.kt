@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared
 
-import com.adammcneilly.pocketleague.shared.datalayer.sources._graphql.SmashGGApolloClient
+import com.adammcneilly.pocketleague.shared.datalayer.sources.graphql.SmashGGApolloClient
 import com.russhwolf.settings.Settings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

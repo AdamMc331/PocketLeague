@@ -4,11 +4,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.android.design.components.togglebutton.ToggleButtonOption
 import com.adammcneilly.pocketleague.android.design.components.togglebutton.ToggleButtonRow
-import com.adammcneilly.pocketleague.android.design.getValue
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.eventsummary.EventSummaryListSort
 import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryList
@@ -51,13 +51,13 @@ fun EventSummaryListScreen(
                 }
             }
 
-//        val errorMessage = viewState.errorMessage
-//
-//        if (errorMessage != null) {
-//            Text(
-//                text = errorMessage.getValue(),
-//            )
-//        }
+            val errorMessage = viewState.errorMessage
+
+            if (errorMessage != null) {
+                Text(
+                    text = errorMessage,
+                )
+            }
         }
     }
 }

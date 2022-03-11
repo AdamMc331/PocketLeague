@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.datalayer.sources._graphql
+package com.adammcneilly.pocketleague.shared.datalayer.sources.graphql
 
 import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.shared.debugLogger
@@ -14,6 +14,11 @@ class SmashGGApolloClient {
         .addHttpInterceptor(SmashGGAuthorizationInterceptor())
         .build()
 
+    /**
+     * A helper function that will call the supplied [query] to our [apolloClient], and observe it as a Flow.
+     *
+     * Will return a flow where the [QueryData] is mapped to a [UIModel] via the [transform] lambda.
+     */
     fun <QueryData : Query.Data, UIModel> observeQuery(
         query: Query<QueryData>,
         transform: (QueryData) -> UIModel,
@@ -24,9 +29,10 @@ class SmashGGApolloClient {
             .map { queryResponse ->
                 val responseData = queryResponse.data
 
+                @Suppress("TooGenericExceptionThrown")
                 if (responseData != null) {
                     val mappedData = transform.invoke(responseData)
-                    Result.Success(mappedData)
+                    Result.Success(mappedData) as Result<UIModel>
                 } else {
                     throw Throwable("Null response data for query: $query")
                 }
@@ -34,7 +40,7 @@ class SmashGGApolloClient {
             .catch { error ->
                 debugLogger.log("Query ${query.name()} failed. Error: $error")
 
-                Result.Error(error)
+                emit(Result.Error(error))
             }
     }
 }

@@ -8,4 +8,6 @@ import com.adammcneilly.pocketleague.shared.ScreenState
 data class EventSummaryListState(
     val showLoading: Boolean = true,
     val events: List<EventSummaryDisplayModel> = emptyList(),
+    val selectedEventId: String? = null,
+    val errorMessage: String? = null,
 ) : ScreenState

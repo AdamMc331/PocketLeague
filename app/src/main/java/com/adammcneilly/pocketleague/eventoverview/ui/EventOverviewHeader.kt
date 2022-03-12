@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewDisplayModel
 
 /**
  * Displays a summary of an [event] overview, if that makes sense lol. Shows the event name, date,

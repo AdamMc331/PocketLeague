@@ -1,8 +1,6 @@
-package com.adammcneilly.pocketleague.eventoverview.ui
+package com.adammcneilly.pocketleague.shared.eventoverview
 
 import com.adammcneilly.pocketleague.core.models.EventOverview
-import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
-import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
 
 /**
  * A user friendly representation of an [EventOverview] to be shown on the UI.

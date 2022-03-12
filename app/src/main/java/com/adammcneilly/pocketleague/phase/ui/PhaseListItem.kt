@@ -17,6 +17,7 @@ import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.eventoverview.PhaseDisplayModel
 
 private const val PHASE_INFO_WIDTH_PERCENTAGE = 0.75F
 

@@ -7,5 +7,7 @@ import com.adammcneilly.pocketleague.shared.ScreenState
  */
 data class EventOverviewState(
     val showLoading: Boolean = true,
-    val eventId: String,
+    val event: EventOverviewDisplayModel? = null,
+    val selectedPhaseId: String? = null,
+    val errorMessage: String? = null,
 ) : ScreenState

@@ -23,11 +23,12 @@ import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.core.ui.Material3Card
 import com.adammcneilly.pocketleague.core.ui.TextCard
-import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
 import com.adammcneilly.pocketleague.phase.ui.PhaseList
-import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.PhaseDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.StandingsDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.StandingsPlacementDisplayModel
 import com.adammcneilly.pocketleague.standings.ui.StandingsList
-import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
 
 /**
  * Displays the event overview information given the [viewState].

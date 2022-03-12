@@ -11,11 +11,11 @@ import com.adammcneilly.pocketleague.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.event.api.GetEventOverviewUseCase
-import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewDisplayModel
 import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewViewState
-import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
-import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
-import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.PhaseDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.StandingsDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.StandingsPlacementDisplayModel
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream

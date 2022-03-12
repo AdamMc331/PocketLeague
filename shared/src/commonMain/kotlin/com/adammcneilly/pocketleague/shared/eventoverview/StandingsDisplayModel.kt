@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.standings.ui
+package com.adammcneilly.pocketleague.shared.eventoverview
 
 /**
  * UI representation for a collection of [placements].

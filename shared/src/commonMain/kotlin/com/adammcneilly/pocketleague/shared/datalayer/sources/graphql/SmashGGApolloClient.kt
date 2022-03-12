@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
+typealias ApolloBracketType = com.adammcneilly.pocketleague.shared.graphql.type.BracketType
+
 /**
  * A remote data source that requests data from the Smash.gg api via the [apolloClient].
  */

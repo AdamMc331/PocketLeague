@@ -11,10 +11,12 @@ fun Navigation.initEventOverview(
 ) = ScreenInitSettings(
     title = "Event Overview",
     initState = {
-        EventOverviewState(eventId = params.eventId)
+        EventOverviewState(
+            showLoading = true,
+        )
     },
     callOnInit = {
-        // Load for params
+        events.getEventOverview(params.eventId)
     },
     reInitOnEachNavigation = true,
 )

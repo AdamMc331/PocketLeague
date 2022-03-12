@@ -30,7 +30,12 @@ fun Navigation.ScreenPicker(
             )
         }
         Screens.EventOverview -> {
-            EventOverviewScreen(state = stateProvider.get(screenIdentifier))
+            EventOverviewScreen(
+                viewState = stateProvider.get(screenIdentifier),
+                onPhaseClicked = { phaseId ->
+                    // Navigate soon
+                }
+            )
         }
     }
 }

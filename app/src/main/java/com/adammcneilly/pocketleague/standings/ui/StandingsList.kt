@@ -22,10 +22,12 @@ fun StandingsList(
     Column(
         modifier = modifier,
     ) {
-        standings.placements.forEach { placement ->
+        standings.placements.forEachIndexed { index, placement ->
             StandingsPlacementListItem(placement = placement)
 
-            Material3Divider()
+            if (index != standings.placements.lastIndex) {
+                Material3Divider()
+            }
         }
     }
 }

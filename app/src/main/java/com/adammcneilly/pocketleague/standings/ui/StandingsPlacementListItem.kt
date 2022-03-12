@@ -96,9 +96,11 @@ private fun LetterCircle(placement: StandingsPlacementDisplayModel) {
                 .align(Alignment.Center),
         )
 
-        if (placement.teamLogo != null) {
+        val teamLogo = placement.teamLogo
+
+        if (teamLogo != null) {
             PocketLeagueImage(
-                image = placement.teamLogo,
+                image = teamLogo,
                 modifier = Modifier
                     .size(48.dp)
                     .clip(CircleShape),

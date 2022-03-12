@@ -12,6 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.shared.Navigation
 
+private const val FIRST_PANE_WEIGHT = 0.4F
+private const val SECOND_PANE_WEIGHT = 0.6F
+
 /**
  * A multi-pane UI to be used on large screens when the available space allows.
  */
@@ -34,7 +37,7 @@ fun Navigation.TwoPane(
 //                }
                 Column(
                     Modifier
-                        .weight(0.4f)
+                        .weight(FIRST_PANE_WEIGHT)
                 ) {
                     saveableStateHolder.SaveableStateProvider(navigationLevelsMap[1]!!.uri) {
                         ScreenPicker(navigationLevelsMap[1]!!)
@@ -42,7 +45,7 @@ fun Navigation.TwoPane(
                 }
                 Column(
                     Modifier
-                        .weight(0.6f)
+                        .weight(SECOND_PANE_WEIGHT)
                         .padding(20.dp)
                 ) {
                     if (navigationLevelsMap[2] == null) {

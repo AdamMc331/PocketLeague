@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
+/**
+ * A remote data source that requests data from the Smash.gg api via the [apolloClient].
+ */
 class SmashGGApolloClient {
     private val apolloClient = ApolloClient.Builder()
         .serverUrl("https://api.smash.gg/gql/alpha")

@@ -9,6 +9,10 @@ import com.adammcneilly.pocketleague.shared.datalayer.objects.EventListRequestBo
 import com.adammcneilly.pocketleague.shared.datalayer.sources.graphql.requests.fetchEventSummaries
 import kotlinx.coroutines.flow.collectLatest
 
+/**
+ * Requests a flow of events from the supplied [requestBody] and updates our view state whenever
+ * an emission is made.
+ */
 fun Events.getEvents(requestBody: EventListRequestBody) = screenCoroutine {
     val events = dataRepository.smashGGApi.fetchEventSummaries(
         leagueSlug = "rlcs-2021-22-1",

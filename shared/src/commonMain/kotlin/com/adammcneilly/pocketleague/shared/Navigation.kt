@@ -60,6 +60,10 @@ class Navigation(
     val level1ScreenIdentifiers: List<ScreenIdentifier>
         get() = stateManager.getLevel1ScreenIdentifiers()
 
+    /**
+     * Gets a map of the navigation level and screen identifier for the vertical stack inside the
+     * supplied [level1ScreenIdentifier].
+     */
     fun getNavigationLevelsMap(level1ScreenIdentifier: ScreenIdentifier): Map<Int, ScreenIdentifier>? {
         return stateManager.verticalNavigationLevels[level1ScreenIdentifier.uri]
     }

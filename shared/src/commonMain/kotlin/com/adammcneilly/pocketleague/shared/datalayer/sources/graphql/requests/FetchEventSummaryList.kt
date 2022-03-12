@@ -14,6 +14,9 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
+/**
+ * Request a flow of [EventSummary] list results for the given [leagueSlug] and [requestBody].
+ */
 fun SmashGGApolloClient.fetchEventSummaries(
     leagueSlug: String,
     requestBody: EventListRequestBody,

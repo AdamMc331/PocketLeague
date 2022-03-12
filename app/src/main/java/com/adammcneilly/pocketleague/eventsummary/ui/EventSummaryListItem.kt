@@ -29,7 +29,14 @@ fun EventSummaryListItem(
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val cardColor = if (displayModel.isSelected) {
+        MaterialTheme.colorScheme.inverseSurface
+    } else {
+        MaterialTheme.colorScheme.surfaceVariant
+    }
+
     Material3Card(
+        color = cardColor,
         modifier = modifier
             .clickable(
                 onClick = {

@@ -13,6 +13,7 @@ data class EventSummaryDisplayModel(
     val eventName: String,
     val subtitle: String?,
     val image: UIImage?,
+    val isSelected: Boolean = false,
 ) {
 
     companion object {

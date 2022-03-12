@@ -39,6 +39,20 @@ fun Events.getEvents(requestBody: EventListRequestBody) = screenCoroutine {
     }
 }
 
+fun Events.selectEvent(eventId: String) {
+    stateManager.updateScreen(EventSummaryListState::class) { currentState ->
+        val updatedEvents = currentState.events.map { oldEvent ->
+            oldEvent.copy(
+                isSelected = (oldEvent.eventId == eventId)
+            )
+        }
+
+        currentState.copy(
+            events = updatedEvents,
+        )
+    }
+}
+
 /**
  * Converts an [EventSummary] domain object to a user friendly [EventSummaryDisplayModel].
  */

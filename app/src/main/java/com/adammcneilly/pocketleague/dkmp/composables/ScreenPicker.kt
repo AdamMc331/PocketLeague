@@ -11,7 +11,7 @@ import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewParams
  */
 @Composable
 fun Navigation.ScreenPicker(
-    screenIdentifier: ScreenIdentifier
+    screenIdentifier: ScreenIdentifier,
 ) {
 
     when (screenIdentifier.screen) {

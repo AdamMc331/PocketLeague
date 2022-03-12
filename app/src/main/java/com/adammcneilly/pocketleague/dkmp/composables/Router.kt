@@ -23,12 +23,11 @@ fun Navigation.Router(
     BoxWithConstraints(
         modifier = modifier,
     ) {
-        OnePane(screenUIsStateHolder)
-//        if (maxWidth < maxHeight || maxWidth<twopaneWidthThreshold) {
-//            OnePane(screenUIsStateHolder)
-//        } else {
-//            TwoPane(screenUIsStateHolder)
-//        }
+        if (maxWidth < maxHeight || maxWidth < twoPaneWidthThreshold) {
+            OnePane(screenUIsStateHolder)
+        } else {
+            TwoPane(screenUIsStateHolder)
+        }
     }
 
     screenStatesToRemove.forEach {

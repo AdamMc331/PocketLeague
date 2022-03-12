@@ -39,6 +39,9 @@ fun Events.getEvents(requestBody: EventListRequestBody) = screenCoroutine {
     }
 }
 
+/**
+ * Given an [eventId], mark that event as selected inside the [EventSummaryListState.events] list.
+ */
 fun Events.selectEvent(eventId: String) {
     stateManager.updateScreen(EventSummaryListState::class) { currentState ->
         val updatedEvents = currentState.events.map { oldEvent ->

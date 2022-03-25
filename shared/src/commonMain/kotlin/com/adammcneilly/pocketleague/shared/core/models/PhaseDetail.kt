@@ -1,10 +1,10 @@
-package com.adammcneilly.pocketleague.core.models
+package com.adammcneilly.pocketleague.shared.core.models
 
 /**
- * A [PhaseOverview] is a portion of an event. An example could be a Swiss stage and a Bracket stage. They'll
+ * A [PhaseDetail] is a portion of an event. An example could be a Swiss stage and a Bracket stage. They'll
  * be sorted by the [phaseOrder] property.
  */
-data class PhaseOverview(
+data class PhaseDetail(
     val id: String,
     val groupId: String,
     val numPools: Int,
@@ -12,4 +12,5 @@ data class PhaseOverview(
     val name: String,
     val phaseOrder: Int,
     val bracketType: BracketType,
+    val sets: List<EventSet>,
 )

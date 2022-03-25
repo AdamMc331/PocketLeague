@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.models
+package com.adammcneilly.pocketleague.shared.core.models
 
 /**
  * A [Team] is any collection of players that competes in RLCS.

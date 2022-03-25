@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.eventoverview.ui
 
-import com.adammcneilly.pocketleague.core.models.EventOverview
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
+import com.adammcneilly.pocketleague.shared.core.models.EventOverview
 import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
 
 /**

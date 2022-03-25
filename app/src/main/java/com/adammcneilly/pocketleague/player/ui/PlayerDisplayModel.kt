@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.player.ui
 
-import com.adammcneilly.pocketleague.core.models.Player
 import com.adammcneilly.pocketleague.core.ui.FlagResProvider
 import com.adammcneilly.pocketleague.core.ui.UIImage
+import com.adammcneilly.pocketleague.shared.core.models.Player
 
 /**
  * A display model to present a player in a user friendly manner on the UI.

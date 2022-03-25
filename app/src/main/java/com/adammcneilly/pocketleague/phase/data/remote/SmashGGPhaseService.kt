@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.phase.data.remote
 
-import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.core.data.remote.smashgg.SmashGGModelMapper
 import com.adammcneilly.pocketleague.graphql.PhaseDetailQuery
 import com.adammcneilly.pocketleague.phase.data.PhaseService
 import com.adammcneilly.pocketleague.shared.core.models.PhaseDetail
+import com.adammcneilly.pocketleague.shared.data.Result
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 

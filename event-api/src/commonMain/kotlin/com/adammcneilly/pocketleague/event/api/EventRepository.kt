@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.event.api
 
-import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.shared.core.models.EventOverview
 import com.adammcneilly.pocketleague.shared.core.models.EventSummary
+import com.adammcneilly.pocketleague.shared.data.Result
 import kotlinx.coroutines.flow.Flow
 
 /**

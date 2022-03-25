@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.teamlist.domain.usecases
 
-import com.adammcneilly.pocketleague.core.data.Result
 import com.adammcneilly.pocketleague.shared.core.models.Team
+import com.adammcneilly.pocketleague.shared.data.Result
 import com.adammcneilly.pocketleague.teamlist.data.FakeTeamListService
 import com.adammcneilly.pocketleague.teamlist.domain.models.FetchTeamListResult
 import com.google.common.truth.Truth.assertThat

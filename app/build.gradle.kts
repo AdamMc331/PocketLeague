@@ -97,15 +97,11 @@ android {
             }
         }
     }
-
-    sourceSets["test"].java {
-        srcDir(project(":core-models-test").file("src/commonMain/kotlin"))
-    }
 }
 
 dependencies {
 
-    implementation(project(":core-models"))
+    implementation(project(":shared"))
     implementation(project(":event-api"))
     implementation(project(":event-implementation"))
     implementation(project(":eventsummary"))
@@ -143,7 +139,6 @@ dependencies {
     testImplementation("com.google.truth:truth:${Versions.truth}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
     testImplementation("app.cash.turbine:turbine:${Versions.turbine}")
-    testImplementation(project(":core-models-test"))
     androidTestImplementation("androidx.test.ext:junit:${Versions.androidxTest}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")

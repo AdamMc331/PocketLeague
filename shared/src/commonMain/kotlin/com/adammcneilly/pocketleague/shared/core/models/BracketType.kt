@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.models
+package com.adammcneilly.pocketleague.shared.core.models
 
 /**
  * An enumeration of possible bracket formats that can occur.

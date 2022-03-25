@@ -19,7 +19,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":core-models"))
+                api(project(":shared"))
                 api(project(":core-data"))
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
             }

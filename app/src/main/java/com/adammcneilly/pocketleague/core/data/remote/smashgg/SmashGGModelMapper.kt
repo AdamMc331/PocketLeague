@@ -1,15 +1,5 @@
 package com.adammcneilly.pocketleague.core.data.remote.smashgg
 
-import com.adammcneilly.pocketleague.core.models.BracketType
-import com.adammcneilly.pocketleague.core.models.EventOverview
-import com.adammcneilly.pocketleague.core.models.EventSet
-import com.adammcneilly.pocketleague.core.models.PhaseDetail
-import com.adammcneilly.pocketleague.core.models.PhaseOverview
-import com.adammcneilly.pocketleague.core.models.Player
-import com.adammcneilly.pocketleague.core.models.SetSlot
-import com.adammcneilly.pocketleague.core.models.Standings
-import com.adammcneilly.pocketleague.core.models.StandingsPlacement
-import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.graphql.fragment.EventEntrantFragment
 import com.adammcneilly.pocketleague.graphql.fragment.EventOverviewFragment
 import com.adammcneilly.pocketleague.graphql.fragment.EventPlayerFragment
@@ -18,6 +8,16 @@ import com.adammcneilly.pocketleague.graphql.fragment.PhaseDetailFragment
 import com.adammcneilly.pocketleague.graphql.fragment.PhaseGroupFragment
 import com.adammcneilly.pocketleague.graphql.fragment.SetSlotFragment
 import com.adammcneilly.pocketleague.graphql.fragment.StandingsPlacementFragment
+import com.adammcneilly.pocketleague.shared.core.models.BracketType
+import com.adammcneilly.pocketleague.shared.core.models.EventOverview
+import com.adammcneilly.pocketleague.shared.core.models.EventSet
+import com.adammcneilly.pocketleague.shared.core.models.PhaseDetail
+import com.adammcneilly.pocketleague.shared.core.models.PhaseOverview
+import com.adammcneilly.pocketleague.shared.core.models.Player
+import com.adammcneilly.pocketleague.shared.core.models.SetSlot
+import com.adammcneilly.pocketleague.shared.core.models.Standings
+import com.adammcneilly.pocketleague.shared.core.models.StandingsPlacement
+import com.adammcneilly.pocketleague.shared.core.models.Team
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -78,7 +78,8 @@ class SmashGGModelMapper @Inject constructor() {
             numEntrants = phaseOverview?.numSeeds ?: 0,
             name = phaseOverview?.name.orEmpty(),
             phaseOrder = phaseOverview?.phaseOrder ?: 0,
-            bracketType = phaseOverview?.bracketType?.toBracketType() ?: BracketType.UNKNOWN,
+            bracketType = phaseOverview?.bracketType?.toBracketType()
+                ?: BracketType.UNKNOWN,
             sets = phaseDetail?.sets?.nodes?.mapNotNull { set ->
                 set?.eventSetFragment.toEventSet()
             }.orEmpty(),
@@ -140,7 +141,8 @@ private fun PhaseGroupFragment?.toPhase(): PhaseOverview {
         numPools = overview?.groupCount ?: 0,
         numEntrants = overview?.numSeeds ?: 0,
         name = overview?.name.orEmpty(),
-        bracketType = this?.bracketType?.toBracketType() ?: BracketType.UNKNOWN,
+        bracketType = this?.bracketType?.toBracketType()
+            ?: BracketType.UNKNOWN,
         phaseOrder = overview?.phaseOrder ?: 0,
     )
 }

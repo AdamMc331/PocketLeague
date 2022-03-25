@@ -9,14 +9,13 @@
 .cxx
 local.properties
 /app/src/main/graphql/com/adammcneilly/pocketleague/.graphqlconfig
-/core-models/build/
+/shared/build/
 /eventsummary/build/
 /buildSrc/build/
 /core-data/build/
 /event-api/build/
 /event-implementation/build/
 /event-implementation/event.properties
-/core-models-test/build/
 /core-ui/build/
 /eventoverview/build/
 PocketLeagueiOS/PocketLeagueiOS.xcodeproj/project.xcworkspace/xcuserdata/amcneilly.xcuserdatad/UserInterfaceState.xcuserstate

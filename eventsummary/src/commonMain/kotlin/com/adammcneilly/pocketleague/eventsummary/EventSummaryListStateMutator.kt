@@ -3,10 +3,10 @@
 package com.adammcneilly.pocketleague.eventsummary
 
 import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
-import com.adammcneilly.pocketleague.core.models.EventSummary
 import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.core.ui.UIText
 import com.adammcneilly.pocketleague.event.api.GetEventSummariesUseCase
+import com.adammcneilly.pocketleague.shared.core.models.EventSummary
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream

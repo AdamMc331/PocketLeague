@@ -1,14 +1,6 @@
 package com.adammcneilly.pocketleague.event.implementation
 
 import com.adammcneilly.pocketleague.core.data.Result
-import com.adammcneilly.pocketleague.core.models.BracketType
-import com.adammcneilly.pocketleague.core.models.EventOverview
-import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.core.models.PhaseOverview
-import com.adammcneilly.pocketleague.core.models.Player
-import com.adammcneilly.pocketleague.core.models.Standings
-import com.adammcneilly.pocketleague.core.models.StandingsPlacement
-import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.event.api.EventListRequestBody
 import com.adammcneilly.pocketleague.event.api.EventRepository
 import com.adammcneilly.pocketleague.event.graphql.EventOverviewQuery
@@ -22,6 +14,14 @@ import com.adammcneilly.pocketleague.event.graphql.fragment.StandingsPlacementFr
 import com.adammcneilly.pocketleague.event.graphql.type.LeagueEventsFilter
 import com.adammcneilly.pocketleague.event.graphql.type.LeagueEventsQuery
 import com.adammcneilly.pocketleague.event.graphql.type.StandingPaginationQuery
+import com.adammcneilly.pocketleague.shared.core.models.BracketType
+import com.adammcneilly.pocketleague.shared.core.models.EventOverview
+import com.adammcneilly.pocketleague.shared.core.models.EventSummary
+import com.adammcneilly.pocketleague.shared.core.models.PhaseOverview
+import com.adammcneilly.pocketleague.shared.core.models.Player
+import com.adammcneilly.pocketleague.shared.core.models.Standings
+import com.adammcneilly.pocketleague.shared.core.models.StandingsPlacement
+import com.adammcneilly.pocketleague.shared.core.models.Team
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.Flow
@@ -142,7 +142,8 @@ private fun PhaseGroupFragment?.toPhase(): PhaseOverview {
         numPools = overview?.groupCount ?: 0,
         numEntrants = overview?.numSeeds ?: 0,
         name = overview?.name.orEmpty(),
-        bracketType = this?.bracketType?.toBracketType() ?: BracketType.UNKNOWN,
+        bracketType = this?.bracketType?.toBracketType()
+            ?: BracketType.UNKNOWN,
         phaseOrder = overview?.phaseOrder ?: 0,
     )
 }

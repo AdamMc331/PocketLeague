@@ -19,7 +19,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":core-datetime"))
+                api("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
             }
         }
         val commonTest by getting {
@@ -56,5 +56,11 @@ android {
     defaultConfig {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
+    }
+
+    compileOptions {
+        sourceCompatibility(JavaVersion.VERSION_1_8)
+        targetCompatibility(JavaVersion.VERSION_1_8)
+        isCoreLibraryDesugaringEnabled = true
     }
 }

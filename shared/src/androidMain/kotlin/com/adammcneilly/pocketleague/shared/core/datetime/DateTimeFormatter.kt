@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.datetime
+package com.adammcneilly.pocketleague.shared.core.datetime
 
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.toJavaLocalDateTime

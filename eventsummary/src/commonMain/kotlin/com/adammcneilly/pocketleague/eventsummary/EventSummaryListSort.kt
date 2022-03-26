@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.eventsummary
 
-import com.adammcneilly.pocketleague.core.ui.UIText
+import com.adammcneilly.pocketleague.shared.core.ui.UIText
 
 /**
  * Possible sort variations for a list of event summaries.

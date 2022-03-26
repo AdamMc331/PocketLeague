@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.standings.ui
 
-import com.adammcneilly.pocketleague.core.ui.UIImage
+import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 
 /**
  * User friendly information to display a list item in a collection of standings.

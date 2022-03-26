@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.phase.ui
 
-import com.adammcneilly.pocketleague.core.ui.UIText
+import com.adammcneilly.pocketleague.shared.core.ui.UIText
 
 /**
  * A UI configuration for the phase detail screen.

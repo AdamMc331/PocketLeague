@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.android.design.components.togglebutton
 
-import com.adammcneilly.pocketleague.core.ui.UIText
+import com.adammcneilly.pocketleague.shared.core.ui.UIText
 
 /**
  * Defines any option that can appear inside a [ToggleButtonRow].

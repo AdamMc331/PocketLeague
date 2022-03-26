@@ -14,7 +14,7 @@ import androidx.compose.ui.zIndex
 import com.adammcneilly.pocketleague.android.design.adaptiveWidth
 import com.adammcneilly.pocketleague.android.design.getValue
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.core.ui.UIText
+import com.adammcneilly.pocketleague.shared.core.ui.UIText
 
 /**
  * A row of [ToggleButton] entities that allows the user to select one of the supplied [options].

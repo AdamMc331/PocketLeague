@@ -1,11 +1,9 @@
 package com.adammcneilly.pocketleague.teamdetail.ui
 
 import com.adammcneilly.pocketleague.core.ui.FakeFlagResProvider
-import com.adammcneilly.pocketleague.core.ui.UIImage
-import com.adammcneilly.pocketleague.player.ui.toDisplayModel
 import com.adammcneilly.pocketleague.shared.core.models.Player
 import com.adammcneilly.pocketleague.shared.core.models.Team
-import com.google.common.truth.Truth.assertThat
+import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 import org.junit.Test
 
 class TeamDetailDisplayModelTest {

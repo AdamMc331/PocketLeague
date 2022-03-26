@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.event.api
+package com.adammcneilly.pocketleague.shared.eventsummarylist.domain
 
 import com.adammcneilly.pocketleague.shared.core.models.EventSummary
 import kotlinx.coroutines.flow.Flow

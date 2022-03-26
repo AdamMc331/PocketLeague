@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.eventsummary
 
-import com.adammcneilly.pocketleague.event.api.EventRepository
-import com.adammcneilly.pocketleague.event.api.GetEventSummariesUseCase
+import com.adammcneilly.pocketleague.shared.data.event.EventRepository
+import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCase
 import com.adammcneilly.pocketleague.event.implementation.GetEventSummariesUseCaseImpl
 import com.adammcneilly.pocketleague.event.implementation.SmashGGEventService
 

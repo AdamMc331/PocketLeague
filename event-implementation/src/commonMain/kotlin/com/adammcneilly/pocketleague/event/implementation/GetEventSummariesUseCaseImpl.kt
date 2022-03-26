@@ -1,9 +1,9 @@
 package com.adammcneilly.pocketleague.event.implementation
 
-import com.adammcneilly.pocketleague.event.api.EventListRequestBody
-import com.adammcneilly.pocketleague.event.api.EventRepository
-import com.adammcneilly.pocketleague.event.api.GetEventSummariesUseCase
 import com.adammcneilly.pocketleague.shared.data.Result
+import com.adammcneilly.pocketleague.shared.data.event.EventListRequestBody
+import com.adammcneilly.pocketleague.shared.data.event.EventRepository
+import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

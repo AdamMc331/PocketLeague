@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.core.di
 
-import com.adammcneilly.pocketleague.event.api.EventRepository
-import com.adammcneilly.pocketleague.event.api.GetEventOverviewUseCase
-import com.adammcneilly.pocketleague.event.api.GetEventSummariesUseCase
 import com.adammcneilly.pocketleague.event.implementation.GetEventOverviewUseCaseImpl
 import com.adammcneilly.pocketleague.event.implementation.GetEventSummariesUseCaseImpl
+import com.adammcneilly.pocketleague.shared.data.event.EventRepository
+import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCase
+import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCase
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCase
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCaseImpl
 import dagger.Binds

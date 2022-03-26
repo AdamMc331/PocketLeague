@@ -1,6 +1,5 @@
 rootProject.name = "PocketLeague"
 include ':app'
-include ':event-api'
 include ':event-implementation'
 include ':eventsummary'
 include ':eventoverview'

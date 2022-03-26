@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.eventsummary
 
-import com.adammcneilly.pocketleague.event.api.GetEventSummariesUseCase
+import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCase
 
 /**
  * A collection of possible domain actions that can occur within the event summary list feature.

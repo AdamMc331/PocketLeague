@@ -7,7 +7,7 @@ import androidx.compose.ui.test.hasProgressBarRangeInfo
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.adammcneilly.pocketleague.R
-import com.adammcneilly.pocketleague.core.ui.UIText
+import com.adammcneilly.pocketleague.shared.core.ui.UIText
 import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
 import org.junit.Rule
 import org.junit.Test

@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import coil.compose.rememberImagePainter
+import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 
 /**
  * A custom composable for an [Image] that will set the painter based on the [image] supplied.

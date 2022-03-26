@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.teamoverview.ui
 
 import com.adammcneilly.pocketleague.core.ui.FlagResProvider
-import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.player.ui.PlayerDisplayModel
 import com.adammcneilly.pocketleague.player.ui.toDisplayModel
 import com.adammcneilly.pocketleague.shared.core.models.Team
+import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 
 /**
  * Defines UI information for a team item to be shown at a high level.

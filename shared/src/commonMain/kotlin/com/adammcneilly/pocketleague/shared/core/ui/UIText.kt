@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.ui
+package com.adammcneilly.pocketleague.shared.core.ui
 
 /**
  * A collection of possible representations of text in our UI layer.

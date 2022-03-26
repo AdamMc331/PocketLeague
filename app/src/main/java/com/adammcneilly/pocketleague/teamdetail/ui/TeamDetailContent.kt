@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.ui.PocketLeagueImage
-import com.adammcneilly.pocketleague.core.ui.UIImage
 import com.adammcneilly.pocketleague.player.ui.PlayerDisplayModel
 import com.adammcneilly.pocketleague.player.ui.PlayerList
+import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 import com.murgupluoglu.flagkit.FlagKit
 
 /**

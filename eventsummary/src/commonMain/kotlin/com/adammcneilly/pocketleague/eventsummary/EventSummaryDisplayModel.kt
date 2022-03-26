@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.eventsummary
 
-import com.adammcneilly.pocketleague.core.ui.UIImage
+import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 
 /**
  * A user friendly summary of an [EventSummary] to be displayed on the UI.

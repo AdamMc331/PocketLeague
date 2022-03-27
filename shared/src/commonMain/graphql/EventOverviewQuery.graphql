@@ -1,0 +1,62 @@
+fragment EventPlayerFragment on Player {
+    gamerTag
+}
+
+fragment EventEntrantFragment on Entrant {
+    id
+    name
+    team {
+        members {
+            player {
+                ...EventPlayerFragment
+            }
+        }
+        images {
+            url
+        }
+    }
+}
+
+fragment StandingsPlacementFragment on Standing {
+    entrant {
+        ...EventEntrantFragment
+    }
+    placement
+}
+
+fragment PhaseOverviewFragment on Phase {
+    id
+    groupCount
+    numSeeds
+    name
+    phaseOrder
+    bracketType
+}
+
+fragment PhaseGroupFragment on PhaseGroup {
+    id
+    bracketType
+    displayIdentifier
+    numRounds
+    phase {
+        ...PhaseOverviewFragment
+    }
+}
+
+fragment EventOverviewFragment on Event {
+    ...EventSummaryFragment
+    phaseGroups {
+        ...PhaseGroupFragment
+    }
+    standings(query: $standingsQuery) {
+        nodes {
+            ...StandingsPlacementFragment
+        }
+    }
+}
+
+query EventOverviewQuery($eventId: ID, $standingsQuery: StandingPaginationQuery!) {
+    event(id: $eventId) {
+        ...EventOverviewFragment
+    }
+}

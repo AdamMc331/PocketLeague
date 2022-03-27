@@ -19,7 +19,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":event-implementation"))
+                api(project(":shared"))
                 implementation("com.tunjid.mutator:core:${Versions.mutator}")
                 implementation("com.tunjid.mutator:coroutines:${Versions.mutator}")
             }

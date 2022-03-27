@@ -1,5 +1,6 @@
-package com.adammcneilly.pocketleague.event.implementation
+package com.adammcneilly.pocketleague.shared.data.event.remote.smashgg
 
+import com.adammcneilly.pocketleague.shared.BuildKonfig
 import com.apollographql.apollo3.api.http.HttpRequest
 import com.apollographql.apollo3.api.http.HttpResponse
 import com.apollographql.apollo3.network.http.HttpInterceptor

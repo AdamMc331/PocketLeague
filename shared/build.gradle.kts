@@ -1,6 +1,11 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.apollographql.apollo3").version(Versions.apollo)
+    id("com.codingfeline.buildkonfig").version(Versions.buildKonfig)
 }
 
 kotlin {
@@ -21,6 +26,7 @@ kotlin {
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
                 api("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
+                implementation("com.apollographql.apollo3:apollo-runtime:${Versions.apollo}")
             }
         }
         val commonTest by getting {
@@ -63,5 +69,28 @@ android {
         sourceCompatibility(JavaVersion.VERSION_1_8)
         targetCompatibility(JavaVersion.VERSION_1_8)
         isCoreLibraryDesugaringEnabled = true
+    }
+}
+
+apollo {
+    packageName.set("com.adammcneilly.pocketleague.shared.graphql")
+}
+
+buildkonfig {
+    val secretsFile = File("shared/local.properties")
+    val properties = Properties()
+
+    if (secretsFile.exists()) {
+        properties.load(FileInputStream(secretsFile))
+    }
+
+    defaultConfigs {
+        packageName = "com.adammcneilly.pocketleague.shared"
+
+        buildConfigField(
+            type = com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
+            name = "SMASH_GG_API_KEY",
+            value = properties["SmashGGAPIKey"].toString(),
+        )
     }
 }

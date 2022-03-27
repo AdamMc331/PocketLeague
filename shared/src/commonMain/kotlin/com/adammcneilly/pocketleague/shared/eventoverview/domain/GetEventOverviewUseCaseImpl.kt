@@ -1,8 +1,7 @@
-package com.adammcneilly.pocketleague.event.implementation
+package com.adammcneilly.pocketleague.shared.eventoverview.domain
 
 import com.adammcneilly.pocketleague.shared.data.Result
 import com.adammcneilly.pocketleague.shared.data.event.EventRepository
-import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

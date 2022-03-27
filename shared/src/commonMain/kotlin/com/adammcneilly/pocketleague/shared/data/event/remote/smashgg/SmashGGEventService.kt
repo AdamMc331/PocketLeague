@@ -1,16 +1,5 @@
-package com.adammcneilly.pocketleague.event.implementation
+package com.adammcneilly.pocketleague.shared.data.event.remote.smashgg
 
-import com.adammcneilly.pocketleague.event.graphql.EventOverviewQuery
-import com.adammcneilly.pocketleague.event.graphql.EventSummaryListQuery
-import com.adammcneilly.pocketleague.event.graphql.fragment.EventEntrantFragment
-import com.adammcneilly.pocketleague.event.graphql.fragment.EventOverviewFragment
-import com.adammcneilly.pocketleague.event.graphql.fragment.EventPlayerFragment
-import com.adammcneilly.pocketleague.event.graphql.fragment.EventSummaryFragment
-import com.adammcneilly.pocketleague.event.graphql.fragment.PhaseGroupFragment
-import com.adammcneilly.pocketleague.event.graphql.fragment.StandingsPlacementFragment
-import com.adammcneilly.pocketleague.event.graphql.type.LeagueEventsFilter
-import com.adammcneilly.pocketleague.event.graphql.type.LeagueEventsQuery
-import com.adammcneilly.pocketleague.event.graphql.type.StandingPaginationQuery
 import com.adammcneilly.pocketleague.shared.core.models.BracketType
 import com.adammcneilly.pocketleague.shared.core.models.EventOverview
 import com.adammcneilly.pocketleague.shared.core.models.EventSummary
@@ -22,6 +11,17 @@ import com.adammcneilly.pocketleague.shared.core.models.Team
 import com.adammcneilly.pocketleague.shared.data.Result
 import com.adammcneilly.pocketleague.shared.data.event.EventListRequestBody
 import com.adammcneilly.pocketleague.shared.data.event.EventRepository
+import com.adammcneilly.pocketleague.shared.graphql.EventOverviewQuery
+import com.adammcneilly.pocketleague.shared.graphql.EventSummaryListQuery
+import com.adammcneilly.pocketleague.shared.graphql.fragment.EventEntrantFragment
+import com.adammcneilly.pocketleague.shared.graphql.fragment.EventOverviewFragment
+import com.adammcneilly.pocketleague.shared.graphql.fragment.EventPlayerFragment
+import com.adammcneilly.pocketleague.shared.graphql.fragment.EventSummaryFragment
+import com.adammcneilly.pocketleague.shared.graphql.fragment.PhaseGroupFragment
+import com.adammcneilly.pocketleague.shared.graphql.fragment.StandingsPlacementFragment
+import com.adammcneilly.pocketleague.shared.graphql.type.LeagueEventsFilter
+import com.adammcneilly.pocketleague.shared.graphql.type.LeagueEventsQuery
+import com.adammcneilly.pocketleague.shared.graphql.type.StandingPaginationQuery
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.Flow
@@ -32,7 +32,7 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-typealias ApolloBracketType = com.adammcneilly.pocketleague.event.graphql.type.BracketType
+typealias ApolloBracketType = com.adammcneilly.pocketleague.shared.graphql.type.BracketType
 
 /**
  * A concrete implementation of [EventRepository] that will request information

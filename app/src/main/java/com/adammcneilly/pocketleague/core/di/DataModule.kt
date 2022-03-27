@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.core.di
 
-import com.adammcneilly.pocketleague.event.implementation.SmashGGEventService
 import com.adammcneilly.pocketleague.shared.data.event.EventRepository
+import com.adammcneilly.pocketleague.shared.data.event.remote.smashgg.SmashGGEventService
 import com.adammcneilly.pocketleague.teamlist.data.MockTeamListService
 import com.adammcneilly.pocketleague.teamlist.data.TeamListService
 import dagger.Binds

@@ -2,7 +2,6 @@
 
 package com.adammcneilly.pocketleague.eventoverview.domain.state
 
-import com.adammcneilly.pocketleague.event.api.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewDisplayModel
 import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewViewState
 import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
@@ -14,6 +13,7 @@ import com.adammcneilly.pocketleague.shared.core.models.Standings
 import com.adammcneilly.pocketleague.shared.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
+import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
 import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
 import com.tunjid.mutator.Mutation

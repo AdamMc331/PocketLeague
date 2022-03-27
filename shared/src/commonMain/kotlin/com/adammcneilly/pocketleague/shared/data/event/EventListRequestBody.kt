@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.event.api
+package com.adammcneilly.pocketleague.shared.data.event
 
 /**
  * Request body for pulling a list of events.

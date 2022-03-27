@@ -1,7 +1,5 @@
 package com.adammcneilly.pocketleague.event.implementation
 
-import com.adammcneilly.pocketleague.event.api.EventListRequestBody
-import com.adammcneilly.pocketleague.event.api.EventRepository
 import com.adammcneilly.pocketleague.event.graphql.EventOverviewQuery
 import com.adammcneilly.pocketleague.event.graphql.EventSummaryListQuery
 import com.adammcneilly.pocketleague.event.graphql.fragment.EventEntrantFragment
@@ -22,6 +20,8 @@ import com.adammcneilly.pocketleague.shared.core.models.Standings
 import com.adammcneilly.pocketleague.shared.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.shared.core.models.Team
 import com.adammcneilly.pocketleague.shared.data.Result
+import com.adammcneilly.pocketleague.shared.data.event.EventListRequestBody
+import com.adammcneilly.pocketleague.shared.data.event.EventRepository
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.Flow

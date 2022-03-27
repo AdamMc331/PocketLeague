@@ -3,9 +3,9 @@ package com.adammcneilly.pocketleague.eventoverview.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.adammcneilly.pocketleague.event.api.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.eventoverview.domain.state.EventOverviewAction
 import com.adammcneilly.pocketleague.eventoverview.domain.state.eventOverviewStateMutator
+import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCase
 import com.ramcosta.composedestinations.EventOverviewScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

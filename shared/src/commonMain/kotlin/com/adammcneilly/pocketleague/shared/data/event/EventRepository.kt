@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.event.api
+package com.adammcneilly.pocketleague.shared.data.event
 
 import com.adammcneilly.pocketleague.shared.core.models.EventOverview
 import com.adammcneilly.pocketleague.shared.core.models.EventSummary

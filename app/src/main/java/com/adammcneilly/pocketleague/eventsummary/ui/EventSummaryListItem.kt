@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.eventsummarylist.ui
+package com.adammcneilly.pocketleague.eventsummary.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable

@@ -4,14 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListAction
 import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListSort
-import com.adammcneilly.pocketleague.shared.eventsummarylist.eventSummaryListStateMutator
 import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCase
+import com.adammcneilly.pocketleague.shared.eventsummarylist.eventSummaryListStateMutator
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 /**
  * A state management container for the [EventSummaryListScreen].

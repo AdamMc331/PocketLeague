@@ -2,15 +2,11 @@ package com.adammcneilly.pocketleague.eventsummary.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.adammcneilly.pocketleague.eventsummary.EventSummaryListAction
-import com.adammcneilly.pocketleague.eventsummary.EventSummaryListSort
-import com.adammcneilly.pocketleague.eventsummary.eventSummaryListStateMutator
+import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListAction
+import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListSort
+import com.adammcneilly.pocketleague.shared.eventsummarylist.eventSummaryListStateMutator
 import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 /**

@@ -1,11 +1,11 @@
-package com.adammcneilly.pocketleague.eventsummary.ui
+package com.adammcneilly.pocketleague.shared.eventsummarylist.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.adammcneilly.pocketleague.eventsummary.ui.EventSummaryListViewModel
 import com.ramcosta.composedestinations.EventOverviewScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator

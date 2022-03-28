@@ -14,7 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         let displayModels = viewModel.viewState.events.map {
-            IdentifiableEventSummaryDisplayModel(eventSummary: $0)
+            IdentifiableEventSummaryListItemDisplayModel(eventSummary: $0)
         }
         List(displayModels) { event in
             EventSummaryListItem(eventSummary: event.eventSummary)
@@ -31,10 +31,10 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct IdentifiableEventSummaryDisplayModel : Identifiable {
+struct IdentifiableEventSummaryListItemDisplayModel : Identifiable {
     var id = UUID()
     
-    var eventSummary: eventsummary.EventSummaryDisplayModel
+    var eventSummary: eventsummary.EventSummaryListItemDisplayModel
 }
 
 @MainActor

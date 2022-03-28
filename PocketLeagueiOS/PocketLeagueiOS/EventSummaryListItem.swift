@@ -10,7 +10,7 @@ import SwiftUI
 import eventsummary
 
 struct EventSummaryListItem: View {
-    let eventSummary: EventSummaryDisplayModel
+    let eventSummary: EventSummaryListItemDisplayModel
     
         var body: some View {
             VStack(alignment: HorizontalAlignment.leading, spacing: 4, content: {
@@ -33,6 +33,6 @@ struct EventSummaryListItem: View {
 
 struct EventSummaryListItem_Previews: PreviewProvider {
     static var previews: some View {
-        EventSummaryListItem(eventSummary: EventSummaryDisplayModel(eventId: "EventID", startDate: "TODO: start date", tournamentName: "RLCS 2021-22 Season - Winter Split Regional 3 - Europe", eventName: "Main Event", subtitle: "16 Teams", image: nil))
+        EventSummaryListItem(eventSummary: EventSummaryListItemDisplayModel(eventId: "EventID", startDate: "TODO: start date", tournamentName: "RLCS 2021-22 Season - Winter Split Regional 3 - Europe", eventName: "Main Event", subtitle: "16 Teams", image: nil))
     }
 }

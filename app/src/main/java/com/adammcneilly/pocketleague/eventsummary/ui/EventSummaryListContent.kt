@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.eventsummary.ui
+package com.adammcneilly.pocketleague.shared.eventsummarylist.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,10 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.design.components.togglebutton.ToggleButtonOption
 import com.adammcneilly.pocketleague.android.design.components.togglebutton.ToggleButtonRow
-import com.adammcneilly.pocketleague.android.design.getValue
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
-import com.adammcneilly.pocketleague.eventsummary.EventSummaryListSort
-import com.adammcneilly.pocketleague.eventsummary.EventSummaryListViewState
+import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListSort
+import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListViewState
 
 /**
  * Displays the content of an event summary list based on the supplied [viewState].

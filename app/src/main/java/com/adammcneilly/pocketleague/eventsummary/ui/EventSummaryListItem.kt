@@ -17,15 +17,15 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.ui.Material3Card
-import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.shared.core.ui.UIImage
+import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListItemDisplayModel
 
 /**
  * Renders a [displayModel] to show a summary of an RLCS event.
  */
 @Composable
 fun EventSummaryListItem(
-    displayModel: EventSummaryDisplayModel,
+    displayModel: EventSummaryListItemDisplayModel,
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -56,7 +56,7 @@ fun EventSummaryListItem(
 
 @Composable
 private fun SummaryInfo(
-    displayModel: EventSummaryDisplayModel
+    displayModel: EventSummaryListItemDisplayModel
 ) {
     Column(
         modifier = Modifier
@@ -127,7 +127,7 @@ private fun EventNameLabel(
 )
 @Composable
 private fun EventSummaryListItemPreview() {
-    val displayModel = EventSummaryDisplayModel(
+    val displayModel = EventSummaryListItemDisplayModel(
         eventId = "1234",
         startDate = "Nov 12, 2021",
         eventName = "Main Event",

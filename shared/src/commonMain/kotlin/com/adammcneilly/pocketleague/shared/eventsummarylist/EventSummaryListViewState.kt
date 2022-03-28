@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.eventsummary
+package com.adammcneilly.pocketleague.shared.eventsummarylist
 
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
 
@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.shared.core.ui.UIText
  */
 data class EventSummaryListViewState(
     val showLoading: Boolean = true,
-    val events: List<EventSummaryDisplayModel> = emptyList(),
+    val events: List<EventSummaryListItemDisplayModel> = emptyList(),
     val selectedEventId: String? = null,
     val errorMessage: UIText? = null,
     val currentSort: EventSummaryListSort = EventSummaryListSort.UPCOMING,

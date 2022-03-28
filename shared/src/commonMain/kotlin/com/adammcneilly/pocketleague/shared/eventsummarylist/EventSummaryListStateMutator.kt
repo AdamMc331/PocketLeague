@@ -1,6 +1,6 @@
 @file:Suppress("TooManyFunctions")
 
-package com.adammcneilly.pocketleague.eventsummary
+package com.adammcneilly.pocketleague.shared.eventsummarylist
 
 import com.adammcneilly.pocketleague.shared.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.shared.core.models.EventSummary
@@ -126,14 +126,14 @@ private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
 }
 
 /**
- * Converts an [EventSummary] domain object to a user friendly [EventSummaryDisplayModel].
+ * Converts an [EventSummary] domain object to a user friendly [EventSummaryListItemDisplayModel].
  */
-private fun EventSummary.toSummaryDisplayModel(): EventSummaryDisplayModel {
-    return EventSummaryDisplayModel(
+private fun EventSummary.toSummaryDisplayModel(): EventSummaryListItemDisplayModel {
+    return EventSummaryListItemDisplayModel(
         eventId = this.id,
         startDate = DateTimeFormatter().formatLocalDateTime(
             this.startDate,
-            EventSummaryDisplayModel.START_DATE_FORMAT,
+            EventSummaryListItemDisplayModel.START_DATE_FORMAT,
         ).orEmpty(),
         tournamentName = this.tournamentName,
         eventName = this.eventName,
@@ -145,7 +145,7 @@ private fun EventSummary.toSummaryDisplayModel(): EventSummaryDisplayModel {
 }
 
 /**
- * Generates a user friendly subtitle for an [EventSummary] intended to be passed to an [EventSummaryDisplayModel].
+ * Generates a user friendly subtitle for an [EventSummary] intended to be passed to an [EventSummaryListItemDisplayModel].
  */
 private fun EventSummary.buildSubtitle(): String? {
     return this.numEntrants?.let { numEntrants ->

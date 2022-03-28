@@ -1,6 +1,5 @@
 rootProject.name = "PocketLeague"
 include ':app'
-include ':eventsummary'
 include ':eventoverview'
 include ':android-design-system'
 include ':shared'

@@ -102,7 +102,6 @@ android {
 dependencies {
 
     implementation(project(":shared"))
-    implementation(project(":eventsummary"))
     implementation(project(":android-design-system"))
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")
     implementation("androidx.appcompat:appcompat:${Versions.appCompat}")

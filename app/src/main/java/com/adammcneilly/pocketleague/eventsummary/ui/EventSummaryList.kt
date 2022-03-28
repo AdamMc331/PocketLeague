@@ -16,15 +16,15 @@ import com.adammcneilly.pocketleague.ExcludeFromJacocoGeneratedReport
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.design.adaptiveWidth
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.eventsummary.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.shared.core.ui.UIImage
+import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListItemDisplayModel
 
 /**
  * Renders a scrollable list of [displayModels] for event summaries.
  */
 @Composable
 fun EventSummaryList(
-    displayModels: List<EventSummaryDisplayModel>,
+    displayModels: List<EventSummaryListItemDisplayModel>,
     eventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -67,7 +67,7 @@ fun EventSummaryList(
 @Composable
 @ExcludeFromJacocoGeneratedReport
 private fun EventSummaryListPreview() {
-    val displayModel = EventSummaryDisplayModel(
+    val displayModel = EventSummaryListItemDisplayModel(
         eventId = "1234",
         startDate = "Nov 12, 2021",
         eventName = "Main Event",

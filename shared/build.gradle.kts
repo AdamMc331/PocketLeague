@@ -27,6 +27,8 @@ kotlin {
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
                 api("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
                 implementation("com.apollographql.apollo3:apollo-runtime:${Versions.apollo}")
+                implementation("com.tunjid.mutator:core:${Versions.mutator}")
+                implementation("com.tunjid.mutator:coroutines:${Versions.mutator}")
             }
         }
         val commonTest by getting {

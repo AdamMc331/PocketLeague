@@ -16,8 +16,8 @@ import com.adammcneilly.pocketleague.ExcludeFromJacocoGeneratedReport
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.design.adaptiveWidth
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListItemDisplayModel
 import com.adammcneilly.pocketleague.shared.core.ui.UIImage
+import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListItemDisplayModel
 
 /**
  * Renders a scrollable list of [displayModels] for event summaries.

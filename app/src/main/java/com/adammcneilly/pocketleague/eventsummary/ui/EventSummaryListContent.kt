@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.design.components.togglebutton.ToggleButtonOption
 import com.adammcneilly.pocketleague.android.design.components.togglebutton.ToggleButtonRow
+import com.adammcneilly.pocketleague.android.design.getValue
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListSort
 import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListViewState

@@ -11,9 +11,9 @@ import com.adammcneilly.pocketleague.shared.core.models.Standings
 import com.adammcneilly.pocketleague.shared.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
+import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewPhaseDisplayModel
-import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.shared.standings.StandingsDisplayModel
 import com.adammcneilly.pocketleague.shared.standings.StandingsPlacementDisplayModel
 import com.tunjid.mutator.Mutation

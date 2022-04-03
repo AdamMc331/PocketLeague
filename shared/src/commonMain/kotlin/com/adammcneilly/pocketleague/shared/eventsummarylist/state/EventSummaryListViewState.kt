@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.shared.eventsummarylist.state
 
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
-import com.adammcneilly.pocketleague.shared.eventsummarylist.ui.EventSummaryListItemDisplayModel
 import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListSort
+import com.adammcneilly.pocketleague.shared.eventsummarylist.ui.EventSummaryListItemDisplayModel
 
 /**
  * A collection of possible view states for [EventSummaryListScreen].

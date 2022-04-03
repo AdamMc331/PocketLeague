@@ -66,7 +66,7 @@ object Versions {
     const val buildKonfig = "0.11.0"
 
     // https://github.com/tunjid/mutator
-    const val mutator = "0.0.1"
+    const val mutator = "0.0.2"
 
     // https://developer.android.com/jetpack/androidx/releases/hilt
     const val hilt = "2.41"

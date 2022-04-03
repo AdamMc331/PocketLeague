@@ -1,6 +1,5 @@
-package com.adammcneilly.pocketleague.phase.domain.state
+package com.adammcneilly.pocketleague.shared.phasedetail.state
 
-import com.adammcneilly.pocketleague.phase.ui.PhaseDetailViewState
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream

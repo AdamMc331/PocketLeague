@@ -3,8 +3,8 @@ package com.adammcneilly.pocketleague.phase.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.adammcneilly.pocketleague.phase.domain.state.PhaseDetailAction
-import com.adammcneilly.pocketleague.phase.domain.state.phaseDetailStateMutator
+import com.adammcneilly.pocketleague.shared.phasedetail.state.PhaseDetailAction
+import com.adammcneilly.pocketleague.shared.phasedetail.state.phaseDetailStateMutator
 import com.ramcosta.composedestinations.PhaseDetailScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

@@ -1,6 +1,7 @@
-package com.adammcneilly.pocketleague.eventoverview.ui
+package com.adammcneilly.pocketleague.shared.eventoverview.state
 
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewDisplayModel
 
 /**
  * A collection of possible view states for [EventOverviewScreen].

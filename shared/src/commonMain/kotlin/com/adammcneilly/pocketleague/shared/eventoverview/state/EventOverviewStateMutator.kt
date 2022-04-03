@@ -1,10 +1,8 @@
 @file:Suppress("TooManyFunctions")
 
-package com.adammcneilly.pocketleague.eventoverview.domain.state
+package com.adammcneilly.pocketleague.shared.eventoverview.state
 
-import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewDisplayModel
-import com.adammcneilly.pocketleague.eventoverview.ui.EventOverviewViewState
-import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
+import com.adammcneilly.pocketleague.shared.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.shared.core.models.BracketType
 import com.adammcneilly.pocketleague.shared.core.models.EventOverview
 import com.adammcneilly.pocketleague.shared.core.models.PhaseOverview
@@ -14,8 +12,10 @@ import com.adammcneilly.pocketleague.shared.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
 import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCase
-import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
-import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewPhaseDisplayModel
+import com.adammcneilly.pocketleague.shared.standings.StandingsDisplayModel
+import com.adammcneilly.pocketleague.shared.standings.StandingsPlacementDisplayModel
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream
@@ -125,13 +125,16 @@ private fun EventOverview.toDisplayModel(): EventOverviewDisplayModel {
     return EventOverviewDisplayModel(
         eventName = this.name,
         phases = this.phases.map(PhaseOverview::toDisplayModel),
-        startDate = "TODO: Event Overview Start Date",
+        startDate = DateTimeFormatter().formatLocalDateTime(
+            this.startDate,
+            EventOverviewDisplayModel.EVENT_DATE_FORMAT,
+        ).orEmpty(),
         standings = this.standings.toDisplayModel(),
     )
 }
 
-private fun PhaseOverview.toDisplayModel(): PhaseDisplayModel {
-    return PhaseDisplayModel(
+private fun PhaseOverview.toDisplayModel(): EventOverviewPhaseDisplayModel {
+    return EventOverviewPhaseDisplayModel(
         phaseId = this.id,
         phaseName = this.name,
         numPools = this.numPools.toString(),

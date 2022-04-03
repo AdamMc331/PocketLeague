@@ -1,5 +1,6 @@
-package com.adammcneilly.pocketleague.shared.eventsummarylist
+package com.adammcneilly.pocketleague.shared.eventsummarylist.state
 
+import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListSort
 import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCase
 
 /**

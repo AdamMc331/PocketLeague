@@ -23,11 +23,13 @@ import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.core.ui.Material3Card
 import com.adammcneilly.pocketleague.core.ui.TextCard
-import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
 import com.adammcneilly.pocketleague.phase.ui.PhaseList
-import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.state.EventOverviewViewState
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewPhaseDisplayModel
+import com.adammcneilly.pocketleague.shared.standings.StandingsDisplayModel
+import com.adammcneilly.pocketleague.shared.standings.StandingsPlacementDisplayModel
 import com.adammcneilly.pocketleague.standings.ui.StandingsList
-import com.adammcneilly.pocketleague.standings.ui.StandingsPlacementDisplayModel
 
 /**
  * Displays the event overview information given the [viewState].
@@ -46,16 +48,20 @@ fun EventOverviewContent(
             CenteredMaterial3CircularProgressIndicator()
         }
 
-        if (viewState.event != null) {
+        val displayModel = viewState.event
+
+        if (displayModel != null) {
             SuccessContent(
-                event = viewState.event,
+                event = displayModel,
                 onPhaseClicked = onPhaseClicked,
             )
         }
 
-        if (viewState.errorMessage != null) {
+        val errorMessage = viewState.errorMessage
+
+        if (errorMessage != null) {
             Text(
-                text = viewState.errorMessage.getValue(),
+                text = errorMessage.getValue(),
             )
         }
     }
@@ -153,14 +159,14 @@ private fun EventOverviewContentPreview() {
     val event = EventOverviewDisplayModel(
         eventName = "Main Event",
         phases = listOf(
-            PhaseDisplayModel(
+            EventOverviewPhaseDisplayModel(
                 phaseId = "123",
                 phaseName = "Day 1: Swiss Matches",
                 numPools = "1",
                 bracketType = "Custom",
                 numEntrants = "16",
             ),
-            PhaseDisplayModel(
+            EventOverviewPhaseDisplayModel(
                 phaseId = "123",
                 phaseName = "Day 2-3: Single Elimination",
                 numPools = "1",

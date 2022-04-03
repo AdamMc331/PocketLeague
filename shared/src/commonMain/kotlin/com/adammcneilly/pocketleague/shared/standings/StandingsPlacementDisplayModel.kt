@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.standings.ui
+package com.adammcneilly.pocketleague.shared.standings
 
 import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 

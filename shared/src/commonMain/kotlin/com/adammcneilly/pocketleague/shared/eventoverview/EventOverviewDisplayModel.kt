@@ -1,8 +1,7 @@
-package com.adammcneilly.pocketleague.eventoverview.ui
+package com.adammcneilly.pocketleague.shared.eventoverview
 
-import com.adammcneilly.pocketleague.phase.ui.PhaseDisplayModel
 import com.adammcneilly.pocketleague.shared.core.models.EventOverview
-import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
+import com.adammcneilly.pocketleague.shared.standings.StandingsDisplayModel
 
 /**
  * A user friendly representation of an [EventOverview] to be shown on the UI.
@@ -10,6 +9,11 @@ import com.adammcneilly.pocketleague.standings.ui.StandingsDisplayModel
 data class EventOverviewDisplayModel(
     val eventName: String,
     val startDate: String,
-    val phases: List<PhaseDisplayModel>,
+    val phases: List<EventOverviewPhaseDisplayModel>,
     val standings: StandingsDisplayModel,
-)
+) {
+
+    companion object {
+        const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
+    }
+}

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.eventoverview.ui
+package com.adammcneilly.pocketleague.shared.eventoverview
 
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
 

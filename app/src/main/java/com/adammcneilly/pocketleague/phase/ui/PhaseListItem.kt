@@ -17,6 +17,7 @@ import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewPhaseDisplayModel
 
 private const val PHASE_INFO_WIDTH_PERCENTAGE = 0.75F
 
@@ -25,7 +26,7 @@ private const val PHASE_INFO_WIDTH_PERCENTAGE = 0.75F
  */
 @Composable
 fun PhaseListItem(
-    phase: PhaseDisplayModel,
+    phase: EventOverviewPhaseDisplayModel,
     onPhaseClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -57,7 +58,7 @@ fun PhaseListItem(
 }
 
 @Composable
-private fun PhaseNameLabel(phase: PhaseDisplayModel) {
+private fun PhaseNameLabel(phase: EventOverviewPhaseDisplayModel) {
     Text(
         text = phase.phaseName,
         style = MaterialTheme.typography.headlineSmall,
@@ -91,7 +92,7 @@ private fun InfoItemLabel(
 )
 @Composable
 private fun PhaseListItemPreview() {
-    val phase = PhaseDisplayModel(
+    val phase = EventOverviewPhaseDisplayModel(
         phaseId = "123",
         phaseName = "Day 1: Swiss Matches",
         numPools = "1",

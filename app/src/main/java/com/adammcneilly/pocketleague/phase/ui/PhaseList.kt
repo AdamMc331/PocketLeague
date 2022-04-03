@@ -10,13 +10,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.ui.Material3Card
+import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewPhaseDisplayModel
 
 /**
  * Displays a collection of [phases].
  */
 @Composable
 fun PhaseList(
-    phases: List<PhaseDisplayModel>,
+    phases: List<EventOverviewPhaseDisplayModel>,
     onPhaseClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -46,14 +47,14 @@ fun PhaseList(
 @Composable
 private fun PhaseListPreview() {
     val phases = listOf(
-        PhaseDisplayModel(
+        EventOverviewPhaseDisplayModel(
             phaseId = "123",
             phaseName = "Day 1: Swiss Matches",
             numPools = "1",
             bracketType = "Custom",
             numEntrants = "16",
         ),
-        PhaseDisplayModel(
+        EventOverviewPhaseDisplayModel(
             phaseId = "123",
             phaseName = "Day 2-3: Single Elimination",
             numPools = "1",

@@ -1,11 +1,11 @@
-package com.adammcneilly.pocketleague.phase.ui
+package com.adammcneilly.pocketleague.shared.eventoverview
 
 import com.adammcneilly.pocketleague.shared.core.models.PhaseOverview
 
 /**
  * A user friendly representation of a [PhaseOverview] to be displayed on the UI.
  */
-data class PhaseDisplayModel(
+data class EventOverviewPhaseDisplayModel(
     val phaseId: String,
     val phaseName: String,
     val numPools: String,

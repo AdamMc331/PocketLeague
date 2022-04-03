@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.eventoverview.domain.state
+package com.adammcneilly.pocketleague.shared.eventoverview
 
 /**
  * A collection of possible actions that can occur on the event overview screen.

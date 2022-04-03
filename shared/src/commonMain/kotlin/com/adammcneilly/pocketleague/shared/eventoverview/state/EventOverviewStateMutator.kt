@@ -1,6 +1,6 @@
 @file:Suppress("TooManyFunctions")
 
-package com.adammcneilly.pocketleague.shared.eventoverview
+package com.adammcneilly.pocketleague.shared.eventoverview.state
 
 import com.adammcneilly.pocketleague.shared.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.shared.core.models.BracketType
@@ -11,6 +11,8 @@ import com.adammcneilly.pocketleague.shared.core.models.Standings
 import com.adammcneilly.pocketleague.shared.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewPhaseDisplayModel
 import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.shared.standings.StandingsDisplayModel
 import com.adammcneilly.pocketleague.shared.standings.StandingsPlacementDisplayModel

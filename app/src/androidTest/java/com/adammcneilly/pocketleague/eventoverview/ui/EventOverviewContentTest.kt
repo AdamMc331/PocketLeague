@@ -8,8 +8,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
-import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewDisplayModel
-import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewViewState
+import com.adammcneilly.pocketleague.shared.eventoverview.state.EventOverviewViewState
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.standings.StandingsDisplayModel
 import org.junit.Rule
 import org.junit.Test

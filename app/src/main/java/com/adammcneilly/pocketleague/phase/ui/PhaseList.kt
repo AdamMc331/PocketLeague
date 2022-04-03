@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.ui.Material3Card
-import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewPhaseDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewPhaseDisplayModel
 
 /**
  * Displays a collection of [phases].

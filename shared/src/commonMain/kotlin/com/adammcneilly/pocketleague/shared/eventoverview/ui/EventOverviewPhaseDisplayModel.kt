@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.eventoverview
+package com.adammcneilly.pocketleague.shared.eventoverview.ui
 
 import com.adammcneilly.pocketleague.shared.core.models.PhaseOverview
 

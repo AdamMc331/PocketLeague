@@ -12,7 +12,7 @@ import com.adammcneilly.pocketleague.android.design.components.togglebutton.Togg
 import com.adammcneilly.pocketleague.android.design.getValue
 import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIndicator
 import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListSort
-import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListViewState
+import com.adammcneilly.pocketleague.shared.eventsummarylist.state.EventSummaryListViewState
 
 /**
  * Displays the content of an event summary list based on the supplied [viewState].

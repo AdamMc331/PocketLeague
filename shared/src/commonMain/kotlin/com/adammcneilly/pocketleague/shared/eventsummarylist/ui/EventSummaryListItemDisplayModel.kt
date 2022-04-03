@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.eventsummarylist
+package com.adammcneilly.pocketleague.shared.eventsummarylist.ui
 
 import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 

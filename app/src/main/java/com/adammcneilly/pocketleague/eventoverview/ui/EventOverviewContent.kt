@@ -24,9 +24,9 @@ import com.adammcneilly.pocketleague.core.ui.CenteredMaterial3CircularProgressIn
 import com.adammcneilly.pocketleague.core.ui.Material3Card
 import com.adammcneilly.pocketleague.core.ui.TextCard
 import com.adammcneilly.pocketleague.phase.ui.PhaseList
-import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewDisplayModel
-import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewPhaseDisplayModel
-import com.adammcneilly.pocketleague.shared.eventoverview.EventOverviewViewState
+import com.adammcneilly.pocketleague.shared.eventoverview.state.EventOverviewViewState
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.eventoverview.ui.EventOverviewPhaseDisplayModel
 import com.adammcneilly.pocketleague.shared.standings.StandingsDisplayModel
 import com.adammcneilly.pocketleague.shared.standings.StandingsPlacementDisplayModel
 import com.adammcneilly.pocketleague.standings.ui.StandingsList

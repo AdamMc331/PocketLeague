@@ -1,0 +1,45 @@
+fragment SetSlotFragment on SetSlot {
+    entrant {
+        ...EventEntrantFragment
+    }
+    slotIndex
+}
+
+fragment EventSetFragment on Set {
+    fullRoundText
+    displayScore
+    winnerId
+    round
+    slots {
+        ...SetSlotFragment
+    }
+    games {
+        id
+        winnerId
+    }
+}
+
+fragment PhaseDetailFragment on Phase {
+    ...PhaseOverviewFragment
+    sets(
+        perPage: $perPage
+    ) {
+        pageInfo {
+            total
+            totalPages
+            page
+        }
+        nodes {
+            ...EventSetFragment
+        }
+    }
+}
+
+query PhaseDetailQuery(
+    $id: ID,
+    $perPage: Int,
+) {
+    phase(id: $id) {
+        ...PhaseDetailFragment
+    }
+}

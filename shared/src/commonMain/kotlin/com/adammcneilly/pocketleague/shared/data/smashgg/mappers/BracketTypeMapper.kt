@@ -4,6 +4,9 @@ import com.adammcneilly.pocketleague.shared.core.models.BracketType
 
 typealias ApolloBracketType = com.adammcneilly.pocketleague.shared.graphql.type.BracketType
 
+/**
+ * Converts an [ApolloBracketType] from the smash.gg API to the [BracketType] within our domain.
+ */
 fun ApolloBracketType.toBracketType(): BracketType {
     return when (this) {
         ApolloBracketType.CUSTOM_SCHEDULE -> BracketType.CUSTOM

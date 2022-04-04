@@ -9,4 +9,5 @@ data class EventSet(
     val round: String,
     val winnerId: String,
     val slots: List<SetSlot>,
+    val games: List<Game>,
 )

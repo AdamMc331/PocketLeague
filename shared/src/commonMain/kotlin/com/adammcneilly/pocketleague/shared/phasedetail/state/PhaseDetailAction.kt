@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.phase.domain.state
+package com.adammcneilly.pocketleague.shared.phasedetail.state
 
 /**
  * A collection of actions that can occur on the phase detail screen.

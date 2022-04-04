@@ -4,25 +4,24 @@ import com.adammcneilly.pocketleague.shared.core.models.BracketType
 import com.adammcneilly.pocketleague.shared.core.models.EventOverview
 import com.adammcneilly.pocketleague.shared.core.models.EventSummary
 import com.adammcneilly.pocketleague.shared.core.models.PhaseOverview
-import com.adammcneilly.pocketleague.shared.core.models.Player
 import com.adammcneilly.pocketleague.shared.core.models.Standings
 import com.adammcneilly.pocketleague.shared.core.models.StandingsPlacement
-import com.adammcneilly.pocketleague.shared.core.models.Team
 import com.adammcneilly.pocketleague.shared.data.Result
 import com.adammcneilly.pocketleague.shared.data.event.EventListRequestBody
 import com.adammcneilly.pocketleague.shared.data.event.EventRepository
+import com.adammcneilly.pocketleague.shared.data.smashgg.mappers.toBracketType
+import com.adammcneilly.pocketleague.shared.data.smashgg.mappers.toTeam
+import com.adammcneilly.pocketleague.shared.data.smashgg.smashGGApolloClient
 import com.adammcneilly.pocketleague.shared.graphql.EventOverviewQuery
 import com.adammcneilly.pocketleague.shared.graphql.EventSummaryListQuery
 import com.adammcneilly.pocketleague.shared.graphql.fragment.EventEntrantFragment
 import com.adammcneilly.pocketleague.shared.graphql.fragment.EventOverviewFragment
-import com.adammcneilly.pocketleague.shared.graphql.fragment.EventPlayerFragment
 import com.adammcneilly.pocketleague.shared.graphql.fragment.EventSummaryFragment
 import com.adammcneilly.pocketleague.shared.graphql.fragment.PhaseGroupFragment
 import com.adammcneilly.pocketleague.shared.graphql.fragment.StandingsPlacementFragment
 import com.adammcneilly.pocketleague.shared.graphql.type.LeagueEventsFilter
 import com.adammcneilly.pocketleague.shared.graphql.type.LeagueEventsQuery
 import com.adammcneilly.pocketleague.shared.graphql.type.StandingPaginationQuery
-import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -32,18 +31,11 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-typealias ApolloBracketType = com.adammcneilly.pocketleague.shared.graphql.type.BracketType
-
 /**
  * A concrete implementation of [EventRepository] that will request information
  * from the smash.gg API.
  */
 class SmashGGEventService : EventRepository {
-
-    private val apolloClient = ApolloClient.Builder()
-        .serverUrl("https://api.smash.gg/gql/alpha")
-        .addHttpInterceptor(SmashGGAuthorizationInterceptor())
-        .build()
 
     override fun fetchEventSummaries(
         leagueSlug: String,
@@ -67,7 +59,7 @@ class SmashGGEventService : EventRepository {
             eventsQuery = eventsQuery,
         )
 
-        val response = apolloClient.query(query).toFlow()
+        val response = smashGGApolloClient.query(query).toFlow()
 
         return response.map { dataResponse ->
             val events = dataResponse
@@ -90,7 +82,7 @@ class SmashGGEventService : EventRepository {
             standingsQuery = StandingPaginationQuery(),
         )
 
-        val response = apolloClient.query(query).toFlow()
+        val response = smashGGApolloClient.query(query).toFlow()
 
         return response.mapNotNull { dataResponse ->
             val overview = dataResponse
@@ -165,37 +157,9 @@ private fun EventSummaryFragment.toEvent(): EventSummary {
     )
 }
 
-private fun ApolloBracketType.toBracketType(): BracketType {
-    return when (this) {
-        ApolloBracketType.CUSTOM_SCHEDULE -> BracketType.CUSTOM
-        ApolloBracketType.SINGLE_ELIMINATION -> BracketType.SINGLE_ELIMINATION
-        ApolloBracketType.DOUBLE_ELIMINATION -> BracketType.DOUBLE_ELIMINATION
-        else -> BracketType.UNKNOWN
-    }
-}
-
 private fun StandingsPlacementFragment?.toStandingsPlacement(): StandingsPlacement {
     return StandingsPlacement(
         placement = this?.placement ?: 0,
         team = this?.entrant?.eventEntrantFragment.let(EventEntrantFragment?::toTeam),
-    )
-}
-
-private fun EventEntrantFragment?.toTeam(): Team {
-    return Team(
-        name = this?.name.orEmpty(),
-        lightThemeLogoImageUrl = this?.team?.images?.firstOrNull()?.url,
-        darkThemeLogoImageUrl = this?.team?.images?.firstOrNull()?.url,
-        roster = this?.team?.members?.mapNotNull { member ->
-            member?.player?.eventPlayerFragment.let(EventPlayerFragment?::toPlayer)
-        }.orEmpty(),
-    )
-}
-
-private fun EventPlayerFragment?.toPlayer(): Player {
-    return Player(
-        countryCode = "",
-        gamerTag = this?.gamerTag.orEmpty(),
-        realName = "",
     )
 }

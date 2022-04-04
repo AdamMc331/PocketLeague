@@ -96,6 +96,7 @@ private fun EventSetFragment?.toEventSet(): EventSet {
         slots = this?.slots?.mapNotNull { setSlot ->
             setSlot?.setSlotFragment?.toSetSlot()
         }.orEmpty(),
+        games = emptyList(),
     )
 }
 

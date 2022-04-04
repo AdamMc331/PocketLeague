@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.data.event.remote.smashgg
+package com.adammcneilly.pocketleague.shared.data.smashgg
 
 import com.adammcneilly.pocketleague.shared.BuildKonfig
 import com.apollographql.apollo3.api.http.HttpRequest

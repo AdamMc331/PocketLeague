@@ -2,6 +2,8 @@ package com.adammcneilly.pocketleague.core.di
 
 import com.adammcneilly.pocketleague.shared.data.event.EventRepository
 import com.adammcneilly.pocketleague.shared.data.event.remote.smashgg.SmashGGEventService
+import com.adammcneilly.pocketleague.shared.data.phase.PhaseRepository
+import com.adammcneilly.pocketleague.shared.data.phase.remote.smashgg.SmashGGPhaseService
 import com.adammcneilly.pocketleague.teamlist.data.MockTeamListService
 import com.adammcneilly.pocketleague.teamlist.data.TeamListService
 import dagger.Binds
@@ -26,6 +28,11 @@ abstract class DataModule {
         @Provides
         fun provideEventRepository(): EventRepository {
             return SmashGGEventService()
+        }
+
+        @Provides
+        fun providePhaseRepository(): PhaseRepository {
+            return SmashGGPhaseService()
         }
     }
 }

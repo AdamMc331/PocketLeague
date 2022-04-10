@@ -11,5 +11,6 @@ local.properties
 /app/src/main/graphql/com/adammcneilly/pocketleague/.graphqlconfig
 /shared/build/
 /core-models/build/
+/core-data/build/
 /buildSrc/build/
 PocketLeagueiOS/PocketLeagueiOS.xcodeproj/project.xcworkspace/xcuserdata/amcneilly.xcuserdatad/UserInterfaceState.xcuserstate

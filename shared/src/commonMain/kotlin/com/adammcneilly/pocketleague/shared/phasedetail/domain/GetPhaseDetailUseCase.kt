@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.phasedetail.domain
 
-import com.adammcneilly.pocketleague.shared.core.models.PhaseDetail
+import com.adammcneilly.pocketleague.core.models.PhaseDetail
 import kotlinx.coroutines.flow.Flow
 
 /**

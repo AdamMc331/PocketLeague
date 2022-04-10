@@ -1,9 +1,9 @@
 package com.adammcneilly.pocketleague.shared.data.phase.remote.smashgg
 
-import com.adammcneilly.pocketleague.shared.core.models.BracketType
-import com.adammcneilly.pocketleague.shared.core.models.EventSet
-import com.adammcneilly.pocketleague.shared.core.models.PhaseDetail
-import com.adammcneilly.pocketleague.shared.core.models.SetSlot
+import com.adammcneilly.pocketleague.core.models.BracketType
+import com.adammcneilly.pocketleague.core.models.EventSet
+import com.adammcneilly.pocketleague.core.models.PhaseDetail
+import com.adammcneilly.pocketleague.core.models.SetSlot
 import com.adammcneilly.pocketleague.shared.data.Result
 import com.adammcneilly.pocketleague.shared.data.phase.PhaseRepository
 import com.adammcneilly.pocketleague.shared.data.smashgg.mappers.toBracketType

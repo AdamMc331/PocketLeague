@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.core.models
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * Represents the [placement] within standings for a given [team].

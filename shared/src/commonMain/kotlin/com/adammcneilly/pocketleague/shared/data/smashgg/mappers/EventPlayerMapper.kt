@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.data.smashgg.mappers
 
-import com.adammcneilly.pocketleague.shared.core.models.Player
+import com.adammcneilly.pocketleague.core.models.Player
 import com.adammcneilly.pocketleague.shared.graphql.fragment.EventPlayerFragment
 
 /**

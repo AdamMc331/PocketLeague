@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.eventoverview.ui
 
-import com.adammcneilly.pocketleague.shared.core.models.PhaseOverview
+import com.adammcneilly.pocketleague.core.models.PhaseOverview
 
 /**
  * A user friendly representation of a [PhaseOverview] to be displayed on the UI.

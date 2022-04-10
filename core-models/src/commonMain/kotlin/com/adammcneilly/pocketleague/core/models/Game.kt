@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.core.models
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * Defines a 5 minute game between two RLCS teams.

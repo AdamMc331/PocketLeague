@@ -2,13 +2,13 @@
 
 package com.adammcneilly.pocketleague.shared.eventoverview.state
 
+import com.adammcneilly.pocketleague.core.models.BracketType
+import com.adammcneilly.pocketleague.core.models.EventOverview
+import com.adammcneilly.pocketleague.core.models.PhaseOverview
+import com.adammcneilly.pocketleague.core.models.Player
+import com.adammcneilly.pocketleague.core.models.Standings
+import com.adammcneilly.pocketleague.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.shared.core.datetime.DateTimeFormatter
-import com.adammcneilly.pocketleague.shared.core.models.BracketType
-import com.adammcneilly.pocketleague.shared.core.models.EventOverview
-import com.adammcneilly.pocketleague.shared.core.models.PhaseOverview
-import com.adammcneilly.pocketleague.shared.core.models.Player
-import com.adammcneilly.pocketleague.shared.core.models.Standings
-import com.adammcneilly.pocketleague.shared.core.models.StandingsPlacement
 import com.adammcneilly.pocketleague.shared.core.ui.UIImage
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
 import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCase

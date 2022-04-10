@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.core.models
+package com.adammcneilly.pocketleague.core.models
 
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone

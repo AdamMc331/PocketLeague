@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.phasedetail.state
 
-import com.adammcneilly.pocketleague.shared.core.models.PhaseDetail
+import com.adammcneilly.pocketleague.core.models.PhaseDetail
 import com.adammcneilly.pocketleague.shared.core.ui.UIText
 import com.adammcneilly.pocketleague.shared.phasedetail.domain.GetPhaseDetailUseCase
 import com.adammcneilly.pocketleague.shared.phasedetail.ui.PhaseDetailDisplayModel

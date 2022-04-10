@@ -101,6 +101,7 @@ android {
 
 dependencies {
 
+    implementation(project(":core-models"))
     implementation(project(":shared"))
     implementation(project(":android-design-system"))
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")

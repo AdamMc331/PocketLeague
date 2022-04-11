@@ -81,22 +81,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-
-    testOptions {
-        unitTests.all {
-            it.extensions.configure(kotlinx.kover.api.KoverTaskExtension::class) {
-                isEnabled = true
-                excludes = listOf(
-                    "dagger.hilt.internal.aggregatedroot.codegen.*",
-                    "hilt_aggregated_deps.*",
-                    ".*ComposableSingletons.*",
-                    ".*Hilt.*",
-                    ".*BuildConfig.*",
-                    ".*_Factory.*",
-                )
-            }
-        }
-    }
 }
 
 dependencies {

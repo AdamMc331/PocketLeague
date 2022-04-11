@@ -16,5 +16,7 @@ local.properties
 /event-api/build/
 /event-implementation/build/
 /feature-eventsummarylist/build/
+/team-api/build/
+/team-implementation/build/
 /buildSrc/build/
 PocketLeagueiOS/PocketLeagueiOS.xcodeproj/project.xcworkspace/xcuserdata/amcneilly.xcuserdatad/UserInterfaceState.xcuserstate

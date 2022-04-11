@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.event.implementation.octanegg
+package com.adammcneilly.pocketleague.team.implementation.octanegg
 
 import com.adammcneilly.pocketleague.core.data.DataResult
 import io.ktor.client.HttpClient

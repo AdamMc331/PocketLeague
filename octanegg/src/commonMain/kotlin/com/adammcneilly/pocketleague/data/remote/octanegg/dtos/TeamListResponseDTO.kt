@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.team.implementation.octanegg.dtos
+package com.adammcneilly.pocketleague.data.remote.octanegg.dtos
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * A data response for a list of teams within the octane.gg API.
  */
 @Serializable
-internal data class TeamListResponseDTO(
+data class TeamListResponseDTO(
     @SerialName("teams")
     val teams: List<TeamDTO>? = null,
     @SerialName("page")

@@ -21,6 +21,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core-data"))
+                implementation(project(":core-models"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")
@@ -65,10 +66,10 @@ kotlin {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = AndroidConfig.compileSDK
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 21
-        targetSdk = 32
+        minSdk = AndroidConfig.minSDK
+        targetSdk = AndroidConfig.targetSDK
     }
 }

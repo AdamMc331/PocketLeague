@@ -1,6 +1,4 @@
-package com.adammcneilly.pocketleague.shared.eventsummarylist.ui
-
-import com.adammcneilly.pocketleague.shared.core.ui.UIImage
+package com.adammcneilly.pocketleague.feature.eventsummarylist.ui
 
 /**
  * A user friendly summary of an [EventSummary] to be displayed on the UI.
@@ -11,7 +9,7 @@ data class EventSummaryListItemDisplayModel(
     val tournamentName: String,
     val eventName: String,
     val subtitle: String?,
-    val image: UIImage?,
+    val imageUrl: String?,
 ) {
 
     companion object {

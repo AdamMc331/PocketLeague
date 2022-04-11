@@ -1,13 +1,10 @@
 @file:Suppress("TooManyFunctions")
 
-package com.adammcneilly.pocketleague.shared.eventsummarylist.state
+package com.adammcneilly.pocketleague.feature.eventsummarylist.state
 
 import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.shared.core.datetime.DateTimeFormatter
-import com.adammcneilly.pocketleague.shared.core.ui.UIImage
-import com.adammcneilly.pocketleague.shared.core.ui.UIText
-import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCase
-import com.adammcneilly.pocketleague.shared.eventsummarylist.ui.EventSummaryListItemDisplayModel
+import com.adammcneilly.pocketleague.feature.eventsummarylist.domain.GetEventSummariesUseCase
+import com.adammcneilly.pocketleague.feature.eventsummarylist.ui.EventSummaryListItemDisplayModel
 import com.tunjid.mutator.Mutation
 import com.tunjid.mutator.coroutines.stateFlowMutator
 import com.tunjid.mutator.coroutines.toMutationStream
@@ -55,7 +52,6 @@ private fun Flow<EventSummaryListAction.FetchEventSummaries>.fetchEventMutations
     return this.flatMapLatest { action ->
         getEventsUseCase
             .invoke(
-                action.leagueSlug,
                 action.request,
             )
             .map { result ->
@@ -79,9 +75,7 @@ private fun Flow<EventSummaryListAction.FetchEventSummaries>.fetchEventMutations
 private fun errorMutation() = Mutation<EventSummaryListViewState> {
     copy(
         showLoading = false,
-        errorMessage = UIText.StringText(
-            "Fetching upcoming events failed.",
-        ),
+        errorMessage = "Fetching upcoming events failed.",
     )
 }
 
@@ -132,16 +126,15 @@ private fun Flow<EventSummaryListAction.SelectedEvent>.selectEventMutations():
 private fun EventSummary.toSummaryDisplayModel(): EventSummaryListItemDisplayModel {
     return EventSummaryListItemDisplayModel(
         eventId = this.id,
-        startDate = DateTimeFormatter().formatLocalDateTime(
-            this.startDate,
-            EventSummaryListItemDisplayModel.START_DATE_FORMAT,
-        ).orEmpty(),
+        startDate = "TODO: Gotta Fix Again",
+//        startDate = DateTimeFormatter().formatLocalDateTime(
+//            this.startDate,
+//            EventSummaryListItemDisplayModel.START_DATE_FORMAT,
+//        ).orEmpty(),
         tournamentName = this.tournamentName,
         eventName = this.eventName,
         subtitle = this.buildSubtitle(),
-        image = UIImage.Remote(
-            imageUrl = this.tournamentImageUrl,
-        ),
+        imageUrl = this.tournamentImageUrl,
     )
 }
 

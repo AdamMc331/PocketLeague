@@ -12,9 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.adammcneilly.pocketleague.android.design.adaptiveWidth
-import com.adammcneilly.pocketleague.android.design.getValue
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.shared.core.ui.UIText
 
 /**
  * A row of [ToggleButton] entities that allows the user to select one of the supplied [options].
@@ -71,7 +69,7 @@ fun ToggleButtonRow(
                 onClick = {
                     onOptionSelected.invoke(option)
                 },
-                text = option.text.getValue(),
+                text = option.text,
                 selected = isOptionSelected,
                 modifier = Modifier
                     .adjustOffsetZIndex(
@@ -136,8 +134,8 @@ private fun Modifier.adjustOffsetZIndex(
 )
 @Composable
 private fun ToggleButtonRowPreview() {
-    val upcoming = ToggleButtonOption(UIText.StringText("Upcoming"))
-    val past = ToggleButtonOption(UIText.StringText("Past"))
+    val upcoming = ToggleButtonOption("Upcoming")
+    val past = ToggleButtonOption("Past")
 
     PocketLeagueTheme {
         Surface {

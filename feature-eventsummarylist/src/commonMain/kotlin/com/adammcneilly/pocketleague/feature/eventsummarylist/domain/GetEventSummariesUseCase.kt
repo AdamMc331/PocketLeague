@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.eventsummarylist.domain
+package com.adammcneilly.pocketleague.feature.eventsummarylist.domain
 
 import com.adammcneilly.pocketleague.core.models.EventSummary
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +12,6 @@ interface GetEventSummariesUseCase {
      * @see [GetEventSummariesUseCase]
      */
     fun invoke(
-        leagueSlug: String,
         request: Request,
     ): Flow<Result>
 
@@ -22,7 +21,7 @@ interface GetEventSummariesUseCase {
      * @property[upcoming] True if we want to request the upcoming events, false otherwise.
      */
     data class Request(
-        val upcoming: Boolean,
+        val upcoming: Boolean = true,
     )
 
     /**

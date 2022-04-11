@@ -1,7 +1,7 @@
-package com.adammcneilly.pocketleague.shared.eventsummarylist.state
+package com.adammcneilly.pocketleague.feature.eventsummarylist.state
 
-import com.adammcneilly.pocketleague.shared.eventsummarylist.EventSummaryListSort
-import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCase
+import com.adammcneilly.pocketleague.feature.eventsummarylist.EventSummaryListSort
+import com.adammcneilly.pocketleague.feature.eventsummarylist.domain.GetEventSummariesUseCase
 
 /**
  * A collection of possible domain actions that can occur within the event summary list feature.
@@ -11,7 +11,6 @@ sealed class EventSummaryListAction {
      * This action will trigger the loading of event summaries.
      */
     data class FetchEventSummaries(
-        val leagueSlug: String,
         val request: GetEventSummariesUseCase.Request,
     ) : EventSummaryListAction()
 

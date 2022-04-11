@@ -39,7 +39,6 @@ fun EventSummaryListScreen(
     EventSummaryListContent(
         viewState = viewState.value,
         eventClicked = viewModel::eventClicked,
-        onSortChanged = viewModel::sortChanged,
         modifier = modifier
             .fillMaxSize(),
     )

@@ -20,7 +20,7 @@ fun EventDTO.toEventSummary(): EventSummary {
     val actualStartDate = parsedStartDate ?: today
 
     return EventSummary(
-        id = this._id,
+        id = this.id,
         eventName = this.name ?: "N/A",
         tournamentName = this.name ?: "N/A",
         tournamentImageUrl = this.image,

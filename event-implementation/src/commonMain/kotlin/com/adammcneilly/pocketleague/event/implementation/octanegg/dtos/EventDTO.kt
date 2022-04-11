@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.event.implementation.octanegg.dtos
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -7,7 +8,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class EventDTO(
-    val _id: String,
+    @SerialName("_id")
+    val id: String,
     val endDate: String? = null,
     val image: String? = null,
     val mode: Int? = null,

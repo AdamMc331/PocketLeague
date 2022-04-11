@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.event.implementation.octanegg.dtos
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -7,7 +8,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class StageDTO(
-    val _id: Int,
+    @SerialName("_id")
+    val id: Int,
     val endDate: String? = null,
     val name: String? = null,
     val startDate: String? = null,

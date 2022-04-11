@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class PrizeDTO(
-    val amount: Double,
-    val currency: String,
+    val amount: Double? = null,
+    val currency: String? = null,
 )

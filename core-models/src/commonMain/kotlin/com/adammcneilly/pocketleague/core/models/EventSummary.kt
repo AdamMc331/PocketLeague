@@ -21,7 +21,7 @@ data class EventSummary(
     val id: String,
     val eventName: String,
     val tournamentName: String,
-    val tournamentImageUrl: String,
+    val tournamentImageUrl: String?,
     val startDate: LocalDateTime,
     val timeZone: TimeZone,
     val numEntrants: Int?,

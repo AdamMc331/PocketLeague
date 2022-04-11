@@ -8,9 +8,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class StageDTO(
     val _id: Int,
-    val endDate: String,
-    val name: String,
-    val startDate: String,
+    val endDate: String? = null,
+    val name: String? = null,
+    val startDate: String? = null,
     val prize: PrizeDTO? = null,
     val location: LocationDTO? = null,
     val lan: Boolean? = null,

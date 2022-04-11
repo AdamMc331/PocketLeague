@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class LocationDTO(
-    val city: String,
-    val country: String,
+    val city: String? = null,
+    val country: String? = null,
     val venue: String? = null,
 )

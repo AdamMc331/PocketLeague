@@ -27,14 +27,15 @@ class OctaneGGEventService : EventRepository {
         return flow {
             val apiResult = apiClient.getResponse<EventListResponseDTO>("events") {
                 this.parameter("group", "rlcs2122")
-                this.parameter("sortBy", "startDate")
             }
 
             val mappedResult: DataResult<List<EventSummary>> = when (apiResult) {
                 is DataResult.Success -> {
                     val mappedEvents = apiResult.data.events.map(EventDTO::toEventSummary)
 
-                    DataResult.Success(mappedEvents)
+                    val sortedEvents = mappedEvents.sortedBy(EventSummary::startDate)
+
+                    DataResult.Success(sortedEvents)
                 }
                 is DataResult.Error -> {
                     DataResult.Error(apiResult.error)

@@ -12,6 +12,7 @@ local.properties
 /shared/build/
 /core-models/build/
 /core-data/build/
+/core-datetime/build/
 /event-api/build/
 /event-implementation/build/
 /feature-eventsummarylist/build/

@@ -12,18 +12,14 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "feature-eventsummarylist"
+            baseName = "core-datetime"
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":event-api"))
-                implementation(project(":event-implementation"))
-                implementation(project(":core-datetime"))
-                implementation("com.tunjid.mutator:core:${Versions.mutator}")
-                implementation("com.tunjid.mutator:coroutines:${Versions.mutator}")
+                api("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
             }
         }
         val commonTest by getting {
@@ -60,5 +56,11 @@ android {
     defaultConfig {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
+    }
+
+    compileOptions {
+        sourceCompatibility(JavaVersion.VERSION_1_8)
+        targetCompatibility(JavaVersion.VERSION_1_8)
+        isCoreLibraryDesugaringEnabled = true
     }
 }

@@ -26,6 +26,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":event-api"))
+                implementation(project(":core-datetime"))
                 implementation("com.apollographql.apollo3:apollo-runtime:${Versions.apollo}")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")

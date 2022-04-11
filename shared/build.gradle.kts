@@ -26,7 +26,7 @@ kotlin {
             dependencies {
                 implementation(project(":core-models"))
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
-                api("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
+                implementation(project(":core-datetime"))
                 implementation("com.apollographql.apollo3:apollo-runtime:${Versions.apollo}")
                 implementation("com.tunjid.mutator:core:${Versions.mutator}")
                 implementation("com.tunjid.mutator:coroutines:${Versions.mutator}")
@@ -66,12 +66,6 @@ android {
     defaultConfig {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
-    }
-
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_1_8)
-        isCoreLibraryDesugaringEnabled = true
     }
 }
 

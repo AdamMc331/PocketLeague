@@ -24,6 +24,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core-models"))
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
                 api("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
                 implementation("com.apollographql.apollo3:apollo-runtime:${Versions.apollo}")

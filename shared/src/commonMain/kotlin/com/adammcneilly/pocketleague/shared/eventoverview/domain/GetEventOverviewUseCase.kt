@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.eventoverview.domain
 
-import com.adammcneilly.pocketleague.shared.core.models.EventOverview
+import com.adammcneilly.pocketleague.core.models.EventOverview
 import kotlinx.coroutines.flow.Flow
 
 /**

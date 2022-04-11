@@ -1,11 +1,11 @@
 package com.adammcneilly.pocketleague.core.di
 
-import com.adammcneilly.pocketleague.shared.data.event.EventRepository
+import com.adammcneilly.pocketleague.event.api.EventRepository
+import com.adammcneilly.pocketleague.feature.eventsummarylist.domain.GetEventSummariesUseCase
+import com.adammcneilly.pocketleague.feature.eventsummarylist.domain.GetEventSummariesUseCaseImpl
 import com.adammcneilly.pocketleague.shared.data.phase.PhaseRepository
 import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCase
 import com.adammcneilly.pocketleague.shared.eventoverview.domain.GetEventOverviewUseCaseImpl
-import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCase
-import com.adammcneilly.pocketleague.shared.eventsummarylist.domain.GetEventSummariesUseCaseImpl
 import com.adammcneilly.pocketleague.shared.phasedetail.domain.GetPhaseDetailUseCase
 import com.adammcneilly.pocketleague.shared.phasedetail.domain.GetPhaseDetailUseCaseImpl
 import com.adammcneilly.pocketleague.teamlist.domain.usecases.FetchAllTeamsUseCase
@@ -40,7 +40,7 @@ abstract class UseCaseModule {
 
         @Provides
         fun provideGetEventOverviewUseCase(
-            repository: EventRepository,
+            repository: com.adammcneilly.pocketleague.shared.data.event.EventRepository,
         ): GetEventOverviewUseCase {
             return GetEventOverviewUseCaseImpl(
                 repository = repository,

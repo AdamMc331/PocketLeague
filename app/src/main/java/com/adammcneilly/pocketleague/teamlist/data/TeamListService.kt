@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.teamlist.data
 
-import com.adammcneilly.pocketleague.shared.core.models.Team
+import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.shared.data.Result
 import javax.inject.Inject
 

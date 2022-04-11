@@ -2,3 +2,8 @@ rootProject.name = "PocketLeague"
 include ':app'
 include ':android-design-system'
 include ':shared'
+include ':core-models'
+include ':core-data'
+include ':event-api'
+include ':event-implementation'
+include ':feature-eventsummarylist'

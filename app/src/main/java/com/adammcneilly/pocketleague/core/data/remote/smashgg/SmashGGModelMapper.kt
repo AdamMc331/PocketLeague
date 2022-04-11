@@ -1,5 +1,15 @@
 package com.adammcneilly.pocketleague.core.data.remote.smashgg
 
+import com.adammcneilly.pocketleague.core.models.BracketType
+import com.adammcneilly.pocketleague.core.models.EventOverview
+import com.adammcneilly.pocketleague.core.models.EventSet
+import com.adammcneilly.pocketleague.core.models.PhaseDetail
+import com.adammcneilly.pocketleague.core.models.PhaseOverview
+import com.adammcneilly.pocketleague.core.models.Player
+import com.adammcneilly.pocketleague.core.models.SetSlot
+import com.adammcneilly.pocketleague.core.models.Standings
+import com.adammcneilly.pocketleague.core.models.StandingsPlacement
+import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.graphql.fragment.EventEntrantFragment
 import com.adammcneilly.pocketleague.graphql.fragment.EventOverviewFragment
 import com.adammcneilly.pocketleague.graphql.fragment.EventPlayerFragment
@@ -8,16 +18,6 @@ import com.adammcneilly.pocketleague.graphql.fragment.PhaseDetailFragment
 import com.adammcneilly.pocketleague.graphql.fragment.PhaseGroupFragment
 import com.adammcneilly.pocketleague.graphql.fragment.SetSlotFragment
 import com.adammcneilly.pocketleague.graphql.fragment.StandingsPlacementFragment
-import com.adammcneilly.pocketleague.shared.core.models.BracketType
-import com.adammcneilly.pocketleague.shared.core.models.EventOverview
-import com.adammcneilly.pocketleague.shared.core.models.EventSet
-import com.adammcneilly.pocketleague.shared.core.models.PhaseDetail
-import com.adammcneilly.pocketleague.shared.core.models.PhaseOverview
-import com.adammcneilly.pocketleague.shared.core.models.Player
-import com.adammcneilly.pocketleague.shared.core.models.SetSlot
-import com.adammcneilly.pocketleague.shared.core.models.Standings
-import com.adammcneilly.pocketleague.shared.core.models.StandingsPlacement
-import com.adammcneilly.pocketleague.shared.core.models.Team
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime

@@ -13,11 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.ExcludeFromJacocoGeneratedReport
-import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.design.adaptiveWidth
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.shared.core.ui.UIImage
-import com.adammcneilly.pocketleague.shared.eventsummarylist.ui.EventSummaryListItemDisplayModel
+import com.adammcneilly.pocketleague.feature.eventsummarylist.ui.EventSummaryListItemDisplayModel
 
 /**
  * Renders a scrollable list of [displayModels] for event summaries.
@@ -73,7 +71,7 @@ private fun EventSummaryListPreview() {
         eventName = "Main Event",
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
         subtitle = "16 Teams",
-        image = UIImage.AndroidResource(R.drawable.us),
+        imageUrl = null,
     )
 
     val displayModels = (1..2).map {

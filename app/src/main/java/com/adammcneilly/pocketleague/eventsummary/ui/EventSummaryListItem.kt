@@ -14,11 +14,9 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.ui.Material3Card
-import com.adammcneilly.pocketleague.shared.core.ui.UIImage
-import com.adammcneilly.pocketleague.shared.eventsummarylist.ui.EventSummaryListItemDisplayModel
+import com.adammcneilly.pocketleague.feature.eventsummarylist.ui.EventSummaryListItemDisplayModel
 
 /**
  * Renders a [displayModel] to show a summary of an RLCS event.
@@ -133,7 +131,7 @@ private fun EventSummaryListItemPreview() {
         eventName = "Main Event",
         tournamentName = "RLCS 2021-22 Season - Fall Split Regional 3 - North America",
         subtitle = "16 Teams",
-        image = UIImage.AndroidResource(R.drawable.us),
+        imageUrl = null,
     )
 
     PocketLeagueTheme {

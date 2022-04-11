@@ -8,6 +8,9 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
+/**
+ * Converts an [EventOverviewFragment] from the Apollo domain into an [EventOverview] in ours.
+ */
 fun EventOverviewFragment.toEventOverview(): EventOverview {
     val summaryFragment = this.eventSummaryFragment
 
@@ -16,7 +19,7 @@ fun EventOverviewFragment.toEventOverview(): EventOverview {
         startDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
         phases = this.phaseGroups
             ?.mapNotNull { phaseGroup ->
-                phaseGroup?.phaseGroupFragment?.toPhase()
+                phaseGroup?.phaseGroupFragment?.toPhaseOverview()
             }
             .orEmpty(),
         standings = Standings(

@@ -4,7 +4,10 @@ import com.adammcneilly.pocketleague.core.models.BracketType
 import com.adammcneilly.pocketleague.core.models.PhaseOverview
 import com.adammcneilly.pocketleague.event.implementation.graphql.fragment.PhaseGroupFragment
 
-fun PhaseGroupFragment?.toPhase(): PhaseOverview {
+/**
+ * Converts the Apollo generated [PhaseGroupFragment] into a [PhaseOverview].
+ */
+fun PhaseGroupFragment?.toPhaseOverview(): PhaseOverview {
     val overview = this?.phase?.phaseOverviewFragment
 
     return PhaseOverview(

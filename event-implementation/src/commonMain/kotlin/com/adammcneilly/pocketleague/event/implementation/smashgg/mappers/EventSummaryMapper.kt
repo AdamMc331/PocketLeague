@@ -6,7 +6,11 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-fun EventSummaryFragment.toEvent(): EventSummary {
+/**
+ * Converts an [EventSummaryFragment] generated class from Apollo to an [EventSummary] from our
+ * domain.
+ */
+fun EventSummaryFragment.toEventSummary(): EventSummary {
     val startSeconds = (this.startAt as Int).toLong()
     val eventTimeZone = TimeZone.UTC
     val startDate = Instant.fromEpochSeconds(startSeconds).toLocalDateTime(eventTimeZone)

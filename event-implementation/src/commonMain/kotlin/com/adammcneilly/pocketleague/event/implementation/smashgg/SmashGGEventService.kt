@@ -7,8 +7,8 @@ import com.adammcneilly.pocketleague.event.api.EventRepository
 import com.adammcneilly.pocketleague.event.implementation.graphql.EventOverviewQuery
 import com.adammcneilly.pocketleague.event.implementation.graphql.EventSummaryListQuery
 import com.adammcneilly.pocketleague.event.implementation.graphql.type.StandingPaginationQuery
-import com.adammcneilly.pocketleague.event.implementation.smashgg.mappers.toEvent
 import com.adammcneilly.pocketleague.event.implementation.smashgg.mappers.toEventOverview
+import com.adammcneilly.pocketleague.event.implementation.smashgg.mappers.toEventSummary
 import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -34,7 +34,7 @@ class SmashGGEventService : EventRepository {
                 ?.events
                 ?.nodes
                 ?.mapNotNull {
-                    it?.eventSummaryFragment?.toEvent()
+                    it?.eventSummaryFragment?.toEventSummary()
                 }
                 .orEmpty()
 

@@ -76,4 +76,7 @@ object Versions {
 
     // https://developer.android.com/jetpack/androidx/releases/window
     const val windowManager = "1.0.0"
+
+    // https://github.com/ktorio/ktor/releases
+    const val ktor = "1.6.8"
 }

@@ -1,14 +1,14 @@
-package com.adammcneilly.pocketleague.event.implementation.octanegg.mappers
+package com.adammcneilly.pocketleague.data.remote.octanegg.mappers
 
 import com.adammcneilly.pocketleague.core.datetime.DateTimeParser
 import com.adammcneilly.pocketleague.core.models.EventSummary
-import com.adammcneilly.pocketleague.event.implementation.octanegg.dtos.EventDTO
+import com.adammcneilly.pocketleague.data.remote.octanegg.dtos.EventDTO
 import kotlinx.datetime.TimeZone
 
 /**
  * Converts an [EventDTO] from octane.gg into an [EventSummary].
  */
-internal fun EventDTO.toEventSummary(): EventSummary {
+fun EventDTO.toEventSummary(): EventSummary {
     return EventSummary(
         id = this.id,
         eventName = this.name ?: "N/A",

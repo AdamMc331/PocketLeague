@@ -22,6 +22,7 @@ kotlin {
             dependencies {
                 implementation(project(":core-data"))
                 implementation(project(":core-models"))
+                implementation(project(":core-datetime"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")

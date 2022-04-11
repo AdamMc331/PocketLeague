@@ -27,7 +27,7 @@ abstract class DataModule {
     companion object {
         @Provides
         fun provideFeatureEventRepository(): com.adammcneilly.pocketleague.event.api.EventRepository {
-            return com.adammcneilly.pocketleague.event.implementation.smashgg.SmashGGEventService()
+            return com.adammcneilly.pocketleague.event.implementation.octanegg.OctaneGGEventService()
         }
 
         @Provides

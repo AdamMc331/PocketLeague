@@ -24,7 +24,7 @@ kotlin {
                 implementation(project(":core-models"))
                 implementation(project(":core-datetime"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-                api("io.ktor:ktor-client-core:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
@@ -37,7 +37,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api("io.ktor:ktor-client-android:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
             }
         }
         val androidTest by getting
@@ -51,7 +51,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
-                api("io.ktor:ktor-client-ios:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
             }
         }
         val iosX64Test by getting

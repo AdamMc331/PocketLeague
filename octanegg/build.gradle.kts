@@ -37,7 +37,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
+                api("io.ktor:ktor-client-android:${Versions.ktor}")
             }
         }
         val androidTest by getting
@@ -51,7 +51,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
+                api("io.ktor:ktor-client-ios:${Versions.ktor}")
             }
         }
         val iosX64Test by getting

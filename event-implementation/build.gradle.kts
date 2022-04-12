@@ -3,7 +3,6 @@ import java.util.Properties
 
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
     id("com.android.library")
     id("com.apollographql.apollo3").version(Versions.apollo)
     id("com.codingfeline.buildkonfig").version(Versions.buildKonfig)
@@ -29,11 +28,6 @@ kotlin {
                 implementation(project(":core-datetime"))
                 implementation(project(":octanegg"))
                 implementation("com.apollographql.apollo3:apollo-runtime:${Versions.apollo}")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
             }
         }
         val commonTest by getting {
@@ -41,11 +35,7 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
-            }
-        }
+        val androidMain by getting
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -55,10 +45,6 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-
-            dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
-            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting

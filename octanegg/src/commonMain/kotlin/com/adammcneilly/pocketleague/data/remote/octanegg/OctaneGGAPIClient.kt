@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.event.implementation.octanegg
+package com.adammcneilly.pocketleague.data.remote.octanegg
 
 import com.adammcneilly.pocketleague.core.data.DataResult
 import io.ktor.client.HttpClient
@@ -12,7 +12,7 @@ import kotlinx.serialization.json.Json
 /**
  * Defines the API client information for communicating with the octane.gg API.
  */
-internal class OctaneGGAPIClient {
+class OctaneGGAPIClient {
     val baseURL = "https://zsr.octane.gg/"
 
     val httpClient = HttpClient {

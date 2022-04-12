@@ -2,10 +2,11 @@ package com.adammcneilly.pocketleague.team.implementation.octanegg
 
 import com.adammcneilly.pocketleague.core.data.DataResult
 import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.data.remote.octanegg.OctaneGGAPIClient
+import com.adammcneilly.pocketleague.data.remote.octanegg.dtos.TeamDTO
+import com.adammcneilly.pocketleague.data.remote.octanegg.dtos.TeamListResponseDTO
+import com.adammcneilly.pocketleague.data.remote.octanegg.mappers.toTeam
 import com.adammcneilly.pocketleague.team.api.TeamRepository
-import com.adammcneilly.pocketleague.team.implementation.octanegg.dtos.TeamDTO
-import com.adammcneilly.pocketleague.team.implementation.octanegg.dtos.TeamListResponseDTO
-import com.adammcneilly.pocketleague.team.implementation.octanegg.mappers.toTeam
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

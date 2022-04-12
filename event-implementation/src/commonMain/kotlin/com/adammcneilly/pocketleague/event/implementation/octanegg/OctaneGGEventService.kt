@@ -3,11 +3,11 @@ package com.adammcneilly.pocketleague.event.implementation.octanegg
 import com.adammcneilly.pocketleague.core.data.DataResult
 import com.adammcneilly.pocketleague.core.models.EventOverview
 import com.adammcneilly.pocketleague.core.models.EventSummary
+import com.adammcneilly.pocketleague.data.remote.octanegg.OctaneGGAPIClient
+import com.adammcneilly.pocketleague.data.remote.octanegg.dtos.EventDTO
+import com.adammcneilly.pocketleague.data.remote.octanegg.dtos.EventListResponseDTO
+import com.adammcneilly.pocketleague.data.remote.octanegg.mappers.toEventSummary
 import com.adammcneilly.pocketleague.event.api.EventRepository
-import com.adammcneilly.pocketleague.event.implementation.octanegg.dtos.EventDTO
-import com.adammcneilly.pocketleague.event.implementation.octanegg.dtos.EventListResponseDTO
-import com.adammcneilly.pocketleague.event.implementation.octanegg.mappers.toEventSummary
-import io.ktor.client.request.parameter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -25,9 +25,7 @@ class OctaneGGEventService : EventRepository {
 
     override fun fetchEventSummaries(): Flow<DataResult<List<EventSummary>>> {
         return flow {
-            val apiResult = apiClient.getResponse<EventListResponseDTO>("events") {
-                this.parameter("group", "rlcs2122")
-            }
+            val apiResult = apiClient.getResponse<EventListResponseDTO>("events")
 
             val mappedResult: DataResult<List<EventSummary>> = when (apiResult) {
                 is DataResult.Success -> {

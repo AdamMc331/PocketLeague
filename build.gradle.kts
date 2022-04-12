@@ -15,7 +15,6 @@ buildscript {
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.19.0")
         classpath("com.github.ben-manes:gradle-versions-plugin:0.29.0")
         classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}")
-        classpath("org.jetbrains.kotlinx:kover:0.4.1")
         classpath("com.hiya:jacoco-android:0.2")
         classpath("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.12.0")
         classpath("org.jetbrains.kotlin:kotlin-serialization:1.6.10")
@@ -38,9 +37,8 @@ allprojects {
 }
 
 subprojects {
-    apply(from = "../buildscripts/ktlint.gradle")
-    apply(from = "../buildscripts/versionsplugin.gradle")
-    apply(from = "../buildscripts/kover.gradle")
+    apply(from = "${rootProject.projectDir}/buildscripts/ktlint.gradle")
+    apply(from = "${rootProject.projectDir}/buildscripts/versionsplugin.gradle")
 }
 
 tasks.register("clean", Delete::class) {

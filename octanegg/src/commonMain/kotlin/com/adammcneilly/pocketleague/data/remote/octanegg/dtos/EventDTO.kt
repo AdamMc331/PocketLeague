@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.event.implementation.octanegg.dtos
+package com.adammcneilly.pocketleague.data.remote.octanegg.dtos
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * A data class mapping to an Event from the octane.gg API.
  */
 @Serializable
-internal data class EventDTO(
+data class EventDTO(
     @SerialName("_id")
     val id: String,
     val endDate: String? = null,

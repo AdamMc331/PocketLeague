@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * A data class mapping to an Event from the octane.gg API.
  */
 @Serializable
-internal data class EventDTO(
+data class EventDTO(
     @SerialName("_id")
     val id: String,
     val endDate: String? = null,

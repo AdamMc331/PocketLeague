@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
  * A data class mapping to a prize entity from the octane.gg API.
  */
 @Serializable
-internal data class PrizeDTO(
+data class PrizeDTO(
     val amount: Double? = null,
     val currency: String? = null,
 )

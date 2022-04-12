@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * A data class mapping to a stage from the octane.gg API.
  */
 @Serializable
-internal data class StageDTO(
+data class StageDTO(
     @SerialName("_id")
     val id: Int,
     val endDate: String? = null,

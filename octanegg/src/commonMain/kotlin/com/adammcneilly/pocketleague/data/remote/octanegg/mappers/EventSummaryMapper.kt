@@ -8,7 +8,7 @@ import kotlinx.datetime.TimeZone
 /**
  * Converts an [EventDTO] from octane.gg into an [EventSummary].
  */
-internal fun EventDTO.toEventSummary(): EventSummary {
+fun EventDTO.toEventSummary(): EventSummary {
     return EventSummary(
         id = this.id,
         eventName = this.name ?: "N/A",

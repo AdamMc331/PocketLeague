@@ -9,5 +9,5 @@
 .cxx
 local.properties
 /buildSrc/build/
-/octanegg/build/
+/shared/build/
 /app/src/main/graphql/com/adammcneilly/pocketleague/.graphqlconfig

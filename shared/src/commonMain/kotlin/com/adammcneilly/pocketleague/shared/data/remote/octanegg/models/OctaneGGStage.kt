@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.data.remote.octanegg.models
+package com.adammcneilly.pocketleague.shared.data.remote.octanegg.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

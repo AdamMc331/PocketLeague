@@ -6,7 +6,6 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
-    id("com.apollographql.apollo3").version("3.1.0")
     id("com.google.devtools.ksp").version("1.6.10-1.0.4")
 }
 
@@ -85,12 +84,6 @@ android {
 
 dependencies {
 
-    implementation(project(":core-models"))
-    implementation(project(":shared"))
-    implementation(project(":android-design-system"))
-    implementation(project(":event-api"))
-    implementation(project(":event-implementation"))
-    implementation(project(":feature-eventsummarylist"))
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")
     implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
     implementation("com.google.android.material:material:${Versions.material}")
@@ -100,29 +93,13 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
     implementation("androidx.activity:activity-compose:${Versions.activityCompose}")
-    implementation("com.github.murgupluoglu:flagkit-android:1.0.2")
     implementation("com.google.dagger:hilt-android:${Versions.hilt}")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    implementation("io.coil-kt:coil-compose:1.4.0")
-    implementation("org.jsoup:jsoup:1.14.3")
-    implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
-    implementation("com.squareup.retrofit2:converter-moshi:${Versions.retrofit}")
-    implementation("com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}")
-    implementation("com.squareup.moshi:moshi-kotlin:${Versions.moshi}")
     implementation("com.google.accompanist:accompanist-insets-ui:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}")
-    implementation("com.apollographql.apollo3:apollo-runtime:${Versions.apollo}")
-    implementation("io.github.raamcosta.compose-destinations:core:${Versions.composeDestinations}")
-    implementation("androidx.navigation:navigation-compose:${Versions.composeNavigation}")
-    implementation("com.google.accompanist:accompanist-pager:${Versions.accompanist}")
-    implementation("com.tunjid.mutator:core:0.0.1")
-    implementation("com.tunjid.mutator:coroutines:0.0.1")
     implementation("androidx.window:window:${Versions.windowManager}")
-    ksp("io.github.raamcosta.compose-destinations:ksp:${Versions.composeDestinations}")
     kapt("com.google.dagger:hilt-compiler:${Versions.hilt}")
     testImplementation("junit:junit:${Versions.junit}")
     testImplementation("com.google.truth:truth:${Versions.truth}")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
     testImplementation("app.cash.turbine:turbine:${Versions.turbine}")
     androidTestImplementation("androidx.test.ext:junit:${Versions.androidxTest}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
@@ -130,10 +107,4 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
     debugImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose}")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
-}
-
-apollo {
-    generateKotlinModels.set(true)
-
-    packageName.set("com.adammcneilly.pocketleague.graphql")
 }

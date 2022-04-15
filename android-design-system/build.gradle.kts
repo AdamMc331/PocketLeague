@@ -42,7 +42,6 @@ android {
 
 dependencies {
 
-    implementation(project(":shared"))
     implementation("androidx.compose.ui:ui:${Versions.compose}")
     implementation("androidx.compose.material:material:${Versions.compose}")
     implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")

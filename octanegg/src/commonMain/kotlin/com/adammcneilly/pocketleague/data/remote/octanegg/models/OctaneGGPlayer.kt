@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.data.remote.octanegg.dtos
+package com.adammcneilly.pocketleague.data.remote.octanegg.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
  * Represents a person who is a player for a [TeamDTO] in the octane.gg API.
  */
 @Serializable
-data class PlayerDTO(
+data class OctaneGGPlayer(
     @SerialName("accounts")
-    val accounts: List<AccountDTO>? = null,
+    val accounts: List<OctaneGGAccount>? = null,
     @SerialName("coach")
     val coach: Boolean? = null,
     @SerialName("country")
@@ -27,5 +27,5 @@ data class PlayerDTO(
     @SerialName("tag")
     val tag: String? = null,
     @SerialName("team")
-    val team: TeamOverviewDTO? = null,
+    val team: OctaneGGTeamOverview? = null,
 )

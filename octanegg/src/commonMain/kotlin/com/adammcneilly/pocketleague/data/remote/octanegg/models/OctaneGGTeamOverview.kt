@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.data.remote.octanegg.dtos
+package com.adammcneilly.pocketleague.data.remote.octanegg.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Overview information about a team, that does not include roster info.
  */
 @Serializable
-data class TeamOverviewDTO(
+data class OctaneGGTeamOverview(
     @SerialName("_id")
     val id: String? = null,
     @SerialName("image")

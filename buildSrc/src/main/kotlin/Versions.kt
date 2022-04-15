@@ -79,4 +79,6 @@ object Versions {
 
     // https://github.com/ktorio/ktor/releases
     const val ktor = "1.6.8"
+
+    const val kotlinxSerialization = "1.3.2"
 }

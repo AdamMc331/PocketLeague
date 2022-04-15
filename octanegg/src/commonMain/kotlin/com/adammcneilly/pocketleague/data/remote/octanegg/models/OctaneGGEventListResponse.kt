@@ -1,15 +1,15 @@
-package com.adammcneilly.pocketleague.data.remote.octanegg.dtos
+package com.adammcneilly.pocketleague.data.remote.octanegg.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * A data response for a list of teams within the octane.gg API.
+ * A DTO that maps to an event list response from the octane.gg API.
  */
 @Serializable
-data class TeamListResponseDTO(
-    @SerialName("teams")
-    val teams: List<TeamDTO>? = null,
+data class OctaneGGEventListResponse(
+    @SerialName("events")
+    val events: List<OctaneGGEvent>? = null,
     @SerialName("page")
     val page: Int? = null,
     @SerialName("perPage")

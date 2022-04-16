@@ -13,7 +13,7 @@ fun Navigation.Router() {
 
     val twoPaneWidthThreshold = 1000.dp
 
-    BoxWithConstraints() {
+    BoxWithConstraints {
         if (maxWidth < maxHeight || maxWidth < twoPaneWidthThreshold) {
             OnePane(screenUIsStateHolder)
         } else {

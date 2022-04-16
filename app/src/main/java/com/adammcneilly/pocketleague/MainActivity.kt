@@ -10,6 +10,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.ui.MainComposable
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +32,8 @@ class MainActivity : ComponentActivity() {
                 SetSystemBarsTransparent()
 
                 ProvideWindowInsets {
-                    // Coming soon
+                    val viewModel = (this.application as PocketLeagueApp).viewModel
+                    MainComposable(viewModel = viewModel)
                 }
             }
         }

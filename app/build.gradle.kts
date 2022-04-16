@@ -85,6 +85,7 @@ android {
 dependencies {
 
     implementation(project(":android-design-system"))
+    implementation(project(":shared"))
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")
     implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
     implementation("com.google.android.material:material:${Versions.material}")
@@ -98,6 +99,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-insets-ui:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}")
     implementation("androidx.window:window:${Versions.windowManager}")
+    implementation("androidx.lifecycle:lifecycle-process:2.4.1")
     kapt("com.google.dagger:hilt-compiler:${Versions.hilt}")
     testImplementation("junit:junit:${Versions.junit}")
     testImplementation("com.google.truth:truth:${Versions.truth}")

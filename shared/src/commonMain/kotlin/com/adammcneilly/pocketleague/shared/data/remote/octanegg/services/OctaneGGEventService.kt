@@ -50,7 +50,7 @@ class OctaneGGEventService(
 
 private fun HttpRequestBuilder.addEventParameters(request: EventListRequest) {
     val dateTimeFormatter = DateTimeFormatter()
-    val octaneGGDateFormat = "yyyy-mm-dd"
+    val octaneGGDateFormat = "yyyy-MM-dd"
 
     if (request.group != null) {
         this.parameter("group", request.group)

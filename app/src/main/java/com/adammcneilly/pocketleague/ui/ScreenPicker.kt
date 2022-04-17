@@ -10,7 +10,7 @@ import com.adammcneilly.pocketleague.shared.screens.Screens
  */
 @Composable
 fun Navigation.ScreenPicker(
-    screenIdentifier: ScreenIdentifier
+    screenIdentifier: ScreenIdentifier,
 ) {
 
     when (screenIdentifier.screen) {

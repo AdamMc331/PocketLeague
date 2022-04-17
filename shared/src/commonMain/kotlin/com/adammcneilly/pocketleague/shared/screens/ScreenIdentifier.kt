@@ -4,12 +4,12 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 /**
- * This defines a unique identifier for a [screen] within the app. This is different from [Screen]
+ * This defines a unique identifier for a [screen] within the app. This is different from [Screens]
  * because the underlying UI might be identical, but the [params] could be different and as such
  * should be treated as a new identifier.
  */
 class ScreenIdentifier private constructor(
-    val screen: Screen,
+    val screen: Screens,
     var params: ScreenParams? = null,
     val paramsAsString: String? = null,
 ) {
@@ -86,15 +86,25 @@ class ScreenIdentifier private constructor(
         return false
     }
 
+    /**
+     * Factory methods used to create an instance of a [ScreenIdentifier].
+     */
     companion object Factory {
-        fun get(screen: Screen, params: ScreenParams?): ScreenIdentifier {
+        /**
+         * Create a new [ScreenIdentifier] for the supplied [screen] and its optional [params].
+         */
+        fun get(screen: Screens, params: ScreenParams?): ScreenIdentifier {
             return ScreenIdentifier(screen, params, null)
         }
 
+        /**
+         * Given some [uri], split it up to screen:params and use that to generate a [ScreenIdentifier]
+         * if possible.
+         */
         fun getByURI(uri: String): ScreenIdentifier? {
             val parts = uri.split(":")
 
-            Screen.values().forEach {
+            Screens.values().forEach {
                 if (it.asString == parts[0]) {
                     return ScreenIdentifier(it, null, parts[1])
                 }

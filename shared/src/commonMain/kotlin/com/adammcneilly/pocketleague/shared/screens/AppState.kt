@@ -7,7 +7,10 @@ package com.adammcneilly.pocketleague.shared.screens
 data class AppState(
     val recompositionIndex: Int = 0,
 ) {
-    fun getNavigation(model: DKMPViewModel): Navigation {
-        return model.navigation
+    /**
+     * Returns the [Navigation] instance for the given [viewModel].
+     */
+    fun getNavigation(viewModel: DKMPViewModel): Navigation {
+        return viewModel.navigation
     }
 }

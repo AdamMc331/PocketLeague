@@ -13,6 +13,7 @@ import kotlin.reflect.KClass
  * Manages our current [AppState] as well as the backstacks and screen scopes for everything in memory
  * at any given moment.
  */
+@Suppress("TooManyFunctions")
 class StateManager {
     internal val mutableStateFlow = MutableStateFlow(AppState())
 
@@ -130,6 +131,10 @@ class StateManager {
         return false
     }
 
+    /**
+     * Updates any screens with the matching [stateClass]. The update is calculated through the
+     * given [update] lambda.
+     */
     inline fun <reified T : ScreenState> updateScreen(
         stateClass: KClass<T>,
         update: (T) -> T,
@@ -203,7 +208,8 @@ class StateManager {
                 return
             }
 
-            if (currentScreenIdentifier.screen == screenIdentifier.screen && !screenIdentifier.screen.stackableInstances) {
+            val isCurrentScreen = (currentScreenIdentifier.screen == screenIdentifier.screen)
+            if (isCurrentScreen && !screenIdentifier.screen.stackableInstances) {
                 val currentScreenId = currentScreenIdentifier
                 currentVerticalNavigationLevelsMap.remove(currentScreenId.screen.navigationLevel)
                 currentVerticalBackstack.remove(currentScreenId)

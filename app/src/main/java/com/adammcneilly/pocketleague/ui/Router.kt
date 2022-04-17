@@ -7,6 +7,10 @@ import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 
+/**
+ * The Router is used to track screen states and show a [OnePane] or [TwoPane] layout based on
+ * available space.
+ */
 @Composable
 fun Navigation.Router() {
     val screenUIsStateHolder = rememberSaveableStateHolder()

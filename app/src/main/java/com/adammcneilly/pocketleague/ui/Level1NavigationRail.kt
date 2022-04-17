@@ -25,6 +25,10 @@ import com.adammcneilly.pocketleague.shared.screens.Level1Navigation
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
+/**
+ * A navigation rail is similar to a [Level1BottomBar] except it will show up on the left side of the
+ * screen, used on foldable or other large screen devices.
+ */
 @Composable
 fun Navigation.Level1NavigationRail(
     selectedTab: ScreenIdentifier
@@ -45,10 +49,24 @@ fun Navigation.Level1NavigationRail(
     }
 }
 
+/**
+ * Creates a single menu item to appear inside of a [Level1NavigationRail].
+ */
 @Composable
-fun ColumnScope.NavigationRailItem(icon: @Composable () -> Unit, label: @Composable () -> Unit, selected: Boolean, onClick: () -> Unit) {
+fun ColumnScope.NavigationRailItem(
+    icon: @Composable () -> Unit,
+    label: @Composable () -> Unit,
+    selected: Boolean,
+    onClick: () -> Unit,
+) {
+    val contentColor = if (selected) {
+        MaterialTheme.colors.background
+    } else {
+        MaterialTheme.colors.primaryVariant
+    }
+
     CompositionLocalProvider(
-        LocalContentColor provides if (selected) MaterialTheme.colors.background else MaterialTheme.colors.primaryVariant
+        LocalContentColor provides contentColor
     ) {
         Row(
             modifier = Modifier

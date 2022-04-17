@@ -14,6 +14,11 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
+/**
+ * A [TwoPane] layout is used to show two selections of content side by side. Something like this
+ * is helpful on tablets or large screens to use up available screen space.
+ */
+@Suppress("MagicNumber")
 @Composable
 fun Navigation.TwoPane(
     saveableStateHolder: SaveableStateHolder
@@ -56,6 +61,10 @@ fun Navigation.TwoPane(
     )
 }
 
+/**
+ * For a given [screenIdentifier], create a default UI for the detail pane of a two pane layout.
+ * If there's no default data to supply, we can just use a Box.
+ */
 @Composable
 fun Navigation.TwoPaneDefaultDetail(
     screenIdentifier: ScreenIdentifier

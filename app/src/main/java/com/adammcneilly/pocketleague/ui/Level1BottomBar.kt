@@ -13,6 +13,9 @@ import com.adammcneilly.pocketleague.shared.screens.Level1Navigation
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
+/**
+ * Creates a [BottomAppBar] to manage the menu items on a phone or other compact screen size.
+ */
 @Composable
 fun Navigation.Level1BottomBar(
     selectedTab: ScreenIdentifier

@@ -4,7 +4,7 @@ import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenInitSettings
 
 /**
- * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.Screen.Feed] screen.
+ * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.Screens.Feed] screen.
  */
 fun Navigation.initFeed(): ScreenInitSettings {
     return ScreenInitSettings(

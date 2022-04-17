@@ -78,7 +78,7 @@ class Navigation(
     /**
      * Navigates to a given [screen] with the provides [params].
      */
-    fun navigate(screen: Screen, params: ScreenParams? = null) {
+    fun navigate(screen: Screens, params: ScreenParams? = null) {
         navigateByScreenIdentifier(ScreenIdentifier.get(screen, params))
     }
 

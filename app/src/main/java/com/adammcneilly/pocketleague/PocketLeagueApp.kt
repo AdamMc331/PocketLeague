@@ -27,6 +27,10 @@ class PocketLeagueApp : Application() {
     }
 }
 
+/**
+ * Observes lifecycle events of the Android app and calls appropriate methods on the [viewModel]
+ * to manage screen states.
+ */
 class AppLifecycleObserver(private val viewModel: DKMPViewModel) : LifecycleEventObserver {
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {

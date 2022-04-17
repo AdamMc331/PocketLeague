@@ -5,7 +5,7 @@ import com.adammcneilly.pocketleague.shared.screens.feed.initFeed
 /**
  * An enumeration of all screens that appear somewhere in our application.
  */
-enum class Screen(
+enum class Screens(
     val asString: String,
     val navigationLevel: Int = 1,
     val initSettings: Navigation.(ScreenIdentifier) -> ScreenInitSettings,

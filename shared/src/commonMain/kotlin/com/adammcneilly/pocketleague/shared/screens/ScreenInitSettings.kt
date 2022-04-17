@@ -9,6 +9,9 @@ package com.adammcneilly.pocketleague.shared.screens
  * Fourth, the [callOnInit] function likely makes a call to the [StateManager] to update the screen, which will update
  * and trigger the SECOND recomposition.
  *
+ * @property[title] The user friendly description of this screen.
+ * @property[initState] A function used to create the initial [ScreenState].
+ * @property[callOnInit] A function invoked when this screen is initialized.
  * @property[reInitOnEachNavigation] If true, the [callOnInit] function is invoked each time the
  * user returns to this screen.
  * @property[callOnInitAlsoAfterBackground] If true, the [callOnInit] function will be invoked if

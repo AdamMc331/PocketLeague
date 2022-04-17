@@ -10,6 +10,6 @@ enum class Level1Navigation(
     val rememberVerticalStack: Boolean = false,
 ) {
     Feed(
-        screenIdentifier = ScreenIdentifier.get(screen = Screen.Feed, params = null),
+        screenIdentifier = ScreenIdentifier.get(screen = Screens.Feed, params = null),
     ),
 }

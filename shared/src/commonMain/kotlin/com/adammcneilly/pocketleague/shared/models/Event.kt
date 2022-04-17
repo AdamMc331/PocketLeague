@@ -8,6 +8,8 @@ import kotlinx.datetime.LocalDateTime
  *
  * @property[id] A unique identifier for this event.
  * @property[name] The description of this event, such as "RLCS Winter Split Regional 1".
+ * @property[startDate] The date that this event begins.
+ * @property[endDate] The date that this event stops.
  */
 data class Event(
     val id: String,

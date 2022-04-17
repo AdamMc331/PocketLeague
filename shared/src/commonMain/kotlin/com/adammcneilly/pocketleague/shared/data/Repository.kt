@@ -21,6 +21,10 @@ class Repository(
         )
     }
 
+    /**
+     * This will run the supplied [block] using the coroutine context of a default
+     * dispatcher if [useDefaultDispatcher] is true.
+     */
     suspend fun <T> withRepoContext(block: suspend () -> T): T {
         return if (useDefaultDispatcher) {
             withContext(Dispatchers.Default) {

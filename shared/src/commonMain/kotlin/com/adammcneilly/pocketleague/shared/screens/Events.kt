@@ -12,6 +12,10 @@ class Events(
     val dataRepository: Repository
         get() = stateManager.repository
 
+    /**
+     * This will run the supplied [block] inside the coroutine scope of the current
+     * screen.
+     */
     fun screenCoroutine(block: suspend () -> Unit) {
         stateManager.runInScreenScope {
             block()

@@ -36,7 +36,10 @@ class OctaneGGEventService(
             val mappedResult = when (apiResult) {
                 is DataResult.Success -> {
                     val mappedEvents = apiResult.data.events?.map(OctaneGGEvent::toEvent).orEmpty()
-                    DataResult.Success(mappedEvents)
+
+                    val sortedEvents = mappedEvents.sortedBy(Event::startDate)
+
+                    DataResult.Success(sortedEvents)
                 }
                 is DataResult.Error -> {
                     DataResult.Error(apiResult.error)

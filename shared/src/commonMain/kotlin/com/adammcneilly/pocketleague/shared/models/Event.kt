@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.models
 
+import kotlinx.datetime.LocalDateTime
+
 /**
  * Defines any Rocket League event that can occur to allow a number of teams or players
  * to compete.
@@ -10,4 +12,6 @@ package com.adammcneilly.pocketleague.shared.models
 data class Event(
     val id: String,
     val name: String,
+    val startDate: LocalDateTime?,
+    val endDate: LocalDateTime?,
 )

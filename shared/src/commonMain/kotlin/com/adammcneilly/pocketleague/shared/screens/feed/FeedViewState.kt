@@ -6,7 +6,8 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
 /**
  * Defines the UI configuration for the [com.adammcneilly.pocketleague.shared.screens.Screens.Feed] screen.
  */
-data class FeedState(
+data class FeedViewState(
     val showLoading: Boolean = true,
     val upcomingEvents: List<Event>? = null,
+    val errorMessage: String? = null,
 ) : ScreenState

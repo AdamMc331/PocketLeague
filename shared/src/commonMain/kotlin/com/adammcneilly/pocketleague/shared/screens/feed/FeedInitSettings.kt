@@ -10,10 +10,10 @@ fun Navigation.initFeed(): ScreenInitSettings {
     return ScreenInitSettings(
         title = "Feed",
         initState = {
-            FeedState()
+            FeedViewState()
         },
         callOnInit = {
-            // Coming soon?
+            events.loadFeed()
         },
         reInitOnEachNavigation = true,
     )

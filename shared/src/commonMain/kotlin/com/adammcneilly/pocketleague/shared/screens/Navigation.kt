@@ -4,11 +4,23 @@ package com.adammcneilly.pocketleague.shared.screens
  * This class manages all of the navigation logic within the pocket league app.
  */
 class Navigation(
-    val stateManager: StateManager,
+    private val stateManager: StateManager,
 ) {
-    // val stateProvider by lazy { StateProvider(stateManager) }
-    // val events by lazy { Events(stateManager) }
-    // val dataRepository = stateManager.dataRepository
+    /**
+     * Creates a [StateProvider] allowing apps to get the state of necessary
+     * screens during navigation.
+     */
+    val stateProvider by lazy {
+        StateProvider(stateManager)
+    }
+
+    /**
+     * Creates an [Events] instance which we can use to trigger actions and state
+     * updates for screen.
+     */
+    val events by lazy {
+        Events(stateManager)
+    }
 
     init {
         val startScreenIdentifier = NavigationSettings.homeScreen.screenIdentifier

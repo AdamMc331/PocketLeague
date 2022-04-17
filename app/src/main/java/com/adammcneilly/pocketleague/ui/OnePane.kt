@@ -16,7 +16,9 @@ fun Navigation.OnePane(
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
-        topBar = { TopBar(getTitle(currentScreenIdentifier)) },
+        topBar = {
+            TopBar(getTitle(currentScreenIdentifier))
+        },
         content = {
             saveableStateHolder.SaveableStateProvider(currentScreenIdentifier.uri) {
                 ScreenPicker(currentScreenIdentifier)

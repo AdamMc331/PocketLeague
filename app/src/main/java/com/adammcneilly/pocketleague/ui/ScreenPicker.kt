@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.ui
 
-import androidx.compose.material3.Text
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.Screen

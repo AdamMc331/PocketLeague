@@ -91,7 +91,6 @@ dependencies {
     implementation("com.google.android.material:material:${Versions.material}")
     implementation("androidx.compose.ui:ui:${Versions.compose}")
     implementation("androidx.compose.material:material:${Versions.compose}")
-    implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")
     implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
     implementation("androidx.activity:activity-compose:${Versions.activityCompose}")

@@ -5,9 +5,10 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.sp
 import com.adammcneilly.pocketleague.shared.screens.Level1Navigation
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
@@ -19,10 +20,22 @@ fun Navigation.Level1BottomBar(
     BottomAppBar(
         content = {
             BottomNavigationItem(
-                icon = { Icon(Icons.Default.Menu, "Feed") },
-                label = { Text("FEED", fontSize = 13.sp) },
+                icon = { Icon(Icons.Default.Home, "Feed") },
+                label = { Text("FEED") },
                 selected = selectedTab.uri == Level1Navigation.Feed.screenIdentifier.uri,
                 onClick = { navigateByLevel1Menu(Level1Navigation.Feed) }
+            )
+            BottomNavigationItem(
+                icon = { Icon(Icons.Default.Star, "Teams") },
+                label = { Text("MY TEAMS") },
+                selected = false,
+                onClick = { },
+            )
+            BottomNavigationItem(
+                icon = { Icon(Icons.Default.AccountCircle, "Account") },
+                label = { Text("ACCOUNT") },
+                selected = false,
+                onClick = { },
             )
         }
     )

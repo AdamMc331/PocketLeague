@@ -1,12 +1,8 @@
 package com.adammcneilly.pocketleague.ui
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.sp
 
 @Composable
 fun TopBar(
@@ -16,9 +12,6 @@ fun TopBar(
         title = {
             Text(
                 text = title,
-                fontSize = 20.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
             )
         },
     )

@@ -4,8 +4,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -17,6 +20,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.shared.models.Match
 import com.adammcneilly.pocketleague.shared.models.MatchTeamResult
+import com.google.accompanist.placeholder.material.placeholder
+import com.google.accompanist.placeholder.placeholder
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
@@ -35,21 +40,34 @@ fun MatchListItem(
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             Text(
                 text = match.event.name,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .placeholder(
+                        visible = match.event.name.isBlank(),
+                        shape = CircleShape,
+                    )
             )
 
             Text(
                 text = match.date?.getRelativeTimestamp().orEmpty(),
                 style = MaterialTheme.typography.caption,
+                modifier = Modifier
+                    .defaultMinSize(minWidth = 50.dp)
+                    .placeholder(
+                        visible = match.date == null,
+                        shape = CircleShape,
+                    )
             )
 
             Spacer(
-                modifier = Modifier.height(16.dp),
+                modifier = Modifier.height(8.dp),
             )
 
             MatchTeamResultRow(teamResult = match.blueTeam)
@@ -73,6 +91,11 @@ private fun MatchTeamResultRow(
             } else {
                 Color.Red
             },
+            modifier = Modifier
+                .placeholder(
+                    visible = teamResult.score == -1,
+                    shape = CircleShape,
+                )
         )
 
         Text(
@@ -82,6 +105,12 @@ private fun MatchTeamResultRow(
             } else {
                 null
             },
+            modifier = Modifier
+                .defaultMinSize(minWidth = 100.dp)
+                .placeholder(
+                    visible = teamResult.team.name.isBlank(),
+                    shape = CircleShape,
+                )
         )
     }
 }

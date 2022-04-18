@@ -34,10 +34,6 @@ fun FeedContent(
     Box(
         modifier = modifier.fillMaxSize(),
     ) {
-        if (viewState.showLoading) {
-            LoadingIndicator()
-        }
-
         SuccessContent(viewState)
     }
 }

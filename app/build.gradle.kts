@@ -98,6 +98,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:${Versions.hilt}")
     implementation("com.google.accompanist:accompanist-insets-ui:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}")
+    implementation("com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}")
     implementation("androidx.window:window:${Versions.windowManager}")
     implementation("androidx.lifecycle:lifecycle-process:2.4.1")
     implementation("io.coil-kt:coil-compose:2.0.0-rc03")

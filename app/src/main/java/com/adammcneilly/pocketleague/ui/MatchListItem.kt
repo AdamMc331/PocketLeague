@@ -91,9 +91,10 @@ private fun LocalDateTime.getRelativeTimestamp(): String {
     val matchInstant = this.toInstant(TimeZone.currentSystemDefault())
 
     val duration = now.minus(matchInstant)
+    val hoursInDay = 24
 
     return when {
-        duration.inWholeHours < 24 -> {
+        duration.inWholeHours < hoursInDay -> {
             "${duration.inWholeHours}h ago"
         }
         else -> {

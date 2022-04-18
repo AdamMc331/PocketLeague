@@ -1,17 +1,17 @@
 package com.adammcneilly.pocketleague.shared.screens
 
-import com.adammcneilly.pocketleague.shared.data.Repository
+import com.adammcneilly.pocketleague.shared.data.AppDependencies
 import kotlinx.coroutines.flow.StateFlow
 
 /**
  * Root view model for the application that exposes a [stateFlow] of our application's state.
  */
 class DKMPViewModel(
-    private val repository: Repository,
+    private val dependencies: AppDependencies
 ) {
 
     private val stateManager by lazy {
-        StateManager(repository)
+        StateManager(dependencies)
     }
 
     val stateFlow: StateFlow<AppState>

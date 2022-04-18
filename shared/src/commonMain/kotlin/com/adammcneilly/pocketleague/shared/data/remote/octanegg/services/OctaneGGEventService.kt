@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.flow
  * A concrete implementation of an [EventRepository] that will request data using the supplied [apiClient].
  */
 class OctaneGGEventService(
-    private val apiClient: OctaneGGAPIClient,
+    private val apiClient: OctaneGGAPIClient = OctaneGGAPIClient(),
 ) : EventRepository {
 
     override fun fetchEvents(

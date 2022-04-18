@@ -36,7 +36,9 @@ class OctaneGGMatchService(
                 is DataResult.Success -> {
                     val mappedMatches = apiResult.data.matches?.map(OctaneGGMatch::toMatch).orEmpty()
 
-                    DataResult.Success(mappedMatches)
+                    val sortedMatches = mappedMatches.sortedByDescending(Match::date)
+
+                    DataResult.Success(sortedMatches)
                 }
                 is DataResult.Error -> {
                     DataResult.Error(apiResult.error)

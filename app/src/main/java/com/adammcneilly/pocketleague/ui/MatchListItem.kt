@@ -17,6 +17,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.shared.models.Match
 import com.adammcneilly.pocketleague.shared.models.MatchTeamResult
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
 
 /**
  * Displays a match between two teams inside a list item.
@@ -40,7 +44,7 @@ fun MatchListItem(
             )
 
             Text(
-                text = "TODO: Date",
+                text = match.date?.getRelativeTimestamp().orEmpty(),
                 style = MaterialTheme.typography.caption,
             )
 
@@ -79,5 +83,21 @@ private fun MatchTeamResultRow(
                 null
             },
         )
+    }
+}
+
+private fun LocalDateTime.getRelativeTimestamp(): String {
+    val now = Clock.System.now()
+    val matchInstant = this.toInstant(TimeZone.currentSystemDefault())
+
+    val duration = now.minus(matchInstant)
+
+    return when {
+        duration.inWholeHours < 24 -> {
+            "${duration.inWholeHours}h ago"
+        }
+        else -> {
+            "${duration.inWholeDays}d ago"
+        }
     }
 }

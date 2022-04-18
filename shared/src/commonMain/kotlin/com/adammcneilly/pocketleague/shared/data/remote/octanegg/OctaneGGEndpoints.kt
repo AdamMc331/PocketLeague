@@ -5,4 +5,5 @@ package com.adammcneilly.pocketleague.shared.data.remote.octanegg
  */
 object OctaneGGEndpoints {
     const val EVENTS = "/events"
+    const val MATCHES = "/matches"
 }

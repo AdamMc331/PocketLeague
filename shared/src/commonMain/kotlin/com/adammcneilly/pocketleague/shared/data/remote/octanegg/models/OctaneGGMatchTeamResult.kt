@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.data.remote.octanegg.models
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Shows the result of a specific [team] within a match.
@@ -9,6 +10,7 @@ import kotlinx.serialization.SerialName
  * @property[winner] If true, this [team] is the winner of the match.
  * @property[team] Information about the team and their stats.
  */
+@Serializable
 data class OctaneGGMatchTeamResult(
     @SerialName("score")
     val score: Int? = null,

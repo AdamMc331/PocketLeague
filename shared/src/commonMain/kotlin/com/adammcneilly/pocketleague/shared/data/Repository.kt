@@ -2,7 +2,9 @@ package com.adammcneilly.pocketleague.shared.data
 
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.services.OctaneGGEventService
+import com.adammcneilly.pocketleague.shared.data.remote.octanegg.services.OctaneGGMatchService
 import com.adammcneilly.pocketleague.shared.data.repositories.EventRepository
+import com.adammcneilly.pocketleague.shared.data.repositories.MatchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -19,6 +21,10 @@ class Repository(
         OctaneGGEventService(
             apiClient = OctaneGGAPIClient(),
         )
+    }
+
+    internal val matchRepository: MatchRepository by lazy {
+        OctaneGGMatchService()
     }
 
     /**

@@ -1,10 +1,12 @@
 package com.adammcneilly.pocketleague.shared.data.remote.octanegg.models
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Represents a match between two teams, [blue] and [orange].
  */
+@Serializable
 data class OctaneGGMatch(
     @SerialName("_id")
     val id: String? = null,

@@ -14,11 +14,13 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
+private const val LIST_PANE_WIDTH_RATIO = 0.4F
+private const val DETAIL_PANE_WIDTH_RATIO = 0.6F
+
 /**
  * A [TwoPane] layout is used to show two selections of content side by side. Something like this
  * is helpful on tablets or large screens to use up available screen space.
  */
-@Suppress("MagicNumber")
 @Composable
 fun Navigation.TwoPane(
     saveableStateHolder: SaveableStateHolder
@@ -37,7 +39,7 @@ fun Navigation.TwoPane(
                 }
                 Column(
                     Modifier
-                        .weight(0.4f)
+                        .weight(LIST_PANE_WIDTH_RATIO)
                 ) {
                     saveableStateHolder.SaveableStateProvider(navigationLevelsMap[1]!!.uri) {
                         ScreenPicker(navigationLevelsMap[1]!!)
@@ -45,7 +47,7 @@ fun Navigation.TwoPane(
                 }
                 Column(
                     Modifier
-                        .weight(0.6f)
+                        .weight(DETAIL_PANE_WIDTH_RATIO)
                         .padding(20.dp)
                 ) {
                     if (navigationLevelsMap[2] == null) {

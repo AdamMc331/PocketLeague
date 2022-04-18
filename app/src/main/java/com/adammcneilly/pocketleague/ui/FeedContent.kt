@@ -21,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
 
+private const val MATCH_CARD_WIDTH_RATIO = 0.8F
+
 /**
  * Shows content inside the feed screen for the given [viewState].
  */
@@ -65,7 +67,7 @@ private fun SuccessContent(viewState: FeedViewState) {
                 items(viewState.recentMatches.orEmpty()) { match ->
                     MatchListItem(
                         match = match,
-                        modifier = Modifier.fillParentMaxWidth(0.8F),
+                        modifier = Modifier.fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO),
                     )
                 }
             }

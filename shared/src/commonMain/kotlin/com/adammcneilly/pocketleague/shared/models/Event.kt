@@ -10,10 +10,12 @@ import kotlinx.datetime.LocalDateTime
  * @property[name] The description of this event, such as "RLCS Winter Split Regional 1".
  * @property[startDate] The date that this event begins.
  * @property[endDate] The date that this event stops.
+ * @property[imageUrl] The URL to the remotely hosted image for this event.
  */
 data class Event(
     val id: String,
     val name: String,
     val startDate: LocalDateTime?,
     val endDate: LocalDateTime?,
+    val imageUrl: String?,
 )

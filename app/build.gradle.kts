@@ -100,6 +100,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}")
     implementation("androidx.window:window:${Versions.windowManager}")
     implementation("androidx.lifecycle:lifecycle-process:2.4.1")
+    implementation("io.coil-kt:coil-compose:2.0.0-rc03")
     kapt("com.google.dagger:hilt-compiler:${Versions.hilt}")
     testImplementation("junit:junit:${Versions.junit}")
     testImplementation("com.google.truth:truth:${Versions.truth}")

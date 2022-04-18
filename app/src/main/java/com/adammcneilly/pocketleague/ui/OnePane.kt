@@ -19,9 +19,12 @@ fun Navigation.OnePane(
         topBar = {
             TopBar(getTitle(currentScreenIdentifier))
         },
-        content = {
+        content = { paddingValues ->
             saveableStateHolder.SaveableStateProvider(currentScreenIdentifier.uri) {
-                ScreenPicker(currentScreenIdentifier)
+                ScreenPicker(
+                    currentScreenIdentifier,
+                    paddingValues = paddingValues,
+                )
             }
         },
         bottomBar = {

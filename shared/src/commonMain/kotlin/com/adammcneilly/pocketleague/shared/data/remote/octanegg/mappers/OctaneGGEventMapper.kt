@@ -19,5 +19,6 @@ fun OctaneGGEvent.toEvent(): Event {
         endDate = this.endDate?.let {
             Instant.parse(it)
         }?.toLocalDateTime(TimeZone.UTC),
+        imageUrl = this.image,
     )
 }

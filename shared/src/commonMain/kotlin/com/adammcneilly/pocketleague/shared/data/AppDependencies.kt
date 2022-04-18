@@ -9,6 +9,11 @@ import com.adammcneilly.pocketleague.shared.eventlist.GetUpcomingEventsUseCaseIm
 import com.adammcneilly.pocketleague.shared.matchlist.GetRecentMatchesUseCase
 import com.adammcneilly.pocketleague.shared.matchlist.GetRecentMatchesUseCaseImpl
 
+/**
+ * Defines the collection of dependencies used throughout the application. This should
+ * expose interfaces so that the callers don't have to concern themselves
+ * with the implementation.
+ */
 class AppDependencies {
     private val eventRepository: EventRepository by lazy {
         OctaneGGEventService()

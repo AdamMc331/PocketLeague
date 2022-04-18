@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -66,7 +65,7 @@ private fun SuccessContent(viewState: FeedViewState) {
                 items(viewState.recentMatches.orEmpty()) { match ->
                     MatchListItem(
                         match = match,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillParentMaxWidth(0.8F),
                     )
                 }
             }

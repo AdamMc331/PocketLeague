@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.shared.matchlist.GetRecentMatchesUseCaseImp
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 
-const val NUM_DAYS_RECENT_MATCHES = 7
+const val NUM_DAYS_RECENT_MATCHES = 3
 
 /**
  * Loads the information for the feed state.

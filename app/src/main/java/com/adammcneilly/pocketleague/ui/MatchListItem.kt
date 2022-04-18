@@ -86,15 +86,16 @@ private fun MatchTeamResultRow(
     }
 }
 
+private const val HOURS_IN_DAY = 24
+
 private fun LocalDateTime.getRelativeTimestamp(): String {
     val now = Clock.System.now()
     val matchInstant = this.toInstant(TimeZone.currentSystemDefault())
 
     val duration = now.minus(matchInstant)
-    val hoursInDay = 24
 
     return when {
-        duration.inWholeHours < hoursInDay -> {
+        duration.inWholeHours < HOURS_IN_DAY -> {
             "${duration.inWholeHours}h ago"
         }
         else -> {

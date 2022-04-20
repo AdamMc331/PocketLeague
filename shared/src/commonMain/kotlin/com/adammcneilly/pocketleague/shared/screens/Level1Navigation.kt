@@ -12,4 +12,10 @@ enum class Level1Navigation(
     Feed(
         screenIdentifier = ScreenIdentifier.get(screen = Screens.Feed, params = null),
     ),
+    Stats(
+        screenIdentifier = ScreenIdentifier.get(screen = Screens.Stats, params = null),
+    ),
+    Records(
+        screenIdentifier = ScreenIdentifier.get(screen = Screens.Records, params = null),
+    ),
 }

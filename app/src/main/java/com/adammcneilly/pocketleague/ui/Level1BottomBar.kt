@@ -5,9 +5,9 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.BarChart
+import androidx.compose.material.icons.filled.Feed
+import androidx.compose.material.icons.filled.Leaderboard
 import androidx.compose.runtime.Composable
 import com.adammcneilly.pocketleague.shared.screens.Level1Navigation
 import com.adammcneilly.pocketleague.shared.screens.Navigation
@@ -23,22 +23,22 @@ fun Navigation.Level1BottomBar(
     BottomAppBar(
         content = {
             BottomNavigationItem(
-                icon = { Icon(Icons.Default.Home, "Feed") },
+                icon = { Icon(Icons.Default.Feed, "Feed") },
                 label = { Text("FEED") },
                 selected = selectedTab.uri == Level1Navigation.Feed.screenIdentifier.uri,
                 onClick = { navigateByLevel1Menu(Level1Navigation.Feed) }
             )
             BottomNavigationItem(
-                icon = { Icon(Icons.Default.Star, "Teams") },
-                label = { Text("MY TEAMS") },
-                selected = false,
-                onClick = { },
+                icon = { Icon(Icons.Default.BarChart, "Stats") },
+                label = { Text("STATS") },
+                selected = selectedTab.uri == Level1Navigation.Stats.screenIdentifier.uri,
+                onClick = { navigateByLevel1Menu(Level1Navigation.Stats) },
             )
             BottomNavigationItem(
-                icon = { Icon(Icons.Default.AccountCircle, "Account") },
-                label = { Text("ACCOUNT") },
-                selected = false,
-                onClick = { },
+                icon = { Icon(Icons.Default.Leaderboard, "Records") },
+                label = { Text("RECORDS") },
+                selected = selectedTab.uri == Level1Navigation.Records.screenIdentifier.uri,
+                onClick = { navigateByLevel1Menu(Level1Navigation.Records) },
             )
         }
     )

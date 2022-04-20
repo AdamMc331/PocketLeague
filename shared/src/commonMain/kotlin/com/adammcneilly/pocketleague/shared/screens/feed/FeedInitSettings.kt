@@ -15,6 +15,6 @@ fun Navigation.initFeed(): ScreenInitSettings {
         callOnInit = {
             events.loadFeed()
         },
-        reInitOnEachNavigation = true,
+        reInitOnEachNavigation = false,
     )
 }

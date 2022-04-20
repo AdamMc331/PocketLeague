@@ -98,6 +98,10 @@ class Navigation(
      * Navigate to a different level 1 menu item.
      */
     fun navigateByLevel1Menu(level1NavigationItem: Level1Navigation) {
+        if (level1NavigationItem.screenIdentifier == currentLevel1ScreenIdentifier) {
+            return
+        }
+
         val navigationLevelsMap = getNavigationLevelsMap(level1NavigationItem.screenIdentifier)
 
         if (navigationLevelsMap == null) {

@@ -25,5 +25,19 @@ fun Navigation.ScreenPicker(
                     .padding(paddingValues),
             )
         }
+        Screens.Stats -> {
+            StatsContent(
+                viewState = stateProvider.get(screenIdentifier),
+                modifier = Modifier
+                    .padding(paddingValues),
+            )
+        }
+        Screens.Records -> {
+            RecordsContent(
+                viewState = stateProvider.get(screenIdentifier),
+                modifier = Modifier
+                    .padding(paddingValues),
+            )
+        }
     }
 }

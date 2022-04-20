@@ -93,6 +93,7 @@ dependencies {
     implementation("androidx.compose.ui:ui:${Versions.compose}")
     implementation("androidx.compose.material:material:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
+    implementation("androidx.compose.material:material-icons-extended:${Versions.compose}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
     implementation("androidx.activity:activity-compose:${Versions.activityCompose}")
     implementation("com.google.dagger:hilt-android:${Versions.hilt}")

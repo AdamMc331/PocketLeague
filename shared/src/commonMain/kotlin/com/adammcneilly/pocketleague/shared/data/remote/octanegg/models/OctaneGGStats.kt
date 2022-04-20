@@ -8,6 +8,14 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class OctaneGGStats(
+    @SerialName("boost")
+    val boost: OctaneGGBoostStats? = null,
     @SerialName("core")
     val core: OctaneGGCoreStats? = null,
+    @SerialName("demo")
+    val demo: OctaneGGDemoStats? = null,
+    @SerialName("movement")
+    val movement: OctaneGGMovementStats? = null,
+    @SerialName("positioning")
+    val positioning: OctaneGGPositioningStats? = null
 )

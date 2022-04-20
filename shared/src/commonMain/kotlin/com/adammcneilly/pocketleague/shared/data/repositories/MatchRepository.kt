@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.data.repositories
 
-import com.adammcneilly.pocketleague.shared.data.DataResult
+import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.data.models.MatchListRequest
 import com.adammcneilly.pocketleague.shared.models.Match
 import kotlinx.coroutines.flow.Flow
@@ -16,5 +16,5 @@ interface MatchRepository {
      */
     fun fetchMatches(
         request: MatchListRequest,
-    ): Flow<DataResult<List<Match>>>
+    ): Flow<DataState<List<Match>>>
 }

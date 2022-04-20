@@ -5,7 +5,7 @@ package com.adammcneilly.pocketleague.shared.models
  * League event.
  */
 data class Team(
-    val id: String,
-    val name: String,
-    val imageUrl: String?,
+    val id: String = "",
+    val name: String = "",
+    val imageUrl: String? = null,
 )

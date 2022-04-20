@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.shared.eventlist
 
-import com.adammcneilly.pocketleague.shared.data.DataResult
+import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.data.models.EventListRequest
 import com.adammcneilly.pocketleague.shared.data.repositories.EventRepository
+import com.adammcneilly.pocketleague.shared.models.Event
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -17,22 +17,13 @@ class GetUpcomingEventsUseCaseImpl(
     private val repository: EventRepository,
 ) : GetUpcomingEventsUseCase {
 
-    override fun invoke(): Flow<GetUpcomingEventsUseCase.Result> {
+    override fun invoke(): Flow<DataState<List<Event>>> {
         val today = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
         val request = EventListRequest(
             after = today,
         )
 
-        return repository.fetchEvents(request).map { repoResult ->
-            when (repoResult) {
-                is DataResult.Success -> {
-                    GetUpcomingEventsUseCase.Result.Success(repoResult.data)
-                }
-                is DataResult.Error -> {
-                    GetUpcomingEventsUseCase.Result.Error(repoResult.error)
-                }
-            }
-        }
+        return repository.fetchEvents(request)
     }
 }

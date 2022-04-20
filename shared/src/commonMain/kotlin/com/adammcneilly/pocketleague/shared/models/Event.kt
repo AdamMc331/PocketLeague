@@ -13,9 +13,9 @@ import kotlinx.datetime.LocalDateTime
  * @property[imageUrl] The URL to the remotely hosted image for this event.
  */
 data class Event(
-    val id: String,
-    val name: String,
-    val startDate: LocalDateTime?,
-    val endDate: LocalDateTime?,
-    val imageUrl: String?,
+    val id: String = "",
+    val name: String = "",
+    val startDate: LocalDateTime? = null,
+    val endDate: LocalDateTime? = null,
+    val imageUrl: String? = null,
 )

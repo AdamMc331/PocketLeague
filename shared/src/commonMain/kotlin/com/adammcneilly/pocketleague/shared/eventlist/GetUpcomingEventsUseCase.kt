@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.eventlist
 
+import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.models.Event
 import kotlinx.coroutines.flow.Flow
 
@@ -11,24 +12,5 @@ interface GetUpcomingEventsUseCase {
     /**
      * @see [GetUpcomingEventsUseCase].
      */
-    operator fun invoke(): Flow<Result>
-
-    /**
-     * Defines all possible result types for a [GetUpcomingEventsUseCase].
-     */
-    sealed class Result {
-        /**
-         * This will be returned if we can successfully request upcoming [events].
-         */
-        data class Success(
-            val events: List<Event>,
-        ) : Result()
-
-        /**
-         * Should any [error] occur while requesting upcoming events, this will be returned.
-         */
-        data class Error(
-            val error: Throwable,
-        ) : Result()
-    }
+    operator fun invoke(): Flow<DataState<List<Event>>>
 }

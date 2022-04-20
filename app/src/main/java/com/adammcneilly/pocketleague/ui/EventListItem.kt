@@ -1,6 +1,8 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ListItem
 import androidx.compose.material.Text
@@ -12,6 +14,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.adammcneilly.pocketleague.shared.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.shared.models.Event
+import com.google.accompanist.placeholder.material.placeholder
 
 /**
  * Used to show a specific [event] inside of a list.
@@ -25,6 +28,12 @@ fun EventListItem(
         text = {
             Text(
                 text = event.name,
+                modifier = Modifier
+                    .defaultMinSize(minWidth = 150.dp)
+                    .placeholder(
+                        visible = event.name.isEmpty(),
+                        shape = CircleShape,
+                    )
             )
         },
         overlineText = {
@@ -35,7 +44,9 @@ fun EventListItem(
                 )
             }
 
-            Text(text = startDateString.orEmpty())
+            Text(
+                text = startDateString.orEmpty(),
+            )
         },
         icon = {
             AsyncImage(
@@ -44,7 +55,12 @@ fun EventListItem(
                     .crossfade(true)
                     .build(),
                 contentDescription = "Event Image",
-                modifier = Modifier.size(48.dp),
+                modifier = Modifier
+                    .size(48.dp)
+                    .placeholder(
+                        visible = event.imageUrl == null,
+                        shape = CircleShape,
+                    ),
             )
         },
     )

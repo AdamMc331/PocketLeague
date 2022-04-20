@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.shared.matchlist
 
-import com.adammcneilly.pocketleague.shared.data.DataResult
+import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.data.models.MatchListRequest
 import com.adammcneilly.pocketleague.shared.data.repositories.MatchRepository
+import com.adammcneilly.pocketleague.shared.models.Match
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.TimeZone
@@ -20,7 +20,7 @@ class GetRecentMatchesUseCaseImpl(
     private val repository: MatchRepository,
 ) : GetRecentMatchesUseCase {
 
-    override fun invoke(numDays: Int): Flow<GetRecentMatchesUseCase.Result> {
+    override fun invoke(numDays: Int): Flow<DataState<List<Match>>> {
         val today = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
         val startDate = today.date.minus(numDays, DateTimeUnit.DAY)
@@ -32,15 +32,6 @@ class GetRecentMatchesUseCaseImpl(
             before = today,
         )
 
-        return repository.fetchMatches(request).map { repoResult ->
-            when (repoResult) {
-                is DataResult.Success -> {
-                    GetRecentMatchesUseCase.Result.Success(repoResult.data)
-                }
-                is DataResult.Error -> {
-                    GetRecentMatchesUseCase.Result.Error(repoResult.error)
-                }
-            }
-        }
+        return repository.fetchMatches(request)
     }
 }

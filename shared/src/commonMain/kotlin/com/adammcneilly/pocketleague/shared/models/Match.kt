@@ -7,9 +7,9 @@ import kotlinx.datetime.LocalDateTime
  * or even a best of set.
  */
 data class Match(
-    val id: String,
-    val event: Event,
-    val date: LocalDateTime?,
-    val blueTeam: MatchTeamResult,
-    val orangeTeam: MatchTeamResult,
+    val id: String = "",
+    val event: Event = Event(),
+    val date: LocalDateTime? = null,
+    val blueTeam: MatchTeamResult = MatchTeamResult(),
+    val orangeTeam: MatchTeamResult = MatchTeamResult(),
 )

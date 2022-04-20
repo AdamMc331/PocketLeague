@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.data.repositories
 
-import com.adammcneilly.pocketleague.shared.data.DataResult
+import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.data.models.EventListRequest
 import com.adammcneilly.pocketleague.shared.models.Event
 import kotlinx.coroutines.flow.Flow
@@ -15,5 +15,5 @@ interface EventRepository {
      */
     fun fetchEvents(
         request: EventListRequest,
-    ): Flow<DataResult<List<Event>>>
+    ): Flow<DataState<List<Event>>>
 }

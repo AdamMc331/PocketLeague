@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.data.remote.octanegg
 
-import com.adammcneilly.pocketleague.shared.data.DataResult
+import com.adammcneilly.pocketleague.shared.data.DataState
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
@@ -33,14 +33,14 @@ class OctaneGGAPIClient {
     suspend inline fun <reified T : Any> getResponse(
         endpoint: String,
         requestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): DataResult<T> {
+    ): DataState<T> {
         val url = "$baseURL$endpoint"
 
         return try {
             val apiResult: T = httpClient.get(url, requestBuilder)
-            DataResult.Success(apiResult)
+            DataState.Success(apiResult)
         } catch (e: Exception) {
-            DataResult.Error(e)
+            DataState.Error(e)
         }
     }
 }

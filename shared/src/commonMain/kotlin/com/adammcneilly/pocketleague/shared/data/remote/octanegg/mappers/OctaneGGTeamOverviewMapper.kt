@@ -8,8 +8,8 @@ import com.adammcneilly.pocketleague.shared.models.Team
  */
 fun OctaneGGTeamOverview.toTeam(): Team {
     return Team(
-        id = this.id!!,
-        name = this.name!!,
+        id = this.id.orEmpty(),
+        name = this.name.orEmpty(),
         imageUrl = this.image,
     )
 }

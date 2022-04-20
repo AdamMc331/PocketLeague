@@ -9,14 +9,25 @@ import kotlinx.datetime.toLocalDateTime
 /**
  * Converts an [OctaneGGMatch] to a [Match] entity.
  */
-fun OctaneGGMatch.toMatch(): Match {
+fun OctaneGGMatch.toMatch(): Match? {
+    // Right now we just filter out items with invalid data. We need a way to log
+    // or notify of this in the future.
+    if (
+        this.id == null ||
+        this.event == null ||
+        this.blue == null ||
+        this.orange == null
+    ) {
+        return null
+    }
+
     return Match(
-        id = this.id!!,
-        event = this.event?.toEvent()!!,
+        id = this.id,
+        event = this.event.toEvent(),
         date = this.date?.let { date ->
             Instant.parse(date)
         }?.toLocalDateTime(TimeZone.UTC),
-        blueTeam = this.blue?.toMatchTeamResult()!!,
-        orangeTeam = this.orange?.toMatchTeamResult()!!,
+        blueTeam = this.blue.toMatchTeamResult(),
+        orangeTeam = this.orange.toMatchTeamResult(),
     )
 }

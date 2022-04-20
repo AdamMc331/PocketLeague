@@ -1,47 +1,45 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
+import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.models.Event
 import com.adammcneilly.pocketleague.shared.models.Match
-import com.adammcneilly.pocketleague.shared.models.MatchTeamResult
-import com.adammcneilly.pocketleague.shared.models.Team
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
-
-private val placeholderMatch = Match(
-    id = "",
-    event = Event(
-        id = "",
-        name = "",
-        startDate = null,
-        endDate = null,
-        imageUrl = null,
-    ),
-    date = null,
-    blueTeam = MatchTeamResult(
-        score = -1,
-        winner = false,
-        team = Team(
-            id = "",
-            name = "",
-            imageUrl = null,
-        ),
-    ),
-    orangeTeam = MatchTeamResult(
-        score = -1,
-        winner = false,
-        team = Team(
-            id = "",
-            name = "",
-            imageUrl = null,
-        ),
-    ),
-)
 
 /**
  * Defines the UI configuration for the [com.adammcneilly.pocketleague.shared.screens.Screens.Feed] screen.
  */
 data class FeedViewState(
-    val showLoading: Boolean = true,
-    val upcomingEvents: List<Event>? = null,
-    val recentMatches: List<Match>? = listOf(placeholderMatch, placeholderMatch, placeholderMatch),
-    val errorMessage: String? = null,
-) : ScreenState
+    val upcomingEventsState: DataState<List<Event>> = DataState.Loading,
+    val recentMatchesState: DataState<List<Match>> = DataState.Loading,
+) : ScreenState {
+
+    val upcomingEvents: List<Event>
+        get() = when (upcomingEventsState) {
+            is DataState.Loading -> {
+                // Here, we return a list of empty Event objects which will be mapped
+                // to a placeholder loading UI.
+                listOf(Event(), Event(), Event())
+            }
+            is DataState.Success -> {
+                upcomingEventsState.data
+            }
+            is DataState.Error -> {
+                emptyList()
+            }
+        }
+
+    val recentMatches: List<Match>
+        get() = when (recentMatchesState) {
+            is DataState.Loading -> {
+                // Here, we return a list of empty match objects which will be mapped
+                // to a placeholder loading UI.
+                listOf(Match(), Match(), Match())
+            }
+            is DataState.Success -> {
+                recentMatchesState.data
+            }
+            is DataState.Error -> {
+                emptyList()
+            }
+        }
+}

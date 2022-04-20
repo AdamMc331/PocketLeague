@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.data.remote.octanegg.services
 
-import com.adammcneilly.pocketleague.shared.data.DataResult
+import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.data.models.MatchListRequest
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.OctaneGGEndpoints
@@ -23,7 +23,7 @@ class OctaneGGMatchService(
     private val apiClient: OctaneGGAPIClient = OctaneGGAPIClient(),
 ) : MatchRepository {
 
-    override fun fetchMatches(request: MatchListRequest): Flow<DataResult<List<Match>>> {
+    override fun fetchMatches(request: MatchListRequest): Flow<DataState<List<Match>>> {
         return flow {
             val apiResult = apiClient.getResponse<OctaneGGMatchListResponse>(
                 endpoint = OctaneGGEndpoints.MATCHES,
@@ -33,15 +33,16 @@ class OctaneGGMatchService(
             )
 
             val mappedResult = when (apiResult) {
-                is DataResult.Success -> {
-                    val mappedMatches = apiResult.data.matches?.map(OctaneGGMatch::toMatch).orEmpty()
+                is DataState.Loading -> DataState.Loading
+                is DataState.Success -> {
+                    val mappedMatches = apiResult.data.matches?.mapNotNull(OctaneGGMatch::toMatch).orEmpty()
 
                     val sortedMatches = mappedMatches.sortedByDescending(Match::date)
 
-                    DataResult.Success(sortedMatches)
+                    DataState.Success(sortedMatches)
                 }
-                is DataResult.Error -> {
-                    DataResult.Error(apiResult.error)
+                is DataState.Error -> {
+                    DataState.Error(apiResult.error)
                 }
             }
 

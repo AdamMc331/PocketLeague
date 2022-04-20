@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.data.remote.octanegg.services
 
-import com.adammcneilly.pocketleague.shared.data.DataResult
+import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.data.models.EventListRequest
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.OctaneGGEndpoints
@@ -24,7 +24,7 @@ class OctaneGGEventService(
 
     override fun fetchEvents(
         request: EventListRequest,
-    ): Flow<DataResult<List<Event>>> {
+    ): Flow<DataState<List<Event>>> {
         return flow {
             val apiResult = apiClient.getResponse<OctaneGGEventListResponse>(
                 endpoint = OctaneGGEndpoints.EVENTS,
@@ -34,15 +34,16 @@ class OctaneGGEventService(
             )
 
             val mappedResult = when (apiResult) {
-                is DataResult.Success -> {
+                is DataState.Loading -> DataState.Loading
+                is DataState.Success -> {
                     val mappedEvents = apiResult.data.events?.map(OctaneGGEvent::toEvent).orEmpty()
 
                     val sortedEvents = mappedEvents.sortedBy(Event::startDate)
 
-                    DataResult.Success(sortedEvents)
+                    DataState.Success(sortedEvents)
                 }
-                is DataResult.Error -> {
-                    DataResult.Error(apiResult.error)
+                is DataState.Error -> {
+                    DataState.Error(apiResult.error)
                 }
             }
 

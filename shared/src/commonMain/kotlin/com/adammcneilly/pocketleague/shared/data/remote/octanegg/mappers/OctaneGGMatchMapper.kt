@@ -12,6 +12,7 @@ import kotlinx.datetime.toLocalDateTime
 fun OctaneGGMatch.toMatch(): Match? {
     // Right now we just filter out items with invalid data. We need a way to log
     // or notify of this in the future.
+    @Suppress("ComplexCondition")
     if (
         this.id == null ||
         this.event == null ||

@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 import com.adammcneilly.pocketleague.shared.screens.Screens
+import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailParams
 
 /**
  * The screen picker tacks a current [screenIdentifier] and renders the content for that screen.
@@ -23,6 +24,14 @@ fun Navigation.ScreenPicker(
                 viewState = stateProvider.get(screenIdentifier),
                 modifier = Modifier
                     .padding(paddingValues),
+                onMatchClicked = { match ->
+                    navigate(
+                        screen = Screens.MatchDetail,
+                        params = MatchDetailParams(
+                            match = match,
+                        ),
+                    )
+                }
             )
         }
         Screens.Stats -> {
@@ -34,6 +43,13 @@ fun Navigation.ScreenPicker(
         }
         Screens.Records -> {
             RecordsContent(
+                viewState = stateProvider.get(screenIdentifier),
+                modifier = Modifier
+                    .padding(paddingValues),
+            )
+        }
+        Screens.MatchDetail -> {
+            MatchDetailContent(
                 viewState = stateProvider.get(screenIdentifier),
                 modifier = Modifier
                     .padding(paddingValues),

@@ -11,11 +11,11 @@ data class OctaneGGMovementStats(
     @SerialName("avgPowerslideDuration")
     val avgPowerslideDuration: Double? = null,
     @SerialName("avgSpeed")
-    val avgSpeed: Int? = null,
+    val avgSpeed: Double? = null,
     @SerialName("avgSpeedPercentage")
-    val avgSpeedPercentage: Int? = null,
+    val avgSpeedPercentage: Double? = null,
     @SerialName("countPowerslide")
-    val countPowerslide: Int? = null,
+    val countPowerslide: Double? = null,
     @SerialName("percentBoostSpeed")
     val percentBoostSpeed: Double? = null,
     @SerialName("percentGround")
@@ -43,5 +43,5 @@ data class OctaneGGMovementStats(
     @SerialName("timeSupersonicSpeed")
     val timeSupersonicSpeed: Double? = null,
     @SerialName("totalDistance")
-    val totalDistance: Int? = null
+    val totalDistance: Double? = null
 )

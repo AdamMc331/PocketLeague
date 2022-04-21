@@ -9,15 +9,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class OctaneGGPositioningStats(
     @SerialName("avgDistanceToBall")
-    val avgDistanceToBall: Int? = null,
+    val avgDistanceToBall: Double? = null,
     @SerialName("avgDistanceToBallNoPossession")
-    val avgDistanceToBallNoPossession: Int? = null,
+    val avgDistanceToBallNoPossession: Double? = null,
     @SerialName("avgDistanceToBallPossession")
-    val avgDistanceToBallPossession: Int? = null,
+    val avgDistanceToBallPossession: Double? = null,
     @SerialName("avgDistanceToMates")
-    val avgDistanceToMates: Int? = null,
+    val avgDistanceToMates: Double? = null,
     @SerialName("goalsAgainstWhileLastDefender")
-    val goalsAgainstWhileLastDefender: Int? = null,
+    val goalsAgainstWhileLastDefender: Double? = null,
     @SerialName("percentBehindBall")
     val percentBehindBall: Double? = null,
     @SerialName("percentClosestToBall")
@@ -55,7 +55,7 @@ data class OctaneGGPositioningStats(
     @SerialName("timeMostBack")
     val timeMostBack: Double? = null,
     @SerialName("timeMostForward")
-    val timeMostForward: Int? = null,
+    val timeMostForward: Double? = null,
     @SerialName("timeNeutralThird")
     val timeNeutralThird: Double? = null,
     @SerialName("timeOffensiveHalf")

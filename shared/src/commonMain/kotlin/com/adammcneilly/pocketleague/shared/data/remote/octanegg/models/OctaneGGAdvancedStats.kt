@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class OctaneGGAdvancedStats(
     @SerialName("goalParticipation")
-    val goalParticipation: Int? = null,
+    val goalParticipation: Double? = null,
     @SerialName("mvp")
     val mvp: Boolean? = null,
     @SerialName("rating")

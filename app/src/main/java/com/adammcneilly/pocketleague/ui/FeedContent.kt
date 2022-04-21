@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,6 +16,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.shared.models.Match
 import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
 
 private const val MATCH_CARD_WIDTH_RATIO = 0.8F
@@ -26,16 +28,23 @@ private const val MATCH_CARD_WIDTH_RATIO = 0.8F
 fun FeedContent(
     viewState: FeedViewState,
     modifier: Modifier = Modifier,
+    onMatchClicked: (Match) -> Unit = {},
 ) {
     Box(
         modifier = modifier.fillMaxSize(),
     ) {
-        SuccessContent(viewState)
+        SuccessContent(
+            viewState = viewState,
+            onMatchClicked = onMatchClicked,
+        )
     }
 }
 
 @Composable
-private fun SuccessContent(viewState: FeedViewState) {
+private fun SuccessContent(
+    viewState: FeedViewState,
+    onMatchClicked: (Match) -> Unit,
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
     ) {
@@ -59,7 +68,11 @@ private fun SuccessContent(viewState: FeedViewState) {
                 items(viewState.recentMatches) { match ->
                     MatchListItem(
                         match = match,
-                        modifier = Modifier.fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO),
+                        modifier = Modifier
+                            .fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO)
+                            .clickable {
+                                onMatchClicked.invoke(match)
+                            },
                     )
                 }
             }

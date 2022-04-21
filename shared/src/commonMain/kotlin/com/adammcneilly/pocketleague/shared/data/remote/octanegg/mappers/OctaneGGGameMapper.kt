@@ -13,5 +13,6 @@ fun OctaneGGGame.toGame(): Game {
         blue = this.blue?.toGameTeamResult() ?: GameTeamResult(),
         orange = this.orange?.toGameTeamResult() ?: GameTeamResult(),
         map = this.map?.name.orEmpty(),
+        number = this.number ?: 0,
     )
 }

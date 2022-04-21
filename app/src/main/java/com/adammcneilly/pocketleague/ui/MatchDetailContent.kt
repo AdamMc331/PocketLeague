@@ -1,12 +1,24 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import com.adammcneilly.pocketleague.shared.models.Team
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailViewState
+import com.google.accompanist.placeholder.material.placeholder
 
 /**
  * The UI content of the match detail screen.
@@ -16,16 +28,57 @@ fun MatchDetailContent(
     viewState: MatchDetailViewState,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(
+    Column(
         modifier = modifier
             .fillMaxWidth(),
     ) {
-        itemsIndexed(viewState.games) { index, game ->
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+        ) {
+            TeamNameLogo(
+                team = viewState.match.blueTeam.team,
+            )
+
+            TeamNameLogo(
+                team = viewState.match.orangeTeam.team,
+            )
+        }
+
+        viewState.games.forEachIndexed { index, game ->
             GameListItem(game = game)
 
             if (index != viewState.games.lastIndex) {
                 Divider()
             }
         }
+    }
+}
+
+@Composable
+private fun RowScope.TeamNameLogo(
+    team: Team,
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier
+            .weight(1F),
+    ) {
+        Text(text = team.name)
+
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(team.imageUrl)
+                .crossfade(true)
+                .build(),
+            contentDescription = "Event Image",
+            modifier = Modifier
+                .size(48.dp)
+                .placeholder(
+                    visible = team.imageUrl == null,
+                    shape = CircleShape,
+                ),
+        )
     }
 }

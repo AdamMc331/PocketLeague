@@ -31,7 +31,9 @@ class OctaneGGGameService(
                 is DataState.Success -> {
                     val mappedGames = apiResult.data.games?.map(OctaneGGGame::toGame).orEmpty()
 
-                    DataState.Success(mappedGames)
+                    val sortedGames = mappedGames.sortedBy(Game::number)
+
+                    DataState.Success(sortedGames)
                 }
                 is DataState.Error -> {
                     DataState.Error(apiResult.error)

@@ -7,4 +7,5 @@ data class Game(
     val id: String = "",
     val blue: GameTeamResult = GameTeamResult(),
     val orange: GameTeamResult = GameTeamResult(),
+    val map: String = "",
 )

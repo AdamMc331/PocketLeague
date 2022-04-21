@@ -4,6 +4,8 @@ import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.data.models.MatchGamesRequest
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.OctaneGGEndpoints
+import com.adammcneilly.pocketleague.shared.data.remote.octanegg.mappers.toGame
+import com.adammcneilly.pocketleague.shared.data.remote.octanegg.models.OctaneGGGame
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.models.OctaneGGGameListResponse
 import com.adammcneilly.pocketleague.shared.data.repositories.GameRepository
 import com.adammcneilly.pocketleague.shared.models.Game
@@ -27,9 +29,7 @@ class OctaneGGGameService(
             val mappedResult = when (apiResult) {
                 is DataState.Loading -> DataState.Loading
                 is DataState.Success -> {
-                    val mappedGames = apiResult.data.games?.map {
-                        Game()
-                    }.orEmpty()
+                    val mappedGames = apiResult.data.games?.map(OctaneGGGame::toGame).orEmpty()
 
                     DataState.Success(mappedGames)
                 }

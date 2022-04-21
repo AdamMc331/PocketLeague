@@ -8,6 +8,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class OctaneGGGameTeamResult(
+    @SerialName("winner")
+    val gameWinner: Boolean? = null,
     @SerialName("matchWinner")
     val matchWinner: Boolean? = null,
     @SerialName("players")

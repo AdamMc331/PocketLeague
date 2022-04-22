@@ -1,5 +1,8 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
+import com.adammcneilly.pocketleague.shared.data.DataState
+import com.adammcneilly.pocketleague.shared.displaymodels.toSummaryDisplayModel
+import com.adammcneilly.pocketleague.shared.models.Event
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 
@@ -14,8 +17,22 @@ fun Events.loadFeed() = screenCoroutine {
 
     upcomingEventsFlow.collect { useCaseResult ->
         stateManager.updateScreen(FeedViewState::class) {
+            val mappedResult = when (useCaseResult) {
+                is DataState.Loading -> {
+                    DataState.Loading
+                }
+                is DataState.Success -> {
+                    DataState.Success(
+                        data = useCaseResult.data.map(Event::toSummaryDisplayModel)
+                    )
+                }
+                is DataState.Error -> {
+                    DataState.Error(useCaseResult.error)
+                }
+            }
+
             it.copy(
-                upcomingEventsState = useCaseResult,
+                upcomingEventsState = mappedResult,
             )
         }
     }

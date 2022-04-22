@@ -9,10 +9,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.adammcneilly.pocketleague.shared.datetime.DateTimeFormatter
+import com.adammcneilly.pocketleague.shared.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.shared.models.Event
 import com.google.accompanist.placeholder.material.placeholder
 
@@ -21,44 +23,37 @@ import com.google.accompanist.placeholder.material.placeholder
  */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun EventListItem(
-    event: Event,
+fun EventSummaryListItem(
+    displayModel: EventSummaryDisplayModel,
 ) {
     ListItem(
         text = {
             Text(
-                text = event.name,
+                text = displayModel.name,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 150.dp)
                     .placeholder(
-                        visible = event.name.isEmpty(),
+                        visible = displayModel.name.isEmpty(),
                         shape = CircleShape,
                     )
             )
         },
         overlineText = {
-            val startDateString = event.startDate?.let { startDate ->
-                DateTimeFormatter().formatLocalDateTime(
-                    localDateTime = startDate,
-                    formatPattern = "MMM dd, yyyy",
-                )
-            }
-
             Text(
-                text = startDateString.orEmpty(),
+                text = displayModel.startDate,
             )
         },
         icon = {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(event.imageUrl)
+                    .data(displayModel.imageUrl)
                     .crossfade(true)
                     .build(),
                 contentDescription = "Event Image",
                 modifier = Modifier
                     .size(48.dp)
                     .placeholder(
-                        visible = event.imageUrl == null,
+                        visible = displayModel.imageUrl == null,
                         shape = CircleShape,
                     ),
             )

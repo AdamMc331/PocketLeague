@@ -88,7 +88,7 @@ private fun SuccessContent(
         }
 
         itemsIndexed(viewState.upcomingEvents) { index, event ->
-            EventListItem(event = event)
+            EventSummaryListItem(displayModel = event)
 
             if (index != viewState.upcomingEvents.lastIndex) {
                 Divider()

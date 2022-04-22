@@ -17,6 +17,9 @@ data class EventSummaryDisplayModel(
     }
 }
 
+/**
+ * Converts an [Event] entity to the user friendly [EventSummaryDisplayModel].
+ */
 fun Event.toSummaryDisplayModel(
     dateTimeFormatter: DateTimeFormatter = DateTimeFormatter(),
 ): EventSummaryDisplayModel {

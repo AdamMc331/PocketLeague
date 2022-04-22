@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
+import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.models.Game
 import com.adammcneilly.pocketleague.shared.models.Match
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
@@ -10,6 +11,20 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
 data class MatchDetailViewState(
     val showLoading: Boolean = true,
     val match: Match = Match(),
-    val games: List<Game> = emptyList(),
+    val gamesDataState: DataState<List<Game>> = DataState.Loading,
     val errorMessage: String? = null,
-) : ScreenState
+) : ScreenState {
+
+    val games: List<Game>
+        get() = when (gamesDataState) {
+            is DataState.Loading -> {
+                listOf(Game(), Game(), Game())
+            }
+            is DataState.Success -> {
+                gamesDataState.data
+            }
+            is DataState.Error -> {
+                emptyList()
+            }
+        }
+}

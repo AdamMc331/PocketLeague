@@ -9,13 +9,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.adammcneilly.pocketleague.shared.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.shared.displaymodels.EventSummaryDisplayModel
-import com.adammcneilly.pocketleague.shared.models.Event
 import com.google.accompanist.placeholder.material.placeholder
 
 /**

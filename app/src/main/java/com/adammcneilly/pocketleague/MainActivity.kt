@@ -4,19 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.adammcneilly.pocketleague.android.design.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.ui.MainComposable
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -25,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,13 +30,8 @@ class MainActivity : ComponentActivity() {
                 SetSystemBarsTransparent()
 
                 ProvideWindowInsets {
-                    Scaffold { paddingValues ->
-                        DestinationsNavHost(
-                            modifier = Modifier
-                                .padding(paddingValues)
-                                .statusBarsPadding(),
-                        )
-                    }
+                    val viewModel = (this.application as PocketLeagueApp).viewModel
+                    MainComposable(viewModel = viewModel)
                 }
             }
         }

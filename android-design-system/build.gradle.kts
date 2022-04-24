@@ -42,10 +42,8 @@ android {
 
 dependencies {
 
-    implementation(project(":shared"))
     implementation("androidx.compose.ui:ui:${Versions.compose}")
     implementation("androidx.compose.material:material:${Versions.compose}")
-    implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")
     implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
     debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose}")

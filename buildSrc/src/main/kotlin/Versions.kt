@@ -29,9 +29,6 @@ object Versions {
     // https://github.com/material-components/material-components-android/releases
     const val material = "1.5.0"
 
-    // https://developer.android.com/jetpack/androidx/releases/compose-material3
-    const val composeMaterial3 = "1.0.0-alpha05"
-
     // https://github.com/google/truth/releases
     const val truth = "1.1.3"
 
@@ -79,4 +76,6 @@ object Versions {
 
     // https://github.com/ktorio/ktor/releases
     const val ktor = "1.6.8"
+
+    const val kotlinxSerialization = "1.3.2"
 }

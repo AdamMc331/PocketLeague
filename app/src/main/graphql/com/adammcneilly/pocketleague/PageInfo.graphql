@@ -1,5 +1,0 @@
-fragment PageInfoFragment on PageInfo {
-    total
-    totalPages
-    page
-}

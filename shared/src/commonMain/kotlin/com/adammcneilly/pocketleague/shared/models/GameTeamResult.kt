@@ -1,0 +1,16 @@
+package com.adammcneilly.pocketleague.shared.models
+
+/**
+ * Defines information about the reuslt of a [team] within a game.
+ *
+ * @property[goals] The number of goals scored by this team during the game.
+ * @property[winner] True if this team won the specific game.
+ * @property[matchWinner] True if this team won the match between both teams.
+ * @property[team] Detailed information about the [Team] playing in the match.
+ */
+data class GameTeamResult(
+    val goals: Int = -1,
+    val winner: Boolean = false,
+    val matchWinner: Boolean = false,
+    val team: Team = Team(),
+)

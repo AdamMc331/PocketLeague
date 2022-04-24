@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
+import com.adammcneilly.pocketleague.shared.data.models.MatchGamesRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 
@@ -7,12 +8,14 @@ import kotlinx.coroutines.flow.collect
  * Requests the games for the given [matchId].
  */
 fun Events.getGamesForMatch(matchId: String) = screenCoroutine {
-    val useCase = this.dependencies.getMatchGamesUseCase
+    val matchRequest = MatchGamesRequest(
+        matchId = matchId,
+    )
 
-    useCase.invoke(matchId).collect { useCaseResult ->
+    repository.gameRepository.fetchGamesForMatch(matchRequest).collect { repoResult ->
         stateManager.updateScreen(MatchDetailViewState::class) {
             it.copy(
-                gamesDataState = useCaseResult,
+                gamesDataState = repoResult,
             )
         }
     }

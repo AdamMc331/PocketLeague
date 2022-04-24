@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens
 
-import com.adammcneilly.pocketleague.shared.data.AppDependencies
+import com.adammcneilly.pocketleague.shared.data.Repository
 
 /**
  * This class manages all of the event handling for various screens, specifically
@@ -9,8 +9,8 @@ import com.adammcneilly.pocketleague.shared.data.AppDependencies
 class Events(
     val stateManager: StateManager,
 ) {
-    val dependencies: AppDependencies
-        get() = stateManager.dependencies
+    val repository: Repository
+        get() = stateManager.repository
 
     /**
      * This will run the supplied [block] inside the coroutine scope of the current

@@ -59,12 +59,9 @@ fun GameListItem(
             )
         }
 
-        Text(
-            text = "Blue stats: ${game.blue.teamStats}",
-        )
-
-        Text(
-            text = "Orange stats: ${game.orange.teamStats}",
+        CoreStatsComparison(
+            blueTeamStats = game.blue.teamStats.core,
+            orangeTeamStats = game.orange.teamStats.core,
         )
     }
 }

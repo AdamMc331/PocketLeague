@@ -85,7 +85,6 @@ android {
 
 dependencies {
 
-    implementation(project(":android-design-system"))
     implementation(project(":shared"))
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")

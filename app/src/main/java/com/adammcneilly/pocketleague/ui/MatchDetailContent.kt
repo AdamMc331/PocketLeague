@@ -10,20 +10,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.adammcneilly.pocketleague.shared.models.Team
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailViewState
-import com.google.accompanist.placeholder.material.placeholder
 
 /**
  * The UI content of the match detail screen.
@@ -72,7 +72,11 @@ private fun RowScope.TeamNameLogo(
         modifier = Modifier
             .weight(1F),
     ) {
-        Text(text = team.name)
+        Text(
+            text = team.name,
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.h6,
+        )
 
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
@@ -81,11 +85,7 @@ private fun RowScope.TeamNameLogo(
                 .build(),
             contentDescription = "Event Image",
             modifier = Modifier
-                .size(48.dp)
-                .placeholder(
-                    visible = team.imageUrl == null,
-                    shape = CircleShape,
-                ),
+                .size(48.dp),
         )
     }
 }

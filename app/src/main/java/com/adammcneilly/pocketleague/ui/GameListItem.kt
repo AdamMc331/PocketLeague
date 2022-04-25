@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,40 +21,50 @@ import com.google.accompanist.placeholder.material.placeholder
 fun GameListItem(
     game: Game,
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            text = game.blue.goals.toString(),
+    Column {
+        Row(
             modifier = Modifier
-                .placeholder(
-                    visible = game.blue.goals == -1,
-                    shape = CircleShape,
-                ),
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = game.blue.goals.toString(),
+                modifier = Modifier
+                    .placeholder(
+                        visible = game.blue.goals == -1,
+                        shape = CircleShape,
+                    ),
+            )
+
+            Text(
+                text = "Game ${game.number}\n${game.map}",
+                modifier = Modifier
+                    .weight(1F)
+                    .padding(horizontal = 16.dp)
+                    .placeholder(
+                        visible = game.map.isEmpty(),
+                        shape = CircleShape,
+                    ),
+                textAlign = TextAlign.Center,
+            )
+
+            Text(
+                text = game.orange.goals.toString(),
+                modifier = Modifier
+                    .placeholder(
+                        visible = game.orange.goals == -1,
+                        shape = CircleShape,
+                    ),
+            )
+        }
+
+        Text(
+            text = "Blue stats: ${game.blue.teamStats}",
         )
 
         Text(
-            text = "Game ${game.number}\n${game.map}",
-            modifier = Modifier
-                .weight(1F)
-                .padding(horizontal = 16.dp)
-                .placeholder(
-                    visible = game.map.isEmpty(),
-                    shape = CircleShape,
-                ),
-            textAlign = TextAlign.Center,
-        )
-
-        Text(
-            text = game.orange.goals.toString(),
-            modifier = Modifier
-                .placeholder(
-                    visible = game.orange.goals == -1,
-                    shape = CircleShape,
-                ),
+            text = "Orange stats: ${game.orange.teamStats}",
         )
     }
 }

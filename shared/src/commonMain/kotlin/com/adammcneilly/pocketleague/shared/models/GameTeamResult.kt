@@ -13,4 +13,5 @@ data class GameTeamResult(
     val winner: Boolean = false,
     val matchWinner: Boolean = false,
     val team: Team = Team(),
+    val teamStats: Stats = Stats(),
 )

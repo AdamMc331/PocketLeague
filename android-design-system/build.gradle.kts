@@ -38,6 +38,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.compose
     }
+    namespace = "com.adammcneilly.pocketleague.android.design"
 }
 
 dependencies {

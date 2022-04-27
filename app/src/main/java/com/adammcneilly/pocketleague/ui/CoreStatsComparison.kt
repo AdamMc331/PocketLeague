@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,10 +26,12 @@ import com.adammcneilly.pocketleague.shared.models.CoreStats
 fun CoreStatsComparison(
     blueTeamStats: CoreStats,
     orangeTeamStats: CoreStats,
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         StatComparisonRow(
             title = "Goals",
@@ -68,7 +72,11 @@ private fun StatComparisonRow(
             val blueWeight = blueValue / total
             val orangeWeight = orangeValue / total
 
-            val availableWidth = this.maxWidth - 2.dp
+            val statBarHeight = 4.dp
+            val dividerHeight = 12.dp
+            val dividerWidth = 4.dp
+
+            val availableWidth = this.maxWidth - dividerWidth
             val blueWidth = availableWidth * blueWeight
             val orangeWidth = availableWidth * orangeWeight
 
@@ -77,22 +85,38 @@ private fun StatComparisonRow(
             ) {
                 Box(
                     modifier = Modifier
-                        .background(color = Color.Blue)
-                        .height(1.dp)
-                        .width(blueWidth)
+                        .background(
+                            color = Color(0xFF0069c1),
+                            shape = RoundedCornerShape(
+                                topStartPercent = 50,
+                                bottomStartPercent = 50,
+                            ),
+                        )
+                        .size(
+                            width = blueWidth,
+                            height = statBarHeight,
+                        )
                 )
 
                 Box(
                     modifier = Modifier
                         .background(color = Color.White)
-                        .height(4.dp)
-                        .width(2.dp)
+                        .size(
+                            width = dividerWidth,
+                            height = dividerHeight,
+                        ),
                 )
 
                 Box(
                     modifier = Modifier
-                        .background(color = Color.Red)
-                        .height(1.dp)
+                        .background(
+                            color = Color(0xFFee7d13),
+                            shape = RoundedCornerShape(
+                                topEndPercent = 50,
+                                bottomEndPercent = 50,
+                            ),
+                        )
+                        .height(statBarHeight)
                         .width(orangeWidth)
                 )
             }

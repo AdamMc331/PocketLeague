@@ -18,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.shared.models.CoreStats
+import com.adammcneilly.pocketleague.ui.theme.rlcsBlue
+import com.adammcneilly.pocketleague.ui.theme.rlcsOrange
 
 /**
  * A composable to compare the [CoreStats] between two teams.
@@ -86,7 +88,7 @@ private fun StatComparisonRow(
                 Box(
                     modifier = Modifier
                         .background(
-                            color = Color(0xFF0069c1),
+                            color = rlcsBlue,
                             shape = RoundedCornerShape(
                                 topStartPercent = 50,
                                 bottomStartPercent = 50,
@@ -110,7 +112,7 @@ private fun StatComparisonRow(
                 Box(
                     modifier = Modifier
                         .background(
-                            color = Color(0xFFee7d13),
+                            color = rlcsOrange,
                             shape = RoundedCornerShape(
                                 topEndPercent = 50,
                                 bottomEndPercent = 50,

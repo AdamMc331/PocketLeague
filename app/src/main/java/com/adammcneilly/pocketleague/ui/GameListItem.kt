@@ -42,41 +42,7 @@ fun GameListItem(
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = game.blue.goals.toString(),
-                modifier = Modifier
-                    .placeholder(
-                        visible = game.blue.goals == -1,
-                        shape = CircleShape,
-                    ),
-            )
-
-            Text(
-                text = "Game ${game.number}\n${game.map}",
-                modifier = Modifier
-                    .weight(1F)
-                    .padding(horizontal = 16.dp)
-                    .placeholder(
-                        visible = game.map.isEmpty(),
-                        shape = CircleShape,
-                    ),
-                textAlign = TextAlign.Center,
-            )
-
-            Text(
-                text = game.orange.goals.toString(),
-                modifier = Modifier
-                    .placeholder(
-                        visible = game.orange.goals == -1,
-                        shape = CircleShape,
-                    ),
-            )
-        }
+        GameOverviewRow(game)
 
         val iconToUse = if (showDetailedStats.value) {
             Icons.Default.ArrowCircleUp
@@ -105,5 +71,44 @@ fun GameListItem(
                     .padding(16.dp),
             )
         }
+    }
+}
+
+@Composable
+private fun GameOverviewRow(game: Game) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Text(
+            text = game.blue.goals.toString(),
+            modifier = Modifier
+                .placeholder(
+                    visible = game.blue.goals == -1,
+                    shape = CircleShape,
+                ),
+        )
+
+        Text(
+            text = "Game ${game.number}\n${game.map}",
+            modifier = Modifier
+                .weight(1F)
+                .padding(horizontal = 16.dp)
+                .placeholder(
+                    visible = game.map.isEmpty(),
+                    shape = CircleShape,
+                ),
+            textAlign = TextAlign.Center,
+        )
+
+        Text(
+            text = game.orange.goals.toString(),
+            modifier = Modifier
+                .placeholder(
+                    visible = game.orange.goals == -1,
+                    shape = CircleShape,
+                ),
+        )
     }
 }

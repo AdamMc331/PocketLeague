@@ -4,6 +4,10 @@ import com.adammcneilly.pocketleague.shared.data.DataState
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.logging.LogLevel
+import io.ktor.client.features.logging.Logger
+import io.ktor.client.features.logging.Logging
+import io.ktor.client.features.logging.SIMPLE
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.get
 import io.ktor.http.ContentType
@@ -23,6 +27,10 @@ class OctaneGGAPIClient {
                     acceptContentTypes = acceptContentTypes + ContentType.Any
                 }
             )
+        }
+        install(Logging) {
+            logger = Logger.SIMPLE
+            level = LogLevel.ALL
         }
     }
 

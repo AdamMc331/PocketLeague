@@ -77,4 +77,5 @@ android {
         targetCompatibility(JavaVersion.VERSION_1_8)
         isCoreLibraryDesugaringEnabled = true
     }
+    namespace = "com.adammcneilly.pocketleague.shared"
 }

@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.adammcneilly.pocketleague.android.design.theme
+package com.adammcneilly.pocketleague.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -59,6 +59,9 @@ val md_theme_dark_inverseOnSurface = Color(0xFF1b1b1f)
 val md_theme_dark_inverseSurface = Color(0xFFe3e1e6)
 val md_theme_dark_inversePrimary = Color(0xFF3d5ba9)
 val md_theme_dark_shadow = Color(0xFF000000)
+
+val rlcsBlue = Color(0xFF0069c1)
+val rlcsOrange = Color(0xFFee7d13)
 
 val seed = Color(0xFF3d5ba9)
 val error = Color(0xFFba1b1b)

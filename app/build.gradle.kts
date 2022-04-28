@@ -80,11 +80,11 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    namespace = "com.adammcneilly.pocketleague"
 }
 
 dependencies {
 
-    implementation(project(":android-design-system"))
     implementation(project(":shared"))
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")

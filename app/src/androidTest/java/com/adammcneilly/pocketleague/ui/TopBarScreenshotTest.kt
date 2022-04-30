@@ -5,7 +5,7 @@ import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 
-class TopBarTest : ScreenshotTest {
+class TopBarScreenshotTest : ScreenshotTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 

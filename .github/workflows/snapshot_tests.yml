@@ -1,9 +1,6 @@
-name: Android Coverage
+name: Snapshot Tests
 
 on:
-  push:
-    branches:
-      - development
   pull_request:
 
 jobs:
@@ -28,6 +25,10 @@ jobs:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          api-level: 30
+          arch: x86_64
+          profile: pixel
+          sdcard-path-or-size: 512M
+          target: google_apis
           script: |
-            ./gradlew app:coveralls
+            ./gradlew app:executeScreenshotTests

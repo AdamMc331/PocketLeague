@@ -47,6 +47,8 @@ android {
 
     buildTypes {
         debug {
+            // We had to remove this in order for the shot testing to work
+            // https://github.com/android/android-test/issues/1199#issuecomment-1003197518
 //            isTestCoverageEnabled = true
         }
 

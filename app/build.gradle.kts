@@ -7,6 +7,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp").version("1.6.10-1.0.4")
+    id("shot")
 }
 
 apply(from = "../buildscripts/jacoco.gradle")
@@ -37,7 +38,7 @@ android {
         versionCode = 1
         versionName = "1.0.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.karumi.shot.ShotTestRunner"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -58,7 +59,6 @@ android {
     compileOptions {
         sourceCompatibility(JavaVersion.VERSION_1_8)
         targetCompatibility(JavaVersion.VERSION_1_8)
-        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -110,5 +110,4 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
     debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
     debugImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose}")
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 }

@@ -27,7 +27,7 @@ object Versions {
     const val espresso = "3.4.0"
 
     // https://github.com/material-components/material-components-android/releases
-    const val material = "1.5.0"
+    const val material = "1.6.0"
 
     // https://github.com/google/truth/releases
     const val truth = "1.1.3"
@@ -42,7 +42,7 @@ object Versions {
     const val moshi = "1.13.0"
 
     // https://github.com/google/accompanist/releases
-    const val accompanist = "0.23.0"
+    const val accompanist = "0.23.1"
 
     // https://github.com/apollographql/apollo-android/releases
     const val apollo = "3.1.0"
@@ -57,7 +57,7 @@ object Versions {
     const val coroutines = "1.6.0"
 
     // https://github.com/cashapp/turbine/releases
-    const val turbine = "0.7.0"
+    const val turbine = "0.8.0"
 
     // https://github.com/yshrsmz/BuildKonfig/releases
     const val buildKonfig = "0.11.0"
@@ -69,7 +69,7 @@ object Versions {
     const val hilt = "2.41"
 
     // https://github.com/Kotlin/kotlinx-datetime/releases
-    const val kotlinxDatetime = "0.3.2"
+    const val kotlinxDatetime = "0.3.3"
 
     // https://developer.android.com/jetpack/androidx/releases/window
     const val windowManager = "1.0.0"

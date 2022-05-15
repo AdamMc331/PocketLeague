@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.junit4.createComposeRule
-import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
@@ -12,27 +12,26 @@ class TopBarScreenshotTest : ScreenshotTest {
 
     @Test
     fun renderTopBar_Light() {
-        composeTestRule.setContent {
-            PocketLeagueTheme(
-                useDarkTheme = false,
-            ) {
-                TopBar(title = "Pocket League TopBar")
-            }
+        compareTheme(
+            composeTestRule = composeTestRule,
+            useDarkTheme = false,
+        ) {
+            TestTopBar()
         }
-
-        compareScreenshot(composeTestRule)
     }
 
     @Test
     fun renderTopBar_Dark() {
-        composeTestRule.setContent {
-            PocketLeagueTheme(
-                useDarkTheme = true,
-            ) {
-                TopBar(title = "Pocket League TopBar")
-            }
+        compareTheme(
+            composeTestRule = composeTestRule,
+            useDarkTheme = true,
+        ) {
+            TestTopBar()
         }
+    }
 
-        compareScreenshot(composeTestRule)
+    @Composable
+    private fun TestTopBar() {
+        TopBar(title = "Pocket League TopBar")
     }
 }

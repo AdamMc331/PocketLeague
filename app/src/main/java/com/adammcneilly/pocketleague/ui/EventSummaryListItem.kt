@@ -43,6 +43,7 @@ fun EventSummaryListItem(
                 .placeholder(
                     visible = displayModel.imageUrl == null,
                     shape = CircleShape,
+                    color = MaterialTheme.colorScheme.inverseSurface,
                 ),
         )
 
@@ -57,6 +58,7 @@ fun EventSummaryListItem(
                     .placeholder(
                         visible = displayModel.startDate.isEmpty(),
                         shape = CircleShape,
+                        color = MaterialTheme.colorScheme.inverseSurface,
                     )
             )
 
@@ -67,6 +69,7 @@ fun EventSummaryListItem(
                     .placeholder(
                         visible = displayModel.name.isEmpty(),
                         shape = CircleShape,
+                        color = MaterialTheme.colorScheme.inverseSurface,
                     )
             )
         }

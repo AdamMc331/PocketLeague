@@ -53,6 +53,7 @@ fun MatchListItem(
                     .placeholder(
                         visible = match.event.name.isBlank(),
                         shape = CircleShape,
+                        color = MaterialTheme.colorScheme.inverseSurface,
                     )
             )
 
@@ -64,6 +65,7 @@ fun MatchListItem(
                     .placeholder(
                         visible = match.date == null,
                         shape = CircleShape,
+                        color = MaterialTheme.colorScheme.inverseSurface,
                     )
             )
 
@@ -98,6 +100,7 @@ private fun MatchTeamResultRow(
                 .placeholder(
                     visible = teamResult.score == -1,
                     shape = CircleShape,
+                    color = MaterialTheme.colorScheme.inverseSurface,
                 )
         )
 
@@ -109,6 +112,7 @@ private fun MatchTeamResultRow(
                 .placeholder(
                     visible = teamResult.team.name.isBlank(),
                     shape = CircleShape,
+                    color = MaterialTheme.colorScheme.inverseSurface,
                 )
         )
     }

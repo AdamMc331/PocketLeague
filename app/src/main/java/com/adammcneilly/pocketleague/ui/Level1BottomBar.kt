@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Feed
@@ -10,6 +11,7 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.screens.Level1Navigation
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
@@ -41,6 +43,8 @@ fun Navigation.Level1BottomBar(
                 selected = selectedTab.uri == Level1Navigation.Records.screenIdentifier.uri,
                 onClick = { navigateByLevel1Menu(Level1Navigation.Records) },
             )
-        }
+        },
+        modifier = Modifier
+            .navigationBarsPadding(),
     )
 }

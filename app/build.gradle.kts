@@ -98,7 +98,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
     implementation("androidx.activity:activity-compose:${Versions.activityCompose}")
     implementation("com.google.dagger:hilt-android:${Versions.hilt}")
-    implementation("com.google.accompanist:accompanist-insets-ui:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}")
     implementation("androidx.window:window:${Versions.windowManager}")

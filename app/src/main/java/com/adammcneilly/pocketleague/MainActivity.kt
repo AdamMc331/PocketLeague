@@ -10,7 +10,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.adammcneilly.pocketleague.ui.MainComposable
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
-import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,10 +28,8 @@ class MainActivity : ComponentActivity() {
             PocketLeagueTheme {
                 SetSystemBarsTransparent()
 
-                ProvideWindowInsets {
-                    val viewModel = (this.application as PocketLeagueApp).viewModel
-                    MainComposable(viewModel = viewModel)
-                }
+                val viewModel = (this.application as PocketLeagueApp).viewModel
+                MainComposable(viewModel = viewModel)
             }
         }
     }

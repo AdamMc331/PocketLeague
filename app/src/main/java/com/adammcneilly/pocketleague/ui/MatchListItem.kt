@@ -9,9 +9,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +32,7 @@ import kotlinx.datetime.toInstant
  * Displays a match between two teams inside a list item.
  */
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 fun MatchListItem(
     match: Match,
     modifier: Modifier = Modifier,
@@ -57,7 +59,7 @@ fun MatchListItem(
 
             Text(
                 text = match.date?.getRelativeTimestamp().orEmpty(),
-                style = MaterialTheme.typography.caption,
+                style = MaterialTheme.typography.labelSmall,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 50.dp)
                     .placeholder(

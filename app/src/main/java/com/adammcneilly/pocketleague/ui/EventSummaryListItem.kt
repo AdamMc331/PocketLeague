@@ -1,12 +1,16 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ListItem
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -16,15 +20,46 @@ import com.adammcneilly.pocketleague.shared.displaymodels.EventSummaryDisplayMod
 import com.google.accompanist.placeholder.material.placeholder
 
 /**
- * Used to show a specific [event] inside of a list.
+ * Used to show a specific [displayModel] inside of a list.
  */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun EventSummaryListItem(
     displayModel: EventSummaryDisplayModel,
 ) {
-    ListItem(
-        text = {
+    Row(
+        modifier = Modifier
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(displayModel.imageUrl)
+                .crossfade(true)
+                .build(),
+            contentDescription = "Event Image",
+            modifier = Modifier
+                .size(48.dp)
+                .placeholder(
+                    visible = displayModel.imageUrl == null,
+                    shape = CircleShape,
+                ),
+        )
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Text(
+                text = displayModel.startDate,
+                style = MaterialTheme.typography.labelSmall,
+                modifier = Modifier
+                    .defaultMinSize(minWidth = 50.dp)
+                    .placeholder(
+                        visible = displayModel.startDate.isEmpty(),
+                        shape = CircleShape,
+                    )
+            )
+
             Text(
                 text = displayModel.name,
                 modifier = Modifier
@@ -34,26 +69,6 @@ fun EventSummaryListItem(
                         shape = CircleShape,
                     )
             )
-        },
-        overlineText = {
-            Text(
-                text = displayModel.startDate,
-            )
-        },
-        icon = {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(displayModel.imageUrl)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = "Event Image",
-                modifier = Modifier
-                    .size(48.dp)
-                    .placeholder(
-                        visible = displayModel.imageUrl == null,
-                        shape = CircleShape,
-                    ),
-            )
-        },
-    )
+        }
+    }
 }

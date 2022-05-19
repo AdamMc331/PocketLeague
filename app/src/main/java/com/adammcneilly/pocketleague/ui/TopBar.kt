@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.ui
 
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.SmallTopAppBar
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 /**
@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 fun TopBar(
     title: String
 ) {
-    TopAppBar(
+    SmallTopAppBar(
         title = {
             Text(
                 text = title,

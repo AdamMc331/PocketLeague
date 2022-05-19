@@ -15,7 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -83,16 +82,18 @@ fun MatchListItem(
 private fun MatchTeamResultRow(
     teamResult: MatchTeamResult,
 ) {
+    val fontWeight: FontWeight? = if (teamResult.winner) {
+        FontWeight.Bold
+    } else {
+        null
+    }
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
             text = teamResult.score.toString(),
-            color = if (teamResult.winner) {
-                Color.Green
-            } else {
-                Color.Red
-            },
+            fontWeight = fontWeight,
             modifier = Modifier
                 .placeholder(
                     visible = teamResult.score == -1,
@@ -102,11 +103,7 @@ private fun MatchTeamResultRow(
 
         Text(
             text = teamResult.team.name,
-            fontWeight = if (teamResult.winner) {
-                FontWeight.Bold
-            } else {
-                null
-            },
+            fontWeight = fontWeight,
             modifier = Modifier
                 .defaultMinSize(minWidth = 100.dp)
                 .placeholder(

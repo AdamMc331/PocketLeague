@@ -20,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
@@ -117,17 +118,8 @@ private fun MatchTeamResultRow(
                 )
         )
 
-        val nameText = buildAnnotatedString {
-            append(teamResult.team.name)
-
-            if (teamResult.winner) {
-                append(" ")
-                appendInlineContent("inlineContent", "[winner]")
-            }
-        }
-
         Text(
-            text = nameText,
+            text = teamResult.getDisplayName(),
             fontWeight = fontWeight,
             modifier = Modifier
                 .defaultMinSize(minWidth = 100.dp)
@@ -136,28 +128,43 @@ private fun MatchTeamResultRow(
                     shape = CircleShape,
                     color = MaterialTheme.colorScheme.inverseSurface,
                 ),
-            inlineContent = if (teamResult.winner) {
-                mapOf(
-                    Pair(
-                        "inlineContent",
-                        InlineTextContent(
-                            Placeholder(
-                                width = 12.sp,
-                                height = 12.sp,
-                                placeholderVerticalAlign = PlaceholderVerticalAlign.AboveBaseline,
-                            )
-                        ) {
-                            Icon(
-                                Icons.Filled.Star,
-                                contentDescription = null,
-                            )
-                        }
-                    )
-                )
-            } else {
-                mapOf()
-            },
+            inlineContent = teamResult.getInlineContent(),
         )
+    }
+}
+
+private fun MatchTeamResult.getDisplayName(): AnnotatedString {
+    return buildAnnotatedString {
+        append(team.name)
+
+        if (winner) {
+            append(" ")
+            appendInlineContent("inlineContent", "[winner]")
+        }
+    }
+}
+
+private fun MatchTeamResult.getInlineContent(): Map<String, InlineTextContent> {
+    return if (this.winner) {
+        mapOf(
+            Pair(
+                "inlineContent",
+                InlineTextContent(
+                    Placeholder(
+                        width = 12.sp,
+                        height = 12.sp,
+                        placeholderVerticalAlign = androidx.compose.ui.text.PlaceholderVerticalAlign.AboveBaseline,
+                    )
+                ) {
+                    Icon(
+                        Icons.Filled.Star,
+                        contentDescription = null,
+                    )
+                }
+            )
+        )
+    } else {
+        mapOf()
     }
 }
 

@@ -9,15 +9,25 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.adammcneilly.pocketleague.shared.models.Match
 import com.adammcneilly.pocketleague.shared.models.MatchTeamResult
 import com.google.accompanist.placeholder.material.placeholder
@@ -31,6 +41,7 @@ import kotlinx.datetime.toInstant
  * Displays a match between two teams inside a list item.
  */
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 fun MatchListItem(
     match: Match,
     modifier: Modifier = Modifier,
@@ -52,17 +63,19 @@ fun MatchListItem(
                     .placeholder(
                         visible = match.event.name.isBlank(),
                         shape = CircleShape,
+                        color = MaterialTheme.colorScheme.inverseSurface,
                     )
             )
 
             Text(
                 text = match.date?.getRelativeTimestamp().orEmpty(),
-                style = MaterialTheme.typography.caption,
+                style = MaterialTheme.typography.labelSmall,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 50.dp)
                     .placeholder(
                         visible = match.date == null,
                         shape = CircleShape,
+                        color = MaterialTheme.colorScheme.inverseSurface,
                     )
             )
 
@@ -77,41 +90,81 @@ fun MatchListItem(
     }
 }
 
+/**
+ * NOTE: For showing the little star icon after the team name, we referenced
+ * this StackOverflow answer. https://stackoverflow.com/a/67611627/3131147
+ */
 @Composable
 private fun MatchTeamResultRow(
     teamResult: MatchTeamResult,
 ) {
+    val fontWeight: FontWeight? = if (teamResult.winner) {
+        FontWeight.Bold
+    } else {
+        null
+    }
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
             text = teamResult.score.toString(),
-            color = if (teamResult.winner) {
-                Color.Green
-            } else {
-                Color.Red
-            },
+            fontWeight = fontWeight,
             modifier = Modifier
                 .placeholder(
                     visible = teamResult.score == -1,
                     shape = CircleShape,
+                    color = MaterialTheme.colorScheme.inverseSurface,
                 )
         )
 
         Text(
-            text = teamResult.team.name,
-            fontWeight = if (teamResult.winner) {
-                FontWeight.Bold
-            } else {
-                null
-            },
+            text = teamResult.getDisplayName(),
+            fontWeight = fontWeight,
             modifier = Modifier
                 .defaultMinSize(minWidth = 100.dp)
                 .placeholder(
                     visible = teamResult.team.name.isBlank(),
                     shape = CircleShape,
-                )
+                    color = MaterialTheme.colorScheme.inverseSurface,
+                ),
+            inlineContent = teamResult.getInlineContent(),
         )
+    }
+}
+
+private fun MatchTeamResult.getDisplayName(): AnnotatedString {
+    return buildAnnotatedString {
+        append(team.name)
+
+        if (winner) {
+            append(" ")
+            appendInlineContent("inlineContent", "[winner]")
+        }
+    }
+}
+
+private fun MatchTeamResult.getInlineContent(): Map<String, InlineTextContent> {
+    return if (this.winner) {
+        mapOf(
+            Pair(
+                "inlineContent",
+                InlineTextContent(
+                    Placeholder(
+                        width = 12.sp,
+                        height = 12.sp,
+                        placeholderVerticalAlign = androidx.compose.ui.text.PlaceholderVerticalAlign.AboveBaseline,
+                    )
+                ) {
+                    Icon(
+                        Icons.Filled.Star,
+                        contentDescription = null,
+                    )
+                }
+            )
+        )
+    } else {
+        mapOf()
     }
 }
 

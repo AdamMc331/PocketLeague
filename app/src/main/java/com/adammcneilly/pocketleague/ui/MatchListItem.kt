@@ -8,8 +8,9 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
@@ -19,9 +20,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.adammcneilly.pocketleague.shared.models.Match
 import com.adammcneilly.pocketleague.shared.models.MatchTeamResult
 import com.google.accompanist.placeholder.material.placeholder
@@ -84,6 +89,10 @@ fun MatchListItem(
     }
 }
 
+/**
+ * NOTE: For showing the little star icon after the team name, we referenced
+ * this StackOverflow answer. https://stackoverflow.com/a/67611627/3131147
+ */
 @Composable
 private fun MatchTeamResultRow(
     teamResult: MatchTeamResult,
@@ -108,8 +117,17 @@ private fun MatchTeamResultRow(
                 )
         )
 
+        val nameText = buildAnnotatedString {
+            append(teamResult.team.name)
+
+            if (teamResult.winner) {
+                append(" ")
+                appendInlineContent("inlineContent", "[winner]")
+            }
+        }
+
         Text(
-            text = teamResult.team.name,
+            text = nameText,
             fontWeight = fontWeight,
             modifier = Modifier
                 .defaultMinSize(minWidth = 100.dp)
@@ -117,16 +135,29 @@ private fun MatchTeamResultRow(
                     visible = teamResult.team.name.isBlank(),
                     shape = CircleShape,
                     color = MaterialTheme.colorScheme.inverseSurface,
+                ),
+            inlineContent = if (teamResult.winner) {
+                mapOf(
+                    Pair(
+                        "inlineContent",
+                        InlineTextContent(
+                            Placeholder(
+                                width = 12.sp,
+                                height = 12.sp,
+                                placeholderVerticalAlign = PlaceholderVerticalAlign.AboveBaseline,
+                            )
+                        ) {
+                            Icon(
+                                Icons.Filled.Star,
+                                contentDescription = null,
+                            )
+                        }
+                    )
                 )
+            } else {
+                mapOf()
+            },
         )
-
-        if (teamResult.winner) {
-            Icon(
-                Icons.Filled.Star,
-                contentDescription = null,
-                modifier = Modifier.size(20.dp),
-            )
-        }
     }
 }
 

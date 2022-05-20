@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.shared.screens.eventdetail.initEventDetail
 import com.adammcneilly.pocketleague.shared.screens.feed.initFeed
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.initMatchDetail
 import com.adammcneilly.pocketleague.shared.screens.records.initRecords
@@ -43,6 +44,14 @@ enum class Screens(
         navigationLevel = 2,
         initSettings = {
             initMatchDetail(it.params())
+        },
+        stackableInstances = false,
+    ),
+    EventDetail(
+        asString = "event_detail",
+        navigationLevel = 2,
+        initSettings = {
+            initEventDetail(it.params())
         },
         stackableInstances = false,
     )

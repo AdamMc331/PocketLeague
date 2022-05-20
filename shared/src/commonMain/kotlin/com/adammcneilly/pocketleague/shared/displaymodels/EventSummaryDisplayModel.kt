@@ -7,6 +7,7 @@ import com.adammcneilly.pocketleague.shared.models.Event
  * Provides summary information about an event in a user friendly manner.
  */
 data class EventSummaryDisplayModel(
+    val eventId: String = "",
     val startDate: String = "",
     val name: String = "",
     val imageUrl: String? = null,
@@ -32,5 +33,6 @@ fun Event.toSummaryDisplayModel(
         }.orEmpty(),
         name = this.name,
         imageUrl = this.imageUrl,
+        eventId = this.id,
     )
 }

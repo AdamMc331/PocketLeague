@@ -17,7 +17,9 @@ fun Navigation.initEventDetail(
             )
         },
         callOnInit = {
-            // Coming soon.
+            events.loadEventDetail(
+                eventId = params.eventId,
+            )
         },
         reInitOnEachNavigation = false,
     )

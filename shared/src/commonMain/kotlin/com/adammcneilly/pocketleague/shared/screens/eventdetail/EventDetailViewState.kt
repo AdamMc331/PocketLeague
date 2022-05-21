@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
+import com.adammcneilly.pocketleague.shared.models.Event
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 
 /**
@@ -11,4 +12,5 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
 data class EventDetailViewState(
     val showLoading: Boolean = true,
     val eventId: String = "",
+    val event: Event? = null,
 ) : ScreenState

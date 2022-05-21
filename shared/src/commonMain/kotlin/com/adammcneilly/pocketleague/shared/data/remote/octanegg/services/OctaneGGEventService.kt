@@ -50,6 +50,28 @@ class OctaneGGEventService(
             emit(mappedResult)
         }
     }
+
+    override fun fetchEvent(eventId: String): Flow<DataState<Event>> {
+        return flow {
+            val apiResult = apiClient.getResponse<OctaneGGEvent>(
+                endpoint = OctaneGGEndpoints.EVENTS + "/$eventId",
+            )
+
+            val mappedResult = when (apiResult) {
+                is DataState.Loading -> DataState.Loading
+                is DataState.Success -> {
+                    val mappedEvent = apiResult.data?.let(OctaneGGEvent::toEvent)
+
+                    DataState.Success(mappedEvent)
+                }
+                is DataState.Error -> {
+                    DataState.Error(apiResult.error)
+                }
+            }
+
+            emit(mappedResult)
+        }
+    }
 }
 
 private fun HttpRequestBuilder.addEventParameters(request: EventListRequest) {

@@ -4,6 +4,9 @@ import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 
+/**
+ * Load detailed information about a given [eventId].
+ */
 fun Events.loadEventDetail(
     eventId: String,
 ) = screenCoroutine {

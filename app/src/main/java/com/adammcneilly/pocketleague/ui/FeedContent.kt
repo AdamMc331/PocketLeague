@@ -29,6 +29,7 @@ fun FeedContent(
     viewState: FeedViewState,
     modifier: Modifier = Modifier,
     onMatchClicked: (Match) -> Unit = {},
+    onEventClicked: (String) -> Unit = {},
 ) {
     Box(
         modifier = modifier.fillMaxSize(),
@@ -36,6 +37,7 @@ fun FeedContent(
         SuccessContent(
             viewState = viewState,
             onMatchClicked = onMatchClicked,
+            onEventClicked = onEventClicked,
         )
     }
 }
@@ -44,6 +46,7 @@ fun FeedContent(
 private fun SuccessContent(
     viewState: FeedViewState,
     onMatchClicked: (Match) -> Unit,
+    onEventClicked: (String) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -88,7 +91,13 @@ private fun SuccessContent(
         }
 
         itemsIndexed(viewState.upcomingEvents) { index, event ->
-            EventSummaryListItem(displayModel = event)
+            EventSummaryListItem(
+                displayModel = event,
+                modifier = Modifier
+                    .clickable {
+                        onEventClicked.invoke(event.eventId)
+                    }
+            )
 
             if (index != viewState.upcomingEvents.lastIndex) {
                 Divider()

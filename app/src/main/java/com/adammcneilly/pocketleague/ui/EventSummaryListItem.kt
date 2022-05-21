@@ -25,9 +25,10 @@ import com.google.accompanist.placeholder.material.placeholder
 @Composable
 fun EventSummaryListItem(
     displayModel: EventSummaryDisplayModel,
+    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,

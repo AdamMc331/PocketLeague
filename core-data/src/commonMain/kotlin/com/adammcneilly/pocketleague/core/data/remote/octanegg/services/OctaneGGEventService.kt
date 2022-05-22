@@ -26,6 +26,8 @@ class OctaneGGEventService(
         request: EventListRequest,
     ): Flow<DataState<List<Event>>> {
         return flow {
+            emit(DataState.Loading)
+
             val apiResult = apiClient.getResponse<OctaneGGEventListResponse>(
                 endpoint = OctaneGGEndpoints.EVENTS,
                 requestBuilder = {

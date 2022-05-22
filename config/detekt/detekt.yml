@@ -639,6 +639,7 @@ style:
     excludePackageStatements: true
     excludeImportStatements: true
     excludeCommentStatements: true
+    excludes: ['**/commonTest/**Json**',]
   MayBeConst:
     active: true
   ModifierOrder:

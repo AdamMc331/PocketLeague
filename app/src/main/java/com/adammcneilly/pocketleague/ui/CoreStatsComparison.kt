@@ -17,7 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.shared.models.CoreStats
+import com.adammcneilly.pocketleague.core.models.CoreStats
 import com.adammcneilly.pocketleague.ui.theme.rlcsBlue
 import com.adammcneilly.pocketleague.ui.theme.rlcsOrange
 

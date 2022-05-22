@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.models
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * Information about a single [Game] inside a [Match] between two teams.

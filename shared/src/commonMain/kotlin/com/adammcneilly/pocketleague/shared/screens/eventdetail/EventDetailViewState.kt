@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
-import com.adammcneilly.pocketleague.shared.models.Event
+import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 
 /**

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.models
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * Defines information about the reuslt of a [team] within a game.

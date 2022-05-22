@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.displaymodels
 
+import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.shared.datetime.DateTimeFormatter
-import com.adammcneilly.pocketleague.shared.models.Event
 
 /**
  * Provides summary information about an event in a user friendly manner.

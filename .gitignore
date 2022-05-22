@@ -10,4 +10,5 @@
 local.properties
 /buildSrc/build/
 /shared/build/
+/core-models/build/
 /app/src/main/graphql/com/adammcneilly/pocketleague/.graphqlconfig

@@ -86,6 +86,7 @@ android {
 dependencies {
 
     implementation(project(":shared"))
+    implementation(project(":core-models"))
     implementation("androidx.compose.material3:material3:1.0.0-alpha12")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")

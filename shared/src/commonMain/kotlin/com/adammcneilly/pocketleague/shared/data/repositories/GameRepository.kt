@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.shared.data.repositories
 
+import com.adammcneilly.pocketleague.core.models.Game
 import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.data.models.MatchGamesRequest
-import com.adammcneilly.pocketleague.shared.models.Game
 import kotlinx.coroutines.flow.Flow
 
 /**

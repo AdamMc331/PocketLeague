@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.shared.data.remote.octanegg.mappers
 
+import com.adammcneilly.pocketleague.core.models.CoreStats
+import com.adammcneilly.pocketleague.core.models.Stats
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.models.OctaneGGStats
-import com.adammcneilly.pocketleague.shared.models.CoreStats
-import com.adammcneilly.pocketleague.shared.models.Stats
 
 /**
  * Converts an [OctaneGGStats] entity to a [Stats] entity.

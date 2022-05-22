@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.models
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * The result of a particular [team] within a [Match].

@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.ui
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import com.adammcneilly.pocketleague.shared.models.Event
-import com.adammcneilly.pocketleague.shared.models.Match
-import com.adammcneilly.pocketleague.shared.models.MatchTeamResult
-import com.adammcneilly.pocketleague.shared.models.Team
+import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.core.models.MatchTeamResult
+import com.adammcneilly.pocketleague.core.models.Team
 import com.karumi.shot.ScreenshotTest
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone

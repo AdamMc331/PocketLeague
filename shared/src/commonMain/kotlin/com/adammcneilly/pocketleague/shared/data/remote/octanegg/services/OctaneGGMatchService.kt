@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.data.remote.octanegg.services
 
+import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.data.models.MatchListRequest
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.OctaneGGAPIClient
@@ -9,7 +10,6 @@ import com.adammcneilly.pocketleague.shared.data.remote.octanegg.models.OctaneGG
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.models.OctaneGGMatchListResponse
 import com.adammcneilly.pocketleague.shared.data.repositories.MatchRepository
 import com.adammcneilly.pocketleague.shared.datetime.DateTimeFormatter
-import com.adammcneilly.pocketleague.shared.models.Match
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.parameter
 import kotlinx.coroutines.flow.Flow

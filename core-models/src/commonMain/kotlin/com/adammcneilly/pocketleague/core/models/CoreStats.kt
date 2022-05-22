@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.models
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * The core statistics for a player or team within a match or game.

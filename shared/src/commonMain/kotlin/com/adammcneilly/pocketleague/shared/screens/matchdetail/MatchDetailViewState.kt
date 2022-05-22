@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
+import com.adammcneilly.pocketleague.core.models.Game
+import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.data.DataState
-import com.adammcneilly.pocketleague.shared.models.Game
-import com.adammcneilly.pocketleague.shared.models.Match
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 
 /**

@@ -28,8 +28,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.adammcneilly.pocketleague.shared.models.Match
-import com.adammcneilly.pocketleague.shared.models.MatchTeamResult
+import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.core.models.MatchTeamResult
 import com.google.accompanist.placeholder.material.placeholder
 import com.google.accompanist.placeholder.placeholder
 import kotlinx.datetime.Clock

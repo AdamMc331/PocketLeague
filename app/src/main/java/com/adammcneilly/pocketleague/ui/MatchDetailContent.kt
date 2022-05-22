@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.adammcneilly.pocketleague.shared.models.Team
+import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailViewState
 
 /**

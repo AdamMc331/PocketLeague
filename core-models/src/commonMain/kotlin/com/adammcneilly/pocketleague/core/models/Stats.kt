@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.models
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * A collection of different types of statistics for a player or team.

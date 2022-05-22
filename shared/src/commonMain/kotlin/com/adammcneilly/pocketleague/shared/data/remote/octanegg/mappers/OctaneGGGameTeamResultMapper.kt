@@ -1,9 +1,9 @@
 package com.adammcneilly.pocketleague.shared.data.remote.octanegg.mappers
 
+import com.adammcneilly.pocketleague.core.models.GameTeamResult
+import com.adammcneilly.pocketleague.core.models.Stats
+import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.shared.data.remote.octanegg.models.OctaneGGGameTeamResult
-import com.adammcneilly.pocketleague.shared.models.GameTeamResult
-import com.adammcneilly.pocketleague.shared.models.Stats
-import com.adammcneilly.pocketleague.shared.models.Team
 
 /**
  * Converts an [OctaneGGGameTeamResult] to a [GameTeamResult] in our domain.

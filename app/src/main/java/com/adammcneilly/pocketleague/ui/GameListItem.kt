@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.shared.models.Game
+import com.adammcneilly.pocketleague.core.models.Game
 import com.google.accompanist.placeholder.material.placeholder
 
 /**

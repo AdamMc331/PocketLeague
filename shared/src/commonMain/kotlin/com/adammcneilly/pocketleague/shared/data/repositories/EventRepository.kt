@@ -16,4 +16,11 @@ interface EventRepository {
     fun fetchEvents(
         request: EventListRequest,
     ): Flow<DataState<List<Event>>>
+
+    /**
+     * Retrieves a single [Event] entity for the given [eventId].
+     */
+    fun fetchEvent(
+        eventId: String,
+    ): Flow<DataState<Event>>
 }

@@ -17,6 +17,6 @@ fun EventDetailContent(
     Box(
         modifier = modifier,
     ) {
-        Text(text = "Event Detail For: ${viewState.eventId}")
+        Text(text = "Event Detail For: ${viewState.event}")
     }
 }

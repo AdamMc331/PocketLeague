@@ -8,8 +8,8 @@ import com.adammcneilly.pocketleague.core.data.remote.octanegg.mappers.toEvent
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGEvent
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGEventListResponse
 import com.adammcneilly.pocketleague.core.data.repositories.EventRepository
+import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.shared.datetime.DateTimeFormatter
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.parameter
 import kotlinx.coroutines.flow.Flow

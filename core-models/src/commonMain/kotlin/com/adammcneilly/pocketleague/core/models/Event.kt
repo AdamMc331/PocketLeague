@@ -11,6 +11,8 @@ import kotlinx.datetime.LocalDateTime
  * @property[startDate] The date that this event begins.
  * @property[endDate] The date that this event stops.
  * @property[imageUrl] The URL to the remotely hosted image for this event.
+ * @property[stages] The collection of different stages that will make up this event, including qualifiers
+ * and main event.
  */
 data class Event(
     val id: String = "",

@@ -146,6 +146,7 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(EVENT_IMAGE_ASPECT_RATIO)
+                .padding(12.dp)
                 .placeholder(
                     visible = imageUrl == null,
                     color = MaterialTheme.colorScheme.inverseSurface,

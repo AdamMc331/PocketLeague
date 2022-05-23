@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.adammcneilly.pocketleague.ui
 
 import android.content.res.Configuration
@@ -33,6 +35,8 @@ import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.placeholder.material.placeholder
 
+private const val EVENT_IMAGE_ASPECT_RATIO = 1.5F
+
 /**
  * Renders the [viewState] of detailed event information.
  */
@@ -52,7 +56,6 @@ fun EventDetailContent(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun EventDetail(
     displayModel: EventDetailDisplayModel,
@@ -64,90 +67,99 @@ private fun EventDetail(
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        Card {
-            val imageUrl = if (isSystemInDarkTheme()) {
-                displayModel.darkThemeImageUrl
-            } else {
-                displayModel.lightThemeImageUrl
+        EventImageName(displayModel)
+
+        EventDetails(displayModel)
+
+        EventStages(displayModel)
+    }
+}
+
+@Composable
+private fun EventStages(displayModel: EventDetailDisplayModel) {
+    Text(
+        text = "Stages",
+        style = MaterialTheme.typography.headlineSmall,
+    )
+
+    Card {
+        displayModel.stageSummaries.forEachIndexed { index, stageSummary ->
+            StageSummaryListItem(
+                displayModel = stageSummary,
+            )
+
+            if (index != displayModel.stageSummaries.lastIndex) {
+                Divider()
             }
-
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(imageUrl)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = "Event Image",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1.5F)
-                    .placeholder(
-                        visible = imageUrl == null,
-                        color = MaterialTheme.colorScheme.inverseSurface,
-                    ),
-            )
-
-            Text(
-                text = displayModel.name,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                style = MaterialTheme.typography.headlineMedium,
-            )
         }
+    }
+}
 
-        Text(
-            text = "Details",
-            style = MaterialTheme.typography.headlineSmall,
+@Composable
+private fun EventDetails(displayModel: EventDetailDisplayModel) {
+    Text(
+        text = "Details",
+        style = MaterialTheme.typography.headlineSmall,
+    )
+
+    FlowRow(
+        mainAxisSpacing = 12.dp,
+        crossAxisSpacing = 12.dp,
+    ) {
+        Chip(
+            text = "Tier: ${displayModel.tier}",
         )
 
-        FlowRow(
-            mainAxisSpacing = 12.dp,
-            crossAxisSpacing = 12.dp,
-        ) {
-            Chip(
-                text = "Tier: ${displayModel.tier}",
-            )
+        Chip(
+            text = "Region: ${displayModel.region}",
+        )
 
-            Chip(
-                text = "Region: ${displayModel.region}",
-            )
+        Chip(
+            text = displayModel.onlineOrLAN,
+        )
 
-            Chip(
-                text = displayModel.onlineOrLAN,
-            )
+        Chip(
+            text = "Mode: ${displayModel.mode}",
+        )
 
-            Chip(
-                text = "Mode: ${displayModel.mode}",
-            )
+        Chip(
+            text = "Prize: ${displayModel.prize}",
+        )
+    }
+}
 
-            Chip(
-                text = "Prize: ${displayModel.prize}",
-            )
+@Composable
+private fun EventImageName(displayModel: EventDetailDisplayModel) {
+    Card {
+        val imageUrl = if (isSystemInDarkTheme()) {
+            displayModel.darkThemeImageUrl
+        } else {
+            displayModel.lightThemeImageUrl
         }
 
-        Card(
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(imageUrl)
+                .crossfade(true)
+                .build(),
+            contentDescription = "Event Image",
             modifier = Modifier
-                .fillMaxWidth(),
-        ) {
-        }
-
-        Text(
-            text = "Stages",
-            style = MaterialTheme.typography.headlineSmall,
+                .fillMaxWidth()
+                .aspectRatio(EVENT_IMAGE_ASPECT_RATIO)
+                .placeholder(
+                    visible = imageUrl == null,
+                    color = MaterialTheme.colorScheme.inverseSurface,
+                ),
         )
 
-        Card {
-            displayModel.stageSummaries.forEachIndexed { index, stageSummary ->
-                StageSummaryListItem(
-                    displayModel = stageSummary,
-                )
-
-                if (index != displayModel.stageSummaries.lastIndex) {
-                    Divider()
-                }
-            }
-        }
+        Text(
+            text = displayModel.name,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            style = MaterialTheme.typography.headlineMedium,
+        )
     }
 }
 

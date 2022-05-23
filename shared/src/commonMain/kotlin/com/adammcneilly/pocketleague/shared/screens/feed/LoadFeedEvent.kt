@@ -3,8 +3,8 @@ package com.adammcneilly.pocketleague.shared.screens.feed
 import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.data.models.EventListRequest
 import com.adammcneilly.pocketleague.core.data.models.MatchListRequest
+import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.shared.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 import kotlinx.datetime.Clock

@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,7 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.adammcneilly.pocketleague.shared.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.google.accompanist.placeholder.material.placeholder
 
 /**
@@ -33,16 +34,22 @@ fun EventSummaryListItem(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        val imageUrl = if (isSystemInDarkTheme()) {
+            displayModel.darkThemeImageUrl
+        } else {
+            displayModel.lightThemeImageUrl
+        }
+
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(displayModel.imageUrl)
+                .data(imageUrl)
                 .crossfade(true)
                 .build(),
             contentDescription = "Event Image",
             modifier = Modifier
                 .size(48.dp)
                 .placeholder(
-                    visible = displayModel.imageUrl == null,
+                    visible = imageUrl == null,
                     shape = CircleShape,
                     color = MaterialTheme.colorScheme.inverseSurface,
                 ),
@@ -52,23 +59,23 @@ fun EventSummaryListItem(
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(
-                text = displayModel.startDate,
+                text = displayModel.eventStartDate,
                 style = MaterialTheme.typography.labelSmall,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 50.dp)
                     .placeholder(
-                        visible = displayModel.startDate.isEmpty(),
+                        visible = displayModel.eventStartDate.isEmpty(),
                         shape = CircleShape,
                         color = MaterialTheme.colorScheme.inverseSurface,
                     )
             )
 
             Text(
-                text = displayModel.name,
+                text = displayModel.eventName,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 150.dp)
                     .placeholder(
-                        visible = displayModel.name.isEmpty(),
+                        visible = displayModel.eventName.isEmpty(),
                         shape = CircleShape,
                         color = MaterialTheme.colorScheme.inverseSurface,
                     )

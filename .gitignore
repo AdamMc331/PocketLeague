@@ -13,4 +13,5 @@ local.properties
 /core-models/build/
 /core-data/build/
 /core-datetime/build/
+/core-displaymodels/build/
 /app/src/main/graphql/com/adammcneilly/pocketleague/.graphqlconfig

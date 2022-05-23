@@ -83,14 +83,14 @@ private fun SuccessContent(
 
         item {
             Text(
-                text = "Upcoming Events",
+                text = "Ongoing Events",
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier
                     .padding(16.dp),
             )
         }
 
-        itemsIndexed(viewState.upcomingEvents) { index, event ->
+        itemsIndexed(viewState.ongoingEvents) { index, event ->
             EventSummaryListItem(
                 displayModel = event,
                 modifier = Modifier
@@ -99,7 +99,7 @@ private fun SuccessContent(
                     }
             )
 
-            if (index != viewState.upcomingEvents.lastIndex) {
+            if (index != viewState.ongoingEvents.lastIndex) {
                 Divider()
             }
         }

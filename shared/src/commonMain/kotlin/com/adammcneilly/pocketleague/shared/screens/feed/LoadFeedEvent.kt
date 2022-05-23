@@ -22,12 +22,13 @@ const val NUM_DAYS_RECENT_MATCHES = 3
 fun Events.loadFeed() = screenCoroutine {
     val today = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
-    val upcomingEventsRequest = EventListRequest(
-        after = today,
+    val ongoingEventsRequest = EventListRequest(
+        date = today,
+        group = "rlcs",
     )
 
     repository.eventRepository.fetchEvents(
-        upcomingEventsRequest,
+        ongoingEventsRequest,
     ).collect { repoResult ->
         stateManager.updateScreen(FeedViewState::class) {
             val mappedResult = when (repoResult) {
@@ -45,7 +46,7 @@ fun Events.loadFeed() = screenCoroutine {
             }
 
             it.copy(
-                upcomingEventsState = mappedResult,
+                ongoingEventsState = mappedResult,
             )
         }
     }
@@ -55,6 +56,7 @@ fun Events.loadFeed() = screenCoroutine {
         after = today.date.minus(NUM_DAYS_RECENT_MATCHES, DateTimeUnit.DAY)
             .atStartOfDayIn(TimeZone.currentSystemDefault())
             .toLocalDateTime(TimeZone.currentSystemDefault()),
+        group = "rlcs",
     )
 
     repository.matchRepository.fetchMatches(

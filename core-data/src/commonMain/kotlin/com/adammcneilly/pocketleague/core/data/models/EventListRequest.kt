@@ -12,4 +12,5 @@ data class EventListRequest(
     val tiers: List<String>? = null,
     val after: LocalDateTime? = null,
     val before: LocalDateTime? = null,
+    val date: LocalDateTime? = null,
 )

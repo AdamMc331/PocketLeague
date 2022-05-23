@@ -97,4 +97,9 @@ private fun HttpRequestBuilder.addEventParameters(request: EventListRequest) {
         val beforeString = dateTimeFormatter.formatLocalDateTime(request.before, octaneGGDateFormat)
         this.parameter("before", beforeString)
     }
+
+    if (request.date != null) {
+        val dateString = dateTimeFormatter.formatLocalDateTime(request.date, octaneGGDateFormat)
+        this.parameter("date", dateString)
+    }
 }

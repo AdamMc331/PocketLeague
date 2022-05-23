@@ -65,4 +65,8 @@ private fun HttpRequestBuilder.addMatchParameters(request: MatchListRequest) {
         val beforeString = dateTimeFormatter.formatLocalDateTime(request.before, octaneGGDateFormat)
         this.parameter("before", beforeString)
     }
+
+    if (request.group != null) {
+        this.parameter("group", request.group)
+    }
 }

@@ -59,7 +59,7 @@ fun EventSummaryListItem(
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(
-                text = displayModel.eventStartDate,
+                text = displayModel.dateString,
                 style = MaterialTheme.typography.labelSmall,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 50.dp)

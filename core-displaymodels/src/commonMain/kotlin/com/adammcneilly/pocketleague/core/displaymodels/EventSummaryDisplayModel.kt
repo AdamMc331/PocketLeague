@@ -12,6 +12,7 @@ import com.adammcneilly.pocketleague.core.models.Event
  * @property[darkThemeImageUrl] Same concept as [lightThemeImageUrl], but shown inside a dark theme
  * app.
  * @property[eventStartDate] A user friendly string representing the date that an event starts.
+ * @property[eventEndDate] A user friendly string representing the date that an event ends.
  * @property[eventName] A description of this Rocket League event.
  */
 data class EventSummaryDisplayModel(
@@ -19,8 +20,12 @@ data class EventSummaryDisplayModel(
     val lightThemeImageUrl: String? = null,
     val darkThemeImageUrl: String? = lightThemeImageUrl,
     val eventStartDate: String = "",
+    val eventEndDate: String = "",
     val eventName: String = "",
 ) {
+
+    val dateString: String
+        get() = "$eventStartDate – $eventEndDate"
 
     companion object {
         const val START_DATE_FORMAT = "MMM dd, yyyy"
@@ -37,6 +42,12 @@ fun Event.toSummaryDisplayModel(): EventSummaryDisplayModel {
         eventStartDate = this.startDate?.let { startDate ->
             dateTimeFormatter.formatLocalDateTime(
                 localDateTime = startDate,
+                formatPattern = EventSummaryDisplayModel.START_DATE_FORMAT,
+            )
+        }.orEmpty(),
+        eventEndDate = this.endDate?.let { endDate ->
+            dateTimeFormatter.formatLocalDateTime(
+                localDateTime = endDate,
                 formatPattern = EventSummaryDisplayModel.START_DATE_FORMAT,
             )
         }.orEmpty(),

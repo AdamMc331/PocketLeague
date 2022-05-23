@@ -74,7 +74,7 @@ private fun EventDetail(
 
         val participants = viewState.participants
 
-        if (participants != null) {
+        if (participants?.isNotEmpty() == true) {
             EventParticipants(participants = participants)
         }
     }

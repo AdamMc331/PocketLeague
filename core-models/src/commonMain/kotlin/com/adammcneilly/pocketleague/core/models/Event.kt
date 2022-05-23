@@ -18,4 +18,5 @@ data class Event(
     val startDate: LocalDateTime? = null,
     val endDate: LocalDateTime? = null,
     val imageUrl: String? = null,
+    val stages: List<EventStage>? = null,
 )

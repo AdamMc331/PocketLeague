@@ -1,26 +1,27 @@
 package com.adammcneilly.pocketleague.core.data.remote.octanegg.mappers
 
-import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGEvent
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGStage
-import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
 /**
- * Converts an [OctaneGGEvent] entity into an [Event] within the Pocket League domain.
+ * Converts an [OctaneGGStage] to an [EventStage].
  */
-fun OctaneGGEvent.toEvent(): Event {
-    return Event(
-        id = this.id ?: "ID Not Available",
-        name = this.name ?: "Name Not Available",
+fun OctaneGGStage.toEventStage(): EventStage {
+    return EventStage(
+        id = this.id.toString(),
+        name = this.name.orEmpty(),
+        region = this.region.orEmpty(),
         startDate = this.startDate?.let {
             Instant.parse(it)
         }?.toLocalDateTime(TimeZone.UTC),
         endDate = this.endDate?.let {
             Instant.parse(it)
         }?.toLocalDateTime(TimeZone.UTC),
-        imageUrl = this.image,
-        stages = this.stages?.map(OctaneGGStage::toEventStage).orEmpty(),
+        liquipedia = this.liquipedia.orEmpty(),
+        qualifier = this.qualifier == true,
+        lan = this.lan == true,
     )
 }

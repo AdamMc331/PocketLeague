@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
 import com.adammcneilly.pocketleague.core.data.DataState
+import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 
@@ -22,11 +23,15 @@ fun Events.loadEventDetail(
                 }
                 is DataState.Success -> {
                     it.copy(
-                        event = repoResult.data,
+                        showLoading = false,
+                        eventDetail = repoResult.data.toDetailDisplayModel()
                     )
                 }
                 is DataState.Error -> {
-                    it
+                    it.copy(
+                        showLoading = false,
+                        errorMessage = repoResult.error.message,
+                    )
                 }
             }
 

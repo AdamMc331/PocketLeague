@@ -22,5 +22,9 @@ fun OctaneGGEvent.toEvent(): Event {
         }?.toLocalDateTime(TimeZone.UTC),
         imageUrl = this.image,
         stages = this.stages?.map(OctaneGGStage::toEventStage).orEmpty(),
+        tier = this.tier.orEmpty(),
+        region = this.region.orEmpty(),
+        mode = this.mode.toString(),
+        lan = this.lan == true,
     )
 }

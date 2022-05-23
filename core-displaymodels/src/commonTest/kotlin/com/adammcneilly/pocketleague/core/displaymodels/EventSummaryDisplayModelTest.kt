@@ -25,8 +25,8 @@ class EventSummaryDisplayModelTest {
             assertEquals("1234", eventId)
             assertEquals("Test Image URL", lightThemeImageUrl)
             assertEquals("Test Image URL", darkThemeImageUrl)
-            assertEquals("Jan 01, 2022", eventStartDate)
-            assertEquals("Test Event", eventName)
+            assertEquals("Jan 01, 2022", startDate)
+            assertEquals("Test Event", name)
         }
     }
 }

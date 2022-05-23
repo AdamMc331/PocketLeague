@@ -103,6 +103,7 @@ private fun EventDetail(
 
         FlowRow(
             mainAxisSpacing = 12.dp,
+            crossAxisSpacing = 12.dp,
         ) {
             Chip(
                 text = "Tier: ${displayModel.tier}",

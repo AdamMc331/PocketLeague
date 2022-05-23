@@ -15,6 +15,9 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 
+/**
+ * Displays information from the supplied [displayModel] for stage summary info.
+ */
 @Composable
 fun StageSummaryListItem(
     displayModel: EventStageSummaryDisplayModel,

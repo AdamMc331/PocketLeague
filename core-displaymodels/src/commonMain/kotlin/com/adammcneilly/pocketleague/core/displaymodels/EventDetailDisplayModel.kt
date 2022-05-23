@@ -24,6 +24,9 @@ data class EventDetailDisplayModel(
     val prize: String = "",
 )
 
+/**
+ * Converts an [Event] into an [EventDetailDisplayModel].
+ */
 fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
     val dateTimeFormatter = DateTimeFormatter()
 

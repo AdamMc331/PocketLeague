@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
+import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.shared.data.DataState
 import com.adammcneilly.pocketleague.shared.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 

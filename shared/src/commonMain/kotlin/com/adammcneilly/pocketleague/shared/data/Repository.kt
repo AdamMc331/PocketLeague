@@ -1,11 +1,11 @@
 package com.adammcneilly.pocketleague.shared.data
 
-import com.adammcneilly.pocketleague.shared.data.remote.octanegg.services.OctaneGGEventService
-import com.adammcneilly.pocketleague.shared.data.remote.octanegg.services.OctaneGGGameService
-import com.adammcneilly.pocketleague.shared.data.remote.octanegg.services.OctaneGGMatchService
-import com.adammcneilly.pocketleague.shared.data.repositories.EventRepository
-import com.adammcneilly.pocketleague.shared.data.repositories.GameRepository
-import com.adammcneilly.pocketleague.shared.data.repositories.MatchRepository
+import com.adammcneilly.pocketleague.core.data.remote.octanegg.services.OctaneGGEventService
+import com.adammcneilly.pocketleague.core.data.remote.octanegg.services.OctaneGGGameService
+import com.adammcneilly.pocketleague.core.data.remote.octanegg.services.OctaneGGMatchService
+import com.adammcneilly.pocketleague.core.data.repositories.EventRepository
+import com.adammcneilly.pocketleague.core.data.repositories.GameRepository
+import com.adammcneilly.pocketleague.core.data.repositories.MatchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

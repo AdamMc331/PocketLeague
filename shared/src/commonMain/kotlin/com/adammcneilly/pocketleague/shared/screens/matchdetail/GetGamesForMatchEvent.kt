@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
-import com.adammcneilly.pocketleague.shared.data.models.MatchGamesRequest
+import com.adammcneilly.pocketleague.core.data.models.MatchGamesRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 

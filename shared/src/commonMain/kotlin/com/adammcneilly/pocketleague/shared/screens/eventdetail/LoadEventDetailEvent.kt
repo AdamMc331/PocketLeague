@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
-import com.adammcneilly.pocketleague.shared.data.DataState
+import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 

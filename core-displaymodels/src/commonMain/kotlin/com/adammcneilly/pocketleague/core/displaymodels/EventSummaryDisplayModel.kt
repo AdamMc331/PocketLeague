@@ -6,6 +6,7 @@ import com.adammcneilly.pocketleague.core.models.Event
 /**
  * A class that represents summary information about an [Event] in a user friendly fashion.
  *
+ * @property[eventId] A unique identifier for this event.
  * @property[lightThemeImageUrl] A remote URL for an image for this event, to be shown in a light
  * theme context.
  * @property[darkThemeImageUrl] Same concept as [lightThemeImageUrl], but shown inside a dark theme

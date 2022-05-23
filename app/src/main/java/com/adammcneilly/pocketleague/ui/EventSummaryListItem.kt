@@ -64,18 +64,18 @@ fun EventSummaryListItem(
                 modifier = Modifier
                     .defaultMinSize(minWidth = 50.dp)
                     .placeholder(
-                        visible = displayModel.eventStartDate.isEmpty(),
+                        visible = displayModel.startDate.isEmpty(),
                         shape = CircleShape,
                         color = MaterialTheme.colorScheme.inverseSurface,
                     )
             )
 
             Text(
-                text = displayModel.eventName,
+                text = displayModel.name,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 150.dp)
                     .placeholder(
-                        visible = displayModel.eventName.isEmpty(),
+                        visible = displayModel.name.isEmpty(),
                         shape = CircleShape,
                         color = MaterialTheme.colorScheme.inverseSurface,
                     )

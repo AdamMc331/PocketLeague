@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
+import com.adammcneilly.pocketleague.core.data.DataState
+import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 
@@ -11,7 +13,20 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  * @property[event] Detailed information about an [Event] once it has been requested.
  */
 data class EventDetailViewState(
-    val showLoading: Boolean = true,
     val eventId: String = "",
-    val event: Event? = null,
-) : ScreenState
+    val eventDetailState: DataState<EventDetailDisplayModel> = DataState.Loading,
+) : ScreenState {
+
+    val eventDetail: EventDetailDisplayModel
+        get() = when (eventDetailState) {
+            is DataState.Loading -> {
+                EventDetailDisplayModel()
+            }
+            is DataState.Success -> {
+                eventDetailState.data
+            }
+            is DataState.Error -> {
+                EventDetailDisplayModel()
+            }
+        }
+}

@@ -15,7 +15,11 @@ data class EventStageSummaryDisplayModel(
     val endDate: String = "",
     val lan: Boolean = false,
     val liquipedia: String = "",
-)
+) {
+
+    val dateString: String
+        get() = "$startDate – $endDate"
+}
 
 /**
  * Converts an [EventStage] into an [EventStageSummaryDisplayModel].

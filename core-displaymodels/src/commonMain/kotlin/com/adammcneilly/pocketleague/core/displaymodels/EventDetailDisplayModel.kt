@@ -15,6 +15,13 @@ data class EventDetailDisplayModel(
     val startDate: String = "",
     val endDate: String = "",
     val stageSummaries: List<EventStageSummaryDisplayModel> = emptyList(),
+    val lightThemeImageUrl: String? = null,
+    val darkThemeImageUrl: String? = lightThemeImageUrl,
+    val tier: String = "",
+    val mode: String = "",
+    val region: String = "",
+    val onlineOrLAN: String = "",
+    val prize: String = "",
 )
 
 fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
@@ -35,6 +42,21 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
         }.orEmpty(),
         name = this.name,
         eventId = this.id,
-        stageSummaries = this.stages?.map(EventStage::toSummaryDisplayModel).orEmpty(),
+        stageSummaries = this.stages.map(EventStage::toSummaryDisplayModel).orEmpty(),
+        lightThemeImageUrl = this.imageUrl,
+        tier = this.tier,
+        region = this.region,
+        mode = when (this.mode) {
+            "1" -> "1v1"
+            "2" -> "2v2"
+            "3" -> "3v3"
+            else -> this.mode
+        },
+        onlineOrLAN = if (this.lan) {
+            "LAN"
+        } else {
+            "ONLINE"
+        },
+        prize = "$100,000",
     )
 }

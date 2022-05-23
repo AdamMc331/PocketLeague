@@ -32,4 +32,6 @@ data class OctaneGGEvent(
     val tier: String? = null,
     @SerialName("groups")
     val groups: List<String>? = null,
+    @SerialName("lan")
+    val lan: Boolean? = null,
 )

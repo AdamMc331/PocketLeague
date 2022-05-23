@@ -26,4 +26,6 @@ data class OctaneGGStage(
     val liquipedia: String? = null,
     @SerialName("region")
     val region: String? = null,
+    @SerialName("qualifier")
+    val qualifier: Boolean? = null,
 )

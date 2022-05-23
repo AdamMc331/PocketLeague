@@ -13,4 +13,11 @@ object OctaneGGEndpoints {
     fun gamesByMatchEndpoint(matchId: String): String {
         return "/matches/$matchId/games"
     }
+
+    /**
+     * Builds an endpoint for retrieving participants by [eventId].
+     */
+    fun eventParticipantsEndpoint(eventId: String): String {
+        return "/events/$eventId/participants"
+    }
 }

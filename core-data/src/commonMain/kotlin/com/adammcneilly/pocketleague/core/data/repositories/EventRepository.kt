@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.core.data.repositories
 import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.data.models.EventListRequest
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.Team
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -23,4 +24,11 @@ interface EventRepository {
     fun fetchEvent(
         eventId: String,
     ): Flow<DataState<Event>>
+
+    /**
+     * Fetches every [Team] participating in an event with the given [eventId].
+     */
+    fun fetchEventParticipants(
+        eventId: String,
+    ): Flow<DataState<List<Team>>>
 }

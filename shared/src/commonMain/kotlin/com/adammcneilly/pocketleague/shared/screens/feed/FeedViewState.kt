@@ -9,12 +9,12 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  * Defines the UI configuration for the [com.adammcneilly.pocketleague.shared.screens.Screens.Feed] screen.
  */
 data class FeedViewState(
-    val upcomingEventsState: DataState<List<EventSummaryDisplayModel>> = DataState.Loading,
+    val ongoingEventsState: DataState<List<EventSummaryDisplayModel>> = DataState.Loading,
     val recentMatchesState: DataState<List<Match>> = DataState.Loading,
 ) : ScreenState {
 
-    val upcomingEvents: List<EventSummaryDisplayModel>
-        get() = when (upcomingEventsState) {
+    val ongoingEvents: List<EventSummaryDisplayModel>
+        get() = when (ongoingEventsState) {
             is DataState.Loading -> {
                 // Here, we return a list of empty Event objects which will be mapped
                 // to a placeholder loading UI.
@@ -23,7 +23,7 @@ data class FeedViewState(
                 }
             }
             is DataState.Success -> {
-                upcomingEventsState.data
+                ongoingEventsState.data
             }
             is DataState.Error -> {
                 emptyList()

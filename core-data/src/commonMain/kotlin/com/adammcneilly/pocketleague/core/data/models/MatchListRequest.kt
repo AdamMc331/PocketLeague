@@ -11,4 +11,5 @@ import kotlinx.datetime.LocalDateTime
 data class MatchListRequest(
     val after: LocalDateTime? = null,
     val before: LocalDateTime? = null,
+    val group: String? = null,
 )

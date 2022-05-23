@@ -23,6 +23,9 @@ import coil.request.ImageRequest
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 
+/**
+ * Renders the given [displayModel] for team overview information.
+ */
 @Composable
 fun TeamOverviewListItem(
     displayModel: TeamOverviewDisplayModel,

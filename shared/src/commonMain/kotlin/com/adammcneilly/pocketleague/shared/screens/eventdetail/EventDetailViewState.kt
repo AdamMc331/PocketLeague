@@ -12,6 +12,8 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  * @property[eventDetail] If available, user friendly information about the event.
  * @property[errorMessage] A user friendly description of what went wrong, if we had an issue displaying
  * this event.
+ * @property[participants] The different teams participating within an event. This is typically only
+ * for main event, does not include qualifiers.
  */
 data class EventDetailViewState(
     val eventId: String = "",

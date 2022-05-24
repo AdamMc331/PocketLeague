@@ -55,7 +55,7 @@ fun MatchDetailContent(
         Spacer(modifier = Modifier.height(48.dp))
 
         viewState.games.forEachIndexed { index, game ->
-            GameListItem(game = game)
+            LegacyGameListItem(game = game)
 
             Divider()
         }

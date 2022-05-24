@@ -45,7 +45,9 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
         }.orEmpty(),
         name = this.name,
         eventId = this.id,
-        stageSummaries = this.stages.map(EventStage::toSummaryDisplayModel).orEmpty(),
+        stageSummaries = this.stages.sortedBy {
+            it.startDate
+        }.map(EventStage::toSummaryDisplayModel),
         lightThemeImageUrl = this.imageUrl,
         tier = this.tier,
         region = this.region,

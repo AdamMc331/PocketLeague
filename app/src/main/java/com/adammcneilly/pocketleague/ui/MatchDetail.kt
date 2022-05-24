@@ -109,7 +109,7 @@ private fun TeamResultsOverview(displayModel: MatchDetailDisplayModel) {
     uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
 @Composable
-@Suppress("UnusedPrivateMember")
+@Suppress("UnusedPrivateMember", "LongMethod")
 private fun MatchDetailPreview() {
     val g2 = TeamOverviewDisplayModel(
         name = "G2",

@@ -23,6 +23,35 @@ class OctaneGGMatchService(
     private val apiClient: OctaneGGAPIClient = OctaneGGAPIClient(),
 ) : MatchRepository {
 
+    override fun fetchMatchDetail(matchId: String): Flow<DataState<Match>> {
+        return flow {
+            emit(DataState.Loading)
+
+            val apiResult = apiClient.getResponse<OctaneGGMatch>(
+                endpoint = OctaneGGEndpoints.matchDetailEndpoint(matchId),
+            )
+
+            val mappedResult = when (apiResult) {
+                is DataState.Loading -> DataState.Loading
+                is DataState.Success -> {
+                    val mappedMatch = apiResult.data.toMatch()
+
+                    if (mappedMatch != null) {
+                        DataState.Success(mappedMatch)
+                    } else {
+                        val err = Throwable("Unable to parse match for id: $matchId")
+                        DataState.Error(err)
+                    }
+                }
+                is DataState.Error -> {
+                    DataState.Error(apiResult.error)
+                }
+            }
+
+            emit(mappedResult)
+        }
+    }
+
     override fun fetchMatches(request: MatchListRequest): Flow<DataState<List<Match>>> {
         return flow {
             val apiResult = apiClient.getResponse<OctaneGGMatchListResponse>(

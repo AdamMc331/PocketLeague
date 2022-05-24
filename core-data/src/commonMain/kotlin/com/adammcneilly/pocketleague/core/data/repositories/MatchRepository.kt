@@ -11,6 +11,13 @@ import kotlinx.coroutines.flow.Flow
 interface MatchRepository {
 
     /**
+     * Fetches detailed information about a [Match] using the supplied [matchId].
+     */
+    fun fetchMatchDetail(
+        matchId: String,
+    ): Flow<DataState<Match>>
+
+    /**
      * Returns a stream of [Match] entities as a list. We should only return
      * events that meet the criteria defined by the given [request].
      */

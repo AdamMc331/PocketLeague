@@ -30,6 +30,7 @@ import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 @Composable
 fun MatchDetail(
     displayModel: MatchDetailDisplayModel,
+    games: List<GameDetailDisplayModel>,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -48,20 +49,20 @@ fun MatchDetail(
 
         Divider()
 
-        GameList(displayModel)
+        GameList(games)
     }
 }
 
 @Composable
-private fun GameList(displayModel: MatchDetailDisplayModel) {
-    displayModel.games.forEachIndexed { index, gameDetailDisplayModel ->
+private fun GameList(
+    games: List<GameDetailDisplayModel>,
+) {
+    games.forEach { gameDetailDisplayModel ->
         GameListItem(
             displayModel = gameDetailDisplayModel,
         )
 
-        if (index != displayModel.games.lastIndex) {
-            Divider()
-        }
+        Divider()
     }
 }
 
@@ -127,79 +128,83 @@ private fun MatchDetailPreview() {
             team = g2,
             score = "4",
         ),
-        games = listOf(
-            GameDetailDisplayModel(
-                orangeTeamResult = GameTeamResultDisplayModel(
-                    team = nv,
-                    score = "1",
-                    winner = true,
-                ),
-                blueTeamResult = GameTeamResultDisplayModel(
-                    team = g2,
-                    score = "0",
-                    winner = false,
-                ),
-                map = "Mannfield (Night)",
-            ),
-            GameDetailDisplayModel(
-                orangeTeamResult = GameTeamResultDisplayModel(
-                    team = nv,
-                    score = "0",
-                    winner = false,
-                ),
-                blueTeamResult = GameTeamResultDisplayModel(
-                    team = g2,
-                    score = "3",
-                    winner = true,
-                ),
-                map = "Aquadome",
-            ),
-            GameDetailDisplayModel(
-                orangeTeamResult = GameTeamResultDisplayModel(
-                    team = nv,
-                    score = "1",
-                    winner = false,
-                ),
-                blueTeamResult = GameTeamResultDisplayModel(
-                    team = g2,
-                    score = "4",
-                    winner = true,
-                ),
-                map = "DFH Stadium",
-            ),
-            GameDetailDisplayModel(
-                orangeTeamResult = GameTeamResultDisplayModel(
-                    team = nv,
-                    score = "0",
-                    winner = false,
-                ),
-                blueTeamResult = GameTeamResultDisplayModel(
-                    team = g2,
-                    score = "1",
-                    winner = true,
-                ),
-                map = "Utopia Coliseum (Dusk)",
-            ),
-            GameDetailDisplayModel(
-                orangeTeamResult = GameTeamResultDisplayModel(
-                    team = nv,
-                    score = "1",
-                    winner = false,
-                ),
-                blueTeamResult = GameTeamResultDisplayModel(
-                    team = g2,
-                    score = "2",
-                    winner = true,
-                ),
-                map = "Wasteland (Night)",
-            ),
-        ),
         date = "May 15, 2022 - 13:00 EDT",
+    )
+
+    val games = listOf(
+        GameDetailDisplayModel(
+            orangeTeamResult = GameTeamResultDisplayModel(
+                team = nv,
+                score = "1",
+                winner = true,
+            ),
+            blueTeamResult = GameTeamResultDisplayModel(
+                team = g2,
+                score = "0",
+                winner = false,
+            ),
+            map = "Mannfield (Night)",
+        ),
+        GameDetailDisplayModel(
+            orangeTeamResult = GameTeamResultDisplayModel(
+                team = nv,
+                score = "0",
+                winner = false,
+            ),
+            blueTeamResult = GameTeamResultDisplayModel(
+                team = g2,
+                score = "3",
+                winner = true,
+            ),
+            map = "Aquadome",
+        ),
+        GameDetailDisplayModel(
+            orangeTeamResult = GameTeamResultDisplayModel(
+                team = nv,
+                score = "1",
+                winner = false,
+            ),
+            blueTeamResult = GameTeamResultDisplayModel(
+                team = g2,
+                score = "4",
+                winner = true,
+            ),
+            map = "DFH Stadium",
+        ),
+        GameDetailDisplayModel(
+            orangeTeamResult = GameTeamResultDisplayModel(
+                team = nv,
+                score = "0",
+                winner = false,
+            ),
+            blueTeamResult = GameTeamResultDisplayModel(
+                team = g2,
+                score = "1",
+                winner = true,
+            ),
+            map = "Utopia Coliseum (Dusk)",
+        ),
+        GameDetailDisplayModel(
+            orangeTeamResult = GameTeamResultDisplayModel(
+                team = nv,
+                score = "1",
+                winner = false,
+            ),
+            blueTeamResult = GameTeamResultDisplayModel(
+                team = g2,
+                score = "2",
+                winner = true,
+            ),
+            map = "Wasteland (Night)",
+        ),
     )
 
     PocketLeagueTheme {
         Surface {
-            MatchDetail(displayModel = matchDetailDisplayModel)
+            MatchDetail(
+                displayModel = matchDetailDisplayModel,
+                games = games,
+            )
         }
     }
 }

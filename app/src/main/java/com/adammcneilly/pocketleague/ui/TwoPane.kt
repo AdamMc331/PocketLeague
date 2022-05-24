@@ -30,8 +30,10 @@ fun Navigation.TwoPane(
     val navigationLevelsMap = getNavigationLevelsMap(currentLevel1ScreenIdentifier)!!
     Scaffold(
         topBar = { TopBar(getTitle(currentScreenIdentifier)) },
-        content = {
-            Row {
+        content = { paddingValues ->
+            Row(
+                modifier = Modifier.padding(paddingValues)
+            ) {
                 Column(
                     Modifier
                         .fillMaxHeight()

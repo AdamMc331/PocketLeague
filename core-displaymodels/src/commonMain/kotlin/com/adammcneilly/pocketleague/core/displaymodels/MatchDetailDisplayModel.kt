@@ -6,4 +6,6 @@ package com.adammcneilly.pocketleague.core.displaymodels
 data class MatchDetailDisplayModel(
     val orangeTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(),
     val blueTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(),
+    val games: List<GameDetailDisplayModel> = emptyList(),
+    val date: String = "",
 )

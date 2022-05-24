@@ -29,6 +29,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailViewState
 import com.adammcneilly.pocketleague.ui.components.Chip
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
@@ -48,18 +49,16 @@ fun EventDetailContent(
     Box(
         modifier = modifier,
     ) {
-        val eventDetail = viewState.eventDetail
-
-        if (eventDetail != null) {
-            EventDetail(eventDetail)
-        }
+        EventDetail(viewState)
     }
 }
 
 @Composable
 private fun EventDetail(
-    displayModel: EventDetailDisplayModel,
+    viewState: EventDetailViewState,
 ) {
+    val displayModel = viewState.eventDetail ?: return
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -72,6 +71,34 @@ private fun EventDetail(
         EventDetails(displayModel)
 
         EventStages(displayModel)
+
+        val participants = viewState.participants
+
+        if (participants?.isNotEmpty() == true) {
+            EventParticipants(participants = participants)
+        }
+    }
+}
+
+@Composable
+private fun EventParticipants(
+    participants: List<TeamOverviewDisplayModel>,
+) {
+    Text(
+        text = "Participants",
+        style = MaterialTheme.typography.headlineSmall,
+    )
+
+    Card {
+        participants.forEachIndexed { index, participant ->
+            TeamOverviewListItem(
+                displayModel = participant,
+            )
+
+            if (index != participants.lastIndex) {
+                Divider()
+            }
+        }
     }
 }
 

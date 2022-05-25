@@ -1,14 +1,10 @@
 package com.adammcneilly.pocketleague.ui
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.core.models.MatchTeamResult
-import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.karumi.shot.ScreenshotTest
-import kotlinx.datetime.Clock
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 import org.junit.Rule
 import org.junit.Test
 
@@ -19,7 +15,7 @@ class MatchListItemScreenshotTest : ScreenshotTest {
 
     @Test
     fun renderPlaceholderMatchListItem() {
-        val displayModel = Match()
+        val displayModel = MatchDetailDisplayModel()
 
         composeTestRule.setContent {
             MatchListItem(displayModel = displayModel)
@@ -30,23 +26,21 @@ class MatchListItemScreenshotTest : ScreenshotTest {
 
     @Test
     fun renderBlueTeamWinner() {
-        val match = Match(
-            id = "",
-            event = Event(
-                name = "Test Event",
-            ),
-            date = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
-            blueTeam = MatchTeamResult(
-                score = 5,
+        val match = MatchDetailDisplayModel(
+            matchId = "",
+            eventName = "Test Event",
+            relativeDate = "0d ago",
+            blueTeamResult = MatchTeamResultDisplayModel(
+                score = "5",
                 winner = true,
-                team = Team(
+                team = TeamOverviewDisplayModel(
                     name = "Pittsburgh Knights",
                 ),
             ),
-            orangeTeam = MatchTeamResult(
-                score = 0,
+            orangeTeamResult = MatchTeamResultDisplayModel(
+                score = "0",
                 winner = false,
-                team = Team(
+                team = TeamOverviewDisplayModel(
                     name = "G2 Esports",
                 ),
             ),
@@ -61,23 +55,21 @@ class MatchListItemScreenshotTest : ScreenshotTest {
 
     @Test
     fun renderOrangeTeamWinner() {
-        val match = Match(
-            id = "",
-            event = Event(
-                name = "Test Event",
-            ),
-            date = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
-            blueTeam = MatchTeamResult(
-                score = 0,
+        val match = MatchDetailDisplayModel(
+            matchId = "",
+            eventName = "Test Event",
+            relativeDate = "0d ago",
+            blueTeamResult = MatchTeamResultDisplayModel(
+                score = "0",
                 winner = false,
-                team = Team(
+                team = TeamOverviewDisplayModel(
                     name = "Pittsburgh Knights",
                 ),
             ),
-            orangeTeam = MatchTeamResult(
-                score = 5,
+            orangeTeamResult = MatchTeamResultDisplayModel(
+                score = "5",
                 winner = true,
-                team = Team(
+                team = TeamOverviewDisplayModel(
                     name = "G2 Esports",
                 ),
             ),

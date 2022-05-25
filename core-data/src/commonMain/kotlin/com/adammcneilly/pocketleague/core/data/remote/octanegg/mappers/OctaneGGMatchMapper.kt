@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.core.data.remote.octanegg.mappers
 
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGMatch
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
@@ -30,5 +31,6 @@ fun OctaneGGMatch.toMatch(): Match? {
         }?.toLocalDateTime(TimeZone.UTC),
         blueTeam = this.blue.toMatchTeamResult(),
         orangeTeam = this.orange.toMatchTeamResult(),
+        stage = this.stage?.toEventStage() ?: EventStage(),
     )
 }

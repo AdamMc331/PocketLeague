@@ -12,4 +12,5 @@ data class Match(
     val date: LocalDateTime? = null,
     val blueTeam: MatchTeamResult = MatchTeamResult(),
     val orangeTeam: MatchTeamResult = MatchTeamResult(),
+    val stage: EventStage = EventStage(),
 )

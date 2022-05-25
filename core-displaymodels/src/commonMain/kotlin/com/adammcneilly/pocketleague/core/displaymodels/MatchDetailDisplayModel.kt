@@ -12,6 +12,8 @@ data class MatchDetailDisplayModel(
     val orangeTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(),
     val blueTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(),
     val date: String = "",
+    val eventName: String = "",
+    val stageName: String = "",
 )
 
 /**
@@ -26,5 +28,7 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
         date = this.date?.let { date ->
             dateTimeFormatter.formatLocalDateTime(date, MATCH_DATE_FORMAT)
         }.orEmpty(),
+        eventName = this.event.name,
+        stageName = this.stage.name,
     )
 }

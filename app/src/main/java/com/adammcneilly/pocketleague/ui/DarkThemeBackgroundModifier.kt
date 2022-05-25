@@ -8,6 +8,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 
+/**
+ * Applies a [background] modifier to a component, only in a dark theme situation.
+ */
 @SuppressLint("ComposableModifierFactory")
 @Composable
 fun Modifier.darkThemeBackgroundModifier(

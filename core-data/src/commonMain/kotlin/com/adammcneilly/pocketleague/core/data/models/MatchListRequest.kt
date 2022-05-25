@@ -12,4 +12,6 @@ data class MatchListRequest(
     val after: LocalDateTime? = null,
     val before: LocalDateTime? = null,
     val group: String? = null,
+    val eventId: String? = null,
+    val stageId: String? = null,
 )

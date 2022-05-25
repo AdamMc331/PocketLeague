@@ -98,4 +98,12 @@ private fun HttpRequestBuilder.addMatchParameters(request: MatchListRequest) {
     if (request.group != null) {
         this.parameter("group", request.group)
     }
+
+    if (request.eventId != null) {
+        this.parameter("event", request.eventId)
+    }
+
+    if (request.stageId != null) {
+        this.parameter("stage", request.stageId)
+    }
 }

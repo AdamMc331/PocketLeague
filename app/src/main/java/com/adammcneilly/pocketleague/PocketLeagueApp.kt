@@ -7,13 +7,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.adammcneilly.pocketleague.shared.screens.DKMPViewModel
 import com.adammcneilly.pocketleague.shared.screens.getAndroidInstance
-import dagger.hilt.android.HiltAndroidApp
 
 /**
  * This is our custom implementation of the [Application] class. This will do any dependency injection
  * or third party initializations that must occur at app startup.
  */
-@HiltAndroidApp
 class PocketLeagueApp : Application() {
 
     lateinit var viewModel: DKMPViewModel

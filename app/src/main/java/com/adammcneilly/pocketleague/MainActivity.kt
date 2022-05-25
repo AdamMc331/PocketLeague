@@ -11,13 +11,11 @@ import androidx.core.view.WindowCompat
 import com.adammcneilly.pocketleague.ui.MainComposable
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * The [MainActivity] is the user's main entry point into the application. This will be launched
  * when the application is first started.
  */
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

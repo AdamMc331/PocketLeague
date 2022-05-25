@@ -48,6 +48,11 @@ fun EventSummaryListItem(
             contentDescription = "Event Image",
             modifier = Modifier
                 .size(48.dp)
+                .darkThemeBackgroundModifier(
+                    color = MaterialTheme.colorScheme.inverseSurface,
+                    shape = CircleShape,
+                )
+                .padding(8.dp)
                 .placeholder(
                     visible = imageUrl == null,
                     shape = CircleShape,

@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,7 +24,6 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
-import com.google.accompanist.placeholder.material.placeholder
 
 /**
  * Renders the [displayModel] but only to show header information about
@@ -96,11 +96,11 @@ private fun MatchTeamResultCell(
             contentDescription = "Team Image",
             modifier = Modifier
                 .size(72.dp)
-                .placeholder(
-                    visible = imageUrl == null,
-                    shape = CircleShape,
+                .background(
                     color = MaterialTheme.colorScheme.inverseSurface,
-                ),
+                    shape = CircleShape,
+                )
+                .padding(8.dp),
         )
 
         Text(

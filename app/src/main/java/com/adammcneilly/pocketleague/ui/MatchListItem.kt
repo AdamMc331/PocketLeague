@@ -22,20 +22,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
-import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.core.models.MatchTeamResult
-import com.google.accompanist.placeholder.material.placeholder
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 import com.google.accompanist.placeholder.placeholder
-import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toInstant
 
 /**
  * Displays a match between two teams inside a list item.
@@ -43,7 +37,7 @@ import kotlinx.datetime.toInstant
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun MatchListItem(
-    match: Match,
+    displayModel: MatchDetailDisplayModel,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -54,26 +48,26 @@ fun MatchListItem(
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             Text(
-                text = match.event.name,
+                text = displayModel.eventName,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .fillMaxWidth()
                     .placeholder(
-                        visible = match.event.name.isBlank(),
+                        visible = displayModel.eventName.isBlank(),
                         shape = CircleShape,
                         color = MaterialTheme.colorScheme.inverseSurface,
                     )
             )
 
             Text(
-                text = match.date?.getRelativeTimestamp().orEmpty(),
+                text = displayModel.relativeDate,
                 style = MaterialTheme.typography.labelSmall,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 50.dp)
                     .placeholder(
-                        visible = match.date == null,
+                        visible = displayModel.relativeDate.isBlank(),
                         shape = CircleShape,
                         color = MaterialTheme.colorScheme.inverseSurface,
                     )
@@ -83,9 +77,9 @@ fun MatchListItem(
                 modifier = Modifier.height(8.dp),
             )
 
-            MatchTeamResultRow(teamResult = match.blueTeam)
+            MatchTeamResultRow(teamResult = displayModel.blueTeamResult)
 
-            MatchTeamResultRow(teamResult = match.orangeTeam)
+            MatchTeamResultRow(teamResult = displayModel.orangeTeamResult)
         }
     }
 }
@@ -96,7 +90,7 @@ fun MatchListItem(
  */
 @Composable
 private fun MatchTeamResultRow(
-    teamResult: MatchTeamResult,
+    teamResult: MatchTeamResultDisplayModel,
 ) {
     val fontWeight: FontWeight? = if (teamResult.winner) {
         FontWeight.Bold
@@ -108,11 +102,11 @@ private fun MatchTeamResultRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
-            text = teamResult.score.toString(),
+            text = teamResult.score,
             fontWeight = fontWeight,
             modifier = Modifier
                 .placeholder(
-                    visible = teamResult.score == -1,
+                    visible = teamResult.score.isBlank(),
                     shape = CircleShape,
                     color = MaterialTheme.colorScheme.inverseSurface,
                 )
@@ -133,7 +127,7 @@ private fun MatchTeamResultRow(
     }
 }
 
-private fun MatchTeamResult.getDisplayName(): AnnotatedString {
+private fun MatchTeamResultDisplayModel.getDisplayName(): AnnotatedString {
     return buildAnnotatedString {
         append(team.name)
 
@@ -144,7 +138,7 @@ private fun MatchTeamResult.getDisplayName(): AnnotatedString {
     }
 }
 
-private fun MatchTeamResult.getInlineContent(): Map<String, InlineTextContent> {
+private fun MatchTeamResultDisplayModel.getInlineContent(): Map<String, InlineTextContent> {
     return if (this.winner) {
         mapOf(
             Pair(
@@ -165,23 +159,5 @@ private fun MatchTeamResult.getInlineContent(): Map<String, InlineTextContent> {
         )
     } else {
         mapOf()
-    }
-}
-
-private const val HOURS_IN_DAY = 24
-
-private fun LocalDateTime.getRelativeTimestamp(): String {
-    val now = Clock.System.now()
-    val matchInstant = this.toInstant(TimeZone.currentSystemDefault())
-
-    val duration = now.minus(matchInstant)
-
-    return when {
-        duration.inWholeHours < HOURS_IN_DAY -> {
-            "${duration.inWholeHours}h ago"
-        }
-        else -> {
-            "${duration.inWholeDays}d ago"
-        }
     }
 }

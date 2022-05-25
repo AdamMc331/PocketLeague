@@ -13,11 +13,11 @@ fun Navigation.initMatchDetail(
         title = "Match Detail",
         initState = {
             MatchDetailViewState(
-                matchId = params.match.id,
+                matchId = params.matchId,
             )
         },
         callOnInit = {
-            events.loadMatchDetail(params.match.id)
+            events.loadMatchDetail(params.matchId)
         },
         reInitOnEachNavigation = false,
     )

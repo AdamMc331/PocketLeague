@@ -9,5 +9,5 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenParams
  * @property[match] The [Match] entity to request detailed information for.
  */
 data class MatchDetailParams(
-    val match: Match,
+    val matchId: String = "",
 ) : ScreenParams

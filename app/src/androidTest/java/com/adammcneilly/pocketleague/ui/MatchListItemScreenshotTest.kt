@@ -22,7 +22,7 @@ class MatchListItemScreenshotTest : ScreenshotTest {
         val displayModel = Match()
 
         composeTestRule.setContent {
-            MatchListItem(match = displayModel)
+            MatchListItem(displayModel = displayModel)
         }
 
         compareScreenshot(composeTestRule)
@@ -53,7 +53,7 @@ class MatchListItemScreenshotTest : ScreenshotTest {
         )
 
         composeTestRule.setContent {
-            MatchListItem(match = match)
+            MatchListItem(displayModel = match)
         }
 
         compareScreenshot(composeTestRule)
@@ -84,7 +84,7 @@ class MatchListItemScreenshotTest : ScreenshotTest {
         )
 
         composeTestRule.setContent {
-            MatchListItem(match = match)
+            MatchListItem(displayModel = match)
         }
 
         compareScreenshot(composeTestRule)

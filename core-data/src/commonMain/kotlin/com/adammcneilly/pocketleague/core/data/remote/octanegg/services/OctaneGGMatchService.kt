@@ -106,4 +106,8 @@ private fun HttpRequestBuilder.addMatchParameters(request: MatchListRequest) {
     if (request.stageId != null) {
         this.parameter("stage", request.stageId)
     }
+
+    if (request.region != null) {
+        this.parameter("region", request.region)
+    }
 }

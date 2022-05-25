@@ -1,20 +1,19 @@
 package com.adammcneilly.pocketleague.ui
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
-import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
@@ -35,67 +34,43 @@ fun MatchDetail(
 ) {
     Column(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState()),
     ) {
-        TeamResultsOverview(displayModel)
-
-        Text(
+        MatchDetailHeader(
+            displayModel = displayModel,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 12.dp),
-            textAlign = TextAlign.Center,
-            text = displayModel.date,
+                .padding(24.dp),
         )
 
-        Divider()
+        Text(
+            text = "Games",
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier
+                .padding(horizontal = 24.dp),
+        )
 
         GameList(games)
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun GameList(
     games: List<GameDetailDisplayModel>,
 ) {
-    games.forEach { gameDetailDisplayModel ->
-        GameListItem(
-            displayModel = gameDetailDisplayModel,
-        )
-
-        Divider()
-    }
-}
-
-@Composable
-private fun TeamResultsOverview(displayModel: MatchDetailDisplayModel) {
-    CompositionLocalProvider(
-        LocalTextStyle provides MaterialTheme.typography.headlineMedium,
+    Card(
+        modifier = Modifier
+            .padding(24.dp),
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-        ) {
-            Text(
-                text = displayModel.blueTeamResult.team.name,
+        games.forEachIndexed { index, gameDetailDisplayModel ->
+            GameListItem(
+                displayModel = gameDetailDisplayModel,
             )
 
-            Text(
-                text = displayModel.blueTeamResult.score,
-            )
-
-            Text(
-                text = ":",
-            )
-
-            Text(
-                text = displayModel.orangeTeamResult.score,
-            )
-
-            Text(
-                text = displayModel.orangeTeamResult.team.name,
-            )
+            if (index != games.lastIndex) {
+                Divider()
+            }
         }
     }
 }
@@ -129,6 +104,8 @@ private fun MatchDetailPreview() {
             score = "4",
         ),
         date = "May 15, 2022 - 13:00 EDT",
+        eventName = "RLCS 2021-2022 North America Regional 3",
+        stageName = "Main Event",
     )
 
     val games = listOf(

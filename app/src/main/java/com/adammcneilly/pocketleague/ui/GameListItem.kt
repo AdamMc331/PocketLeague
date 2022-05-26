@@ -26,6 +26,9 @@ import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 
+private const val SCORE_TEXT_WEIGHT = 1F
+private const val MAP_TEXT_WEIGHT = 4F
+
 /**
  * Renders the [displayModel] to show information about a game between
  * two teams.
@@ -44,13 +47,13 @@ fun GameListItem(
             displayModel = displayModel.blueTeamResult,
             showIconFirst = false,
             textAlign = TextAlign.Start,
-            weight = 1F,
+            weight = SCORE_TEXT_WEIGHT,
         )
 
         Text(
             text = displayModel.map,
             modifier = Modifier
-                .weight(4F),
+                .weight(MAP_TEXT_WEIGHT),
             textAlign = TextAlign.Center,
         )
 
@@ -58,7 +61,7 @@ fun GameListItem(
             displayModel = displayModel.orangeTeamResult,
             showIconFirst = true,
             textAlign = TextAlign.End,
-            weight = 1F,
+            weight = SCORE_TEXT_WEIGHT,
         )
     }
 }

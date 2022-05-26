@@ -12,10 +12,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +28,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.MatchTeamResult
 import com.google.accompanist.placeholder.material.placeholder
@@ -144,6 +144,7 @@ private fun MatchTeamResult.getDisplayName(): AnnotatedString {
     }
 }
 
+@Composable
 private fun MatchTeamResult.getInlineContent(): Map<String, InlineTextContent> {
     return if (this.winner) {
         mapOf(
@@ -151,13 +152,13 @@ private fun MatchTeamResult.getInlineContent(): Map<String, InlineTextContent> {
                 "inlineContent",
                 InlineTextContent(
                     Placeholder(
-                        width = 12.sp,
-                        height = 12.sp,
-                        placeholderVerticalAlign = androidx.compose.ui.text.PlaceholderVerticalAlign.AboveBaseline,
+                        width = LocalTextStyle.current.fontSize,
+                        height = LocalTextStyle.current.fontSize,
+                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
                     )
                 ) {
                     Icon(
-                        Icons.Filled.Star,
+                        Icons.Default.EmojiEvents,
                         contentDescription = null,
                     )
                 }

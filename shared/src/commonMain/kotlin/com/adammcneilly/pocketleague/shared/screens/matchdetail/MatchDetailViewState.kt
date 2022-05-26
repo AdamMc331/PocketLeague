@@ -9,9 +9,11 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  * The UI state for detailed information about a [Match].
  */
 data class MatchDetailViewState(
-    val showLoading: Boolean = true,
+    val showDetailLoading: Boolean = true,
     val matchId: String = "",
     val matchDetail: MatchDetailDisplayModel? = null,
-    val errorMessage: String? = null,
+    val detailInfoErrorMessage: String? = null,
     val games: List<GameDetailDisplayModel>? = null,
+    val showGamesLoading: Boolean = true,
+    val gamesErrorMessage: String? = null,
 ) : ScreenState

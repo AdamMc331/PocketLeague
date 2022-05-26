@@ -38,6 +38,10 @@ import androidx.compose.ui.window.PopupPositionProvider
 import androidx.compose.ui.window.PopupProperties
 import kotlinx.coroutines.delay
 
+private const val TOOLTIP_MAX_WIDTH_RATIO = 0.75F
+private const val TOOLTIP_TOP_PADDING_SCALE = 0.5F
+private const val TOOLTIP_BOTTOM_PADDING_SCALE = 0.7F
+
 /**
  * Inspiration: https://stackoverflow.com/a/69664787/3131147
  *
@@ -60,7 +64,12 @@ import kotlinx.coroutines.delay
  * be applied in the direction in which the menu will decide to expand.
  *
  * @param expanded Whether the tooltip is currently visible to the user
+ * @param[modifier] An option modification to perform on the tooltip.
+ * @param[timeoutMillis] The amount of time in milliseconds that the tooltip will appear.
+ * @param[backgroundColor] The color applied to the tooltip's box.
  * @param offset [DpOffset] to be added to the position of the tooltip
+ * @param[properties] Properties applied to the rendered popup.
+ * @param[content] The actual component to display inside our tooltip.
  *
  * @see androidx.compose.material.DropdownMenu
  * @see androidx.compose.material.DropdownMenuPositionProvider
@@ -72,7 +81,7 @@ import kotlinx.coroutines.delay
 fun Tooltip(
     expanded: MutableState<Boolean>,
     modifier: Modifier = Modifier,
-    timeoutMillis: Long = TooltipTimeout,
+    timeoutMillis: Long = TOOLTIP_TIMEOUT,
     backgroundColor: Color = MaterialTheme.colorScheme.secondaryContainer,
     offset: DpOffset = DpOffset(0.dp, 0.dp),
     properties: PopupProperties = PopupProperties(focusable = true),
@@ -120,10 +129,10 @@ private fun TooltipContent(
         transitionSpec = {
             if (false isTransitioningTo true) {
                 // Dismissed to expanded
-                tween(durationMillis = InTransitionDuration)
+                tween(durationMillis = IN_TRANSITION_DURATION)
             } else {
                 // Expanded to dismissed.
-                tween(durationMillis = OutTransitionDuration)
+                tween(durationMillis = OUT_TRANSITION_DURATION)
             }
         }
     ) { if (it) 1f else 0f }
@@ -133,7 +142,7 @@ private fun TooltipContent(
             containerColor = backgroundColor,
         ),
         modifier = Modifier
-            .fillMaxWidth(0.75F)
+            .fillMaxWidth(TOOLTIP_MAX_WIDTH_RATIO)
             .alpha(alpha),
         // Fix elevation?
 //        elevation = TooltipElevation,
@@ -141,7 +150,12 @@ private fun TooltipContent(
         val p = TooltipPadding
         Column(
             modifier = modifier
-                .padding(start = p, top = p * 0.5f, end = p, bottom = p * 0.7f)
+                .padding(
+                    start = p,
+                    top = p * TOOLTIP_TOP_PADDING_SCALE,
+                    end = p,
+                    bottom = p * TOOLTIP_BOTTOM_PADDING_SCALE,
+                )
                 .width(IntrinsicSize.Max),
             content = content,
         )
@@ -152,11 +166,11 @@ private val TooltipElevation = 16.dp
 private val TooltipPadding = 16.dp
 
 // Tooltip open/close animation duration.
-private const val InTransitionDuration = 64
-private const val OutTransitionDuration = 240
+private const val IN_TRANSITION_DURATION = 64
+private const val OUT_TRANSITION_DURATION = 240
 
 // Default timeout before tooltip close
-private const val TooltipTimeout = 3_000L - OutTransitionDuration
+private const val TOOLTIP_TIMEOUT = 3_000L - OUT_TRANSITION_DURATION
 
 /**
  * Stolen from the material source code because this internal.

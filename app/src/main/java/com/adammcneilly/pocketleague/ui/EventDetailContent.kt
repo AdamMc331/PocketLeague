@@ -147,6 +147,7 @@ private fun EventDetails(displayModel: EventDetailDisplayModel) {
     ) {
         Chip(
             text = "Tier: ${displayModel.tier}",
+            tooltipText = "The tier defines the notoriety of this Rocket League event.",
         )
 
         Chip(

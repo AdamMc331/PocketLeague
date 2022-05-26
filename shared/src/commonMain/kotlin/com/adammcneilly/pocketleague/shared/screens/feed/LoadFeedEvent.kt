@@ -14,8 +14,7 @@ import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.minus
 import kotlinx.datetime.toLocalDateTime
 
-const val NUM_DAYS_RECENT_MATCHES = 21
-
+const val NUM_DAYS_RECENT_MATCHES = 3
 /**
  * Loads the information for the feed state.
  */

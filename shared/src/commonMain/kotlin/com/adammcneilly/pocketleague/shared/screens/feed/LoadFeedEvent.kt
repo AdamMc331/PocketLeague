@@ -57,7 +57,6 @@ fun Events.loadFeed() = screenCoroutine {
             .atStartOfDayIn(TimeZone.currentSystemDefault())
             .toLocalDateTime(TimeZone.currentSystemDefault()),
         group = "rlcs",
-        region = "NA",
     )
 
     repository.matchRepository.fetchMatches(

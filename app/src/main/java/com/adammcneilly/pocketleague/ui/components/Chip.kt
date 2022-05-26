@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.ui.components
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Computer
@@ -10,6 +11,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.intl.Locale
@@ -27,9 +30,37 @@ import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 fun Chip(
     text: String,
     leadingIcon: ImageVector? = null,
+    tooltipText: String? = null,
+) {
+    Box {
+        val showTooltip = remember { mutableStateOf(false) }
+
+        ChipButton(
+            onClick = {
+                showTooltip.value = true
+            },
+            leadingIcon,
+            text,
+        )
+
+        if (tooltipText != null) {
+            Tooltip(showTooltip) {
+                Text(
+                    text = tooltipText,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ChipButton(
+    onClick: () -> Unit,
+    leadingIcon: ImageVector?,
+    text: String,
 ) {
     OutlinedButton(
-        onClick = { /*TODO*/ },
+        onClick = onClick,
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
         )

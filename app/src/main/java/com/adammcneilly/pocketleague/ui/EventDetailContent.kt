@@ -147,22 +147,27 @@ private fun EventDetails(displayModel: EventDetailDisplayModel) {
     ) {
         Chip(
             text = "Tier: ${displayModel.tier}",
+            tooltipText = "The tier defines the notoriety of this Rocket League event.",
         )
 
         Chip(
             text = "Region: ${displayModel.region}",
+            tooltipText = "This is the region for eligible teams.",
         )
 
         Chip(
             text = displayModel.onlineOrLAN,
+            tooltipText = "This event takes place over the internet.",
         )
 
         Chip(
             text = "Mode: ${displayModel.mode}",
+            tooltipText = "The number of players on each team.",
         )
 
         Chip(
             text = "Prize: ${displayModel.prize}",
+            tooltipText = "This is the total prize pool for top finishers.",
         )
     }
 }

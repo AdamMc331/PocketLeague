@@ -22,11 +22,21 @@ private suspend fun Events.fetchGames(matchId: String) {
             val viewState = when (repoResult) {
                 is DataState.Success -> {
                     it.copy(
-                        games = repoResult.data.map(Game::toDetailDisplayModel)
+                        games = repoResult.data.map(Game::toDetailDisplayModel),
+                        showGamesLoading = false,
                     )
                 }
-                // Errors coming soon.
-                else -> it
+                DataState.Loading -> {
+                    it.copy(
+                        showGamesLoading = true,
+                    )
+                }
+                is DataState.Error -> {
+                    it.copy(
+                        showGamesLoading = false,
+                        gamesErrorMessage = repoResult.error.message,
+                    )
+                }
             }
 
             viewState
@@ -40,19 +50,19 @@ private suspend fun Events.fetchMatchDetail(matchId: String) {
             val viewState = when (repoResult) {
                 is DataState.Loading -> {
                     it.copy(
-                        showLoading = true,
+                        showDetailLoading = true,
                     )
                 }
                 is DataState.Success -> {
                     it.copy(
-                        showLoading = false,
+                        showDetailLoading = false,
                         matchDetail = repoResult.data.toDetailDisplayModel(),
                     )
                 }
                 is DataState.Error -> {
                     it.copy(
-                        showLoading = false,
-                        errorMessage = repoResult.error.message,
+                        showDetailLoading = false,
+                        detailInfoErrorMessage = repoResult.error.message,
                     )
                 }
             }

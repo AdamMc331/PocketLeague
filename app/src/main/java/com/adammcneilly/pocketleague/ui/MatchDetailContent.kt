@@ -30,7 +30,7 @@ fun MatchDetailContent(
             )
         }
 
-        if (viewState.showLoading) {
+        if (viewState.showDetailLoading || viewState.showGamesLoading) {
             CircularProgressIndicator(
                 modifier = Modifier
                     .wrapContentSize()

@@ -10,11 +10,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -71,7 +73,7 @@ fun Tooltip(
     expanded: MutableState<Boolean>,
     modifier: Modifier = Modifier,
     timeoutMillis: Long = TooltipTimeout,
-    backgroundColor: Color = Color.Black,
+    backgroundColor: Color = MaterialTheme.colorScheme.secondaryContainer,
     offset: DpOffset = DpOffset(0.dp, 0.dp),
     properties: PopupProperties = PopupProperties(focusable = true),
     content: @Composable ColumnScope.() -> Unit,
@@ -128,9 +130,11 @@ private fun TooltipContent(
 
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = backgroundColor.copy(alpha = 0.75f),
+            containerColor = backgroundColor,
         ),
-        modifier = Modifier.alpha(alpha),
+        modifier = Modifier
+            .fillMaxWidth(0.75F)
+            .alpha(alpha),
         // Fix elevation?
 //        elevation = TooltipElevation,
     ) {
@@ -152,7 +156,7 @@ private const val InTransitionDuration = 64
 private const val OutTransitionDuration = 240
 
 // Default timeout before tooltip close
-private const val TooltipTimeout = 2_000L - OutTransitionDuration
+private const val TooltipTimeout = 3_000L - OutTransitionDuration
 
 /**
  * Stolen from the material source code because this internal.

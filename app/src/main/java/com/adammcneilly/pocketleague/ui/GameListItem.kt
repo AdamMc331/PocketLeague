@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.ui
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.InlineTextContent
@@ -19,6 +19,7 @@ import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
@@ -38,21 +39,43 @@ fun GameListItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        TeamScore(displayModel = displayModel.blueTeamResult)
+        TeamScore(
+            displayModel = displayModel.blueTeamResult,
+            showIconFirst = false,
+            textAlign = TextAlign.Start,
+            weight = 1F,
+        )
 
         Text(
             text = displayModel.map,
+            modifier = Modifier
+                .weight(4F),
+            textAlign = TextAlign.Center,
         )
 
-        TeamScore(displayModel = displayModel.orangeTeamResult)
+        TeamScore(
+            displayModel = displayModel.orangeTeamResult,
+            showIconFirst = true,
+            textAlign = TextAlign.End,
+            weight = 1F,
+        )
     }
 }
 
+/**
+ * This renders a team's score within a game, as well as an icon to signify
+ * if they are the winning team.
+ *
+ * If the [showIconFirst] property is true, we render the icon in front of the score,
+ * otherwise behind it.
+ */
 @Composable
-private fun TeamScore(
+private fun RowScope.TeamScore(
     displayModel: GameTeamResultDisplayModel,
+    showIconFirst: Boolean,
+    textAlign: TextAlign,
+    weight: Float,
 ) {
     val isWinner = displayModel.winner
 
@@ -65,9 +88,15 @@ private fun TeamScore(
     val inlineContentId = "inlineContent"
 
     val scoreText = buildAnnotatedString {
+        if (isWinner && showIconFirst) {
+            appendInlineContent(inlineContentId, "[trophy]")
+
+            append(" ")
+        }
+
         append(displayModel.score)
 
-        if (isWinner) {
+        if (isWinner && !showIconFirst) {
             append(" ")
 
             appendInlineContent(inlineContentId, "[trophy]")
@@ -100,6 +129,9 @@ private fun TeamScore(
         text = scoreText,
         fontWeight = fontWeight,
         inlineContent = inlineContent,
+        textAlign = textAlign,
+        modifier = Modifier
+            .weight(weight),
     )
 }
 

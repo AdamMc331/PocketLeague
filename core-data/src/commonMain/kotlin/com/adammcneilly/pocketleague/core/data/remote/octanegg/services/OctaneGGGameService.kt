@@ -22,6 +22,8 @@ class OctaneGGGameService(
 
     override fun fetchGamesForMatch(request: MatchGamesRequest): Flow<DataState<List<Game>>> {
         return flow {
+            emit(DataState.Loading)
+
             val apiResult = apiClient.getResponse<OctaneGGGameListResponse>(
                 endpoint = OctaneGGEndpoints.gamesByMatchEndpoint(request.matchId),
             )

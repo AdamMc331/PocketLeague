@@ -1,32 +1,32 @@
-name: Android Tests
-
-on:
-  pull_request:
-
-jobs:
-  android-tests:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Set Up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.11
-
-      - name: Generate local.properties
-        env:
-          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
-        run: echo $LOCAL_PROPERTIES > ./local.properties
-
-      - name: Run Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          arch: x86_64
-          profile: pixel
-          sdcard-path-or-size: 512M
-          target: google_apis
-          script: |
-            ./gradlew app:connectedCheck
+#name: Android Tests
+#
+#on:
+#  pull_request:
+#
+#jobs:
+#  android-tests:
+#    runs-on: macos-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#
+#      - name: Set Up JDK
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 1.11
+#
+#      - name: Generate local.properties
+#        env:
+#          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+#        run: echo $LOCAL_PROPERTIES > ./local.properties
+#
+#      - name: Run Tests
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 30
+#          arch: x86_64
+#          profile: pixel
+#          sdcard-path-or-size: 512M
+#          target: google_apis
+#          script: |
+#            ./gradlew app:connectedCheck

@@ -15,4 +15,5 @@ data class GameTeamResult(
     val matchWinner: Boolean = false,
     val team: Team = Team(),
     val teamStats: Stats = Stats(),
+    val players: List<GamePlayerResult> = emptyList(),
 )

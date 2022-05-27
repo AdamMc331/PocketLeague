@@ -2,6 +2,8 @@ package com.adammcneilly.pocketleague.core.data.remote.octanegg.mappers
 
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGPlayerStats
 import com.adammcneilly.pocketleague.core.models.GamePlayerResult
+import com.adammcneilly.pocketleague.core.models.Player
+import com.adammcneilly.pocketleague.core.models.Stats
 
 /**
  * Maps an [OctaneGGPlayerStats] entity, which should represent a player within a game,
@@ -12,7 +14,7 @@ import com.adammcneilly.pocketleague.core.models.GamePlayerResult
  */
 fun OctaneGGPlayerStats.toGamePlayerResult(): GamePlayerResult {
     return GamePlayerResult(
-        player = this.player?.toPlayer()!!,
-        stats = this.stats?.toStats()!!,
+        player = this.player?.toPlayer() ?: Player(),
+        stats = this.stats?.toStats() ?: Stats(),
     )
 }

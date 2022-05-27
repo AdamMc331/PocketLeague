@@ -7,4 +7,5 @@ data class MatchTeamResult(
     val score: Int = -1,
     val winner: Boolean = false,
     val team: Team = Team(),
+    val players: List<GamePlayerResult> = emptyList(),
 )

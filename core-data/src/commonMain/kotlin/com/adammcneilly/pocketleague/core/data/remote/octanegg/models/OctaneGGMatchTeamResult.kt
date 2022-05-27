@@ -18,4 +18,6 @@ data class OctaneGGMatchTeamResult(
     val winner: Boolean? = null,
     @SerialName("team")
     val team: OctaneGGTeamStats? = null,
+    @SerialName("players")
+    val players: List<OctaneGGPlayerStats>? = null,
 )

@@ -6,7 +6,8 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.adammcneilly.pocketleague.core.displaymodels.PlayerGameStatsDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.CoreStatsDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.GamePlayerResultDisplayModel
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 
 /**
@@ -15,7 +16,7 @@ import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
  */
 @Composable
 fun PlayerStatsTable(
-    displayModels: List<PlayerGameStatsDisplayModel>,
+    displayModels: List<GamePlayerResultDisplayModel>,
 ) {
     Column {
         StatTableRow(
@@ -36,11 +37,11 @@ fun PlayerStatsTable(
             StatTableRow(
                 title = displayModel.playerName,
                 cells = listOf(
-                    displayModel.score,
-                    displayModel.goals,
-                    displayModel.assists,
-                    displayModel.saves,
-                    displayModel.shots,
+                    displayModel.coreStats.score,
+                    displayModel.coreStats.goals,
+                    displayModel.coreStats.assists,
+                    displayModel.coreStats.saves,
+                    displayModel.coreStats.shots,
                 ),
             )
 
@@ -60,22 +61,26 @@ fun PlayerStatsTable(
 @Composable
 @Suppress("UnusedPrivateMember")
 private fun PlayerStatsTablePreview() {
-    val trk = PlayerGameStatsDisplayModel(
+    val trk = GamePlayerResultDisplayModel(
         playerName = "trk511",
-        score = "342",
-        goals = "1",
-        assists = "0",
-        saves = "1",
-        shots = "5",
+        coreStats = CoreStatsDisplayModel(
+            score = "342",
+            goals = "1",
+            assists = "0",
+            saves = "1",
+            shots = "5",
+        ),
     )
 
-    val jstn = PlayerGameStatsDisplayModel(
+    val jstn = GamePlayerResultDisplayModel(
         playerName = "jstn",
-        score = "1,042",
-        goals = "10",
-        assists = "0",
-        saves = "1",
-        shots = "10",
+        coreStats = CoreStatsDisplayModel(
+            score = "1,042",
+            goals = "10",
+            assists = "0",
+            saves = "1",
+            shots = "10",
+        ),
     )
 
     PocketLeagueTheme {

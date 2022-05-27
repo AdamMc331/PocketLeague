@@ -55,7 +55,7 @@ fun Events.loadFeed() = screenCoroutine {
         after = today.date.minus(NUM_DAYS_RECENT_MATCHES, DateTimeUnit.DAY)
             .atStartOfDayIn(TimeZone.currentSystemDefault())
             .toLocalDateTime(TimeZone.currentSystemDefault()),
-        group = "rlcs",
+//        group = "rlcs",
     )
 
     repository.matchRepository.fetchMatches(

@@ -5,9 +5,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -26,6 +28,7 @@ fun StatTableRow(
     title: String,
     cells: List<String>,
     boldCells: Boolean = false,
+    textStyle: TextStyle = LocalTextStyle.current,
 ) {
     val fontWeight: FontWeight? = if (boldCells) {
         FontWeight.Bold
@@ -45,12 +48,14 @@ fun StatTableRow(
         TitleCell(
             title = title,
             fontWeight = fontWeight,
+            textStyle = textStyle,
         )
 
         cells.forEach { stat ->
             StatCell(
                 text = stat,
                 fontWeight = fontWeight,
+                textStyle = textStyle,
             )
         }
     }
@@ -60,6 +65,7 @@ fun StatTableRow(
 private fun RowScope.TitleCell(
     title: String,
     fontWeight: FontWeight?,
+    textStyle: TextStyle,
 ) {
     Text(
         text = title,
@@ -68,6 +74,7 @@ private fun RowScope.TitleCell(
         fontWeight = fontWeight,
         modifier = Modifier.Companion
             .weight(2F),
+        style = textStyle,
     )
 }
 
@@ -75,6 +82,7 @@ private fun RowScope.TitleCell(
 private fun RowScope.StatCell(
     text: String,
     fontWeight: FontWeight?,
+    textStyle: TextStyle,
 ) {
     Text(
         text = text,
@@ -84,5 +92,6 @@ private fun RowScope.StatCell(
         fontWeight = fontWeight,
         modifier = Modifier
             .weight(1F),
+        style = textStyle,
     )
 }

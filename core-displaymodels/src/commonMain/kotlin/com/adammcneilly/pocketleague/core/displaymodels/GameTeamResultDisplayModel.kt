@@ -21,6 +21,8 @@ fun GameTeamResult.toDisplayModel(): GameTeamResultDisplayModel {
         team = this.team.toOverviewDisplayModel(),
         score = this.goals.toString(),
         winner = this.winner,
-        players = this.players.map(GamePlayerResult::toDisplayModel),
+        players = this.players
+            .map(GamePlayerResult::toDisplayModel)
+            .sortedByDescending { it.coreStats.score },
     )
 }

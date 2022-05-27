@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.ui
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,6 +31,7 @@ fun PlayerStatsTable(
                 "Shots",
             ),
             boldCells = true,
+            textStyle = MaterialTheme.typography.bodyMedium,
         )
 
         Divider()

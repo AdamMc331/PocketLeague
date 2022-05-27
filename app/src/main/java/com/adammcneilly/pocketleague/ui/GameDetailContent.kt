@@ -93,20 +93,20 @@ private fun TeamTabs(
         Tab(
             selected = blueTeamSelected,
             onClick = onBlueTeamSelected,
-            modifier = Modifier.padding(8.dp),
         ) {
             Text(
                 text = displayModel.blueTeamResult.team.name,
+                modifier = Modifier.padding(8.dp),
             )
         }
 
         Tab(
             selected = !blueTeamSelected,
             onClick = onOrangeTeamSelected,
-            modifier = Modifier.padding(8.dp),
         ) {
             Text(
                 text = displayModel.orangeTeamResult.team.name,
+                modifier = Modifier.padding(8.dp),
             )
         }
     }

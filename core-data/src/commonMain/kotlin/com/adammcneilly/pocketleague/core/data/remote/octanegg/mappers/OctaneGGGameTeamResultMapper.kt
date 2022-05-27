@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.core.data.remote.octanegg.mappers
 
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGGameTeamResult
+import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGPlayerStats
 import com.adammcneilly.pocketleague.core.models.GameTeamResult
 import com.adammcneilly.pocketleague.core.models.Stats
 import com.adammcneilly.pocketleague.core.models.Team
@@ -15,5 +16,6 @@ fun OctaneGGGameTeamResult.toGameTeamResult(): GameTeamResult {
         team = this.team?.team?.toTeam() ?: Team(),
         matchWinner = this.matchWinner == true,
         teamStats = this.team?.stats?.toStats() ?: Stats(),
+        players = this.players?.map(OctaneGGPlayerStats::toGamePlayerResult).orEmpty()
     )
 }

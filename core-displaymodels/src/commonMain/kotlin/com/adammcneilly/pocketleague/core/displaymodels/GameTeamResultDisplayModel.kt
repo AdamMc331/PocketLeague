@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.models.GamePlayerResult
 import com.adammcneilly.pocketleague.core.models.GameTeamResult
 
 /**
@@ -9,6 +10,7 @@ data class GameTeamResultDisplayModel(
     val team: TeamOverviewDisplayModel = TeamOverviewDisplayModel(),
     val score: String = "",
     val winner: Boolean = false,
+    val players: List<GamePlayerResultDisplayModel> = emptyList(),
 )
 
 /**
@@ -19,5 +21,6 @@ fun GameTeamResult.toDisplayModel(): GameTeamResultDisplayModel {
         team = this.team.toOverviewDisplayModel(),
         score = this.goals.toString(),
         winner = this.winner,
+        players = this.players.map(GamePlayerResult::toDisplayModel),
     )
 }

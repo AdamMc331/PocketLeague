@@ -8,6 +8,7 @@ package com.adammcneilly.pocketleague.core.models
  * @property[matchWinner] True if this team won the match between both teams.
  * @property[team] Detailed information about the [Team] playing in the match.
  * @property[teamStats] The detailed [Stats] for this [team] in the game.
+ * @property[players] The players for this [team] and how they performed in this game.
  */
 data class GameTeamResult(
     val goals: Int = -1,
@@ -15,4 +16,5 @@ data class GameTeamResult(
     val matchWinner: Boolean = false,
     val team: Team = Team(),
     val teamStats: Stats = Stats(),
+    val players: List<GamePlayerResult> = emptyList(),
 )

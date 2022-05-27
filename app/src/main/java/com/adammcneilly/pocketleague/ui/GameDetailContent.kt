@@ -3,6 +3,8 @@ package com.adammcneilly.pocketleague.ui
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -94,8 +96,10 @@ private fun TeamTabs(
             selected = blueTeamSelected,
             onClick = onBlueTeamSelected,
         ) {
-            Text(
+            InlineIconText(
                 text = displayModel.blueTeamResult.team.name,
+                icon = Icons.Default.EmojiEvents,
+                showIcon = displayModel.blueTeamResult.winner,
                 modifier = Modifier.padding(8.dp),
             )
         }
@@ -104,8 +108,10 @@ private fun TeamTabs(
             selected = !blueTeamSelected,
             onClick = onOrangeTeamSelected,
         ) {
-            Text(
+            InlineIconText(
                 text = displayModel.orangeTeamResult.team.name,
+                icon = Icons.Default.EmojiEvents,
+                showIcon = displayModel.orangeTeamResult.winner,
                 modifier = Modifier.padding(8.dp),
             )
         }

@@ -14,12 +14,35 @@ import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
  * to show how a team performed.
  */
 @Composable
-fun PlayerGameStatsList(
+fun PlayerStatsTable(
     displayModels: List<PlayerGameStatsDisplayModel>,
 ) {
     Column {
+        StatTableRow(
+            title = "Player",
+            cells = listOf(
+                "Score",
+                "Goals",
+                "Assists",
+                "Saves",
+                "Shots",
+            ),
+            boldCells = true,
+        )
+
+        Divider()
+
         displayModels.forEach { displayModel ->
-            PlayerGameStatsRow(displayModel = displayModel)
+            StatTableRow(
+                title = displayModel.playerName,
+                cells = listOf(
+                    displayModel.score,
+                    displayModel.goals,
+                    displayModel.assists,
+                    displayModel.saves,
+                    displayModel.shots,
+                ),
+            )
 
             Divider()
         }
@@ -36,7 +59,7 @@ fun PlayerGameStatsList(
 )
 @Composable
 @Suppress("UnusedPrivateMember")
-private fun PlayerGameStatsListPreview() {
+private fun PlayerStatsTablePreview() {
     val trk = PlayerGameStatsDisplayModel(
         playerName = "trk511",
         score = "342",
@@ -57,7 +80,7 @@ private fun PlayerGameStatsListPreview() {
 
     PocketLeagueTheme {
         Surface {
-            PlayerGameStatsList(
+            PlayerStatsTable(
                 displayModels = listOf(trk, jstn),
             )
         }

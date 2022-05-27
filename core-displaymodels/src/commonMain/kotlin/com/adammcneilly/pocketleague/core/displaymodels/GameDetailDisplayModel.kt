@@ -9,6 +9,7 @@ data class GameDetailDisplayModel(
     val orangeTeamResult: GameTeamResultDisplayModel = GameTeamResultDisplayModel(),
     val blueTeamResult: GameTeamResultDisplayModel = GameTeamResultDisplayModel(),
     val map: String = "",
+    val gameNumber: String = "",
 )
 
 /**
@@ -19,5 +20,6 @@ fun Game.toDetailDisplayModel(): GameDetailDisplayModel {
         orangeTeamResult = this.orange.toDisplayModel(),
         blueTeamResult = this.blue.toDisplayModel(),
         map = this.map,
+        gameNumber = this.number.toString(),
     )
 }

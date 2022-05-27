@@ -17,6 +17,7 @@ import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 @Composable
 fun PlayerStatsTable(
     displayModels: List<GamePlayerResultDisplayModel>,
+    showFinalDivider: Boolean = false,
 ) {
     Column {
         StatTableRow(
@@ -33,7 +34,7 @@ fun PlayerStatsTable(
 
         Divider()
 
-        displayModels.forEach { displayModel ->
+        displayModels.forEachIndexed { index, displayModel ->
             StatTableRow(
                 title = displayModel.playerName,
                 cells = listOf(
@@ -45,7 +46,9 @@ fun PlayerStatsTable(
                 ),
             )
 
-            Divider()
+            if (index != displayModels.lastIndex || showFinalDivider) {
+                Divider()
+            }
         }
     }
 }

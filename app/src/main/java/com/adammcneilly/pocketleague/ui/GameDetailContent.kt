@@ -127,7 +127,7 @@ private fun TeamTabs(
     uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
 @Composable
-@Suppress("UnusedPrivateMember")
+@Suppress("UnusedPrivateMember", "LongMethod")
 private fun GameDetailContentPreview() {
     val trk = GamePlayerResultDisplayModel(
         playerName = "trk511",

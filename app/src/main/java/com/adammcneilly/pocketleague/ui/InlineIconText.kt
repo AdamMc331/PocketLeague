@@ -21,6 +21,7 @@ private const val INLINE_CONTENT_ID = "inlineContent"
  *
  * @param[text] The string to render inside the text composable.
  * @param[icon] The icon that will be added to this text.
+ * @param[modifier] An optional [Modifier] to customize this text.
  * @param[leadingIcon] If true, the icon will show before the text. If false, the icon
  * appears after.
  * @param[showIcon] If true, we'll actually show the icon. If false, we'll ignore it.

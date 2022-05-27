@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.dp
  * @param[cells] The individual stats to show within this row.
  * @param[boldCells] Defaults to false, but can be passed as true if we want to bold the text,
  * for a title row for example.
+ * @param[textStyle] The [TextStyle] to apply to each cell. By default we use the local text style,
+ * but we can override this if necessary.
  */
 @Composable
 fun StatTableRow(

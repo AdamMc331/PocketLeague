@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.core.data.remote.octanegg.mappers
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGEvent
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGStage
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventTier
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
@@ -24,7 +25,7 @@ fun OctaneGGEvent.toEvent(): Event {
         imageUrl = this.image,
         stages = this.stages?.map(OctaneGGStage::toEventStage).orEmpty(),
         tier = this.tier.toEventTier(),
-        region = this.region.orEmpty(),
+        region = this.region.toEventRegion(),
         mode = this.mode.toString(),
         lan = this.lan == true,
     )
@@ -42,5 +43,21 @@ private fun String?.toEventTier(): EventTier {
         "C" -> EventTier.C
         "D" -> EventTier.D
         else -> EventTier.Unknown
+    }
+}
+
+/**
+ * Attempts to convert the supplied String to an event region, with a fallback if necessary.
+ */
+private fun String?.toEventRegion(): EventRegion {
+    return when (this) {
+        "NA" -> EventRegion.NA
+        "EU" -> EventRegion.EU
+        "OCE" -> EventRegion.OCE
+        "SAM" -> EventRegion.SAM
+        "ASIA" -> EventRegion.ASIA
+        "ME" -> EventRegion.ME
+        "INT" -> EventRegion.INT
+        else -> EventRegion.Unknown
     }
 }

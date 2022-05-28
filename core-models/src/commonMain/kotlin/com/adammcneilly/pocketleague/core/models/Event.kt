@@ -27,6 +27,6 @@ data class Event(
     val stages: List<EventStage> = emptyList(),
     val tier: EventTier = EventTier.Unknown,
     val mode: String = "",
-    val region: String = "",
+    val region: EventRegion = EventRegion.Unknown,
     val lan: Boolean = false,
 )

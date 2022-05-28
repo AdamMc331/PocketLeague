@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.ui
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,6 +18,7 @@ import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 @Composable
 fun PlayerStatsTable(
     displayModels: List<GamePlayerResultDisplayModel>,
+    showFinalDivider: Boolean = false,
 ) {
     Column {
         StatTableRow(
@@ -29,11 +31,12 @@ fun PlayerStatsTable(
                 "Shots",
             ),
             boldCells = true,
+            textStyle = MaterialTheme.typography.bodyMedium,
         )
 
         Divider()
 
-        displayModels.forEach { displayModel ->
+        displayModels.forEachIndexed { index, displayModel ->
             StatTableRow(
                 title = displayModel.playerName,
                 cells = listOf(
@@ -45,7 +48,9 @@ fun PlayerStatsTable(
                 ),
             )
 
-            Divider()
+            if (index != displayModels.lastIndex || showFinalDivider) {
+                Divider()
+            }
         }
     }
 }

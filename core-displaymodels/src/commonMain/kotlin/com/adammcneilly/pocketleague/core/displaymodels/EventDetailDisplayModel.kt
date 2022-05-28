@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.core.displaymodels
 import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventStage
+import com.adammcneilly.pocketleague.core.models.EventTier
 
 private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
 
@@ -17,7 +18,7 @@ data class EventDetailDisplayModel(
     val stageSummaries: List<EventStageSummaryDisplayModel> = emptyList(),
     val lightThemeImageUrl: String? = null,
     val darkThemeImageUrl: String? = lightThemeImageUrl,
-    val tier: String = "",
+    val tier: EventTierDisplayModel = EventTier.Unknown.toDisplayModel(),
     val mode: String = "",
     val region: String = "",
     val onlineOrLAN: String = "",
@@ -49,7 +50,7 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
             it.startDate
         }.map(EventStage::toSummaryDisplayModel),
         lightThemeImageUrl = this.imageUrl,
-        tier = this.tier,
+        tier = this.tier.toDisplayModel(),
         region = this.region,
         mode = when (this.mode) {
             "1" -> "1v1"

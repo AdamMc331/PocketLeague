@@ -25,7 +25,7 @@ data class Event(
     val endDate: LocalDateTime? = null,
     val imageUrl: String? = null,
     val stages: List<EventStage> = emptyList(),
-    val tier: String = "",
+    val tier: EventTier = EventTier.Unknown,
     val mode: String = "",
     val region: String = "",
     val lan: Boolean = false,

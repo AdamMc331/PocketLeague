@@ -10,6 +10,9 @@ data class EventTierDisplayModel(
     val description: String,
 )
 
+/**
+ * Converts an [EventTier] into a relevant [EventTierDisplayModel].
+ */
 fun EventTier.toDisplayModel(): EventTierDisplayModel {
     val name = "${this.name}-Tier"
 

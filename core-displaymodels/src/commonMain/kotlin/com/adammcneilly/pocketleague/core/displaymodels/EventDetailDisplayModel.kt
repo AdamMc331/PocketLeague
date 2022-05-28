@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.core.displaymodels
 
 import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.EventTier
 
@@ -20,7 +21,7 @@ data class EventDetailDisplayModel(
     val darkThemeImageUrl: String? = lightThemeImageUrl,
     val tier: EventTierDisplayModel = EventTier.Unknown.toDisplayModel(),
     val mode: String = "",
-    val region: String = "",
+    val region: EventRegionDisplayModel = EventRegion.Unknown.toDisplayModel(),
     val onlineOrLAN: String = "",
     val prize: String = "",
 )
@@ -51,7 +52,7 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
         }.map(EventStage::toSummaryDisplayModel),
         lightThemeImageUrl = this.imageUrl,
         tier = this.tier.toDisplayModel(),
-        region = this.region,
+        region = this.region.toDisplayModel(),
         mode = when (this.mode) {
             "1" -> "1v1"
             "2" -> "2v2"

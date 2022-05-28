@@ -151,8 +151,8 @@ private fun EventDetails(displayModel: EventDetailDisplayModel) {
         )
 
         Chip(
-            text = "Region: ${displayModel.region}",
-            tooltipText = "This is the region for eligible teams.",
+            text = displayModel.region.name,
+            tooltipText = displayModel.region.description,
         )
 
         Chip(

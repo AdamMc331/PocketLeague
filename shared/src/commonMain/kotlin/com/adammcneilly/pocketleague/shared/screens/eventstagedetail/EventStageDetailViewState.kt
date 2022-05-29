@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.eventstagedetail
 
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 
@@ -11,4 +12,5 @@ data class EventStageDetailViewState(
     val stageId: String = "",
     val showLoading: Boolean = true,
     val errorMessage: String? = null,
+    val matches: List<MatchDetailDisplayModel> = emptyList(),
 ) : ScreenState

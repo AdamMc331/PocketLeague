@@ -18,7 +18,10 @@ fun Navigation.initEventStageDetail(
             )
         },
         callOnInit = {
-            // Coming soon.
+            events.loadEventStageDetail(
+                eventId = params.eventId,
+                stageId = params.stageId,
+            )
         },
         reInitOnEachNavigation = false,
     )

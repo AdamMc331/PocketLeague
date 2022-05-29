@@ -1,6 +1,9 @@
 package com.adammcneilly.pocketleague.core.datetime
 
+import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import kotlinx.datetime.toNSDateComponents
 import platform.Foundation.NSCalendar
 import platform.Foundation.NSDateFormatter
@@ -27,5 +30,21 @@ actual class DateTimeFormatter actual constructor() {
         return nsDate?.let { date ->
             formatter.stringFromDate(date)
         }
+    }
+
+    /**
+     * See commonMain documentation.
+     */
+    actual fun formatInstant(
+        instant: Instant,
+        formatPattern: String,
+        timeZone: TimeZone,
+    ): String? {
+        val localDateTime = instant.toLocalDateTime(timeZone)
+
+        return formatLocalDateTime(
+            localDateTime = localDateTime,
+            formatPattern = formatPattern,
+        )
     }
 }

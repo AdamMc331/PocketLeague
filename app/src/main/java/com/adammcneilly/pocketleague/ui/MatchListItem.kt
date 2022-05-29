@@ -30,12 +30,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.MatchTeamResult
-import com.google.accompanist.placeholder.material.placeholder
 import com.google.accompanist.placeholder.placeholder
 import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toInstant
+import kotlinx.datetime.Instant
 
 /**
  * Displays a match between two teams inside a list item.
@@ -68,12 +65,12 @@ fun MatchListItem(
             )
 
             Text(
-                text = match.date?.getRelativeTimestamp().orEmpty(),
+                text = match.dateUTC?.getRelativeTimestamp().orEmpty(),
                 style = MaterialTheme.typography.labelSmall,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 50.dp)
                     .placeholder(
-                        visible = match.date == null,
+                        visible = match.dateUTC == null,
                         shape = CircleShape,
                         color = MaterialTheme.colorScheme.inverseSurface,
                     )
@@ -171,11 +168,10 @@ private fun MatchTeamResult.getInlineContent(): Map<String, InlineTextContent> {
 
 private const val HOURS_IN_DAY = 24
 
-private fun LocalDateTime.getRelativeTimestamp(): String {
+private fun Instant.getRelativeTimestamp(): String {
     val now = Clock.System.now()
-    val matchInstant = this.toInstant(TimeZone.currentSystemDefault())
 
-    val duration = now.minus(matchInstant)
+    val duration = now.minus(this)
 
     return when {
         duration.inWholeHours < HOURS_IN_DAY -> {

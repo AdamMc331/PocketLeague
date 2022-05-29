@@ -8,22 +8,16 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 import kotlinx.datetime.Clock
-import kotlinx.datetime.DateTimeUnit
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.atStartOfDayIn
-import kotlinx.datetime.minus
-import kotlinx.datetime.toLocalDateTime
+import kotlin.time.Duration.Companion.days
 
 const val NUM_DAYS_RECENT_MATCHES = 3
 /**
  * Loads the information for the feed state.
  */
 fun Events.loadFeed() = screenCoroutine {
-    val today = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
-
     val ongoingEventsRequest = EventListRequest(
-        date = today,
-//        group = "rlcs",
+        date = Clock.System.now(),
+        group = "rlcs",
     )
 
     repository.eventRepository.fetchEvents(
@@ -51,11 +45,10 @@ fun Events.loadFeed() = screenCoroutine {
     }
 
     val recentMatchesRequest = MatchListRequest(
-        before = today,
-        after = today.date.minus(NUM_DAYS_RECENT_MATCHES, DateTimeUnit.DAY)
-            .atStartOfDayIn(TimeZone.currentSystemDefault())
-            .toLocalDateTime(TimeZone.currentSystemDefault()),
-//        group = "rlcs",
+        before = Clock.System.now(),
+        after = Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),
+        group = "rlcs",
+        region = "NA",
     )
 
     repository.matchRepository.fetchMatches(

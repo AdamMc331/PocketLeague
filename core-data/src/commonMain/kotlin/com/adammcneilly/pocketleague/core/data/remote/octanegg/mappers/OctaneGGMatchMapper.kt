@@ -4,8 +4,6 @@ import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGMa
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.datetime.Instant
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 
 /**
  * Converts an [OctaneGGMatch] to a [Match] entity.
@@ -26,9 +24,7 @@ fun OctaneGGMatch.toMatch(): Match? {
     return Match(
         id = this.id,
         event = this.event.toEvent(),
-        date = this.date?.let { date ->
-            Instant.parse(date)
-        }?.toLocalDateTime(TimeZone.UTC),
+        dateUTC = this.dateUTC?.let(Instant.Companion::parse),
         blueTeam = this.blue.toMatchTeamResult(),
         orangeTeam = this.orange.toMatchTeamResult(),
         stage = this.stage?.toEventStage() ?: EventStage(),

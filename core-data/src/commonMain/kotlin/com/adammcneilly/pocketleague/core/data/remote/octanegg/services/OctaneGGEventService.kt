@@ -10,7 +10,6 @@ import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGEv
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGEventListResponse
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGEventParticipants
 import com.adammcneilly.pocketleague.core.data.repositories.EventRepository
-import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import io.ktor.client.request.HttpRequestBuilder
@@ -43,7 +42,7 @@ class OctaneGGEventService(
                 is DataState.Success -> {
                     val mappedEvents = apiResult.data.events?.map(OctaneGGEvent::toEvent).orEmpty()
 
-                    val sortedEvents = mappedEvents.sortedBy(Event::startDate)
+                    val sortedEvents = mappedEvents.sortedBy(Event::startDateUTC)
 
                     DataState.Success(sortedEvents)
                 }
@@ -108,9 +107,6 @@ class OctaneGGEventService(
 }
 
 private fun HttpRequestBuilder.addEventParameters(request: EventListRequest) {
-    val dateTimeFormatter = DateTimeFormatter()
-    val octaneGGDateFormat = "yyyy-MM-dd"
-
     if (request.group != null) {
         this.parameter("group", request.group)
     }
@@ -120,17 +116,14 @@ private fun HttpRequestBuilder.addEventParameters(request: EventListRequest) {
     }
 
     if (request.after != null) {
-        val afterString = dateTimeFormatter.formatLocalDateTime(request.after, octaneGGDateFormat)
-        this.parameter("after", afterString)
+        this.parameter("after", request.after.toString())
     }
 
     if (request.before != null) {
-        val beforeString = dateTimeFormatter.formatLocalDateTime(request.before, octaneGGDateFormat)
-        this.parameter("before", beforeString)
+        this.parameter("before", request.before.toString())
     }
 
     if (request.date != null) {
-        val dateString = dateTimeFormatter.formatLocalDateTime(request.date, octaneGGDateFormat)
-        this.parameter("date", dateString)
+        this.parameter("date", request.date.toString())
     }
 }

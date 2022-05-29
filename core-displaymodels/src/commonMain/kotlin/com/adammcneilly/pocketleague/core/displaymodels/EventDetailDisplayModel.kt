@@ -5,6 +5,7 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.EventTier
+import kotlinx.datetime.TimeZone
 
 private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
 
@@ -33,22 +34,24 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
     val dateTimeFormatter = DateTimeFormatter()
 
     return EventDetailDisplayModel(
-        startDate = this.startDate?.let { startDate ->
-            dateTimeFormatter.formatLocalDateTime(
-                localDateTime = startDate,
+        startDate = this.startDateUTC?.let { startDate ->
+            dateTimeFormatter.formatInstant(
+                instant = startDate,
                 formatPattern = EVENT_DATE_FORMAT,
+                timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
-        endDate = this.endDate?.let { endDate ->
-            dateTimeFormatter.formatLocalDateTime(
-                localDateTime = endDate,
+        endDate = this.endDateUTC?.let { endDate ->
+            dateTimeFormatter.formatInstant(
+                instant = endDate,
                 formatPattern = EVENT_DATE_FORMAT,
+                timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
         name = this.name,
         eventId = this.id,
         stageSummaries = this.stages.sortedBy {
-            it.startDate
+            it.startDateUTC
         }.map(EventStage::toSummaryDisplayModel),
         lightThemeImageUrl = this.imageUrl,
         tier = this.tier.toDisplayModel(),

@@ -8,7 +8,6 @@ import com.adammcneilly.pocketleague.core.data.remote.octanegg.mappers.toMatch
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGMatch
 import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGMatchListResponse
 import com.adammcneilly.pocketleague.core.data.repositories.MatchRepository
-import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.parameter
@@ -82,17 +81,12 @@ class OctaneGGMatchService(
 }
 
 private fun HttpRequestBuilder.addMatchParameters(request: MatchListRequest) {
-    val dateTimeFormatter = DateTimeFormatter()
-    val octaneGGDateFormat = "yyyy-MM-dd"
-
     if (request.after != null) {
-        val afterString = dateTimeFormatter.formatLocalDateTime(request.after, octaneGGDateFormat)
-        this.parameter("after", afterString)
+        this.parameter("after", request.after.toString())
     }
 
     if (request.before != null) {
-        val beforeString = dateTimeFormatter.formatLocalDateTime(request.before, octaneGGDateFormat)
-        this.parameter("before", beforeString)
+        this.parameter("before", request.before.toString())
     }
 
     if (request.group != null) {

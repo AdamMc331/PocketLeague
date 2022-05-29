@@ -71,5 +71,12 @@ fun Navigation.ScreenPicker(
                     .padding(paddingValues)
             )
         }
+        Screens.EventStageDetail -> {
+            EventStageDetailContent(
+                viewState = stateProvider.get(screenIdentifier),
+                modifier = Modifier
+                    .padding(paddingValues),
+            )
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.core.displaymodels
 
 import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
+import kotlinx.datetime.TimeZone
 
 private const val MATCH_DATE_FORMAT = "MMM dd, yyyy HH:mm"
 
@@ -25,8 +26,12 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
     return MatchDetailDisplayModel(
         orangeTeamResult = this.orangeTeam.toDisplayModel(),
         blueTeamResult = this.blueTeam.toDisplayModel(),
-        date = this.date?.let { date ->
-            dateTimeFormatter.formatLocalDateTime(date, MATCH_DATE_FORMAT)
+        date = this.dateUTC?.let { date ->
+            dateTimeFormatter.formatInstant(
+                instant = date,
+                formatPattern = MATCH_DATE_FORMAT,
+                timeZone = TimeZone.currentSystemDefault(),
+            )
         }.orEmpty(),
         eventName = this.event.name,
         stageName = this.stage.name,

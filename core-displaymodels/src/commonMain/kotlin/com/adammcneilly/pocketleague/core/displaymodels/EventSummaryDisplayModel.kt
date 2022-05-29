@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.core.displaymodels
 
 import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Event
+import kotlinx.datetime.TimeZone
 
 private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
 
@@ -37,16 +38,18 @@ fun Event.toSummaryDisplayModel(): EventSummaryDisplayModel {
     val dateTimeFormatter = DateTimeFormatter()
 
     return EventSummaryDisplayModel(
-        startDate = this.startDate?.let { startDate ->
-            dateTimeFormatter.formatLocalDateTime(
-                localDateTime = startDate,
+        startDate = this.startDateUTC?.let { startDate ->
+            dateTimeFormatter.formatInstant(
+                instant = startDate,
                 formatPattern = EVENT_DATE_FORMAT,
+                timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
-        endDate = this.endDate?.let { endDate ->
-            dateTimeFormatter.formatLocalDateTime(
-                localDateTime = endDate,
+        endDate = this.endDateUTC?.let { endDate ->
+            dateTimeFormatter.formatInstant(
+                instant = endDate,
                 formatPattern = EVENT_DATE_FORMAT,
+                timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
         name = this.name,

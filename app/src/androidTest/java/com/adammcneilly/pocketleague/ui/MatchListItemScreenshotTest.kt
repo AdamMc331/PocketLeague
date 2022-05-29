@@ -37,7 +37,7 @@ class MatchListItemScreenshotTest : ScreenshotTest {
             event = Event(
                 name = "Test Event",
             ),
-            date = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
+            dateUTC = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
             blueTeam = MatchTeamResult(
                 score = 5,
                 winner = true,
@@ -68,7 +68,7 @@ class MatchListItemScreenshotTest : ScreenshotTest {
             event = Event(
                 name = "Test Event",
             ),
-            date = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
+            dateUTC = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
             blueTeam = MatchTeamResult(
                 score = 0,
                 winner = false,

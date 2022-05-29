@@ -15,7 +15,7 @@ data class OctaneGGMatch(
     @SerialName("event")
     val event: OctaneGGEvent? = null,
     @SerialName("date")
-    val date: String? = null,
+    val dateUTC: String? = null,
     @SerialName("blue")
     val blue: OctaneGGMatchTeamResult? = null,
     @SerialName("orange")

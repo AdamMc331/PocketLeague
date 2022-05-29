@@ -67,7 +67,7 @@ class OctaneGGMatchService(
                     val mappedMatches =
                         apiResult.data.matches?.mapNotNull(OctaneGGMatch::toMatch).orEmpty()
 
-                    val sortedMatches = mappedMatches.sortedByDescending(Match::date)
+                    val sortedMatches = mappedMatches.sortedByDescending(Match::dateUTC)
 
                     DataState.Success(sortedMatches)
                 }

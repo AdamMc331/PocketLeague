@@ -43,7 +43,7 @@ class OctaneGGEventService(
                 is DataState.Success -> {
                     val mappedEvents = apiResult.data.events?.map(OctaneGGEvent::toEvent).orEmpty()
 
-                    val sortedEvents = mappedEvents.sortedBy(Event::startDate)
+                    val sortedEvents = mappedEvents.sortedBy(Event::startDateUTC)
 
                     DataState.Success(sortedEvents)
                 }

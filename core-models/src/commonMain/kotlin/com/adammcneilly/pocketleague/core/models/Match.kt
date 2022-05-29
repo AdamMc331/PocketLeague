@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.core.models
 
-import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.Instant
 
 /**
  * A [Match] is any competition between two teams. Could be a single game, a series,
@@ -9,7 +9,7 @@ import kotlinx.datetime.LocalDateTime
 data class Match(
     val id: String = "",
     val event: Event = Event(),
-    val date: LocalDateTime? = null,
+    val dateUTC: Instant? = null,
     val blueTeam: MatchTeamResult = MatchTeamResult(),
     val orangeTeam: MatchTeamResult = MatchTeamResult(),
     val stage: EventStage = EventStage(),

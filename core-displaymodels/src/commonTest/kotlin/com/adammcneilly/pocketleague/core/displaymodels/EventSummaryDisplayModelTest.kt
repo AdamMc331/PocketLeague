@@ -14,8 +14,8 @@ class EventSummaryDisplayModelTest {
         val testEvent = Event(
             id = "1234",
             name = "Test Event",
-            startDate = Instant.parse("2022-01-01T12:00:00Z").toLocalDateTime(TimeZone.currentSystemDefault()),
-            endDate = Instant.parse("2022-01-02T12:00:00Z").toLocalDateTime(TimeZone.currentSystemDefault()),
+            startDateUTC = Instant.parse("2022-01-01T12:00:00Z").toLocalDateTime(TimeZone.currentSystemDefault()),
+            endDateUTC = Instant.parse("2022-01-02T12:00:00Z").toLocalDateTime(TimeZone.currentSystemDefault()),
             imageUrl = "Test Image URL",
         )
 

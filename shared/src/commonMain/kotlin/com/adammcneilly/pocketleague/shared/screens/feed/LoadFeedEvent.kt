@@ -23,7 +23,7 @@ fun Events.loadFeed() = screenCoroutine {
 
     val ongoingEventsRequest = EventListRequest(
         date = today,
-//        group = "rlcs",
+        group = "rlcs",
     )
 
     repository.eventRepository.fetchEvents(

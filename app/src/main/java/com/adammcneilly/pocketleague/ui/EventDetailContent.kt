@@ -3,6 +3,7 @@
 package com.adammcneilly.pocketleague.ui
 
 import android.content.res.Configuration
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -47,13 +48,17 @@ private const val EVENT_IMAGE_ASPECT_RATIO = 1.5F
 @Composable
 fun EventDetailContent(
     viewState: EventDetailViewState,
+    onStageClicked: (String, String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
             .fillMaxSize(),
     ) {
-        EventDetail(viewState)
+        EventDetail(
+            viewState,
+            onStageClicked = onStageClicked,
+        )
 
         if (viewState.showLoading) {
             CircularProgressIndicator(
@@ -68,6 +73,7 @@ fun EventDetailContent(
 @Composable
 private fun EventDetail(
     viewState: EventDetailViewState,
+    onStageClicked: (String, String) -> Unit,
 ) {
     val displayModel = viewState.eventDetail ?: return
 
@@ -82,7 +88,10 @@ private fun EventDetail(
 
         EventDetails(displayModel)
 
-        EventStages(displayModel)
+        EventStages(
+            displayModel,
+            onStageClicked = onStageClicked,
+        )
 
         val participants = viewState.participants
 
@@ -115,7 +124,10 @@ private fun EventParticipants(
 }
 
 @Composable
-private fun EventStages(displayModel: EventDetailDisplayModel) {
+private fun EventStages(
+    displayModel: EventDetailDisplayModel,
+    onStageClicked: (String, String) -> Unit,
+) {
     Text(
         text = "Stages",
         style = MaterialTheme.typography.headlineSmall,
@@ -125,6 +137,13 @@ private fun EventStages(displayModel: EventDetailDisplayModel) {
         displayModel.stageSummaries.forEachIndexed { index, stageSummary ->
             StageSummaryListItem(
                 displayModel = stageSummary,
+                modifier = Modifier
+                    .clickable {
+                        onStageClicked.invoke(
+                            displayModel.eventId,
+                            stageSummary.stageId,
+                        )
+                    }
             )
 
             if (index != displayModel.stageSummaries.lastIndex) {
@@ -250,6 +269,8 @@ private fun EventDetailContentPreview() {
         Surface {
             EventDetailContent(
                 viewState = viewState,
+                onStageClicked = { _, _ ->
+                },
                 modifier = Modifier.fillMaxSize(),
             )
         }

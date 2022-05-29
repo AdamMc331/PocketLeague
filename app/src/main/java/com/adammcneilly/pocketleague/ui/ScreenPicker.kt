@@ -8,6 +8,7 @@ import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 import com.adammcneilly.pocketleague.shared.screens.Screens
 import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailParams
+import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.EventStageDetailParams
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailParams
 
 /**
@@ -69,7 +70,18 @@ fun Navigation.ScreenPicker(
             EventDetailContent(
                 viewState = stateProvider.get(screenIdentifier),
                 modifier = Modifier
-                    .padding(paddingValues)
+                    .padding(paddingValues),
+                onStageClicked = { eventId, stageId ->
+                    val params = EventStageDetailParams(
+                        eventId = eventId,
+                        stageId = stageId,
+                    )
+
+                    navigate(
+                        Screens.EventStageDetail,
+                        params = params,
+                    )
+                }
             )
         }
         Screens.EventStageDetail -> {

@@ -14,6 +14,7 @@ import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailParam
  * The screen picker tacks a current [screenIdentifier] and renders the content for that screen.
  */
 @Composable
+@Suppress("LongMethod")
 fun Navigation.ScreenPicker(
     screenIdentifier: ScreenIdentifier,
     paddingValues: PaddingValues = PaddingValues(),

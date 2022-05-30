@@ -12,5 +12,5 @@ data class EventStageDetailViewState(
     val stageId: String = "",
     val showLoading: Boolean = true,
     val errorMessage: String? = null,
-    val matches: List<MatchDetailDisplayModel> = emptyList(),
+    val matchesByDate: Map<String, List<MatchDetailDisplayModel>> = emptyMap(),
 ) : ScreenState

@@ -35,12 +35,7 @@ class OctaneGGMatchService(
                 is DataState.Success -> {
                     val mappedMatch = apiResult.data.toMatch()
 
-                    if (mappedMatch != null) {
-                        DataState.Success(mappedMatch)
-                    } else {
-                        val err = Throwable("Unable to parse match for id: $matchId")
-                        DataState.Error(err)
-                    }
+                    DataState.Success(mappedMatch)
                 }
                 is DataState.Error -> {
                     DataState.Error(apiResult.error)
@@ -64,7 +59,7 @@ class OctaneGGMatchService(
                 is DataState.Loading -> DataState.Loading
                 is DataState.Success -> {
                     val mappedMatches =
-                        apiResult.data.matches?.mapNotNull(OctaneGGMatch::toMatch).orEmpty()
+                        apiResult.data.matches?.map(OctaneGGMatch::toMatch).orEmpty()
 
                     val sortedMatches = mappedMatches.sortedByDescending(Match::dateUTC)
 

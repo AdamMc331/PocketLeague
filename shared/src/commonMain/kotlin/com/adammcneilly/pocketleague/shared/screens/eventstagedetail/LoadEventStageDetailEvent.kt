@@ -2,10 +2,13 @@ package com.adammcneilly.pocketleague.shared.screens.eventstagedetail
 
 import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.data.models.MatchListRequest
+import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
+import kotlinx.datetime.TimeZone
 
 /**
  * Loads the information necessary for the event stage detail screen.
@@ -35,11 +38,11 @@ private suspend fun Events.fetchMatchesForStage(
                     )
                 }
                 is DataState.Success -> {
-                    val mappedMatches = repoResult.data.map(Match::toDetailDisplayModel)
+                    val sortedMatches = repoResult.data.sortedBy(Match::dateUTC)
 
                     it.copy(
                         showLoading = false,
-                        matches = mappedMatches,
+                        matchesByDate = sortedMatches.groupByLocalDate(),
                     )
                 }
                 is DataState.Error -> {
@@ -52,5 +55,25 @@ private suspend fun Events.fetchMatchesForStage(
 
             viewState
         }
+    }
+}
+
+private const val MATCH_DATE_FORMAT = "MMM dd, yyyy"
+
+private fun List<Match>.groupByLocalDate(): Map<String, List<MatchDetailDisplayModel>> {
+    val dateTimeFormatter = DateTimeFormatter()
+
+    val matchesByDate: Map<String, List<Match>> = this.groupBy { match ->
+        match.dateUTC?.let { dateInstant ->
+            dateTimeFormatter.formatInstant(
+                instant = dateInstant,
+                formatPattern = MATCH_DATE_FORMAT,
+                timeZone = TimeZone.currentSystemDefault(),
+            )
+        }.orEmpty()
+    }
+
+    return matchesByDate.mapValues { (_, matchList) ->
+        matchList.map(Match::toDetailDisplayModel)
     }
 }

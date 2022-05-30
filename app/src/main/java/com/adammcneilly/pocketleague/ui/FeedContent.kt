@@ -69,7 +69,7 @@ private fun SuccessContent(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 items(viewState.recentMatches) { match ->
-                    MatchListItem(
+                    RecentMatchCard(
                         match = match,
                         modifier = Modifier
                             .fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO)

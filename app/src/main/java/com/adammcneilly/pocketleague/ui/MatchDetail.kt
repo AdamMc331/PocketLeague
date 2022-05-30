@@ -129,7 +129,7 @@ private fun MatchDetailPreview() {
             team = g2,
             score = "4",
         ),
-        date = "May 15, 2022 - 13:00 EDT",
+        localDate = "May 15, 2022 - 13:00 EDT",
         eventName = "RLCS 2021-2022 North America Regional 3",
         stageName = "Main Event",
     )

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.composables.TopBar
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
@@ -25,11 +27,16 @@ private const val DETAIL_PANE_WIDTH_RATIO = 0.6F
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Navigation.TwoPane(
-    saveableStateHolder: SaveableStateHolder
+    saveableStateHolder: SaveableStateHolder,
 ) {
     val navigationLevelsMap = getNavigationLevelsMap(currentLevel1ScreenIdentifier)!!
     Scaffold(
-        topBar = { TopBar(getTitle(currentScreenIdentifier)) },
+        topBar = {
+            TopBar(
+                title = getTitle(currentScreenIdentifier),
+                modifier = Modifier.statusBarsPadding(),
+            )
+        },
         content = { paddingValues ->
             Row(
                 modifier = Modifier.padding(paddingValues)
@@ -73,7 +80,7 @@ fun Navigation.TwoPane(
  */
 @Composable
 fun Navigation.TwoPaneDefaultDetail(
-    screenIdentifier: ScreenIdentifier
+    screenIdentifier: ScreenIdentifier,
 ) {
 //    when (screenIdentifier.screen) {
 //

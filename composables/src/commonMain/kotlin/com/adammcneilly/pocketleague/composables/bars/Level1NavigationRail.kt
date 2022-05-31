@@ -17,6 +17,9 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 /**
  * A navigation rail is similar to a [Level1BottomBar] except it will show up on the left side of the
  * screen, used on foldable or other large screen devices.
+ *
+ * @param[selectedTab] The current [ScreenIdentifier] that should be selected in the menu.
+ * @param[modifier] Optional modifications to perform on this component.
  */
 @Composable
 fun Navigation.Level1NavigationRail(

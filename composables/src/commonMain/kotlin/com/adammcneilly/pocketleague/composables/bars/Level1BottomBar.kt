@@ -16,11 +16,14 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
 /**
  * Creates a [NavigationBar] to manage the menu items on a phone or other compact screen size.
+ *
+ * @param[selectedTab] The current [ScreenIdentifier] that should be selected in the menu.
+ * @param[modifier] Optional modifications to perform on this component.
  */
 @Composable
 fun Navigation.Level1BottomBar(
     selectedTab: ScreenIdentifier,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
 ) {
     NavigationBar(
         content = {

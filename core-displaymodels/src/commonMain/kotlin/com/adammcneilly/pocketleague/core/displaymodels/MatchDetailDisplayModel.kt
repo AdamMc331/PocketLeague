@@ -11,6 +11,7 @@ private const val MATCH_TIME_FORMAT = "HH:mm"
  * User friendly presentation of detailed info about a match between two teams.
  */
 data class MatchDetailDisplayModel(
+    val matchId: String = "",
     val orangeTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(),
     val blueTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(),
     val localDate: String = "",
@@ -26,6 +27,7 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
     val dateTimeFormatter = DateTimeFormatter()
 
     return MatchDetailDisplayModel(
+        matchId = this.id,
         orangeTeamResult = this.orangeTeam.toDisplayModel(),
         blueTeamResult = this.blueTeam.toDisplayModel(),
         localDate = this.dateUTC?.let { date ->

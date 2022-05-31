@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.composables
+package com.adammcneilly.pocketleague.composables.bars
 
 import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text

@@ -1,17 +1,20 @@
-package com.adammcneilly.pocketleague.ui
+package com.adammcneilly.pocketleague.composables.bars
 
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 /**
- * This shows the top toolbar at the top of an application.
+ * This shows the top toolbar of an application.
+ *
+ * @param[title] The text to display inside this toolbar.
+ * @param[modifier] Optional modifications to perform on this component.
  */
 @Composable
 fun TopBar(
-    title: String
+    title: String,
+    modifier: Modifier = Modifier,
 ) {
     SmallTopAppBar(
         title = {
@@ -19,7 +22,6 @@ fun TopBar(
                 text = title,
             )
         },
-        modifier = Modifier
-            .statusBarsPadding(),
+        modifier = modifier,
     )
 }

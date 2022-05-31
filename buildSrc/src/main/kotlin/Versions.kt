@@ -75,4 +75,7 @@ object Versions {
     const val ktor = "1.6.8"
 
     const val kotlinxSerialization = "1.3.2"
+
+    // https://github.com/JetBrains/compose-jb/releases
+    const val mppCompose = "1.1.1"
 }

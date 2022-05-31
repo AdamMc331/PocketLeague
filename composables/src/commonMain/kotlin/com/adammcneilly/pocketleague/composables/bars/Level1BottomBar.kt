@@ -1,11 +1,9 @@
-package com.adammcneilly.pocketleague.ui
+package com.adammcneilly.pocketleague.composables.bars
 
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Feed
 import androidx.compose.material.icons.filled.Leaderboard
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -17,11 +15,15 @@ import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
 /**
- * Creates a [BottomAppBar] to manage the menu items on a phone or other compact screen size.
+ * Creates a [NavigationBar] to manage the menu items on a phone or other compact screen size.
+ *
+ * @param[selectedTab] The current [ScreenIdentifier] that should be selected in the menu.
+ * @param[modifier] Optional modifications to perform on this component.
  */
 @Composable
 fun Navigation.Level1BottomBar(
-    selectedTab: ScreenIdentifier
+    selectedTab: ScreenIdentifier,
+    modifier: Modifier = Modifier,
 ) {
     NavigationBar(
         content = {
@@ -44,7 +46,6 @@ fun Navigation.Level1BottomBar(
                 onClick = { navigateByLevel1Menu(Level1Navigation.Records) },
             )
         },
-        modifier = Modifier
-            .navigationBarsPadding(),
+        modifier = modifier,
     )
 }

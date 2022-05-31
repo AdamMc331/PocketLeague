@@ -14,7 +14,6 @@ import com.adammcneilly.pocketleague.shared.screens.Level1Navigation
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
-
 /**
  * Creates a [NavigationBar] to manage the menu items on a phone or other compact screen size.
  */

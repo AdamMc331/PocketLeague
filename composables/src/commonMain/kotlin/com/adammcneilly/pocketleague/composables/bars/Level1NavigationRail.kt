@@ -14,7 +14,6 @@ import com.adammcneilly.pocketleague.shared.screens.Level1Navigation
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
-
 /**
  * A navigation rail is similar to a [Level1BottomBar] except it will show up on the left side of the
  * screen, used on foldable or other large screen devices.

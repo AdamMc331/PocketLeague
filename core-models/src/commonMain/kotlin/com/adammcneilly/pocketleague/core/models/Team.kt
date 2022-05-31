@@ -6,6 +6,6 @@ package com.adammcneilly.pocketleague.core.models
  */
 data class Team(
     val id: String = "",
-    val name: String = "",
+    val name: String = "TBD",
     val imageUrl: String? = null,
 )

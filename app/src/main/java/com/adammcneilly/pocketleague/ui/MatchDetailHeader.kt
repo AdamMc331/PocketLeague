@@ -54,7 +54,7 @@ fun MatchDetailHeader(
                 .padding(horizontal = 24.dp)
                 .padding(bottom = 12.dp),
             textAlign = TextAlign.Center,
-            text = displayModel.date,
+            text = displayModel.localDate,
         )
     }
 }

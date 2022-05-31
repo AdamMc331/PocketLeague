@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,6 +26,7 @@ import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.EventStageD
 @Composable
 fun EventStageDetailContent(
     viewState: EventStageDetailViewState,
+    onMatchClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -46,7 +48,13 @@ fun EventStageDetailContent(
                 item {
                     Card {
                         matchList.forEachIndexed { index, match ->
-                            MatchListItem(displayModel = match)
+                            MatchListItem(
+                                displayModel = match,
+                                modifier = Modifier
+                                    .clickable {
+                                        onMatchClicked.invoke(match.matchId)
+                                    }
+                            )
 
                             if (index != matchList.lastIndex) {
                                 Divider()

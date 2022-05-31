@@ -13,4 +13,5 @@ data class EventListRequest(
     val after: Instant? = null,
     val before: Instant? = null,
     val date: Instant? = null,
+    val name: String? = null,
 )

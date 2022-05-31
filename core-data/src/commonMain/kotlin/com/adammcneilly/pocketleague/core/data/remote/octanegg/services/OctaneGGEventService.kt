@@ -126,4 +126,8 @@ private fun HttpRequestBuilder.addEventParameters(request: EventListRequest) {
     if (request.date != null) {
         this.parameter("date", request.date.toString())
     }
+
+    if (request.name != null) {
+        this.parameter("name", request.name)
+    }
 }

@@ -16,8 +16,9 @@ const val NUM_DAYS_RECENT_MATCHES = 3
  */
 fun Events.loadFeed() = screenCoroutine {
     val ongoingEventsRequest = EventListRequest(
-        date = Clock.System.now(),
+//        date = Clock.System.now(),
         group = "rlcs",
+        name = "North America Regional 3",
     )
 
     repository.eventRepository.fetchEvents(

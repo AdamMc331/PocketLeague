@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 import com.adammcneilly.pocketleague.shared.screens.Screens
@@ -32,7 +31,7 @@ fun Navigation.ScreenPicker(
                     navigate(
                         screen = Screens.MatchDetail,
                         params = MatchDetailParams(
-                            match = match,
+                            matchId = match.id,
                         ),
                     )
                 },
@@ -93,7 +92,7 @@ fun Navigation.ScreenPicker(
                 onMatchClicked = { matchId ->
                     navigate(
                         Screens.MatchDetail,
-                        MatchDetailParams(Match(id = matchId))
+                        MatchDetailParams(matchId)
                     )
                 },
             )

@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
+import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventStage
@@ -31,7 +31,7 @@ data class EventDetailDisplayModel(
  * Converts an [Event] into an [EventDetailDisplayModel].
  */
 fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
-    val dateTimeFormatter = DateTimeFormatter()
+    val dateTimeFormatter = dateTimeFormatter()
 
     return EventDetailDisplayModel(
         startDate = this.startDateUTC?.let { startDate ->

@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.shared.screens.eventstagedetail
 
 import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.data.models.MatchListRequest
-import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
+import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Match
@@ -61,7 +61,7 @@ private suspend fun Events.fetchMatchesForStage(
 private const val MATCH_DATE_FORMAT = "MMM dd, yyyy"
 
 private fun List<Match>.groupByLocalDate(): Map<String, List<MatchDetailDisplayModel>> {
-    val dateTimeFormatter = DateTimeFormatter()
+    val dateTimeFormatter = dateTimeFormatter()
 
     val matchesByDate: Map<String, List<Match>> = this.groupBy { match ->
         match.dateUTC?.let { dateInstant ->

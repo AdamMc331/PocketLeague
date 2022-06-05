@@ -5,6 +5,11 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 
 /**
+ * Creates an implementation of [DateTimeFormatter] for a specific platform.
+ */
+expect fun dateTimeFormatter(): DateTimeFormatter
+
+/**
  * A shared class between platforms that is used to format a date into a user friendly string.
  */
 interface DateTimeFormatter {

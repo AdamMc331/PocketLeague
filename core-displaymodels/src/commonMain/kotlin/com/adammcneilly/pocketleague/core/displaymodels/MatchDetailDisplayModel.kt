@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
+import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.datetime.TimeZone
 
@@ -24,7 +24,7 @@ data class MatchDetailDisplayModel(
  * Converts a [Match] to a [MatchDetailDisplayModel].
  */
 fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
-    val dateTimeFormatter = DateTimeFormatter()
+    val dateTimeFormatter = dateTimeFormatter()
 
     return MatchDetailDisplayModel(
         matchId = this.id,

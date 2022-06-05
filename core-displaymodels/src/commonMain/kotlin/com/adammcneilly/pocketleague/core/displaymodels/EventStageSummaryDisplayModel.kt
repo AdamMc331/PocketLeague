@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
+import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.EventStage
 import kotlinx.datetime.TimeZone
 
@@ -26,7 +26,7 @@ data class EventStageSummaryDisplayModel(
  * Converts an [EventStage] into an [EventStageSummaryDisplayModel].
  */
 fun EventStage.toSummaryDisplayModel(): EventStageSummaryDisplayModel {
-    val dateTimeFormatter = DateTimeFormatter()
+    val dateTimeFormatter = dateTimeFormatter()
 
     return EventStageSummaryDisplayModel(
         startDate = this.startDateUTC?.let { startDate ->

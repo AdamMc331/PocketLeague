@@ -1,11 +1,14 @@
 package com.adammcneilly.pocketleague.composables.eventsummary
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
+import io.kamel.image.KamelImage
+import io.kamel.image.lazyPainterResource
+import io.ktor.http.Url
 
 /**
  * Used to show a specific [displayModel] inside of a list.
@@ -47,13 +53,6 @@ fun EventSummaryListItem(
 private fun EventNames(displayModel: EventSummaryDisplayModel) {
     Text(
         text = displayModel.name,
-        modifier = Modifier
-            .defaultMinSize(minWidth = 150.dp)
-//            .placeholder(
-//                visible = displayModel.name.isEmpty(),
-//                shape = CircleShape,
-//                color = MaterialTheme.colorScheme.inverseSurface,
-//            )
     )
 }
 
@@ -62,13 +61,6 @@ private fun EventDates(displayModel: EventSummaryDisplayModel) {
     Text(
         text = displayModel.dateString,
         style = MaterialTheme.typography.labelSmall,
-        modifier = Modifier
-            .defaultMinSize(minWidth = 50.dp)
-//            .placeholder(
-//                visible = displayModel.startDate.isEmpty(),
-//                shape = CircleShape,
-//                color = MaterialTheme.colorScheme.inverseSurface,
-//            )
     )
 }
 
@@ -78,25 +70,32 @@ private fun EventImage(displayModel: EventSummaryDisplayModel) {
         displayModel.darkThemeImageUrl
     } else {
         displayModel.lightThemeImageUrl
-    }
+    }.orEmpty()
 
-//    AsyncImage(
-//        model = ImageRequest.Builder(LocalContext.current)
-//            .data(imageUrl)
-//            .crossfade(true)
-//            .build(),
-//        contentDescription = "Event Image",
-//        modifier = Modifier
-//            .size(48.dp)
-//            .darkThemeBackgroundModifier(
-//                color = MaterialTheme.colorScheme.inverseSurface,
-//                shape = CircleShape,
-//            )
-//            .padding(8.dp)
-//            .placeholder(
-//                visible = imageUrl == null,
-//                shape = CircleShape,
-//                color = MaterialTheme.colorScheme.inverseSurface,
-//            ),
-//    )
+    Box(
+        modifier = Modifier
+            .size(48.dp),
+    ) {
+        if (imageUrl.isNotEmpty()) {
+            KamelImage(
+                resource = lazyPainterResource(
+                    data = Url(imageUrl),
+                ),
+                contentDescription = "Event Image",
+                modifier = Modifier
+                    .size(48.dp),
+                crossfade = true,
+                onLoading = {
+                    Box(
+                        modifier = Modifier
+                            .size(48.dp)
+                            .background(
+                                color = MaterialTheme.colorScheme.onSurface,
+                                shape = CircleShape,
+                            ),
+                    )
+                },
+            )
+        }
+    }
 }

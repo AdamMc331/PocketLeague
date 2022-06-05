@@ -31,6 +31,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
+                implementation("com.alialbaali.kamel:kamel-image:0.2.2")
             }
         }
         val commonTest by getting {

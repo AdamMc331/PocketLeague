@@ -78,4 +78,7 @@ object Versions {
 
     // https://github.com/JetBrains/compose-jb/releases
     const val mppCompose = "1.1.1"
+
+    // https://github.com/alialbaali/Kamel/releases
+    const val kamel = "0.2.2"
 }

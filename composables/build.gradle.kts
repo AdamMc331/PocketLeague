@@ -9,20 +9,11 @@ plugins {
 kotlin {
     android()
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "composables"
-        }
-    }
-
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation(project(":shared"))
+                implementation(project(":core-displaymodels"))
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose("org.jetbrains.compose.ui:ui-tooling"))
@@ -30,6 +21,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
+                implementation("com.alialbaali.kamel:kamel-image:${Versions.kamel}")
             }
         }
         val commonTest by getting {

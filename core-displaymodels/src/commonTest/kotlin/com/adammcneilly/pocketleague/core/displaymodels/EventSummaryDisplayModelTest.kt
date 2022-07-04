@@ -21,8 +21,8 @@ class EventSummaryDisplayModelTest {
 
         with(displayModel) {
             assertEquals("1234", eventId)
-            assertEquals("Test Image URL", lightThemeImageUrl)
-            assertEquals("Test Image URL", darkThemeImageUrl)
+            assertEquals("Test Image URL", imageURL.lightThemeImageUrl)
+            assertEquals("Test Image URL", imageURL.darkThemeImageURL)
             assertEquals("Jan 01, 2022", startDate)
             assertEquals("Test Event", name)
         }

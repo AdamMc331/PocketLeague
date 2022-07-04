@@ -1,16 +1,17 @@
-package com.adammcneilly.pocketleague.ui
+package com.adammcneilly.pocketleague.composables.recentmatch
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
-import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -22,30 +23,50 @@ import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.composables.recentmatch.RecentMatchCardContent
-import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
-import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.core.models.MatchTeamResult
-import com.google.accompanist.placeholder.placeholder
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 
 /**
  * Displays a match between two teams inside a list item.
+ *
+ * This is intended ot be used inside a card, but right now KMM Compose Material 3 does
+ * not have a card component, so this can be used from that in Android.
  */
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
-fun RecentMatchCard(
-    match: Match,
+fun RecentMatchCardContent(
+    match: MatchDetailDisplayModel,
     modifier: Modifier = Modifier,
 ) {
-    Card(
-        modifier = modifier,
+    Column(
+        modifier = modifier.padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        RecentMatchCardContent(
-            match = match.toDetailDisplayModel(),
+        Text(
+            text = match.eventName,
+            fontWeight = FontWeight.Bold,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier
+                .fillMaxWidth(),
         )
+
+        Text(
+            // TODO: Replace with relative date
+            text = match.localDate,
+            style = MaterialTheme.typography.labelSmall,
+            modifier = Modifier
+                .defaultMinSize(minWidth = 50.dp),
+        )
+
+        Spacer(
+            modifier = Modifier.height(8.dp),
+        )
+
+        MatchTeamResultRow(teamResult = match.blueTeamResult)
+
+        MatchTeamResultRow(teamResult = match.orangeTeamResult)
     }
 }
 
@@ -55,7 +76,7 @@ fun RecentMatchCard(
  */
 @Composable
 private fun MatchTeamResultRow(
-    teamResult: MatchTeamResult,
+    teamResult: MatchTeamResultDisplayModel,
 ) {
     val fontWeight: FontWeight? = if (teamResult.winner) {
         FontWeight.Bold
@@ -67,32 +88,22 @@ private fun MatchTeamResultRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
-            text = teamResult.score.toString(),
+            text = teamResult.score,
             fontWeight = fontWeight,
-            modifier = Modifier
-                .placeholder(
-                    visible = teamResult.score == -1,
-                    shape = CircleShape,
-                    color = MaterialTheme.colorScheme.inverseSurface,
-                )
+            modifier = Modifier,
         )
 
         Text(
             text = teamResult.getDisplayName(),
             fontWeight = fontWeight,
             modifier = Modifier
-                .defaultMinSize(minWidth = 100.dp)
-                .placeholder(
-                    visible = teamResult.team.name.isBlank(),
-                    shape = CircleShape,
-                    color = MaterialTheme.colorScheme.inverseSurface,
-                ),
+                .defaultMinSize(minWidth = 100.dp),
             inlineContent = teamResult.getInlineContent(),
         )
     }
 }
 
-private fun MatchTeamResult.getDisplayName(): AnnotatedString {
+private fun MatchTeamResultDisplayModel.getDisplayName(): AnnotatedString {
     return buildAnnotatedString {
         append(team.name)
 
@@ -104,7 +115,7 @@ private fun MatchTeamResult.getDisplayName(): AnnotatedString {
 }
 
 @Composable
-private fun MatchTeamResult.getInlineContent(): Map<String, InlineTextContent> {
+private fun MatchTeamResultDisplayModel.getInlineContent(): Map<String, InlineTextContent> {
     return if (this.winner) {
         mapOf(
             Pair(
@@ -125,22 +136,5 @@ private fun MatchTeamResult.getInlineContent(): Map<String, InlineTextContent> {
         )
     } else {
         mapOf()
-    }
-}
-
-private const val HOURS_IN_DAY = 24
-
-private fun Instant.getRelativeTimestamp(): String {
-    val now = Clock.System.now()
-
-    val duration = now.minus(this)
-
-    return when {
-        duration.inWholeHours < HOURS_IN_DAY -> {
-            "${duration.inWholeHours}h ago"
-        }
-        else -> {
-            "${duration.inWholeDays}d ago"
-        }
     }
 }

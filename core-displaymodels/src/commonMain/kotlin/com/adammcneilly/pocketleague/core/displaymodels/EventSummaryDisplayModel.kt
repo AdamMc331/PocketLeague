@@ -10,10 +10,7 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
  * A class that represents summary information about an [Event] in a user friendly fashion.
  *
  * @property[eventId] A unique identifier for this event.
- * @property[lightThemeImageUrl] A remote URL for an image for this event, to be shown in a light
- * theme context.
- * @property[darkThemeImageUrl] Same concept as [lightThemeImageUrl], but shown inside a dark theme
- * app.
+ * @property[imageURL] The remote image URLs for this event.
  * @property[startDate] A user friendly string representing the date that an event starts.
  * @property[endDate] A user friendly string representing the date that an event ends.
  * @property[name] A description of this Rocket League event.

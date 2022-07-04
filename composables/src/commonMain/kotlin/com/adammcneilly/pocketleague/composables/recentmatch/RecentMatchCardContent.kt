@@ -53,8 +53,7 @@ fun RecentMatchCardContent(
         )
 
         Text(
-            // TODO: Replace with relative date
-            text = match.localDate,
+            text = match.relativeDateTime,
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier
                 .defaultMinSize(minWidth = 50.dp),

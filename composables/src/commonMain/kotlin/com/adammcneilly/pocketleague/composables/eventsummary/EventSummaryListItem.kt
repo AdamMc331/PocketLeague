@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.composables.eventsummary
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.composables.utils.getForTheme
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import io.kamel.image.KamelImage
 import io.kamel.image.lazyPainterResource
@@ -66,15 +66,13 @@ private fun EventDates(displayModel: EventSummaryDisplayModel) {
 
 @Composable
 private fun EventImage(displayModel: EventSummaryDisplayModel) {
-    val imageUrl = if (isSystemInDarkTheme()) {
-        displayModel.darkThemeImageUrl
-    } else {
-        displayModel.lightThemeImageUrl
-    }.orEmpty()
+    val imageUrl = displayModel.imageURL.getForTheme().orEmpty()
+
+    val imageSize = 48.dp
 
     Box(
         modifier = Modifier
-            .size(48.dp),
+            .size(imageSize),
     ) {
         if (imageUrl.isNotEmpty()) {
             KamelImage(
@@ -83,12 +81,12 @@ private fun EventImage(displayModel: EventSummaryDisplayModel) {
                 ),
                 contentDescription = "Event Image",
                 modifier = Modifier
-                    .size(48.dp),
+                    .size(imageSize),
                 crossfade = true,
                 onLoading = {
                     Box(
                         modifier = Modifier
-                            .size(48.dp)
+                            .size(imageSize)
                             .background(
                                 color = MaterialTheme.colorScheme.onSurface,
                                 shape = CircleShape,

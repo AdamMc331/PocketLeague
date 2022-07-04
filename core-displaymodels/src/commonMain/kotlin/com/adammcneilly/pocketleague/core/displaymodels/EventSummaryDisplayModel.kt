@@ -20,8 +20,7 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
  */
 data class EventSummaryDisplayModel(
     val eventId: String = "",
-    val lightThemeImageUrl: String? = null,
-    val darkThemeImageUrl: String? = lightThemeImageUrl,
+    val imageURL: ThemedImageURL = ThemedImageURL(),
     val startDate: String = "",
     val endDate: String = "",
     val name: String = "",
@@ -53,7 +52,9 @@ fun Event.toSummaryDisplayModel(): EventSummaryDisplayModel {
             )
         }.orEmpty(),
         name = this.name,
-        lightThemeImageUrl = this.imageUrl,
+        imageURL = ThemedImageURL(
+            lightThemeImageUrl = this.imageUrl,
+        ),
         eventId = this.id,
     )
 }

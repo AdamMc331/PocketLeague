@@ -1,3 +1,5 @@
+@file:Suppress("LongParameterList", "MagicNumber", "MaxLineLength", "MatchingDeclarationName")
+
 package com.adammcneilly.pocketleague.composables.placeholder
 
 import androidx.compose.animation.core.InfiniteRepeatableSpec

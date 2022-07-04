@@ -1,3 +1,5 @@
+@file:Suppress("LongParameterList", "MagicNumber", "MaxLineLength", "MatchingDeclarationName")
+
 package com.adammcneilly.pocketleague.composables.placeholder
 
 import androidx.compose.animation.core.FiniteAnimationSpec
@@ -92,6 +94,7 @@ object PlaceholderDefaults {
  * @param contentFadeTransitionSpec The transition spec to use when fading the content
  * on/off screen. The boolean parameter defined for the transition is [visible].
  */
+@Suppress("LongMethod")
 fun Modifier.placeholder(
     visible: Boolean,
     color: Color,

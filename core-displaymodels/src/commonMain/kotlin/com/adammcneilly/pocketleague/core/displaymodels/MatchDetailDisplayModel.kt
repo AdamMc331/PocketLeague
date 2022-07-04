@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.datetime.DateUtils
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.datetime.TimeZone
@@ -18,6 +19,7 @@ data class MatchDetailDisplayModel(
     val localTime: String = "",
     val eventName: String = "",
     val stageName: String = "",
+    val relativeDateTime: String = "",
 )
 
 /**
@@ -46,5 +48,8 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
         }.orEmpty(),
         eventName = this.event.name,
         stageName = this.stage.name,
+        relativeDateTime = this.dateUTC?.let { date ->
+            DateUtils.getRelativeTimestamp(date)
+        }.orEmpty(),
     )
 }

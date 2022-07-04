@@ -21,6 +21,7 @@ data class EventSummaryDisplayModel(
     val startDate: String = "",
     val endDate: String = "",
     val name: String = "",
+    val isPlaceholder: Boolean = false,
 ) {
 
     val dateString: String

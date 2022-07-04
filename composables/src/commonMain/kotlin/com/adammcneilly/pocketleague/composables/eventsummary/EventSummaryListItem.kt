@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.composables.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.composables.utils.getForTheme
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import io.kamel.image.KamelImage
@@ -44,15 +45,18 @@ fun EventSummaryListItem(
         ) {
             EventDates(displayModel)
 
-            EventNames(displayModel)
+            EventName(displayModel)
         }
     }
 }
 
 @Composable
-private fun EventNames(displayModel: EventSummaryDisplayModel) {
+private fun EventName(displayModel: EventSummaryDisplayModel) {
     Text(
         text = displayModel.name,
+        modifier = Modifier.placeholderMaterial(
+            visible = displayModel.isPlaceholder,
+        )
     )
 }
 

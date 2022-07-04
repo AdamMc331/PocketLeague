@@ -19,7 +19,7 @@ data class FeedViewState(
                 // Here, we return a list of empty Event objects which will be mapped
                 // to a placeholder loading UI.
                 (1..3).map {
-                    EventSummaryDisplayModel()
+                    EventSummaryDisplayModel(isPlaceholder = true)
                 }
             }
             is DataState.Success -> {

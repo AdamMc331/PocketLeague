@@ -14,6 +14,7 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.parameter
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -36,6 +37,8 @@ class OctaneGGEventService(
                     addEventParameters(request)
                 },
             )
+
+            delay(2_000)
 
             val mappedResult = when (apiResult) {
                 is DataState.Loading -> DataState.Loading

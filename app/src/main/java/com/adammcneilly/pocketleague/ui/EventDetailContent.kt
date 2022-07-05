@@ -25,17 +25,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.adammcneilly.pocketleague.composables.components.Chip
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailViewState
-import com.adammcneilly.pocketleague.ui.components.Chip
+import com.adammcneilly.pocketleague.ui.components.Tooltip
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.placeholder.material.placeholder
@@ -225,6 +227,25 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
             style = MaterialTheme.typography.headlineMedium,
         )
     }
+}
+
+@Composable
+private fun Chip(
+    text: String,
+    leadingIcon: ImageVector? = null,
+    tooltipText: String? = null,
+) {
+    Chip(
+        text = text,
+        leadingIcon = leadingIcon,
+        tooltip = tooltipText?.let { tooltipTextStr ->
+            { expanded ->
+                Tooltip(expanded) {
+                    Text(text = tooltipTextStr)
+                }
+            }
+        },
+    )
 }
 
 @Preview(

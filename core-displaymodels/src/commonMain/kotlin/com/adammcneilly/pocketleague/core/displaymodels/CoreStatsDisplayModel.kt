@@ -6,11 +6,11 @@ import com.adammcneilly.pocketleague.core.models.CoreStats
  * User friendly representation of core stats.
  */
 data class CoreStatsDisplayModel(
-    val score: String = "",
-    val goals: String = "",
-    val assists: String = "",
-    val saves: String = "",
-    val shots: String = "",
+    val score: Int = 0,
+    val goals: Int = 0,
+    val assists: Int = 0,
+    val saves: Int = 0,
+    val shots: Int = 0,
 )
 
 /**
@@ -18,10 +18,10 @@ data class CoreStatsDisplayModel(
  */
 fun CoreStats.toDisplayModel(): CoreStatsDisplayModel {
     return CoreStatsDisplayModel(
-        score = this.score.toString(),
-        goals = this.goals.toString(),
-        assists = this.assists.toString(),
-        saves = this.saves.toString(),
-        shots = this.shots.toString(),
+        score = this.score,
+        goals = this.goals,
+        assists = this.assists,
+        saves = this.saves,
+        shots = this.shots,
     )
 }

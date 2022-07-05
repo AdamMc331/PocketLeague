@@ -8,7 +8,7 @@ import com.adammcneilly.pocketleague.core.models.GameTeamResult
  */
 data class GameTeamResultDisplayModel(
     val team: TeamOverviewDisplayModel = TeamOverviewDisplayModel(),
-    val score: String = "",
+    val goals: Int = 0,
     val winner: Boolean = false,
     val players: List<GamePlayerResultDisplayModel> = emptyList(),
 )
@@ -19,10 +19,10 @@ data class GameTeamResultDisplayModel(
 fun GameTeamResult.toDisplayModel(): GameTeamResultDisplayModel {
     return GameTeamResultDisplayModel(
         team = this.team.toOverviewDisplayModel(),
-        score = this.goals.toString(),
+        goals = this.goals,
         winner = this.winner,
         players = this.players
-            .map(GamePlayerResult::toDisplayModel)
-            .sortedByDescending { it.coreStats.score },
+            .sortedByDescending { it.stats.core.score }
+            .map(GamePlayerResult::toDisplayModel),
     )
 }

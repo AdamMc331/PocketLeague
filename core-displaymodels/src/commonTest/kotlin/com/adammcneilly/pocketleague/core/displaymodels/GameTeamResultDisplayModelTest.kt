@@ -48,11 +48,7 @@ class GameTeamResultDisplayModelTest {
 
         val gameTeamResult = GameTeamResult(
             players = players,
-            teamStats = Stats(
-                core = CoreStats(
-                    goals = 4,
-                ),
-            ),
+            goals = 4,
             winner = true,
         )
 

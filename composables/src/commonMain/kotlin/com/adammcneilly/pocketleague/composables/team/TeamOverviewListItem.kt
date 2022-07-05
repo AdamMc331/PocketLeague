@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.composables.team
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -14,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.composables.placeholder.placeholderMaterial
+import com.adammcneilly.pocketleague.composables.utils.getForTheme
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import io.kamel.image.KamelImage
 import io.kamel.image.lazyPainterResource
@@ -34,11 +34,7 @@ fun TeamOverviewListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        val imageUrl = if (isSystemInDarkTheme()) {
-            displayModel.darkThemeImageUrl
-        } else {
-            displayModel.lightThemeImageUrl
-        }.orEmpty()
+        val imageUrl = displayModel.imageUrl.getForTheme().orEmpty()
 
         val imageSize = 48.dp
 
@@ -46,7 +42,7 @@ fun TeamOverviewListItem(
             resource = lazyPainterResource(
                 data = Url(imageUrl),
             ),
-            contentDescription = "Event Image",
+            contentDescription = "Team Image",
             modifier = Modifier
                 .size(imageSize),
             crossfade = true,

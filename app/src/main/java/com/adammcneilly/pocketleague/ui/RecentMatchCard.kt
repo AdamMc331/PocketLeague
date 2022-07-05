@@ -21,7 +21,17 @@ fun RecentMatchCard(
         modifier = modifier,
     ) {
         RecentMatchCardContent(
-            match = match.toDetailDisplayModel(),
+            match = match.toDetailDisplayModel().copy(
+                isPlaceholder = match.isPlaceholder(),
+            ),
         )
     }
+}
+
+/**
+ * Added just as a brief utility, until we refactor this composable to just consume a display model
+ * like it should.
+ */
+private fun Match.isPlaceholder(): Boolean {
+    return this == Match()
 }

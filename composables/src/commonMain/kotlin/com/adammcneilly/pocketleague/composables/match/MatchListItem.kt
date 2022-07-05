@@ -1,24 +1,20 @@
-package com.adammcneilly.pocketleague.ui
+package com.adammcneilly.pocketleague.composables.match
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.composables.components.InlineIconText
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 
 /**
  * Renders a [displayModel] inside of an individual list item along side other matches
@@ -73,41 +69,5 @@ private fun MatchTeamResultRow(
             icon = Icons.Default.EmojiEvents,
             showIcon = displayModel.winner,
         )
-    }
-}
-
-@Preview(
-    name = "Night Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-)
-@Preview(
-    name = "Day Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-)
-@Composable
-@Suppress("UnusedPrivateMember")
-private fun MatchListItemPreview() {
-    val match = MatchDetailDisplayModel(
-        blueTeamResult = MatchTeamResultDisplayModel(
-            team = TeamOverviewDisplayModel(
-                name = "G2 Esports",
-            ),
-            winner = true,
-            score = "4",
-        ),
-        orangeTeamResult = MatchTeamResultDisplayModel(
-            team = TeamOverviewDisplayModel(
-                name = "FaZe Clan",
-            ),
-            winner = false,
-            score = "0",
-        ),
-        localTime = "13:00",
-    )
-
-    PocketLeagueTheme {
-        Surface {
-            MatchListItem(displayModel = match)
-        }
     }
 }

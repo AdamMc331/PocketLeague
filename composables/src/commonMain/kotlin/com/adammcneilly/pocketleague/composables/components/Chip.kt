@@ -17,7 +17,6 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 
-
 /**
  * Follows the guidelines of a Material Design Chip.
  *

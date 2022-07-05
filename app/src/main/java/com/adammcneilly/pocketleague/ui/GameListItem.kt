@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.ui
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,7 +10,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,11 +18,9 @@ import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
-import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 
 private const val SCORE_TEXT_WEIGHT = 1F
 private const val MAP_TEXT_WEIGHT = 4F
@@ -97,7 +93,7 @@ private fun RowScope.TeamScore(
             append(" ")
         }
 
-        append(displayModel.score)
+        append(displayModel.goals.toString())
 
         if (isWinner && !showIconFirst) {
             append(" ")
@@ -136,33 +132,4 @@ private fun RowScope.TeamScore(
         modifier = Modifier
             .weight(weight),
     )
-}
-
-@Preview(
-    name = "Night Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-)
-@Preview(
-    name = "Day Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-)
-@Composable
-@Suppress("UnusedPrivateMember")
-private fun GameListItemPreview() {
-    val game = GameDetailDisplayModel(
-        orangeTeamResult = GameTeamResultDisplayModel(
-            score = "1",
-            winner = true,
-        ),
-        blueTeamResult = GameTeamResultDisplayModel(
-            score = "0",
-        ),
-        map = "DFH Stadium",
-    )
-
-    PocketLeagueTheme {
-        Surface {
-            GameListItem(displayModel = game)
-        }
-    }
 }

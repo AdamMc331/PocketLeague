@@ -189,7 +189,7 @@ private fun EventDetails(displayModel: EventDetailDisplayModel) {
         )
 
         Chip(
-            text = "Prize: ${displayModel.prize}",
+            text = "Prize: ${displayModel.prize.prizeAmount}",
             tooltipText = "This is the total prize pool for top finishers.",
         )
     }

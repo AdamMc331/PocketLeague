@@ -38,24 +38,26 @@ fun TeamOverviewListItem(
 
         val imageSize = 48.dp
 
-        KamelImage(
-            resource = lazyPainterResource(
-                data = Url(imageUrl),
-            ),
-            contentDescription = "Team Image",
-            modifier = Modifier
-                .size(imageSize),
-            crossfade = true,
-            onLoading = {
-                Box(
-                    modifier = Modifier
-                        .size(imageSize)
-                        .placeholderMaterial(
-                            visible = true,
-                        ),
-                )
-            },
-        )
+        if (imageUrl.isNotEmpty()) {
+            KamelImage(
+                resource = lazyPainterResource(
+                    data = Url(imageUrl),
+                ),
+                contentDescription = "Team Image",
+                modifier = Modifier
+                    .size(imageSize),
+                crossfade = true,
+                onLoading = {
+                    Box(
+                        modifier = Modifier
+                            .size(imageSize)
+                            .placeholderMaterial(
+                                visible = true,
+                            ),
+                    )
+                },
+            )
+        }
 
         Text(
             text = displayModel.name,

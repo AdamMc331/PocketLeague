@@ -17,6 +17,7 @@ import kotlinx.datetime.Instant
  * @property[mode] A description of the game mode for this event. A 3 means 3v3, a 2 means 2v2, etc.
  * @property[region] The region this event is taking place in, like NA or EU.
  * @property[lan] True if this is a local in person event, false if it's online.
+ * @property[prize] The amount of money awarded to the winners of the event.
  */
 data class Event(
     val id: String = "",
@@ -29,4 +30,5 @@ data class Event(
     val mode: String = "",
     val region: EventRegion = EventRegion.Unknown,
     val lan: Boolean = false,
+    val prize: Prize? = null,
 )

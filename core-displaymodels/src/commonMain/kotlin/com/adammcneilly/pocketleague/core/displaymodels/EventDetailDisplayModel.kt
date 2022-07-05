@@ -24,7 +24,7 @@ data class EventDetailDisplayModel(
     val mode: String = "",
     val region: EventRegionDisplayModel = EventRegion.Unknown.toDisplayModel(),
     val onlineOrLAN: String = "",
-    val prize: String = "",
+    val prize: PrizeDisplayModel = PrizeDisplayModel(),
 )
 
 /**
@@ -67,6 +67,6 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
         } else {
             "ONLINE"
         },
-        prize = "$100,000",
+        prize = this.prize?.toDisplayModel() ?: PrizeDisplayModel(),
     )
 }

@@ -20,6 +20,7 @@ data class MatchDetailDisplayModel(
     val eventName: String = "",
     val stageName: String = "",
     val relativeDateTime: String = "",
+    val isPlaceholder: Boolean = false,
 )
 
 /**

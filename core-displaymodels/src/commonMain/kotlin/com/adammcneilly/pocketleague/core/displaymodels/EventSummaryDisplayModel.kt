@@ -14,6 +14,7 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
  * @property[startDate] A user friendly string representing the date that an event starts.
  * @property[endDate] A user friendly string representing the date that an event ends.
  * @property[name] A description of this Rocket League event.
+ * @property[isPlaceholder] If true, we render this display model in a placeholder format.
  */
 data class EventSummaryDisplayModel(
     val eventId: String = "",
@@ -21,6 +22,7 @@ data class EventSummaryDisplayModel(
     val startDate: String = "",
     val endDate: String = "",
     val name: String = "",
+    val isPlaceholder: Boolean = false,
 ) {
 
     val dateString: String

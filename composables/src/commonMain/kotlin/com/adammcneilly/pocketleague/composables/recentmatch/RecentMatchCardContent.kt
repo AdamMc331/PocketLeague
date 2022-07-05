@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.composables.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.composables.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 
@@ -49,23 +52,41 @@ fun RecentMatchCardContent(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .placeholderMaterial(
+                    visible = match.isPlaceholder,
+                    color = PlaceholderDefaults.color(
+                        backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+                    ),
+                ),
         )
 
         Text(
             text = match.relativeDateTime,
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier
-                .defaultMinSize(minWidth = 50.dp),
+                .defaultMinSize(minWidth = 50.dp)
+                .placeholderMaterial(
+                    visible = match.isPlaceholder,
+                    color = PlaceholderDefaults.color(
+                        backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+                    ),
+                ),
         )
 
         Spacer(
             modifier = Modifier.height(8.dp),
         )
 
-        MatchTeamResultRow(teamResult = match.blueTeamResult)
+        MatchTeamResultRow(
+            teamResult = match.blueTeamResult,
+            isPlaceholder = match.isPlaceholder,
+        )
 
-        MatchTeamResultRow(teamResult = match.orangeTeamResult)
+        MatchTeamResultRow(
+            teamResult = match.orangeTeamResult,
+            isPlaceholder = match.isPlaceholder,
+        )
     }
 }
 
@@ -76,6 +97,7 @@ fun RecentMatchCardContent(
 @Composable
 private fun MatchTeamResultRow(
     teamResult: MatchTeamResultDisplayModel,
+    isPlaceholder: Boolean,
 ) {
     val fontWeight: FontWeight? = if (teamResult.winner) {
         FontWeight.Bold
@@ -85,18 +107,23 @@ private fun MatchTeamResultRow(
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .placeholderMaterial(
+                visible = isPlaceholder,
+                color = PlaceholderDefaults.color(
+                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+                ),
+            )
     ) {
         Text(
             text = teamResult.score,
             fontWeight = fontWeight,
-            modifier = Modifier,
         )
 
         Text(
             text = teamResult.getDisplayName(),
             fontWeight = fontWeight,
-            modifier = Modifier
-                .defaultMinSize(minWidth = 100.dp),
             inlineContent = teamResult.getInlineContent(),
         )
     }

@@ -16,7 +16,7 @@ kotlin {
                 implementation(project(":core-displaymodels"))
                 implementation(compose.foundation)
                 implementation(compose.ui)
-                implementation(compose("org.jetbrains.compose.ui:ui-tooling"))
+                implementation(compose.uiTooling)
                 @kotlin.OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)

@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.composables.bars
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +23,7 @@ fun TopBar(
                 text = title,
             )
         },
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxWidth(),
     )
 }

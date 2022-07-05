@@ -7,13 +7,7 @@ kotlin {
     android()
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(project(":core-models"))
-                implementation(project(":core-datetime"))
-                implementation(project(":core-currency"))
-            }
-        }
+        val commonMain by getting
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -29,6 +23,10 @@ kotlin {
             getAt("iosX64Main").dependsOn(this)
             getAt("iosArm64Main").dependsOn(this)
             getAt("iosSimulatorArm64Main").dependsOn(this)
+
+            dependencies {
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
+            }
         }
         maybeCreate("iosX64Test")
         maybeCreate("iosArm64Test")

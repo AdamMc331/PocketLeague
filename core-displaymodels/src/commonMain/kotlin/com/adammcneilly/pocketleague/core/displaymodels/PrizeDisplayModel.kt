@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.currency.CurrencyFormatter
 import com.adammcneilly.pocketleague.core.models.Prize
 
 /**
@@ -15,8 +16,13 @@ data class PrizeDisplayModel(
  * Converts a [Prize] to it's user friendly representation. In the future, we'll need to update this
  * so that it actually converts the currency.
  */
-fun Prize.toDisplayModel(): PrizeDisplayModel {
+fun Prize.toDisplayModel(
+    currencyFormatter: CurrencyFormatter = com.adammcneilly.pocketleague.core.currency.currencyFormatter(),
+): PrizeDisplayModel {
     return PrizeDisplayModel(
-        prizeAmount = "${this.amount} ${this.currency}"
+        prizeAmount = currencyFormatter.formatCurrency(
+            amount = this.amount,
+            currency = this.currency,
+        ).orEmpty(),
     )
 }

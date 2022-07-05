@@ -7,6 +7,7 @@ import com.adammcneilly.pocketleague.core.models.Player
 import com.adammcneilly.pocketleague.core.models.Stats
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class GameTeamResultDisplayModelTest {
 
@@ -47,6 +48,12 @@ class GameTeamResultDisplayModelTest {
 
         val gameTeamResult = GameTeamResult(
             players = players,
+            teamStats = Stats(
+                core = CoreStats(
+                    goals = 4,
+                ),
+            ),
+            winner = true,
         )
 
         val mappedModel = gameTeamResult.toDisplayModel()
@@ -54,5 +61,7 @@ class GameTeamResultDisplayModelTest {
         assertEquals("PleasantlyPlump", mappedModel.players[0].playerName)
         assertEquals("mTeo", mappedModel.players[1].playerName)
         assertEquals("AdamMc331", mappedModel.players[2].playerName)
+        assertEquals(4, mappedModel.goals)
+        assertTrue(mappedModel.winner)
     }
 }

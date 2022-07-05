@@ -3,20 +3,14 @@
 package com.adammcneilly.pocketleague.composables.placeholder
 
 import androidx.compose.animation.core.FiniteAnimationSpec
-import androidx.compose.animation.core.InfiniteRepeatableSpec
 import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,7 +26,6 @@ import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
@@ -40,32 +33,6 @@ import androidx.compose.ui.graphics.isSpecified
 import androidx.compose.ui.node.Ref
 import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.unit.dp
-
-/**
- * Contains default values used by [Modifier.placeholder] and [PlaceholderHighlight].
- */
-object PlaceholderDefaults {
-    /**
-     * The default [InfiniteRepeatableSpec] to use for [fade].
-     */
-    val fadeAnimationSpec: InfiniteRepeatableSpec<Float> by lazy {
-        infiniteRepeatable(
-            animation = tween(delayMillis = 200, durationMillis = 600),
-            repeatMode = RepeatMode.Reverse,
-        )
-    }
-
-    /**
-     * The default [InfiniteRepeatableSpec] to use for [shimmer].
-     */
-    val shimmerAnimationSpec: InfiniteRepeatableSpec<Float> by lazy {
-        infiniteRepeatable(
-            animation = tween(durationMillis = 1700, delayMillis = 200),
-            repeatMode = RepeatMode.Restart
-        )
-    }
-}
 
 /**
  * Draws some skeleton UI which is typically used whilst content is 'loading'.
@@ -84,8 +51,6 @@ object PlaceholderDefaults {
  * [Placeholder UI](https://material.io/design/communication/launch-screen.html#placeholder-ui)
  * guidelines.
  *
- * @sample com.google.accompanist.sample.placeholder.DocSample_Foundation_Placeholder
- *
  * @param visible whether the placeholder should be visible or not.
  * @param color the color used to draw the placeholder UI.
  * @param shape desired shape of the placeholder. Defaults to [RectangleShape].
@@ -96,7 +61,7 @@ object PlaceholderDefaults {
  * on/off screen. The boolean parameter defined for the transition is [visible].
  */
 @Suppress("LongMethod")
-fun Modifier.placeholder(
+private fun Modifier.placeholder(
     visible: Boolean,
     color: Color,
     shape: Shape = RectangleShape,
@@ -256,52 +221,6 @@ private inline fun DrawScope.withLayer(
 }
 
 /**
- * Returns the value used as the the `color` parameter value on [Modifier.placeholder].
- *
- * @param backgroundColor The current background color of the layout. Defaults to
- * `MaterialTheme.colors.surface`.
- * @param contentColor The content color to be used on top of [backgroundColor].
- * @param contentAlpha The alpha component to set on [contentColor] when compositing the color
- * on top of [backgroundColor]. Defaults to `0.1f`.
- */
-@Composable
-fun PlaceholderDefaults.color(
-    backgroundColor: Color = MaterialTheme.colorScheme.surface,
-    contentColor: Color = contentColorFor(backgroundColor),
-    contentAlpha: Float = 0.1f,
-): Color = contentColor.copy(contentAlpha).compositeOver(backgroundColor)
-
-/**
- * Returns the value used as the the `highlightColor` parameter value of
- * [PlaceholderHighlight.Companion.fade].
- *
- * @param backgroundColor The current background color of the layout. Defaults to
- * `MaterialTheme.colors.surface`.
- * @param alpha The alpha component to set on [backgroundColor]. Defaults to `0.3f`.
- */
-@Composable
-fun PlaceholderDefaults.fadeHighlightColor(
-    backgroundColor: Color = MaterialTheme.colorScheme.surface,
-    alpha: Float = 0.3f,
-): Color = backgroundColor.copy(alpha = alpha)
-
-/**
- * Returns the value used as the the `highlightColor` parameter value of
- * [PlaceholderHighlight.Companion.shimmer].
- *
- * @param backgroundColor The current background color of the layout. Defaults to
- * `MaterialTheme.colors.surface`.
- * @param alpha The alpha component to set on [backgroundColor]. Defaults to `0.75f`.
- */
-@Composable
-fun PlaceholderDefaults.shimmerHighlightColor(
-    backgroundColor: Color = MaterialTheme.colorScheme.surface,
-    alpha: Float = 0.75f,
-): Color {
-    return backgroundColor.copy(alpha = alpha)
-}
-
-/**
  * Draws some skeleton UI which is typically used whilst content is 'loading'.
  *
  * To customize the color and shape of the placeholder, you can use the foundation version of
@@ -318,8 +237,6 @@ fun PlaceholderDefaults.shimmerHighlightColor(
  * [Placeholder UI](https://material.io/design/communication/launch-screen.html#placeholder-ui)
  * guidelines.
  *
- * @sample com.google.accompanist.sample.placeholder.DocSample_Material_Placeholder
- *
  * @param visible whether the placeholder should be visible or not.
  * @param color the color used to draw the placeholder UI. If [Color.Unspecified] is provided,
  * the placeholder will use [PlaceholderDefaults.color].
@@ -331,18 +248,19 @@ fun PlaceholderDefaults.shimmerHighlightColor(
  * @param contentFadeTransitionSpec The transition spec to use when fading the content
  * on/off screen. The boolean parameter defined for the transition is [visible].
  */
+@Composable
 fun Modifier.placeholderMaterial(
     visible: Boolean,
     color: Color = Color.Unspecified,
     shape: Shape = CircleShape,
-    highlight: PlaceholderHighlight? = null,
+    highlight: PlaceholderHighlight = PlaceholderHighlight.shimmer(),
     placeholderFadeTransitionSpec: @Composable Transition.Segment<Boolean>.() -> FiniteAnimationSpec<Float> = { spring() },
     contentFadeTransitionSpec: @Composable Transition.Segment<Boolean>.() -> FiniteAnimationSpec<Float> = { spring() },
 ): Modifier = composed {
     Modifier.placeholder(
         visible = visible,
         color = if (color.isSpecified) color else PlaceholderDefaults.color(),
-        shape = shape ?: RoundedCornerShape(2.dp),
+        shape = shape,
         highlight = highlight,
         placeholderFadeTransitionSpec = placeholderFadeTransitionSpec,
         contentFadeTransitionSpec = contentFadeTransitionSpec,

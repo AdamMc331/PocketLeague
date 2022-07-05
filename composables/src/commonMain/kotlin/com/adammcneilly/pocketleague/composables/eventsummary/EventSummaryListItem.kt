@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.composables.eventsummary
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,15 +7,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.composables.placeholder.PlaceholderDefaults
-import com.adammcneilly.pocketleague.composables.placeholder.color
 import com.adammcneilly.pocketleague.composables.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.composables.utils.getForTheme
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
@@ -104,9 +100,8 @@ private fun EventImage(displayModel: EventSummaryDisplayModel) {
                     Box(
                         modifier = Modifier
                             .size(imageSize)
-                            .background(
-                                color = PlaceholderDefaults.color(),
-                                shape = CircleShape,
+                            .placeholderMaterial(
+                                visible = true,
                             ),
                     )
                 },

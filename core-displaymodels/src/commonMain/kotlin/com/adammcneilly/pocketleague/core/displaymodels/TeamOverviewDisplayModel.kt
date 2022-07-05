@@ -8,8 +8,7 @@ import com.adammcneilly.pocketleague.core.models.Team
 data class TeamOverviewDisplayModel(
     val teamId: String = "",
     val name: String = "",
-    val lightThemeImageUrl: String? = null,
-    val darkThemeImageUrl: String? = lightThemeImageUrl,
+    val imageUrl: ThemedImageURL = ThemedImageURL(),
 )
 
 /**
@@ -19,6 +18,8 @@ fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
     return TeamOverviewDisplayModel(
         teamId = this.id,
         name = this.name,
-        lightThemeImageUrl = this.imageUrl,
+        imageUrl = ThemedImageURL(
+            lightThemeImageUrl = this.imageUrl,
+        ),
     )
 }

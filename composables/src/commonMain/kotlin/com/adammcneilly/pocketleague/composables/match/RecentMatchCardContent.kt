@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.composables.recentmatch
+package com.adammcneilly.pocketleague.composables.match
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

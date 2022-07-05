@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.ui
+package com.adammcneilly.pocketleague.composables.game
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope

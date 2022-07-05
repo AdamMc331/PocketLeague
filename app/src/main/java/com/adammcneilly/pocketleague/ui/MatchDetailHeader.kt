@@ -83,9 +83,9 @@ private fun MatchTeamResultCell(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         val imageUrl = if (isSystemInDarkTheme()) {
-            displayModel.team.darkThemeImageUrl
+            displayModel.team.imageUrl.darkThemeImageURL
         } else {
-            displayModel.team.lightThemeImageUrl
+            displayModel.team.imageUrl.lightThemeImageUrl
         }
 
         AsyncImage(

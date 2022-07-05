@@ -4,7 +4,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.adammcneilly.pocketleague.composables.recentmatch.RecentMatchCardContent
+import com.adammcneilly.pocketleague.composables.match.RecentMatchCardContent
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Match
 

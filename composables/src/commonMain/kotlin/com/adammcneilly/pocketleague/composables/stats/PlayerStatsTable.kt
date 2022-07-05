@@ -1,9 +1,9 @@
-package com.adammcneilly.pocketleague.ui
+package com.adammcneilly.pocketleague.composables.stats
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import com.adammcneilly.pocketleague.composables.components.Divider
 import com.adammcneilly.pocketleague.core.displaymodels.GamePlayerResultDisplayModel
 
 /**

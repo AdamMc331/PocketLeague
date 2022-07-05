@@ -44,7 +44,7 @@ import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.placeholder.material.placeholder
 
-private const val EVENT_IMAGE_ASPECT_RATIO = 1.5F
+private const val EVENT_IMAGE_ASPECT_RATIO = 3.0F
 
 /**
  * Renders the [viewState] of detailed event information.

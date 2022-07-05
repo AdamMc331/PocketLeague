@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -14,6 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.composables.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.composables.placeholder.color
 import com.adammcneilly.pocketleague.composables.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.composables.utils.getForTheme
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
@@ -54,9 +57,11 @@ fun EventSummaryListItem(
 private fun EventName(displayModel: EventSummaryDisplayModel) {
     Text(
         text = displayModel.name,
-        modifier = Modifier.placeholderMaterial(
-            visible = displayModel.isPlaceholder,
-        )
+        modifier = Modifier
+            .fillMaxWidth()
+            .placeholderMaterial(
+                visible = displayModel.isPlaceholder,
+            ),
     )
 }
 
@@ -65,6 +70,11 @@ private fun EventDates(displayModel: EventSummaryDisplayModel) {
     Text(
         text = displayModel.dateString,
         style = MaterialTheme.typography.labelSmall,
+        modifier = Modifier
+            .fillMaxWidth()
+            .placeholderMaterial(
+                visible = displayModel.isPlaceholder,
+            ),
     )
 }
 
@@ -76,7 +86,10 @@ private fun EventImage(displayModel: EventSummaryDisplayModel) {
 
     Box(
         modifier = Modifier
-            .size(imageSize),
+            .size(imageSize)
+            .placeholderMaterial(
+                visible = displayModel.isPlaceholder,
+            ),
     ) {
         if (imageUrl.isNotEmpty()) {
             KamelImage(
@@ -92,7 +105,7 @@ private fun EventImage(displayModel: EventSummaryDisplayModel) {
                         modifier = Modifier
                             .size(imageSize)
                             .background(
-                                color = MaterialTheme.colorScheme.onSurface,
+                                color = PlaceholderDefaults.color(),
                                 shape = CircleShape,
                             ),
                     )

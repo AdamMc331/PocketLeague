@@ -1,4 +1,4 @@
-@file:Suppress("LongParameterList", "MagicNumber", "MaxLineLength", "MatchingDeclarationName")
+@file:Suppress("MagicNumber")
 
 package com.adammcneilly.pocketleague.composables.placeholder
 

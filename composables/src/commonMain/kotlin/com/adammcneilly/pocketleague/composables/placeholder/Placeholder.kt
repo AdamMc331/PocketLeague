@@ -1,4 +1,4 @@
-@file:Suppress("LongParameterList", "MagicNumber", "MaxLineLength", "MatchingDeclarationName")
+@file:Suppress("MagicNumber")
 
 package com.adammcneilly.pocketleague.composables.placeholder
 
@@ -60,14 +60,18 @@ import androidx.compose.ui.unit.LayoutDirection
  * @param contentFadeTransitionSpec The transition spec to use when fading the content
  * on/off screen. The boolean parameter defined for the transition is [visible].
  */
-@Suppress("LongMethod")
+@Suppress("LongMethod", "LongParameterList")
 private fun Modifier.placeholder(
     visible: Boolean,
     color: Color,
     shape: Shape = RectangleShape,
     highlight: PlaceholderHighlight? = null,
-    placeholderFadeTransitionSpec: @Composable Transition.Segment<Boolean>.() -> FiniteAnimationSpec<Float> = { spring() },
-    contentFadeTransitionSpec: @Composable Transition.Segment<Boolean>.() -> FiniteAnimationSpec<Float> = { spring() },
+    placeholderFadeTransitionSpec: @Composable Transition.Segment<Boolean>.() -> FiniteAnimationSpec<Float> = {
+        spring()
+    },
+    contentFadeTransitionSpec: @Composable Transition.Segment<Boolean>.() -> FiniteAnimationSpec<Float> = {
+        spring()
+    },
 ): Modifier = composed(
     inspectorInfo = debugInspectorInfo {
         name = "placeholder"
@@ -167,6 +171,7 @@ private fun Modifier.placeholder(
     }
 }
 
+@Suppress("LongParameterList")
 private fun DrawScope.drawPlaceholder(
     shape: Shape,
     color: Color,
@@ -254,8 +259,12 @@ fun Modifier.placeholderMaterial(
     color: Color = Color.Unspecified,
     shape: Shape = CircleShape,
     highlight: PlaceholderHighlight = PlaceholderHighlight.shimmer(),
-    placeholderFadeTransitionSpec: @Composable Transition.Segment<Boolean>.() -> FiniteAnimationSpec<Float> = { spring() },
-    contentFadeTransitionSpec: @Composable Transition.Segment<Boolean>.() -> FiniteAnimationSpec<Float> = { spring() },
+    placeholderFadeTransitionSpec: @Composable Transition.Segment<Boolean>.() -> FiniteAnimationSpec<Float> = {
+        spring()
+    },
+    contentFadeTransitionSpec: @Composable Transition.Segment<Boolean>.() -> FiniteAnimationSpec<Float> = {
+        spring()
+    },
 ): Modifier = composed {
     Modifier.placeholder(
         visible = visible,

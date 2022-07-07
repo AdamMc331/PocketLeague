@@ -22,6 +22,7 @@ fun OctaneGGEvent.toEvent(): Event {
         region = this.region.toEventRegion(),
         mode = this.mode.toString(),
         lan = this.lan == true,
+        prize = this.prize?.toPrize(),
     )
 }
 

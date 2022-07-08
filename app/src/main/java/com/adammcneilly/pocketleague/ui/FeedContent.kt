@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -82,18 +83,31 @@ private fun SuccessContent(
             )
         }
 
-        itemsIndexed(viewState.ongoingEvents) { index, event ->
-            EventSummaryListItem(
-                displayModel = event,
-                modifier = Modifier
-                    .clickable {
-                        onEventClicked.invoke(event.eventId)
-                    }
-            )
-
-            if (index != viewState.ongoingEvents.lastIndex) {
-                Divider()
+        if (viewState.ongoingEvents.isNotEmpty()) {
+            ongoingEventsList(viewState, onEventClicked)
+        } else {
+            item {
+                OngoingEventsEmptyState()
             }
+        }
+    }
+}
+
+private fun LazyListScope.ongoingEventsList(
+    viewState: FeedViewState,
+    onEventClicked: (String) -> Unit,
+) {
+    itemsIndexed(viewState.ongoingEvents) { index, event ->
+        EventSummaryListItem(
+            displayModel = event,
+            modifier = Modifier
+                .clickable {
+                    onEventClicked.invoke(event.eventId)
+                }
+        )
+
+        if (index != viewState.ongoingEvents.lastIndex) {
+            Divider()
         }
     }
 }
@@ -102,6 +116,19 @@ private fun SuccessContent(
 private fun RecentMatchesEmptyState() {
     EmptyStateCard(
         text = stringResource(id = R.string.err_no_recent_matches),
+        modifier = Modifier
+            .padding(
+                horizontal = 16.dp,
+            ),
+        textModifier = Modifier
+            .padding(32.dp),
+    )
+}
+
+@Composable
+private fun OngoingEventsEmptyState() {
+    EmptyStateCard(
+        text = stringResource(id = R.string.err_no_ongoing_events),
         modifier = Modifier
             .padding(
                 horizontal = 16.dp,

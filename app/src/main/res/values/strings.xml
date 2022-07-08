@@ -7,4 +7,5 @@
     <string name="standings">Standings</string>
     <string name="standings_information_unavailable">Standings information is currently unavailable.</string>
     <string name="err_no_recent_matches">There are no recent match results.</string>
+    <string name="err_no_ongoing_events">There are no ongoing events.</string>
 </resources>

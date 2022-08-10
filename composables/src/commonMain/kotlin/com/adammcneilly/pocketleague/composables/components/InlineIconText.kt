@@ -7,6 +7,7 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
@@ -33,6 +34,7 @@ fun InlineIconText(
     modifier: Modifier = Modifier,
     leadingIcon: Boolean = false,
     showIcon: Boolean = true,
+    iconTint: Color = Color.Unspecified,
 ) {
     Text(
         text = text.getAnnotatedString(
@@ -42,6 +44,7 @@ fun InlineIconText(
         inlineContent = getInlineContent(
             icon = icon,
             showIcon = showIcon,
+            iconTint = iconTint,
         ),
         modifier = modifier,
     )
@@ -76,6 +79,7 @@ private fun String.getAnnotatedString(
 private fun getInlineContent(
     icon: ImageVector,
     showIcon: Boolean,
+    iconTint: Color,
 ): Map<String, InlineTextContent> {
     return if (!showIcon) {
         emptyMap()
@@ -91,8 +95,9 @@ private fun getInlineContent(
                     )
                 ) {
                     Icon(
-                        icon,
+                        imageVector = icon,
                         contentDescription = null,
+                        tint = iconTint,
                     )
                 }
             )

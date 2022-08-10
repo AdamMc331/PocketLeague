@@ -21,6 +21,7 @@ data class MatchDetailDisplayModel(
     val stageName: String = "",
     val relativeDateTime: String = "",
     val isPlaceholder: Boolean = false,
+    val isLive: Boolean = true, // This is for demo purposes, but this should be default false.
 )
 
 /**

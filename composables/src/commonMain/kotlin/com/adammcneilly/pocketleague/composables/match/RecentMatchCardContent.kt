@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.composables.components.InlineIconText
 import com.adammcneilly.pocketleague.composables.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.composables.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
@@ -46,21 +48,46 @@ fun RecentMatchCardContent(
         modifier = modifier.padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        Text(
-            text = match.eventName,
-            fontWeight = FontWeight.Bold,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier
-                .fillMaxWidth()
-                .placeholderMaterial(
-                    visible = match.isPlaceholder,
-                    color = PlaceholderDefaults.color(
-                        backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-                    ),
-                ),
+        EventName(match)
+
+        RelativeTimeOrLiveIndicator(match)
+
+        Spacer(
+            modifier = Modifier.height(8.dp),
         )
 
+        BlueTeamResult(match)
+
+        OrangeTeamResult(match)
+    }
+}
+
+@Composable
+private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
+    MatchTeamResultRow(
+        teamResult = match.orangeTeamResult,
+        isPlaceholder = match.isPlaceholder,
+    )
+}
+
+@Composable
+private fun BlueTeamResult(match: MatchDetailDisplayModel) {
+    MatchTeamResultRow(
+        teamResult = match.blueTeamResult,
+        isPlaceholder = match.isPlaceholder,
+    )
+}
+
+@Composable
+private fun RelativeTimeOrLiveIndicator(match: MatchDetailDisplayModel) {
+    if (match.isLive && !match.isPlaceholder) {
+        InlineIconText(
+            text = "LIVE",
+            icon = Icons.Default.Circle,
+            leadingIcon = true,
+            iconTint = MaterialTheme.colorScheme.onError,
+        )
+    } else {
         Text(
             text = match.relativeDateTime,
             style = MaterialTheme.typography.labelSmall,
@@ -73,21 +100,25 @@ fun RecentMatchCardContent(
                     ),
                 ),
         )
-
-        Spacer(
-            modifier = Modifier.height(8.dp),
-        )
-
-        MatchTeamResultRow(
-            teamResult = match.blueTeamResult,
-            isPlaceholder = match.isPlaceholder,
-        )
-
-        MatchTeamResultRow(
-            teamResult = match.orangeTeamResult,
-            isPlaceholder = match.isPlaceholder,
-        )
     }
+}
+
+@Composable
+private fun EventName(match: MatchDetailDisplayModel) {
+    Text(
+        text = match.eventName,
+        fontWeight = FontWeight.Bold,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier
+            .fillMaxWidth()
+            .placeholderMaterial(
+                visible = match.isPlaceholder,
+                color = PlaceholderDefaults.color(
+                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+                ),
+            ),
+    )
 }
 
 /**

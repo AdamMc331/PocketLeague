@@ -13,4 +13,6 @@ data class Match(
     val blueTeam: MatchTeamResult = MatchTeamResult(),
     val orangeTeam: MatchTeamResult = MatchTeamResult(),
     val stage: EventStage = EventStage(),
+    val format: Format = Format(),
+    val gameOverviews: List<GameOverview> = emptyList(),
 )

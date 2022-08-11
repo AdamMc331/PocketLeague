@@ -22,4 +22,8 @@ data class OctaneGGMatch(
     val orange: OctaneGGMatchTeamResult? = null,
     @SerialName("stage")
     val stage: OctaneGGStage? = null,
+    @SerialName("format")
+    val format: OctaneGGFormat? = null,
+    @SerialName("games")
+    val games: List<OctaneGGGameOverview>? = null,
 )

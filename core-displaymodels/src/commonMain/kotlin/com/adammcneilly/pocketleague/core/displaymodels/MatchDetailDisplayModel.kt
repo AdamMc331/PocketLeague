@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.core.displaymodels
 import com.adammcneilly.pocketleague.core.datetime.DateUtils
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
+import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 
 private const val MATCH_DATE_FORMAT = "MMM dd, yyyy"
@@ -21,7 +22,7 @@ data class MatchDetailDisplayModel(
     val stageName: String = "",
     val relativeDateTime: String = "",
     val isPlaceholder: Boolean = false,
-    val isLive: Boolean = true, // This is for demo purposes, but this should be default false.
+    val isLive: Boolean = false,
 )
 
 /**
@@ -30,18 +31,35 @@ data class MatchDetailDisplayModel(
 fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
     val dateTimeFormatter = dateTimeFormatter()
 
+    val startDate = this.dateUTC
+
+    val isBeforeToday = if (startDate != null) {
+        startDate < Clock.System.now()
+    } else {
+        false
+    }
+
+    val (blueWins, orangeWins) = this.gameOverviews.partition { gameOverview ->
+        gameOverview.blueScore > gameOverview.orangeScore
+    }
+
+    val blueTeamWinsMatch = blueWins.size == this.format.numGamesRequiredToWin()
+    val orangeTeamWinsMatch = orangeWins.size == this.format.numGamesRequiredToWin()
+
+    val isLive = isBeforeToday && !blueTeamWinsMatch && !orangeTeamWinsMatch
+
     return MatchDetailDisplayModel(
         matchId = this.id,
         orangeTeamResult = this.orangeTeam.toDisplayModel(),
         blueTeamResult = this.blueTeam.toDisplayModel(),
-        localDate = this.dateUTC?.let { date ->
+        localDate = startDate?.let { date ->
             dateTimeFormatter.formatInstant(
                 instant = date,
                 formatPattern = MATCH_DATE_FORMAT,
                 timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
-        localTime = this.dateUTC?.let { date ->
+        localTime = startDate?.let { date ->
             dateTimeFormatter.formatInstant(
                 instant = date,
                 formatPattern = MATCH_TIME_FORMAT,
@@ -50,8 +68,9 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
         }.orEmpty(),
         eventName = this.event.name,
         stageName = this.stage.name,
-        relativeDateTime = this.dateUTC?.let { date ->
+        relativeDateTime = startDate?.let { date ->
             DateUtils.getRelativeTimestamp(date)
         }.orEmpty(),
+        isLive = isLive,
     )
 }

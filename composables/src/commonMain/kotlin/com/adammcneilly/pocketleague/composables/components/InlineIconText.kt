@@ -3,10 +3,12 @@ package com.adammcneilly.pocketleague.composables.components
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
@@ -25,6 +27,7 @@ private const val INLINE_CONTENT_ID = "inlineContent"
  * @param[leadingIcon] If true, the icon will show before the text. If false, the icon
  * appears after.
  * @param[showIcon] If true, we'll actually show the icon. If false, we'll ignore it.
+ * @param[iconTint] If supplied, we provide a tint to our [icon] using this color.
  */
 @Composable
 fun InlineIconText(
@@ -33,6 +36,7 @@ fun InlineIconText(
     modifier: Modifier = Modifier,
     leadingIcon: Boolean = false,
     showIcon: Boolean = true,
+    iconTint: Color = LocalContentColor.current,
 ) {
     Text(
         text = text.getAnnotatedString(
@@ -42,6 +46,7 @@ fun InlineIconText(
         inlineContent = getInlineContent(
             icon = icon,
             showIcon = showIcon,
+            iconTint = iconTint,
         ),
         modifier = modifier,
     )
@@ -76,6 +81,7 @@ private fun String.getAnnotatedString(
 private fun getInlineContent(
     icon: ImageVector,
     showIcon: Boolean,
+    iconTint: Color,
 ): Map<String, InlineTextContent> {
     return if (!showIcon) {
         emptyMap()
@@ -91,8 +97,9 @@ private fun getInlineContent(
                     )
                 ) {
                     Icon(
-                        icon,
+                        imageVector = icon,
                         contentDescription = null,
+                        tint = iconTint,
                     )
                 }
             )

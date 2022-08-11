@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.composables.components
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,7 +36,7 @@ fun InlineIconText(
     modifier: Modifier = Modifier,
     leadingIcon: Boolean = false,
     showIcon: Boolean = true,
-    iconTint: Color = Color.Unspecified,
+    iconTint: Color = LocalContentColor.current,
 ) {
     Text(
         text = text.getAnnotatedString(

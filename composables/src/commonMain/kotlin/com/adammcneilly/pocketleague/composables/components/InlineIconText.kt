@@ -26,6 +26,7 @@ private const val INLINE_CONTENT_ID = "inlineContent"
  * @param[leadingIcon] If true, the icon will show before the text. If false, the icon
  * appears after.
  * @param[showIcon] If true, we'll actually show the icon. If false, we'll ignore it.
+ * @param[iconTint] If supplied, we provide a tint to our [icon] using this color.
  */
 @Composable
 fun InlineIconText(

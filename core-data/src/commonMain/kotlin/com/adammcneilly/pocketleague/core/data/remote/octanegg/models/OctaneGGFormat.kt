@@ -4,6 +4,9 @@ import com.adammcneilly.pocketleague.core.models.Format
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Defines the format of a match between two teams.
+ */
 @Serializable
 data class OctaneGGFormat(
     @SerialName("type")

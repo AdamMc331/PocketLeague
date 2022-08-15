@@ -11,7 +11,7 @@ kotlin {
             dependencies {
                 implementation(project(":core:currency"))
                 implementation(project(":core:models"))
-                implementation(project(":core-datetime"))
+                implementation(project(":core:datetime"))
             }
         }
         val commonTest by getting {

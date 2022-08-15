@@ -11,7 +11,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:data"))
-                implementation(project(":core-models"))
+                implementation(project(":core:models"))
                 implementation(project(":core-data"))
                 implementation(project(":core-displaymodels"))
                 implementation(project(":core-datetime"))

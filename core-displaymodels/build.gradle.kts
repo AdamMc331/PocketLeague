@@ -9,9 +9,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:currency"))
                 implementation(project(":core:models"))
                 implementation(project(":core-datetime"))
-                implementation(project(":core-currency"))
             }
         }
         val commonTest by getting {

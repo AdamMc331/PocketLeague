@@ -10,10 +10,8 @@
 local.properties
 /buildSrc/build/
 /shared/build/
-/core/models/build/
 /core-data/build/
 /core-datetime/build/
 /core-displaymodels/build/
-/core-currency/build/
 /composables/build/
 /app/src/main/graphql/com/adammcneilly/pocketleague/.graphqlconfig

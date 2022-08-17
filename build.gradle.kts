@@ -11,7 +11,7 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:7.2.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
-        classpath("org.jlleitschuh.gradle:ktlint-gradle:10.0.0")
+        classpath("org.jlleitschuh.gradle:ktlint-gradle:10.3.0")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.19.0")
         classpath("com.github.ben-manes:gradle-versions-plugin:0.29.0")
         classpath("com.hiya:jacoco-android:0.2")

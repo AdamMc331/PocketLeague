@@ -10,8 +10,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core-models"))
-                implementation(project(":core-datetime"))
+                implementation(project(":core:data"))
+                implementation(project(":core:models"))
+                implementation(project(":core:datetime"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")

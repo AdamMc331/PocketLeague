@@ -1,8 +1,7 @@
 package com.adammcneilly.pocketleague.core.data
 
 /**
- * This is a sealed class that represents two options for a data response, where the response is
- * either successful or a failure.
+ * This is a sealed class that represents the various states a request for data can be in.
  *
  * By wrapping a response into this single type, we can provide a way for asynchronous streams to
  * handle both success and failure scenarios, without having to catch exceptions. This is because any

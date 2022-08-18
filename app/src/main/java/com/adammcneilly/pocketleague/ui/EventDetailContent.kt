@@ -5,7 +5,6 @@ package com.adammcneilly.pocketleague.ui
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -20,6 +19,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
@@ -35,6 +35,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.isUnspecified
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
@@ -215,25 +216,19 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
     val coroutineScope = rememberCoroutineScope()
     val containerColor = remember { mutableStateOf(Color.Unspecified) }
 
-    val cardColors = if (containerColor.value == Color.Unspecified) {
-        CardDefaults.cardColors()
-    } else {
-        CardDefaults.cardColors(
-            containerColor = containerColor.value,
-        )
-    }
-
-    Log.d("ARM TESTING", "Container Color: ${containerColor.value}")
+    val cardColors = getCardColors(containerColor.value)
 
     Card(
         colors = cardColors,
     ) {
-        val imageUrl = if (isSystemInDarkTheme()) {
+        // First we determine which image URL we want to load
+        val imageUrl = if (isDarkTheme) {
             displayModel.darkThemeImageUrl
         } else {
             displayModel.lightThemeImageUrl
         }
 
+        // Build the base image request to load that image URL.
         val imageRequest = ImageRequest.Builder(LocalContext.current)
             .data(imageUrl)
             .crossfade(true)
@@ -242,6 +237,8 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
 
         val imageLoader = LocalContext.current.imageLoader
 
+        // Startup a coroutine that will load up the desired image, and make a request for the
+        // container color and set it once loaded
         LaunchedEffect(displayModel) {
             coroutineScope.launch {
                 val imageResult = imageLoader.execute(imageRequest)
@@ -254,13 +251,13 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
                         isDarkTheme = isDarkTheme,
                         onColorGenerated = { generatedColor ->
                             containerColor.value = generatedColor
-                            Log.d("ARM TESTING", "Generated color: $generatedColor")
                         },
                     )
                 }
             }
         }
 
+        // Create image from the result above.
         Image(
             painter = rememberAsyncImagePainter(imageRequest.data),
             contentDescription = "Event Image",
@@ -285,6 +282,21 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
     }
 }
 
+/**
+ * If the supplied [containerColor] is unspecified, we want to return the default
+ * card colors. Otherwise, we will use that as the container of the card.
+ */
+@Composable
+private fun getCardColors(containerColor: Color): CardColors {
+    return if (containerColor.isUnspecified) {
+        CardDefaults.cardColors()
+    } else {
+        CardDefaults.cardColors(
+            containerColor = containerColor
+        )
+    }
+}
+
 @Composable
 private fun Chip(
     text: String,
@@ -304,6 +316,15 @@ private fun Chip(
     )
 }
 
+/**
+ * This function consumes a [bitmap] that is the result of an async image loading request.
+ *
+ * We will generate a color palette from this image using the Palette API. We use the [isDarkTheme]
+ * flag to determine which palette should be used.
+ *
+ * From there, we expose that result via the [onColorGenerated] callback, since the palette
+ * generation is done asynchronously.
+ */
 private fun getMutedColorFromBitmap(
     bitmap: Bitmap,
     isDarkTheme: Boolean,

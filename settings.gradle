@@ -10,3 +10,6 @@ include ':core:data'
 include ':core:datetime'
 include ':core:displaymodels'
 include ':core:models'
+
+include ':data:octanegg'
+include ':data:remote'

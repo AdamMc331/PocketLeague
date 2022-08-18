@@ -105,6 +105,7 @@ dependencies {
     implementation("androidx.window:window:${Versions.windowManager}")
     implementation("androidx.lifecycle:lifecycle-process:2.5.0")
     implementation("io.coil-kt:coil-compose:2.1.0")
+    implementation("androidx.palette:palette-ktx:1.0.0")
     testImplementation("junit:junit:${Versions.junit}")
     testImplementation("com.google.truth:truth:${Versions.truth}")
     testImplementation("app.cash.turbine:turbine:${Versions.turbine}")

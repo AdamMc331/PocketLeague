@@ -3,6 +3,10 @@
 package com.adammcneilly.pocketleague.ui
 
 import android.content.res.Configuration
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +20,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,15 +28,23 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import androidx.palette.graphics.Palette
+import coil.compose.rememberAsyncImagePainter
+import coil.imageLoader
 import coil.request.ImageRequest
+import coil.request.SuccessResult
 import com.adammcneilly.pocketleague.composables.components.Chip
 import com.adammcneilly.pocketleague.composables.eventstage.StageSummaryListItem
 import com.adammcneilly.pocketleague.composables.team.TeamOverviewListItem
@@ -43,6 +56,7 @@ import com.adammcneilly.pocketleague.ui.components.Tooltip
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.placeholder.material.placeholder
+import kotlinx.coroutines.launch
 
 private const val EVENT_IMAGE_ASPECT_RATIO = 3.0F
 
@@ -197,18 +211,58 @@ private fun EventDetails(displayModel: EventDetailDisplayModel) {
 
 @Composable
 private fun EventImageName(displayModel: EventDetailDisplayModel) {
-    Card {
+    val isDarkTheme = isSystemInDarkTheme()
+    val coroutineScope = rememberCoroutineScope()
+    val containerColor = remember { mutableStateOf(Color.Unspecified) }
+
+    val cardColors = if (containerColor.value == Color.Unspecified) {
+        CardDefaults.cardColors()
+    } else {
+        CardDefaults.cardColors(
+            containerColor = containerColor.value,
+        )
+    }
+
+    Log.d("ARM TESTING", "Container Color: ${containerColor.value}")
+
+    Card(
+        colors = cardColors,
+    ) {
         val imageUrl = if (isSystemInDarkTheme()) {
             displayModel.darkThemeImageUrl
         } else {
             displayModel.lightThemeImageUrl
         }
 
-        AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(imageUrl)
-                .crossfade(true)
-                .build(),
+        val imageRequest = ImageRequest.Builder(LocalContext.current)
+            .data(imageUrl)
+            .crossfade(true)
+            .allowHardware(false)
+            .build()
+
+        val imageLoader = LocalContext.current.imageLoader
+
+        LaunchedEffect(displayModel) {
+            coroutineScope.launch {
+                val imageResult = imageLoader.execute(imageRequest)
+
+                if (imageResult is SuccessResult) {
+                    val imageDrawable = imageResult.drawable
+
+                    getMutedColorFromBitmap(
+                        bitmap = (imageDrawable as BitmapDrawable).bitmap,
+                        isDarkTheme = isDarkTheme,
+                        onColorGenerated = { generatedColor ->
+                            containerColor.value = generatedColor
+                            Log.d("ARM TESTING", "Generated color: $generatedColor")
+                        },
+                    )
+                }
+            }
+        }
+
+        Image(
+            painter = rememberAsyncImagePainter(imageRequest.data),
             contentDescription = "Event Image",
             modifier = Modifier
                 .fillMaxWidth()
@@ -248,6 +302,24 @@ private fun Chip(
             }
         },
     )
+}
+
+private fun getMutedColorFromBitmap(
+    bitmap: Bitmap,
+    isDarkTheme: Boolean,
+    onColorGenerated: (Color) -> Unit,
+) {
+    Palette.from(bitmap).generate { palette ->
+        val rgb = if (isDarkTheme) {
+            palette?.darkMutedSwatch?.rgb
+        } else {
+            palette?.lightMutedSwatch?.rgb
+        }
+
+        val color = rgb?.let(::Color) ?: Color.Unspecified
+
+        onColorGenerated.invoke(color)
+    }
 }
 
 @Preview(

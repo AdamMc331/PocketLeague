@@ -13,3 +13,4 @@ include ':core:models'
 
 include ':data:octanegg'
 include ':data:remote'
+include ':data:event'

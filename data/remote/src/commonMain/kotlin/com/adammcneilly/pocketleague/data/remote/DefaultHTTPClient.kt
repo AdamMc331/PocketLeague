@@ -14,7 +14,7 @@ import kotlinx.serialization.json.Json
  * A default implementation of an [HttpClient] that will use an engine defined
  * by the platform it's being used on. This allows us to override for tests.
  */
-val defaultHTTPClient = HttpClient {
+internal val defaultHTTPClient = HttpClient {
     install(JsonFeature) {
         serializer = KotlinxSerializer(
             Json {

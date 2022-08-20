@@ -64,9 +64,9 @@ private fun List<Match>.groupByLocalDate(): Map<String, List<MatchDetailDisplayM
     val dateTimeFormatter = dateTimeFormatter()
 
     val matchesByDate: Map<String, List<Match>> = this.groupBy { match ->
-        match.dateUTC?.let { dateInstant ->
-            dateTimeFormatter.formatInstant(
-                instant = dateInstant,
+        match.dateUTC?.let { date ->
+            dateTimeFormatter.formatUTCString(
+                utcString = date,
                 formatPattern = MATCH_DATE_FORMAT,
                 timeZone = TimeZone.currentSystemDefault(),
             )

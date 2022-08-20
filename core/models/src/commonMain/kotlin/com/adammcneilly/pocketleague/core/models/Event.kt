@@ -1,7 +1,5 @@
 package com.adammcneilly.pocketleague.core.models
 
-import kotlinx.datetime.Instant
-
 /**
  * Defines any Rocket League event that can occur to allow a number of teams or players
  * to compete.
@@ -22,8 +20,8 @@ import kotlinx.datetime.Instant
 data class Event(
     val id: String = "",
     val name: String = "",
-    val startDateUTC: Instant? = null,
-    val endDateUTC: Instant? = null,
+    val startDateUTC: String? = null,
+    val endDateUTC: String? = null,
     val imageUrl: String? = null,
     val stages: List<EventStage> = emptyList(),
     val tier: EventTier = EventTier.Unknown,

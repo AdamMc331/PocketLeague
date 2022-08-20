@@ -5,7 +5,6 @@ import com.adammcneilly.pocketleague.core.data.remote.octanegg.models.OctaneGGSt
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventTier
-import kotlinx.datetime.Instant
 
 /**
  * Converts an [OctaneGGEvent] entity into an [Event] within the Pocket League domain.
@@ -14,8 +13,8 @@ fun OctaneGGEvent.toEvent(): Event {
     return Event(
         id = this.id ?: "ID Not Available",
         name = this.name ?: "Name Not Available",
-        startDateUTC = this.startDate?.let(Instant.Companion::parse),
-        endDateUTC = this.endDate?.let(Instant.Companion::parse),
+        startDateUTC = this.startDate,
+        endDateUTC = this.endDate,
         imageUrl = this.image,
         stages = this.stages?.map(OctaneGGStage::toEventStage).orEmpty(),
         tier = this.tier.toEventTier(),

@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
+import com.adammcneilly.pocketleague.core.models.Event
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -35,3 +36,10 @@ data class OctaneGGEvent(
     @SerialName("lan")
     val lan: Boolean? = null,
 )
+
+fun OctaneGGEvent.toEvent(): Event {
+    return Event(
+        id = this.id.orEmpty(),
+        name = this.name.orEmpty(),
+    )
+}

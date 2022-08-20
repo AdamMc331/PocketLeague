@@ -12,10 +12,18 @@ object DateUtils {
     private const val MINUTES_IN_HOUR = 60
     private const val HOURS_IN_DAY = 24
 
+    fun isBeforeToday(utcString: String): Boolean {
+        val instant = Instant.parse(utcString)
+
+        return instant < Clock.System.now()
+    }
+
     /**
      * Given an [instant], convert it to a relative timestamp such as 5m ago, or 5d ago.
      */
-    fun getRelativeTimestamp(instant: Instant): String {
+    fun getRelativeTimestamp(utcString: String): String {
+        val instant = Instant.parse(utcString)
+
         val now = Clock.System.now()
 
         val duration = now.minus(instant)

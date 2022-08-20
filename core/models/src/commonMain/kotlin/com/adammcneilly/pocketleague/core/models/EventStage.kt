@@ -1,7 +1,5 @@
 package com.adammcneilly.pocketleague.core.models
 
-import kotlinx.datetime.Instant
-
 /**
  * Defines information about a particular stage within an [Event].
  *
@@ -18,8 +16,8 @@ data class EventStage(
     val id: String = "",
     val name: String = "",
     val region: String = "",
-    val startDateUTC: Instant? = null,
-    val endDateUTC: Instant? = null,
+    val startDateUTC: String? = null,
+    val endDateUTC: String? = null,
     val liquipedia: String = "",
     val qualifier: Boolean = false,
     val lan: Boolean = false,

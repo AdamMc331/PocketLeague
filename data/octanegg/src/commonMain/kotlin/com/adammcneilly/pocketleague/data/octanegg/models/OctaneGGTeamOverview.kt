@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
+import com.adammcneilly.pocketleague.core.models.Team
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -21,3 +22,13 @@ data class OctaneGGTeamOverview(
     @SerialName("slug")
     val slug: String? = null,
 )
+
+/**
+ * Converts an [OctaneGGTeamDetail] entity to a [Team] in our domain.
+ */
+fun OctaneGGTeamOverview.toTeam(): Team {
+    return Team(
+        id = this.id.orEmpty(),
+        name = this.name.orEmpty(),
+    )
+}

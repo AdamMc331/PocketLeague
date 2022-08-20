@@ -28,7 +28,7 @@ open class BaseAPIClient(
      */
     suspend inline fun <reified T : Any> getResponse(
         endpoint: String,
-        params: RemoteParams,
+        params: RemoteParams = emptyMap(),
     ): DataState<T> {
         val url = "$baseURL$endpoint"
 

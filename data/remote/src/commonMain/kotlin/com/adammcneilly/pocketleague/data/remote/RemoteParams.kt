@@ -7,7 +7,7 @@ import io.ktor.client.request.parameter
  * Whenever we want to add params to a request, we just return a map of param
  * keys and values. The [BaseAPIClient] can map this to the request builder.
  */
-typealias RemoteParams = Map<String, String?>
+typealias RemoteParams = Map<String, Any?>
 
 /**
  * Adds all of the [params] to this [HttpRequestBuilder] as long as they're not null.

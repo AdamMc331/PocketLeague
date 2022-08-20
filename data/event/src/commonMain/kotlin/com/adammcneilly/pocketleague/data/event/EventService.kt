@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.core.models.Team
 /**
  * Defines the data contract for dealing with data within the event space.
  */
-interface EventRepository {
+interface EventService {
     /**
      * Returns a stream of [Event] entities as a list. We should only return events that meet
      * the criteria defined by the given [request].

@@ -14,11 +14,13 @@ class JvmDateTimeFormatter : com.adammcneilly.pocketleague.core.datetime.DateTim
     /**
      * See commonMain documentation.
      */
-    override fun formatInstant(
-        instant: Instant,
+    override fun formatUTCString(
+        utcString: String,
         formatPattern: String,
         timeZone: TimeZone,
     ): String? {
+        val instant = Instant.parse(utcString)
+
         val localDateTime = instant.toLocalDateTime(timeZone)
 
         val dateTimeFormatter = DateTimeFormatter.ofPattern(formatPattern)

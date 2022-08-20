@@ -22,4 +22,18 @@ sealed class DataState<out T> {
      * An unsuccessful result because some [error] occurred.
      */
     data class Error(val error: Throwable) : DataState<Nothing>()
+
+    /**
+     * Converts a [DataState] of type [T] to one of type [R] using the supplied [mapper] function.
+     */
+    fun <R> map(mapper: (T) -> R): DataState<R> {
+        return when (this) {
+            Loading -> Loading
+            is Success -> {
+                val mappedData = mapper(this.data)
+                Success(mappedData)
+            }
+            is Error -> this
+        }
+    }
 }

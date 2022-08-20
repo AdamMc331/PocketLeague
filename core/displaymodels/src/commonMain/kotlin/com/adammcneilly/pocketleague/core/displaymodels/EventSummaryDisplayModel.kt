@@ -37,15 +37,15 @@ fun Event.toSummaryDisplayModel(): EventSummaryDisplayModel {
 
     return EventSummaryDisplayModel(
         startDate = this.startDateUTC?.let { startDate ->
-            dateTimeFormatter.formatInstant(
-                instant = startDate,
+            dateTimeFormatter.formatUTCString(
+                utcString = startDate,
                 formatPattern = EVENT_DATE_FORMAT,
                 timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
         endDate = this.endDateUTC?.let { endDate ->
-            dateTimeFormatter.formatInstant(
-                instant = endDate,
+            dateTimeFormatter.formatUTCString(
+                utcString = endDate,
                 formatPattern = EVENT_DATE_FORMAT,
                 timeZone = TimeZone.currentSystemDefault(),
             )

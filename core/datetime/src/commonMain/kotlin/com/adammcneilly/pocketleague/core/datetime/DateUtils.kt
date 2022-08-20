@@ -12,6 +12,10 @@ object DateUtils {
     private const val MINUTES_IN_HOUR = 60
     private const val HOURS_IN_DAY = 24
 
+    /**
+     * Determines if the date represented by the supplied [utcString]
+     * occurred before the current date.
+     */
     fun isBeforeToday(utcString: String): Boolean {
         val instant = Instant.parse(utcString)
 

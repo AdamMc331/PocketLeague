@@ -37,6 +37,9 @@ data class OctaneGGEvent(
     val lan: Boolean? = null,
 )
 
+/**
+ * Convert an [OctaneGGEvent] to an [Event] in our domain.
+ */
 fun OctaneGGEvent.toEvent(): Event {
     return Event(
         id = this.id.orEmpty(),

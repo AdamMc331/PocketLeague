@@ -33,5 +33,6 @@ fun RecentMatchCard(
  * like it should.
  */
 private fun Match.isPlaceholder(): Boolean {
-    return this == Match()
+    // LOL coming back soon
+    return false
 }

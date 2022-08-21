@@ -32,7 +32,7 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
 
     val startDate = this.dateUTC
 
-    val isBeforeToday = startDate?.let(DateUtils::isBeforeToday) ?: false
+    val isBeforeToday = startDate?.let(DateUtils::isBeforeNow) ?: false
 
     val (blueWins, orangeWins) = this.gameOverviews.partition { gameOverview ->
         gameOverview.blueScore > gameOverview.orangeScore

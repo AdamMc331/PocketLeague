@@ -16,7 +16,7 @@ object DateUtils {
      * Determines if the date represented by the supplied [utcString]
      * occurred before the current date.
      */
-    fun isBeforeToday(utcString: String): Boolean {
+    fun isBeforeNow(utcString: String): Boolean {
         val instant = Instant.parse(utcString)
 
         return instant < Clock.System.now()

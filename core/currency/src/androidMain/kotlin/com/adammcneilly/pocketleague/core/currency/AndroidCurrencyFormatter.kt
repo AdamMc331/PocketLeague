@@ -6,7 +6,7 @@ import java.util.Currency
 /**
  * A concrete implementation of [CurrencyFormatter] to use on jvm based platforms.
  */
-class JvmCurrencyFormatter : CurrencyFormatter {
+class AndroidCurrencyFormatter : CurrencyFormatter {
 
     override fun formatCurrency(amount: Double, currency: String): String? {
         val formatter = NumberFormat.getCurrencyInstance()

@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter
 /**
  * See commonMain documentation.
  */
-class JvmDateTimeFormatter : com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter {
+class AndroidDateTimeFormatter : com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter {
 
     /**
      * See commonMain documentation.

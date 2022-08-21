@@ -1,6 +1,9 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventRegion
+import com.adammcneilly.pocketleague.core.models.EventTier
+import com.adammcneilly.pocketleague.core.models.Prize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -44,5 +47,15 @@ fun OctaneGGEvent.toEvent(): Event {
     return Event(
         id = this.id.orEmpty(),
         name = this.name.orEmpty(),
+        startDateUTC = this.startDate.orEmpty(),
+        endDateUTC = this.endDate.orEmpty(),
+        imageUrl = this.image,
+        // FIX THE REST ADAM
+        stages = emptyList(),
+        tier = EventTier.Unknown,
+        mode = this.mode.toString(),
+        region = EventRegion.Unknown,
+        lan = this.lan ?: false,
+        prize = Prize(0.0, ""),
     )
 }

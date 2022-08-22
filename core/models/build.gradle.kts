@@ -9,7 +9,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
+                api("org.jetbrains.kotlin:kotlin-stdlib-common")
             }
         }
         val commonTest by getting {

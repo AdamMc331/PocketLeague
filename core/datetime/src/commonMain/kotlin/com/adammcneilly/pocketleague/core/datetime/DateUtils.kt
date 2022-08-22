@@ -13,9 +13,21 @@ object DateUtils {
     private const val HOURS_IN_DAY = 24
 
     /**
+     * Determines if the date represented by the supplied [utcString]
+     * occurred before the current date.
+     */
+    fun isBeforeNow(utcString: String): Boolean {
+        val instant = Instant.parse(utcString)
+
+        return instant < Clock.System.now()
+    }
+
+    /**
      * Given an [instant], convert it to a relative timestamp such as 5m ago, or 5d ago.
      */
-    fun getRelativeTimestamp(instant: Instant): String {
+    fun getRelativeTimestamp(utcString: String): String {
+        val instant = Instant.parse(utcString)
+
         val now = Clock.System.now()
 
         val duration = now.minus(instant)

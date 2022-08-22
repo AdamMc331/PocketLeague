@@ -7,6 +7,6 @@ package com.adammcneilly.pocketleague.core.models
  * a singular winner.
  */
 data class Prize(
-    val amount: Double = 0.0,
-    val currency: String = "",
+    val amount: Double,
+    val currency: String,
 )

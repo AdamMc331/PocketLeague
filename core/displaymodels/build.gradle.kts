@@ -17,6 +17,8 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(project(":core:datetime-test"))
+                implementation(project(":core:models-test"))
             }
         }
         val androidMain by getting

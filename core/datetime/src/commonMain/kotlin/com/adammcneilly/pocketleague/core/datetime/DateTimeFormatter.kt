@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.core.datetime
 
-import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 
@@ -19,8 +18,8 @@ interface DateTimeFormatter {
      * a user friendly string matching the supplied [formatPattern]. We'll format it using
      * the supplied [timeZone] as well.
      */
-    fun formatInstant(
-        instant: Instant,
+    fun formatUTCString(
+        utcString: String,
         formatPattern: String,
         timeZone: TimeZone,
     ): String?

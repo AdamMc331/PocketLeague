@@ -1,7 +1,5 @@
 package com.adammcneilly.pocketleague.core.models
 
-import kotlinx.datetime.Instant
-
 /**
  * Defines information about a particular stage within an [Event].
  *
@@ -15,12 +13,12 @@ import kotlinx.datetime.Instant
  * @property[lan] True if this stage is happening at a LAN.
  */
 data class EventStage(
-    val id: String = "",
-    val name: String = "",
-    val region: String = "",
-    val startDateUTC: Instant? = null,
-    val endDateUTC: Instant? = null,
-    val liquipedia: String = "",
-    val qualifier: Boolean = false,
-    val lan: Boolean = false,
+    val id: String,
+    val name: String,
+    val region: String,
+    val startDateUTC: String?,
+    val endDateUTC: String?,
+    val liquipedia: String,
+    val qualifier: Boolean,
+    val lan: Boolean,
 )

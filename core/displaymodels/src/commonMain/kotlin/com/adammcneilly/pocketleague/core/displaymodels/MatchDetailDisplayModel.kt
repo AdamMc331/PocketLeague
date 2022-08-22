@@ -3,7 +3,6 @@ package com.adammcneilly.pocketleague.core.displaymodels
 import com.adammcneilly.pocketleague.core.datetime.DateUtils
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
-import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 
 private const val MATCH_DATE_FORMAT = "MMM dd, yyyy"
@@ -33,11 +32,7 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
 
     val startDate = this.dateUTC
 
-    val isBeforeToday = if (startDate != null) {
-        startDate < Clock.System.now()
-    } else {
-        false
-    }
+    val isBeforeToday = startDate?.let(DateUtils::isBeforeNow) ?: false
 
     val (blueWins, orangeWins) = this.gameOverviews.partition { gameOverview ->
         gameOverview.blueScore > gameOverview.orangeScore
@@ -53,15 +48,15 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
         orangeTeamResult = this.orangeTeam.toDisplayModel(),
         blueTeamResult = this.blueTeam.toDisplayModel(),
         localDate = startDate?.let { date ->
-            dateTimeFormatter.formatInstant(
-                instant = date,
+            dateTimeFormatter.formatUTCString(
+                utcString = date,
                 formatPattern = MATCH_DATE_FORMAT,
                 timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
         localTime = startDate?.let { date ->
-            dateTimeFormatter.formatInstant(
-                instant = date,
+            dateTimeFormatter.formatUTCString(
+                utcString = date,
                 formatPattern = MATCH_TIME_FORMAT,
                 timeZone = TimeZone.currentSystemDefault(),
             )

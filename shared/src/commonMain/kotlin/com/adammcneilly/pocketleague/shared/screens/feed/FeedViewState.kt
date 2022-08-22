@@ -35,7 +35,8 @@ data class FeedViewState(
             is DataState.Loading -> {
                 // Here, we return a list of empty match objects which will be mapped
                 // to a placeholder loading UI.
-                listOf(Match(), Match(), Match())
+                // LOL coming back soon
+                emptyList()
             }
             is DataState.Success -> {
                 recentMatchesState.data

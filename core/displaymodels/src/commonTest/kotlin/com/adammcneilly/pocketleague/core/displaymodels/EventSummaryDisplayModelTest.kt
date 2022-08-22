@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.models.Event
-import kotlinx.datetime.Instant
+import com.adammcneilly.pocketleague.core.datetime.test.FakeDateTimeFormatter
+import com.adammcneilly.pocketleague.core.models.test.testEvent
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -9,22 +9,24 @@ class EventSummaryDisplayModelTest {
 
     @Test
     fun convertFromEvent() {
-        val testEvent = Event(
-            id = "1234",
-            name = "Test Event",
-            startDateUTC = Instant.parse("2022-01-01T12:00:00Z"),
-            endDateUTC = Instant.parse("2022-01-02T12:00:00Z"),
-            imageUrl = "Test Image URL",
-        )
+        val mockDateString = "mock date string"
+        val testEvent = testEvent
 
-        val displayModel = testEvent.toSummaryDisplayModel()
+        val dateTimeFormatter = FakeDateTimeFormatter().apply {
+            mockResponseForUTCString(
+                utcString = testEvent.startDateUTC.orEmpty(),
+                response = mockDateString,
+            )
+        }
+
+        val displayModel = testEvent.toSummaryDisplayModel(dateTimeFormatter)
 
         with(displayModel) {
-            assertEquals("1234", eventId)
-            assertEquals("Test Image URL", imageURL.lightThemeImageUrl)
-            assertEquals("Test Image URL", imageURL.darkThemeImageURL)
-            assertEquals("Jan 01, 2022", startDate)
-            assertEquals("Test Event", name)
+            assertEquals(testEvent.id, eventId)
+            assertEquals(testEvent.imageUrl, imageURL.lightThemeImageUrl)
+            assertEquals(testEvent.imageUrl, imageURL.darkThemeImageURL)
+            assertEquals(mockDateString, startDate)
+            assertEquals(testEvent.name, name)
         }
     }
 }

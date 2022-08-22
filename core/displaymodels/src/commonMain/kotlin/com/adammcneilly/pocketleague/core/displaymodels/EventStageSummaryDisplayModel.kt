@@ -30,15 +30,15 @@ fun EventStage.toSummaryDisplayModel(): EventStageSummaryDisplayModel {
 
     return EventStageSummaryDisplayModel(
         startDate = this.startDateUTC?.let { startDate ->
-            dateTimeFormatter.formatInstant(
-                instant = startDate,
+            dateTimeFormatter.formatUTCString(
+                utcString = startDate,
                 formatPattern = STAGE_DATE_FORMAT,
                 timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
         endDate = this.endDateUTC?.let { endDate ->
-            dateTimeFormatter.formatInstant(
-                instant = endDate,
+            dateTimeFormatter.formatUTCString(
+                utcString = endDate,
                 formatPattern = STAGE_DATE_FORMAT,
                 timeZone = TimeZone.currentSystemDefault(),
             )

@@ -49,7 +49,7 @@ fun OctaneGGEvent.toEvent(): Event {
         startDateUTC = this.startDateUTC,
         endDateUTC = this.endDateUTC,
         imageURL = this.imageURL,
-        stages = emptyList(), // FIX THIS ADAM
+        stages = this.stages?.map(OctaneGGStage::toEventStage).orEmpty(),
         tier = this.tier.toEventTier(),
         mode = this.mode?.toString().orEmpty(),
         region = this.region.toEventRegion(),

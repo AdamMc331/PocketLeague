@@ -6,6 +6,7 @@ import com.adammcneilly.pocketleague.core.data.remote.octanegg.services.OctaneGG
 import com.adammcneilly.pocketleague.core.data.repositories.EventRepository
 import com.adammcneilly.pocketleague.core.data.repositories.GameRepository
 import com.adammcneilly.pocketleague.core.data.repositories.MatchRepository
+import com.adammcneilly.pocketleague.data.event.EventService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -20,6 +21,10 @@ class Repository(
 ) {
     internal val eventRepository: EventRepository by lazy {
         OctaneGGEventService()
+    }
+
+    internal val eventService: EventService by lazy {
+        com.adammcneilly.pocketleague.data.event.OctaneGGEventService()
     }
 
     internal val matchRepository: MatchRepository by lazy {

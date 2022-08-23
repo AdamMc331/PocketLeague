@@ -14,9 +14,9 @@ data class OctaneGGEvent(
     @SerialName("_id")
     val id: String? = null,
     @SerialName("endDate")
-    val endDate: String? = null,
+    val endDateUTC: String? = null,
     @SerialName("image")
-    val image: String? = null,
+    val imageURL: String? = null,
     @SerialName("mode")
     val mode: Int? = null,
     @SerialName("name")
@@ -30,7 +30,7 @@ data class OctaneGGEvent(
     @SerialName("stages")
     val stages: List<OctaneGGStage>? = null,
     @SerialName("startDate")
-    val startDate: String? = null,
+    val startDateUTC: String? = null,
     @SerialName("tier")
     val tier: String? = null,
     @SerialName("groups")
@@ -46,16 +46,15 @@ fun OctaneGGEvent.toEvent(): Event {
     return Event(
         id = this.id.orEmpty(),
         name = this.name.orEmpty(),
-        startDateUTC = this.startDate.orEmpty(),
-        endDateUTC = this.endDate.orEmpty(),
-        imageUrl = this.image,
-        // FIX THE REST ADAM
-        stages = emptyList(),
+        startDateUTC = this.startDateUTC,
+        endDateUTC = this.endDateUTC,
+        imageURL = this.imageURL,
+        stages = emptyList(), // FIX THIS ADAM
         tier = this.tier.toEventTier(),
-        mode = this.mode.toString(),
+        mode = this.mode?.toString().orEmpty(),
         region = this.region.toEventRegion(),
         lan = this.lan ?: false,
-        prize = null,
+        prize = this.prize?.toPrize(),
     )
 }
 

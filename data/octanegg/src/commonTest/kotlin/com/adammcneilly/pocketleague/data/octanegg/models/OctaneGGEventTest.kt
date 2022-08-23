@@ -9,18 +9,18 @@ import kotlin.test.assertEquals
 class OctaneGGEventTest {
 
     @Test
-    fun mapToEvent() {
+    fun mapFromValidEvent() {
         val octaneEvent = OctaneGGEvent(
             id = "eventId",
-            endDate = "endDate",
-            image = "image",
+            endDateUTC = "endDate",
+            imageURL = "image",
             mode = 1,
             name = "name",
             prize = null,
             region = "NA",
             slug = "slug",
             stages = null,
-            startDate = "startDate",
+            startDateUTC = "startDate",
             tier = "S",
             groups = listOf("testGroup"),
             lan = false,
@@ -29,7 +29,7 @@ class OctaneGGEventTest {
         val expectedEvent = Event(
             id = "eventId",
             endDateUTC = "endDate",
-            imageUrl = "image",
+            imageURL = "image",
             mode = "1",
             name = "name",
             prize = null,
@@ -38,6 +38,32 @@ class OctaneGGEventTest {
             startDateUTC = "startDate",
             tier = EventTier.S,
             lan = false,
+        )
+
+        val domainEvent = octaneEvent.toEvent()
+
+        assertEquals(
+            expected = expectedEvent,
+            actual = domainEvent,
+        )
+    }
+
+    @Test
+    fun mapFromDefaultEvent() {
+        val octaneEvent = OctaneGGEvent()
+
+        val expectedEvent = Event(
+            id = "",
+            name = "",
+            startDateUTC = null,
+            endDateUTC = null,
+            imageURL = null,
+            stages = emptyList(),
+            tier = EventTier.Unknown,
+            mode = "",
+            region = EventRegion.Unknown,
+            lan = false,
+            prize = null,
         )
 
         val domainEvent = octaneEvent.toEvent()

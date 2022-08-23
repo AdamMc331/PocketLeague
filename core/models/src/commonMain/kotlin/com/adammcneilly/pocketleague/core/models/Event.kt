@@ -8,7 +8,7 @@ package com.adammcneilly.pocketleague.core.models
  * @property[name] The description of this event, such as "RLCS Winter Split Regional 1".
  * @property[startDateUTC] The date that this event begins.
  * @property[endDateUTC] The date that this event stops.
- * @property[imageUrl] The URL to the remotely hosted image for this event.
+ * @property[imageURL] The URL to the remotely hosted image for this event.
  * @property[stages] The collection of different stages that will make up this event, including qualifiers
  * and main event.
  * @property[tier] An explanation of the notoriety of this event, like S-tier or A-tier.
@@ -22,7 +22,7 @@ data class Event(
     val name: String,
     val startDateUTC: String?,
     val endDateUTC: String?,
-    val imageUrl: String?,
+    val imageURL: String?,
     val stages: List<EventStage>,
     val tier: EventTier,
     val mode: String,

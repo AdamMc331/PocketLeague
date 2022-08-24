@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.shared.screens.ScreenState
+import com.adammcneilly.pocketleague.feature.core.ScreenState
 
 /**
  * Defines the UI state of the event detail screen.

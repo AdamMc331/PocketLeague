@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.screens
+package com.adammcneilly.pocketleague.feature.core
 
 /**
  * This interface is empty but exists to provide type safety for defining any set of parameters

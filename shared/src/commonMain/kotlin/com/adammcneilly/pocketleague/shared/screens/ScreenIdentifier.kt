@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.feature.core.ScreenParams
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 

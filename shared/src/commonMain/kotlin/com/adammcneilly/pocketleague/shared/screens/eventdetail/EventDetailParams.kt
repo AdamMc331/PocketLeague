@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
-import com.adammcneilly.pocketleague.shared.screens.ScreenParams
+import com.adammcneilly.pocketleague.feature.core.ScreenParams
 
 /**
  * Navigation parameters that will be passed into the event detail screen.

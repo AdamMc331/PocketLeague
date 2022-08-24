@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.feature.core.ScreenState
 import com.adammcneilly.pocketleague.shared.data.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

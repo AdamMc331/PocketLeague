@@ -53,7 +53,7 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
         stageSummaries = this.stages.sortedBy {
             it.startDateUTC
         }.map(EventStage::toSummaryDisplayModel),
-        lightThemeImageUrl = this.imageUrl,
+        lightThemeImageUrl = this.imageURL,
         tier = this.tier.toDisplayModel(),
         region = this.region.toDisplayModel(),
         mode = when (this.mode) {

@@ -3,7 +3,6 @@ package com.adammcneilly.pocketleague.data.octanegg.models
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventTier
-import com.adammcneilly.pocketleague.core.models.Prize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -15,9 +14,9 @@ data class OctaneGGEvent(
     @SerialName("_id")
     val id: String? = null,
     @SerialName("endDate")
-    val endDate: String? = null,
+    val endDateUTC: String? = null,
     @SerialName("image")
-    val image: String? = null,
+    val imageURL: String? = null,
     @SerialName("mode")
     val mode: Int? = null,
     @SerialName("name")
@@ -31,7 +30,7 @@ data class OctaneGGEvent(
     @SerialName("stages")
     val stages: List<OctaneGGStage>? = null,
     @SerialName("startDate")
-    val startDate: String? = null,
+    val startDateUTC: String? = null,
     @SerialName("tier")
     val tier: String? = null,
     @SerialName("groups")
@@ -47,15 +46,45 @@ fun OctaneGGEvent.toEvent(): Event {
     return Event(
         id = this.id.orEmpty(),
         name = this.name.orEmpty(),
-        startDateUTC = this.startDate.orEmpty(),
-        endDateUTC = this.endDate.orEmpty(),
-        imageUrl = this.image,
-        // FIX THE REST ADAM
-        stages = emptyList(),
-        tier = EventTier.Unknown,
-        mode = this.mode.toString(),
-        region = EventRegion.Unknown,
+        startDateUTC = this.startDateUTC,
+        endDateUTC = this.endDateUTC,
+        imageURL = this.imageURL,
+        stages = this.stages?.map(OctaneGGStage::toEventStage).orEmpty(),
+        tier = this.tier.toEventTier(),
+        mode = this.mode?.toString().orEmpty(),
+        region = this.region.toEventRegion(),
         lan = this.lan ?: false,
-        prize = Prize(0.0, ""),
+        prize = this.prize?.toPrize(),
     )
+}
+
+/**
+ * Attempts to convert the supplied String to an event tier, with a fallback
+ * if necessary.
+ */
+internal fun String?.toEventTier(): EventTier {
+    return when (this) {
+        "S" -> EventTier.S
+        "A" -> EventTier.A
+        "B" -> EventTier.B
+        "C" -> EventTier.C
+        "D" -> EventTier.D
+        else -> EventTier.Unknown
+    }
+}
+
+/**
+ * Attempts to convert the supplied String to an event region, with a fallback if necessary.
+ */
+internal fun String?.toEventRegion(): EventRegion {
+    return when (this) {
+        "NA" -> EventRegion.NA
+        "EU" -> EventRegion.EU
+        "OCE" -> EventRegion.OCE
+        "SAM" -> EventRegion.SAM
+        "ASIA" -> EventRegion.ASIA
+        "ME" -> EventRegion.ME
+        "INT" -> EventRegion.INT
+        else -> EventRegion.Unknown
+    }
 }

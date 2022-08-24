@@ -5,6 +5,7 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEvent
+import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventParticipants
 import com.adammcneilly.pocketleague.data.octanegg.models.toEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
@@ -16,15 +17,17 @@ import com.adammcneilly.pocketleague.data.remote.RemoteParams
  * given [apiClient].
  */
 class OctaneGGEventService(
-    private val apiClient: BaseAPIClient = OctaneGGAPIClient,
+    private val apiClient: BaseAPIClient,
 ) : EventService {
 
+    constructor() : this(OctaneGGAPIClient)
+
     override suspend fun fetchEvents(request: EventListRequest): DataState<List<Event>> {
-        return apiClient.getResponse<List<OctaneGGEvent>>(
+        return apiClient.getResponse<OctaneGGEventListResponse>(
             endpoint = EVENTS_ENDPOINT,
             params = request.toOctaneParams(),
-        ).map { octaneEvents ->
-            octaneEvents.map(OctaneGGEvent::toEvent)
+        ).map { eventListResponse ->
+            eventListResponse.events?.map(OctaneGGEvent::toEvent).orEmpty()
         }
     }
 

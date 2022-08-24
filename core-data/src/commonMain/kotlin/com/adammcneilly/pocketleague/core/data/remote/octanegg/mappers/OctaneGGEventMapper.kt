@@ -15,7 +15,7 @@ fun OctaneGGEvent.toEvent(): Event {
         name = this.name ?: "Name Not Available",
         startDateUTC = this.startDate,
         endDateUTC = this.endDate,
-        imageUrl = this.image,
+        imageURL = this.image,
         stages = this.stages?.map(OctaneGGStage::toEventStage).orEmpty(),
         tier = this.tier.toEventTier(),
         region = this.region.toEventRegion(),

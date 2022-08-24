@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
 import com.adammcneilly.pocketleague.core.data.DataState
-import com.adammcneilly.pocketleague.core.data.models.EventListRequest
 import com.adammcneilly.pocketleague.core.data.models.MatchListRequest
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.data.event.EventListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 import kotlinx.datetime.Clock
@@ -19,31 +19,31 @@ fun Events.loadFeed() = screenCoroutine {
     val ongoingEventsRequest = EventListRequest(
 //        date = Clock.System.now(),
         group = "rlcs",
-        before = Clock.System.now(),
+        before = Clock.System.now().toString(),
     )
 
-    repository.eventRepository.fetchEvents(
+    val repoResult = repository.eventService.fetchEvents(
         ongoingEventsRequest,
-    ).collect { repoResult ->
-        stateManager.updateScreen(FeedViewState::class) {
-            val mappedResult = when (repoResult) {
-                is DataState.Loading -> {
-                    DataState.Loading
-                }
-                is DataState.Success -> {
-                    DataState.Success(
-                        data = repoResult.data.map(Event::toSummaryDisplayModel)
-                    )
-                }
-                is DataState.Error -> {
-                    DataState.Error(repoResult.error)
-                }
-            }
+    )
 
-            it.copy(
-                ongoingEventsState = mappedResult,
-            )
+    stateManager.updateScreen(FeedViewState::class) {
+        val mappedResult = when (repoResult) {
+            is DataState.Loading -> {
+                DataState.Loading
+            }
+            is DataState.Success -> {
+                DataState.Success(
+                    data = repoResult.data.map(Event::toSummaryDisplayModel)
+                )
+            }
+            is DataState.Error -> {
+                DataState.Error(repoResult.error)
+            }
         }
+
+        it.copy(
+            ongoingEventsState = mappedResult,
+        )
     }
 
     val recentMatchesRequest = MatchListRequest(

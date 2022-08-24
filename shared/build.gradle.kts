@@ -15,6 +15,7 @@ kotlin {
                 implementation(project(":core-data"))
                 implementation(project(":core:displaymodels"))
                 implementation(project(":core:datetime"))
+                implementation(project(":data:event"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")

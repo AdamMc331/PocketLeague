@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
+import com.adammcneilly.pocketleague.core.models.Game
+import com.adammcneilly.pocketleague.core.models.GameTeamResult
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -29,3 +31,16 @@ data class OctaneGGGame(
     @SerialName("orange")
     val orange: OctaneGGGameTeamResult? = null
 )
+
+/**
+ * Converts an [OctaneGGGame] to a [Game] in our domain.
+ */
+fun OctaneGGGame.toGame(): Game {
+    return Game(
+        id = this.id.orEmpty(),
+        blue = this.blue?.toGameTeamResult() ?: GameTeamResult(),
+        orange = this.orange?.toGameTeamResult() ?: GameTeamResult(),
+        map = this.map?.name.orEmpty(),
+        number = this.number ?: 0,
+    )
+}

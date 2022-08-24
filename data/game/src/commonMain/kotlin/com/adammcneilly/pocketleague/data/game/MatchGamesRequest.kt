@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.data.models
+package com.adammcneilly.pocketleague.data.game
 
 /**
  * Used to request a list of games for the given [matchId].

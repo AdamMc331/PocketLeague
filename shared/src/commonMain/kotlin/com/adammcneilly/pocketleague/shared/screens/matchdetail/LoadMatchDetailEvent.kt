@@ -1,9 +1,9 @@
 package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
 import com.adammcneilly.pocketleague.core.data.DataState
-import com.adammcneilly.pocketleague.core.data.models.MatchGamesRequest
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Game
+import com.adammcneilly.pocketleague.data.game.MatchGamesRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.flow.collect
 
@@ -17,30 +17,30 @@ fun Events.loadMatchDetail(matchId: String) = screenCoroutine {
 }
 
 private suspend fun Events.fetchGames(matchId: String) {
-    repository.gameRepository.fetchGamesForMatch(MatchGamesRequest(matchId)).collect { repoResult ->
-        stateManager.updateScreen(MatchDetailViewState::class) {
-            val viewState = when (repoResult) {
-                is DataState.Success -> {
-                    it.copy(
-                        games = repoResult.data.map(Game::toDetailDisplayModel),
-                        showGamesLoading = false,
-                    )
-                }
-                DataState.Loading -> {
-                    it.copy(
-                        showGamesLoading = true,
-                    )
-                }
-                is DataState.Error -> {
-                    it.copy(
-                        showGamesLoading = false,
-                        gamesErrorMessage = repoResult.error.message,
-                    )
-                }
-            }
+    val repoResult = repository.gameService.fetchGamesForMatch(MatchGamesRequest(matchId))
 
-            viewState
+    stateManager.updateScreen(MatchDetailViewState::class) {
+        val viewState = when (repoResult) {
+            is DataState.Success -> {
+                it.copy(
+                    games = repoResult.data.map(Game::toDetailDisplayModel),
+                    showGamesLoading = false,
+                )
+            }
+            DataState.Loading -> {
+                it.copy(
+                    showGamesLoading = true,
+                )
+            }
+            is DataState.Error -> {
+                it.copy(
+                    showGamesLoading = false,
+                    gamesErrorMessage = repoResult.error.message,
+                )
+            }
         }
+
+        viewState
     }
 }
 

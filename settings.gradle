@@ -5,11 +5,11 @@ include ':shared'
 include ':composables'
 
 include ':core:currency'
-include ':core:data'
 include ':core:datetime'
 include ':core:displaymodels'
 include ':core:models'
 
+include ':data:core'
 include ':data:octanegg'
 include ':data:remote'
 include ':data:event'

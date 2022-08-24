@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
+import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -27,3 +28,10 @@ data class OctaneGGMatch(
     @SerialName("games")
     val games: List<OctaneGGGameOverview>? = null,
 )
+
+/**
+ * Converts an [OctaneGGMatch] to a [Match] in our domain.
+ */
+fun OctaneGGMatch.toMatch(): Match {
+    TODO("Coming soon.")
+}

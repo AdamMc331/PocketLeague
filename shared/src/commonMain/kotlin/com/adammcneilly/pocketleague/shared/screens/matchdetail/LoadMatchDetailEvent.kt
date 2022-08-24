@@ -5,7 +5,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Game
 import com.adammcneilly.pocketleague.data.game.MatchGamesRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
-import kotlinx.coroutines.flow.collect
 
 /**
  * Requests the games for the given [matchId].
@@ -45,29 +44,29 @@ private suspend fun Events.fetchGames(matchId: String) {
 }
 
 private suspend fun Events.fetchMatchDetail(matchId: String) {
-    repository.matchRepository.fetchMatchDetail(matchId).collect { repoResult ->
-        stateManager.updateScreen(MatchDetailViewState::class) {
-            val viewState = when (repoResult) {
-                is DataState.Loading -> {
-                    it.copy(
-                        showDetailLoading = true,
-                    )
-                }
-                is DataState.Success -> {
-                    it.copy(
-                        showDetailLoading = false,
-                        matchDetail = repoResult.data.toDetailDisplayModel(),
-                    )
-                }
-                is DataState.Error -> {
-                    it.copy(
-                        showDetailLoading = false,
-                        detailInfoErrorMessage = repoResult.error.message,
-                    )
-                }
-            }
+    val repoResult = repository.matchService.fetchMatchDetail(matchId)
 
-            viewState
+    stateManager.updateScreen(MatchDetailViewState::class) {
+        val viewState = when (repoResult) {
+            is DataState.Loading -> {
+                it.copy(
+                    showDetailLoading = true,
+                )
+            }
+            is DataState.Success -> {
+                it.copy(
+                    showDetailLoading = false,
+                    matchDetail = repoResult.data.toDetailDisplayModel(),
+                )
+            }
+            is DataState.Error -> {
+                it.copy(
+                    showDetailLoading = false,
+                    detailInfoErrorMessage = repoResult.error.message,
+                )
+            }
         }
+
+        viewState
     }
 }

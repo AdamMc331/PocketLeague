@@ -1,13 +1,12 @@
 package com.adammcneilly.pocketleague.shared.screens.eventstagedetail
 
 import com.adammcneilly.pocketleague.core.data.DataState
-import com.adammcneilly.pocketleague.core.data.models.MatchListRequest
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
-import kotlinx.coroutines.flow.collect
 import kotlinx.datetime.TimeZone
 
 /**
@@ -29,32 +28,34 @@ private suspend fun Events.fetchMatchesForStage(
         stageId = stageId,
     )
 
-    repository.matchRepository.fetchMatches(stageMatchesRequest).collect { repoResult ->
-        stateManager.updateScreen(EventStageDetailViewState::class) {
-            val viewState = when (repoResult) {
-                is DataState.Loading -> {
-                    it.copy(
-                        showLoading = true,
-                    )
-                }
-                is DataState.Success -> {
-                    val sortedMatches = repoResult.data.sortedBy(Match::dateUTC)
+    val repoResult = repository.matchService.fetchMatches(
+        request = stageMatchesRequest,
+    )
 
-                    it.copy(
-                        showLoading = false,
-                        matchesByDate = sortedMatches.groupByLocalDate(),
-                    )
-                }
-                is DataState.Error -> {
-                    it.copy(
-                        errorMessage = repoResult.error.message,
-                        showLoading = false,
-                    )
-                }
+    stateManager.updateScreen(EventStageDetailViewState::class) {
+        val viewState = when (repoResult) {
+            is DataState.Loading -> {
+                it.copy(
+                    showLoading = true,
+                )
             }
+            is DataState.Success -> {
+                val sortedMatches = repoResult.data.sortedBy(Match::dateUTC)
 
-            viewState
+                it.copy(
+                    showLoading = false,
+                    matchesByDate = sortedMatches.groupByLocalDate(),
+                )
+            }
+            is DataState.Error -> {
+                it.copy(
+                    errorMessage = repoResult.error.message,
+                    showLoading = false,
+                )
+            }
         }
+
+        viewState
     }
 }
 

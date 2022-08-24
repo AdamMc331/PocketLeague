@@ -1,12 +1,11 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
 import com.adammcneilly.pocketleague.core.data.DataState
-import com.adammcneilly.pocketleague.core.data.models.MatchListRequest
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.data.event.EventListRequest
+import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
-import kotlinx.coroutines.flow.collect
 import kotlinx.datetime.Clock
 import kotlin.time.Duration.Companion.days
 
@@ -47,18 +46,18 @@ fun Events.loadFeed() = screenCoroutine {
     }
 
     val recentMatchesRequest = MatchListRequest(
-        before = Clock.System.now(),
-        after = Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),
+        before = Clock.System.now().toString(),
+        after = Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days).toString(),
         group = "rlcs",
     )
 
-    repository.matchRepository.fetchMatches(
+    val matchListResult = repository.matchService.fetchMatches(
         request = recentMatchesRequest,
-    ).collect { repoResult ->
-        stateManager.updateScreen(FeedViewState::class) {
-            it.copy(
-                recentMatchesState = repoResult,
-            )
-        }
+    )
+
+    stateManager.updateScreen(FeedViewState::class) {
+        it.copy(
+            recentMatchesState = matchListResult,
+        )
     }
 }

@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
-import com.adammcneilly.pocketleague.shared.screens.ScreenParams
+import com.adammcneilly.pocketleague.feature.core.ScreenParams
 
 /**
  * Parameters that will be passed into the match detail screen.

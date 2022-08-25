@@ -10,9 +10,9 @@ import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.feature.core.ScreenIdentifier
 import com.adammcneilly.pocketleague.shared.screens.Level1Navigation
 import com.adammcneilly.pocketleague.shared.screens.Navigation
-import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
 /**
  * A navigation rail is similar to a [Level1BottomBar] except it will show up on the left side of the

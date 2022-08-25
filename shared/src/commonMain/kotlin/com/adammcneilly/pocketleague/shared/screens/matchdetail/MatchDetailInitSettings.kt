@@ -1,12 +1,11 @@
 package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
-import com.adammcneilly.pocketleague.shared.screens.Navigation
-import com.adammcneilly.pocketleague.shared.screens.ScreenInitSettings
+import com.adammcneilly.pocketleague.feature.core.ScreenInitSettings
 
 /**
- * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.Screens.MatchDetail] screen.
+ * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.AppScreens.MatchDetail] screen.
  */
-fun Navigation.initMatchDetail(
+fun initMatchDetail(
     params: MatchDetailParams,
 ): ScreenInitSettings {
     return ScreenInitSettings(
@@ -17,7 +16,8 @@ fun Navigation.initMatchDetail(
             )
         },
         callOnInit = {
-            events.loadMatchDetail(params.matchId)
+            // ARM - COMING SOON
+//            events.loadMatchDetail(params.matchId)
         },
         reInitOnEachNavigation = false,
     )

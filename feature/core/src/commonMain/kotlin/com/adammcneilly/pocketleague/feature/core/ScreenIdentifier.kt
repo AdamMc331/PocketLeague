@@ -68,30 +68,17 @@ class ScreenIdentifier private constructor(
 
     // ARM - Until we port over the ScreenInitSettings into our core feature module
     // we can't do this yet.
-//    /**
-//     * Given some [navigation], get the [ScreenInitSettings] for this identifier.
-//     */
-//    fun getScreenInitSettings(navigation: Navigation): ScreenInitSettings {
-//        return screen.initSettings(navigation, this)
-//    }
-
     /**
-     * Determines if, for this screen, we support a vertical backstack.
+     * Given some [navigation], get the [ScreenInitSettings] for this identifier.
      */
-    // ARM - Ideally, this shouldn't live in the core feature module, because the core feature
-    // module shouldn't know about the level 1 navigation screens.
-    // As a result, there's a good chance this gets moved into an extension function inside
-    // the shared module later.
-//    fun level1VerticalBackstackEnabled(): Boolean {
-//        // ARM - FIX THIS
-//        Level1Navigation.values().forEach {
-//            if (it.screenIdentifier.uri == this.uri && it.rememberVerticalStack) {
-//                return true
-//            }
-//        }
-//
-//        return false
-//    }
+    fun getScreenInitSettings(): ScreenInitSettings {
+        // ARM - What do we break by not passing Navigation here?
+        // We can't just do this.params() because not every time we call this will have params
+        val testParams = object : ScreenParams {
+        }
+
+        return screen.initSettings(testParams)
+    }
 
     /**
      * Factory methods used to create an instance of a [ScreenIdentifier].

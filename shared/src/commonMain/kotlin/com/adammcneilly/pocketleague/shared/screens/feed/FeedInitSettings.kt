@@ -1,19 +1,19 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
-import com.adammcneilly.pocketleague.shared.screens.Navigation
-import com.adammcneilly.pocketleague.shared.screens.ScreenInitSettings
+import com.adammcneilly.pocketleague.feature.core.ScreenInitSettings
 
 /**
- * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.Screens.Feed] screen.
+ * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.AppScreens.Feed] screen.
  */
-fun Navigation.initFeed(): ScreenInitSettings {
+fun initFeed(): ScreenInitSettings {
     return ScreenInitSettings(
         title = "Feed",
         initState = {
             FeedViewState()
         },
         callOnInit = {
-            events.loadFeed()
+            // ARM - COMING SOON
+//            events.loadFeed()
         },
         reInitOnEachNavigation = false,
     )

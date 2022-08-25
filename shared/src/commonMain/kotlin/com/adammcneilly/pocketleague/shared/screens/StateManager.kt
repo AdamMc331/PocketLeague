@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.feature.core.ScreenIdentifier
+import com.adammcneilly.pocketleague.feature.core.ScreenInitSettings
 import com.adammcneilly.pocketleague.feature.core.ScreenState
 import com.adammcneilly.pocketleague.shared.data.Repository
 import kotlinx.coroutines.CoroutineScope
@@ -187,7 +189,9 @@ class StateManager(
 
             runInScreenScope(screenIdentifier) {
                 // Second UI Recomposition
-                screenInitSettings.callOnInit(this)
+                // ARM - Are we breaking anything here?
+                screenInitSettings.callOnInit()
+//                screenInitSettings.callOnInit(this)
             }
         } else {
             // Just One UI Recomposition
@@ -362,4 +366,17 @@ class StateManager(
             it.value.cancel()
         }
     }
+}
+
+/**
+ * Determines if, for this screen, we support a vertical backstack.
+ */
+private fun ScreenIdentifier.level1VerticalBackstackEnabled(): Boolean {
+    Level1Navigation.values().forEach {
+        if (it.screenIdentifier.uri == this.uri && it.rememberVerticalStack) {
+            return true
+        }
+    }
+
+    return false
 }

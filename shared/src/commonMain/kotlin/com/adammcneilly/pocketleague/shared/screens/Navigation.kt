@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.feature.core.ScreenIdentifier
 import com.adammcneilly.pocketleague.feature.core.ScreenParams
 
 /**
@@ -33,7 +34,7 @@ class Navigation(
      * Returns the user friendly title for the given [screenIdentifier].
      */
     fun getTitle(screenIdentifier: ScreenIdentifier): String {
-        val screenInitSettings = screenIdentifier.getScreenInitSettings(this)
+        val screenInitSettings = screenIdentifier.getScreenInitSettings()
         return screenInitSettings.title
     }
 
@@ -90,10 +91,10 @@ class Navigation(
     }
 
     /**
-     * Navigates to a given [screen] with the provides [params].
+     * Navigates to a given [appScreen] with the provides [params].
      */
-    fun navigate(screen: Screens, params: ScreenParams? = null) {
-        navigateByScreenIdentifier(ScreenIdentifier.get(screen, params))
+    fun navigate(appScreen: AppScreens, params: ScreenParams? = null) {
+        navigateByScreenIdentifier(ScreenIdentifier.get(appScreen.screen, params))
     }
 
     /**
@@ -119,7 +120,7 @@ class Navigation(
      * Navigate to a screen using the given [screenIdentifier].
      */
     fun navigateByScreenIdentifier(screenIdentifier: ScreenIdentifier) {
-        val screenInitSettings = screenIdentifier.getScreenInitSettings(this)
+        val screenInitSettings = screenIdentifier.getScreenInitSettings()
         stateManager.addScreen(screenIdentifier, screenInitSettings)
 
         if (NavigationSettings.saveLastLevel1Screen && screenIdentifier.screen.navigationLevel == 1) {
@@ -147,9 +148,14 @@ class Navigation(
         val reInitializedScreens = stateManager.reInitScreenScopes()
         stateManager.triggerRecomposition()
         reInitializedScreens.forEach {
-            it.getScreenInitSettings(this).apply {
+            it.getScreenInitSettings().apply {
                 if (callOnInitAlsoAfterBackground) {
-                    stateManager.runInScreenScope { callOnInit(stateManager) }
+                    stateManager.runInScreenScope {
+                        // ARM - Not sure if we break anything by removing this, let's
+                        // find out.
+                        callOnInit()
+//                        callOnInit(stateManager)
+                    }
                 }
             }
         }

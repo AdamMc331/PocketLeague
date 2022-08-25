@@ -1,12 +1,11 @@
 package com.adammcneilly.pocketleague.shared.screens.records
 
-import com.adammcneilly.pocketleague.shared.screens.Navigation
-import com.adammcneilly.pocketleague.shared.screens.ScreenInitSettings
+import com.adammcneilly.pocketleague.feature.core.ScreenInitSettings
 
 /**
- * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.Screens.Records] screen.
+ * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.AppScreens.Records] screen.
  */
-fun Navigation.initRecords(): ScreenInitSettings {
+fun initRecords(): ScreenInitSettings {
     return ScreenInitSettings(
         title = "Records",
         initState = {

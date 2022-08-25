@@ -1,5 +1,10 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.feature.core.ScreenIdentifier
+import com.adammcneilly.pocketleague.shared.screens.feed.FeedScreen
+import com.adammcneilly.pocketleague.shared.screens.records.RecordsScreen
+import com.adammcneilly.pocketleague.shared.screens.stats.StatsScreen
+
 /**
  * Defines a collection of [screenIdentifier] entities that will show up as our level 1 navigation options.
  *
@@ -10,12 +15,21 @@ enum class Level1Navigation(
     val rememberVerticalStack: Boolean = false,
 ) {
     Feed(
-        screenIdentifier = ScreenIdentifier.get(screen = Screens.Feed, params = null),
+        screenIdentifier = ScreenIdentifier.get(
+            screen = FeedScreen,
+            params = null,
+        ),
     ),
     Stats(
-        screenIdentifier = ScreenIdentifier.get(screen = Screens.Stats, params = null),
+        screenIdentifier = ScreenIdentifier.get(
+            screen = StatsScreen,
+            params = null,
+        ),
     ),
     Records(
-        screenIdentifier = ScreenIdentifier.get(screen = Screens.Records, params = null),
+        screenIdentifier = ScreenIdentifier.get(
+            screen = RecordsScreen,
+            params = null,
+        ),
     ),
 }

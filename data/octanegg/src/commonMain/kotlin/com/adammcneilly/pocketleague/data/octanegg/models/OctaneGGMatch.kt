@@ -1,6 +1,8 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
+import com.adammcneilly.pocketleague.core.models.Format
 import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.core.models.MatchTeamResult
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -33,5 +35,18 @@ data class OctaneGGMatch(
  * Converts an [OctaneGGMatch] to a [Match] in our domain.
  */
 fun OctaneGGMatch.toMatch(): Match {
-    TODO("Coming soon.")
+    requireNotNull(this.event)
+    requireNotNull(this.stage)
+
+    return Match(
+        id = this.id.orEmpty(),
+        event = this.event.toEvent(),
+        dateUTC = this.dateUTC,
+        // ADAM FIX THIS
+        blueTeam = MatchTeamResult(),
+        orangeTeam = MatchTeamResult(),
+        stage = this.stage.toEventStage(),
+        format = this.format?.toFormat() ?: Format(),
+        gameOverviews = this.games?.map(OctaneGGGameOverview::toGameOverview).orEmpty(),
+    )
 }

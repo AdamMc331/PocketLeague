@@ -11,7 +11,7 @@ import com.adammcneilly.pocketleague.data.match.MatchService
 suspend fun loadFeed(
     eventService: EventService,
     matchService: MatchService,
-    eventProcessor: (FeedScreenEvents) -> Unit,
+    eventProcessor: (FeedScreenEvent) -> Unit,
 ) {
     loadOngoingEvents(eventService, eventProcessor)
     loadRecentMatches(matchService, eventProcessor)
@@ -19,7 +19,7 @@ suspend fun loadFeed(
 
 private suspend fun loadRecentMatches(
     matchService: MatchService,
-    eventProcessor: (FeedScreenEvents) -> Unit,
+    eventProcessor: (FeedScreenEvent) -> Unit,
 ) {
     val recentMatchesRequest = MatchListRequest(
         group = "rlcs",
@@ -29,7 +29,7 @@ private suspend fun loadRecentMatches(
         request = recentMatchesRequest,
     )
 
-    val event = FeedScreenEvents.RecentMatchesStateChanged(
+    val event = FeedScreenEvent.RecentMatchesStateChanged(
         matchListResult,
     )
 
@@ -38,7 +38,7 @@ private suspend fun loadRecentMatches(
 
 private suspend fun loadOngoingEvents(
     eventService: EventService,
-    eventProcessor: (FeedScreenEvents) -> Unit,
+    eventProcessor: (FeedScreenEvent) -> Unit,
 ) {
     val ongoingEventsRequest = EventListRequest(
         group = "rlcs",
@@ -62,7 +62,7 @@ private suspend fun loadOngoingEvents(
         }
     }
 
-    val event = FeedScreenEvents.OngoingEventsStateChanged(
+    val event = FeedScreenEvent.OngoingEventsStateChanged(
         mappedResult
     )
 

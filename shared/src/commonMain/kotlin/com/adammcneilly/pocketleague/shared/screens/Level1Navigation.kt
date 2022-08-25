@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.shared.screens
 
 import com.adammcneilly.pocketleague.feature.core.Screen
 import com.adammcneilly.pocketleague.feature.core.ScreenIdentifier
+import com.adammcneilly.pocketleague.shared.screens.feed.FeedScreenBuilder
 import com.adammcneilly.pocketleague.shared.screens.records.RecordsScreen
 import com.adammcneilly.pocketleague.shared.screens.stats.StatsScreen
 
@@ -23,7 +24,7 @@ enum class Level1Navigation(
     Feed(
         getScreenIdentifier = {
             ScreenIdentifier.get(
-                screen = it.getFeedScreen(),
+                screen = FeedScreenBuilder.build(it),
                 params = null,
             )
         },

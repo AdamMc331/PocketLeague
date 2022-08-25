@@ -95,6 +95,7 @@ class ScreenIdentifier private constructor(
          * Given some [uri], split it up to screen:params and use that to generate a [ScreenIdentifier]
          * if possible.
          *
+         * @param[uri] A string representation of the screen we're trying to identify.
          * @param[appScreens] This will be a list of all the possible
          * screens in our app. If the uri matches one of those screens, we will
          * return the [ScreenIdentifier] instance.

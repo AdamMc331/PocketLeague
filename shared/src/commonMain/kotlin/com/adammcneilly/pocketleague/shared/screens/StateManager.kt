@@ -269,7 +269,7 @@ class StateManager(
      * Clear a level 1 screen's backstack and remove from [level1Backstack] if necessary.
      */
     fun clearLevel1Screen(screenIdentifier: ScreenIdentifier, sameAsNewScreen: Boolean) {
-        if (!screenIdentifier.level1VerticalBackstackEnabled()) {
+        if (!level1VerticalBackstackEnabled(screenIdentifier)) {
             currentVerticalBackstack.forEach {
                 if (it.screen.navigationLevel > 1) {
                     removeScreenStateAndScope(it)
@@ -301,11 +301,11 @@ class StateManager(
         }
 
         if (NavigationSettings.alwaysQuitOnHomeScreen) {
-            if (screenIdentifier.uri == NavigationSettings.homeScreen.screenIdentifier.uri) {
+            if (screenIdentifier.uri == NavigationSettings.homeScreen.getScreenIdentifier(this).uri) {
                 // Remove all elements
                 level1Backstack.clear()
             } else if (level1Backstack.size == 0) {
-                addLevel1ScreenToBackstack(NavigationSettings.homeScreen.screenIdentifier)
+                addLevel1ScreenToBackstack(NavigationSettings.homeScreen.getScreenIdentifier(this))
             }
         }
 
@@ -366,17 +366,19 @@ class StateManager(
             it.value.cancel()
         }
     }
-}
 
-/**
- * Determines if, for this screen, we support a vertical backstack.
- */
-private fun ScreenIdentifier.level1VerticalBackstackEnabled(): Boolean {
-    Level1Navigation.values().forEach {
-        if (it.screenIdentifier.uri == this.uri && it.rememberVerticalStack) {
-            return true
+    /**
+     * Determines if, for this screen, we support a vertical backstack.
+     */
+    private fun level1VerticalBackstackEnabled(
+        screenIdentifier: ScreenIdentifier,
+    ): Boolean {
+        Level1Navigation.values().forEach {
+            if (it.getScreenIdentifier(this).uri == screenIdentifier.uri && it.rememberVerticalStack) {
+                return true
+            }
         }
-    }
 
-    return false
+        return false
+    }
 }

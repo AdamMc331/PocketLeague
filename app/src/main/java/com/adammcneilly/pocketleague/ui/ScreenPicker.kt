@@ -5,13 +5,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.feature.core.ScreenIdentifier
+import com.adammcneilly.pocketleague.feature.feed.FeedScreen
 import com.adammcneilly.pocketleague.shared.screens.AppScreens
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailParams
 import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailScreen
 import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.EventStageDetailParams
 import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.EventStageDetailScreen
-import com.adammcneilly.pocketleague.shared.screens.feed.FeedScreen
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailParams
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailScreen
 import com.adammcneilly.pocketleague.shared.screens.records.RecordsScreen
@@ -28,7 +28,7 @@ fun Navigation.ScreenPicker(
 ) {
 
     when (screenIdentifier.screen) {
-        FeedScreen -> {
+        is FeedScreen -> {
             FeedContent(
                 viewState = stateProvider.get(screenIdentifier),
                 modifier = Modifier

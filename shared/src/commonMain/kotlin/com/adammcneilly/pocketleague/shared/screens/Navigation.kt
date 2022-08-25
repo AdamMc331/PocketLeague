@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.feature.core.ScreenParams
  * This class manages all of the navigation logic within the pocket league app.
  */
 class Navigation(
-    private val stateManager: StateManager,
+    val stateManager: StateManager,
 ) {
     /**
      * Creates a [StateProvider] allowing apps to get the state of necessary
@@ -26,7 +26,7 @@ class Navigation(
     }
 
     init {
-        val startScreenIdentifier = NavigationSettings.homeScreen.screenIdentifier
+        val startScreenIdentifier = NavigationSettings.homeScreen.getScreenIdentifier(this.stateManager)
         navigateByScreenIdentifier(startScreenIdentifier)
     }
 
@@ -94,21 +94,21 @@ class Navigation(
      * Navigates to a given [appScreen] with the provides [params].
      */
     fun navigate(appScreen: AppScreens, params: ScreenParams? = null) {
-        navigateByScreenIdentifier(ScreenIdentifier.get(appScreen.screen, params))
+        navigateByScreenIdentifier(ScreenIdentifier.get(appScreen.getScreen(this.stateManager), params))
     }
 
     /**
      * Navigate to a different level 1 menu item.
      */
     fun navigateByLevel1Menu(level1NavigationItem: Level1Navigation) {
-        if (level1NavigationItem.screenIdentifier == currentLevel1ScreenIdentifier) {
+        if (level1NavigationItem.getScreenIdentifier(this.stateManager) == currentLevel1ScreenIdentifier) {
             return
         }
 
-        val navigationLevelsMap = getNavigationLevelsMap(level1NavigationItem.screenIdentifier)
+        val navigationLevelsMap = getNavigationLevelsMap(level1NavigationItem.getScreenIdentifier(this.stateManager))
 
         if (navigationLevelsMap == null) {
-            navigateByScreenIdentifier(level1NavigationItem.screenIdentifier)
+            navigateByScreenIdentifier(level1NavigationItem.getScreenIdentifier(this.stateManager))
         } else {
             navigationLevelsMap.keys.sorted().forEach {
                 navigateByScreenIdentifier(navigationLevelsMap[it]!!)

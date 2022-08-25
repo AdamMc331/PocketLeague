@@ -89,6 +89,7 @@ dependencies {
     implementation(project(":core:displaymodels"))
     implementation(project(":composables"))
     implementation(project(":feature:core"))
+    implementation(project(":feature:feed"))
     implementation("androidx.compose.material3:material3:1.0.0-alpha12")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.screens.feed
+package com.adammcneilly.pocketleague.feature.feed
 
 import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel

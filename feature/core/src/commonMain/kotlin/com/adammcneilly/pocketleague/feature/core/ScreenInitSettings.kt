@@ -21,8 +21,6 @@ package com.adammcneilly.pocketleague.feature.core
 class ScreenInitSettings(
     val title: String,
     val initState: (ScreenIdentifier) -> ScreenState,
-    // ARM - We may need to pass the state manager into this callback, but we're removing it for now
-    // so this can continue to compile.
     val callOnInit: suspend () -> Unit,
     val reInitOnEachNavigation: Boolean = false,
     val callOnInitAlsoAfterBackground: Boolean = false,

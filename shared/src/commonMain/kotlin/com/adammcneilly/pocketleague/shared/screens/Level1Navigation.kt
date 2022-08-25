@@ -1,13 +1,20 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.feature.core.Screen
 import com.adammcneilly.pocketleague.feature.core.ScreenIdentifier
 import com.adammcneilly.pocketleague.shared.screens.records.RecordsScreen
 import com.adammcneilly.pocketleague.shared.screens.stats.StatsScreen
 
 /**
- * Defines a collection of [screenIdentifier] entities that will show up as our level 1 navigation options.
+ * An enumeration of all screens that are used on our base level 1 navigation within the app. Effectively,
+ * this just means any screens that appear in the bottom navigation menu or navigation rail.
  *
- * In the application, this basically maps to the tabs that appear on the bottom menu.
+ * By using an enum, we can have an exhaustive list of possible screens, as well as a quick way for
+ * us to specify which screen we want to navigate to.
+ *
+ * We should note, though, that some [Screen] entities may require dependencies that can only be
+ * provided via our [StateManager]. As a result, each possible [Level1Navigation] will provide a [getScreenIdentifier]
+ * function to use our state manager to pull those dependencies and generate our [ScreenIdentifier] entity.
  */
 enum class Level1Navigation(
     val getScreenIdentifier: (StateManager) -> ScreenIdentifier,
@@ -15,7 +22,7 @@ enum class Level1Navigation(
 ) {
     Feed(
         getScreenIdentifier = {
-            com.adammcneilly.pocketleague.feature.core.ScreenIdentifier.get(
+            ScreenIdentifier.get(
                 screen = it.getFeedScreen(),
                 params = null,
             )

@@ -6,7 +6,7 @@ import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.feature.core.ScreenState
 
 /**
- * Defines the UI configuration for the [com.adammcneilly.pocketleague.shared.screens.AppScreens.Feed] screen.
+ * Defines the UI configuration for the feed screen.
  */
 data class FeedViewState(
     val ongoingEventsState: DataState<List<EventSummaryDisplayModel>> = DataState.Loading,

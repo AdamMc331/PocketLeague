@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.feature.core.ScreenIdentifier
 import com.adammcneilly.pocketleague.feature.core.ScreenState
 
 /**

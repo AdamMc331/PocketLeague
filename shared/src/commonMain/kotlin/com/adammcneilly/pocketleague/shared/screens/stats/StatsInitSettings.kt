@@ -1,12 +1,11 @@
 package com.adammcneilly.pocketleague.shared.screens.stats
 
-import com.adammcneilly.pocketleague.shared.screens.Navigation
-import com.adammcneilly.pocketleague.shared.screens.ScreenInitSettings
+import com.adammcneilly.pocketleague.feature.core.ScreenInitSettings
 
 /**
- * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.Screens.Stats] screen.
+ * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.AppScreens.Stats] screen.
  */
-fun Navigation.initStats(): ScreenInitSettings {
+fun initStats(): ScreenInitSettings {
     return ScreenInitSettings(
         title = "Stats",
         initState = {

@@ -1,12 +1,11 @@
 package com.adammcneilly.pocketleague.shared.screens.eventstagedetail
 
-import com.adammcneilly.pocketleague.shared.screens.Navigation
-import com.adammcneilly.pocketleague.shared.screens.ScreenInitSettings
+import com.adammcneilly.pocketleague.feature.core.ScreenInitSettings
 
 /**
  * Creates the [ScreenInitSettings] for the event stage detail screen.
  */
-fun Navigation.initEventStageDetail(
+fun initEventStageDetail(
     params: EventStageDetailParams,
 ): ScreenInitSettings {
     return ScreenInitSettings(
@@ -18,10 +17,11 @@ fun Navigation.initEventStageDetail(
             )
         },
         callOnInit = {
-            events.loadEventStageDetail(
-                eventId = params.eventId,
-                stageId = params.stageId,
-            )
+            // ARM - COMING SOON
+//            events.loadEventStageDetail(
+//                eventId = params.eventId,
+//                stageId = params.stageId,
+//            )
         },
         reInitOnEachNavigation = false,
     )

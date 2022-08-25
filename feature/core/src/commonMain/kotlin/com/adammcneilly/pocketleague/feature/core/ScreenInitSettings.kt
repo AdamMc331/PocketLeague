@@ -1,6 +1,4 @@
-package com.adammcneilly.pocketleague.shared.screens
-
-import com.adammcneilly.pocketleague.feature.core.ScreenState
+package com.adammcneilly.pocketleague.feature.core
 
 /**
  * When a screen is initialized, the following flow occurs.
@@ -23,7 +21,7 @@ import com.adammcneilly.pocketleague.feature.core.ScreenState
 class ScreenInitSettings(
     val title: String,
     val initState: (ScreenIdentifier) -> ScreenState,
-    val callOnInit: suspend (StateManager) -> Unit,
+    val callOnInit: suspend () -> Unit,
     val reInitOnEachNavigation: Boolean = false,
     val callOnInitAlsoAfterBackground: Boolean = false,
 )

@@ -10,9 +10,9 @@ import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.feature.core.ScreenIdentifier
 import com.adammcneilly.pocketleague.shared.screens.Level1Navigation
 import com.adammcneilly.pocketleague.shared.screens.Navigation
-import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 
 /**
  * A navigation rail is similar to a [Level1BottomBar] except it will show up on the left side of the
@@ -32,21 +32,21 @@ fun Navigation.Level1NavigationRail(
         NavigationRailItem(
             icon = { Icon(Icons.Default.Feed, "Feed") },
             label = { Text("FEED") },
-            selected = selectedTab.uri == Level1Navigation.Feed.screenIdentifier.uri,
+            selected = selectedTab.uri == Level1Navigation.Feed.getScreenIdentifier(stateManager).uri,
             onClick = { navigateByLevel1Menu(Level1Navigation.Feed) },
         )
 
         NavigationRailItem(
             icon = { Icon(Icons.Default.BarChart, "Stats") },
             label = { Text("STATS") },
-            selected = selectedTab.uri == Level1Navigation.Stats.screenIdentifier.uri,
+            selected = selectedTab.uri == Level1Navigation.Stats.getScreenIdentifier(stateManager).uri,
             onClick = { navigateByLevel1Menu(Level1Navigation.Stats) },
         )
 
         NavigationRailItem(
             icon = { Icon(Icons.Default.Leaderboard, "Records") },
             label = { Text("RECORDS") },
-            selected = selectedTab.uri == Level1Navigation.Records.screenIdentifier.uri,
+            selected = selectedTab.uri == Level1Navigation.Records.getScreenIdentifier(stateManager).uri,
             onClick = { navigateByLevel1Menu(Level1Navigation.Records) },
         )
     }

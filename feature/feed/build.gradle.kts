@@ -1,6 +1,5 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
     id("com.android.library")
 }
 
@@ -10,20 +9,13 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":core:displaymodels"))
                 implementation(project(":core:datetime"))
+                implementation(project(":core:displaymodels"))
+                implementation(project(":core:models"))
                 implementation(project(":data:core"))
                 implementation(project(":data:event"))
-                implementation(project(":data:game"))
                 implementation(project(":data:match"))
                 implementation(project(":feature:core"))
-                implementation(project(":feature:feed"))
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
-                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
             }
         }
         val commonTest by getting {
@@ -31,11 +23,7 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
-            }
-        }
+        val androidMain by getting
         val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
@@ -45,10 +33,6 @@ kotlin {
             getAt("iosX64Main").dependsOn(this)
             getAt("iosArm64Main").dependsOn(this)
             getAt("iosSimulatorArm64Main").dependsOn(this)
-
-            dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
-            }
         }
         maybeCreate("iosX64Test")
         maybeCreate("iosArm64Test")
@@ -69,13 +53,6 @@ android {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
     }
-
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_1_8)
-        isCoreLibraryDesugaringEnabled = true
-    }
-    namespace = "com.adammcneilly.pocketleague.shared"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)?.apply {
@@ -88,11 +65,6 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
             it.binaries.framework {
                 baseName = project.name
             }
-        }
-    }
-    if (project.findProperty("js") == "true") {
-        js(IR) {
-            browser()
         }
     }
 }

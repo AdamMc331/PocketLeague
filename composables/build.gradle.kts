@@ -14,6 +14,7 @@ kotlin {
             dependencies {
                 implementation(project(":shared"))
                 implementation(project(":core:displaymodels"))
+                implementation(project(":feature:core"))
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose.uiTooling)

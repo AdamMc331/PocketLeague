@@ -1,16 +1,15 @@
-package com.adammcneilly.pocketleague.shared.screens
+package com.adammcneilly.pocketleague.feature.core
 
-import com.adammcneilly.pocketleague.feature.core.ScreenParams
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 /**
- * This defines a unique identifier for a [screen] within the app. This is different from [Screens]
+ * This defines a unique identifier for a [screen] within the app. This is different from [Screen]
  * because the underlying UI might be identical, but the [params] could be different and as such
  * should be treated as a new identifier.
  */
 class ScreenIdentifier private constructor(
-    val screen: Screens,
+    val screen: Screen,
     var params: ScreenParams? = null,
     val paramsAsString: String? = null,
 ) {
@@ -67,24 +66,18 @@ class ScreenIdentifier private constructor(
         return jsonValues
     }
 
+    // ARM - Until we port over the ScreenInitSettings into our core feature module
+    // we can't do this yet.
     /**
      * Given some [navigation], get the [ScreenInitSettings] for this identifier.
      */
-    fun getScreenInitSettings(navigation: Navigation): ScreenInitSettings {
-        return screen.initSettings(navigation, this)
-    }
-
-    /**
-     * Determines if, for this screen, we support a vertical backstack.
-     */
-    fun level1VerticalBackstackEnabled(): Boolean {
-        Level1Navigation.values().forEach {
-            if (it.screenIdentifier.uri == this.uri && it.rememberVerticalStack) {
-                return true
-            }
+    fun getScreenInitSettings(): ScreenInitSettings {
+        // ARM - What do we break by not passing Navigation here?
+        // We can't just do this.params() because not every time we call this will have params
+        val testParams = object : ScreenParams {
         }
 
-        return false
+        return screen.initSettings(testParams)
     }
 
     /**
@@ -94,18 +87,26 @@ class ScreenIdentifier private constructor(
         /**
          * Create a new [ScreenIdentifier] for the supplied [screen] and its optional [params].
          */
-        fun get(screen: Screens, params: ScreenParams?): ScreenIdentifier {
+        fun get(screen: Screen, params: ScreenParams?): ScreenIdentifier {
             return ScreenIdentifier(screen, params, null)
         }
 
         /**
          * Given some [uri], split it up to screen:params and use that to generate a [ScreenIdentifier]
          * if possible.
+         *
+         * @param[uri] A string representation of the screen we're trying to identify.
+         * @param[appScreens] This will be a list of all the possible
+         * screens in our app. If the uri matches one of those screens, we will
+         * return the [ScreenIdentifier] instance.
          */
-        fun getByURI(uri: String): ScreenIdentifier? {
+        fun getByURI(
+            uri: String,
+            appScreens: List<Screen>,
+        ): ScreenIdentifier? {
             val parts = uri.split(":")
 
-            Screens.values().forEach {
+            appScreens.forEach {
                 if (it.asString == parts[0]) {
                     return ScreenIdentifier(it, null, parts[1])
                 }

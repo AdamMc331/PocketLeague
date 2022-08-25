@@ -1,12 +1,13 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.feature.core.ScreenIdentifier
 import com.adammcneilly.pocketleague.feature.core.ScreenParams
 
 /**
  * This class manages all of the navigation logic within the pocket league app.
  */
 class Navigation(
-    private val stateManager: StateManager,
+    val stateManager: StateManager,
 ) {
     /**
      * Creates a [StateProvider] allowing apps to get the state of necessary
@@ -25,7 +26,7 @@ class Navigation(
     }
 
     init {
-        val startScreenIdentifier = NavigationSettings.homeScreen.screenIdentifier
+        val startScreenIdentifier = NavigationSettings.homeScreen.getScreenIdentifier(this.stateManager)
         navigateByScreenIdentifier(startScreenIdentifier)
     }
 
@@ -33,7 +34,7 @@ class Navigation(
      * Returns the user friendly title for the given [screenIdentifier].
      */
     fun getTitle(screenIdentifier: ScreenIdentifier): String {
-        val screenInitSettings = screenIdentifier.getScreenInitSettings(this)
+        val screenInitSettings = screenIdentifier.getScreenInitSettings()
         return screenInitSettings.title
     }
 
@@ -90,24 +91,24 @@ class Navigation(
     }
 
     /**
-     * Navigates to a given [screen] with the provides [params].
+     * Navigates to a given [appScreen] with the provides [params].
      */
-    fun navigate(screen: Screens, params: ScreenParams? = null) {
-        navigateByScreenIdentifier(ScreenIdentifier.get(screen, params))
+    fun navigate(appScreen: AppScreens, params: ScreenParams? = null) {
+        navigateByScreenIdentifier(ScreenIdentifier.get(appScreen.getScreen(this.stateManager), params))
     }
 
     /**
      * Navigate to a different level 1 menu item.
      */
     fun navigateByLevel1Menu(level1NavigationItem: Level1Navigation) {
-        if (level1NavigationItem.screenIdentifier == currentLevel1ScreenIdentifier) {
+        if (level1NavigationItem.getScreenIdentifier(this.stateManager) == currentLevel1ScreenIdentifier) {
             return
         }
 
-        val navigationLevelsMap = getNavigationLevelsMap(level1NavigationItem.screenIdentifier)
+        val navigationLevelsMap = getNavigationLevelsMap(level1NavigationItem.getScreenIdentifier(this.stateManager))
 
         if (navigationLevelsMap == null) {
-            navigateByScreenIdentifier(level1NavigationItem.screenIdentifier)
+            navigateByScreenIdentifier(level1NavigationItem.getScreenIdentifier(this.stateManager))
         } else {
             navigationLevelsMap.keys.sorted().forEach {
                 navigateByScreenIdentifier(navigationLevelsMap[it]!!)
@@ -119,7 +120,7 @@ class Navigation(
      * Navigate to a screen using the given [screenIdentifier].
      */
     fun navigateByScreenIdentifier(screenIdentifier: ScreenIdentifier) {
-        val screenInitSettings = screenIdentifier.getScreenInitSettings(this)
+        val screenInitSettings = screenIdentifier.getScreenInitSettings()
         stateManager.addScreen(screenIdentifier, screenInitSettings)
 
         if (NavigationSettings.saveLastLevel1Screen && screenIdentifier.screen.navigationLevel == 1) {
@@ -147,9 +148,14 @@ class Navigation(
         val reInitializedScreens = stateManager.reInitScreenScopes()
         stateManager.triggerRecomposition()
         reInitializedScreens.forEach {
-            it.getScreenInitSettings(this).apply {
+            it.getScreenInitSettings().apply {
                 if (callOnInitAlsoAfterBackground) {
-                    stateManager.runInScreenScope { callOnInit(stateManager) }
+                    stateManager.runInScreenScope {
+                        // ARM - Not sure if we break anything by removing this, let's
+                        // find out.
+                        callOnInit()
+//                        callOnInit(stateManager)
+                    }
                 }
             }
         }

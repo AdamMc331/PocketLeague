@@ -10,7 +10,7 @@ import com.adammcneilly.pocketleague.feature.core.ScreenInitSettings
 fun initFeed(
     eventService: EventService,
     matchService: MatchService,
-    eventProcessor: (FeedScreenEvents) -> Unit,
+    eventProcessor: (FeedScreenEvent) -> Unit,
 ): ScreenInitSettings {
     return ScreenInitSettings(
         title = "Feed",

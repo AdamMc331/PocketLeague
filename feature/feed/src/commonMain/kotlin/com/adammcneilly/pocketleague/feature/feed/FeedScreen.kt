@@ -9,7 +9,7 @@ import com.adammcneilly.pocketleague.feature.core.ScreenParams
 class FeedScreen(
     eventService: EventService,
     matchService: MatchService,
-    eventProcessor: (FeedScreenEvents) -> Unit,
+    eventProcessor: (FeedScreenEvent) -> Unit,
 ) : Screen {
     override val asString: String = "feed"
 

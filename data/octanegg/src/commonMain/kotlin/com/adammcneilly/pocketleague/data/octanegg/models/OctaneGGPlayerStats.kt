@@ -1,8 +1,6 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
 import com.adammcneilly.pocketleague.core.models.GamePlayerResult
-import com.adammcneilly.pocketleague.core.models.Player
-import com.adammcneilly.pocketleague.core.models.Stats
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -27,8 +25,11 @@ data class OctaneGGPlayerStats(
  * can represent a player and their stats in any situation.
  */
 fun OctaneGGPlayerStats.toGamePlayerResult(): GamePlayerResult {
+    requireNotNull(this.player)
+    requireNotNull(this.stats)
+
     return GamePlayerResult(
-        player = this.player?.toPlayer() ?: Player(),
-        stats = this.stats?.toStats() ?: Stats(),
+        player = this.player.toPlayer(),
+        stats = this.stats.toStats(),
     )
 }

@@ -9,7 +9,7 @@ object MatchDetailScreen : Screen {
 
     override val navigationLevel: Int = 2
 
-    override val initSettings: (ScreenParams) -> ScreenInitSettings = {
+    override val initSettings: (ScreenParams?) -> ScreenInitSettings = {
         // ARM - Can we use reified?
         initMatchDetail(it as MatchDetailParams)
     }

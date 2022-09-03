@@ -9,7 +9,7 @@ object EventStageDetailScreen : Screen {
 
     override val navigationLevel: Int = 3
 
-    override val initSettings: (ScreenParams) -> ScreenInitSettings = {
+    override val initSettings: (ScreenParams?) -> ScreenInitSettings = {
         // ARM - Can we use reified here?
         initEventStageDetail(it as EventStageDetailParams)
     }

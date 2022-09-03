@@ -9,7 +9,7 @@ object StatsScreen : Screen {
 
     override val navigationLevel: Int = 1
 
-    override val initSettings: (ScreenParams) -> ScreenInitSettings = {
+    override val initSettings: (ScreenParams?) -> ScreenInitSettings = {
         initStats()
     }
 

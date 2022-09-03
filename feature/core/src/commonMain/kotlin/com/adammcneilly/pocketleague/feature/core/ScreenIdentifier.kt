@@ -72,12 +72,7 @@ class ScreenIdentifier private constructor(
      * Given some [navigation], get the [ScreenInitSettings] for this identifier.
      */
     fun getScreenInitSettings(): ScreenInitSettings {
-        // ARM - What do we break by not passing Navigation here?
-        // We can't just do this.params() because not every time we call this will have params
-        val testParams = object : ScreenParams {
-        }
-
-        return screen.initSettings(testParams)
+        return screen.initSettings(this.params)
     }
 
     /**

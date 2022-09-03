@@ -21,8 +21,11 @@ private suspend fun loadRecentMatches(
     matchService: MatchService,
     eventProcessor: (FeedScreenEvent) -> Unit,
 ) {
+    // Hardcoded for demo purposes since RLCS isn't happening.
     val recentMatchesRequest = MatchListRequest(
         group = "rlcs",
+        eventId = "614b6485f8090ec745286425",
+        stageId = "2",
     )
 
     val matchListResult = matchService.fetchMatches(
@@ -41,7 +44,7 @@ private suspend fun loadOngoingEvents(
     eventProcessor: (FeedScreenEvent) -> Unit,
 ) {
     val ongoingEventsRequest = EventListRequest(
-        group = "rlcs",
+        group = "rlcs2122",
     )
 
     val repoResult = eventService.fetchEvents(

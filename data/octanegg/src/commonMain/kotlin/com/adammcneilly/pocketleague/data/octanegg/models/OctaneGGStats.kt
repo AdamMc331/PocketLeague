@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
+import com.adammcneilly.pocketleague.core.models.Stats
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -19,3 +20,14 @@ data class OctaneGGStats(
     @SerialName("positioning")
     val positioning: OctaneGGPositioningStats? = null
 )
+
+/**
+ * Converts an [OctaneGGStats] entity to a [Stats] entity in our domain.
+ */
+fun OctaneGGStats.toStats(): Stats {
+    requireNotNull(core)
+
+    return Stats(
+        core = this.core.toCoreStats()
+    )
+}

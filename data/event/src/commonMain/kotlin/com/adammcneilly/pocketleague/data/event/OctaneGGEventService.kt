@@ -9,15 +9,15 @@ import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventListRespo
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventParticipants
 import com.adammcneilly.pocketleague.data.octanegg.models.toEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
-import com.adammcneilly.pocketleague.data.remote.BaseAPIClient
+import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
 
 /**
  * A concrete implementation of [EventService] that requests data through the
  * given [apiClient].
  */
-class OctaneGGEventService(
-    private val apiClient: BaseAPIClient,
+internal class OctaneGGEventService(
+    private val apiClient: BaseKTORClient,
 ) : EventService {
 
     constructor() : this(OctaneGGAPIClient)

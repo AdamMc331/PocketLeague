@@ -7,7 +7,7 @@ import io.ktor.client.request.get
 /**
  * Defines the API client information for communicating with the octane.gg API.
  */
-open class BaseAPIClient(
+open class BaseKTORClient(
     val baseURL: String,
     val httpClient: HttpClient,
 ) {

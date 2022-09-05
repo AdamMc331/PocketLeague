@@ -21,6 +21,9 @@ data class OctaneGGMatchTeamResult(
     val team: OctaneGGTeamStats? = null,
 )
 
+/**
+ * Converts an [OctaneGGMatchTeamResult] to a [MatchTeamResult] in our domain.
+ */
 fun OctaneGGMatchTeamResult.toMatchTeamResult(): MatchTeamResult {
     requireNotNull(this.team)
     requireNotNull(this.team.team)

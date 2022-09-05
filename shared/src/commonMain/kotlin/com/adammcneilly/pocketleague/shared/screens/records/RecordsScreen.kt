@@ -9,7 +9,7 @@ object RecordsScreen : Screen {
 
     override val navigationLevel: Int = 1
 
-    override val initSettings: (ScreenParams) -> ScreenInitSettings = {
+    override val initSettings: (ScreenParams?) -> ScreenInitSettings = {
         initRecords()
     }
 

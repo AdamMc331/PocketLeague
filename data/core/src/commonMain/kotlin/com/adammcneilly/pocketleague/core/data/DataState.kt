@@ -30,8 +30,12 @@ sealed class DataState<out T> {
         return when (this) {
             Loading -> Loading
             is Success -> {
-                val mappedData = mapper(this.data)
-                Success(mappedData)
+                try {
+                    val mappedData = mapper(this.data)
+                    Success(mappedData)
+                } catch (mappingError: Throwable) {
+                    Error(mappingError)
+                }
             }
             is Error -> this
         }

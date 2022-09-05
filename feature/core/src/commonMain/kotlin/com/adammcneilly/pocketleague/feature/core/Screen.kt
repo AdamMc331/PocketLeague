@@ -18,7 +18,7 @@ interface Screen {
     /**
      * A function to be invoked when we want to initialize this screen.
      */
-    val initSettings: (ScreenParams) -> ScreenInitSettings
+    val initSettings: (ScreenParams?) -> ScreenInitSettings
 
     /**
      * True if multiple instances of this screen can exist at one time.

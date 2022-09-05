@@ -9,7 +9,7 @@ object EventDetailScreen : Screen {
 
     override val navigationLevel: Int = 2
 
-    override val initSettings: (ScreenParams) -> ScreenInitSettings = {
+    override val initSettings: (ScreenParams?) -> ScreenInitSettings = {
         ScreenInitSettings(
             title = "Event Detail",
             initState = {

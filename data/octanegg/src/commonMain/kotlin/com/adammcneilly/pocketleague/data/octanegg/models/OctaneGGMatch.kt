@@ -2,7 +2,6 @@ package com.adammcneilly.pocketleague.data.octanegg.models
 
 import com.adammcneilly.pocketleague.core.models.Format
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.core.models.MatchTeamResult
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -37,14 +36,15 @@ data class OctaneGGMatch(
 fun OctaneGGMatch.toMatch(): Match {
     requireNotNull(this.event)
     requireNotNull(this.stage)
+    requireNotNull(this.blue)
+    requireNotNull(this.orange)
 
     return Match(
         id = this.id.orEmpty(),
         event = this.event.toEvent(),
         dateUTC = this.dateUTC,
-        // ADAM FIX THIS
-        blueTeam = MatchTeamResult(),
-        orangeTeam = MatchTeamResult(),
+        blueTeam = this.blue.toMatchTeamResult(),
+        orangeTeam = this.orange.toMatchTeamResult(),
         stage = this.stage.toEventStage(),
         format = this.format?.toFormat() ?: Format(),
         gameOverviews = this.games?.map(OctaneGGGameOverview::toGameOverview).orEmpty(),

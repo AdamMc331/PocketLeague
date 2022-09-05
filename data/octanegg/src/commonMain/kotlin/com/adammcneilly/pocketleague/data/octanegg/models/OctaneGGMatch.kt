@@ -33,5 +33,20 @@ data class OctaneGGMatch(
  * Converts an [OctaneGGMatch] to a [Match] in our domain.
  */
 fun OctaneGGMatch.toMatch(): Match {
-    TODO("Coming soon.")
+    requireNotNull(this.event)
+    requireNotNull(this.stage)
+    requireNotNull(this.format)
+    requireNotNull(this.blue)
+    requireNotNull(this.orange)
+
+    return Match(
+        id = this.id.orEmpty(),
+        event = this.event.toEvent(),
+        dateUTC = this.dateUTC,
+        blueTeam = this.blue.toMatchTeamResult(),
+        orangeTeam = this.orange.toMatchTeamResult(),
+        stage = this.stage.toEventStage(),
+        format = this.format.toFormat(),
+        gameOverviews = this.games?.map(OctaneGGGameOverview::toGameOverview).orEmpty(),
+    )
 }

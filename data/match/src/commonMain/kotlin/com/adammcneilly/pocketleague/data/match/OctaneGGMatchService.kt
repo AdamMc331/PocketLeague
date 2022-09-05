@@ -6,15 +6,15 @@ import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatch
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatchListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.toMatch
-import com.adammcneilly.pocketleague.data.remote.BaseAPIClient
+import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
 
 /**
  * A concrete implementation of a [MatchService] that will request data using
  * the supplied [apiClient].
  */
-class OctaneGGMatchService(
-    private val apiClient: BaseAPIClient,
+internal class OctaneGGMatchService(
+    private val apiClient: BaseKTORClient,
 ) : MatchService {
 
     constructor() : this(OctaneGGAPIClient)

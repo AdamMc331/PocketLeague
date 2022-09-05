@@ -94,7 +94,12 @@ class Navigation(
      * Navigates to a given [appScreen] with the provides [params].
      */
     fun navigate(appScreen: AppScreens, params: ScreenParams? = null) {
-        navigateByScreenIdentifier(ScreenIdentifier.get(appScreen.getScreen(this.stateManager), params))
+        navigateByScreenIdentifier(
+            ScreenIdentifier.get(
+                appScreen.getScreen(params, this.stateManager),
+                params,
+            )
+        )
     }
 
     /**

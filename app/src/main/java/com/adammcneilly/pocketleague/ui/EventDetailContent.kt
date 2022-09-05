@@ -52,7 +52,7 @@ import com.adammcneilly.pocketleague.composables.team.TeamOverviewListItem
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailViewState
+import com.adammcneilly.pocketleague.feature.eventdetail.EventDetailViewState
 import com.adammcneilly.pocketleague.ui.components.Tooltip
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 import com.google.accompanist.flowlayout.FlowRow
@@ -91,7 +91,7 @@ fun EventDetailContent(
 
 @Composable
 private fun EventDetail(
-    viewState: EventDetailViewState,
+    viewState: com.adammcneilly.pocketleague.feature.eventdetail.EventDetailViewState,
     onStageClicked: (String, String) -> Unit,
 ) {
     val displayModel = viewState.eventDetail ?: return
@@ -375,7 +375,7 @@ private fun EventDetailContentPreview() {
         )
     )
 
-    val viewState = EventDetailViewState(
+    val viewState = com.adammcneilly.pocketleague.feature.eventdetail.EventDetailViewState(
         eventId = "123",
         showLoading = false,
         eventDetail = eventDetail,

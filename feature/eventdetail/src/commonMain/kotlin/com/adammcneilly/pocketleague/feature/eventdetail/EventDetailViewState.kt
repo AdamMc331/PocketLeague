@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.screens.eventdetail
+package com.adammcneilly.pocketleague.feature.eventdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel

@@ -1,7 +1,9 @@
 package com.adammcneilly.pocketleague.shared.screens
 
 import com.adammcneilly.pocketleague.feature.core.Screen
-import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailScreen
+import com.adammcneilly.pocketleague.feature.core.ScreenParams
+import com.adammcneilly.pocketleague.feature.eventdetail.EventDetailParams
+import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailScreenBuilder
 import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.EventStageDetailScreen
 import com.adammcneilly.pocketleague.shared.screens.feed.FeedScreenBuilder
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailScreen
@@ -19,33 +21,38 @@ import com.adammcneilly.pocketleague.shared.screens.stats.StatsScreen
  * function to use our state manager to pull those dependencies and generate our [Screen] entity.
  */
 enum class AppScreens(
-    val getScreen: (StateManager) -> Screen,
+    val getScreen: (ScreenParams?, StateManager) -> Screen,
 ) {
     Feed(
-        getScreen = FeedScreenBuilder::build,
+        getScreen = { _, stateManager ->
+            FeedScreenBuilder.build(stateManager)
+        }
     ),
     Stats(
-        getScreen = {
+        getScreen = { _, _ ->
             StatsScreen
         },
     ),
     Records(
-        getScreen = {
+        getScreen = { _, _ ->
             RecordsScreen
         },
     ),
     MatchDetail(
-        getScreen = {
+        getScreen = { _, _ ->
             MatchDetailScreen
         },
     ),
     EventDetail(
-        getScreen = {
-            EventDetailScreen
+        getScreen = { params, stateManager ->
+            EventDetailScreenBuilder.build(
+                params as EventDetailParams,
+                stateManager,
+            )
         },
     ),
     EventStageDetail(
-        getScreen = {
+        getScreen = { _, _ ->
             EventStageDetailScreen
         },
     ),

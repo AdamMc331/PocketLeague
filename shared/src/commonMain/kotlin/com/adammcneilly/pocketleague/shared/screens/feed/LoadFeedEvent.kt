@@ -44,8 +44,8 @@ fun Events.loadFeed() = screenCoroutine {
     }
 
     val recentMatchesRequest = MatchListRequest(
-        before = Clock.System.now().toString(),
-        after = Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days).toString(),
+        before = Clock.System.now(),
+        after = Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),
     )
 
     val matchListResult = repository.matchService.fetchMatches(

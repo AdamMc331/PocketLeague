@@ -62,9 +62,9 @@ private fun EventListRequest.toOctaneParams(): RemoteParams {
     return mapOf(
         "group" to group,
         "tier" to tiers,
-        "after" to after,
-        "before" to before,
-        "date" to date,
+        "after" to after.toString(),
+        "before" to before.toString(),
+        "date" to date.toString(),
         "name" to name,
     )
 }

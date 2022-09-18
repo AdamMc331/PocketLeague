@@ -47,8 +47,8 @@ internal class OctaneGGMatchService(
 
 private fun MatchListRequest.toOctaneParams(): RemoteParams {
     return mapOf(
-        "after" to this.after,
-        "before" to this.before,
+        "after" to this.after.toString(),
+        "before" to this.before.toString(),
         "group" to this.group,
         "event" to this.eventId,
         "stage" to this.stageId,

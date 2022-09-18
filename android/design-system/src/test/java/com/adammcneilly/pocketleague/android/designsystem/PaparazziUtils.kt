@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.android.designsystem
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
@@ -20,10 +21,15 @@ fun Paparazzi.snapshotScreen(
         PocketLeagueTheme {
             Surface(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
+                    .fillMaxSize(),
             ) {
-                content()
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                ) {
+                    content()
+                }
             }
         }
     }

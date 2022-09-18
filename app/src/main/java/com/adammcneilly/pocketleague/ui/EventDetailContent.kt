@@ -46,14 +46,14 @@ import coil.compose.rememberAsyncImagePainter
 import coil.imageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
-import com.adammcneilly.pocketleague.composables.components.Chip
-import com.adammcneilly.pocketleague.composables.eventstage.StageSummaryListItem
-import com.adammcneilly.pocketleague.composables.team.TeamOverviewListItem
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailViewState
 import com.adammcneilly.pocketleague.ui.components.Tooltip
+import com.adammcneilly.pocketleague.ui.composables.components.Chip
+import com.adammcneilly.pocketleague.ui.composables.eventstage.StageSummaryListItem
+import com.adammcneilly.pocketleague.ui.composables.team.TeamOverviewListItem
 import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.placeholder.material.placeholder

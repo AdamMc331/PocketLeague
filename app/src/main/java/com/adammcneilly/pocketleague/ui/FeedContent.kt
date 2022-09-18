@@ -19,10 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
-import com.adammcneilly.pocketleague.composables.eventsummary.EventSummaryListItem
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
 import com.adammcneilly.pocketleague.ui.components.EmptyStateCard
+import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryListItem
 
 private const val MATCH_CARD_WIDTH_RATIO = 0.8F
 

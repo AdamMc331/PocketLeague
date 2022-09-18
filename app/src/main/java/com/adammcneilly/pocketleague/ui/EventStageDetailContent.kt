@@ -17,8 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.composables.match.MatchListItem
 import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.EventStageDetailViewState
+import com.adammcneilly.pocketleague.ui.composables.match.MatchListItem
 
 /**
  * Renders the [viewState] for the event stage detail screen.

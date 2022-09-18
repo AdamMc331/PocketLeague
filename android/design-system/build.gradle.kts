@@ -1,6 +1,13 @@
+buildscript {
+    repositories {
+        google()
+    }
+}
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("app.cash.paparazzi").version("1.0.0")
 }
 
 android {

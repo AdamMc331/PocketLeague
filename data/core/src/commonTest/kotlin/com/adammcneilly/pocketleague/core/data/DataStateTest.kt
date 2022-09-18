@@ -43,4 +43,19 @@ class DataStateTest {
             actual = mapped,
         )
     }
+
+    @Test
+    fun errorWhenMapping() {
+        val error = IllegalArgumentException("Invalid mapping.")
+
+        val success: DataState<Int> = DataState.Success(1)
+        val mapped: DataState<String> = success.map {
+            throw error
+        }
+
+        assertEquals(
+            expected = DataState.Error(error),
+            actual = mapped,
+        )
+    }
 }

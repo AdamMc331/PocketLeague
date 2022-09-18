@@ -7,16 +7,23 @@ plugins {
 kotlin {
     android()
 
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "shared"
+        }
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":core:displaymodels"))
-                implementation(project(":core:datetime"))
-                implementation(project(":data:core"))
-                implementation(project(":data:event"))
-                implementation(project(":data:game"))
-                implementation(project(":data:match"))
+                implementation(project(":core-models"))
+                implementation(project(":core-data"))
+                implementation(project(":core-displaymodels"))
+                implementation(project(":core-datetime"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")
@@ -35,27 +42,27 @@ kotlin {
             }
         }
         val androidTest by getting
-        maybeCreate("iosX64Main")
-        maybeCreate("iosArm64Main")
-        maybeCreate("iosSimulatorArm64Main")
-        maybeCreate("iosMain").apply {
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
             dependsOn(commonMain)
-            getAt("iosX64Main").dependsOn(this)
-            getAt("iosArm64Main").dependsOn(this)
-            getAt("iosSimulatorArm64Main").dependsOn(this)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
                 implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
             }
         }
-        maybeCreate("iosX64Test")
-        maybeCreate("iosArm64Test")
-        maybeCreate("iosSimulatorArm64Test")
-        maybeCreate("iosTest").apply {
+        val iosX64Test by getting
+        val iosArm64Test by getting
+        val iosSimulatorArm64Test by getting
+        val iosTest by creating {
             dependsOn(commonTest)
-            getAt("iosX64Test").dependsOn(this)
-            getAt("iosArm64Test").dependsOn(this)
-            getAt("iosSimulatorArm64Test").dependsOn(this)
+            iosX64Test.dependsOn(this)
+            iosArm64Test.dependsOn(this)
+            iosSimulatorArm64Test.dependsOn(this)
         }
     }
 }
@@ -74,23 +81,4 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
     namespace = "com.adammcneilly.pocketleague.shared"
-}
-
-project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)?.apply {
-    if (project.findProperty("ios") == "true") {
-        listOf(
-            iosX64(),
-            iosArm64(),
-            iosSimulatorArm64()
-        ).forEach {
-            it.binaries.framework {
-                baseName = project.name
-            }
-        }
-    }
-    if (project.findProperty("js") == "true") {
-        js(IR) {
-            browser()
-        }
-    }
 }

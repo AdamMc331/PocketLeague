@@ -13,10 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.composables.bars.Level1NavigationRail
-import com.adammcneilly.pocketleague.composables.bars.TopBar
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
+import com.adammcneilly.pocketleague.ui.composables.bars.Level1NavigationRail
+import com.adammcneilly.pocketleague.ui.composables.bars.TopBar
 
 private const val LIST_PANE_WIDTH_RATIO = 0.4F
 private const val DETAIL_PANE_WIDTH_RATIO = 0.6F

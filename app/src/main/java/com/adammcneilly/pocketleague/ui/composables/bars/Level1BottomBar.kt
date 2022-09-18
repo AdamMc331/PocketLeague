@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.composables.bars
+package com.adammcneilly.pocketleague.ui.composables.bars
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BarChart

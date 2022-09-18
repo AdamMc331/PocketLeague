@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.composables.stats
+package com.adammcneilly.pocketleague.ui.composables.stats
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme

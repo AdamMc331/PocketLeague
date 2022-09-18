@@ -1,10 +1,9 @@
 plugins {
     kotlin("multiplatform")
-    id("com.android.library")
 }
 
 kotlin {
-    android()
+    jvm()
 
     sourceSets {
         val commonMain by getting {
@@ -17,8 +16,8 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
-        val androidTest by getting {
+        val jvmMain by getting
+        val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
@@ -41,21 +40,6 @@ kotlin {
             getAt("iosArm64Test").dependsOn(this)
             getAt("iosSimulatorArm64Test").dependsOn(this)
         }
-    }
-}
-
-android {
-    compileSdk = AndroidConfig.compileSDK
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = AndroidConfig.minSDK
-        targetSdk = AndroidConfig.targetSDK
-    }
-
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_1_8)
-        isCoreLibraryDesugaringEnabled = true
     }
 }
 

@@ -1,11 +1,8 @@
 package com.adammcneilly.pocketleague.shared.data
 
-import com.adammcneilly.pocketleague.core.data.remote.octanegg.services.OctaneGGEventService
-import com.adammcneilly.pocketleague.core.data.remote.octanegg.services.OctaneGGGameService
-import com.adammcneilly.pocketleague.core.data.remote.octanegg.services.OctaneGGMatchService
-import com.adammcneilly.pocketleague.core.data.repositories.EventRepository
-import com.adammcneilly.pocketleague.core.data.repositories.GameRepository
-import com.adammcneilly.pocketleague.core.data.repositories.MatchRepository
+import com.adammcneilly.pocketleague.data.event.EventService
+import com.adammcneilly.pocketleague.data.game.GameService
+import com.adammcneilly.pocketleague.data.match.MatchService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -18,16 +15,17 @@ import kotlinx.coroutines.withContext
 class Repository(
     private val useDefaultDispatcher: Boolean = true,
 ) {
-    internal val eventRepository: EventRepository by lazy {
-        OctaneGGEventService()
+
+    internal val eventService: EventService by lazy {
+        EventService.provideDefault()
     }
 
-    internal val matchRepository: MatchRepository by lazy {
-        OctaneGGMatchService()
+    internal val matchService: MatchService by lazy {
+        MatchService.provideDefault()
     }
 
-    internal val gameRepository: GameRepository by lazy {
-        OctaneGGGameService()
+    internal val gameService: GameService by lazy {
+        GameService.provideDefault()
     }
 
     /**

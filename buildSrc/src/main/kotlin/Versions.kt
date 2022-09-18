@@ -6,16 +6,16 @@ object Versions {
     const val compose = "1.1.1"
 
     // https://developer.android.com/jetpack/androidx/releases/core
-    const val ktxCore = "1.7.0"
+    const val ktxCore = "1.8.0"
 
     // https://developer.android.com/jetpack/androidx/releases/core
-    const val appCompat = "1.4.1"
+    const val appCompat = "1.4.2"
 
     // https://developer.android.com/jetpack/androidx/releases/lifecycle
-    const val lifecycle = "2.4.1"
+    const val lifecycle = "2.5.0"
 
     // https://developer.android.com/jetpack/androidx/releases/activity
-    const val activityCompose = "1.4.0"
+    const val activityCompose = "1.5.0"
 
     // https://github.com/junit-team/junit4/releases
     const val junit = "4.13.2"
@@ -27,7 +27,7 @@ object Versions {
     const val espresso = "3.4.0"
 
     // https://github.com/material-components/material-components-android/releases
-    const val material = "1.6.0"
+    const val material = "1.6.1"
 
     // https://github.com/google/truth/releases
     const val truth = "1.1.3"
@@ -66,7 +66,7 @@ object Versions {
     const val mutator = "0.0.2"
 
     // https://github.com/Kotlin/kotlinx-datetime/releases
-    const val kotlinxDatetime = "0.3.3"
+    const val kotlinxDatetime = "0.4.0"
 
     // https://developer.android.com/jetpack/androidx/releases/window
     const val windowManager = "1.0.0"
@@ -75,4 +75,10 @@ object Versions {
     const val ktor = "1.6.8"
 
     const val kotlinxSerialization = "1.3.2"
+
+    // https://github.com/JetBrains/compose-jb/releases
+    const val mppCompose = "1.1.1"
+
+    // https://github.com/alialbaali/Kamel/releases
+    const val kamel = "0.2.2"
 }

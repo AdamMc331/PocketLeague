@@ -1,0 +1,52 @@
+package com.adammcneilly.pocketleague.data.octanegg.models
+
+import com.adammcneilly.pocketleague.core.models.Match
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+/**
+ * Represents a match between two teams, [blue] and [orange].
+ */
+@Serializable
+data class OctaneGGMatch(
+    @SerialName("_id")
+    val id: String? = null,
+    @SerialName("slug")
+    val slug: String? = null,
+    @SerialName("event")
+    val event: OctaneGGEvent? = null,
+    @SerialName("date")
+    val dateUTC: String? = null,
+    @SerialName("blue")
+    val blue: OctaneGGMatchTeamResult? = null,
+    @SerialName("orange")
+    val orange: OctaneGGMatchTeamResult? = null,
+    @SerialName("stage")
+    val stage: OctaneGGStage? = null,
+    @SerialName("format")
+    val format: OctaneGGFormat? = null,
+    @SerialName("games")
+    val games: List<OctaneGGGameOverview>? = null,
+)
+
+/**
+ * Converts an [OctaneGGMatch] to a [Match] in our domain.
+ */
+fun OctaneGGMatch.toMatch(): Match {
+    requireNotNull(this.event)
+    requireNotNull(this.stage)
+    requireNotNull(this.format)
+    requireNotNull(this.blue)
+    requireNotNull(this.orange)
+
+    return Match(
+        id = this.id.orEmpty(),
+        event = this.event.toEvent(),
+        dateUTC = this.dateUTC,
+        blueTeam = this.blue.toMatchTeamResult(),
+        orangeTeam = this.orange.toMatchTeamResult(),
+        stage = this.stage.toEventStage(),
+        format = this.format.toFormat(),
+        gameOverviews = this.games?.map(OctaneGGGameOverview::toGameOverview).orEmpty(),
+    )
+}

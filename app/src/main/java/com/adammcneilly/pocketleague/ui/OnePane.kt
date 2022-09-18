@@ -1,10 +1,14 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.composables.bars.Level1BottomBar
+import com.adammcneilly.pocketleague.composables.bars.TopBar
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 
 /**
@@ -18,7 +22,10 @@ fun Navigation.OnePane(
 ) {
     Scaffold(
         topBar = {
-            TopBar(getTitle(currentScreenIdentifier))
+            TopBar(
+                title = getTitle(currentScreenIdentifier),
+                modifier = Modifier.statusBarsPadding(),
+            )
         },
         content = { paddingValues ->
             saveableStateHolder.SaveableStateProvider(currentScreenIdentifier.uri) {
@@ -30,8 +37,13 @@ fun Navigation.OnePane(
         },
         bottomBar = {
             if (currentScreenIdentifier.screen.navigationLevel == 1) {
-                Level1BottomBar(currentScreenIdentifier)
+                Level1BottomBar(
+                    selectedTab = currentScreenIdentifier,
+                    modifier = Modifier
+                        .navigationBarsPadding(),
+                )
             }
         },
+        modifier = modifier,
     )
 }

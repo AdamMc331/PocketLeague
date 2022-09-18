@@ -2,7 +2,6 @@ rootProject.name = "PocketLeague"
 
 include ':app'
 include ':shared'
-include ':composables'
 
 include ':core:currency'
 include ':core:datetime'

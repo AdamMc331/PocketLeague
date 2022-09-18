@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.composables.eventsummary
+package com.adammcneilly.pocketleague.ui.composables.eventsummary
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,12 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.adammcneilly.pocketleague.composables.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.composables.utils.getForTheme
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
-import io.kamel.image.KamelImage
-import io.kamel.image.lazyPainterResource
-import io.ktor.http.Url
 
 /**
  * Used to show a specific [displayModel] inside of a list.
@@ -88,23 +86,21 @@ private fun EventImage(displayModel: EventSummaryDisplayModel) {
             ),
     ) {
         if (imageUrl.isNotEmpty()) {
-            KamelImage(
-                resource = lazyPainterResource(
-                    data = Url(imageUrl),
-                ),
+            AsyncImage(
+                model = imageUrl,
                 contentDescription = "Event Image",
                 modifier = Modifier
                     .size(imageSize),
-                crossfade = true,
-                onLoading = {
-                    Box(
-                        modifier = Modifier
-                            .size(imageSize)
-                            .placeholderMaterial(
-                                visible = true,
-                            ),
-                    )
-                },
+//                crossfade = true,
+//                onLoading = {
+//                    Box(
+//                        modifier = Modifier
+//                            .size(imageSize)
+//                            .placeholderMaterial(
+//                                visible = true,
+//                            ),
+//                    )
+//                },
             )
         }
     }

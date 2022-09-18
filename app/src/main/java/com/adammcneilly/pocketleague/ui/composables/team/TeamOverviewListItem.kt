@@ -12,12 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.adammcneilly.pocketleague.composables.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.composables.utils.getForTheme
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import io.kamel.image.KamelImage
-import io.kamel.image.lazyPainterResource
-import io.ktor.http.Url
 
 /**
  * Renders the given [displayModel] for team overview information.
@@ -39,23 +37,21 @@ fun TeamOverviewListItem(
         val imageSize = 48.dp
 
         if (imageUrl.isNotEmpty()) {
-            KamelImage(
-                resource = lazyPainterResource(
-                    data = Url(imageUrl),
-                ),
+            AsyncImage(
+                model = imageUrl,
                 contentDescription = "Team Image",
                 modifier = Modifier
                     .size(imageSize),
-                crossfade = true,
-                onLoading = {
-                    Box(
-                        modifier = Modifier
-                            .size(imageSize)
-                            .placeholderMaterial(
-                                visible = true,
-                            ),
-                    )
-                },
+//                crossfade = true,
+//                onLoading = {
+//                    Box(
+//                        modifier = Modifier
+//                            .size(imageSize)
+//                            .placeholderMaterial(
+//                                visible = true,
+//                            ),
+//                    )
+//                },
             )
         }
 

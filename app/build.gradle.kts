@@ -5,7 +5,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("com.google.devtools.ksp").version("1.6.10-1.0.4")
+    id("com.google.devtools.ksp").version("${Versions.kotlin}-1.0.6")
     id("shot")
 }
 
@@ -71,7 +71,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 
     packagingOptions {
@@ -88,7 +88,7 @@ dependencies {
     implementation(project(":shared"))
     implementation(project(":core:models"))
     implementation(project(":core:displaymodels"))
-    implementation("androidx.compose.material3:material3:1.0.0-alpha12")
+    implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")
     implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
@@ -104,7 +104,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-flowlayout:${Versions.accompanist}")
     implementation("androidx.window:window:${Versions.windowManager}")
     implementation("androidx.lifecycle:lifecycle-process:2.5.0")
-    implementation("io.coil-kt:coil-compose:2.1.0")
+    implementation("io.coil-kt:coil-compose:2.2.1")
     implementation("androidx.palette:palette-ktx:1.0.0")
     testImplementation("junit:junit:${Versions.junit}")
     testImplementation("com.google.truth:truth:${Versions.truth}")

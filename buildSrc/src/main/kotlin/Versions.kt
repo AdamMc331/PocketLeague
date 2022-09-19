@@ -2,20 +2,27 @@
  * A collection of version numbers used throughout the project.
  */
 object Versions {
-    // https://developer.android.com/jetpack/androidx/releases/compose
-    const val compose = "1.1.1"
+    /**
+     * https://developer.android.com/jetpack/androidx/releases/compose
+     */
+    const val compose = "1.2.1"
+
+    /**
+     * https://developer.android.com/jetpack/androidx/releases/compose
+     */
+    const val composeCompiler = "1.3.1"
 
     // https://developer.android.com/jetpack/androidx/releases/core
-    const val ktxCore = "1.8.0"
+    const val ktxCore = "1.9.0"
 
     // https://developer.android.com/jetpack/androidx/releases/core
-    const val appCompat = "1.4.2"
+    const val appCompat = "1.5.1"
 
     // https://developer.android.com/jetpack/androidx/releases/lifecycle
-    const val lifecycle = "2.5.0"
+    const val lifecycle = "2.5.1"
 
     // https://developer.android.com/jetpack/androidx/releases/activity
-    const val activityCompose = "1.5.0"
+    const val activityCompose = "1.5.1"
 
     // https://github.com/junit-team/junit4/releases
     const val junit = "4.13.2"
@@ -32,38 +39,14 @@ object Versions {
     // https://github.com/google/truth/releases
     const val truth = "1.1.3"
 
-    // https://github.com/square/retrofit/releases
-    const val retrofit = "2.9.0"
-
-    // https://github.com/square/okhttp/blob/master/CHANGELOG.md
-    const val okhttp = "4.9.3"
-
-    // https://github.com/square/moshi/releases
-    const val moshi = "1.13.0"
-
     // https://github.com/google/accompanist/releases
-    const val accompanist = "0.23.1"
-
-    // https://github.com/apollographql/apollo-android/releases
-    const val apollo = "3.1.0"
-
-    // https://github.com/raamcosta/compose-destinations/releases
-    const val composeDestinations = "0.9.4-beta"
-
-    // https://developer.android.com/jetpack/androidx/releases/navigation
-    const val composeNavigation = "2.4.1"
+    const val accompanist = "0.25.1"
 
     // https://github.com/Kotlin/kotlinx.coroutines/releases
     const val coroutines = "1.6.0"
 
     // https://github.com/cashapp/turbine/releases
-    const val turbine = "0.8.0"
-
-    // https://github.com/yshrsmz/BuildKonfig/releases
-    const val buildKonfig = "0.11.0"
-
-    // https://github.com/tunjid/mutator
-    const val mutator = "0.0.2"
+    const val turbine = "0.10.0"
 
     // https://github.com/Kotlin/kotlinx-datetime/releases
     const val kotlinxDatetime = "0.4.0"
@@ -76,9 +59,10 @@ object Versions {
 
     const val kotlinxSerialization = "1.3.2"
 
-    // https://github.com/JetBrains/compose-jb/releases
-    const val mppCompose = "1.1.1"
+    const val kotlin = "1.7.10"
 
-    // https://github.com/alialbaali/Kamel/releases
-    const val kamel = "0.2.2"
+    /**
+     * https://developer.android.com/jetpack/androidx/releases/compose-material3
+     */
+    const val composeMaterial3 = "1.0.0-beta02"
 }

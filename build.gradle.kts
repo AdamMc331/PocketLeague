@@ -10,13 +10,13 @@ buildscript {
 
     dependencies {
         classpath("com.android.tools.build:gradle:7.2.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
         classpath("org.jlleitschuh.gradle:ktlint-gradle:10.3.0")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.19.0")
         classpath("com.github.ben-manes:gradle-versions-plugin:0.29.0")
         classpath("com.hiya:jacoco-android:0.2")
         classpath("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.12.0")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:1.6.10")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")
         classpath("com.karumi:shot:5.14.1")
 
         // NOTE: Do not place your application dependencies here; they belong

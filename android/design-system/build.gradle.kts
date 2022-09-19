@@ -43,7 +43,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 }
 
@@ -53,5 +53,5 @@ dependencies {
     implementation("androidx.compose.ui:ui-util:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
     implementation("androidx.compose.material:material-icons-extended:${Versions.compose}")
-    implementation("androidx.compose.material3:material3:1.0.0-alpha12")
+    implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")
 }

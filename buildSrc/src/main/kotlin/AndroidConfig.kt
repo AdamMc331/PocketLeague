@@ -3,6 +3,6 @@
  */
 object AndroidConfig {
     const val minSDK = 21
-    const val targetSDK = 31
-    const val compileSDK = 31
+    const val targetSDK = 33
+    const val compileSDK = 33
 }

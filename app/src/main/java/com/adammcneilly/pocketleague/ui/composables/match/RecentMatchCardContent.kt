@@ -27,9 +27,9 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.android.designsystem.components.InlineIconText
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
-import com.adammcneilly.pocketleague.ui.composables.components.InlineIconText
 import com.adammcneilly.pocketleague.ui.composables.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.ui.composables.placeholder.placeholderMaterial
 

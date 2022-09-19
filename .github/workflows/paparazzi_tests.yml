@@ -1,0 +1,22 @@
+name: Paparazzi Tests
+
+on: pull_request
+
+jobs:
+  paparazzii-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+
+      - name: Generate local.properties
+        env:
+          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+        run: echo $LOCAL_PROPERTIES > ./local.properties
+
+      - name: Run Tests
+        run: ./gradlew :android:design-system:verifyPaparazziDebug

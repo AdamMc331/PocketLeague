@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
+import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.ui.MainComposable
-import com.adammcneilly.pocketleague.ui.theme.PocketLeagueTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 /**

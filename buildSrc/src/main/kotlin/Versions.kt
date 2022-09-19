@@ -3,7 +3,7 @@
  */
 object Versions {
     // https://developer.android.com/jetpack/androidx/releases/compose
-    const val compose = "1.1.1"
+    const val compose = "1.2.1"
 
     // https://developer.android.com/jetpack/androidx/releases/core
     const val ktxCore = "1.8.0"
@@ -76,9 +76,5 @@ object Versions {
 
     const val kotlinxSerialization = "1.3.2"
 
-    // https://github.com/JetBrains/compose-jb/releases
-    const val mppCompose = "1.1.1"
-
-    // https://github.com/alialbaali/Kamel/releases
-    const val kamel = "0.2.2"
+    const val kotlin = "1.7.10"
 }

@@ -1,7 +1,8 @@
 package com.adammcneilly.pocketleague.ui.composables.bars
 
-import androidx.compose.material3.SmallTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
@@ -11,12 +12,13 @@ import androidx.compose.ui.Modifier
  * @param[title] The text to display inside this toolbar.
  * @param[modifier] Optional modifications to perform on this component.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
     title: String,
     modifier: Modifier = Modifier,
 ) {
-    SmallTopAppBar(
+    TopAppBar(
         title = {
             Text(
                 text = title,

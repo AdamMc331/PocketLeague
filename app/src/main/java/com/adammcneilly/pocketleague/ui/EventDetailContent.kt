@@ -36,7 +36,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.isUnspecified
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,13 +45,11 @@ import coil.compose.rememberAsyncImagePainter
 import coil.imageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
-import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailViewState
-import com.adammcneilly.pocketleague.ui.components.Tooltip
-import com.adammcneilly.pocketleague.ui.composables.components.Chip
+import com.adammcneilly.pocketleague.ui.composables.components.TooltipChip
 import com.adammcneilly.pocketleague.ui.composables.eventstage.StageSummaryListItem
 import com.adammcneilly.pocketleague.ui.composables.team.TeamOverviewListItem
 import com.google.accompanist.flowlayout.FlowRow
@@ -183,27 +180,27 @@ private fun EventDetails(displayModel: EventDetailDisplayModel) {
         mainAxisSpacing = 12.dp,
         crossAxisSpacing = 12.dp,
     ) {
-        Chip(
+        TooltipChip(
             text = displayModel.tier.name,
             tooltipText = displayModel.tier.description,
         )
 
-        Chip(
+        TooltipChip(
             text = displayModel.region.name,
             tooltipText = displayModel.region.description,
         )
 
-        Chip(
+        TooltipChip(
             text = displayModel.onlineOrLAN,
             tooltipText = "This event takes place over the internet.",
         )
 
-        Chip(
+        TooltipChip(
             text = "Mode: ${displayModel.mode}",
             tooltipText = "The number of players on each team.",
         )
 
-        Chip(
+        TooltipChip(
             text = "Prize: ${displayModel.prize.prizeAmount}",
             tooltipText = "This is the total prize pool for top finishers.",
         )
@@ -295,25 +292,6 @@ private fun getCardColors(containerColor: Color): CardColors {
             containerColor = containerColor
         )
     }
-}
-
-@Composable
-private fun Chip(
-    text: String,
-    leadingIcon: ImageVector? = null,
-    tooltipText: String? = null,
-) {
-    Chip(
-        text = text,
-        leadingIcon = leadingIcon,
-        tooltip = tooltipText?.let { tooltipTextStr ->
-            { expanded ->
-                Tooltip(expanded) {
-                    Text(text = tooltipTextStr)
-                }
-            }
-        },
-    )
 }
 
 /**

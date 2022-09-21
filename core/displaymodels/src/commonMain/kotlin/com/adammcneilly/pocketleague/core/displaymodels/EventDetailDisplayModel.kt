@@ -67,6 +67,6 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
         } else {
             "ONLINE"
         },
-        prize = this.prize?.toDisplayModel() ?: PrizeDisplayModel(),
+        prize = this.prize?.toDisplayModel(),
     )
 }

@@ -200,10 +200,14 @@ private fun EventDetails(displayModel: EventDetailDisplayModel) {
             tooltipText = "The number of players on each team.",
         )
 
-        TooltipChip(
-            text = "Prize: ${displayModel.prize.prizeAmount}",
-            tooltipText = "This is the total prize pool for top finishers.",
-        )
+        val prize = displayModel.prize
+
+        if (prize != null) {
+            TooltipChip(
+                text = "Prize: ${prize.prizeAmount}",
+                tooltipText = "This is the total prize pool for top finishers.",
+            )
+        }
     }
 }
 

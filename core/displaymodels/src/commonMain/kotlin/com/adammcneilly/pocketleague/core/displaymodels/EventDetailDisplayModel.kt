@@ -24,7 +24,7 @@ data class EventDetailDisplayModel(
     val mode: String = "",
     val region: EventRegionDisplayModel = EventRegion.Unknown.toDisplayModel(),
     val onlineOrLAN: String = "",
-    val prize: PrizeDisplayModel = PrizeDisplayModel(),
+    val prize: PrizeDisplayModel? = null,
 )
 
 /**

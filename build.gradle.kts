@@ -9,11 +9,11 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.2.0")
+        classpath("com.android.tools.build:gradle:7.3.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("org.jlleitschuh.gradle:ktlint-gradle:10.3.0")
-        classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.19.0")
-        classpath("com.github.ben-manes:gradle-versions-plugin:0.29.0")
+        classpath("org.jlleitschuh.gradle:ktlint-gradle:11.0.0")
+        classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.21.0")
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")
         classpath("com.hiya:jacoco-android:0.2")
         classpath("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.12.0")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")

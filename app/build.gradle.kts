@@ -88,7 +88,6 @@ dependencies {
     implementation(project(":shared"))
     implementation(project(":core:models"))
     implementation(project(":core:displaymodels"))
-    implementation("androidx.compose.material:material:${Versions.compose}")
     implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
     implementation("androidx.core:core-ktx:${Versions.ktxCore}")

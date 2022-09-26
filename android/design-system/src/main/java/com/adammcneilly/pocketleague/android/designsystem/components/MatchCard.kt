@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.ui.composables.match
+package com.adammcneilly.pocketleague.android.designsystem.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +13,7 @@ import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -26,73 +27,40 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.android.designsystem.modifiers.pocketLeaguePlaceholder
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
-import com.adammcneilly.pocketleague.ui.composables.placeholder.PlaceholderDefaults
-import com.adammcneilly.pocketleague.ui.composables.placeholder.placeholderMaterial
 
 /**
- * Displays a match between two teams inside a list item.
- *
- * This is intended ot be used inside a card, but right now KMM Compose Material 3 does
- * not have a card component, so this can be used from that in Android.
+ * Renders a [match] inside a card component. Likely to be used in a carousel of recent matches,
+ * but is intentionally agnostic of where it could be used.
  */
 @Composable
-fun RecentMatchCardContent(
+fun MatchCard(
     match: MatchDetailDisplayModel,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier.padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
+    Card(
+        modifier = modifier,
     ) {
-        EventName(match)
+        Column(
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = Modifier
+                .padding(16.dp),
+        ) {
+            EventName(match)
 
-        RelativeTimeOrLiveIndicator(match)
+            RelativeTime(match)
 
-        Spacer(
-            modifier = Modifier.height(8.dp),
-        )
+            Spacer(
+                modifier = Modifier.height(8.dp),
+            )
 
-        BlueTeamResult(match)
+            BlueTeamResult(match)
 
-        OrangeTeamResult(match)
+            OrangeTeamResult(match)
+        }
     }
-}
-
-@Composable
-private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
-    MatchTeamResultRow(
-        teamResult = match.orangeTeamResult,
-        isPlaceholder = match.isPlaceholder,
-    )
-}
-
-@Composable
-private fun BlueTeamResult(match: MatchDetailDisplayModel) {
-    MatchTeamResultRow(
-        teamResult = match.blueTeamResult,
-        isPlaceholder = match.isPlaceholder,
-    )
-}
-
-/**
- * The LIVE indicator didn't quite work as well as I hoped, so we've removed that feature.
- */
-@Composable
-private fun RelativeTimeOrLiveIndicator(match: MatchDetailDisplayModel) {
-    Text(
-        text = match.relativeDateTime,
-        style = MaterialTheme.typography.labelSmall,
-        modifier = Modifier
-            .defaultMinSize(minWidth = 50.dp)
-            .placeholderMaterial(
-                visible = match.isPlaceholder,
-                color = PlaceholderDefaults.color(
-                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
-            ),
-    )
 }
 
 @Composable
@@ -104,11 +72,21 @@ private fun EventName(match: MatchDetailDisplayModel) {
         overflow = TextOverflow.Ellipsis,
         modifier = Modifier
             .fillMaxWidth()
-            .placeholderMaterial(
+            .pocketLeaguePlaceholder(
                 visible = match.isPlaceholder,
-                color = PlaceholderDefaults.color(
-                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
+            ),
+    )
+}
+
+@Composable
+private fun RelativeTime(match: MatchDetailDisplayModel) {
+    Text(
+        text = match.relativeDateTime,
+        style = MaterialTheme.typography.labelSmall,
+        modifier = Modifier
+            .defaultMinSize(minWidth = 50.dp)
+            .pocketLeaguePlaceholder(
+                visible = match.isPlaceholder,
             ),
     )
 }
@@ -132,12 +110,9 @@ private fun MatchTeamResultRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier
             .fillMaxSize()
-            .placeholderMaterial(
+            .pocketLeaguePlaceholder(
                 visible = isPlaceholder,
-                color = PlaceholderDefaults.color(
-                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
-            )
+            ),
     ) {
         Text(
             text = teamResult.score,
@@ -186,4 +161,20 @@ private fun MatchTeamResultDisplayModel.getInlineContent(): Map<String, InlineTe
     } else {
         mapOf()
     }
+}
+
+@Composable
+private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
+    MatchTeamResultRow(
+        teamResult = match.orangeTeamResult,
+        isPlaceholder = match.isPlaceholder,
+    )
+}
+
+@Composable
+private fun BlueTeamResult(match: MatchDetailDisplayModel) {
+    MatchTeamResultRow(
+        teamResult = match.blueTeamResult,
+        isPlaceholder = match.isPlaceholder,
+    )
 }

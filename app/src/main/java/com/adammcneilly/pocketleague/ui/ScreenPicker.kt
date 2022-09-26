@@ -27,11 +27,11 @@ fun Navigation.ScreenPicker(
                 viewState = stateProvider.get(screenIdentifier),
                 modifier = Modifier
                     .padding(paddingValues),
-                onMatchClicked = { match ->
+                onMatchClicked = { matchId ->
                     navigate(
                         screen = Screens.MatchDetail,
                         params = MatchDetailParams(
-                            matchId = match.id,
+                            matchId = matchId,
                         ),
                     )
                 },

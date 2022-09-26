@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -23,7 +22,6 @@ import com.adammcneilly.pocketleague.ui.composables.stats.PlayerStatsTable
 /**
  * Renders a [displayModel] to show detailed information about a game.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameDetailContent(
     displayModel: GameDetailDisplayModel,

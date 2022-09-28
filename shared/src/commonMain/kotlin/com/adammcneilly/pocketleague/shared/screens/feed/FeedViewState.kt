@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.shared.screens.feed
 
 import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
-import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 
 /**
@@ -10,7 +10,7 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  */
 data class FeedViewState(
     val ongoingEventsState: DataState<List<EventSummaryDisplayModel>> = DataState.Loading,
-    val recentMatchesState: DataState<List<Match>> = DataState.Loading,
+    val recentMatchesState: DataState<List<MatchDetailDisplayModel>> = DataState.Loading,
 ) : ScreenState {
 
     val ongoingEvents: List<EventSummaryDisplayModel>
@@ -30,13 +30,20 @@ data class FeedViewState(
             }
         }
 
-    val recentMatches: List<Match>
+    val recentMatches: List<MatchDetailDisplayModel>
         get() = when (recentMatchesState) {
             is DataState.Loading -> {
-                // Here, we return a list of empty match objects which will be mapped
-                // to a placeholder loading UI.
-                // LOL coming back soon
-                emptyList()
+                listOf(
+                    MatchDetailDisplayModel(
+                        isPlaceholder = true,
+                    ),
+                    MatchDetailDisplayModel(
+                        isPlaceholder = true,
+                    ),
+                    MatchDetailDisplayModel(
+                        isPlaceholder = true,
+                    ),
+                )
             }
             is DataState.Success -> {
                 recentMatchesState.data

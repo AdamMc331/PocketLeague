@@ -30,5 +30,6 @@ fun OctaneGGTeamOverview.toTeam(): Team {
     return Team(
         id = this.id.orEmpty(),
         name = this.name.orEmpty(),
+        imageUrl = this.image,
     )
 }

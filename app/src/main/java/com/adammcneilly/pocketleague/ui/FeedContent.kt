@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
-import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.android.designsystem.components.MatchCard
 import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
 import com.adammcneilly.pocketleague.ui.components.EmptyStateCard
 import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryListItem
@@ -33,7 +33,7 @@ private const val MATCH_CARD_WIDTH_RATIO = 0.8F
 fun FeedContent(
     viewState: FeedViewState,
     modifier: Modifier = Modifier,
-    onMatchClicked: (Match) -> Unit = {},
+    onMatchClicked: (String) -> Unit = {},
     onEventClicked: (String) -> Unit = {},
 ) {
     Box(
@@ -50,7 +50,7 @@ fun FeedContent(
 @Composable
 private fun SuccessContent(
     viewState: FeedViewState,
-    onMatchClicked: (Match) -> Unit,
+    onMatchClicked: (String) -> Unit,
     onEventClicked: (String) -> Unit,
 ) {
     LazyColumn(
@@ -141,7 +141,7 @@ private fun OngoingEventsEmptyState() {
 @Composable
 private fun RecentMatchesRow(
     viewState: FeedViewState,
-    onMatchClicked: (Match) -> Unit,
+    onMatchClicked: (String) -> Unit,
 ) {
     LazyRow(
         contentPadding = PaddingValues(
@@ -150,12 +150,12 @@ private fun RecentMatchesRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(viewState.recentMatches) { match ->
-            RecentMatchCard(
+            MatchCard(
                 match = match,
                 modifier = Modifier
                     .fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO)
                     .clickable {
-                        onMatchClicked.invoke(match)
+                        onMatchClicked.invoke(match.matchId)
                     },
             )
         }

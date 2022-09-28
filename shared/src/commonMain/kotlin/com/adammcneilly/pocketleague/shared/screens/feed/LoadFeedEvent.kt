@@ -1,8 +1,10 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
 import com.adammcneilly.pocketleague.core.data.DataState
+import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventListRequest
 import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
@@ -52,9 +54,13 @@ fun Events.loadFeed() = screenCoroutine {
         request = recentMatchesRequest,
     )
 
+    val mappedResult = matchListResult.map { matches ->
+        matches.map(Match::toDetailDisplayModel)
+    }
+
     stateManager.updateScreen(FeedViewState::class) {
         it.copy(
-            recentMatchesState = matchListResult,
+            recentMatchesState = mappedResult,
         )
     }
 }

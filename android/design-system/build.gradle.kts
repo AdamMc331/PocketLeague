@@ -48,10 +48,11 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":core:displaymodels"))
     implementation("androidx.compose.ui:ui:${Versions.compose}")
     implementation("androidx.compose.ui:ui-util:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
     implementation("androidx.compose.material:material-icons-extended:${Versions.compose}")
     implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")
+    implementation("com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}")
 }

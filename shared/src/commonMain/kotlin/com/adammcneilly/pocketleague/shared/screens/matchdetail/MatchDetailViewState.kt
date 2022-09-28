@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
+import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Match
@@ -9,11 +10,44 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  * The UI state for detailed information about a [Match].
  */
 data class MatchDetailViewState(
-    val showDetailLoading: Boolean = true,
     val matchId: String = "",
-    val matchDetail: MatchDetailDisplayModel? = null,
-    val detailInfoErrorMessage: String? = null,
-    val games: List<GameDetailDisplayModel>? = null,
-    val showGamesLoading: Boolean = true,
-    val gamesErrorMessage: String? = null,
-) : ScreenState
+    private val matchDetailState: DataState<MatchDetailDisplayModel> = DataState.Loading,
+    private val gamesState: DataState<List<GameDetailDisplayModel>> = DataState.Loading,
+) : ScreenState {
+
+    /**
+     * This returns a [MatchDetailDisplayModel] if available based on the current
+     * [matchDetailState].
+     */
+    val matchDetail: MatchDetailDisplayModel?
+        get() = when (matchDetailState) {
+            is DataState.Error -> {
+                null
+            }
+            DataState.Loading -> {
+                MatchDetailDisplayModel(
+                    isPlaceholder = true,
+                )
+            }
+            is DataState.Success -> {
+                matchDetailState.data
+            }
+        }
+
+    val games: List<GameDetailDisplayModel>?
+        get() = when (gamesState) {
+            is DataState.Error -> {
+                null
+            }
+            DataState.Loading -> {
+                (1..7).map {
+                    GameDetailDisplayModel(
+                        isPlaceholder = true,
+                    )
+                }
+            }
+            is DataState.Success -> {
+                gamesState.data
+            }
+        }
+}

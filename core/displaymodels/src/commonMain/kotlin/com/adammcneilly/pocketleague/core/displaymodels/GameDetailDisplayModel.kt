@@ -10,6 +10,7 @@ data class GameDetailDisplayModel(
     val blueTeamResult: GameTeamResultDisplayModel = GameTeamResultDisplayModel(),
     val map: String = "",
     val gameNumber: String = "",
+    val isPlaceholder: Boolean = false,
 )
 
 /**

@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,10 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,7 +26,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
  * Renders the [displayModel] but only to show header information about
  * a Match. This renders team and event info inside a [Card] component.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MatchDetailHeader(
     displayModel: MatchDetailDisplayModel,
@@ -96,10 +92,6 @@ private fun MatchTeamResultCell(
             contentDescription = "Team Image",
             modifier = Modifier
                 .size(72.dp)
-                .background(
-                    color = MaterialTheme.colorScheme.inverseSurface,
-                    shape = CircleShape,
-                )
                 .padding(8.dp),
         )
 

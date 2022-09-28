@@ -2,10 +2,7 @@ package com.adammcneilly.pocketleague.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailViewState
 
@@ -21,21 +18,16 @@ fun MatchDetailContent(
         modifier = modifier
             .fillMaxSize(),
     ) {
+
         val detailDisplayModel = viewState.matchDetail
 
         if (detailDisplayModel != null) {
             MatchDetail(
                 displayModel = detailDisplayModel,
-                games = viewState.games.orEmpty(),
+                games = viewState.games.orEmpty()
             )
-        }
-
-        if (viewState.showDetailLoading || viewState.showGamesLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .wrapContentSize()
-                    .align(Alignment.Center),
-            )
+        } else {
+            // Show some error UI here.
         }
     }
 }

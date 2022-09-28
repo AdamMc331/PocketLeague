@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.ui.composables.game
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +20,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
 
@@ -38,18 +40,26 @@ fun GameListItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         TeamScore(
             displayModel = displayModel.blueTeamResult,
             showIconFirst = false,
             textAlign = TextAlign.Start,
             weight = SCORE_TEXT_WEIGHT,
+            modifier = Modifier
+                .cardPlaceholder(
+                    visible = displayModel.isPlaceholder,
+                ),
         )
 
         Text(
             text = displayModel.map,
             modifier = Modifier
-                .weight(MAP_TEXT_WEIGHT),
+                .weight(MAP_TEXT_WEIGHT)
+                .cardPlaceholder(
+                    visible = displayModel.isPlaceholder,
+                ),
             textAlign = TextAlign.Center,
         )
 
@@ -58,6 +68,10 @@ fun GameListItem(
             showIconFirst = true,
             textAlign = TextAlign.End,
             weight = SCORE_TEXT_WEIGHT,
+            modifier = Modifier
+                .cardPlaceholder(
+                    visible = displayModel.isPlaceholder,
+                ),
         )
     }
 }
@@ -75,6 +89,7 @@ private fun RowScope.TeamScore(
     showIconFirst: Boolean,
     textAlign: TextAlign,
     weight: Float,
+    modifier: Modifier = Modifier,
 ) {
     val isWinner = displayModel.winner
 
@@ -129,7 +144,7 @@ private fun RowScope.TeamScore(
         fontWeight = fontWeight,
         inlineContent = inlineContent,
         textAlign = textAlign,
-        modifier = Modifier
+        modifier = modifier
             .weight(weight),
     )
 }

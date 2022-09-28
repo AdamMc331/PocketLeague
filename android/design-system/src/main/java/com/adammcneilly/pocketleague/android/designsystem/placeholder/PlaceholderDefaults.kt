@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.ui.composables.placeholder
+package com.adammcneilly.pocketleague.android.designsystem.placeholder
 
 import androidx.compose.animation.core.InfiniteRepeatableSpec
 import androidx.compose.animation.core.RepeatMode

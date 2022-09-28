@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.ui.components
+package com.adammcneilly.pocketleague.android.designsystem.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Card
@@ -11,7 +11,6 @@ import androidx.compose.ui.text.style.TextAlign
 /**
  * Creates a [Card] composable that renders the supplied [text]. Useful for empty and error states.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EmptyStateCard(
     text: String,

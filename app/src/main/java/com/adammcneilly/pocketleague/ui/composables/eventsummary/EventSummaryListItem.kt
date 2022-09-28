@@ -14,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.adammcneilly.pocketleague.android.designsystem.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
-import com.adammcneilly.pocketleague.ui.composables.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.ui.composables.utils.getForTheme
 
 /**

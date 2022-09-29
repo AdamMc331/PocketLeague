@@ -162,7 +162,7 @@ private fun EventDetails(displayModel: EventDetailDisplayModel) {
     }
 }
 
-@Suppress("Magic Number")
+@Suppress("MagicNumber")
 @Composable
 private fun PlaceholderDetails() {
     repeat(4) {

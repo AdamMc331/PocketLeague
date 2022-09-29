@@ -4,6 +4,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -15,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -35,32 +35,34 @@ fun MatchDetailHeader(
     Card(
         modifier = modifier,
     ) {
-        TeamResultsRow(displayModel = displayModel)
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            TeamResultsRow(displayModel = displayModel)
 
-        Divider()
+            Divider()
 
-        Text(
-            text = "${displayModel.eventName} – ${displayModel.stageName}",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp)
-                .cardPlaceholder(
-                    visible = displayModel.isPlaceholder,
-                ),
-            style = MaterialTheme.typography.headlineSmall,
-        )
+            Text(
+                text = "${displayModel.eventName} – ${displayModel.stageName}",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp)
+                    .cardPlaceholder(
+                        visible = displayModel.isPlaceholder,
+                    ),
+                style = MaterialTheme.typography.headlineSmall,
+            )
 
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-                .padding(bottom = 12.dp)
-                .cardPlaceholder(
-                    visible = displayModel.isPlaceholder,
-                ),
-            textAlign = TextAlign.Center,
-            text = displayModel.localDate,
-        )
+            Text(
+                modifier = Modifier
+                    .padding(bottom = 12.dp)
+                    .defaultMinSize(minWidth = 100.dp)
+                    .cardPlaceholder(
+                        visible = displayModel.isPlaceholder,
+                    ),
+                text = displayModel.localDate,
+            )
+        }
     }
 }
 
@@ -105,7 +107,10 @@ private fun MatchTeamResultCell(
             contentDescription = "Team Image",
             modifier = Modifier
                 .size(72.dp)
-                .padding(8.dp),
+                .padding(8.dp)
+                .cardPlaceholder(
+                    visible = (imageUrl == null),
+                ),
         )
 
         Text(

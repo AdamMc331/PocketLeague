@@ -13,8 +13,6 @@ private const val MATCH_TIME_FORMAT = "HH:mm"
  */
 data class MatchDetailDisplayModel(
     val matchId: String = "",
-    val orangeTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(),
-    val blueTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(),
     val localDate: String = "",
     val localTime: String = "",
     val eventName: String = "",
@@ -22,6 +20,12 @@ data class MatchDetailDisplayModel(
     val relativeDateTime: String = "",
     val isPlaceholder: Boolean = false,
     val isLive: Boolean = false,
+    val orangeTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(
+        isPlaceholder = isPlaceholder,
+    ),
+    val blueTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(
+        isPlaceholder = isPlaceholder,
+    ),
 )
 
 /**

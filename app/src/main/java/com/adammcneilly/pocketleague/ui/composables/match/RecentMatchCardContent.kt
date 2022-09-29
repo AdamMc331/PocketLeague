@@ -140,7 +140,7 @@ private fun MatchTeamResultRow(
             )
     ) {
         Text(
-            text = teamResult.score,
+            text = teamResult.score.toString(),
             fontWeight = fontWeight,
         )
 

@@ -76,12 +76,10 @@ private fun TeamResultsRow(
     ) {
         MatchTeamResultCell(
             displayModel = displayModel.blueTeamResult,
-            isPlaceholder = displayModel.isPlaceholder,
         )
 
         MatchTeamResultCell(
             displayModel = displayModel.orangeTeamResult,
-            isPlaceholder = displayModel.isPlaceholder,
         )
     }
 }
@@ -89,7 +87,6 @@ private fun TeamResultsRow(
 @Composable
 private fun MatchTeamResultCell(
     displayModel: MatchTeamResultDisplayModel,
-    isPlaceholder: Boolean,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -112,11 +109,11 @@ private fun MatchTeamResultCell(
         )
 
         Text(
-            text = displayModel.score,
+            text = displayModel.score.toString(),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier
                 .cardPlaceholder(
-                    visible = isPlaceholder,
+                    visible = displayModel.isPlaceholder,
                 )
         )
     }

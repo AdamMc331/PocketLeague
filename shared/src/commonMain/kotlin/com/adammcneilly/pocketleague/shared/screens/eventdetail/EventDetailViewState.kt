@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
+import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
@@ -20,5 +21,23 @@ data class EventDetailViewState(
     val showLoading: Boolean = true,
     val eventDetail: EventDetailDisplayModel? = null,
     val errorMessage: String? = null,
-    val participants: List<TeamOverviewDisplayModel>? = null,
-) : ScreenState
+    val participantsState: DataState<List<TeamOverviewDisplayModel>> = DataState.Loading,
+) : ScreenState {
+
+    val participants: List<TeamOverviewDisplayModel>?
+        get() = when (participantsState) {
+            is DataState.Error -> {
+                null
+            }
+            DataState.Loading -> {
+                (1..3).map {
+                    TeamOverviewDisplayModel(
+                        isPlaceholder = true,
+                    )
+                }
+            }
+            is DataState.Success -> {
+                participantsState.data
+            }
+        }
+}

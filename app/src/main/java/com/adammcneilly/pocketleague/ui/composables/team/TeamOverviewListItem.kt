@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.ui.composables.utils.getForTheme
 
@@ -30,32 +31,28 @@ fun TeamOverviewListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        val imageUrl = displayModel.imageUrl.getForTheme().orEmpty()
+        val imageUrl = displayModel.imageUrl.getForTheme()
 
         val imageSize = 48.dp
 
-        if (imageUrl.isNotEmpty()) {
-            AsyncImage(
-                model = imageUrl,
-                contentDescription = "Team Image",
-                modifier = Modifier
-                    .size(imageSize),
-//                crossfade = true,
-//                onLoading = {
-//                    Box(
-//                        modifier = Modifier
-//                            .size(imageSize)
-//                            .placeholderMaterial(
-//                                visible = true,
-//                            ),
-//                    )
-//                },
-            )
-        }
+        AsyncImage(
+            model = imageUrl,
+            contentDescription = "Team Image",
+            modifier = Modifier
+                .size(imageSize)
+                .cardPlaceholder(
+                    visible = displayModel.isPlaceholder,
+                ),
+        )
 
         Text(
             text = displayModel.name,
             style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier
+                .cardPlaceholder(
+                    visible = displayModel.isPlaceholder,
+                )
+                .weight(1F),
         )
     }
 }

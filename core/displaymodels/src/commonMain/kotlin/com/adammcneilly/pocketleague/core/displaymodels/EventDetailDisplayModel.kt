@@ -17,7 +17,6 @@ data class EventDetailDisplayModel(
     val name: String = "",
     val startDate: String = "",
     val endDate: String = "",
-    val stageSummaries: List<EventStageSummaryDisplayModel> = emptyList(),
     val lightThemeImageUrl: String? = null,
     val darkThemeImageUrl: String? = lightThemeImageUrl,
     val tier: EventTierDisplayModel = EventTier.Unknown.toDisplayModel(),
@@ -25,7 +24,19 @@ data class EventDetailDisplayModel(
     val region: EventRegionDisplayModel = EventRegion.Unknown.toDisplayModel(),
     val onlineOrLAN: String = "",
     val prize: PrizeDisplayModel? = null,
-)
+    val isPlaceholder: Boolean = false,
+    private val stageSummaries: List<EventStageSummaryDisplayModel> = emptyList(),
+) {
+    fun getStageSummaries(): List<EventStageSummaryDisplayModel> {
+        return if (isPlaceholder) {
+            (1..3).map {
+                EventStageSummaryDisplayModel(isPlaceholder = true)
+            }
+        } else {
+            stageSummaries
+        }
+    }
+}
 
 /**
  * Converts an [Event] into an [EventDetailDisplayModel].

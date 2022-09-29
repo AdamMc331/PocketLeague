@@ -18,11 +18,24 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  */
 data class EventDetailViewState(
     val eventId: String = "",
-    val showLoading: Boolean = true,
-    val eventDetail: EventDetailDisplayModel? = null,
-    val errorMessage: String? = null,
+    val eventDetailState: DataState<EventDetailDisplayModel> = DataState.Loading,
     val participantsState: DataState<List<TeamOverviewDisplayModel>> = DataState.Loading,
 ) : ScreenState {
+
+    val eventDetail: EventDetailDisplayModel?
+        get() = when (eventDetailState) {
+            is DataState.Error -> {
+                null
+            }
+            DataState.Loading -> {
+                EventDetailDisplayModel(
+                    isPlaceholder = true,
+                )
+            }
+            is DataState.Success -> {
+                eventDetailState.data
+            }
+        }
 
     val participants: List<TeamOverviewDisplayModel>?
         get() = when (participantsState) {

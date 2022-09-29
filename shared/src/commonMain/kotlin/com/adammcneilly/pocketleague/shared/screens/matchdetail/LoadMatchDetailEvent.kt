@@ -5,14 +5,11 @@ import com.adammcneilly.pocketleague.core.models.Game
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.game.MatchGamesRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
-import kotlinx.coroutines.delay
 
 /**
  * Requests the games for the given [matchId].
  */
 fun Events.loadMatchDetail(matchId: String) = screenCoroutine {
-    delay(5_000)
-
     fetchMatchDetail(matchId)
 
     fetchGames(matchId)

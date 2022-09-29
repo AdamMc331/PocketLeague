@@ -40,7 +40,7 @@ data class MatchDetailViewState(
                 null
             }
             DataState.Loading -> {
-                (1..7).map {
+                (1..NUM_PLACEHOLDER_GAMES).map {
                     GameDetailDisplayModel(
                         isPlaceholder = true,
                     )
@@ -50,4 +50,8 @@ data class MatchDetailViewState(
                 gamesState.data
             }
         }
+
+    companion object {
+        private const val NUM_PLACEHOLDER_GAMES = 7
+    }
 }

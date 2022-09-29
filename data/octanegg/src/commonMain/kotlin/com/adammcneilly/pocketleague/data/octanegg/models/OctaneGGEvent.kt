@@ -42,19 +42,19 @@ data class OctaneGGEvent(
 /**
  * Convert an [OctaneGGEvent] to an [Event] in our domain.
  */
-fun OctaneGGEvent.toEvent(): Event {
+fun OctaneGGEvent?.toEvent(): Event {
     return Event(
-        id = this.id.orEmpty(),
-        name = this.name.orEmpty(),
-        startDateUTC = this.startDateUTC,
-        endDateUTC = this.endDateUTC,
-        imageURL = this.imageURL,
-        stages = this.stages?.map(OctaneGGStage::toEventStage).orEmpty(),
-        tier = this.tier.toEventTier(),
-        mode = this.mode?.toString().orEmpty(),
-        region = this.region.toEventRegion(),
-        lan = this.lan ?: false,
-        prize = this.prize?.toPrize(),
+        id = this?.id.orEmpty(),
+        name = this?.name.orEmpty(),
+        startDateUTC = this?.startDateUTC,
+        endDateUTC = this?.endDateUTC,
+        imageURL = this?.imageURL,
+        stages = this?.stages?.map(OctaneGGStage::toEventStage).orEmpty(),
+        tier = this?.tier.toEventTier(),
+        mode = this?.mode?.toString().orEmpty(),
+        region = this?.region.toEventRegion(),
+        lan = this?.lan ?: false,
+        prize = this?.prize?.toPrize(),
     )
 }
 

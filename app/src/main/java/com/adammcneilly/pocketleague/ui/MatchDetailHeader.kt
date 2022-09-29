@@ -19,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 
@@ -40,7 +41,12 @@ fun MatchDetailHeader(
 
         Text(
             text = "${displayModel.eventName} – ${displayModel.stageName}",
-            modifier = Modifier.padding(24.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(24.dp)
+                .cardPlaceholder(
+                    visible = displayModel.isPlaceholder,
+                ),
             style = MaterialTheme.typography.headlineSmall,
         )
 
@@ -48,7 +54,10 @@ fun MatchDetailHeader(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp)
-                .padding(bottom = 12.dp),
+                .padding(bottom = 12.dp)
+                .cardPlaceholder(
+                    visible = displayModel.isPlaceholder,
+                ),
             textAlign = TextAlign.Center,
             text = displayModel.localDate,
         )
@@ -65,15 +74,22 @@ private fun TeamResultsRow(
             .fillMaxWidth()
             .padding(24.dp),
     ) {
-        MatchTeamResultCell(displayModel = displayModel.blueTeamResult)
+        MatchTeamResultCell(
+            displayModel = displayModel.blueTeamResult,
+            isPlaceholder = displayModel.isPlaceholder,
+        )
 
-        MatchTeamResultCell(displayModel = displayModel.orangeTeamResult)
+        MatchTeamResultCell(
+            displayModel = displayModel.orangeTeamResult,
+            isPlaceholder = displayModel.isPlaceholder,
+        )
     }
 }
 
 @Composable
 private fun MatchTeamResultCell(
     displayModel: MatchTeamResultDisplayModel,
+    isPlaceholder: Boolean,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -98,6 +114,10 @@ private fun MatchTeamResultCell(
         Text(
             text = displayModel.score,
             style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier
+                .cardPlaceholder(
+                    visible = isPlaceholder,
+                )
         )
     }
 }

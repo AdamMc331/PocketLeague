@@ -24,13 +24,10 @@ data class OctaneGGMatchTeamResult(
 /**
  * Converts an [OctaneGGMatchTeamResult] to a [MatchTeamResult] in our domain.
  */
-fun OctaneGGMatchTeamResult.toMatchTeamResult(): MatchTeamResult {
-    requireNotNull(this.team)
-    requireNotNull(this.team.team)
-
+fun OctaneGGMatchTeamResult?.toMatchTeamResult(): MatchTeamResult {
     return MatchTeamResult(
-        score = this.score ?: 0,
-        winner = this.winner ?: false,
-        team = this.team.team.toTeam(),
+        score = this?.score ?: 0,
+        winner = this?.winner ?: false,
+        team = this?.team?.team.toTeam(),
     )
 }

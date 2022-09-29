@@ -18,9 +18,9 @@ data class OctaneGGFormat(
 /**
  * Convert a format from the octane.gg domain to ours.
  */
-fun OctaneGGFormat.toFormat(): Format {
+fun OctaneGGFormat?.toFormat(): Format {
     return Format(
-        type = this.type.orEmpty(),
-        length = this.length ?: 0,
+        type = this?.type.orEmpty(),
+        length = this?.length ?: 0,
     )
 }

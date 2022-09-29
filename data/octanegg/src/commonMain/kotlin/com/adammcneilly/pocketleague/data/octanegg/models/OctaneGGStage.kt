@@ -34,15 +34,15 @@ data class OctaneGGStage(
 /**
  * Converts an [OctaneGGStage] to an [EventStage] in our domain.
  */
-fun OctaneGGStage.toEventStage(): EventStage {
+fun OctaneGGStage?.toEventStage(): EventStage {
     return EventStage(
-        id = this.id?.toString().orEmpty(),
-        name = this.name.orEmpty(),
-        region = this.region.orEmpty(),
-        startDateUTC = this.startDateUTC,
-        endDateUTC = this.endDateUTC,
-        liquipedia = this.liquipedia.orEmpty(),
-        qualifier = this.qualifier ?: false,
-        lan = this.lan ?: false,
+        id = this?.id?.toString().orEmpty(),
+        name = this?.name.orEmpty(),
+        region = this?.region.orEmpty(),
+        startDateUTC = this?.startDateUTC,
+        endDateUTC = this?.endDateUTC,
+        liquipedia = this?.liquipedia.orEmpty(),
+        qualifier = this?.qualifier ?: false,
+        lan = this?.lan ?: false,
     )
 }

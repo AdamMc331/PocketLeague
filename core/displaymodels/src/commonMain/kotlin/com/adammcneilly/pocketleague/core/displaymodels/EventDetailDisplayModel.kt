@@ -27,6 +27,10 @@ data class EventDetailDisplayModel(
     val isPlaceholder: Boolean = false,
     private val stageSummaries: List<EventStageSummaryDisplayModel> = emptyList(),
 ) {
+    /**
+     * Returns a list of [EventStageSummaryDisplayModel] entities based on
+     * whether or not this is a placeholder display model.
+     */
     fun getStageSummaries(): List<EventStageSummaryDisplayModel> {
         return if (isPlaceholder) {
             (1..3).map {

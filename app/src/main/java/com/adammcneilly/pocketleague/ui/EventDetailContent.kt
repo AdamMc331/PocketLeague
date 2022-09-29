@@ -162,9 +162,10 @@ private fun EventDetails(displayModel: EventDetailDisplayModel) {
     }
 }
 
+@Suppress("Magic Number")
 @Composable
 private fun PlaceholderDetails() {
-    (1..4).forEach {
+    repeat(4) {
         Box(
             modifier = Modifier
                 .defaultMinSize(

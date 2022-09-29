@@ -7,8 +7,9 @@ import com.adammcneilly.pocketleague.core.models.MatchTeamResult
  */
 data class MatchTeamResultDisplayModel(
     val team: TeamOverviewDisplayModel = TeamOverviewDisplayModel(),
-    val score: String = "",
+    val score: Int = 0,
     val winner: Boolean = false,
+    val isPlaceholder: Boolean = false,
 )
 
 /**
@@ -17,7 +18,7 @@ data class MatchTeamResultDisplayModel(
 fun MatchTeamResult.toDisplayModel(): MatchTeamResultDisplayModel {
     return MatchTeamResultDisplayModel(
         team = this.team.toOverviewDisplayModel(),
-        score = this.score.toString(),
+        score = this.score,
         winner = this.winner,
     )
 }

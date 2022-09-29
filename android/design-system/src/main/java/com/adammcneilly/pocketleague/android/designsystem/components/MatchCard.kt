@@ -27,7 +27,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.modifiers.pocketLeaguePlaceholder
+import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 
@@ -72,7 +72,7 @@ private fun EventName(match: MatchDetailDisplayModel) {
         overflow = TextOverflow.Ellipsis,
         modifier = Modifier
             .fillMaxWidth()
-            .pocketLeaguePlaceholder(
+            .cardPlaceholder(
                 visible = match.isPlaceholder,
             ),
     )
@@ -85,7 +85,7 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
         style = MaterialTheme.typography.labelSmall,
         modifier = Modifier
             .defaultMinSize(minWidth = 50.dp)
-            .pocketLeaguePlaceholder(
+            .cardPlaceholder(
                 visible = match.isPlaceholder,
             ),
     )
@@ -110,12 +110,12 @@ private fun MatchTeamResultRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier
             .fillMaxSize()
-            .pocketLeaguePlaceholder(
+            .cardPlaceholder(
                 visible = isPlaceholder,
             ),
     ) {
         Text(
-            text = teamResult.score,
+            text = teamResult.score.toString(),
             fontWeight = fontWeight,
         )
 

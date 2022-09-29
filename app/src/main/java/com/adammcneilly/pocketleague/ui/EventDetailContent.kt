@@ -2,7 +2,6 @@
 
 package com.adammcneilly.pocketleague.ui
 
-import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import androidx.compose.foundation.Image
@@ -12,48 +11,43 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.isUnspecified
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.palette.graphics.Palette
 import coil.compose.rememberAsyncImagePainter
 import coil.imageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
+import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
+import com.adammcneilly.pocketleague.android.designsystem.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailViewState
 import com.adammcneilly.pocketleague.ui.composables.components.TooltipChip
 import com.adammcneilly.pocketleague.ui.composables.eventstage.StageSummaryListItem
 import com.adammcneilly.pocketleague.ui.composables.team.TeamOverviewListItem
 import com.google.accompanist.flowlayout.FlowRow
-import com.google.accompanist.placeholder.material.placeholder
 import kotlinx.coroutines.launch
 
 private const val EVENT_IMAGE_ASPECT_RATIO = 3.0F
@@ -67,34 +61,12 @@ fun EventDetailContent(
     onStageClicked: (String, String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxSize(),
-    ) {
-        EventDetail(
-            viewState,
-            onStageClicked = onStageClicked,
-        )
-
-        if (viewState.showLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .wrapContentSize()
-                    .align(Alignment.Center),
-            )
-        }
-    }
-}
-
-@Composable
-private fun EventDetail(
-    viewState: EventDetailViewState,
-    onStageClicked: (String, String) -> Unit,
-) {
+    // If display model is null, that means we had an error
+    // and instead we should render an error UI.
     val displayModel = viewState.eventDetail ?: return
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
             .padding(24.dp),
@@ -150,20 +122,22 @@ private fun EventStages(
     )
 
     Card {
-        displayModel.stageSummaries.forEachIndexed { index, stageSummary ->
-            StageSummaryListItem(
-                displayModel = stageSummary,
-                modifier = Modifier
-                    .clickable {
-                        onStageClicked.invoke(
-                            displayModel.eventId,
-                            stageSummary.stageId,
-                        )
-                    }
-            )
+        with(displayModel.getStageSummaries()) {
+            this.forEachIndexed { index, stageSummary ->
+                StageSummaryListItem(
+                    displayModel = stageSummary,
+                    modifier = Modifier
+                        .clickable {
+                            onStageClicked.invoke(
+                                displayModel.eventId,
+                                stageSummary.stageId,
+                            )
+                        }
+                )
 
-            if (index != displayModel.stageSummaries.lastIndex) {
-                Divider()
+                if (index != this.lastIndex) {
+                    Divider()
+                }
             }
         }
     }
@@ -180,34 +154,60 @@ private fun EventDetails(displayModel: EventDetailDisplayModel) {
         mainAxisSpacing = 12.dp,
         crossAxisSpacing = 12.dp,
     ) {
-        TooltipChip(
-            text = displayModel.tier.name,
-            tooltipText = displayModel.tier.description,
-        )
-
-        TooltipChip(
-            text = displayModel.region.name,
-            tooltipText = displayModel.region.description,
-        )
-
-        TooltipChip(
-            text = displayModel.onlineOrLAN,
-            tooltipText = "This event takes place over the internet.",
-        )
-
-        TooltipChip(
-            text = "Mode: ${displayModel.mode}",
-            tooltipText = "The number of players on each team.",
-        )
-
-        val prize = displayModel.prize
-
-        if (prize != null) {
-            TooltipChip(
-                text = "Prize: ${prize.prizeAmount}",
-                tooltipText = "This is the total prize pool for top finishers.",
-            )
+        if (displayModel.isPlaceholder) {
+            PlaceholderDetails()
+        } else {
+            RealDetails(displayModel)
         }
+    }
+}
+
+@Suppress("MagicNumber")
+@Composable
+private fun PlaceholderDetails() {
+    repeat(4) {
+        Box(
+            modifier = Modifier
+                .defaultMinSize(
+                    minWidth = 100.dp,
+                    minHeight = 25.dp,
+                )
+                .placeholderMaterial(
+                    visible = true,
+                )
+        )
+    }
+}
+
+@Composable
+private fun RealDetails(displayModel: EventDetailDisplayModel) {
+    TooltipChip(
+        text = displayModel.tier.name,
+        tooltipText = displayModel.tier.description,
+    )
+
+    TooltipChip(
+        text = displayModel.region.name,
+        tooltipText = displayModel.region.description,
+    )
+
+    TooltipChip(
+        text = displayModel.onlineOrLAN,
+        tooltipText = "This event takes place over the internet.",
+    )
+
+    TooltipChip(
+        text = "Mode: ${displayModel.mode}",
+        tooltipText = "The number of players on each team.",
+    )
+
+    val prize = displayModel.prize
+
+    if (prize != null) {
+        TooltipChip(
+            text = "Prize: ${prize.prizeAmount}",
+            tooltipText = "This is the total prize pool for top finishers.",
+        )
     }
 }
 
@@ -266,9 +266,8 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
                 .fillMaxWidth()
                 .aspectRatio(EVENT_IMAGE_ASPECT_RATIO)
                 .padding(12.dp)
-                .placeholder(
+                .cardPlaceholder(
                     visible = imageUrl == null,
-                    color = MaterialTheme.colorScheme.inverseSurface,
                 ),
         )
 
@@ -277,7 +276,10 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(16.dp)
+                .cardPlaceholder(
+                    visible = displayModel.isPlaceholder,
+                ),
             style = MaterialTheme.typography.headlineMedium,
         )
     }
@@ -322,55 +324,5 @@ private fun getMutedColorFromBitmap(
         val color = rgb?.let(::Color) ?: Color.Unspecified
 
         onColorGenerated.invoke(color)
-    }
-}
-
-@Preview(
-    name = "Night Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-)
-@Preview(
-    name = "Day Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-)
-@Composable
-@Suppress("UnusedPrivateMember")
-private fun EventDetailContentPreview() {
-    val eventDetail = EventDetailDisplayModel(
-        eventId = "123",
-        name = "RLCS 2021-22 Spring North America Regional 3",
-        startDate = "May 21, 2022",
-        endDate = "May 29, 2022",
-        stageSummaries = listOf(
-            EventStageSummaryDisplayModel(
-                stageId = "123",
-                name = "Closed Qualifier",
-                startDate = "May 22, 2022",
-                endDate = "May 23, 2022",
-            ),
-            EventStageSummaryDisplayModel(
-                stageId = "123",
-                name = "Main Event",
-                startDate = "May 27, 2022",
-                endDate = "May 29, 2022",
-            )
-        )
-    )
-
-    val viewState = EventDetailViewState(
-        eventId = "123",
-        showLoading = false,
-        eventDetail = eventDetail,
-    )
-
-    com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme {
-        Surface {
-            EventDetailContent(
-                viewState = viewState,
-                onStageClicked = { _, _ ->
-                },
-                modifier = Modifier.fillMaxSize(),
-            )
-        }
     }
 }

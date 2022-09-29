@@ -26,10 +26,10 @@ data class OctaneGGTeamOverview(
 /**
  * Converts an [OctaneGGTeamDetail] entity to a [Team] in our domain.
  */
-fun OctaneGGTeamOverview.toTeam(): Team {
+fun OctaneGGTeamOverview?.toTeam(): Team {
     return Team(
-        id = this.id.orEmpty(),
-        name = this.name.orEmpty(),
-        imageUrl = this.image,
+        id = this?.id.orEmpty(),
+        name = this?.name.orEmpty(),
+        imageUrl = this?.image,
     )
 }

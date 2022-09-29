@@ -16,6 +16,7 @@ data class EventStageSummaryDisplayModel(
     val endDate: String = "",
     val lan: Boolean = false,
     val liquipedia: String = "",
+    val isPlaceholder: Boolean = false,
 ) {
 
     val dateString: String

@@ -26,10 +26,10 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.android.designsystem.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.android.designsystem.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
-import com.adammcneilly.pocketleague.ui.composables.placeholder.PlaceholderDefaults
-import com.adammcneilly.pocketleague.ui.composables.placeholder.placeholderMaterial
 
 /**
  * Displays a match between two teams inside a list item.
@@ -140,7 +140,7 @@ private fun MatchTeamResultRow(
             )
     ) {
         Text(
-            text = teamResult.score,
+            text = teamResult.score.toString(),
             fontWeight = fontWeight,
         )
 

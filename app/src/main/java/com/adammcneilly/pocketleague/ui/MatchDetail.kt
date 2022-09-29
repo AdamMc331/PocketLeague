@@ -8,7 +8,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.android.designsystem.components.EmptyStateCard
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.ui.composables.game.GameListItem
@@ -61,16 +61,26 @@ fun MatchDetail(
                 .padding(horizontal = 24.dp),
         )
 
-        GameList(
-            games = games,
-            onGameClicked = { game ->
-                selectedGame.value = game
-            }
-        )
+        if (games.isNotEmpty()) {
+            GameList(
+                games = games,
+                onGameClicked = { game ->
+                    selectedGame.value = game
+                }
+            )
+        } else {
+            EmptyStateCard(
+                text = "Game information is not yet available.",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                textModifier = Modifier
+                    .padding(32.dp)
+            )
+        }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun GameList(
     games: List<GameDetailDisplayModel>,

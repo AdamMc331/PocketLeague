@@ -9,6 +9,7 @@ data class TeamOverviewDisplayModel(
     val teamId: String = "",
     val name: String = "",
     val imageUrl: ThemedImageURL = ThemedImageURL(),
+    val isPlaceholder: Boolean = false,
 )
 
 /**

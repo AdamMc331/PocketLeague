@@ -60,7 +60,7 @@ private fun MatchTeamResultRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
-            text = displayModel.score,
+            text = displayModel.score.toString(),
             fontWeight = fontWeight,
         )
 

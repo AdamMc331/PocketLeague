@@ -35,7 +35,7 @@ android {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
         versionCode = 1
-        versionName = "1.0.0"
+        versionName = "0.0.1"
 
         testInstrumentationRunner = "com.karumi.shot.ShotTestRunner"
 

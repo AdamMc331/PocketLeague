@@ -19,6 +19,7 @@ const val NUM_DAYS_RECENT_MATCHES = 3
 fun Events.loadFeed() = screenCoroutine {
     val ongoingEventsRequest = EventListRequest(
         date = Clock.System.now(),
+        group = "rlcs",
     )
 
     val repoResult = repository.eventService.fetchEvents(
@@ -48,6 +49,7 @@ fun Events.loadFeed() = screenCoroutine {
     val recentMatchesRequest = MatchListRequest(
         before = Clock.System.now(),
         after = Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),
+        group = "rlcs",
     )
 
     val matchListResult = repository.matchService.fetchMatches(

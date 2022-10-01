@@ -1,13 +1,11 @@
 package com.adammcneilly.pocketleague.shared.screens.eventstagedetail
 
-import com.adammcneilly.pocketleague.core.data.DataState
-import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailsByDateDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
-import kotlinx.datetime.TimeZone
 
 /**
  * Loads the information necessary for the event stage detail screen.
@@ -32,49 +30,14 @@ private suspend fun Events.fetchMatchesForStage(
         request = stageMatchesRequest,
     )
 
-    stateManager.updateScreen(EventStageDetailViewState::class) {
-        val viewState = when (repoResult) {
-            is DataState.Loading -> {
-                it.copy(
-                    showLoading = true,
-                )
+    stateManager.updateScreen(EventStageDetailViewState::class) { currentState ->
+        currentState.copy(
+            matchesDataState = repoResult.map { matchList ->
+                val sortedMatches = matchList.sortedBy(Match::dateUTC)
+                val displayModels = sortedMatches.map(Match::toDetailDisplayModel)
+                val matchesByDate = displayModels.groupBy(MatchDetailDisplayModel::localDate)
+                MatchDetailsByDateDisplayModel(matchesByDate)
             }
-            is DataState.Success -> {
-                val sortedMatches = repoResult.data.sortedBy(Match::dateUTC)
-
-                it.copy(
-                    showLoading = false,
-                    matchesByDate = sortedMatches.groupByLocalDate(),
-                )
-            }
-            is DataState.Error -> {
-                it.copy(
-                    errorMessage = repoResult.error.message,
-                    showLoading = false,
-                )
-            }
-        }
-
-        viewState
-    }
-}
-
-private const val MATCH_DATE_FORMAT = "MMM dd, yyyy"
-
-private fun List<Match>.groupByLocalDate(): Map<String, List<MatchDetailDisplayModel>> {
-    val dateTimeFormatter = dateTimeFormatter()
-
-    val matchesByDate: Map<String, List<Match>> = this.groupBy { match ->
-        match.dateUTC?.let { date ->
-            dateTimeFormatter.formatUTCString(
-                utcString = date,
-                formatPattern = MATCH_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
-            )
-        }.orEmpty()
-    }
-
-    return matchesByDate.mapValues { (_, matchList) ->
-        matchList.map(Match::toDetailDisplayModel)
+        )
     }
 }

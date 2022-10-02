@@ -39,9 +39,7 @@ data class MatchDetailViewState(
             }
             DataState.Loading -> {
                 (1..NUM_PLACEHOLDER_GAMES).map {
-                    GameDetailDisplayModel(
-                        isPlaceholder = true,
-                    )
+                    GameDetailDisplayModel.placeholder
                 }
             }
             is DataState.Success -> {

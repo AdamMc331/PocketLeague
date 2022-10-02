@@ -6,8 +6,9 @@ import com.adammcneilly.pocketleague.core.models.GamePlayerResult
  * User friendly representation of a player's results within a game.
  */
 data class GamePlayerResultDisplayModel(
-    val playerName: String = "",
-    val coreStats: CoreStatsDisplayModel = CoreStatsDisplayModel(),
+    val playerName: String,
+    val coreStats: CoreStatsDisplayModel,
+    val isPlaceholder: Boolean = false,
 )
 
 /**

@@ -9,8 +9,17 @@ import com.adammcneilly.pocketleague.core.models.Prize
  * @property[prizeAmount] Is the user readable explanation of the prize, such as $100,000 or €100.000.
  */
 data class PrizeDisplayModel(
-    val prizeAmount: String = "",
-)
+    val prizeAmount: String,
+    val isPlaceholder: Boolean = false,
+) {
+
+    companion object {
+        val placeholder = PrizeDisplayModel(
+            prizeAmount = "",
+            isPlaceholder = true,
+        )
+    }
+}
 
 /**
  * Converts a [Prize] to it's user friendly representation. In the future, we'll need to update this

@@ -18,13 +18,24 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
  * @property[isPlaceholder] If true, we render this display model in a placeholder format.
  */
 data class EventSummaryDisplayModel(
-    val eventId: String = "",
-    val imageURL: ThemedImageURL = ThemedImageURL(),
-    val startDate: String = "",
-    val endDate: String = "",
-    val name: String = "",
+    val eventId: String,
+    val imageURL: ThemedImageURL,
+    val startDate: String,
+    val endDate: String,
+    val name: String,
     val isPlaceholder: Boolean = false,
 ) {
+
+    companion object {
+        val placeholder = EventSummaryDisplayModel(
+            eventId = "",
+            imageURL = ThemedImageURL(),
+            startDate = "",
+            endDate = "",
+            name = "",
+            isPlaceholder = true,
+        )
+    }
 
     val dateString: String
         get() = "$startDate – $endDate"

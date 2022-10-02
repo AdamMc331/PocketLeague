@@ -7,6 +7,7 @@ import com.adammcneilly.pocketleague.core.models.Prize
  * A user friendly representation of a prize.
  *
  * @property[prizeAmount] Is the user readable explanation of the prize, such as $100,000 or €100.000.
+ * @property[isPlaceholder] True if this display models is just a placeholder until data is available.
  */
 data class PrizeDisplayModel(
     val prizeAmount: String,

@@ -25,9 +25,7 @@ data class MatchDetailViewState(
                 null
             }
             DataState.Loading -> {
-                MatchDetailDisplayModel(
-                    isPlaceholder = true,
-                )
+                MatchDetailDisplayModel.placeholder
             }
             is DataState.Success -> {
                 matchDetailState.data

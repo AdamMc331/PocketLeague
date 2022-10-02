@@ -33,17 +33,9 @@ data class FeedViewState(
     val recentMatches: List<MatchDetailDisplayModel>
         get() = when (recentMatchesState) {
             is DataState.Loading -> {
-                listOf(
-                    MatchDetailDisplayModel(
-                        isPlaceholder = true,
-                    ),
-                    MatchDetailDisplayModel(
-                        isPlaceholder = true,
-                    ),
-                    MatchDetailDisplayModel(
-                        isPlaceholder = true,
-                    ),
-                )
+                (1..3).map {
+                    MatchDetailDisplayModel.placeholder
+                }
             }
             is DataState.Success -> {
                 recentMatchesState.data

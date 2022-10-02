@@ -22,9 +22,7 @@ data class EventStageDetailViewState(
             }
             DataState.Loading -> {
                 val matchesByDate = (1..3).map {
-                    MatchDetailDisplayModel(
-                        isPlaceholder = true,
-                    )
+                    MatchDetailDisplayModel.placeholder
                 }.groupBy(MatchDetailDisplayModel::localDate)
 
                 MatchDetailsByDateDisplayModel(

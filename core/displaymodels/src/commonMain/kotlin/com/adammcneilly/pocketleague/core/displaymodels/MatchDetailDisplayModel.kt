@@ -12,21 +12,33 @@ private const val MATCH_TIME_FORMAT = "HH:mm"
  * User friendly presentation of detailed info about a match between two teams.
  */
 data class MatchDetailDisplayModel(
-    val matchId: String = "",
-    val localDate: String = "",
-    val localTime: String = "",
-    val eventName: String = "",
-    val stageName: String = "",
-    val relativeDateTime: String = "",
-    val isPlaceholder: Boolean = false,
+    val matchId: String,
+    val localDate: String,
+    val localTime: String,
+    val eventName: String,
+    val stageName: String,
+    val relativeDateTime: String,
+    val orangeTeamResult: MatchTeamResultDisplayModel,
+    val blueTeamResult: MatchTeamResultDisplayModel,
     val isLive: Boolean = false,
-    val orangeTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(
-        isPlaceholder = isPlaceholder,
-    ),
-    val blueTeamResult: MatchTeamResultDisplayModel = MatchTeamResultDisplayModel(
-        isPlaceholder = isPlaceholder,
-    ),
-)
+    val isPlaceholder: Boolean = false,
+) {
+
+    companion object {
+        val placeholder = MatchDetailDisplayModel(
+            matchId = "",
+            localDate = "",
+            localTime = "",
+            eventName = "",
+            stageName = "",
+            relativeDateTime = "",
+            isLive = false,
+            orangeTeamResult = MatchTeamResultDisplayModel.placeholder,
+            blueTeamResult = MatchTeamResultDisplayModel.placeholder,
+            isPlaceholder = true,
+        )
+    }
+}
 
 /**
  * Converts a [Match] to a [MatchDetailDisplayModel].

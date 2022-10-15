@@ -7,7 +7,9 @@ buildscript {
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("app.cash.paparazzi").version("1.0.0")
+    // Using Chris Banes fork until fix is merged into Paparazzi
+    // https://github.com/cashapp/paparazzi/pull/605
+    id("dev.chrisbanes.paparazzi").version("1.1.0-sdk33-alpha02")
 }
 
 android {

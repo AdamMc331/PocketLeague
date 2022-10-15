@@ -4,7 +4,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.android.designsystem.snapshotScreen
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 

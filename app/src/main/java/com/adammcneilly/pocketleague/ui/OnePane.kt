@@ -6,8 +6,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.ui.Modifier
-import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.android.designsystem.components.bars.TopBar
+import com.adammcneilly.pocketleague.shared.screens.Navigation
 
 /**
  * A [OnePane] layout is used any time we want to show a single piece of content, typically on phones or other compact screens.

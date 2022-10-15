@@ -11,13 +11,13 @@ import org.junit.runner.RunWith
 
 @RunWith(TestParameterInjector::class)
 class StageSummaryListItemPaparazziTest {
-    
+
     @get:Rule
     val paparazzi = Paparazzi()
-    
+
     @TestParameter
     val useDarkTheme: Boolean = false
-    
+
     private val displayModel = EventStageSummaryDisplayModel(
         stageId = "",
         name = "Stage Name",
@@ -26,14 +26,14 @@ class StageSummaryListItemPaparazziTest {
         lan = false,
         liquipedia = "",
     )
-    
+
     @Test
     fun renderItem() {
         paparazzi.snapshotScreen(useDarkTheme) {
             StageSummaryListItem(displayModel = displayModel)
         }
     }
-    
+
     @Test
     fun renderPlaceholder() {
         paparazzi.snapshotScreen(useDarkTheme) {

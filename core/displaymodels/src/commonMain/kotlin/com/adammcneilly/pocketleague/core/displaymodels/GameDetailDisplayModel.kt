@@ -6,12 +6,23 @@ import com.adammcneilly.pocketleague.core.models.Game
  * User friendly presentation for detailed information about a game.
  */
 data class GameDetailDisplayModel(
-    val orangeTeamResult: GameTeamResultDisplayModel = GameTeamResultDisplayModel(),
-    val blueTeamResult: GameTeamResultDisplayModel = GameTeamResultDisplayModel(),
-    val map: String = "",
-    val gameNumber: String = "",
+    val orangeTeamResult: GameTeamResultDisplayModel,
+    val blueTeamResult: GameTeamResultDisplayModel,
+    val map: String,
+    val gameNumber: String,
     val isPlaceholder: Boolean = false,
-)
+) {
+
+    companion object {
+        val placeholder = GameDetailDisplayModel(
+            orangeTeamResult = GameTeamResultDisplayModel.placeholder,
+            blueTeamResult = GameTeamResultDisplayModel.placeholder,
+            map = "",
+            gameNumber = "",
+            isPlaceholder = true,
+        )
+    }
+}
 
 /**
  * Converts a [Game] to a [GameDetailDisplayModel].

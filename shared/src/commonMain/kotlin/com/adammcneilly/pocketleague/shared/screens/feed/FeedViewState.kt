@@ -19,7 +19,7 @@ data class FeedViewState(
                 // Here, we return a list of empty Event objects which will be mapped
                 // to a placeholder loading UI.
                 (1..3).map {
-                    EventSummaryDisplayModel(isPlaceholder = true)
+                    EventSummaryDisplayModel.placeholder
                 }
             }
             is DataState.Success -> {
@@ -33,17 +33,9 @@ data class FeedViewState(
     val recentMatches: List<MatchDetailDisplayModel>
         get() = when (recentMatchesState) {
             is DataState.Loading -> {
-                listOf(
-                    MatchDetailDisplayModel(
-                        isPlaceholder = true,
-                    ),
-                    MatchDetailDisplayModel(
-                        isPlaceholder = true,
-                    ),
-                    MatchDetailDisplayModel(
-                        isPlaceholder = true,
-                    ),
-                )
+                (1..3).map {
+                    MatchDetailDisplayModel.placeholder
+                }
             }
             is DataState.Success -> {
                 recentMatchesState.data

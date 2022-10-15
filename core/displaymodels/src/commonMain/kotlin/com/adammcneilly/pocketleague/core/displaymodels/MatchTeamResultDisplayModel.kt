@@ -6,11 +6,21 @@ import com.adammcneilly.pocketleague.core.models.MatchTeamResult
  * User friendly explanation for how a team played during a match.
  */
 data class MatchTeamResultDisplayModel(
-    val team: TeamOverviewDisplayModel = TeamOverviewDisplayModel(),
-    val score: Int = 0,
-    val winner: Boolean = false,
+    val team: TeamOverviewDisplayModel,
+    val score: Int,
+    val winner: Boolean,
     val isPlaceholder: Boolean = false,
-)
+) {
+
+    companion object {
+        val placeholder = MatchTeamResultDisplayModel(
+            team = TeamOverviewDisplayModel.placeholder,
+            score = 0,
+            winner = false,
+            isPlaceholder = true,
+        )
+    }
+}
 
 /**
  * Converts a [MatchTeamResult] to a [MatchTeamResultDisplayModel].

@@ -20,9 +20,7 @@ data class EventDetailViewState(
                 null
             }
             DataState.Loading -> {
-                EventDetailDisplayModel(
-                    isPlaceholder = true,
-                )
+                EventDetailDisplayModel.placeholder
             }
             is DataState.Success -> {
                 eventDetailState.data
@@ -36,9 +34,7 @@ data class EventDetailViewState(
             }
             DataState.Loading -> {
                 (1..3).map {
-                    TeamOverviewDisplayModel(
-                        isPlaceholder = true,
-                    )
+                    TeamOverviewDisplayModel.placeholder
                 }
             }
             is DataState.Success -> {

@@ -7,11 +7,23 @@ import com.adammcneilly.pocketleague.core.models.GameTeamResult
  * User friendly explanation of a team's performance within a game.
  */
 data class GameTeamResultDisplayModel(
-    val team: TeamOverviewDisplayModel = TeamOverviewDisplayModel(),
-    val goals: Int = 0,
-    val winner: Boolean = false,
-    val players: List<GamePlayerResultDisplayModel> = emptyList(),
-)
+    val team: TeamOverviewDisplayModel,
+    val goals: Int,
+    val winner: Boolean,
+    val players: List<GamePlayerResultDisplayModel>,
+    val isPlaceholder: Boolean = false,
+) {
+
+    companion object {
+        val placeholder = GameTeamResultDisplayModel(
+            team = TeamOverviewDisplayModel.placeholder,
+            goals = 0,
+            winner = false,
+            players = emptyList(),
+            isPlaceholder = true,
+        )
+    }
+}
 
 /**
  * Converts a [GameTeamResult] to a [GameTeamResultDisplayModel].

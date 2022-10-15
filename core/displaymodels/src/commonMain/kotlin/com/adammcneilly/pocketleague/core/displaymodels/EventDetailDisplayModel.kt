@@ -13,20 +13,37 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
  * Displays detailed information about an [Event] in a user friendly fashion.
  */
 data class EventDetailDisplayModel(
-    val eventId: String = "",
-    val name: String = "",
-    val startDate: String = "",
-    val endDate: String = "",
-    val lightThemeImageUrl: String? = null,
+    val eventId: String,
+    val name: String,
+    val startDate: String,
+    val endDate: String,
+    val lightThemeImageUrl: String?,
+    val tier: EventTierDisplayModel,
+    val mode: String,
+    val region: EventRegionDisplayModel,
+    val onlineOrLAN: String,
+    val prize: PrizeDisplayModel?,
+    private val stageSummaries: List<EventStageSummaryDisplayModel>,
     val darkThemeImageUrl: String? = lightThemeImageUrl,
-    val tier: EventTierDisplayModel = EventTier.Unknown.toDisplayModel(),
-    val mode: String = "",
-    val region: EventRegionDisplayModel = EventRegion.Unknown.toDisplayModel(),
-    val onlineOrLAN: String = "",
-    val prize: PrizeDisplayModel? = null,
     val isPlaceholder: Boolean = false,
-    private val stageSummaries: List<EventStageSummaryDisplayModel> = emptyList(),
 ) {
+    companion object {
+        val placeholder = EventDetailDisplayModel(
+            eventId = "",
+            name = "",
+            startDate = "",
+            endDate = "",
+            lightThemeImageUrl = null,
+            tier = EventTier.Unknown.toDisplayModel(),
+            mode = "",
+            region = EventRegion.Unknown.toDisplayModel(),
+            onlineOrLAN = "",
+            prize = null,
+            stageSummaries = emptyList(),
+            isPlaceholder = true,
+        )
+    }
+
     /**
      * Returns a list of [EventStageSummaryDisplayModel] entities based on
      * whether or not this is a placeholder display model.
@@ -34,7 +51,7 @@ data class EventDetailDisplayModel(
     fun getStageSummaries(): List<EventStageSummaryDisplayModel> {
         return if (isPlaceholder) {
             (1..3).map {
-                EventStageSummaryDisplayModel(isPlaceholder = true)
+                EventStageSummaryDisplayModel.placeholder
             }
         } else {
             stageSummaries

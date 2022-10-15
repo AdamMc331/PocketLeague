@@ -6,13 +6,20 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
+import com.google.testing.junit.testparameterinjector.TestParameter
+import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(TestParameterInjector::class)
 class MatchCardPaparazziTest {
 
     @get:Rule
     val paparazzi = Paparazzi()
+
+    @TestParameter
+    val useDarkTheme: Boolean = false
 
     private val winningTeam = MatchTeamResultDisplayModel(
         team = TeamOverviewDisplayModel(
@@ -52,21 +59,27 @@ class MatchCardPaparazziTest {
 
     @Test
     fun renderBlueTeamWinner() {
-        paparazzi.snapshotScreen {
+        paparazzi.snapshotScreen(
+            useDarkTheme = useDarkTheme,
+        ) {
             MatchCard(match = blueWinnerMatch)
         }
     }
 
     @Test
     fun renderOrangeTeamWinner() {
-        paparazzi.snapshotScreen {
+        paparazzi.snapshotScreen(
+            useDarkTheme = useDarkTheme,
+        ) {
             MatchCard(match = orangeWinnerMatch)
         }
     }
 
     @Test
     fun renderPlaceholder() {
-        paparazzi.snapshotScreen {
+        paparazzi.snapshotScreen(
+            useDarkTheme = useDarkTheme,
+        ) {
             MatchCard(match = MatchDetailDisplayModel.placeholder)
         }
     }

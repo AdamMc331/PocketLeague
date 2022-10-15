@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.adammcneilly.pocketleague.ui.components
+package com.adammcneilly.pocketleague.android.designsystem.components
 
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateFloat

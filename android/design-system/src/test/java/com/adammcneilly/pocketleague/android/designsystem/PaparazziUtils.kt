@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
@@ -15,7 +16,8 @@ import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueThem
  * and also wraps it around our design system theme.
  */
 fun Paparazzi.snapshotScreen(
-    useDarkTheme: Boolean = false,
+    useDarkTheme: Boolean,
+    screenPaddingDp: Int = 16,
     content: @Composable () -> Unit,
 ) {
     this.snapshot {
@@ -29,7 +31,7 @@ fun Paparazzi.snapshotScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(16.dp),
+                        .padding(screenPaddingDp.dp),
                 ) {
                     content()
                 }

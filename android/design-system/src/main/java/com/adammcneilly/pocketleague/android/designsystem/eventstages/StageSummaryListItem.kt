@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.ui.composables.eventstage
+package com.adammcneilly.pocketleague.android.designsystem.eventstages
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

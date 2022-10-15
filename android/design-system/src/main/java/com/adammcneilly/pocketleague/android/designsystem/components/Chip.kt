@@ -7,7 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import com.adammcneilly.pocketleague.ui.components.Tooltip
+import com.adammcneilly.pocketleague.android.designsystem.components.Tooltip
 
 /**
  * Follows the guidelines of a Material Design Chip.

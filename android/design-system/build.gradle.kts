@@ -58,5 +58,4 @@ dependencies {
     implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")
     implementation("com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}")
     testImplementation("com.google.testparameterinjector:test-parameter-injector:1.9")
-    testImplementation(project(":core:utils"))
 }

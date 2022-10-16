@@ -3,7 +3,6 @@ package com.adammcneilly.pocketleague.android.designsystem.eventstages
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.android.designsystem.snapshotScreen
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
-import com.adammcneilly.pocketleague.core.utils.duplicate
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
@@ -30,7 +29,9 @@ class EventStageListCardPaparazziTest {
 
     @Test
     fun renderCardWithRealData() {
-        val displayModels = displayModel.duplicate(3)
+        val displayModels = List(3) {
+            displayModel
+        }
 
         paparazzi.snapshotScreen(useDarkTheme) {
             EventStageListCard(displayModels = displayModels, onStageClicked = {})
@@ -39,7 +40,9 @@ class EventStageListCardPaparazziTest {
 
     @Test
     fun renderWithPlaceholders() {
-        val displayModels = EventStageSummaryDisplayModel.placeholder.duplicate(3)
+        val displayModels = List(3) {
+            EventStageSummaryDisplayModel.placeholder
+        }
 
         paparazzi.snapshotScreen(useDarkTheme) {
             EventStageListCard(displayModels = displayModels, onStageClicked = {})

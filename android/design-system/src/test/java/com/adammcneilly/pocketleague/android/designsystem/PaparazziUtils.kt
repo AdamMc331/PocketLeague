@@ -15,7 +15,8 @@ import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueThem
  * and also wraps it around our design system theme.
  */
 fun Paparazzi.snapshotScreen(
-    useDarkTheme: Boolean = false,
+    useDarkTheme: Boolean,
+    screenPaddingDp: Int = 16,
     content: @Composable () -> Unit,
 ) {
     this.snapshot {
@@ -29,7 +30,7 @@ fun Paparazzi.snapshotScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(16.dp),
+                        .padding(screenPaddingDp.dp),
                 ) {
                     content()
                 }

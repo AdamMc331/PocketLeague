@@ -26,10 +26,6 @@ kotlin {
             getAt("iosX64Main").dependsOn(this)
             getAt("iosArm64Main").dependsOn(this)
             getAt("iosSimulatorArm64Main").dependsOn(this)
-
-            dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
-            }
         }
         maybeCreate("iosX64Test")
         maybeCreate("iosArm64Test")

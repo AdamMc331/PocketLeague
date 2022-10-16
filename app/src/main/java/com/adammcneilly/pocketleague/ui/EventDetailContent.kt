@@ -5,7 +5,6 @@ package com.adammcneilly.pocketleague.ui
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -39,13 +38,13 @@ import coil.compose.rememberAsyncImagePainter
 import coil.imageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
+import com.adammcneilly.pocketleague.android.designsystem.eventstages.EventStageListCard
 import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.android.designsystem.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailViewState
 import com.adammcneilly.pocketleague.ui.composables.components.TooltipChip
-import com.adammcneilly.pocketleague.ui.composables.eventstage.StageSummaryListItem
 import com.adammcneilly.pocketleague.ui.composables.team.TeamOverviewListItem
 import com.google.accompanist.flowlayout.FlowRow
 import kotlinx.coroutines.launch
@@ -76,9 +75,11 @@ fun EventDetailContent(
 
         EventDetails(displayModel)
 
-        EventStages(
-            displayModel,
-            onStageClicked = onStageClicked,
+        EventStageListCard(
+            displayModels = displayModel.getStageSummaries(),
+            onStageClicked = { stageId ->
+                onStageClicked.invoke(displayModel.eventId, stageId)
+            }
         )
 
         val participants = viewState.participants
@@ -106,38 +107,6 @@ private fun EventParticipants(
 
             if (index != participants.lastIndex) {
                 Divider()
-            }
-        }
-    }
-}
-
-@Composable
-private fun EventStages(
-    displayModel: EventDetailDisplayModel,
-    onStageClicked: (String, String) -> Unit,
-) {
-    Text(
-        text = "Stages",
-        style = MaterialTheme.typography.headlineSmall,
-    )
-
-    Card {
-        with(displayModel.getStageSummaries()) {
-            this.forEachIndexed { index, stageSummary ->
-                StageSummaryListItem(
-                    displayModel = stageSummary,
-                    modifier = Modifier
-                        .clickable {
-                            onStageClicked.invoke(
-                                displayModel.eventId,
-                                stageSummary.stageId,
-                            )
-                        }
-                )
-
-                if (index != this.lastIndex) {
-                    Divider()
-                }
             }
         }
     }

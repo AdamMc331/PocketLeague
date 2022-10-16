@@ -9,6 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
 
+/**
+ * Given a list of [displayModels], render each of them onto a [Card] component.
+ */
 @Composable
 fun EventStageListCard(
     displayModels: List<EventStageSummaryDisplayModel>,

@@ -1,6 +1,3 @@
-import java.io.FileInputStream
-import java.util.Properties
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -25,9 +22,6 @@ kotlin {
 
 android {
     compileSdk = AndroidConfig.compileSDK
-
-    val properties = Properties()
-    properties.load(FileInputStream(project.rootProject.file("local.properties")))
 
     defaultConfig {
         applicationId = "com.adammcneilly.pocketleague"

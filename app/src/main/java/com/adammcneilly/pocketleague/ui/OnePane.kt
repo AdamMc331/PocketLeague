@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -8,6 +9,7 @@ import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.android.designsystem.components.bars.TopBar
 import com.adammcneilly.pocketleague.shared.screens.Navigation
+import com.adammcneilly.pocketleague.ui.composables.bars.Level1BottomBar
 
 /**
  * A [OnePane] layout is used any time we want to show a single piece of content, typically on phones or other compact screens.
@@ -33,15 +35,15 @@ fun Navigation.OnePane(
                 )
             }
         },
-//        bottomBar = {
-//            if (currentScreenIdentifier.screen.navigationLevel == 1) {
-//                Level1BottomBar(
-//                    selectedTab = currentScreenIdentifier,
-//                    modifier = Modifier
-//                        .navigationBarsPadding(),
-//                )
-//            }
-//        },
+        bottomBar = {
+            if (currentScreenIdentifier.screen.navigationLevel == 1) {
+                Level1BottomBar(
+                    selectedTab = currentScreenIdentifier,
+                    modifier = Modifier
+                        .navigationBarsPadding(),
+                )
+            }
+        },
         modifier = modifier,
     )
 }

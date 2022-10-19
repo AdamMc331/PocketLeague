@@ -12,6 +12,9 @@ enum class Level1Navigation(
     Feed(
         screenIdentifier = ScreenIdentifier.get(screen = Screens.Feed, params = null),
     ),
+    MyTeams(
+        screenIdentifier = ScreenIdentifier.get(screen = Screens.MyTeams, params = null),
+    ),
     Stats(
         screenIdentifier = ScreenIdentifier.get(screen = Screens.Stats, params = null),
     ),

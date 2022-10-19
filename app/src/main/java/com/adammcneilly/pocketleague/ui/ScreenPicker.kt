@@ -97,5 +97,12 @@ fun Navigation.ScreenPicker(
                 },
             )
         }
+        Screens.MyTeams -> {
+            MyTeamsContent(
+                viewState = stateProvider.get(screenIdentifier),
+                modifier = Modifier
+                    .padding(paddingValues),
+            )
+        }
     }
 }

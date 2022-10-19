@@ -1,12 +1,8 @@
-import java.io.FileInputStream
-import java.util.Properties
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
     id("com.google.devtools.ksp").version("${Versions.kotlin}-1.0.6")
-    id("shot")
 }
 
 apply(from = "../buildscripts/jacoco.gradle")
@@ -27,17 +23,12 @@ kotlin {
 android {
     compileSdk = AndroidConfig.compileSDK
 
-    val properties = Properties()
-    properties.load(FileInputStream(project.rootProject.file("local.properties")))
-
     defaultConfig {
         applicationId = "com.adammcneilly.pocketleague"
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
         versionCode = 1
         versionName = "0.0.1"
-
-        testInstrumentationRunner = "com.karumi.shot.ShotTestRunner"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -46,9 +37,8 @@ android {
 
     buildTypes {
         debug {
-            // We had to remove this in order for the shot testing to work
-            // https://github.com/android/android-test/issues/1199#issuecomment-1003197518
-//            isTestCoverageEnabled = true
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
 
         release {

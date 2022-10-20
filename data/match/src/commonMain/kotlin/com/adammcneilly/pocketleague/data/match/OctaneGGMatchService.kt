@@ -54,5 +54,6 @@ private fun MatchListRequest.toOctaneParams(): RemoteParams {
         "stage" to this.stageId,
         "region" to this.region,
         "team" to this.team,
+        "sort" to this.sort,
     )
 }

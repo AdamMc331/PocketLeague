@@ -16,4 +16,5 @@ data class MatchListRequest(
     val stageId: String? = null,
     val region: String? = null,
     val team: String? = null,
+    val sort: String? = null,
 )

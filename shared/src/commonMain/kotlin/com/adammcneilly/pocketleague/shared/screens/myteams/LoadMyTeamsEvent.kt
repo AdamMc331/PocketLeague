@@ -78,7 +78,7 @@ private suspend fun Events.fetchRecentMatchesForTeam(
 ): DataState<List<Match>> {
     val matchListRequest = MatchListRequest(
         team = team.id,
-        // TODO: Add sort
+        sort = "date:desc",
     )
 
     return repository

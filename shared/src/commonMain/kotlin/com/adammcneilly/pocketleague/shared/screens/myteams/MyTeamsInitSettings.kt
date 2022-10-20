@@ -14,8 +14,7 @@ fun Navigation.initMyTeams(): ScreenInitSettings {
             MyTeamsViewState()
         },
         callOnInit = {
-            // Coming soon
-            // events.loadFeed()
+            events.loadMyTeams()
         },
         reInitOnEachNavigation = false,
     )

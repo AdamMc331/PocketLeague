@@ -12,14 +12,12 @@ kotlin {
             dependencies {
                 implementation(project(":core:models"))
                 implementation(project(":core:displaymodels"))
-                // We will remove this after testing, but it allows us to stub in data
-                // for quick prototyping.
-                implementation(project(":core:displaymodels-test"))
                 implementation(project(":core:datetime"))
                 implementation(project(":data:core"))
                 implementation(project(":data:event"))
                 implementation(project(":data:game"))
                 implementation(project(":data:match"))
+                implementation(project(":data:team"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")

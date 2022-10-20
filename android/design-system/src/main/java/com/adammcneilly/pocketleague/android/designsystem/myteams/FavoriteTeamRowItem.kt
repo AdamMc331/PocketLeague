@@ -2,8 +2,8 @@ package com.adammcneilly.pocketleague.android.designsystem.myteams
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,6 +11,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
@@ -56,8 +58,11 @@ fun FavoriteTeamRowItem(
         Text(
             text = displayModel.name,
             style = MaterialTheme.typography.headlineSmall,
+            overflow = TextOverflow.Ellipsis,
+            textAlign = TextAlign.Center,
+            maxLines = 1,
             modifier = Modifier
-                .defaultMinSize(minWidth = imageSize)
+                .width(imageSize * 3)
                 .placeholderMaterial(visible = displayModel.isPlaceholder),
         )
     }

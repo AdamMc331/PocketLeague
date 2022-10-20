@@ -24,13 +24,19 @@ fun MyTeamsContent(
         modifier = modifier
             .fillMaxSize(),
     ) {
-        LazyRow(
-            contentPadding = PaddingValues(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            items(viewState.teams) { team ->
-                FavoriteTeamRowItem(displayModel = team)
+        val teams = viewState.teams
+
+        if (teams != null) {
+            LazyRow(
+                contentPadding = PaddingValues(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+            ) {
+                items(teams) { team ->
+                    FavoriteTeamRowItem(displayModel = team)
+                }
             }
+        } else {
+            // Render error UI.
         }
     }
 }

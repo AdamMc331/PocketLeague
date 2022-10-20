@@ -12,6 +12,9 @@ kotlin {
             dependencies {
                 implementation(project(":core:models"))
                 implementation(project(":core:displaymodels"))
+                // We will remove this after testing, but it allows us to stub in data
+                // for quick prototyping.
+                implementation(project(":core:displaymodels-test"))
                 implementation(project(":core:datetime"))
                 implementation(project(":data:core"))
                 implementation(project(":data:event"))

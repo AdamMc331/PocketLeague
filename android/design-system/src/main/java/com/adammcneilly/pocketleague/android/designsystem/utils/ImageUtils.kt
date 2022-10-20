@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.ui.composables.utils
+package com.adammcneilly.pocketleague.android.designsystem.utils
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable

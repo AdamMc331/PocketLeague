@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
+import kotlinx.datetime.Clock
 
 /**
  * Load the information to populate the my teams screen.
@@ -79,6 +80,7 @@ private suspend fun Events.fetchRecentMatchesForTeam(
     val matchListRequest = MatchListRequest(
         team = team.id,
         sort = "date:desc",
+        before = Clock.System.now(),
     )
 
     return repository

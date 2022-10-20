@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.android.designsystem.myteams.AddFavoriteTeamsCTA
 import com.adammcneilly.pocketleague.android.designsystem.myteams.FavoriteTeamRowItem
 import com.adammcneilly.pocketleague.shared.screens.myteams.MyTeamsViewState
 
@@ -33,6 +34,10 @@ fun MyTeamsContent(
             ) {
                 items(teams) { team ->
                     FavoriteTeamRowItem(displayModel = team)
+                }
+
+                item {
+                    AddFavoriteTeamsCTA()
                 }
             }
         } else {

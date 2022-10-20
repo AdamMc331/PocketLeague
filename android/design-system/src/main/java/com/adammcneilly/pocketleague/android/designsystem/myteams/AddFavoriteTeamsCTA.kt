@@ -5,30 +5,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircleOutline
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import coil.compose.AsyncImagePainter
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
-import com.adammcneilly.pocketleague.android.designsystem.utils.getForTheme
-import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 
-/**
- * Renders a [displayModel] within our row of favorited teams
- * by the user.
- */
 @Composable
-fun FavoriteTeamRowItem(
-    displayModel: TeamOverviewDisplayModel,
+fun AddFavoriteTeamsCTA(
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -40,38 +31,23 @@ fun FavoriteTeamRowItem(
             modifier = Modifier
                 .padding(8.dp),
         ) {
-            val imageUrl = displayModel.imageUrl.getForTheme()
-
             val imageSize = 48.dp
 
-            val hasImageLoaded = remember {
-                mutableStateOf(false)
-            }
-
-            AsyncImage(
-                model = imageUrl,
-                contentDescription = "Team Image",
+            Icon(
+                Icons.Default.AddCircleOutline,
+                contentDescription = "Add Favorites",
                 modifier = Modifier
                     .size(imageSize)
-                    .cardPlaceholder(
-                        visible = displayModel.isPlaceholder || !hasImageLoaded.value,
-                    ),
-                onState = { state ->
-                    hasImageLoaded.value = (state is AsyncImagePainter.State.Success)
-                },
             )
 
             Text(
-                text = displayModel.name,
+                text = "Add Teams",
                 style = MaterialTheme.typography.headlineSmall,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
                 modifier = Modifier
-                    .width(imageSize * 3)
-                    .cardPlaceholder(
-                        visible = displayModel.isPlaceholder,
-                    ),
+                    .width(imageSize * 3),
             )
         }
     }

@@ -22,4 +22,20 @@ class JVMDateTimeFormatterTest {
             actual = output,
         )
     }
+
+    @Test
+    fun formatExtraTimeOnlySeconds() {
+        val input = 55
+        val output = dateTimeFormatter.formatExtraTime(input)
+
+        assertEquals("0:55", output)
+    }
+
+    @Test
+    fun formatExtraTimeOverMinute() {
+        val input = 65
+        val output = dateTimeFormatter.formatExtraTime(input)
+
+        assertEquals("1:05", output)
+    }
 }

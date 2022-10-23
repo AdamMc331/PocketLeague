@@ -23,4 +23,23 @@ interface DateTimeFormatter {
         formatPattern: String,
         timeZone: TimeZone,
     ): String?
+
+    /**
+     * Given a number of [extraSeconds] that occurred in a game, convert it to a string
+     * that represents the extra time spent in a game.
+     */
+    @Suppress("ImplicitDefaultLocale")
+    fun formatExtraTime(
+        extraSeconds: Int
+    ): String {
+        val minutes = extraSeconds / SECONDS_PER_MINUTE
+        val seconds = extraSeconds % SECONDS_PER_MINUTE
+        val minutesStr = minutes.toString()
+        val secondsStr = seconds.toString().padStart(2, '0')
+        return "$minutesStr:$secondsStr"
+    }
+
+    companion object {
+        const val SECONDS_PER_MINUTE = 60
+    }
 }

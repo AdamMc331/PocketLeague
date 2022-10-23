@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
 import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.test.testMatchDetailDisplayModelBlueWinner
+import com.adammcneilly.pocketleague.core.displaymodels.test.blueWinner
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -31,7 +31,7 @@ class MatchDetailViewStateTest {
 
     @Test
     fun configureWhenSuccess() {
-        val displayModel = testMatchDetailDisplayModelBlueWinner
+        val displayModel = MatchDetailDisplayModel.blueWinner
 
         val state = MatchDetailViewState(
             matchDetailState = DataState.Success(displayModel),

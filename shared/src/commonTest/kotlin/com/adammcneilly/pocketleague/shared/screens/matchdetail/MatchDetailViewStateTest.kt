@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
 import com.adammcneilly.pocketleague.core.data.DataState
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.testMatchDetailDisplayModelBlueWinner
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -9,25 +10,27 @@ import kotlin.test.assertNull
 class MatchDetailViewStateTest {
 
     @Test
-    fun getTitleWhileLoading() {
+    fun configureWhenLoading() {
         val state = MatchDetailViewState(
             matchDetailState = DataState.Loading,
         )
 
         assertNull(state.title)
+        assertEquals(MatchDetailDisplayModel.placeholder, state.matchDetail)
     }
 
     @Test
-    fun getTitleWhenError() {
+    fun configureWhenError() {
         val state = MatchDetailViewState(
             matchDetailState = DataState.Error(Throwable()),
         )
 
         assertNull(state.title)
+        assertNull(state.matchDetail)
     }
 
     @Test
-    fun getTitleWithSuccess() {
+    fun configureWhenSuccess() {
         val displayModel = testMatchDetailDisplayModelBlueWinner
 
         val state = MatchDetailViewState(
@@ -35,6 +38,8 @@ class MatchDetailViewStateTest {
         )
 
         val expectedTitle = "${displayModel.blueTeamResult.team.name} vs ${displayModel.orangeTeamResult.team.name}"
+
         assertEquals(expectedTitle, state.title)
+        assertEquals(displayModel, state.matchDetail)
     }
 }

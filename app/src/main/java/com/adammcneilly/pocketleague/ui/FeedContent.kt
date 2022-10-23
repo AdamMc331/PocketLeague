@@ -1,15 +1,11 @@
 package com.adammcneilly.pocketleague.ui
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
@@ -20,11 +16,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.designsystem.components.EmptyStateCard
-import com.adammcneilly.pocketleague.android.designsystem.components.MatchCard
+import com.adammcneilly.pocketleague.android.designsystem.matches.MatchesCarousel
+import com.adammcneilly.pocketleague.android.designsystem.matches.RecentMatchesEmptyState
 import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
 import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryListItem
-
-private const val MATCH_CARD_WIDTH_RATIO = 0.8F
 
 /**
  * Shows content inside the feed screen for the given [viewState].
@@ -68,7 +63,7 @@ private fun SuccessContent(
 
         item {
             if (viewState.recentMatches.isNotEmpty()) {
-                RecentMatchesRow(viewState, onMatchClicked)
+                MatchesCarousel(viewState.recentMatches, onMatchClicked)
             } else {
                 RecentMatchesEmptyState()
             }
@@ -113,19 +108,6 @@ private fun LazyListScope.ongoingEventsList(
 }
 
 @Composable
-private fun RecentMatchesEmptyState() {
-    EmptyStateCard(
-        text = stringResource(id = R.string.err_no_recent_matches),
-        modifier = Modifier
-            .padding(
-                horizontal = 16.dp,
-            ),
-        textModifier = Modifier
-            .padding(32.dp),
-    )
-}
-
-@Composable
 private fun OngoingEventsEmptyState() {
     EmptyStateCard(
         text = stringResource(id = R.string.err_no_ongoing_events),
@@ -136,28 +118,4 @@ private fun OngoingEventsEmptyState() {
         textModifier = Modifier
             .padding(32.dp),
     )
-}
-
-@Composable
-private fun RecentMatchesRow(
-    viewState: FeedViewState,
-    onMatchClicked: (String) -> Unit,
-) {
-    LazyRow(
-        contentPadding = PaddingValues(
-            horizontal = 16.dp,
-        ),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
-        items(viewState.recentMatches) { match ->
-            MatchCard(
-                match = match,
-                modifier = Modifier
-                    .fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO)
-                    .clickable {
-                        onMatchClicked.invoke(match.matchId)
-                    },
-            )
-        }
-    }
 }

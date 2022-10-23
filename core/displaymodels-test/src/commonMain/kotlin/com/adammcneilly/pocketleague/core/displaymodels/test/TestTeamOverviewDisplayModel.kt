@@ -4,7 +4,9 @@ import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
 
 val testTeamOverviewDisplayModel = TeamOverviewDisplayModel(
-    teamId = "teamId",
-    name = "Team Name",
-    imageUrl = ThemedImageURL(),
+    teamId = "6020bd98f1e4807cc700dc08",
+    name = "Knights",
+    imageUrl = ThemedImageURL(
+        lightThemeImageUrl = "https://griffon.octane.gg/teams/pittsburgh-knights.png",
+    ),
 )

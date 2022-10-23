@@ -3,6 +3,8 @@ package com.adammcneilly.pocketleague.shared.data
 import com.adammcneilly.pocketleague.data.event.EventService
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.match.MatchService
+import com.adammcneilly.pocketleague.data.team.DemoTeamService
+import com.adammcneilly.pocketleague.data.team.TeamService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -26,6 +28,10 @@ class Repository(
 
     internal val gameService: GameService by lazy {
         GameService.provideDefault()
+    }
+
+    internal val teamService: TeamService by lazy {
+        DemoTeamService()
     }
 
     /**

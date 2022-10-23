@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
+import com.adammcneilly.pocketleague.android.designsystem.utils.getForTheme
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.ui.composables.utils.getForTheme
 
 /**
  * Renders the given [displayModel] for team overview information.

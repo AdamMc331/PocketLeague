@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens
 
 import com.adammcneilly.pocketleague.shared.data.Repository
+import kotlinx.coroutines.CoroutineScope
 
 /**
  * This class manages all of the event handling for various screens, specifically
@@ -16,9 +17,9 @@ class Events(
      * This will run the supplied [block] inside the coroutine scope of the current
      * screen.
      */
-    fun screenCoroutine(block: suspend () -> Unit) {
+    fun screenCoroutine(block: suspend (CoroutineScope) -> Unit) {
         stateManager.runInScreenScope {
-            block()
+            block(it)
         }
     }
 }

@@ -28,6 +28,7 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(project(":core:displaymodels-test"))
             }
         }
         val androidMain by getting {

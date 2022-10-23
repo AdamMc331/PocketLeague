@@ -13,6 +13,8 @@ data class MyTeamsViewState(
     val recentMatchesDataState: DataState<List<MatchDetailDisplayModel>> = DataState.Loading
 ) : ScreenState {
 
+    override val title: String? = null
+
     val teams: List<TeamOverviewDisplayModel>?
         get() = when (teamsDataState) {
             is DataState.Error -> {

@@ -32,7 +32,8 @@ class Navigation(
      */
     fun getTitle(screenIdentifier: ScreenIdentifier): String {
         val screenInitSettings = screenIdentifier.getScreenInitSettings(this)
-        return screenInitSettings.title
+        val customTitle = stateProvider.get<ScreenState>(screenIdentifier).title
+        return customTitle ?: screenInitSettings.title
     }
 
     /**

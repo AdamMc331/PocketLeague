@@ -13,6 +13,8 @@ data class FeedViewState(
     val recentMatchesState: DataState<List<MatchDetailDisplayModel>> = DataState.Loading,
 ) : ScreenState {
 
+    override val title: String? = null
+
     val ongoingEvents: List<EventSummaryDisplayModel>
         get() = when (ongoingEventsState) {
             is DataState.Loading -> {

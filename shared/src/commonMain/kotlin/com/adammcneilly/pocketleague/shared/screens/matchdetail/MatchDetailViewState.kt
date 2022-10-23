@@ -15,6 +15,18 @@ data class MatchDetailViewState(
     private val gamesState: DataState<List<GameDetailDisplayModel>> = DataState.Loading,
 ) : ScreenState {
 
+    override val title: String?
+        get() {
+            val matchDetail = this.matchDetail?.takeIf {
+                !it.isPlaceholder
+            } ?: return null
+
+            val blueTeamName = matchDetail.blueTeamResult.team.name
+            val orangeTeamName = matchDetail.orangeTeamResult.team.name
+
+            return "$blueTeamName vs $orangeTeamName"
+        }
+
     /**
      * This returns a [MatchDetailDisplayModel] if available based on the current
      * [matchDetailState].

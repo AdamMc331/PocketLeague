@@ -14,6 +14,8 @@ data class EventDetailViewState(
     val participantsState: DataState<List<TeamOverviewDisplayModel>> = DataState.Loading,
 ) : ScreenState {
 
+    override val title: String? = null
+
     val eventDetail: EventDetailDisplayModel?
         get() = when (eventDetailState) {
             is DataState.Error -> {

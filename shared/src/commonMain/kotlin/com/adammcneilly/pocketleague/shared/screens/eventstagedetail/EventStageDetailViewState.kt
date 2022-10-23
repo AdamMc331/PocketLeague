@@ -15,6 +15,8 @@ data class EventStageDetailViewState(
     val matchesDataState: DataState<MatchDetailsByDateDisplayModel> = DataState.Loading,
 ) : ScreenState {
 
+    override val title: String? = null
+
     val matchesByDateDisplayModel: MatchDetailsByDateDisplayModel?
         get() = when (matchesDataState) {
             is DataState.Error -> {

@@ -7,4 +7,7 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  */
 data class StatsViewState(
     val showLoading: Boolean = true,
-) : ScreenState
+) : ScreenState {
+
+    override val title: String? = null
+}

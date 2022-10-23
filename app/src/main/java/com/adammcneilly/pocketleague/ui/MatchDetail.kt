@@ -17,9 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.designsystem.components.EmptyStateCard
+import com.adammcneilly.pocketleague.android.designsystem.game.GameListItem
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.ui.composables.game.GameListItem
 
 /**
  * Renders the [displayModel] to show detailed information about a match between two teams.

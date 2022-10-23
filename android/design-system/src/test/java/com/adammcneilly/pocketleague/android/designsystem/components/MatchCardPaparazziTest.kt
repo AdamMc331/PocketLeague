@@ -4,6 +4,7 @@ import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.android.designsystem.snapshotScreen
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.blueWinner
+import com.adammcneilly.pocketleague.core.displaymodels.test.orangeWinner
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
@@ -33,7 +34,7 @@ class MatchCardPaparazziTest {
         paparazzi.snapshotScreen(
             useDarkTheme = useDarkTheme,
         ) {
-            MatchCard(match = MatchDetailDisplayModel.blueWinner)
+            MatchCard(match = MatchDetailDisplayModel.orangeWinner)
         }
     }
 

@@ -11,8 +11,8 @@ val MatchDetailDisplayModel.Companion.blueWinner: MatchDetailDisplayModel
         eventName = "RLCS World Championship",
         stageName = "Playoffs",
         relativeDateTime = "1d ago",
-        orangeTeamResult = MatchTeamResultDisplayModel.winner,
-        blueTeamResult = MatchTeamResultDisplayModel.loser,
+        orangeTeamResult = MatchTeamResultDisplayModel.loser,
+        blueTeamResult = MatchTeamResultDisplayModel.winner,
     )
 
 val MatchDetailDisplayModel.Companion.orangeWinner: MatchDetailDisplayModel

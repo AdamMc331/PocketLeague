@@ -4,6 +4,7 @@ import com.adammcneilly.pocketleague.shared.screens.eventdetail.initEventDetail
 import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.initEventStageDetail
 import com.adammcneilly.pocketleague.shared.screens.feed.initFeed
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.initMatchDetail
+import com.adammcneilly.pocketleague.shared.screens.myteams.initMyTeams
 import com.adammcneilly.pocketleague.shared.screens.records.initRecords
 import com.adammcneilly.pocketleague.shared.screens.stats.initStats
 
@@ -21,6 +22,14 @@ enum class Screens(
         navigationLevel = 1,
         initSettings = {
             initFeed()
+        },
+        stackableInstances = true,
+    ),
+    MyTeams(
+        asString = "my_teams",
+        navigationLevel = 1,
+        initSettings = {
+            initMyTeams()
         },
         stackableInstances = true,
     ),

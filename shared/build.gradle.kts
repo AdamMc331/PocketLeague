@@ -17,6 +17,7 @@ kotlin {
                 implementation(project(":data:event"))
                 implementation(project(":data:game"))
                 implementation(project(":data:match"))
+                implementation(project(":data:team"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")

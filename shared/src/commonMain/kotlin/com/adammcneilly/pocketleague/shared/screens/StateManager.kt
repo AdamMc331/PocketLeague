@@ -343,13 +343,13 @@ class StateManager(
      * Runs the supplied [block] within the coroutine scope of the given [screenIdentifier],
      * or the current screen if one not passed.
      */
-    fun runInScreenScope(screenIdentifier: ScreenIdentifier? = null, block: suspend () -> Unit) {
+    fun runInScreenScope(screenIdentifier: ScreenIdentifier? = null, block: suspend (CoroutineScope) -> Unit) {
         val uri = screenIdentifier?.uri ?: currentScreenIdentifier.uri
 
         val screenScope = screenScopesMap[uri]
 
         screenScope?.launch {
-            block()
+            block(screenScope)
         }
     }
 

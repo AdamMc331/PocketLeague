@@ -18,6 +18,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
+/**
+ * Adds a card similar to [FavoriteTeamRowItem] that presents a CTA to add new favorite teams.
+ */
 @Composable
 fun AddFavoriteTeamsCTA(
     modifier: Modifier = Modifier,

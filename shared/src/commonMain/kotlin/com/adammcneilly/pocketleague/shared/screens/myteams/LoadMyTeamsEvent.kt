@@ -10,15 +10,12 @@ import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.delay
 import kotlinx.datetime.Clock
 
 /**
  * Load the information to populate the my teams screen.
  */
 fun Events.loadMyTeams() = screenCoroutine { scope ->
-    delay(3_000)
-
     fetchFavoriteTeams(scope)
 }
 
@@ -52,6 +49,7 @@ private suspend fun Events.fetchAllRecentMatches(
         }
     }
 
+    @Suppress("SpreadOperator")
     val allMatchResults = awaitAll(*matchesRequests.toTypedArray())
 
     // Sort and dedupe matches

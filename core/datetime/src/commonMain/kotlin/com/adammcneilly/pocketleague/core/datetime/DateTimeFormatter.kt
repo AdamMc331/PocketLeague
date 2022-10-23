@@ -28,11 +28,20 @@ interface DateTimeFormatter {
      * Given a number of [extraSeconds] that occurred in a game, convert it to a string
      * that represents the extra time spent in a game.
      */
+    @Suppress("ImplicitDefaultLocale")
     fun formatExtraTime(
         extraSeconds: Int
     ): String {
-        val minutes = extraSeconds / 60
-        val seconds = extraSeconds % 60
-        return String.format("%02d:%02d", minutes, seconds)
+        val minutes = extraSeconds / SECONDS_PER_MINUTE
+        val seconds = extraSeconds % SECONDS_PER_MINUTE
+        return String.format(
+            "%02d:%02d",
+            minutes,
+            seconds,
+        )
+    }
+
+    companion object {
+        const val SECONDS_PER_MINUTE = 60
     }
 }

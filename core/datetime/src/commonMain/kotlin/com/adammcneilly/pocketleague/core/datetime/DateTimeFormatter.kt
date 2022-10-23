@@ -35,7 +35,7 @@ interface DateTimeFormatter {
         val minutes = extraSeconds / SECONDS_PER_MINUTE
         val seconds = extraSeconds % SECONDS_PER_MINUTE
         return String.format(
-            "%02d:%02d",
+            "%d:%02d",
             minutes,
             seconds,
         )

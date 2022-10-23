@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.ui.composables.game
+package com.adammcneilly.pocketleague.android.designsystem.game
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

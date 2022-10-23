@@ -1,8 +1,8 @@
-# Core Display Models Test
+# Core Displaymodels Test
 
 In this module, we define some test display models to be used inside other unit tests, or UI tests that render a component.
 
-## How To Define Test Display Models
+## How To Define Test Displaymodels
 
 All test display models should be defined as an extension property for the original display model, like this:
 

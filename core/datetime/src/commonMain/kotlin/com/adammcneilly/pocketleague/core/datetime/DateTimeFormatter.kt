@@ -34,10 +34,9 @@ interface DateTimeFormatter {
     ): String {
         val minutes = extraSeconds / SECONDS_PER_MINUTE
         val seconds = extraSeconds % SECONDS_PER_MINUTE
-        return "%d:%02d".format(
-            minutes,
-            seconds,
-        )
+        val minutesStr = minutes.toString()
+        val secondsStr = seconds.toString().padStart(2, '0')
+        return "$minutesStr:$secondsStr"
     }
 
     companion object {

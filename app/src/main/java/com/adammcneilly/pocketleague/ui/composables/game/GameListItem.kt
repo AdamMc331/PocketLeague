@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.ui.composables.game
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +14,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -53,15 +55,27 @@ fun GameListItem(
                 ),
         )
 
-        Text(
-            text = displayModel.map,
+        Column(
             modifier = Modifier
-                .weight(MAP_TEXT_WEIGHT)
-                .cardPlaceholder(
-                    visible = displayModel.isPlaceholder,
-                ),
-            textAlign = TextAlign.Center,
-        )
+                .weight(MAP_TEXT_WEIGHT),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(
+                text = displayModel.map,
+                modifier = Modifier
+                    .cardPlaceholder(
+                        visible = displayModel.isPlaceholder,
+                    ),
+            )
+
+            val otLabel = displayModel.otLabel
+
+            if (otLabel != null) {
+                Text(
+                    text = otLabel,
+                )
+            }
+        }
 
         TeamScore(
             displayModel = displayModel.orangeTeamResult,

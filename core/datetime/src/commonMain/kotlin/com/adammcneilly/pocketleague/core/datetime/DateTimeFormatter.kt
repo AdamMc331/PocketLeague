@@ -23,4 +23,16 @@ interface DateTimeFormatter {
         formatPattern: String,
         timeZone: TimeZone,
     ): String?
+
+    /**
+     * Given a number of [extraSeconds] that occurred in a game, convert it to a string
+     * that represents the extra time spent in a game.
+     */
+    fun formatExtraTime(
+        extraSeconds: Int
+    ): String {
+        val minutes = extraSeconds / 60
+        val seconds = extraSeconds % 60
+        return String.format("%02d:%02d", minutes, seconds)
+    }
 }

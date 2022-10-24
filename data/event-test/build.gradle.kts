@@ -9,6 +9,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:models"))
+                implementation(project(":core:models-test"))
+                implementation(project(":data:core"))
                 implementation(project(":data:event"))
             }
         }

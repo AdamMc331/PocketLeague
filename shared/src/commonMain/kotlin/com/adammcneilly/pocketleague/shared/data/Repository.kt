@@ -12,6 +12,7 @@ import kotlinx.coroutines.withContext
 /**
  * The main entry point to various data layers inside the application.
  *
+ * @property[dataModule] A collection of data related dependencies for this repository.
  * @property[useDefaultDispatcher] Most often true, meaning repo calls should be run on the
  * Dispatchers.Default dispatcher. We can toggle this false for tests, though.
  */

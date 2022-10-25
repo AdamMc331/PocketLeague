@@ -22,7 +22,9 @@ open class PocketLeagueApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        viewModel = DKMPViewModel.Factory.getAndroidInstance()
+        viewModel = DKMPViewModel.Factory.getAndroidInstance(
+            dataModule = this.dataModule,
+        )
 
         val appLifecycleObserver = AppLifecycleObserver(viewModel)
         ProcessLifecycleOwner.get().lifecycle.addObserver(appLifecycleObserver)

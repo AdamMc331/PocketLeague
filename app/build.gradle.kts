@@ -30,6 +30,8 @@ android {
         versionCode = 1
         versionName = "0.0.1"
 
+        testInstrumentationRunner = "com.adammcneilly.pocketleague.PocketLeagueTestRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -99,6 +101,7 @@ dependencies {
     testImplementation("junit:junit:${Versions.junit}")
     testImplementation("com.google.truth:truth:${Versions.truth}")
     testImplementation("app.cash.turbine:turbine:${Versions.turbine}")
+    androidTestImplementation(project(":shared-test"))
     androidTestImplementation("androidx.test.ext:junit:${Versions.androidxTest}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")

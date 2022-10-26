@@ -1,14 +1,21 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization")
+    id("com.android.library")
 }
 
 kotlin {
-    jvm()
+    android()
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
+                implementation(project(":data:event"))
+                implementation(project(":data:event-test"))
+                implementation(project(":data:game"))
+                implementation(project(":data:match"))
+                implementation(project(":data:team"))
+                implementation(project(":shared"))
             }
         }
         val commonTest by getting {
@@ -16,6 +23,8 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+        val androidMain by getting
+        val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")
@@ -34,6 +43,21 @@ kotlin {
             getAt("iosArm64Test").dependsOn(this)
             getAt("iosSimulatorArm64Test").dependsOn(this)
         }
+    }
+}
+
+android {
+    compileSdk = AndroidConfig.compileSDK
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+
+    defaultConfig {
+        minSdk = AndroidConfig.minSDK
+        targetSdk = AndroidConfig.targetSDK
+    }
+
+    compileOptions {
+        sourceCompatibility(JavaVersion.VERSION_1_8)
+        targetCompatibility(JavaVersion.VERSION_1_8)
     }
 }
 

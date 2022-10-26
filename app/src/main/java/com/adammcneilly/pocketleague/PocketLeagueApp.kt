@@ -5,6 +5,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.adammcneilly.pocketleague.shared.di.DataModule
+import com.adammcneilly.pocketleague.shared.di.ProdDataModule
 import com.adammcneilly.pocketleague.shared.screens.DKMPViewModel
 import com.adammcneilly.pocketleague.shared.screens.getAndroidInstance
 
@@ -12,13 +14,17 @@ import com.adammcneilly.pocketleague.shared.screens.getAndroidInstance
  * This is our custom implementation of the [Application] class. This will do any dependency injection
  * or third party initializations that must occur at app startup.
  */
-class PocketLeagueApp : Application() {
+open class PocketLeagueApp : Application() {
 
     lateinit var viewModel: DKMPViewModel
 
+    open val dataModule: DataModule = ProdDataModule()
+
     override fun onCreate() {
         super.onCreate()
-        viewModel = DKMPViewModel.Factory.getAndroidInstance()
+        viewModel = DKMPViewModel.Factory.getAndroidInstance(
+            dataModule = this.dataModule,
+        )
 
         val appLifecycleObserver = AppLifecycleObserver(viewModel)
         ProcessLifecycleOwner.get().lifecycle.addObserver(appLifecycleObserver)

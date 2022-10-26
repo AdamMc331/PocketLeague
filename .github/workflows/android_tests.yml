@@ -30,3 +30,4 @@ jobs:
           target: google_apis
           script: |
             ./gradlew app:connectedCheck
+            ./gradlew android:design-system:connectedCheck

@@ -13,7 +13,7 @@ class MainActivityTest {
     @Test
     fun renderFeedScreen() {
         composeTestRule
-            .onNodeWithText("eventName")
+            .onNodeWithText("RLCS 2021-22 World Championship")
             .assertIsDisplayed()
     }
 }

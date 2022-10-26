@@ -11,6 +11,6 @@ class PocketLeagueTestRunner : AndroidJUnitRunner() {
         className: String?,
         context: Context?
     ): Application {
-        return super.newApplication(cl, TestPocketLeagueApp::class.simpleName, context)
+        return super.newApplication(cl, TestPocketLeagueApp::class.java.canonicalName, context)
     }
 }

@@ -3,7 +3,7 @@ package com.adammcneilly.pocketleague.android.designsystem.myteams
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.android.designsystem.snapshotScreen
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.test.test
+import com.adammcneilly.pocketleague.core.displaymodels.test.knights
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
@@ -29,7 +29,7 @@ class FavoriteTeamRowItemPaparazziTest {
     @Test
     fun renderItem() {
         paparazzi.snapshotScreen(useDarkTheme) {
-            FavoriteTeamRowItem(displayModel = TeamOverviewDisplayModel.test)
+            FavoriteTeamRowItem(displayModel = TeamOverviewDisplayModel.knights)
         }
     }
 }

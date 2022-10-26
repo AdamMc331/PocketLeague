@@ -60,4 +60,10 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.2.1")
     testImplementation(project(":core:displaymodels-test"))
     testImplementation("com.google.testparameterinjector:test-parameter-injector:1.9")
+    androidTestImplementation(project(":core:displaymodels-test"))
+    androidTestImplementation("androidx.test.ext:junit:${Versions.androidxTest}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
+    debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose}")
 }

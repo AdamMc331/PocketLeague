@@ -5,13 +5,14 @@ import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 
 val MatchTeamResultDisplayModel.Companion.winner: MatchTeamResultDisplayModel
     get() = MatchTeamResultDisplayModel(
-        team = TeamOverviewDisplayModel.test,
+        team = TeamOverviewDisplayModel.knights,
         score = 7,
         winner = true,
     )
 
 val MatchTeamResultDisplayModel.Companion.loser: MatchTeamResultDisplayModel
-    get() = winner.copy(
+    get() = MatchTeamResultDisplayModel(
+        team = TeamOverviewDisplayModel.g2,
         score = 1,
         winner = false,
     )

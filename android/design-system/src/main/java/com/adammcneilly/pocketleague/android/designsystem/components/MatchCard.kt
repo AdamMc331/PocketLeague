@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -98,6 +99,7 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
 private fun MatchTeamResultRow(
     teamResult: MatchTeamResultDisplayModel,
     isPlaceholder: Boolean,
+    teamColor: String,
 ) {
     val fontWeight: FontWeight? = if (teamResult.winner) {
         FontWeight.Bold
@@ -116,12 +118,16 @@ private fun MatchTeamResultRow(
         Text(
             text = teamResult.score.toString(),
             fontWeight = fontWeight,
+            modifier = Modifier
+                .testTag("${teamColor}_match_score"),
         )
 
         Text(
             text = teamResult.getDisplayName(),
             fontWeight = fontWeight,
             inlineContent = teamResult.getInlineContent(),
+            modifier = Modifier
+                .testTag("${teamColor}_match_team_name"),
         )
     }
 }
@@ -167,6 +173,7 @@ private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.orangeTeamResult,
         isPlaceholder = match.isPlaceholder,
+        teamColor = "orange",
     )
 }
 
@@ -175,5 +182,6 @@ private fun BlueTeamResult(match: MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.blueTeamResult,
         isPlaceholder = match.isPlaceholder,
+        teamColor = "blue",
     )
 }

@@ -21,3 +21,13 @@ include ':core:displaymodels-test'
 include ':data:team'
 include ':data:event-test'
 include ':shared-test'
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            version("coil", "2.2.1")
+
+            library("coil-compose", "io.coil-kt", "coil-compose").versionRef("coil")
+        }
+    }
+}

@@ -96,7 +96,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-flowlayout:${Versions.accompanist}")
     implementation("androidx.window:window:${Versions.windowManager}")
     implementation("androidx.lifecycle:lifecycle-process:2.5.0")
-    implementation("io.coil-kt:coil-compose:2.2.1")
+    implementation(libs.coil.compose)
     implementation("androidx.palette:palette-ktx:1.0.0")
     testImplementation("junit:junit:${Versions.junit}")
     testImplementation("com.google.truth:truth:${Versions.truth}")

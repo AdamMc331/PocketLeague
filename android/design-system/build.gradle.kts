@@ -57,7 +57,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:${Versions.compose}")
     implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")
     implementation("com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}")
-    implementation("io.coil-kt:coil-compose:2.2.1")
+    implementation(libs.coil.compose)
     testImplementation(project(":core:displaymodels-test"))
     testImplementation("com.google.testparameterinjector:test-parameter-injector:1.9")
     androidTestImplementation(project(":core:displaymodels-test"))

@@ -107,7 +107,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:${Versions.androidxTest}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
+    debugImplementation(libs.compose.ui.test.manifest)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.tooling.preview)
-    debugImplementation(libs.compose.ui.test.manifest)
 }

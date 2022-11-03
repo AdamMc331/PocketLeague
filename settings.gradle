@@ -25,13 +25,30 @@ include ':shared-test'
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            version("coil", "2.2.2")
-            version("compose", "1.2.1")
+            def accompanist = "accompanist"
+            def coil = "coil"
+            def compose = "compose"
+            def composeMaterial3 = "composeMaterial3"
+            def composeUiGroup = "androidx.compose.ui"
+            def testParameterInjector = "testParameterInjector"
 
+            version(accompanist, "0.25.1")
+            version(coil, "2.2.2")
+            version(compose, "1.2.1")
+            version(composeMaterial3, "1.0.0-beta02")
+            version(testParameterInjector, "1.9")
+
+            library("accompanist-placeholder-material", "com.google.accompanist", "accompanist-placeholder-material").versionRef(accompanist)
             library("coil-compose", "io.coil-kt", "coil-compose").versionRef("coil")
-            library("compose-ui-test-manifest", "androidx.compose.ui", "ui-test-manifest").versionRef("compose")
-            library("compose-ui-tooling", "androidx.compose.ui", "ui-tooling").versionRef("compose")
-            library("compose-ui-tooling-preview", "androidx.compose.ui", "ui-tooling-preview").versionRef("compose")
+            library("compose-material-icons-extended", "androidx.compose.material", "material-icons-extended").versionRef(compose)
+            library("compose-material3", "androidx.compose.material3", "material3").versionRef(composeMaterial3)
+            library("compose-ui", composeUiGroup, "ui").versionRef(compose)
+            library("compose-ui-test", composeUiGroup, "ui-test-junit4").versionRef(compose)
+            library("compose-ui-test-manifest", composeUiGroup, "ui-test-manifest").versionRef(compose)
+            library("compose-ui-tooling", composeUiGroup, "ui-tooling").versionRef(compose)
+            library("compose-ui-tooling-preview", composeUiGroup, "ui-tooling-preview").versionRef(compose)
+            library("compose-ui-util", composeUiGroup, "ui-util").versionRef(compose)
+            library("test-testparameterinjector", "com.google.testparameterinjector", "test-parameter-injector").versionRef(testParameterInjector)
         }
     }
 }

@@ -18,6 +18,9 @@ import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueThem
 import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue
 import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange
 
+/**
+ * Shows the comparison between [blueTeamValue] and [orangeTeamValue] by drawing lines on a canvas.
+ */
 @Composable
 fun StatComparison(
     blueTeamValue: Int,

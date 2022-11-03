@@ -1,7 +1,8 @@
 package com.adammcneilly.pocketleague.android.designsystem.stats
 
 import android.content.res.Configuration
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.AnimationState
+import androidx.compose.animation.core.animateTo
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,7 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -32,10 +34,18 @@ fun StatComparison(
 ) {
     val dividerColor = MaterialTheme.colorScheme.onSurface
 
-    val animationPercentage: Float by animateFloatAsState(
-        targetValue = 1F,
-        animationSpec = tween(durationMillis = 300),
-    )
+    val animationPercentage = remember {
+        AnimationState(0F)
+    }
+
+    LaunchedEffect(Unit) {
+        animationPercentage.animateTo(
+            targetValue = 1F,
+            animationSpec = tween(
+                durationMillis = 1000,
+            ),
+        )
+    }
 
     Canvas(
         modifier = modifier
@@ -48,9 +58,9 @@ fun StatComparison(
         val dividingPoint = size.width.times(blueTeamPercentage)
         val lineWidth = 4.dp.toPx()
 
-        drawBlueLine(midHeight, dividingPoint, lineWidth, animationPercentage)
-        drawOrangeLine(dividingPoint, midHeight, lineWidth, animationPercentage)
-        drawDivider(dividingPoint, midHeight, lineWidth, dividerColor, animationPercentage)
+        drawBlueLine(midHeight, dividingPoint, lineWidth, animationPercentage.value)
+        drawOrangeLine(dividingPoint, midHeight, lineWidth, animationPercentage.value)
+        drawDivider(dividingPoint, midHeight, lineWidth, dividerColor, animationPercentage.value)
     }
 }
 

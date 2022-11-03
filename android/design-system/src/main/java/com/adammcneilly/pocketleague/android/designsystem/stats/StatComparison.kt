@@ -1,6 +1,8 @@
 package com.adammcneilly.pocketleague.android.designsystem.stats
 
 import android.content.res.Configuration
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -8,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -29,6 +32,11 @@ fun StatComparison(
 ) {
     val dividerColor = MaterialTheme.colorScheme.onSurface
 
+    val animationPercentage: Float by animateFloatAsState(
+        targetValue = 1F,
+        animationSpec = tween(durationMillis = 300),
+    )
+
     Canvas(
         modifier = modifier
             .fillMaxWidth()
@@ -40,9 +48,9 @@ fun StatComparison(
         val dividingPoint = size.width.times(blueTeamPercentage)
         val lineWidth = 4.dp.toPx()
 
-        drawBlueLine(midHeight, dividingPoint, lineWidth)
-        drawOrangeLine(dividingPoint, midHeight, lineWidth)
-        drawDivider(dividingPoint, midHeight, lineWidth, dividerColor)
+        drawBlueLine(midHeight, dividingPoint, lineWidth, animationPercentage)
+        drawOrangeLine(dividingPoint, midHeight, lineWidth, animationPercentage)
+        drawDivider(dividingPoint, midHeight, lineWidth, dividerColor, animationPercentage)
     }
 }
 
@@ -51,18 +59,20 @@ private fun DrawScope.drawDivider(
     midHeight: Float,
     lineWidth: Float,
     dividerColor: Color,
+    animationPercentage: Float,
 ) {
-    val dividerOffsetPx = lineWidth.times(2)
+    val totalDividerOffset = lineWidth.times(2)
+    val dividerOffset = totalDividerOffset * animationPercentage
 
     drawLine(
         color = dividerColor,
         start = Offset(
             x = dividingPoint,
-            y = midHeight.minus(dividerOffsetPx),
+            y = midHeight.minus(dividerOffset),
         ),
         end = Offset(
             x = dividingPoint,
-            y = midHeight.plus(dividerOffsetPx),
+            y = midHeight.plus(dividerOffset),
         ),
         strokeWidth = lineWidth,
     )
@@ -72,7 +82,12 @@ private fun DrawScope.drawOrangeLine(
     dividingPoint: Float,
     midHeight: Float,
     lineWidth: Float,
+    animationPercentage: Float,
 ) {
+    val totalLength = (size.width - dividingPoint)
+    val lengthToRender = totalLength * animationPercentage
+    val endingX = dividingPoint + lengthToRender
+
     drawLine(
         color = rlcsOrange,
         start = Offset(
@@ -80,7 +95,7 @@ private fun DrawScope.drawOrangeLine(
             y = midHeight,
         ),
         end = Offset(
-            x = size.width,
+            x = endingX,
             y = midHeight,
         ),
         strokeWidth = lineWidth,
@@ -91,11 +106,15 @@ private fun DrawScope.drawBlueLine(
     midHeight: Float,
     dividingPoint: Float,
     lineWidth: Float,
+    animationPercentage: Float,
 ) {
+    val lineLengthToRender = animationPercentage * dividingPoint
+    val startingX = (dividingPoint - lineLengthToRender)
+
     drawLine(
         color = rlcsBlue,
         start = Offset(
-            x = 0F,
+            x = startingX,
             y = midHeight,
         ),
         end = Offset(

@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.core.displaymodels.test
 
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 
 val MatchDetailDisplayModel.Companion.blueWinner: MatchDetailDisplayModel
     get() = MatchDetailDisplayModel(
@@ -11,12 +10,12 @@ val MatchDetailDisplayModel.Companion.blueWinner: MatchDetailDisplayModel
         eventName = "RLCS World Championship",
         stageName = "Playoffs",
         relativeDateTime = "1d ago",
-        orangeTeamResult = MatchTeamResultDisplayModel.loser,
-        blueTeamResult = MatchTeamResultDisplayModel.winner,
+        orangeTeamResult = TestDisplayModel.matchTeamResultLoser,
+        blueTeamResult = TestDisplayModel.matchTeamResultWinner,
     )
 
 val MatchDetailDisplayModel.Companion.orangeWinner: MatchDetailDisplayModel
     get() = blueWinner.copy(
-        orangeTeamResult = MatchTeamResultDisplayModel.winner,
-        blueTeamResult = MatchTeamResultDisplayModel.loser,
+        orangeTeamResult = TestDisplayModel.matchTeamResultWinner,
+        blueTeamResult = TestDisplayModel.matchTeamResultLoser,
     )

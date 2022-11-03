@@ -9,6 +9,7 @@ data class MatchTeamResultDisplayModel(
     val team: TeamOverviewDisplayModel,
     val score: Int,
     val winner: Boolean,
+    val coreStats: CoreStatsDisplayModel,
     val isPlaceholder: Boolean = false,
 ) {
 
@@ -17,6 +18,7 @@ data class MatchTeamResultDisplayModel(
             team = TeamOverviewDisplayModel.placeholder,
             score = 0,
             winner = false,
+            coreStats = CoreStatsDisplayModel.placeholder,
             isPlaceholder = true,
         )
     }
@@ -30,5 +32,6 @@ fun MatchTeamResult.toDisplayModel(): MatchTeamResultDisplayModel {
         team = this.team.toOverviewDisplayModel(),
         score = this.score,
         winner = this.winner,
+        coreStats = this.stats.core.toDisplayModel()
     )
 }

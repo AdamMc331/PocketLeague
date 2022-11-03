@@ -24,6 +24,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
  * Renders the [displayModel] to show detailed information about a match between two teams.
  */
 @Composable
+@Suppress("LongMethod")
 fun MatchDetail(
     displayModel: MatchDetailDisplayModel,
     games: List<GameDetailDisplayModel>,

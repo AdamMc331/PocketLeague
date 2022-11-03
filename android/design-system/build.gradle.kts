@@ -53,7 +53,6 @@ dependencies {
     implementation(project(":core:displaymodels"))
     implementation("androidx.compose.ui:ui:${Versions.compose}")
     implementation("androidx.compose.ui:ui-util:${Versions.compose}")
-    implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
     implementation("androidx.compose.material:material-icons-extended:${Versions.compose}")
     implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")
     implementation("com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}")
@@ -64,6 +63,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:${Versions.androidxTest}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
-    debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose}")
+    debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.compose.ui.test.manifest)
 }

@@ -25,9 +25,13 @@ include ':shared-test'
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            version("coil", "2.2.1")
+            version("coil", "2.2.2")
+            version("compose", "1.2.1")
 
             library("coil-compose", "io.coil-kt", "coil-compose").versionRef("coil")
+            library("compose-ui-test-manifest", "androidx.compose.ui", "ui-test-manifest").versionRef("compose")
+            library("compose-ui-tooling", "androidx.compose.ui", "ui-tooling").versionRef("compose")
+            library("compose-ui-tooling-preview", "androidx.compose.ui", "ui-tooling-preview").versionRef("compose")
         }
     }
 }

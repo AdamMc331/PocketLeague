@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.designsystem.components.EmptyStateCard
 import com.adammcneilly.pocketleague.android.designsystem.game.GameListItem
+import com.adammcneilly.pocketleague.android.designsystem.stats.CoreStatsComparisonCard
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 
@@ -78,6 +79,21 @@ fun MatchDetail(
                     .padding(32.dp)
             )
         }
+
+        Text(
+            text = "Match Stats",
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier
+                .padding(horizontal = 24.dp),
+        )
+
+        CoreStatsComparisonCard(
+            blueTeamStats = displayModel.blueTeamResult.coreStats,
+            orangeTeamStats = displayModel.orangeTeamResult.coreStats,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+        )
     }
 }
 

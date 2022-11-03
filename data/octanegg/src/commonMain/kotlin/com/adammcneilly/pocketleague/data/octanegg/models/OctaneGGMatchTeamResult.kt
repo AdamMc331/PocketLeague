@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
 import com.adammcneilly.pocketleague.core.models.MatchTeamResult
+import com.adammcneilly.pocketleague.core.models.Stats
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -29,5 +30,6 @@ fun OctaneGGMatchTeamResult?.toMatchTeamResult(): MatchTeamResult {
         score = this?.score ?: 0,
         winner = this?.winner ?: false,
         team = this?.team?.team.toTeam(),
+        stats = this?.team?.stats?.toStats() ?: Stats(),
     )
 }

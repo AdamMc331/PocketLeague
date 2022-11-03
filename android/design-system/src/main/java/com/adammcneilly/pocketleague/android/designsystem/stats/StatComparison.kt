@@ -8,7 +8,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -32,7 +32,7 @@ fun StatComparison(
     orangeTeamValue: Int,
     modifier: Modifier = Modifier,
 ) {
-    val dividerColor = MaterialTheme.colorScheme.onSurface
+    val dividerColor = LocalContentColor.current
 
     val animationPercentage = remember {
         AnimationState(0F)

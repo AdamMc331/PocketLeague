@@ -1,11 +1,9 @@
 package com.adammcneilly.pocketleague.ui
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
@@ -44,56 +42,68 @@ fun MatchDetail(
         )
     }
 
-    Column(
+    LazyColumn(
         modifier = modifier
             .fillMaxWidth()
-            .verticalScroll(rememberScrollState()),
+//            .verticalScroll(rememberScrollState()),
     ) {
-        MatchDetailHeader(
-            displayModel = displayModel,
-            modifier = Modifier
-                .padding(24.dp),
-        )
-
-        Text(
-            text = "Games",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier
-                .padding(horizontal = 24.dp),
-        )
-
-        if (games.isNotEmpty()) {
-            GameList(
-                games = games,
-                onGameClicked = { game ->
-                    selectedGame.value = game
-                }
-            )
-        } else {
-            EmptyStateCard(
-                text = "Game information is not yet available.",
+        item {
+            MatchDetailHeader(
+                displayModel = displayModel,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                textModifier = Modifier
-                    .padding(32.dp)
+                    .padding(24.dp),
             )
         }
 
-        Text(
-            text = "Match Stats",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier
-                .padding(horizontal = 24.dp),
-        )
+        item {
+            Text(
+                text = "Games",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier
+                    .padding(horizontal = 24.dp),
+            )
+        }
 
-        CoreStatsComparisonCard(
-            blueTeamStats = displayModel.blueTeamResult.coreStats,
-            orangeTeamStats = displayModel.orangeTeamResult.coreStats,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-        )
+        if (games.isNotEmpty()) {
+            item {
+                GameList(
+                    games = games,
+                    onGameClicked = { game ->
+                        selectedGame.value = game
+                    }
+                )
+            }
+        } else {
+            item {
+                EmptyStateCard(
+                    text = "Game information is not yet available.",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    textModifier = Modifier
+                        .padding(32.dp)
+                )
+            }
+        }
+
+        item {
+            Text(
+                text = "Match Stats",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier
+                    .padding(horizontal = 24.dp),
+            )
+        }
+
+        item {
+            CoreStatsComparisonCard(
+                blueTeamStats = displayModel.blueTeamResult.coreStats,
+                orangeTeamStats = displayModel.orangeTeamResult.coreStats,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+            )
+        }
     }
 }
 

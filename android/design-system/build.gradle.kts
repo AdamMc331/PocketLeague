@@ -51,11 +51,7 @@ android {
 
 dependencies {
     implementation(project(":core:displaymodels"))
-    implementation("androidx.compose.ui:ui:${Versions.compose}")
-    implementation("androidx.compose.ui:ui-util:${Versions.compose}")
-    implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
-    implementation("androidx.compose.material:material-icons-extended:${Versions.compose}")
-    implementation("androidx.compose.material3:material3:${Versions.composeMaterial3}")
+    implementation(libs.bundles.compose.ui)
     implementation("com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}")
     implementation("io.coil-kt:coil-compose:2.2.1")
     testImplementation(project(":core:displaymodels-test"))
@@ -63,7 +59,6 @@ dependencies {
     androidTestImplementation(project(":core:displaymodels-test"))
     androidTestImplementation("androidx.test.ext:junit:${Versions.androidxTest}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
-    debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose}")
+    androidTestImplementation(libs.compose.ui.test.junit)
+    debugImplementation(libs.bundles.compose.ui.debug)
 }

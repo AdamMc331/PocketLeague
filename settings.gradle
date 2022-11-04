@@ -39,7 +39,7 @@ dependencyResolutionManagement {
             version(testParameterInjector, "1.9")
 
             library("accompanist-placeholder-material", "com.google.accompanist", "accompanist-placeholder-material").versionRef(accompanist)
-            library("coil-compose", "io.coil-kt", "coil-compose").versionRef("coil")
+            library("coil-compose", "io.coil-kt", "coil-compose").versionRef(coil)
             library("compose-material-icons-extended", "androidx.compose.material", "material-icons-extended").versionRef(compose)
             library("compose-material3", "androidx.compose.material3", "material3").versionRef(composeMaterial3)
             library("compose-ui", composeUiGroup, "ui").versionRef(compose)
@@ -49,6 +49,10 @@ dependencyResolutionManagement {
             library("compose-ui-tooling-preview", composeUiGroup, "ui-tooling-preview").versionRef(compose)
             library("compose-ui-util", composeUiGroup, "ui-util").versionRef(compose)
             library("test-testparameterinjector", "com.google.testparameterinjector", "test-parameter-injector").versionRef(testParameterInjector)
+
+            bundle("compose-tooling", ["compose-ui-test-manifest", "compose-ui-tooling-preview"])
+
+            bundle("compose-ui", ["compose-ui", "compose-ui-tooling", "compose-ui-util", "compose-material-icons-extended", "compose-material3"])
         }
     }
 }

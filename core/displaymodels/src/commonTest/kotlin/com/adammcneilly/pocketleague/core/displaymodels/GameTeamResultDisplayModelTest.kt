@@ -54,9 +54,9 @@ class GameTeamResultDisplayModelTest {
 
         val mappedModel = gameTeamResult.toDisplayModel()
 
-        assertEquals("PleasantlyPlump", mappedModel.players[0].playerName)
-        assertEquals("mTeo", mappedModel.players[1].playerName)
-        assertEquals("AdamMc331", mappedModel.players[2].playerName)
+        assertEquals("PleasantlyPlump", mappedModel.players[0].player.tag)
+        assertEquals("mTeo", mappedModel.players[1].player.tag)
+        assertEquals("AdamMc331", mappedModel.players[2].player.tag)
         assertEquals(4, mappedModel.goals)
         assertTrue(mappedModel.winner)
     }

@@ -20,6 +20,8 @@ data class OctaneGGMatchTeamResult(
     val winner: Boolean? = null,
     @SerialName("team")
     val team: OctaneGGTeamStats? = null,
+    @SerialName("players")
+    val players: List<OctaneGGPlayerStats>? = null,
 )
 
 /**
@@ -31,5 +33,6 @@ fun OctaneGGMatchTeamResult?.toMatchTeamResult(): MatchTeamResult {
         winner = this?.winner ?: false,
         team = this?.team?.team.toTeam(),
         stats = this?.team?.stats?.toStats() ?: Stats(),
+        players = this?.players?.map(OctaneGGPlayerStats::toGamePlayerResult).orEmpty()
     )
 }

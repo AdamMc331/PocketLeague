@@ -2,15 +2,11 @@
  * A collection of version numbers used throughout the project.
  */
 object Versions {
-    /**
-     * https://developer.android.com/jetpack/androidx/releases/compose
-     */
-    const val compose = "1.2.1"
 
     /**
      * https://developer.android.com/jetpack/androidx/releases/compose
      */
-    const val composeCompiler = "1.3.1"
+    const val composeCompiler = "1.3.2"
 
     // https://developer.android.com/jetpack/androidx/releases/core
     const val ktxCore = "1.9.0"
@@ -20,9 +16,6 @@ object Versions {
 
     // https://developer.android.com/jetpack/androidx/releases/lifecycle
     const val lifecycle = "2.5.1"
-
-    // https://developer.android.com/jetpack/androidx/releases/activity
-    const val activityCompose = "1.5.1"
 
     // https://github.com/junit-team/junit4/releases
     const val junit = "4.13.2"
@@ -59,7 +52,7 @@ object Versions {
 
     const val kotlinxSerialization = "1.3.2"
 
-    const val kotlin = "1.7.10"
+    const val kotlin = "1.7.20"
 
     /**
      * https://developer.android.com/jetpack/androidx/releases/compose-material3

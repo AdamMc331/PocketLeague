@@ -59,7 +59,7 @@ object Versions {
 
     const val kotlinxSerialization = "1.3.2"
 
-    const val kotlin = "1.7.10"
+    const val kotlin = "1.7.20"
 
     /**
      * https://developer.android.com/jetpack/androidx/releases/compose-material3

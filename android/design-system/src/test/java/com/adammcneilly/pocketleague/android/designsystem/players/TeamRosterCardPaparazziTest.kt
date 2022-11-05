@@ -30,6 +30,7 @@ class TeamRosterCardPaparazziTest {
                     TestDisplayModel.zps,
                 ),
                 teamColor = rlcsBlue,
+                useDarkTheme = useDarkTheme,
             )
         }
     }
@@ -44,6 +45,7 @@ class TeamRosterCardPaparazziTest {
                     TestDisplayModel.zps,
                 ),
                 teamColor = rlcsOrange,
+                useDarkTheme = useDarkTheme,
             )
         }
     }

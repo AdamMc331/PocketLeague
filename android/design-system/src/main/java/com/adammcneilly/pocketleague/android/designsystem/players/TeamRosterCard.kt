@@ -26,8 +26,9 @@ fun TeamRosterCard(
     players: List<PlayerDisplayModel>,
     teamColor: Color,
     modifier: Modifier = Modifier,
+    useDarkTheme: Boolean = isSystemInDarkTheme(),
 ) {
-    val containerColor = if (isSystemInDarkTheme()) {
+    val containerColor = if (useDarkTheme) {
         teamColor.darken()
     } else {
         teamColor

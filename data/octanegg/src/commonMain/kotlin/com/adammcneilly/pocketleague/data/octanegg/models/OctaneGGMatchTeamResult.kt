@@ -11,6 +11,7 @@ import kotlinx.serialization.Serializable
  * @property[score] The score for this [team] during the match.
  * @property[winner] If true, this [team] is the winner of the match.
  * @property[team] Information about the team and their stats.
+ * @property[players] The players and their stats for a given match.
  */
 @Serializable
 data class OctaneGGMatchTeamResult(

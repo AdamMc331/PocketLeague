@@ -11,6 +11,7 @@ import kotlinx.serialization.Serializable
  * @property[score] The score for this [team] during the match.
  * @property[winner] If true, this [team] is the winner of the match.
  * @property[team] Information about the team and their stats.
+ * @property[players] The players and their stats for a given match.
  */
 @Serializable
 data class OctaneGGMatchTeamResult(
@@ -20,6 +21,8 @@ data class OctaneGGMatchTeamResult(
     val winner: Boolean? = null,
     @SerialName("team")
     val team: OctaneGGTeamStats? = null,
+    @SerialName("players")
+    val players: List<OctaneGGPlayerStats>? = null,
 )
 
 /**
@@ -31,5 +34,6 @@ fun OctaneGGMatchTeamResult?.toMatchTeamResult(): MatchTeamResult {
         winner = this?.winner ?: false,
         team = this?.team?.team.toTeam(),
         stats = this?.team?.stats?.toStats() ?: Stats(),
+        players = this?.players?.map(OctaneGGPlayerStats::toGamePlayerResult).orEmpty()
     )
 }

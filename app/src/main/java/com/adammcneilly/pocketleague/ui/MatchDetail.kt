@@ -16,7 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.designsystem.components.EmptyStateCard
 import com.adammcneilly.pocketleague.android.designsystem.game.GameListItem
+import com.adammcneilly.pocketleague.android.designsystem.players.TeamRosterCard
 import com.adammcneilly.pocketleague.android.designsystem.stats.CoreStatsComparisonCard
+import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue
+import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 
@@ -85,6 +88,46 @@ fun MatchDetail(
                         .padding(32.dp)
                 )
             }
+        }
+
+        item {
+            Text(
+                text = displayModel.blueTeamResult.team.name,
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier
+                    .padding(horizontal = 24.dp),
+            )
+        }
+
+        item {
+            TeamRosterCard(
+                players = displayModel.blueTeamResult.players.map {
+                    it.player
+                },
+                teamColor = rlcsBlue,
+                modifier = Modifier
+                    .padding(24.dp),
+            )
+        }
+
+        item {
+            Text(
+                text = displayModel.orangeTeamResult.team.name,
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier
+                    .padding(horizontal = 24.dp),
+            )
+        }
+
+        item {
+            TeamRosterCard(
+                players = displayModel.orangeTeamResult.players.map {
+                    it.player
+                },
+                teamColor = rlcsOrange,
+                modifier = Modifier
+                    .padding(24.dp),
+            )
         }
 
         item {

@@ -33,7 +33,7 @@ fun PlayerStatsTable(
 
         displayModels.forEachIndexed { index, displayModel ->
             StatTableRow(
-                title = displayModel.playerName,
+                title = displayModel.player.tag,
                 cells = listOf(
                     displayModel.coreStats.score.toString(),
                     displayModel.coreStats.goals.toString(),

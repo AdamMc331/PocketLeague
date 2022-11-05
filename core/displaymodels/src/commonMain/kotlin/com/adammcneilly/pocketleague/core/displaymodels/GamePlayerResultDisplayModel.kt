@@ -6,7 +6,7 @@ import com.adammcneilly.pocketleague.core.models.GamePlayerResult
  * User friendly representation of a player's results within a game.
  */
 data class GamePlayerResultDisplayModel(
-    val playerName: String,
+    val player: PlayerDisplayModel,
     val coreStats: CoreStatsDisplayModel,
     val isPlaceholder: Boolean = false,
 )
@@ -16,7 +16,7 @@ data class GamePlayerResultDisplayModel(
  */
 fun GamePlayerResult.toDisplayModel(): GamePlayerResultDisplayModel {
     return GamePlayerResultDisplayModel(
-        playerName = this.player.tag,
+        player = this.player.toDisplayModel(),
         coreStats = this.stats.core.toDisplayModel(),
     )
 }

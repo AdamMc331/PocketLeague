@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.core.displaymodels.test
 
 import com.adammcneilly.pocketleague.core.displaymodels.CoreStatsDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 
 object TestDisplayModel {
@@ -11,6 +12,7 @@ object TestDisplayModel {
             score = 7,
             winner = true,
             coreStats = coreStats,
+            players = emptyList(),
         )
 
     val matchTeamResultLoser: MatchTeamResultDisplayModel
@@ -19,6 +21,7 @@ object TestDisplayModel {
             score = 1,
             winner = false,
             coreStats = coreStats,
+            players = emptyList(),
         )
 
     val coreStats: CoreStatsDisplayModel
@@ -29,4 +32,19 @@ object TestDisplayModel {
             saves = 3,
             shots = 1,
         )
+
+    val cheese = PlayerDisplayModel(
+        id = "cheeseId",
+        tag = "CHEESE",
+    )
+
+    val sosa = PlayerDisplayModel(
+        id = "sosaId",
+        tag = "sosa",
+    )
+
+    val zps = PlayerDisplayModel(
+        id = "zpsId",
+        tag = "ZPS",
+    )
 }

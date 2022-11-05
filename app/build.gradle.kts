@@ -45,7 +45,10 @@ android {
 
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -81,8 +84,8 @@ dependencies {
     implementation(project(":core:models"))
     implementation(project(":core:displaymodels"))
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
-    implementation("androidx.core:core-ktx:${Versions.ktxCore}")
-    implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
     implementation("com.google.android.material:material:${Versions.material}")
     implementation(libs.bundles.compose.ui)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -98,8 +101,7 @@ dependencies {
     testImplementation("com.google.truth:truth:${Versions.truth}")
     testImplementation("app.cash.turbine:turbine:${Versions.turbine}")
     androidTestImplementation(project(":shared-test"))
-    androidTestImplementation("androidx.test.ext:junit:${Versions.androidxTest}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
+    androidTestImplementation(libs.bundles.androidx.test)
     androidTestImplementation(libs.compose.ui.test.junit)
     debugImplementation(libs.bundles.compose.ui.debug)
 }

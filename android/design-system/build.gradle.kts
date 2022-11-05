@@ -57,8 +57,7 @@ dependencies {
     testImplementation(project(":core:displaymodels-test"))
     testImplementation("com.google.testparameterinjector:test-parameter-injector:1.9")
     androidTestImplementation(project(":core:displaymodels-test"))
-    androidTestImplementation("androidx.test.ext:junit:${Versions.androidxTest}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
+    androidTestImplementation(libs.bundles.androidx.test)
     androidTestImplementation(libs.compose.ui.test.junit)
     debugImplementation(libs.bundles.compose.ui.debug)
 }

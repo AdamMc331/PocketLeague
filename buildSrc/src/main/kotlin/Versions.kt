@@ -10,7 +10,7 @@ object Versions {
     /**
      * https://developer.android.com/jetpack/androidx/releases/compose
      */
-    const val composeCompiler = "1.3.1"
+    const val composeCompiler = "1.3.2"
 
     // https://developer.android.com/jetpack/androidx/releases/core
     const val ktxCore = "1.9.0"

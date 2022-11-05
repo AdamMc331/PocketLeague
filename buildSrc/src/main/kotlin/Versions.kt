@@ -2,10 +2,6 @@
  * A collection of version numbers used throughout the project.
  */
 object Versions {
-    /**
-     * https://developer.android.com/jetpack/androidx/releases/compose
-     */
-    const val compose = "1.2.1"
 
     /**
      * https://developer.android.com/jetpack/androidx/releases/compose
@@ -20,9 +16,6 @@ object Versions {
 
     // https://developer.android.com/jetpack/androidx/releases/lifecycle
     const val lifecycle = "2.5.1"
-
-    // https://developer.android.com/jetpack/androidx/releases/activity
-    const val activityCompose = "1.5.1"
 
     // https://github.com/junit-team/junit4/releases
     const val junit = "4.13.2"

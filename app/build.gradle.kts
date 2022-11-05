@@ -86,7 +86,7 @@ dependencies {
     implementation("com.google.android.material:material:${Versions.material}")
     implementation(libs.bundles.compose.ui)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
-    implementation("androidx.activity:activity-compose:${Versions.activityCompose}")
+    implementation(libs.activity.compose)
     implementation("com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-flowlayout:${Versions.accompanist}")
@@ -100,6 +100,6 @@ dependencies {
     androidTestImplementation(project(":shared-test"))
     androidTestImplementation("androidx.test.ext:junit:${Versions.androidxTest}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
+    androidTestImplementation(libs.compose.ui.test.junit)
     debugImplementation(libs.bundles.compose.ui.debug)
 }

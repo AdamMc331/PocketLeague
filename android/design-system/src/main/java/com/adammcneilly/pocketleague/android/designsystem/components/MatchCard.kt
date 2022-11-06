@@ -44,11 +44,12 @@ fun MatchCard(
 ) {
     Card(
         modifier = modifier
-            .clickable {
-                if (!match.isPlaceholder) {
+            .clickable(
+                enabled = !match.isPlaceholder,
+                onClick = {
                     onClick.invoke(match.matchId)
-                }
-            },
+                },
+            ),
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),

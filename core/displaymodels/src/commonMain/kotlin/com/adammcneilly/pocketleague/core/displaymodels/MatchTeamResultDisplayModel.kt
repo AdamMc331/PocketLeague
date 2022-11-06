@@ -10,7 +10,7 @@ data class MatchTeamResultDisplayModel(
     val team: TeamOverviewDisplayModel,
     val score: Int,
     val winner: Boolean,
-    val coreStats: CoreStatsDisplayModel,
+    val coreStats: CoreStatsDisplayModel?,
     val players: List<GamePlayerResultDisplayModel>,
     val isPlaceholder: Boolean = false,
 ) {
@@ -36,6 +36,6 @@ fun MatchTeamResult.toDisplayModel(): MatchTeamResultDisplayModel {
         score = this.score,
         winner = this.winner,
         players = this.players.map(GamePlayerResult::toDisplayModel),
-        coreStats = this.stats.core.toDisplayModel()
+        coreStats = this.stats?.core?.toDisplayModel(),
     )
 }

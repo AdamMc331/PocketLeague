@@ -52,7 +52,7 @@ android {
 dependencies {
     implementation(project(":core:displaymodels"))
     implementation(libs.bundles.compose.ui)
-    implementation("com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}")
+    implementation(libs.accompanist.placeholder.material)
     implementation("io.coil-kt:coil-compose:2.2.1")
     testImplementation(project(":core:displaymodels-test"))
     testImplementation("com.google.testparameterinjector:test-parameter-injector:1.9")

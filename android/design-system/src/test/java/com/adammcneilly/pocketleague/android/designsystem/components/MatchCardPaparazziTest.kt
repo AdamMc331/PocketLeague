@@ -25,7 +25,10 @@ class MatchCardPaparazziTest {
         paparazzi.snapshotScreen(
             useDarkTheme = useDarkTheme,
         ) {
-            MatchCard(match = MatchDetailDisplayModel.blueWinner)
+            MatchCard(
+                match = MatchDetailDisplayModel.blueWinner,
+                onClick = {},
+            )
         }
     }
 
@@ -34,7 +37,10 @@ class MatchCardPaparazziTest {
         paparazzi.snapshotScreen(
             useDarkTheme = useDarkTheme,
         ) {
-            MatchCard(match = MatchDetailDisplayModel.orangeWinner)
+            MatchCard(
+                match = MatchDetailDisplayModel.orangeWinner,
+                onClick = {},
+            )
         }
     }
 
@@ -43,7 +49,10 @@ class MatchCardPaparazziTest {
         paparazzi.snapshotScreen(
             useDarkTheme = useDarkTheme,
         ) {
-            MatchCard(match = MatchDetailDisplayModel.placeholder)
+            MatchCard(
+                match = MatchDetailDisplayModel.placeholder,
+                onClick = {},
+            )
         }
     }
 }

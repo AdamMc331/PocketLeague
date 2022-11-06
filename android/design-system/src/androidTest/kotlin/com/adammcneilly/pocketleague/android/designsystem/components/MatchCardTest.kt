@@ -1,11 +1,15 @@
 package com.adammcneilly.pocketleague.android.designsystem.components
 
-import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasClickAction
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.blueWinner
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Rule
 import org.junit.Test
 
@@ -15,18 +19,56 @@ class MatchCardTest {
 
     @Test
     fun renderBlueWinner() {
+        var clickedId: String? = null
+
         composeTestRule.setContent {
             PocketLeagueTheme {
-                MatchCard(match = MatchDetailDisplayModel.blueWinner)
+                MatchCard(
+                    match = MatchDetailDisplayModel.blueWinner,
+                    onClick = {
+                        clickedId = it
+                    },
+                )
             }
         }
 
         composeTestRule
-            .onNodeWithTag("blue_match_team_name")
-            .assertTextEquals("Knights [winner]")
+            .onNodeWithText("Knights [winner]")
+            .assertIsDisplayed()
 
         composeTestRule
-            .onNodeWithTag("orange_match_team_name")
-            .assertTextEquals("G2 Esports")
+            .onNodeWithText("G2 Esports")
+            .assertIsDisplayed()
+
+        composeTestRule
+            .onNode(hasClickAction())
+            .performClick()
+
+        assertEquals(
+            MatchDetailDisplayModel.blueWinner.matchId,
+            clickedId,
+        )
+    }
+
+    @Test
+    fun handleClickForPlaceholder() {
+        var clickedId: String? = null
+
+        composeTestRule.setContent {
+            PocketLeagueTheme {
+                MatchCard(
+                    match = MatchDetailDisplayModel.placeholder,
+                    onClick = {
+                        clickedId = it
+                    },
+                )
+            }
+        }
+
+        composeTestRule
+            .onNode(hasClickAction())
+            .performClick()
+
+        assertNull(clickedId)
     }
 }

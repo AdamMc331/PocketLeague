@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
@@ -90,64 +91,82 @@ fun MatchDetail(
             }
         }
 
-        item {
-            Text(
-                text = displayModel.blueTeamResult.team.name,
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier
-                    .padding(horizontal = 24.dp),
-            )
-        }
+        teamRosters(displayModel)
 
-        item {
-            TeamRosterCard(
-                players = displayModel.blueTeamResult.players.map {
-                    it.player
-                },
-                teamColor = rlcsBlue,
-                modifier = Modifier
-                    .padding(24.dp),
-            )
-        }
+        matchStats(displayModel)
+    }
+}
 
-        item {
-            Text(
-                text = displayModel.orangeTeamResult.team.name,
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier
-                    .padding(horizontal = 24.dp),
-            )
-        }
+private fun LazyListScope.matchStats(displayModel: MatchDetailDisplayModel) {
+    val blueStats = displayModel.blueTeamResult.coreStats ?: return
+    val orangeStats = displayModel.orangeTeamResult.coreStats ?: return
 
-        item {
-            TeamRosterCard(
-                players = displayModel.orangeTeamResult.players.map {
-                    it.player
-                },
-                teamColor = rlcsOrange,
-                modifier = Modifier
-                    .padding(24.dp),
-            )
-        }
+    item {
+        Text(
+            text = "Match Stats",
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier
+                .padding(horizontal = 24.dp),
+        )
+    }
 
-        item {
-            Text(
-                text = "Match Stats",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier
-                    .padding(horizontal = 24.dp),
-            )
-        }
+    item {
+        CoreStatsComparisonCard(
+            blueTeamStats = blueStats,
+            orangeTeamStats = orangeStats,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+        )
+    }
+}
 
-        item {
-            CoreStatsComparisonCard(
-                blueTeamStats = displayModel.blueTeamResult.coreStats,
-                orangeTeamStats = displayModel.orangeTeamResult.coreStats,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-            )
-        }
+private fun LazyListScope.teamRosters(displayModel: MatchDetailDisplayModel) {
+    val noBluePlayers = displayModel.blueTeamResult.players.isEmpty()
+    val noOrangePlayers = displayModel.orangeTeamResult.players.isEmpty()
+
+    if (noBluePlayers || noOrangePlayers) {
+        return
+    }
+
+    item {
+        Text(
+            text = displayModel.blueTeamResult.team.name,
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier
+                .padding(horizontal = 24.dp),
+        )
+    }
+
+    item {
+        TeamRosterCard(
+            players = displayModel.blueTeamResult.players.map {
+                it.player
+            },
+            teamColor = rlcsBlue,
+            modifier = Modifier
+                .padding(24.dp),
+        )
+    }
+
+    item {
+        Text(
+            text = displayModel.orangeTeamResult.team.name,
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier
+                .padding(horizontal = 24.dp),
+        )
+    }
+
+    item {
+        TeamRosterCard(
+            players = displayModel.orangeTeamResult.players.map {
+                it.player
+            },
+            teamColor = rlcsOrange,
+            modifier = Modifier
+                .padding(24.dp),
+        )
     }
 }
 

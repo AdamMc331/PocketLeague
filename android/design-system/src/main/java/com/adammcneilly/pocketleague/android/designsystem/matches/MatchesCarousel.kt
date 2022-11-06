@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.android.designsystem.matches
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyRow
@@ -31,11 +30,9 @@ fun MatchesCarousel(
         items(matches) { match ->
             MatchCard(
                 match = match,
+                onClick = onMatchClicked,
                 modifier = Modifier
-                    .fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO)
-                    .clickable {
-                        onMatchClicked.invoke(match.matchId)
-                    },
+                    .fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO),
             )
         }
     }

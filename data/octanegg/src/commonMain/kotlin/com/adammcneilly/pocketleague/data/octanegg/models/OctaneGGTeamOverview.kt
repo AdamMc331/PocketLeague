@@ -29,7 +29,7 @@ data class OctaneGGTeamOverview(
 fun OctaneGGTeamOverview?.toTeam(): Team {
     return Team(
         id = this?.id.orEmpty(),
-        name = this?.name.orEmpty(),
+        name = this?.name ?: "TBD",
         imageUrl = this?.image,
     )
 }

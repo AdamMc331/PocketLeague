@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.android.designsystem.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,10 +39,16 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
 @Composable
 fun MatchCard(
     match: MatchDetailDisplayModel,
+    onClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier
+            .clickable {
+                if (!match.isPlaceholder) {
+                    onClick.invoke(match.matchId)
+                }
+            },
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),

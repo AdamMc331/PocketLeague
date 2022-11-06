@@ -17,6 +17,7 @@ buildscript {
         classpath("com.hiya:jacoco-android:0.2")
         classpath("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.12.0")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")
+        classpath("org.jetbrains.kotlinx:kover:0.6.1")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -24,6 +25,7 @@ buildscript {
 }
 
 apply(from = "buildscripts/githooks.gradle")
+apply(from = "${rootProject.projectDir}/buildscripts/kover.gradle")
 
 allprojects {
     repositories {
@@ -38,6 +40,7 @@ allprojects {
 subprojects {
     apply(from = "${rootProject.projectDir}/buildscripts/ktlint.gradle")
     apply(from = "${rootProject.projectDir}/buildscripts/versionsplugin.gradle")
+    apply(from = "${rootProject.projectDir}/buildscripts/kover.gradle")
 }
 
 tasks.register("clean", Delete::class) {

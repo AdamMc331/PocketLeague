@@ -12,10 +12,7 @@ kotlin {
             dependencies {
                 implementation(project(":data:core"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
-                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
+                implementation(libs.bundles.ktor.client)
             }
         }
         val commonTest by getting {
@@ -25,7 +22,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
+                implementation(libs.ktor.client.android)
             }
         }
         val androidTest by getting
@@ -39,7 +36,7 @@ kotlin {
             getAt("iosSimulatorArm64Main").dependsOn(this)
 
             dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
+                implementation(libs.ktor.client.ios)
             }
         }
         maybeCreate("iosX64Test")

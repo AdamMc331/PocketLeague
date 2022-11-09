@@ -14,9 +14,8 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.android.designsystem.utils.darken
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
-
-private const val DARKEN_COLOR_RATIO = 0.75F
 
 /**
  * Renders a list of [players] onto a card, with our [teamColor] as the background.
@@ -60,16 +59,4 @@ fun TeamRosterCard(
             }
         }
     }
-}
-
-private fun Color.darken(): Color {
-    val red = this.red
-    val green = this.green
-    val blue = this.blue
-
-    return Color(
-        red = red * DARKEN_COLOR_RATIO,
-        green = green * DARKEN_COLOR_RATIO,
-        blue = blue * DARKEN_COLOR_RATIO,
-    )
 }

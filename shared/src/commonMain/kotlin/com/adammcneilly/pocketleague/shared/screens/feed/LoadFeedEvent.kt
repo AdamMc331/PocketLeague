@@ -11,7 +11,7 @@ import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.datetime.Clock
 import kotlin.time.Duration.Companion.days
 
-const val NUM_DAYS_RECENT_MATCHES = 3
+const val NUM_DAYS_RECENT_MATCHES = 7
 
 /**
  * Loads the information for the feed state.

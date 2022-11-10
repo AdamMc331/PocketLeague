@@ -50,7 +50,6 @@ fun MatchDetail(
     LazyColumn(
         modifier = modifier
             .fillMaxWidth()
-//            .verticalScroll(rememberScrollState()),
     ) {
         item {
             MatchDetailHeader(

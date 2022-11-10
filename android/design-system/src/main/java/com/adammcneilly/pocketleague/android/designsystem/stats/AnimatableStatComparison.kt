@@ -17,6 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.semantics.SemanticsPropertyKey
+import androidx.compose.ui.semantics.SemanticsPropertyReceiver
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
@@ -24,6 +28,10 @@ import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue
 import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange
 import com.adammcneilly.pocketleague.android.designsystem.utils.whenInView
 import kotlinx.coroutines.launch
+
+// Creates a Semantics property of type boolean
+val PercentageAnimatedKey = SemanticsPropertyKey<Float>("PercentageAnimated")
+var SemanticsPropertyReceiver.percentageAnimated by PercentageAnimatedKey
 
 /**
  * Shows the comparison between [blueTeamValue] and [orangeTeamValue] by drawing lines on a canvas.
@@ -53,6 +61,10 @@ fun AnimatableStatComparison(
                         ),
                     )
                 }
+            }
+            .semantics {
+                percentageAnimated = animationPercentage.value
+                testTag = "stat_comparison"
             }
     )
 }

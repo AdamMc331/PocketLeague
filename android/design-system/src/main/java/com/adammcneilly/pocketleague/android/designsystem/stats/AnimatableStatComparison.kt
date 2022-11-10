@@ -29,23 +29,21 @@ import kotlinx.coroutines.launch
  * Shows the comparison between [blueTeamValue] and [orangeTeamValue] by drawing lines on a canvas.
  */
 @Composable
-fun StatComparison(
+fun AnimatableStatComparison(
     blueTeamValue: Int,
     orangeTeamValue: Int,
     modifier: Modifier = Modifier,
 ) {
-    val dividerColor = LocalContentColor.current
-
     val animationPercentage = remember {
         AnimationState(0F)
     }
 
     val coroutineScope = rememberCoroutineScope()
 
-    Canvas(
+    StatComparison(
+        blueTeamValue = blueTeamValue,
+        orangeTeamValue = orangeTeamValue,
         modifier = modifier
-            .fillMaxWidth()
-            .height(48.dp)
             .whenInView {
                 coroutineScope.launch {
                     animationPercentage.animateTo(
@@ -55,7 +53,30 @@ fun StatComparison(
                         ),
                     )
                 }
-            },
+            }
+    )
+}
+
+/**
+ * Unlike [AnimatableStatComparison], this is a stateless way to render
+ * a comparison between a [blueTeamValue] and [orangeTeamValue].
+ *
+ * If a caller doesn't care about animating a stat comparison, they can use this
+ * composable directly and keep the default [percentageToRender] as 1.
+ */
+@Composable
+fun StatComparison(
+    blueTeamValue: Int,
+    orangeTeamValue: Int,
+    modifier: Modifier = Modifier,
+    percentageToRender: Float = 1F,
+) {
+    val dividerColor = LocalContentColor.current
+
+    Canvas(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(48.dp)
     ) {
         val midHeight = size.height.div(2)
         val totalValue = blueTeamValue.plus(orangeTeamValue)
@@ -63,9 +84,9 @@ fun StatComparison(
         val dividingPoint = size.width.times(blueTeamPercentage)
         val lineWidth = 4.dp.toPx()
 
-        drawBlueLine(midHeight, dividingPoint, lineWidth, animationPercentage.value)
-        drawOrangeLine(dividingPoint, midHeight, lineWidth, animationPercentage.value)
-        drawDivider(dividingPoint, midHeight, lineWidth, dividerColor, animationPercentage.value)
+        drawBlueLine(midHeight, dividingPoint, lineWidth, percentageToRender)
+        drawOrangeLine(dividingPoint, midHeight, lineWidth, percentageToRender)
+        drawDivider(dividingPoint, midHeight, lineWidth, dividerColor, percentageToRender)
     }
 }
 
@@ -152,7 +173,7 @@ private fun DrawScope.drawBlueLine(
 private fun StatComparisonPreview() {
     PocketLeagueTheme {
         Surface {
-            StatComparison(
+            AnimatableStatComparison(
                 blueTeamValue = 7,
                 orangeTeamValue = 1,
                 modifier = Modifier

@@ -186,7 +186,7 @@ private fun DrawScope.drawBlueLine(
 private fun StatComparisonPreview() {
     PocketLeagueTheme {
         Surface {
-            AnimatableStatComparison(
+            StatComparison(
                 blueTeamValue = 7,
                 orangeTeamValue = 1,
                 modifier = Modifier

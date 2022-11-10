@@ -1,9 +1,7 @@
 package com.adammcneilly.pocketleague.android.designsystem.components
 
-import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assert
-import androidx.compose.ui.test.hasProgressBarRangeInfo
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import com.adammcneilly.pocketleague.android.designsystem.stats.AnimatableStatComparison
@@ -16,6 +14,10 @@ class AnimatableStatComparisonTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
+    /**
+     * Ideally, we may want to introduce Shot library here so we
+     * can capture the animation at different points.
+     */
     @Test
     fun animateOnAppearance() {
         composeTestRule.mainClock.autoAdvance = false

@@ -51,6 +51,7 @@ fun AnimatableStatComparison(
     StatComparison(
         blueTeamValue = blueTeamValue,
         orangeTeamValue = orangeTeamValue,
+        percentageToRender = animationPercentage.value,
         modifier = modifier
             .whenInView {
                 coroutineScope.launch {

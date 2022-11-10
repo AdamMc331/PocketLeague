@@ -18,6 +18,7 @@ buildscript {
         classpath("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.12.0")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")
         classpath("org.jetbrains.kotlinx:kover:0.6.1")
+        classpath("com.karumi:shot:5.14.1")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

@@ -38,7 +38,7 @@ fun CoreStatsComparisonCard(
                 text = "Goals",
             )
 
-            StatComparison(
+            AnimatableStatComparison(
                 blueTeamValue = blueTeamStats.goals,
                 orangeTeamValue = orangeTeamStats.goals,
             )
@@ -47,7 +47,7 @@ fun CoreStatsComparisonCard(
                 text = "Assists",
             )
 
-            StatComparison(
+            AnimatableStatComparison(
                 blueTeamValue = blueTeamStats.assists,
                 orangeTeamValue = orangeTeamStats.assists,
             )
@@ -56,7 +56,7 @@ fun CoreStatsComparisonCard(
                 text = "Saves",
             )
 
-            StatComparison(
+            AnimatableStatComparison(
                 blueTeamValue = blueTeamStats.saves,
                 orangeTeamValue = orangeTeamStats.saves,
             )

@@ -11,8 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -22,35 +22,62 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue
 import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange
+import com.adammcneilly.pocketleague.android.designsystem.utils.whenInView
+import kotlinx.coroutines.launch
 
 /**
  * Shows the comparison between [blueTeamValue] and [orangeTeamValue] by drawing lines on a canvas.
+ */
+@Composable
+fun AnimatableStatComparison(
+    blueTeamValue: Int,
+    orangeTeamValue: Int,
+    modifier: Modifier = Modifier,
+) {
+    val animationPercentage = remember {
+        AnimationState(0F)
+    }
+
+    val coroutineScope = rememberCoroutineScope()
+
+    StatComparison(
+        blueTeamValue = blueTeamValue,
+        orangeTeamValue = orangeTeamValue,
+        percentageToRender = animationPercentage.value,
+        modifier = modifier
+            .whenInView {
+                coroutineScope.launch {
+                    animationPercentage.animateTo(
+                        targetValue = 1F,
+                        animationSpec = tween(
+                            durationMillis = 1000,
+                        ),
+                    )
+                }
+            }
+    )
+}
+
+/**
+ * Unlike [AnimatableStatComparison], this is a stateless way to render
+ * a comparison between a [blueTeamValue] and [orangeTeamValue].
+ *
+ * If a caller doesn't care about animating a stat comparison, they can use this
+ * composable directly and keep the default [percentageToRender] as 1.
  */
 @Composable
 fun StatComparison(
     blueTeamValue: Int,
     orangeTeamValue: Int,
     modifier: Modifier = Modifier,
+    percentageToRender: Float = 1F,
 ) {
     val dividerColor = LocalContentColor.current
-
-    val animationPercentage = remember {
-        AnimationState(0F)
-    }
-
-    LaunchedEffect(Unit) {
-        animationPercentage.animateTo(
-            targetValue = 1F,
-            animationSpec = tween(
-                durationMillis = 1000,
-            ),
-        )
-    }
 
     Canvas(
         modifier = modifier
             .fillMaxWidth()
-            .height(48.dp),
+            .height(48.dp)
     ) {
         val midHeight = size.height.div(2)
         val totalValue = blueTeamValue.plus(orangeTeamValue)
@@ -58,9 +85,9 @@ fun StatComparison(
         val dividingPoint = size.width.times(blueTeamPercentage)
         val lineWidth = 4.dp.toPx()
 
-        drawBlueLine(midHeight, dividingPoint, lineWidth, animationPercentage.value)
-        drawOrangeLine(dividingPoint, midHeight, lineWidth, animationPercentage.value)
-        drawDivider(dividingPoint, midHeight, lineWidth, dividerColor, animationPercentage.value)
+        drawBlueLine(midHeight, dividingPoint, lineWidth, percentageToRender)
+        drawOrangeLine(dividingPoint, midHeight, lineWidth, percentageToRender)
+        drawDivider(dividingPoint, midHeight, lineWidth, dividerColor, percentageToRender)
     }
 }
 

@@ -10,6 +10,7 @@ plugins {
     // Using Chris Banes fork until fix is merged into Paparazzi
     // https://github.com/cashapp/paparazzi/pull/605
     id("dev.chrisbanes.paparazzi").version("1.1.0-sdk33-alpha02")
+    id("shot")
 }
 
 android {
@@ -20,7 +21,8 @@ android {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testApplicationId = "com.adammcneilly.pocketleague.android.designsystem.test"
+        testInstrumentationRunner = "com.karumi.shot.ShotTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 

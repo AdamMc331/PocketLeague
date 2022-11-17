@@ -24,6 +24,7 @@ import com.adammcneilly.pocketleague.shared.screens.myteams.MyTeamsViewState
 @Composable
 fun MyTeamsContent(
     viewState: MyTeamsViewState,
+    onAddTeamClicked: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -42,7 +43,9 @@ fun MyTeamsContent(
                 }
 
                 item {
-                    AddFavoriteTeamsCTA()
+                    AddFavoriteTeamsCTA(
+                        onClick = onAddTeamClicked,
+                    )
                 }
             }
         } else {

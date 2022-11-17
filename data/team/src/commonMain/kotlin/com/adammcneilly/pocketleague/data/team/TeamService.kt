@@ -13,4 +13,9 @@ interface TeamService {
      * Return a list of [Team] entities that are favorited by the user.
      */
     suspend fun getFavoriteTeams(): DataState<List<Team>>
+
+    /**
+     * Return a list of [Team] entities for all of the active teams in RLCS.
+     */
+    suspend fun getActiveRLCSTeams(): DataState<List<Team>>
 }

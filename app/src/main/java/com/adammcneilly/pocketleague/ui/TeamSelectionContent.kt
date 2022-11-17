@@ -2,10 +2,11 @@ package com.adammcneilly.pocketleague.ui
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.android.designsystem.teamselection.TeamSelectionListItem
 import com.adammcneilly.pocketleague.shared.screens.teamselection.TeamSelectionViewState
 
 /**
@@ -20,10 +21,20 @@ fun TeamSelectionContent(
         modifier = modifier
             .fillMaxWidth(),
     ) {
-        items(viewState.teams.orEmpty()) { team ->
-            Text(
-                text = team.name,
+        val teams = viewState.teams.orEmpty()
+
+        itemsIndexed(teams) { index, team ->
+            TeamSelectionListItem(
+                team = team,
+                isFavorite = viewState.isFavorite(team),
+                onFavoriteChanged = { isFavorite ->
+                    // Need to save this value in the future.
+                },
             )
+
+            if (index != teams.lastIndex) {
+                Divider()
+            }
         }
     }
 }

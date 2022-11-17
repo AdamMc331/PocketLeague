@@ -8,13 +8,14 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  * User friendly representation of the UI for the team selection screen.
  */
 data class TeamSelectionViewState(
-    val teamsDataState: DataState<List<TeamOverviewDisplayModel>> = DataState.Loading,
+    val activeTeamsDataState: DataState<List<TeamOverviewDisplayModel>> = DataState.Loading,
+    private val favoriteTeams: List<TeamOverviewDisplayModel> = emptyList(),
 ) : ScreenState {
 
     override val title: String? = null
 
     val teams: List<TeamOverviewDisplayModel>?
-        get() = when (teamsDataState) {
+        get() = when (activeTeamsDataState) {
             is DataState.Error -> {
                 // Error handling coming soon
                 null
@@ -25,7 +26,16 @@ data class TeamSelectionViewState(
                 }
             }
             is DataState.Success -> {
-                teamsDataState.data
+                activeTeamsDataState.data
             }
         }
+
+    /**
+     * Given some [team], check if a team with the same ID exists in our [favoriteTeams] list.
+     */
+    fun isFavorite(team: TeamOverviewDisplayModel): Boolean {
+        return favoriteTeams.any { favoriteTeam ->
+            favoriteTeam.teamId == team.teamId
+        }
+    }
 }

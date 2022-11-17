@@ -17,6 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 
+/**
+ * Renders a list item to be used inside the team selection screen, allowing the user to change
+ * whether or not this [team] is one of their favorites.
+ */
 @Composable
 fun TeamSelectionListItem(
     team: TeamOverviewDisplayModel,

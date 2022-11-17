@@ -8,6 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.screens.teamselection.TeamSelectionViewState
 
+/**
+ * This renders the given [viewState] to show a selection of teams that the user can favorite.
+ */
 @Composable
 fun TeamSelectionContent(
     viewState: TeamSelectionViewState,

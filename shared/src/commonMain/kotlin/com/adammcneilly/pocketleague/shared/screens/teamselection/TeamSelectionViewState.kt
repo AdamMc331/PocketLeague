@@ -4,6 +4,9 @@ import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 
+/**
+ * User friendly representation of the UI for the team selection screen.
+ */
 data class TeamSelectionViewState(
     val teamsDataState: DataState<List<TeamOverviewDisplayModel>> = DataState.Loading,
 ) : ScreenState {

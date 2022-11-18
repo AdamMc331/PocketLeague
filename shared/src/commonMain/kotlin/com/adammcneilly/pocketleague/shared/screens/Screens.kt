@@ -7,6 +7,7 @@ import com.adammcneilly.pocketleague.shared.screens.matchdetail.initMatchDetail
 import com.adammcneilly.pocketleague.shared.screens.myteams.initMyTeams
 import com.adammcneilly.pocketleague.shared.screens.records.initRecords
 import com.adammcneilly.pocketleague.shared.screens.stats.initStats
+import com.adammcneilly.pocketleague.shared.screens.teamselection.initTeamSelection
 
 /**
  * An enumeration of all screens that appear somewhere in our application.
@@ -73,4 +74,12 @@ enum class Screens(
         },
         stackableInstances = false,
     ),
+    TeamSelection(
+        asString = "team_selection",
+        navigationLevel = 2,
+        initSettings = {
+            initTeamSelection()
+        },
+        stackableInstances = false,
+    )
 }

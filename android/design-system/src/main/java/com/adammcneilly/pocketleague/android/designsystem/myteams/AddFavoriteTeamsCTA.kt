@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.android.designsystem.myteams
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -23,10 +24,14 @@ import androidx.compose.ui.unit.dp
  */
 @Composable
 fun AddFavoriteTeamsCTA(
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier
+            .clickable(
+                onClick = onClick,
+            ),
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

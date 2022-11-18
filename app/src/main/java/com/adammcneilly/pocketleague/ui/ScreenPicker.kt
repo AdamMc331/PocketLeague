@@ -102,6 +102,17 @@ fun Navigation.ScreenPicker(
                 viewState = stateProvider.get(screenIdentifier),
                 modifier = Modifier
                     .padding(paddingValues),
+                onAddTeamClicked = {
+                    navigate(Screens.TeamSelection)
+                }
+            )
+        }
+
+        Screens.TeamSelection -> {
+            TeamSelectionContent(
+                viewState = stateProvider.get(screenIdentifier),
+                modifier = Modifier
+                    .padding(paddingValues),
             )
         }
     }

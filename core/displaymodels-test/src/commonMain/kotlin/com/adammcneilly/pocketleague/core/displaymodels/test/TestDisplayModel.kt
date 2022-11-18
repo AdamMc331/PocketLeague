@@ -4,6 +4,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.CoreStatsDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
 
 object TestDisplayModel {
     val matchTeamResultWinner: MatchTeamResultDisplayModel
@@ -46,5 +47,13 @@ object TestDisplayModel {
     val zps = PlayerDisplayModel(
         id = "zpsId",
         tag = "ZPS",
+    )
+
+    val knights = TeamOverviewDisplayModel(
+        teamId = "6020bd98f1e4807cc700dc08",
+        name = "Knights",
+        imageUrl = ThemedImageURL(
+            lightThemeImageUrl = "https://griffon.octane.gg/teams/pittsburgh-knights.png",
+        ),
     )
 }

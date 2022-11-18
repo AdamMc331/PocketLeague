@@ -43,6 +43,8 @@ android {
 
 dependencies {
 
+    implementation(project(":core:displaymodels"))
+    implementation(project(":core:displaymodels-test"))
     implementation("androidx.glance:glance:1.0.0-alpha05")
     implementation("androidx.glance:glance-appwidget:1.0.0-alpha05")
     implementation("com.google.android.material:material:${Versions.material}")

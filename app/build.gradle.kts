@@ -80,6 +80,7 @@ android {
 dependencies {
 
     implementation(project(":android:design-system"))
+    implementation(project(":android:widgets"))
     implementation(project(":shared"))
     implementation(project(":core:models"))
     implementation(project(":core:displaymodels"))

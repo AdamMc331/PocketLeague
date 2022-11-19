@@ -6,7 +6,7 @@
         <receiver
             android:name=".UpcomingMatchesWidgetReceiver"
             android:exported="false"
-            android:label="Upcoming Matches">
+            android:label="@string/upcoming_matches">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

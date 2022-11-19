@@ -16,6 +16,9 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.blueWinner
 import com.adammcneilly.pocketleague.core.displaymodels.test.orangeWinner
 
+/**
+ * A [GlanceAppWidget] implementation to render upcoming matches in RLCS.
+ */
 class UpcomingMatchesWidget : GlanceAppWidget() {
 
     @Composable

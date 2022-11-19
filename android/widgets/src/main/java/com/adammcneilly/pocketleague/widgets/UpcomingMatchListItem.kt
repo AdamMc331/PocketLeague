@@ -11,6 +11,9 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 
+/**
+ * Renders a [displayModel] object inside a list in our [UpcomingMatchesWidget].
+ */
 @Composable
 fun UpcomingMatchListItem(
     displayModel: MatchDetailDisplayModel,

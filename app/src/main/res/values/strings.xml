@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">A Pocket League</string>
+    <string name="app_name">Pocket League</string>
     <string name="event_image_content_description">Event Image</string>
     <string name="summary">Summary</string>
     <string name="brackets">Brackets</string>

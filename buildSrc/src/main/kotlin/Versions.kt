@@ -26,9 +26,6 @@ object Versions {
     // https://developer.android.com/jetpack/androidx/releases/test
     const val espresso = "3.4.0"
 
-    // https://github.com/material-components/material-components-android/releases
-    const val material = "1.6.1"
-
     // https://github.com/google/truth/releases
     const val truth = "1.1.3"
 

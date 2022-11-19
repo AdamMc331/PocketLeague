@@ -80,13 +80,14 @@ android {
 dependencies {
 
     implementation(project(":android:design-system"))
+    implementation(project(":android:widgets"))
     implementation(project(":shared"))
     implementation(project(":core:models"))
     implementation(project(":core:displaymodels"))
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation("com.google.android.material:material:${Versions.material}")
+    implementation(libs.google.material)
     implementation(libs.bundles.compose.ui)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)

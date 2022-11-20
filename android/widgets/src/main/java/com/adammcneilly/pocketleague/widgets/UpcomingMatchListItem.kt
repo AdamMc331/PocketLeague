@@ -9,6 +9,7 @@ import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
+import androidx.glance.unit.ColorProvider
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 
 /**
@@ -17,6 +18,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 @Composable
 fun UpcomingMatchListItem(
     displayModel: MatchDetailDisplayModel,
+    contentColor: ColorProvider,
     modifier: GlanceModifier = GlanceModifier,
 ) {
     Column(
@@ -26,7 +28,7 @@ fun UpcomingMatchListItem(
         Text(
             text = displayModel.eventName,
             style = TextStyle(
-                color = GlanceTheme.colors.onSurface,
+                color = contentColor,
                 fontWeight = FontWeight.Bold,
             ),
         )
@@ -34,7 +36,7 @@ fun UpcomingMatchListItem(
         Text(
             text = displayModel.relativeDateTime,
             style = TextStyle(
-                color = GlanceTheme.colors.onSurface,
+                color = contentColor,
                 fontSize = 10.sp,
             ),
         )
@@ -46,7 +48,7 @@ fun UpcomingMatchListItem(
         Text(
             text = teamNames,
             style = TextStyle(
-                color = GlanceTheme.colors.onSurface,
+                color = contentColor,
             ),
         )
     }

@@ -16,7 +16,7 @@ import com.adammcneilly.pocketleague.data.remote.RemoteParams
  * A concrete implementation of [EventService] that requests data through the
  * given [apiClient].
  */
-internal class OctaneGGEventService(
+class OctaneGGEventService(
     private val apiClient: BaseKTORClient,
 ) : EventService {
 

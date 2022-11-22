@@ -8,4 +8,4 @@ The [Android Build](/.github/workflows/lint_checks.yml) workflow automates the c
 
 ## Android UI Tests
 
-The [Android UI Tests](/.github/workflows/android_tests.yml) is a separate workflow that is set to only run on pull request. This is because UI tests are slow and take up a lot of resources, so we only want to validate them when we're ready to merge changes into our base branch. 
+The [Android UI Tests](/.github/workflows/design_system_tests.yml) is a separate workflow that is set to only run on pull request. This is because UI tests are slow and take up a lot of resources, so we only want to validate them when we're ready to merge changes into our base branch. 

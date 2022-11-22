@@ -83,7 +83,20 @@ android {
                 maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel5api30").apply {
                     device = "Pixel 5"
                     apiLevel = 30
-                    systemImageSource = "aosp"
+                    systemImageSource = "aosp-atd"
+                }
+
+                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixelCapi30").apply {
+                    device = "Pixel C"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                }
+
+                groups {
+                    maybeCreate("pixelPhoneAndTablet").apply {
+                        targetDevices.add(devices["pixel5api30"])
+                        targetDevices.add(devices["pixelCapi30"])
+                    }
                 }
             }
         }

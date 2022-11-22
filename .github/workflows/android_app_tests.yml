@@ -21,4 +21,4 @@ jobs:
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
       - name: Run Tests
-        run: ./gradlew app:pixel5api30DebugAndroidTest
+        run: ./gradlew app:pixelPhoneAndTabletGroupDebugAndroidTest

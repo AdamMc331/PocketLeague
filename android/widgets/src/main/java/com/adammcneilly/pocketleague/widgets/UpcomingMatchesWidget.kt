@@ -34,13 +34,14 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
                 modifier = GlanceModifier
                     .fillMaxSize()
                     .background(
-                        GlanceTheme.colors.surface,
+                        GlanceTheme.colors.surfaceVariant,
                     ),
             ) {
                 itemsIndexed(demoMatches) { index, match ->
                     Column {
                         UpcomingMatchListItem(
                             displayModel = match,
+                            contentColor = GlanceTheme.colors.onSurfaceVariant,
                         )
 
                         if (index != demoMatches.lastIndex) {
@@ -48,7 +49,7 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
                                 modifier = GlanceModifier
                                     .fillMaxWidth()
                                     .height(1.dp)
-                                    .background(GlanceTheme.colors.onSurface),
+                                    .background(GlanceTheme.colors.onSurfaceVariant),
                             )
                         }
                     }

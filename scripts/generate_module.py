@@ -31,4 +31,8 @@ manifest = open(module_root + "/src/androidMain/AndroidManifest.xml", "w+")
 manifest.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest package=\"com.adammcneilly.pocketleague." + module_package + "\"/>")
 manifest.close()
 
+# Add to project
+settings = open("settings.gradle", "a")
+settings.write("include ':" + module_type + ":" + module_sub_name + "'")
+
 print("Done!")

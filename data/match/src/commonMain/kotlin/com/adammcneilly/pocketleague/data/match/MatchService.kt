@@ -22,14 +22,4 @@ interface MatchService {
     suspend fun fetchMatches(
         request: MatchListRequest,
     ): DataState<List<Match>>
-
-    companion object {
-        /**
-         * Provide a default implementation of a [MatchService] so consumers of this module
-         * have no idea what implementations are available.
-         */
-        fun provideDefault(): MatchService {
-            return OctaneGGMatchService()
-        }
-    }
 }

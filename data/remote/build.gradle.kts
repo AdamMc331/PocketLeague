@@ -11,8 +11,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":data:core"))
-                implementation(libs.kotlinx.serialization.json)
                 implementation(libs.bundles.ktor.client)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
         val commonTest by getting {

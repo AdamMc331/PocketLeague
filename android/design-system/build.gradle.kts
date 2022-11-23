@@ -52,14 +52,17 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:displaymodels"))
-    implementation(libs.bundles.compose.ui)
-    implementation(libs.accompanist.placeholder.material)
-    implementation(libs.coil.compose)
-    testImplementation(project(":core:displaymodels-test"))
-    testImplementation(libs.google.testparameterinjector)
     androidTestImplementation(project(":core:displaymodels-test"))
     androidTestImplementation(libs.bundles.androidx.test)
     androidTestImplementation(libs.compose.ui.test.junit)
+
     debugImplementation(libs.bundles.compose.ui.debug)
+
+    implementation(project(":core:displaymodels"))
+    implementation(libs.accompanist.placeholder.material)
+    implementation(libs.bundles.compose.ui)
+    implementation(libs.coil.compose)
+
+    testImplementation(project(":core:displaymodels-test"))
+    testImplementation(libs.google.testparameterinjector)
 }

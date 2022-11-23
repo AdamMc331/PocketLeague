@@ -10,8 +10,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":data:core"))
                 implementation(project(":core:models"))
+                implementation(project(":data:core"))
                 implementation(project(":data:remote"))
                 implementation(libs.kotlinx.serialization.json)
             }

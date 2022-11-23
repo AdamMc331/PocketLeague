@@ -10,16 +10,16 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":core:displaymodels"))
                 implementation(project(":core:datetime"))
+                implementation(project(":core:displaymodels"))
+                implementation(project(":core:models"))
                 implementation(project(":data:core"))
                 implementation(project(":data:event"))
                 implementation(project(":data:game"))
                 implementation(project(":data:match"))
                 implementation(project(":data:team"))
-                implementation(libs.kotlinx.serialization.json)
                 implementation(libs.bundles.ktor.client)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
         val commonTest by getting {

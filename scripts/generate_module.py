@@ -32,8 +32,8 @@ manifest.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest package=\"
 manifest.close()
 
 # Add to project
-settings = open("settings.gradle", "a")
+settings = open("settings.gradle.kts", "a")
 settings.write("\n")
-settings.write("include ':" + module_type + ":" + module_sub_name + "'")
+settings.write("include(\":" + module_type + ":" + module_sub_name + "\"")
 
 print("Done!")

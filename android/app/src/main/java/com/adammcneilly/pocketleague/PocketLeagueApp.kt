@@ -5,8 +5,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.adammcneilly.pocketleague.shared.di.DataModule
-import com.adammcneilly.pocketleague.shared.di.ProdDataModule
+import com.adammcneilly.pocketleague.shared.di.AppModule
+import com.adammcneilly.pocketleague.shared.di.ProdAppModule
 import com.adammcneilly.pocketleague.shared.screens.DKMPViewModel
 import com.adammcneilly.pocketleague.shared.screens.getAndroidInstance
 
@@ -18,12 +18,12 @@ open class PocketLeagueApp : Application() {
 
     lateinit var viewModel: DKMPViewModel
 
-    open val dataModule: DataModule = ProdDataModule()
+    open val appModule: AppModule = ProdAppModule()
 
     override fun onCreate() {
         super.onCreate()
         viewModel = DKMPViewModel.Factory.getAndroidInstance(
-            dataModule = this.dataModule,
+            appModule = this.appModule,
         )
 
         val appLifecycleObserver = AppLifecycleObserver(viewModel)

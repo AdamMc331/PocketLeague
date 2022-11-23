@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens
 
-import com.adammcneilly.pocketleague.shared.data.Repository
+import com.adammcneilly.pocketleague.shared.di.AppModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -16,7 +16,7 @@ import kotlin.reflect.KClass
  */
 @Suppress("TooManyFunctions")
 class StateManager(
-    val repository: Repository,
+    val appModule: AppModule,
 ) {
     internal val mutableStateFlow = MutableStateFlow(AppState())
 

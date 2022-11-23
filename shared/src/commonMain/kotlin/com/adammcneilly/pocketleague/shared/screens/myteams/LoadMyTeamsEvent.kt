@@ -22,7 +22,8 @@ fun Events.loadMyTeams() = screenCoroutine { scope ->
 private suspend fun Events.fetchFavoriteTeams(
     scope: CoroutineScope,
 ) {
-    val favoriteTeamsDataState = repository
+    val favoriteTeamsDataState = appModule
+        .dataModule
         .teamService
         .getFavoriteTeams()
 
@@ -81,7 +82,8 @@ private suspend fun Events.fetchRecentMatchesForTeam(
         before = Clock.System.now(),
     )
 
-    return repository
+    return appModule
+        .dataModule
         .matchService
         .fetchMatches(matchListRequest)
 }

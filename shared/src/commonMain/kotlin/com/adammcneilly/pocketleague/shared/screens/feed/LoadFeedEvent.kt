@@ -17,6 +17,35 @@ const val NUM_DAYS_RECENT_MATCHES = 7
  * Loads the information for the feed state.
  */
 fun Events.loadFeed() = screenCoroutine {
+    fetchOngoingEvents()
+    fetchRecentEvents()
+    fetchUpcomingEvents()
+}
+
+private suspend fun Events.fetchRecentEvents() {
+    val recentMatchesRequest = MatchListRequest(
+        before = Clock.System.now(),
+        after = Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),
+        group = "rlcs",
+    )
+
+    val matchListResult = appModule
+        .dataModule
+        .matchService
+        .fetchMatches(recentMatchesRequest)
+
+    val mappedResult = matchListResult.map { matches ->
+        matches.map(Match::toDetailDisplayModel)
+    }
+
+    stateManager.updateScreen(FeedViewState::class) {
+        it.copy(
+            recentMatchesState = mappedResult,
+        )
+    }
+}
+
+private suspend fun Events.fetchOngoingEvents() {
     val ongoingEventsRequest = EventListRequest(
         date = Clock.System.now(),
         group = "rlcs",
@@ -46,25 +75,36 @@ fun Events.loadFeed() = screenCoroutine {
             ongoingEventsState = mappedResult,
         )
     }
+}
 
-    val recentMatchesRequest = MatchListRequest(
-        before = Clock.System.now(),
-        after = Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),
+private suspend fun Events.fetchUpcomingEvents() {
+    val upcomingEventsRequest = EventListRequest(
+        after = Clock.System.now(),
         group = "rlcs",
     )
 
-    val matchListResult = appModule
+    val repoResult = appModule
         .dataModule
-        .matchService
-        .fetchMatches(recentMatchesRequest)
-
-    val mappedResult = matchListResult.map { matches ->
-        matches.map(Match::toDetailDisplayModel)
-    }
+        .eventService
+        .fetchEvents(upcomingEventsRequest)
 
     stateManager.updateScreen(FeedViewState::class) {
+        val mappedResult = when (repoResult) {
+            is DataState.Loading -> {
+                DataState.Loading
+            }
+            is DataState.Success -> {
+                DataState.Success(
+                    data = repoResult.data.map(Event::toSummaryDisplayModel)
+                )
+            }
+            is DataState.Error -> {
+                DataState.Error(repoResult.error)
+            }
+        }
+
         it.copy(
-            recentMatchesState = mappedResult,
+            upcomingEventsState = mappedResult,
         )
     }
 }

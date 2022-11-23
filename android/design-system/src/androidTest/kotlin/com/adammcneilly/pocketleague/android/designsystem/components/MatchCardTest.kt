@@ -7,7 +7,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.test.blueWinner
+import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.test.matchDetailBlueWinner
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Rule
@@ -24,7 +25,7 @@ class MatchCardTest {
         composeTestRule.setContent {
             PocketLeagueTheme {
                 MatchCard(
-                    match = MatchDetailDisplayModel.blueWinner,
+                    match = TestDisplayModel.matchDetailBlueWinner,
                     onClick = {
                         clickedId = it
                     },
@@ -45,7 +46,7 @@ class MatchCardTest {
             .performClick()
 
         assertEquals(
-            MatchDetailDisplayModel.blueWinner.matchId,
+            TestDisplayModel.matchDetailBlueWinner.matchId,
             clickedId,
         )
     }

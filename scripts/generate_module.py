@@ -14,7 +14,7 @@ print("Generating module: " + module_name)
 
 module_type = module_name.split("_")[0]
 module_sub_name = module_name.split("_")[1]
-module_package = module_name.replace(":", ".").replace("_", ".")
+module_package = module_name.replace(":", ".").replace("_", ".").replace("-", ".")
 module_root = module_type + "/" + module_sub_name
 
 print("Writing files to folder: " + module_root)
@@ -33,6 +33,7 @@ manifest.close()
 
 # Add to project
 settings = open("settings.gradle", "a")
+settings.write("\n")
 settings.write("include ':" + module_type + ":" + module_sub_name + "'")
 
 print("Done!")

@@ -1,19 +1,18 @@
 package com.adammcneilly.pocketleague.core.displaymodels.test
 
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
 
-val GameDetailDisplayModel.Companion.blueWinner: GameDetailDisplayModel
+val TestDisplayModel.gameDetailBlueWinner: GameDetailDisplayModel
     get() = GameDetailDisplayModel(
-        orangeTeamResult = GameTeamResultDisplayModel.loser,
-        blueTeamResult = GameTeamResultDisplayModel.winner,
+        orangeTeamResult = TestDisplayModel.gameTeamResultLoser,
+        blueTeamResult = TestDisplayModel.gameTeamResultWinner,
         map = "Wasteland",
         gameNumber = "1",
         otLabel = null,
     )
 
-val GameDetailDisplayModel.Companion.orangeWinner: GameDetailDisplayModel
-    get() = blueWinner.copy(
-        orangeTeamResult = GameTeamResultDisplayModel.winner,
-        blueTeamResult = GameTeamResultDisplayModel.loser
+val TestDisplayModel.gameDetailOrangeWinner: GameDetailDisplayModel
+    get() = TestDisplayModel.gameDetailBlueWinner.copy(
+        orangeTeamResult = TestDisplayModel.gameTeamResultWinner,
+        blueTeamResult = TestDisplayModel.gameTeamResultLoser,
     )

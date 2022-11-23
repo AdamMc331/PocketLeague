@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.core.displaymodels.test
 
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 
-val MatchDetailDisplayModel.Companion.blueWinner: MatchDetailDisplayModel
+val TestDisplayModel.matchDetailBlueWinner: MatchDetailDisplayModel
     get() = MatchDetailDisplayModel(
         matchId = "matchId",
         localDate = "Jan 01, 2000",
@@ -14,8 +14,8 @@ val MatchDetailDisplayModel.Companion.blueWinner: MatchDetailDisplayModel
         blueTeamResult = TestDisplayModel.matchTeamResultWinner,
     )
 
-val MatchDetailDisplayModel.Companion.orangeWinner: MatchDetailDisplayModel
-    get() = blueWinner.copy(
+val TestDisplayModel.matchDetailOrangeWinner: MatchDetailDisplayModel
+    get() = TestDisplayModel.matchDetailBlueWinner.copy(
         orangeTeamResult = TestDisplayModel.matchTeamResultWinner,
         blueTeamResult = TestDisplayModel.matchTeamResultLoser,
     )

@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.core.displaymodels.test
 
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
 
-val EventStageSummaryDisplayModel.Companion.test: EventStageSummaryDisplayModel
+val TestDisplayModel.eventStageSummary: EventStageSummaryDisplayModel
     get() = EventStageSummaryDisplayModel(
         stageId = "stageId",
         name = "Playoffs",

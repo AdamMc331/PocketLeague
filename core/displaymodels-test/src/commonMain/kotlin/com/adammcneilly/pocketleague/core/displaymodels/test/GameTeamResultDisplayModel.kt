@@ -1,19 +1,18 @@
 package com.adammcneilly.pocketleague.core.displaymodels.test
 
 import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 
-val GameTeamResultDisplayModel.Companion.winner: GameTeamResultDisplayModel
+val TestDisplayModel.gameTeamResultWinner: GameTeamResultDisplayModel
     get() = GameTeamResultDisplayModel(
-        team = TeamOverviewDisplayModel.knights,
+        team = TestDisplayModel.knights,
         goals = 7,
         winner = true,
         players = emptyList(),
     )
 
-val GameTeamResultDisplayModel.Companion.loser: GameTeamResultDisplayModel
+val TestDisplayModel.gameTeamResultLoser: GameTeamResultDisplayModel
     get() = GameTeamResultDisplayModel(
-        team = TeamOverviewDisplayModel.g2,
+        team = TestDisplayModel.g2,
         goals = 1,
         winner = false,
         players = emptyList(),

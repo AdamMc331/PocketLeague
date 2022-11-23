@@ -9,7 +9,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
 object TestDisplayModel {
     val matchTeamResultWinner: MatchTeamResultDisplayModel
         get() = MatchTeamResultDisplayModel(
-            team = TeamOverviewDisplayModel.knights,
+            team = TestDisplayModel.knights,
             score = 7,
             winner = true,
             coreStats = coreStats,
@@ -18,7 +18,7 @@ object TestDisplayModel {
 
     val matchTeamResultLoser: MatchTeamResultDisplayModel
         get() = MatchTeamResultDisplayModel(
-            team = TeamOverviewDisplayModel.g2,
+            team = TestDisplayModel.g2,
             score = 1,
             winner = false,
             coreStats = coreStats,

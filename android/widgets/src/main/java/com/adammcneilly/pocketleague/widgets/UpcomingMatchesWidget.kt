@@ -12,9 +12,9 @@ import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
-import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.test.blueWinner
-import com.adammcneilly.pocketleague.core.displaymodels.test.orangeWinner
+import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.test.matchDetailBlueWinner
+import com.adammcneilly.pocketleague.core.displaymodels.test.matchDetailOrangeWinner
 
 /**
  * A [GlanceAppWidget] implementation to render upcoming matches in RLCS.
@@ -24,9 +24,9 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
     @Composable
     override fun Content() {
         val demoMatches = listOf(
-            MatchDetailDisplayModel.blueWinner,
-            MatchDetailDisplayModel.orangeWinner,
-            MatchDetailDisplayModel.blueWinner,
+            TestDisplayModel.matchDetailBlueWinner,
+            TestDisplayModel.matchDetailOrangeWinner,
+            TestDisplayModel.matchDetailBlueWinner,
         )
 
         GlanceTheme {

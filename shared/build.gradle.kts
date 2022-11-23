@@ -18,7 +18,7 @@ kotlin {
                 implementation(project(":data:game"))
                 implementation(project(":data:match"))
                 implementation(project(":data:team"))
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
+                implementation(libs.kotlinx.serialization.json)
                 implementation(libs.bundles.ktor.client)
             }
         }

@@ -57,7 +57,7 @@ dependencies {
     implementation(libs.accompanist.placeholder.material)
     implementation(libs.coil.compose)
     testImplementation(project(":core:displaymodels-test"))
-    testImplementation("com.google.testparameterinjector:test-parameter-injector:1.9")
+    testImplementation(libs.google.testparameterinjector)
     androidTestImplementation(project(":core:displaymodels-test"))
     androidTestImplementation(libs.bundles.androidx.test)
     androidTestImplementation(libs.compose.ui.test.junit)

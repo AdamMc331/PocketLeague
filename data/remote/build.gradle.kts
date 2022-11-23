@@ -11,7 +11,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":data:core"))
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
+                implementation(libs.kotlinx.serialization.json)
                 implementation(libs.bundles.ktor.client)
             }
         }

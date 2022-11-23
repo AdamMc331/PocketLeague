@@ -3,7 +3,9 @@ package com.adammcneilly.pocketleague.android.designsystem.game
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.android.designsystem.snapshotScreen
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.test.*
+import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.test.gameDetailBlueWinner
+import com.adammcneilly.pocketleague.core.displaymodels.test.gameDetailOrangeWinner
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule

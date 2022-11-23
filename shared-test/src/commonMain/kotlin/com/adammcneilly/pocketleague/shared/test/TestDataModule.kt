@@ -5,7 +5,7 @@ import com.adammcneilly.pocketleague.data.event.test.FakeEventService
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.match.MatchService
-import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
+import com.adammcneilly.pocketleague.data.match.test.FakeMatchService
 import com.adammcneilly.pocketleague.data.team.OctaneGGTeamService
 import com.adammcneilly.pocketleague.data.team.TeamService
 import com.adammcneilly.pocketleague.shared.di.DataModule
@@ -18,7 +18,7 @@ class TestDataModule : DataModule {
 
     override val eventService: EventService = FakeEventService()
 
-    override val matchService: MatchService = OctaneGGMatchService()
+    override val matchService: MatchService = FakeMatchService()
 
     override val gameService: GameService = OctaneGGGameService()
 

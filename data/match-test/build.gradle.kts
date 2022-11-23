@@ -1,6 +1,5 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
     id("com.android.library")
 }
 
@@ -10,13 +9,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":data:event"))
-                implementation(project(":data:event-test"))
-                implementation(project(":data:game"))
+                implementation(project(":core:models"))
+                implementation(project(":core:models-test"))
+                implementation(project(":data:core"))
                 implementation(project(":data:match"))
-                implementation(project(":data:match-test"))
-                implementation(project(":data:team"))
-                implementation(project(":shared"))
             }
         }
         val commonTest by getting {
@@ -50,33 +46,28 @@ kotlin {
 android {
     compileSdk = AndroidConfig.compileSDK
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-
     defaultConfig {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
     }
-
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_1_8)
-    }
 }
 
-project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)?.apply {
-    if (project.findProperty("ios") == "true") {
-        listOf(
-            iosX64(),
-            iosArm64(),
-            iosSimulatorArm64()
-        ).forEach {
-            it.binaries.framework {
-                baseName = project.name
+project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)
+    ?.apply {
+        if (project.findProperty("ios") == "true") {
+            listOf(
+                iosX64(),
+                iosArm64(),
+                iosSimulatorArm64()
+            ).forEach {
+                it.binaries.framework {
+                    baseName = project.name
+                }
+            }
+        }
+        if (project.findProperty("js") == "true") {
+            js(IR) {
+                browser()
             }
         }
     }
-    if (project.findProperty("js") == "true") {
-        js(IR) {
-            browser()
-        }
-    }
-}

@@ -13,8 +13,6 @@ import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
 import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.test.matchDetailBlueWinner
-import com.adammcneilly.pocketleague.core.displaymodels.test.matchDetailOrangeWinner
 
 /**
  * A [GlanceAppWidget] implementation to render upcoming matches in RLCS.

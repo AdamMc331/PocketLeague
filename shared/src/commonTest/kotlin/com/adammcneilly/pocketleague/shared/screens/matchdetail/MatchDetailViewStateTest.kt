@@ -3,7 +3,6 @@ package com.adammcneilly.pocketleague.shared.screens.matchdetail
 import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.test.matchDetailBlueWinner
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull

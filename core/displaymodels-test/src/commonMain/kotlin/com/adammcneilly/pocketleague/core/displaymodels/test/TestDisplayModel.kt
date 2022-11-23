@@ -1,38 +1,23 @@
 package com.adammcneilly.pocketleague.core.displaymodels.test
 
 import com.adammcneilly.pocketleague.core.displaymodels.CoreStatsDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
 
 object TestDisplayModel {
-    val matchTeamResultWinner: MatchTeamResultDisplayModel
-        get() = MatchTeamResultDisplayModel(
-            team = TeamOverviewDisplayModel.knights,
-            score = 7,
-            winner = true,
-            coreStats = coreStats,
-            players = emptyList(),
-        )
-
-    val matchTeamResultLoser: MatchTeamResultDisplayModel
-        get() = MatchTeamResultDisplayModel(
-            team = TeamOverviewDisplayModel.g2,
-            score = 1,
-            winner = false,
-            coreStats = coreStats,
-            players = emptyList(),
-        )
-
-    val coreStats: CoreStatsDisplayModel
-        get() = CoreStatsDisplayModel(
-            score = 1000,
-            goals = 7,
-            assists = 5,
-            saves = 3,
-            shots = 1,
-        )
+    val coreStats = CoreStatsDisplayModel(
+        score = 1000,
+        goals = 7,
+        assists = 5,
+        saves = 3,
+        shots = 1,
+    )
 
     val cheese = PlayerDisplayModel(
         id = "cheeseId",
@@ -55,5 +40,81 @@ object TestDisplayModel {
         imageUrl = ThemedImageURL(
             lightThemeImageUrl = "https://griffon.octane.gg/teams/pittsburgh-knights.png",
         ),
+    )
+
+    val g2 = TeamOverviewDisplayModel(
+        teamId = "6020bc70f1e4807cc70023a5",
+        name = "G2 Esports",
+        imageUrl = ThemedImageURL(
+            lightThemeImageUrl = "https://griffon.octane.gg/teams/g2-esports.png",
+        ),
+    )
+
+    val matchTeamResultWinner = MatchTeamResultDisplayModel(
+        team = knights,
+        score = 7,
+        winner = true,
+        coreStats = coreStats,
+        players = emptyList(),
+    )
+
+    val matchTeamResultLoser = MatchTeamResultDisplayModel(
+        team = g2,
+        score = 1,
+        winner = false,
+        coreStats = coreStats,
+        players = emptyList(),
+    )
+
+    val matchDetailBlueWinner = MatchDetailDisplayModel(
+        matchId = "matchId",
+        localDate = "Jan 01, 2000",
+        localTime = "12:00",
+        eventName = "RLCS World Championship",
+        stageName = "Playoffs",
+        relativeDateTime = "1d ago",
+        orangeTeamResult = matchTeamResultLoser,
+        blueTeamResult = matchTeamResultWinner,
+    )
+
+    val matchDetailOrangeWinner = matchDetailBlueWinner.copy(
+        orangeTeamResult = matchTeamResultWinner,
+        blueTeamResult = matchTeamResultLoser,
+    )
+
+    val gameTeamResultWinner = GameTeamResultDisplayModel(
+        team = knights,
+        goals = 7,
+        winner = true,
+        players = emptyList(),
+    )
+
+    val gameTeamResultLoser = GameTeamResultDisplayModel(
+        team = g2,
+        goals = 1,
+        winner = false,
+        players = emptyList(),
+    )
+
+    val gameDetailBlueWinner = GameDetailDisplayModel(
+        orangeTeamResult = gameTeamResultLoser,
+        blueTeamResult = gameTeamResultWinner,
+        map = "Wasteland",
+        gameNumber = "1",
+        otLabel = null,
+    )
+
+    val gameDetailOrangeWinner = gameDetailBlueWinner.copy(
+        orangeTeamResult = gameTeamResultWinner,
+        blueTeamResult = gameTeamResultLoser,
+    )
+
+    val eventStageSummary = EventStageSummaryDisplayModel(
+        stageId = "stageId",
+        name = "Playoffs",
+        startDate = "Jan 01, 2000",
+        endDate = "Jan 02, 2000",
+        lan = false,
+        liquipedia = "liquipediaURL",
     )
 }

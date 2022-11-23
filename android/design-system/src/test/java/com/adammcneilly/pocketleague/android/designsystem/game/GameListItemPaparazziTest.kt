@@ -3,8 +3,7 @@ package com.adammcneilly.pocketleague.android.designsystem.game
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.android.designsystem.snapshotScreen
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.test.blueWinner
-import com.adammcneilly.pocketleague.core.displaymodels.test.orangeWinner
+import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
@@ -23,14 +22,14 @@ class GameListItemPaparazziTest {
     @Test
     fun renderBlueTeamWinner() {
         paparazzi.snapshotScreen(useDarkTheme) {
-            GameListItem(displayModel = GameDetailDisplayModel.blueWinner)
+            GameListItem(displayModel = TestDisplayModel.gameDetailBlueWinner)
         }
     }
 
     @Test
     fun renderOrangeTeamWinner() {
         paparazzi.snapshotScreen(useDarkTheme) {
-            GameListItem(displayModel = GameDetailDisplayModel.orangeWinner)
+            GameListItem(displayModel = TestDisplayModel.gameDetailOrangeWinner)
         }
     }
 
@@ -45,7 +44,7 @@ class GameListItemPaparazziTest {
     fun renderWithOT() {
         paparazzi.snapshotScreen(useDarkTheme) {
             GameListItem(
-                displayModel = GameDetailDisplayModel.blueWinner.copy(
+                displayModel = TestDisplayModel.gameDetailBlueWinner.copy(
                     otLabel = "OT +1:23",
                 ),
             )

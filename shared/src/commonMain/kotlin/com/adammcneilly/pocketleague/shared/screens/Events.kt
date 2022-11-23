@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens
 
-import com.adammcneilly.pocketleague.shared.data.Repository
+import com.adammcneilly.pocketleague.shared.di.AppModule
 import kotlinx.coroutines.CoroutineScope
 
 /**
@@ -10,8 +10,8 @@ import kotlinx.coroutines.CoroutineScope
 class Events(
     val stateManager: StateManager,
 ) {
-    val repository: Repository
-        get() = stateManager.repository
+    val appModule: AppModule
+        get() = stateManager.appModule
 
     /**
      * This will run the supplied [block] inside the coroutine scope of the current

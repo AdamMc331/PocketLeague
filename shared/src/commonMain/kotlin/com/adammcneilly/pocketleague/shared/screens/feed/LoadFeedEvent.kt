@@ -22,9 +22,10 @@ fun Events.loadFeed() = screenCoroutine {
         group = "rlcs",
     )
 
-    val repoResult = repository.eventService.fetchEvents(
-        ongoingEventsRequest,
-    )
+    val repoResult = appModule
+        .dataModule
+        .eventService
+        .fetchEvents(ongoingEventsRequest)
 
     stateManager.updateScreen(FeedViewState::class) {
         val mappedResult = when (repoResult) {
@@ -52,9 +53,10 @@ fun Events.loadFeed() = screenCoroutine {
         group = "rlcs",
     )
 
-    val matchListResult = repository.matchService.fetchMatches(
-        request = recentMatchesRequest,
-    )
+    val matchListResult = appModule
+        .dataModule
+        .matchService
+        .fetchMatches(recentMatchesRequest)
 
     val mappedResult = matchListResult.map { matches ->
         matches.map(Match::toDetailDisplayModel)

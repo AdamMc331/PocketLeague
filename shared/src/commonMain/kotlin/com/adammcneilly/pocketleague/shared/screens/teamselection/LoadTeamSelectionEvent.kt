@@ -14,7 +14,8 @@ fun Events.loadTeamSelection() = screenCoroutine {
 }
 
 private suspend fun Events.fetchActiveTeams() {
-    val activeTeamsDataState = repository
+    val activeTeamsDataState = appModule
+        .dataModule
         .teamService
         .getActiveRLCSTeams()
 
@@ -28,7 +29,8 @@ private suspend fun Events.fetchActiveTeams() {
 }
 
 private suspend fun Events.fetchFavoriteTeams() {
-    val activeTeamsDataState = repository
+    val activeTeamsDataState = appModule
+        .dataModule
         .teamService
         .getFavoriteTeams()
 

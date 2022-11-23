@@ -16,7 +16,10 @@ fun Events.loadMatchDetail(matchId: String) = screenCoroutine {
 }
 
 private suspend fun Events.fetchGames(matchId: String) {
-    val repoResult = repository.gameService.fetchGamesForMatch(MatchGamesRequest(matchId))
+    val repoResult = appModule
+        .dataModule
+        .gameService
+        .fetchGamesForMatch(MatchGamesRequest(matchId))
 
     stateManager.updateScreen(MatchDetailViewState::class) { currentState ->
         currentState.copy(
@@ -28,7 +31,10 @@ private suspend fun Events.fetchGames(matchId: String) {
 }
 
 private suspend fun Events.fetchMatchDetail(matchId: String) {
-    val repoResult = repository.matchService.fetchMatchDetail(matchId)
+    val repoResult = appModule
+        .dataModule
+        .matchService
+        .fetchMatchDetail(matchId)
 
     stateManager.updateScreen(MatchDetailViewState::class) { currentState ->
         currentState.copy(

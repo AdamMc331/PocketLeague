@@ -26,9 +26,10 @@ private suspend fun Events.fetchMatchesForStage(
         stageId = stageId,
     )
 
-    val repoResult = repository.matchService.fetchMatches(
-        request = stageMatchesRequest,
-    )
+    val repoResult = appModule
+        .dataModule
+        .matchService
+        .fetchMatches(stageMatchesRequest)
 
     stateManager.updateScreen(EventStageDetailViewState::class) { currentState ->
         currentState.copy(

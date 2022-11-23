@@ -20,9 +20,10 @@ fun Events.loadEventDetail(
 private suspend fun Events.fetchEventParticipants(
     eventId: String,
 ) {
-    val repoResult = repository.eventService.fetchEventParticipants(
-        eventId,
-    )
+    val repoResult = appModule
+        .dataModule
+        .eventService
+        .fetchEventParticipants(eventId)
 
     stateManager.updateScreen(EventDetailViewState::class) { currentState ->
         currentState.copy(
@@ -34,9 +35,10 @@ private suspend fun Events.fetchEventParticipants(
 }
 
 private suspend fun Events.fetchEventDetail(eventId: String) {
-    val repoResult = repository.eventService.fetchEvent(
-        eventId,
-    )
+    val repoResult = appModule
+        .dataModule
+        .eventService
+        .fetchEvent(eventId)
 
     stateManager.updateScreen(EventDetailViewState::class) { currentState ->
         currentState.copy(

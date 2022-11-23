@@ -13,7 +13,7 @@ import com.adammcneilly.pocketleague.data.remote.RemoteParams
  * A concrete implementation of a [MatchService] that will request data using
  * the supplied [apiClient].
  */
-internal class OctaneGGMatchService(
+class OctaneGGMatchService(
     private val apiClient: BaseKTORClient,
 ) : MatchService {
 

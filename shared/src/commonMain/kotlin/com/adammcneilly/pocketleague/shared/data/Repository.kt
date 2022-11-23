@@ -6,8 +6,6 @@ import com.adammcneilly.pocketleague.data.match.MatchService
 import com.adammcneilly.pocketleague.data.team.TeamService
 import com.adammcneilly.pocketleague.shared.di.DataModule
 import com.adammcneilly.pocketleague.shared.di.ProdDataModule
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /**
  * The main entry point to various data layers inside the application.
@@ -35,19 +33,5 @@ class Repository(
 
     internal val teamService: TeamService by lazy {
         dataModule.teamService
-    }
-
-    /**
-     * Runs the supplied [block] inside the scope for this repo, dependent
-     * oon the [useDefaultDispatcher] flag.
-     */
-    suspend fun <T> withRepoContext(block: suspend () -> T): T {
-        return if (useDefaultDispatcher) {
-            withContext(Dispatchers.Default) {
-                block()
-            }
-        } else {
-            block()
-        }
     }
 }

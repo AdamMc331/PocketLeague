@@ -12,7 +12,7 @@ import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
  * A concrete implementation of [GameService] that requests information via the supplied
  * [apiClient].
  */
-internal class OctaneGGGameService(
+class OctaneGGGameService(
     private val apiClient: BaseKTORClient
 ) : GameService {
 

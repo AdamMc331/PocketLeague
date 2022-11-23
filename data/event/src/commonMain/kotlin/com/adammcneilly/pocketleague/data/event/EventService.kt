@@ -29,14 +29,4 @@ interface EventService {
     suspend fun fetchEventParticipants(
         eventId: String,
     ): DataState<List<Team>>
-
-    companion object {
-        /**
-         * Provides a default implementation of an [EventService] so that consumers of this module
-         * have no idea what implementations are available.
-         */
-        fun provideDefault(): EventService {
-            return OctaneGGEventService()
-        }
-    }
 }

@@ -4,19 +4,19 @@ import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.core.models.test.TestModel
+import com.adammcneilly.pocketleague.core.models.test.event
 import com.adammcneilly.pocketleague.core.models.test.team
-import com.adammcneilly.pocketleague.core.models.test.testEvent
 import com.adammcneilly.pocketleague.data.event.EventListRequest
 import com.adammcneilly.pocketleague.data.event.EventService
 
 class FakeEventService : EventService {
 
     var eventListResponse: DataState<List<Event>> = DataState.Success(
-        listOf(testEvent),
+        listOf(TestModel.event),
     )
 
     var eventResponse: DataState<Event> = DataState.Success(
-        testEvent,
+        TestModel.event,
     )
 
     var eventParticipants: DataState<List<Team>> = DataState.Success(

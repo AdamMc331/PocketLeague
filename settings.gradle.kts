@@ -1,9 +1,8 @@
 rootProject.name = "PocketLeague"
 
+include(":android:app")
 include(":android:design-system")
 include(":android:widgets")
-
-include(":app")
 
 include(":core:currency")
 include(":core:datetime")

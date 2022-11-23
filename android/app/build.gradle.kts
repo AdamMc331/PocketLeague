@@ -5,9 +5,9 @@ plugins {
     id("com.google.devtools.ksp").version("${Versions.kotlin}-1.0.6")
 }
 
-apply(from = "../buildscripts/jacoco.gradle")
-apply(from = "../buildscripts/jacocoCoverage.gradle")
-apply(from = "../buildscripts/coveralls.gradle")
+apply(from = "../../buildscripts/jacoco.gradle")
+apply(from = "../../buildscripts/jacocoCoverage.gradle")
+apply(from = "../../buildscripts/coveralls.gradle")
 
 kotlin {
     sourceSets {

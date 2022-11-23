@@ -26,19 +26,20 @@ private suspend fun Events.fetchMatchesForStage(
         stageId = stageId,
     )
 
-    val repoResult = appModule
+    appModule
         .dataModule
         .matchService
         .fetchMatches(stageMatchesRequest)
-
-    stateManager.updateScreen(EventStageDetailViewState::class) { currentState ->
-        currentState.copy(
-            matchesDataState = repoResult.map { matchList ->
-                val sortedMatches = matchList.sortedBy(Match::dateUTC)
-                val displayModels = sortedMatches.map(Match::toDetailDisplayModel)
-                val matchesByDate = displayModels.groupBy(MatchDetailDisplayModel::localDate)
-                MatchDetailsByDateDisplayModel(matchesByDate)
+        .collect { repoResult ->
+            stateManager.updateScreen(EventStageDetailViewState::class) { currentState ->
+                currentState.copy(
+                    matchesDataState = repoResult.map { matchList ->
+                        val sortedMatches = matchList.sortedBy(Match::dateUTC)
+                        val displayModels = sortedMatches.map(Match::toDetailDisplayModel)
+                        val matchesByDate = displayModels.groupBy(MatchDetailDisplayModel::localDate)
+                        MatchDetailsByDateDisplayModel(matchesByDate)
+                    }
+                )
             }
-        )
-    }
+        }
 }

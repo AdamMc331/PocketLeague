@@ -13,6 +13,7 @@ kotlin {
                 implementation(project(":core:models-test"))
                 implementation(project(":data:core"))
                 implementation(project(":data:match"))
+                implementation(libs.kotlinx.coroutines.core)
             }
         }
         val commonTest by getting {

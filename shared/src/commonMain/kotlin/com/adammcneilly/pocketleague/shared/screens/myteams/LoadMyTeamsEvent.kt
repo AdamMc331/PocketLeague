@@ -10,6 +10,7 @@ import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.flow.first
 import kotlinx.datetime.Clock
 
 /**
@@ -86,4 +87,7 @@ private suspend fun Events.fetchRecentMatchesForTeam(
         .dataModule
         .matchService
         .fetchMatches(matchListRequest)
+        // This is not ideal, in a perfect world we observe multiple flows & just resort the list
+        // each time a flow emits something.
+        .first()
 }

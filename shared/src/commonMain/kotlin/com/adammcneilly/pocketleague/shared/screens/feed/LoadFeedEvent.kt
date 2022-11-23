@@ -38,20 +38,21 @@ private suspend fun Events.fetchRecentMatches() {
         group = "rlcs",
     )
 
-    val matchListResult = appModule
+    appModule
         .dataModule
         .matchService
         .fetchMatches(recentMatchesRequest)
+        .collect { matchListResult ->
+            val mappedResult = matchListResult.map { matches ->
+                matches.map(Match::toDetailDisplayModel)
+            }
 
-    val mappedResult = matchListResult.map { matches ->
-        matches.map(Match::toDetailDisplayModel)
-    }
-
-    stateManager.updateScreen(FeedViewState::class) {
-        it.copy(
-            recentMatchesState = mappedResult,
-        )
-    }
+            stateManager.updateScreen(FeedViewState::class) {
+                it.copy(
+                    recentMatchesState = mappedResult,
+                )
+            }
+        }
 }
 
 private suspend fun Events.fetchOngoingEvents() {

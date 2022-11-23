@@ -6,6 +6,8 @@ import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.matchBlueWinner
 import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.data.match.MatchService
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 class FakeMatchService : MatchService {
 
@@ -21,7 +23,7 @@ class FakeMatchService : MatchService {
         return matchDetailResponse
     }
 
-    override suspend fun fetchMatches(request: MatchListRequest): DataState<List<Match>> {
-        return matchListResponse
+    override fun fetchMatches(request: MatchListRequest): Flow<DataState<List<Match>>> {
+        return flowOf(matchListResponse)
     }
 }

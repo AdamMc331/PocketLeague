@@ -11,6 +11,7 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
 data class FeedViewState(
     val ongoingEventsState: DataState<List<EventSummaryDisplayModel>> = DataState.Loading,
     val recentMatchesState: DataState<List<MatchDetailDisplayModel>> = DataState.Loading,
+    val upcomingEventsState: DataState<List<EventSummaryDisplayModel>> = DataState.Loading,
 ) : ScreenState {
 
     override val title: String? = null
@@ -26,6 +27,23 @@ data class FeedViewState(
             }
             is DataState.Success -> {
                 ongoingEventsState.data
+            }
+            is DataState.Error -> {
+                emptyList()
+            }
+        }
+
+    val upcomingEvents: List<EventSummaryDisplayModel>
+        get() = when (upcomingEventsState) {
+            is DataState.Loading -> {
+                // Here, we return a list of empty Event objects which will be mapped
+                // to a placeholder loading UI.
+                (1..3).map {
+                    EventSummaryDisplayModel.placeholder
+                }
+            }
+            is DataState.Success -> {
+                upcomingEventsState.data
             }
             is DataState.Error -> {
                 emptyList()

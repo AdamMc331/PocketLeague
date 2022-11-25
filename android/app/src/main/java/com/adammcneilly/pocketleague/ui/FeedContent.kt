@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +19,7 @@ import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.designsystem.components.EmptyStateCard
 import com.adammcneilly.pocketleague.android.designsystem.matches.MatchesCarousel
 import com.adammcneilly.pocketleague.android.designsystem.matches.RecentMatchesEmptyState
+import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
 import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryListItem
 
@@ -79,20 +81,41 @@ private fun SuccessContent(
         }
 
         if (viewState.ongoingEvents.isNotEmpty()) {
-            ongoingEventsList(viewState, onEventClicked)
+            eventList(viewState.ongoingEvents, onEventClicked)
         } else {
             item {
-                OngoingEventsEmptyState()
+                EventListEmptyState(
+                    textRes = R.string.err_no_ongoing_events,
+                )
+            }
+        }
+
+        item {
+            Text(
+                text = "Upcoming Events",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier
+                    .padding(16.dp),
+            )
+        }
+
+        if (viewState.upcomingEvents.isNotEmpty()) {
+            eventList(viewState.upcomingEvents, onEventClicked)
+        } else {
+            item {
+                EventListEmptyState(
+                    textRes = R.string.err_no_upcoming_events,
+                )
             }
         }
     }
 }
 
-private fun LazyListScope.ongoingEventsList(
-    viewState: FeedViewState,
+private fun LazyListScope.eventList(
+    events: List<EventSummaryDisplayModel>,
     onEventClicked: (String) -> Unit,
 ) {
-    itemsIndexed(viewState.ongoingEvents) { index, event ->
+    itemsIndexed(events) { index, event ->
         EventSummaryListItem(
             displayModel = event,
             modifier = Modifier
@@ -101,16 +124,18 @@ private fun LazyListScope.ongoingEventsList(
                 }
         )
 
-        if (index != viewState.ongoingEvents.lastIndex) {
+        if (index != events.lastIndex) {
             Divider()
         }
     }
 }
 
 @Composable
-private fun OngoingEventsEmptyState() {
+private fun EventListEmptyState(
+    @StringRes textRes: Int,
+) {
     EmptyStateCard(
-        text = stringResource(id = R.string.err_no_ongoing_events),
+        text = stringResource(id = textRes),
         modifier = Modifier
             .padding(
                 horizontal = 16.dp,

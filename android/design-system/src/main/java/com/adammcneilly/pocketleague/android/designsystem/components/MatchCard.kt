@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -49,7 +50,10 @@ fun MatchCard(
                 onClick = {
                     onClick.invoke(match.matchId)
                 },
-            ),
+            )
+            .semantics {
+                isPlaceholder = match.isPlaceholder
+            },
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),

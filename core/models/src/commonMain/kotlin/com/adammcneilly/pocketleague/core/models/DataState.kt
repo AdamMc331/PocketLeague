@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.data
+package com.adammcneilly.pocketleague.core.models
 
 /**
  * This is a sealed class that represents the various states a request for data can be in.

@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.shared.screens.myteams
 
-import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toOverviewDisplayModel
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.match.MatchListRequest

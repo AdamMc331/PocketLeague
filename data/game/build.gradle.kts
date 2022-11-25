@@ -10,7 +10,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:models"))
-                implementation(project(":data:core"))
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
             }

@@ -20,6 +20,8 @@ import com.adammcneilly.pocketleague.android.designsystem.components.EmptyStateC
 import com.adammcneilly.pocketleague.android.designsystem.matches.MatchesCarousel
 import com.adammcneilly.pocketleague.android.designsystem.matches.RecentMatchesEmptyState
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
 import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryListItem
 
@@ -64,11 +66,10 @@ private fun SuccessContent(
         }
 
         item {
-            if (viewState.recentMatches.isNotEmpty()) {
-                MatchesCarousel(viewState.recentMatches, onMatchClicked)
-            } else {
-                RecentMatchesEmptyState()
-            }
+            RecentMatchesSection(
+                viewState.recentMatchesState,
+                onMatchClicked,
+            )
         }
 
         item {
@@ -107,6 +108,38 @@ private fun SuccessContent(
                     textRes = R.string.err_no_upcoming_events,
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun RecentMatchesSection(
+    recentMatches: DataState<List<MatchDetailDisplayModel>>,
+    onMatchClicked: (String) -> Unit
+) {
+    when (recentMatches) {
+        is DataState.Success -> {
+            if (recentMatches.data.isNotEmpty()) {
+                MatchesCarousel(
+                    matches = recentMatches.data,
+                    onMatchClicked = onMatchClicked,
+                )
+            } else {
+                RecentMatchesEmptyState()
+            }
+        }
+        is DataState.Error -> {
+            RecentMatchesEmptyState()
+        }
+        DataState.Loading -> {
+            val placeholderMatches = List(3) {
+                MatchDetailDisplayModel.placeholder
+            }
+
+            MatchesCarousel(
+                matches = placeholderMatches,
+                onMatchClicked = {},
+            )
         }
     }
 }

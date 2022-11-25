@@ -1,10 +1,8 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
-import com.adammcneilly.pocketleague.core.data.DataState
-import com.adammcneilly.pocketleague.core.displaymodels.DataDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventListRequest
@@ -49,22 +47,9 @@ private suspend fun Events.fetchRecentMatches() {
                 matches.map(Match::toDetailDisplayModel)
             }
 
-            val otherMappedResult: DataDisplayModel<List<MatchDetailDisplayModel>> = when (mappedResult) {
-                is DataState.Error -> {
-                    // We should provide a default here.
-                    DataDisplayModel.Error(mappedResult.error.message.orEmpty())
-                }
-                DataState.Loading -> {
-                    DataDisplayModel.Loading
-                }
-                is DataState.Success -> {
-                    DataDisplayModel.Content(mappedResult.data)
-                }
-            }
-
             stateManager.updateScreen(FeedViewState::class) {
                 it.copy(
-                    recentMatchesState = otherMappedResult,
+                    recentMatchesState = mappedResult,
                 )
             }
         }

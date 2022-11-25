@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.data.team
 
-import com.adammcneilly.pocketleague.core.data.DataState
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Team
 
 /**

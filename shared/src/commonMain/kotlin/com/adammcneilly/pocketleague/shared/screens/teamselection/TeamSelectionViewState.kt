@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.teamselection
 
-import com.adammcneilly.pocketleague.core.data.DataState
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 

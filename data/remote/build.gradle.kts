@@ -10,7 +10,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":data:core"))
+                implementation(project(":core:models"))
                 implementation(libs.bundles.ktor.client)
                 implementation(libs.kotlinx.serialization.json)
             }

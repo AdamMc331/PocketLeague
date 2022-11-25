@@ -11,7 +11,6 @@ kotlin {
             dependencies {
                 implementation(project(":core:datetime"))
                 implementation(project(":core:models"))
-                implementation(project(":data:core"))
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
             }

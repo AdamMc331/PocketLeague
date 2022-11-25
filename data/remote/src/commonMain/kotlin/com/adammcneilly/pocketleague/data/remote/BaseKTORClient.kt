@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.data.remote
 
-import com.adammcneilly.pocketleague.core.data.DataState
+import com.adammcneilly.pocketleague.core.models.DataState
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 

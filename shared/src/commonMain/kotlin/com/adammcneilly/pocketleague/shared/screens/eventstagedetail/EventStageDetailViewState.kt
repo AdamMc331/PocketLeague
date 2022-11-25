@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.eventstagedetail
 
-import com.adammcneilly.pocketleague.core.data.DataState
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailsByDateDisplayModel
 import com.adammcneilly.pocketleague.core.models.EventStage

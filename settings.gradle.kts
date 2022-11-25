@@ -12,7 +12,6 @@ include(":core:displaymodels-test")
 include(":core:models")
 include(":core:models-test")
 
-include(":data:core")
 include(":data:event")
 include(":data:event-test")
 include(":data:game")

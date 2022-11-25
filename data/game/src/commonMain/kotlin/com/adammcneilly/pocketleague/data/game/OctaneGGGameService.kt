@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.data.game
 
-import com.adammcneilly.pocketleague.core.data.DataState
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Game
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGGame

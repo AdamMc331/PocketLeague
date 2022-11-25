@@ -1,9 +1,8 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
-import com.adammcneilly.pocketleague.core.data.DataState
-import com.adammcneilly.pocketleague.core.displaymodels.DataDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 
 /**
@@ -11,7 +10,7 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  */
 data class FeedViewState(
     val ongoingEventsState: DataState<List<EventSummaryDisplayModel>> = DataState.Loading,
-    val recentMatchesState: DataDisplayModel<List<MatchDetailDisplayModel>> = DataDisplayModel.Loading,
+    val recentMatchesState: DataState<List<MatchDetailDisplayModel>> = DataState.Loading,
     val upcomingEventsState: DataState<List<EventSummaryDisplayModel>> = DataState.Loading,
 ) : ScreenState {
 

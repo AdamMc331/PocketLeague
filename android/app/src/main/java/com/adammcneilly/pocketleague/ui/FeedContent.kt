@@ -19,9 +19,9 @@ import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.designsystem.components.EmptyStateCard
 import com.adammcneilly.pocketleague.android.designsystem.matches.MatchesCarousel
 import com.adammcneilly.pocketleague.android.designsystem.matches.RecentMatchesEmptyState
-import com.adammcneilly.pocketleague.core.displaymodels.DataDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
 import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryListItem
 
@@ -114,24 +114,24 @@ private fun SuccessContent(
 
 @Composable
 private fun RecentMatchesSection(
-    recentMatches: DataDisplayModel<List<MatchDetailDisplayModel>>,
+    recentMatches: DataState<List<MatchDetailDisplayModel>>,
     onMatchClicked: (String) -> Unit
 ) {
     when (recentMatches) {
-        is DataDisplayModel.Content -> {
-            if (recentMatches.content.isNotEmpty()) {
+        is DataState.Success -> {
+            if (recentMatches.data.isNotEmpty()) {
                 MatchesCarousel(
-                    matches = recentMatches.content,
+                    matches = recentMatches.data,
                     onMatchClicked = onMatchClicked,
                 )
             } else {
                 RecentMatchesEmptyState()
             }
         }
-        is DataDisplayModel.Error -> {
+        is DataState.Error -> {
             RecentMatchesEmptyState()
         }
-        DataDisplayModel.Loading -> {
+        DataState.Loading -> {
             val placeholderMatches = List(3) {
                 MatchDetailDisplayModel.placeholder
             }

@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.ui
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -83,7 +84,9 @@ private fun SuccessContent(
             eventList(viewState.ongoingEvents, onEventClicked)
         } else {
             item {
-                OngoingEventsEmptyState()
+                EventListEmptyState(
+                    textRes = R.string.err_no_ongoing_events,
+                )
             }
         }
 
@@ -100,7 +103,9 @@ private fun SuccessContent(
             eventList(viewState.upcomingEvents, onEventClicked)
         } else {
             item {
-                OngoingEventsEmptyState()
+                EventListEmptyState(
+                    textRes = R.string.err_no_upcoming_events,
+                )
             }
         }
     }
@@ -126,9 +131,11 @@ private fun LazyListScope.eventList(
 }
 
 @Composable
-private fun OngoingEventsEmptyState() {
+private fun EventListEmptyState(
+    @StringRes textRes: Int,
+) {
     EmptyStateCard(
-        text = stringResource(id = R.string.err_no_ongoing_events),
+        text = stringResource(id = textRes),
         modifier = Modifier
             .padding(
                 horizontal = 16.dp,

@@ -63,7 +63,9 @@ private suspend fun Events.fetchOngoingEvents() {
             }
             is DataState.Success -> {
                 DataState.Success(
-                    data = repoResult.data.map(Event::toSummaryDisplayModel)
+                    data = repoResult.data
+                        .sortedBy(Event::startDateUTC)
+                        .map(Event::toSummaryDisplayModel)
                 )
             }
             is DataState.Error -> {
@@ -95,7 +97,9 @@ private suspend fun Events.fetchUpcomingEvents() {
             }
             is DataState.Success -> {
                 DataState.Success(
-                    data = repoResult.data.map(Event::toSummaryDisplayModel)
+                    data = repoResult.data
+                        .sortedBy(Event::startDateUTC)
+                        .map(Event::toSummaryDisplayModel)
                 )
             }
             is DataState.Error -> {

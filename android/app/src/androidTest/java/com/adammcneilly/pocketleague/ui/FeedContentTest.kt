@@ -7,9 +7,9 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.adammcneilly.pocketleague.android.designsystem.components.PlaceholderSemanticsKey
-import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
 import com.adammcneilly.pocketleague.core.models.DataState
+import com.adammcneilly.pocketleague.setPocketLeagueContent
 import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
 import org.junit.Rule
 import org.junit.Test
@@ -27,10 +27,8 @@ class FeedContentTest {
             recentMatchesState = DataState.Success(emptyList()),
         )
 
-        composeTestRule.setContent {
-            PocketLeagueTheme {
-                FeedContent(viewState = viewState)
-            }
+        composeTestRule.setPocketLeagueContent {
+            FeedContent(viewState = viewState)
         }
 
         composeTestRule
@@ -44,10 +42,8 @@ class FeedContentTest {
             recentMatchesState = DataState.Loading
         )
 
-        composeTestRule.setContent {
-            PocketLeagueTheme {
-                FeedContent(viewState = viewState)
-            }
+        composeTestRule.setPocketLeagueContent {
+            FeedContent(viewState = viewState)
         }
 
         composeTestRule
@@ -61,10 +57,8 @@ class FeedContentTest {
             recentMatchesState = DataState.Success(listOf(TestDisplayModel.matchDetailBlueWinner)),
         )
 
-        composeTestRule.setContent {
-            PocketLeagueTheme {
-                FeedContent(viewState = viewState)
-            }
+        composeTestRule.setPocketLeagueContent {
+            FeedContent(viewState = viewState)
         }
 
         composeTestRule

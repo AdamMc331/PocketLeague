@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.data.match
 
 import com.adammcneilly.pocketleague.core.data.DataState
 import com.adammcneilly.pocketleague.core.models.Match
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Defines the data contract for dealing with data within the match space.
@@ -19,7 +20,7 @@ interface MatchService {
      * Returns a stream of [Match] entities as a list. We should only return
      * events that meet the criteria defined by the given [request].
      */
-    suspend fun fetchMatches(
+    fun fetchMatches(
         request: MatchListRequest,
-    ): DataState<List<Match>>
+    ): Flow<DataState<List<Match>>>
 }

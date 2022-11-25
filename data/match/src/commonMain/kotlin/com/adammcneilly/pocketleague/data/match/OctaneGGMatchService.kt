@@ -8,6 +8,8 @@ import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatchListRespo
 import com.adammcneilly.pocketleague.data.octanegg.models.toMatch
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 /**
  * A concrete implementation of a [MatchService] that will request data using
@@ -27,16 +29,20 @@ class OctaneGGMatchService(
         }
     }
 
-    override suspend fun fetchMatches(request: MatchListRequest): DataState<List<Match>> {
-        return apiClient.getResponse<OctaneGGMatchListResponse>(
-            endpoint = MATCHES_ENDPOINT,
-            params = request.toOctaneParams(),
-        ).map { octaneMatchListResponse ->
-            val mappedMatches = octaneMatchListResponse.matches?.map(OctaneGGMatch::toMatch).orEmpty()
+    override fun fetchMatches(request: MatchListRequest): Flow<DataState<List<Match>>> {
+        return flow {
+            val apiResponse = apiClient.getResponse<OctaneGGMatchListResponse>(
+                endpoint = MATCHES_ENDPOINT,
+                params = request.toOctaneParams(),
+            ).map { octaneMatchListResponse ->
+                val mappedMatches = octaneMatchListResponse.matches?.map(OctaneGGMatch::toMatch).orEmpty()
 
-            val sortedMatches = mappedMatches.sortedByDescending(Match::dateUTC)
+                val sortedMatches = mappedMatches.sortedByDescending(Match::dateUTC)
 
-            sortedMatches
+                sortedMatches
+            }
+
+            emit(apiResponse)
         }
     }
 

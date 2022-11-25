@@ -5,6 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.adammcneilly.pocketleague.data.local.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.shared.di.AppModule
 import com.adammcneilly.pocketleague.shared.di.ProdAppModule
 import com.adammcneilly.pocketleague.shared.screens.DKMPViewModel
@@ -18,7 +19,11 @@ open class PocketLeagueApp : Application() {
 
     lateinit var viewModel: DKMPViewModel
 
-    open val appModule: AppModule = ProdAppModule()
+    open val appModule: AppModule by lazy {
+        ProdAppModule(
+            databaseDriverFactory = DatabaseDriverFactory(this)
+        )
+    }
 
     override fun onCreate() {
         super.onCreate()

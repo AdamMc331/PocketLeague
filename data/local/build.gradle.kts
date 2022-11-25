@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -10,27 +10,17 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:datetime"))
-                implementation(project(":core:displaymodels"))
-                implementation(project(":core:models"))
-                implementation(project(":data:event"))
-                implementation(project(":data:game"))
-                implementation(project(":data:local"))
-                implementation(project(":data:match"))
-                implementation(project(":data:team"))
-                implementation(libs.bundles.ktor.client)
-                implementation(libs.kotlinx.serialization.json)
+                implementation("com.squareup.sqldelight:runtime:1.5.3")
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:displaymodels-test"))
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.ktor.client.android)
+                implementation("com.squareup.sqldelight:android-driver:1.5.3")
             }
         }
         val androidTest by getting
@@ -44,7 +34,7 @@ kotlin {
             getAt("iosSimulatorArm64Main").dependsOn(this)
 
             dependencies {
-                implementation(libs.ktor.client.ios)
+                implementation("com.squareup.sqldelight:native-driver:1.5.3")
             }
         }
         maybeCreate("iosX64Test")
@@ -66,30 +56,30 @@ android {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
     }
-
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_1_8)
-//        isCoreLibraryDesugaringEnabled = true
-    }
-    namespace = "com.adammcneilly.pocketleague.shared"
 }
 
-project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)?.apply {
-    if (project.findProperty("ios") == "true") {
-        listOf(
-            iosX64(),
-            iosArm64(),
-            iosSimulatorArm64()
-        ).forEach {
-            it.binaries.framework {
-                baseName = project.name
+project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)
+    ?.apply {
+        if (project.findProperty("ios") == "true") {
+            listOf(
+                iosX64(),
+                iosArm64(),
+                iosSimulatorArm64()
+            ).forEach {
+                it.binaries.framework {
+                    baseName = project.name
+                }
+            }
+        }
+        if (project.findProperty("js") == "true") {
+            js(IR) {
+                browser()
             }
         }
     }
-    if (project.findProperty("js") == "true") {
-        js(IR) {
-            browser()
-        }
+
+sqldelight {
+    database("PocketLeagueDB") {
+        packageName = "com.adammcneilly.pocketleague.data.local"
     }
 }

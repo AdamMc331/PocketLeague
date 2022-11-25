@@ -1,0 +1,16 @@
+CREATE TABLE team(
+  id INTEGER NOT NULL PRIMARY KEY,
+  name TEXT NOT NULL,
+  imageURL TEXT
+);
+
+selectAll:
+SELECT *
+FROM team;
+
+insertFullTeamObject:
+INSERT INTO team(id, name, imageURL)
+VALUES ?;
+
+INSERT INTO team(id, name, imageURL)
+VALUES (1234, 'Knights', 'someImageUrl');

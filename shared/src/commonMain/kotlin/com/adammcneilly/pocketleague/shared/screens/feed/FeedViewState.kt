@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
 import com.adammcneilly.pocketleague.core.data.DataState
+import com.adammcneilly.pocketleague.core.displaymodels.DataDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
@@ -10,7 +11,7 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  */
 data class FeedViewState(
     val ongoingEventsState: DataState<List<EventSummaryDisplayModel>> = DataState.Loading,
-    val recentMatchesState: DataState<List<MatchDetailDisplayModel>> = DataState.Loading,
+    val recentMatchesState: DataDisplayModel<List<MatchDetailDisplayModel>> = DataDisplayModel.Loading,
     val upcomingEventsState: DataState<List<EventSummaryDisplayModel>> = DataState.Loading,
 ) : ScreenState {
 
@@ -44,21 +45,6 @@ data class FeedViewState(
             }
             is DataState.Success -> {
                 upcomingEventsState.data
-            }
-            is DataState.Error -> {
-                emptyList()
-            }
-        }
-
-    val recentMatches: List<MatchDetailDisplayModel>
-        get() = when (recentMatchesState) {
-            is DataState.Loading -> {
-                (1..3).map {
-                    MatchDetailDisplayModel.placeholder
-                }
-            }
-            is DataState.Success -> {
-                recentMatchesState.data
             }
             is DataState.Error -> {
                 emptyList()

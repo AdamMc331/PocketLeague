@@ -8,6 +8,8 @@ import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventListRequest
 import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlin.time.Duration.Companion.days
 
@@ -16,13 +18,21 @@ const val NUM_DAYS_RECENT_MATCHES = 7
 /**
  * Loads the information for the feed state.
  */
-fun Events.loadFeed() = screenCoroutine {
-    fetchOngoingEvents()
-    fetchRecentEvents()
-    fetchUpcomingEvents()
+fun Events.loadFeed() = screenCoroutine { scope ->
+    scope.launch {
+        fetchRecentMatches()
+    }
+
+    scope.launch {
+        fetchOngoingEvents()
+    }
+
+    scope.launch {
+        fetchUpcomingEvents()
+    }
 }
 
-private suspend fun Events.fetchRecentEvents() {
+private suspend fun Events.fetchRecentMatches() {
     val recentMatchesRequest = MatchListRequest(
         before = Clock.System.now(),
         after = Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),

@@ -8,7 +8,6 @@ import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventListRequest
 import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlin.time.Duration.Companion.days

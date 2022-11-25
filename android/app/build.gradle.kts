@@ -105,6 +105,7 @@ android {
 
 dependencies {
 
+    androidTestImplementation(project(":core:displaymodels-test"))
     androidTestImplementation(project(":shared-test"))
     androidTestImplementation(libs.bundles.androidx.test)
     androidTestImplementation(libs.compose.ui.test.junit)

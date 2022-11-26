@@ -5,7 +5,7 @@ import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.local.DatabaseDriverFactory
-import com.adammcneilly.pocketleague.data.local.PocketLeagueDatabase
+import com.adammcneilly.pocketleague.data.local.PLSqlDelightDatabase
 import com.adammcneilly.pocketleague.data.match.MatchService
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.adammcneilly.pocketleague.data.team.OctaneGGTeamService
@@ -35,7 +35,7 @@ class ProdDataModule(
         OctaneGGTeamService()
     }
 
-    override val database: PocketLeagueDatabase by lazy {
-        PocketLeagueDatabase(databaseDriverFactory)
+    override val database: PLSqlDelightDatabase by lazy {
+        PLSqlDelightDatabase(databaseDriverFactory)
     }
 }

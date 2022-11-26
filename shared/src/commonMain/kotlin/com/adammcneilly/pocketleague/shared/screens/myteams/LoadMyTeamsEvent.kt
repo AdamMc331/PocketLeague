@@ -28,22 +28,6 @@ private suspend fun Events.fetchFavoriteTeams(
         .teamService
         .getFavoriteTeams()
 
-    val localTeams = appModule
-        .dataModule
-        .database
-        .database
-        .teamQueries
-        .selectAll { id, name, imageUrl ->
-            Team(
-                id.toString(),
-                name,
-                imageUrl,
-            )
-        }
-        .executeAsList()
-
-    println("Found teams: $localTeams")
-
     stateManager.updateScreen(MyTeamsViewState::class) { currentState ->
         currentState.copy(
             teamsDataState = favoriteTeamsDataState.map { teamList ->

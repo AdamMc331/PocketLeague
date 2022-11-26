@@ -10,7 +10,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:models"))
                 implementation("com.squareup.sqldelight:runtime:1.5.3")
+                implementation("com.squareup.sqldelight:coroutines-extensions:1.5.3")
             }
         }
         val commonTest by getting {

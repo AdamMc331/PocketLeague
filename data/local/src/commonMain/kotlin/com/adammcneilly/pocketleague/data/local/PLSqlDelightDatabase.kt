@@ -7,6 +7,9 @@ import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+/**
+ * An implementation of [PocketLeagueDatabase] that uses SQL Delight to power the data requests.
+ */
 class PLSqlDelightDatabase(databaseDriverFactory: DatabaseDriverFactory) : PocketLeagueDatabase {
     private val database = PocketLeagueDB(databaseDriverFactory.createDriver())
 

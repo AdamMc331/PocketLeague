@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface PocketLeagueDatabase {
 
     /**
-     *
+     * Retrieve all the [Team] entities from our DB that are favorited by the user.
      */
     fun getFavoriteTeams(): Flow<List<Team>>
 }

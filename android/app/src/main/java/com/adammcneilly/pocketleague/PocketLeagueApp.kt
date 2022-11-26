@@ -5,7 +5,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.adammcneilly.pocketleague.data.local.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.shared.di.AppModule
 import com.adammcneilly.pocketleague.shared.di.ProdAppModule
 import com.adammcneilly.pocketleague.shared.screens.DKMPViewModel
@@ -21,7 +20,7 @@ open class PocketLeagueApp : Application() {
 
     open val appModule: AppModule by lazy {
         ProdAppModule(
-            databaseDriverFactory = DatabaseDriverFactory(this)
+            platformModule = AndroidPlatformModule(this),
         )
     }
 

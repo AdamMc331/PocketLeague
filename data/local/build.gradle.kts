@@ -11,8 +11,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:models"))
-                implementation("com.squareup.sqldelight:runtime:1.5.3")
-                implementation("com.squareup.sqldelight:coroutines-extensions:1.5.3")
+                implementation(libs.square.sqldelight.coroutines)
+                implementation(libs.square.sqldelight.runtime)
             }
         }
         val commonTest by getting {
@@ -22,7 +22,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:android-driver:1.5.3")
+                implementation(libs.square.sqldelight.android.driver)
             }
         }
         val androidTest by getting
@@ -36,7 +36,7 @@ kotlin {
             getAt("iosSimulatorArm64Main").dependsOn(this)
 
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:1.5.3")
+                implementation(libs.square.sqldelight.native.driver)
             }
         }
         maybeCreate("iosX64Test")

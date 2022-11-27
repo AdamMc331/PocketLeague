@@ -9,6 +9,10 @@ import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * An implementation of [TeamService] that only returns data from the supplied [database]
+ * but uses the given [apiClient] to [sync] data.
+ */
 class OfflineFirstTeamService(
     private val database: PocketLeagueDatabase,
     private val apiClient: BaseKTORClient,

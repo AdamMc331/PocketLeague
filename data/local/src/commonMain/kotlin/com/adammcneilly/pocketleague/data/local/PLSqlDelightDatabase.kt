@@ -16,6 +16,16 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
 
     override fun getFavoriteTeams(): Flow<List<Team>> {
         return database.localTeamQueries
+            .selectFavorites()
+            .asFlow()
+            .mapToList()
+            .map { localTeamList ->
+                localTeamList.map(LocalTeam::toTeam)
+            }
+    }
+
+    override fun getAllTeams(): Flow<List<Team>> {
+        return database.localTeamQueries
             .selectAll()
             .asFlow()
             .mapToList()
@@ -25,10 +35,12 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
     }
 
     override suspend fun storeTeams(teams: List<Team>) {
-        teams.forEach { team ->
-            database
-                .localTeamQueries
-                .insertFullTeamObject(team.toLocalTeam())
+        database.transaction {
+            teams.forEach { team ->
+                database
+                    .localTeamQueries
+                    .insertFullTeamObject(team.toLocalTeam())
+            }
         }
     }
 }

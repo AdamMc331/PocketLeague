@@ -26,6 +26,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.square.sqldelight.android.driver)
+                implementation("com.github.requery:sqlite-android:3.39.2")
             }
         }
         val androidTest by getting
@@ -86,5 +87,6 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
 sqldelight {
     database("PocketLeagueDB") {
         packageName = "com.adammcneilly.pocketleague.data.local"
+        dialect = "sqlite:3.24"
     }
 }

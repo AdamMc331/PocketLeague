@@ -17,6 +17,8 @@ kotlin {
                 implementation(project(":data:game"))
                 implementation(project(":data:local"))
                 implementation(project(":data:match"))
+                implementation(project(":data:octanegg"))
+                implementation(project(":data:remote"))
                 implementation(project(":data:team"))
                 implementation(libs.bundles.ktor.client)
                 implementation(libs.kotlinx.serialization.json)

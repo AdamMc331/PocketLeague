@@ -25,7 +25,7 @@ class PLSqlDelightDatabaseTest {
 
         database.storeTeams(listOf(testTeam))
 
-        database.getFavoriteTeams()
+        database.getAllTeams()
             .test {
                 val teamList = awaitItem()
                 assertEquals(listOf(testTeam), teamList)

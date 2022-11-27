@@ -18,7 +18,11 @@ open class PocketLeagueApp : Application() {
 
     lateinit var viewModel: DKMPViewModel
 
-    open val appModule: AppModule = ProdAppModule()
+    open val appModule: AppModule by lazy {
+        ProdAppModule(
+            platformModule = AndroidPlatformModule(this),
+        )
+    }
 
     override fun onCreate() {
         super.onCreate()

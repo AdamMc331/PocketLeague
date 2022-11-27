@@ -6,4 +6,6 @@ package com.adammcneilly.pocketleague.shared.di
 interface AppModule {
 
     val dataModule: DataModule
+
+    val platformModule: PlatformModule
 }

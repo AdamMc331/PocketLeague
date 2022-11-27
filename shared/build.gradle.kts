@@ -15,6 +15,7 @@ kotlin {
                 implementation(project(":core:models"))
                 implementation(project(":data:event"))
                 implementation(project(":data:game"))
+                implementation(project(":data:local"))
                 implementation(project(":data:match"))
                 implementation(project(":data:team"))
                 implementation(libs.bundles.ktor.client)

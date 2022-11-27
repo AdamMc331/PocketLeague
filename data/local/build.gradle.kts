@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -10,22 +10,24 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":data:event"))
-                implementation(project(":data:event-test"))
-                implementation(project(":data:game"))
-                implementation(project(":data:local"))
-                implementation(project(":data:match"))
-                implementation(project(":data:match-test"))
-                implementation(project(":data:team"))
-                implementation(project(":shared"))
+                implementation(project(":core:models"))
+                implementation(project(":core:models-test"))
+                implementation(libs.square.sqldelight.coroutines)
+                implementation(libs.square.sqldelight.runtime)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(libs.cash.turbine)
+                implementation(libs.square.sqldelight.sqlite.driver)
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.square.sqldelight.android.driver)
+            }
+        }
         val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
@@ -35,6 +37,10 @@ kotlin {
             getAt("iosX64Main").dependsOn(this)
             getAt("iosArm64Main").dependsOn(this)
             getAt("iosSimulatorArm64Main").dependsOn(this)
+
+            dependencies {
+                implementation(libs.square.sqldelight.native.driver)
+            }
         }
         maybeCreate("iosX64Test")
         maybeCreate("iosArm64Test")
@@ -51,33 +57,34 @@ kotlin {
 android {
     compileSdk = AndroidConfig.compileSDK
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-
     defaultConfig {
         minSdk = AndroidConfig.minSDK
         targetSdk = AndroidConfig.targetSDK
     }
-
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_1_8)
-    }
 }
 
-project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)?.apply {
-    if (project.findProperty("ios") == "true") {
-        listOf(
-            iosX64(),
-            iosArm64(),
-            iosSimulatorArm64()
-        ).forEach {
-            it.binaries.framework {
-                baseName = project.name
+project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)
+    ?.apply {
+        if (project.findProperty("ios") == "true") {
+            listOf(
+                iosX64(),
+                iosArm64(),
+                iosSimulatorArm64()
+            ).forEach {
+                it.binaries.framework {
+                    baseName = project.name
+                }
+            }
+        }
+        if (project.findProperty("js") == "true") {
+            js(IR) {
+                browser()
             }
         }
     }
-    if (project.findProperty("js") == "true") {
-        js(IR) {
-            browser()
-        }
+
+sqldelight {
+    database("PocketLeagueDB") {
+        packageName = "com.adammcneilly.pocketleague.data.local"
     }
 }

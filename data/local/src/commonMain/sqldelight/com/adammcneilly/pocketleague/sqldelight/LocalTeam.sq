@@ -1,0 +1,14 @@
+CREATE TABLE localTeam(
+  id TEXT NOT NULL PRIMARY KEY,
+  name TEXT NOT NULL,
+  imageURL TEXT,
+  isFavorite INTEGER AS Boolean NOT NULL DEFAULT 0
+);
+
+selectAll:
+SELECT *
+FROM localTeam;
+
+insertFullTeamObject:
+INSERT INTO localTeam(id, name, imageURL, isFavorite)
+VALUES ?;

@@ -11,6 +11,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:models"))
+                implementation(project(":core:models-test"))
                 implementation(libs.square.sqldelight.coroutines)
                 implementation(libs.square.sqldelight.runtime)
             }
@@ -18,6 +19,8 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(libs.cash.turbine)
+                implementation(libs.square.sqldelight.sqlite.driver)
             }
         }
         val androidMain by getting {

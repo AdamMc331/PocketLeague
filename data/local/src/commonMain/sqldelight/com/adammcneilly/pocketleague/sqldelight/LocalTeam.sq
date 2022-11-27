@@ -1,7 +1,8 @@
 CREATE TABLE localTeam(
   id TEXT NOT NULL PRIMARY KEY,
   name TEXT NOT NULL,
-  imageURL TEXT
+  imageURL TEXT,
+  isFavorite INTEGER AS Boolean NOT NULL DEFAULT 0
 );
 
 selectAll:
@@ -9,8 +10,5 @@ SELECT *
 FROM localTeam;
 
 insertFullTeamObject:
-INSERT INTO localTeam(id, name, imageURL)
+INSERT INTO localTeam(id, name, imageURL, isFavorite)
 VALUES ?;
-
-INSERT INTO localTeam(id, name, imageURL)
-VALUES (1234, 'Knights', 'someImageUrl');

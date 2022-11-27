@@ -36,6 +36,6 @@ class ProdDataModule(
     }
 
     override val database: PLSqlDelightDatabase by lazy {
-        PLSqlDelightDatabase(databaseDriverFactory)
+        PLSqlDelightDatabase(databaseDriverFactory.createDriver())
     }
 }

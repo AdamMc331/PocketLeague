@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.data.local
 
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
+import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
@@ -10,8 +11,8 @@ import kotlinx.coroutines.flow.map
 /**
  * An implementation of [PocketLeagueDatabase] that uses SQL Delight to power the data requests.
  */
-class PLSqlDelightDatabase(databaseDriverFactory: DatabaseDriverFactory) : PocketLeagueDatabase {
-    private val database = PocketLeagueDB(databaseDriverFactory.createDriver())
+class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
+    private val database = PocketLeagueDB(databaseDriver)
 
     override fun getFavoriteTeams(): Flow<List<Team>> {
         return database.localTeamQueries
@@ -22,6 +23,23 @@ class PLSqlDelightDatabase(databaseDriverFactory: DatabaseDriverFactory) : Pocke
                 localTeamList.map(LocalTeam::toTeam)
             }
     }
+
+    override suspend fun storeTeams(teams: List<Team>) {
+        teams.forEach { team ->
+            database
+                .localTeamQueries
+                .insertFullTeamObject(team.toLocalTeam())
+        }
+    }
+}
+
+private fun Team.toLocalTeam(): LocalTeam {
+    return LocalTeam(
+        id = this.id,
+        name = this.name,
+        imageURL = this.imageUrl,
+        isFavorite = this.isFavorite,
+    )
 }
 
 private fun LocalTeam.toTeam(): Team {
@@ -29,5 +47,6 @@ private fun LocalTeam.toTeam(): Team {
         id = this.id,
         name = this.name,
         imageUrl = this.imageURL,
+        isFavorite = this.isFavorite,
     )
 }

@@ -8,4 +8,5 @@ data class Team(
     val id: String = "",
     val name: String = "TBD",
     val imageUrl: String? = null,
+    val isFavorite: Boolean = false,
 )

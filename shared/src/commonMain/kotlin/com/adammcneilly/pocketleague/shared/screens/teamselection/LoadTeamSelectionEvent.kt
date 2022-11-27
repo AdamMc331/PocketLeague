@@ -19,6 +19,13 @@ private suspend fun Events.fetchActiveTeams() {
         .teamService
         .getActiveRLCSTeams()
 
+    if (activeTeamsDataState is DataState.Success) {
+        appModule
+            .dataModule
+            .database
+            .storeTeams(activeTeamsDataState.data)
+    }
+
     stateManager.updateScreen(TeamSelectionViewState::class) { currentState ->
         currentState.copy(
             activeTeamsDataState = activeTeamsDataState.map { teamList ->

@@ -9,6 +9,11 @@ selectAll:
 SELECT *
 FROM localTeam;
 
+selectFavorites:
+SELECT *
+FROM localTeam
+WHERE isFavorite = 1;
+
 insertFullTeamObject:
 INSERT INTO localTeam(id, name, imageURL, isFavorite)
 VALUES ?

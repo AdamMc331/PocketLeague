@@ -11,6 +11,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.datetime.Clock
 
 /**
@@ -23,29 +25,20 @@ fun Events.loadMyTeams() = screenCoroutine { scope ->
 private suspend fun Events.fetchFavoriteTeams(
     scope: CoroutineScope,
 ) {
-    val favoriteTeamsDataState = appModule
+    appModule
         .dataModule
-        .teamService
+        .database
         .getFavoriteTeams()
+        .onEach { favoriteTeamsList ->
+            stateManager.updateScreen(MyTeamsViewState::class) { currentState ->
+                currentState.copy(
+                    teamsDataState = DataState.Success(favoriteTeamsList.map(Team::toOverviewDisplayModel)),
+                )
+            }
 
-    if (favoriteTeamsDataState is DataState.Success) {
-        appModule
-            .dataModule
-            .database
-            .storeTeams(favoriteTeamsDataState.data)
-    }
-
-    stateManager.updateScreen(MyTeamsViewState::class) { currentState ->
-        currentState.copy(
-            teamsDataState = favoriteTeamsDataState.map { teamList ->
-                teamList.map(Team::toOverviewDisplayModel)
-            },
-        )
-    }
-
-    if (favoriteTeamsDataState is DataState.Success) {
-        fetchAllRecentMatches(favoriteTeamsDataState.data, scope)
-    }
+            fetchAllRecentMatches(favoriteTeamsList, scope)
+        }
+        .launchIn(scope)
 }
 
 private suspend fun Events.fetchAllRecentMatches(

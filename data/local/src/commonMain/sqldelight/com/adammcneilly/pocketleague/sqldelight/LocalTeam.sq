@@ -7,12 +7,14 @@ CREATE TABLE localTeam(
 
 selectAll:
 SELECT *
-FROM localTeam;
+FROM localTeam
+ORDER BY name;
 
 selectFavorites:
 SELECT *
 FROM localTeam
-WHERE isFavorite = 1;
+WHERE isFavorite = 1
+ORDER BY name;
 
 insertFullTeamObject:
 INSERT INTO localTeam(id, name, imageURL, isFavorite)

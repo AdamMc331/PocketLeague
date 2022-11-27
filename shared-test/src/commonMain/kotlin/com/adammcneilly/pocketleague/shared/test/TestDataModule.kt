@@ -7,7 +7,6 @@ import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.local.PocketLeagueDatabase
 import com.adammcneilly.pocketleague.data.match.MatchService
 import com.adammcneilly.pocketleague.data.match.test.FakeMatchService
-import com.adammcneilly.pocketleague.data.team.OctaneGGTeamService
 import com.adammcneilly.pocketleague.data.team.TeamService
 import com.adammcneilly.pocketleague.shared.di.DataModule
 
@@ -23,7 +22,8 @@ class TestDataModule : DataModule {
 
     override val gameService: GameService = OctaneGGGameService()
 
-    override val teamService: TeamService = OctaneGGTeamService()
+    override val teamService: TeamService
+        get() = TODO("Not yet implemented")
 
     override val database: PocketLeagueDatabase
         get() = TODO("Not yet implemented")

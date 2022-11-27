@@ -13,6 +13,7 @@ kotlin {
                 implementation(project(":data:local"))
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
+                implementation(libs.kotlinx.coroutines.core)
             }
         }
         val commonTest by getting {

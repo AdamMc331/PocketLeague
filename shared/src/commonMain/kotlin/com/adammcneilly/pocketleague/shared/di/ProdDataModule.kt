@@ -8,7 +8,8 @@ import com.adammcneilly.pocketleague.data.local.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.data.local.PLSqlDelightDatabase
 import com.adammcneilly.pocketleague.data.match.MatchService
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
-import com.adammcneilly.pocketleague.data.team.OctaneGGTeamService
+import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
+import com.adammcneilly.pocketleague.data.team.OfflineFirstTeamService
 import com.adammcneilly.pocketleague.data.team.TeamService
 
 /**
@@ -32,7 +33,10 @@ class ProdDataModule(
     }
 
     override val teamService: TeamService by lazy {
-        OctaneGGTeamService()
+        OfflineFirstTeamService(
+            database = this.database,
+            apiClient = OctaneGGAPIClient,
+        )
     }
 
     override val database: PLSqlDelightDatabase by lazy {

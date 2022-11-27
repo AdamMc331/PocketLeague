@@ -14,6 +14,11 @@ interface PocketLeagueDatabase {
     fun getFavoriteTeams(): Flow<List<Team>>
 
     /**
+     * Retrieve all of the [Team] entities stored in our DB.
+     */
+    fun getAllTeams(): Flow<List<Team>>
+
+    /**
      * Stores a list of [teams] inside the DB.
      */
     suspend fun storeTeams(

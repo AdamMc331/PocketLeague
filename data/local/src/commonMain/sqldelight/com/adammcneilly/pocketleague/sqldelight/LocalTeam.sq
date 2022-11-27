@@ -11,4 +11,14 @@ FROM localTeam;
 
 insertFullTeamObject:
 INSERT INTO localTeam(id, name, imageURL, isFavorite)
-VALUES ?;
+VALUES ?
+ON CONFLICT(id) DO
+UPDATE SET
+    name = excluded.name,
+    imageURL = excluded.imageURL
+;
+
+setFavorite:
+UPDATE localTeam
+SET isFavorite = :isFavorite
+WHERE id = :id;

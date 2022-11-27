@@ -27,6 +27,7 @@ class OctaneGGTeamService(
             id = "6020bc70f1e4807cc7002386",
             name = "Rogue",
             imageUrl = "https://griffon.octane.gg/teams/rogue.png",
+            isFavorite = true,
         )
 
         val spacestation = Team(

@@ -28,6 +28,13 @@ private suspend fun Events.fetchFavoriteTeams(
         .teamService
         .getFavoriteTeams()
 
+    if (favoriteTeamsDataState is DataState.Success) {
+        appModule
+            .dataModule
+            .database
+            .storeTeams(favoriteTeamsDataState.data)
+    }
+
     stateManager.updateScreen(MyTeamsViewState::class) { currentState ->
         currentState.copy(
             teamsDataState = favoriteTeamsDataState.map { teamList ->

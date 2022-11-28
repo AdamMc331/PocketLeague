@@ -3,7 +3,13 @@ package com.adammcneilly.pocketleague.data.event
 import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
-import com.adammcneilly.pocketleague.data.local.PocketLeagueDatabase
+import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
+import com.adammcneilly.pocketleague.data.local.mappers.toEvent
+import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
+import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
+import com.adammcneilly.pocketleague.data.local.mappers.toTeam
+import com.adammcneilly.pocketleague.data.local.utils.toListFlow
+import com.adammcneilly.pocketleague.data.local.utils.toSingleFlow
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventParticipants
@@ -11,6 +17,8 @@ import com.adammcneilly.pocketleague.data.octanegg.models.toEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
+import com.adammcneilly.pocketleague.sqldelight.LocalEvent
+import com.adammcneilly.pocketleague.sqldelight.LocalTeam
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.datetime.Clock
@@ -20,7 +28,7 @@ import kotlinx.datetime.Clock
  * but uses the given [apiClient] to [sync] data.
  */
 class OfflineFirstEventService(
-    private val database: PocketLeagueDatabase,
+    private val database: PocketLeagueDB,
     private val apiClient: BaseKTORClient,
 ) : EventService {
 
@@ -47,7 +55,9 @@ class OfflineFirstEventService(
 
     override fun getEventParticipants(eventId: String): Flow<List<Team>> {
         return database
-            .getEventParticipants(eventId)
+            .localEventParticipantQueries
+            .selectTeamsForEvent(eventId)
+            .toListFlow(LocalTeam::toTeam)
             .onStart {
                 fetchAndPersistEventParticipants(eventId)
             }
@@ -68,14 +78,45 @@ class OfflineFirstEventService(
             }
 
             is DataState.Success -> {
-                database.storeEventParticipants(eventId, apiResponse.data)
+                val teams = apiResponse.data
+
+                storeTeams(teams)
+
+                storeEventParticipants(teams, eventId)
             }
+        }
+    }
+
+    private fun storeEventParticipants(
+        teams: List<Team>,
+        eventId: String
+    ) {
+        database.transaction {
+            teams.forEach { team ->
+
+                database
+                    .localEventParticipantQueries
+                    .insertEventParticipant(
+                        eventId = eventId,
+                        teamId = team.id,
+                    )
+            }
+        }
+    }
+
+    private fun storeTeams(teams: List<Team>) {
+        teams.forEach { team ->
+            database
+                .localTeamQueries
+                .insertFullTeamObject(team.toLocalTeam())
         }
     }
 
     override fun getEvent(eventId: String): Flow<Event> {
         return database
-            .getEvent(eventId)
+            .localEventQueries
+            .selectById(eventId)
+            .toSingleFlow(LocalEvent::toEvent)
             .onStart {
                 fetchAndPersistEvent(eventId)
             }
@@ -100,14 +141,18 @@ class OfflineFirstEventService(
             }
 
             is DataState.Success -> {
-                database.storeEvents(listOf(apiResponse.data))
+                database
+                    .localEventQueries
+                    .insertFullEventObject(apiResponse.data.toLocalEvent())
             }
         }
     }
 
     override fun getUpcomingEvents(): Flow<List<Event>> {
         return database
-            .getUpcomingEvents()
+            .localEventQueries
+            .selectUpcoming()
+            .toListFlow(LocalEvent::toEvent)
             .onStart {
                 fetchAndPersistUpcomingRLCSEvents()
             }
@@ -115,7 +160,9 @@ class OfflineFirstEventService(
 
     override fun getOngoingEvents(): Flow<List<Event>> {
         return database
-            .getOngoingEvents()
+            .localEventQueries
+            .selectOngoing()
+            .toListFlow(LocalEvent::toEvent)
             .onStart {
                 fetchAndPersistOngoingRLCSEvents()
             }
@@ -139,7 +186,13 @@ class OfflineFirstEventService(
             }
 
             is DataState.Success -> {
-                database.storeEvents(ongoingRlcsEventsResponse.data)
+                ongoingRlcsEventsResponse
+                    .data
+                    .forEach { event ->
+                        database
+                            .localEventQueries
+                            .insertFullEventObject(event.toLocalEvent())
+                    }
             }
         }
     }
@@ -162,7 +215,13 @@ class OfflineFirstEventService(
             }
 
             is DataState.Success -> {
-                database.storeEvents(upcomingRlcsEventsResponse.data)
+                upcomingRlcsEventsResponse
+                    .data
+                    .forEach { event ->
+                        database
+                            .localEventQueries
+                            .insertFullEventObject(event.toLocalEvent())
+                    }
             }
         }
     }

@@ -8,12 +8,12 @@ import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.adammcneilly.pocketleague.sqldelight.LocalEventStage
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
-import com.adammcneilly.pocketleague.sqldelight.SelectById
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
+import com.squareup.sqldelight.runtime.coroutines.mapToOne
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 
 /**
@@ -79,48 +79,25 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
     }
 
     override fun getEvent(eventId: String): Flow<Event> {
-        return database.localEventQueries
+        val eventFlow = database.localEventQueries
             .selectById(eventId)
             .asFlow()
+            .mapToOne()
+            .map(LocalEvent::toEvent)
+
+        val eventStageFlow = database.localEventStageQueries
+            .selectAllForEvent(eventId)
+            .asFlow()
             .mapToList()
-            // We get one row for each event/stage combo, so we need to combine
-            // them ourselves.
-            .map { eventWithStageLists ->
-                eventWithStageLists
-                    .groupBy(SelectById::id)
-                    .map { (_, queryRows) ->
-                        val eventStages = queryRows.map { row ->
-                            EventStage(
-                                id = row.localEventStage_id,
-                                name = row.localEventStage_name,
-                                region = row.localEventStage_region,
-                                startDateUTC = row.localEventStage_startDateUTC,
-                                endDateUTC = row.localEventStage_endDateUTC,
-                                liquipedia = row.localEventStage_liquipedia,
-                                qualifier = row.localEventStage_qualifier,
-                                lan = row.localEventStage_lan,
-                            )
-                        }
-
-                        val firstRow = queryRows.first()
-
-                        Event(
-                            id = firstRow.id,
-                            name = firstRow.name,
-                            startDateUTC = firstRow.startDateUTC,
-                            endDateUTC = firstRow.endDateUTC,
-                            imageURL = firstRow.imageURL,
-                            stages = eventStages,
-                            tier = EventTier.valueOf(firstRow.tier),
-                            mode = firstRow.mode,
-                            region = EventRegion.valueOf(firstRow.region),
-                            lan = firstRow.lan,
-                            // NEED TO FIX
-                            prize = null,
-                        )
-                    }
+            .map { localEventStageList ->
+                localEventStageList.map(LocalEventStage::toEventStage)
             }
-            .map(List<Event>::first)
+
+        return combine(eventFlow, eventStageFlow) { event, stageList ->
+            event.copy(
+                stages = stageList,
+            )
+        }
     }
 }
 
@@ -178,14 +155,27 @@ private fun EventStage.toLocalEventStage(
     eventId: String
 ): LocalEventStage {
     return LocalEventStage(
-        localEventStage_id = this.id,
-        localEventStage_eventId = eventId,
-        localEventStage_name = this.name,
-        localEventStage_region = this.region,
-        localEventStage_startDateUTC = this.startDateUTC,
-        localEventStage_endDateUTC = this.endDateUTC,
-        localEventStage_liquipedia = this.liquipedia,
-        localEventStage_qualifier = this.qualifier,
-        localEventStage_lan = this.lan,
+        id = this.id,
+        eventId = eventId,
+        name = this.name,
+        region = this.region,
+        startDateUTC = this.startDateUTC,
+        endDateUTC = this.endDateUTC,
+        liquipedia = this.liquipedia,
+        qualifier = this.qualifier,
+        lan = this.lan,
+    )
+}
+
+private fun LocalEventStage.toEventStage(): EventStage {
+    return EventStage(
+        id = this.id,
+        name = this.name,
+        region = this.region,
+        startDateUTC = this.startDateUTC,
+        endDateUTC = this.endDateUTC,
+        liquipedia = this.liquipedia,
+        qualifier = this.qualifier,
+        lan = this.lan,
     )
 }

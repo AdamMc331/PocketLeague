@@ -1,37 +1,43 @@
 CREATE TABLE localEventStage(
-    localEventStage_id TEXT NOT NULL,
-    localEventStage_eventId TEXT NOT NULL,
-    localEventStage_name TEXT NOT NULL,
-    localEventStage_region TEXT NOT NULL,
-    localEventStage_startDateUTC TEXT,
-    localEventStage_endDateUTC TEXT,
-    localEventStage_liquipedia TEXT NOT NULL,
-    localEventStage_qualifier INTEGER AS Boolean NOT NULL DEFAULT 0,
-    localEventStage_lan INTEGER AS Boolean NOT NULL DEFAULT 0,
-    PRIMARY KEY (localEventStage_id, localEventStage_eventId),
-    FOREIGN KEY (localEventStage_eventId) REFERENCES localEvent(id) ON DELETE CASCADE
+    id TEXT NOT NULL,
+    eventId TEXT NOT NULL,
+    name TEXT NOT NULL,
+    region TEXT NOT NULL,
+    startDateUTC TEXT,
+    endDateUTC TEXT,
+    liquipedia TEXT NOT NULL,
+    qualifier INTEGER AS Boolean NOT NULL DEFAULT 0,
+    lan INTEGER AS Boolean NOT NULL DEFAULT 0,
+    PRIMARY KEY (id, eventId),
+    FOREIGN KEY (eventId) REFERENCES localEvent(id) ON DELETE CASCADE
 );
 
 insertFullEventStage:
 INSERT INTO localEventStage(
-    localEventStage_id,
-    localEventStage_eventId,
-    localEventStage_name,
-    localEventStage_region,
-    localEventStage_startDateUTC,
-    localEventStage_endDateUTC,
-    localEventStage_liquipedia,
-    localEventStage_qualifier,
-    localEventStage_lan
+    id,
+    eventId,
+    name,
+    region,
+    startDateUTC,
+    endDateUTC,
+    liquipedia,
+    qualifier,
+    lan
 )
 VALUES ?
-ON CONFLICT(localEventStage_id, localEventStage_eventId) DO
+ON CONFLICT(id, eventId) DO
 UPDATE SET
-    localEventStage_name = excluded.localEventStage_name,
-    localEventStage_region = excluded.localEventStage_region,
-    localEventStage_startDateUTC = excluded.localEventStage_startDateUTC,
-    localEventStage_endDateUTC = excluded.localEventStage_endDateUTC,
-    localEventStage_liquipedia = excluded.localEventStage_liquipedia,
-    localEventStage_qualifier = excluded.localEventStage_qualifier,
-    localEventStage_lan = excluded.localEventStage_lan
+    name = excluded.name,
+    region = excluded.region,
+    startDateUTC = excluded.startDateUTC,
+    endDateUTC = excluded.endDateUTC,
+    liquipedia = excluded.liquipedia,
+    qualifier = excluded.qualifier,
+    lan = excluded.lan
 ;
+
+selectAllForEvent:
+SELECT *
+FROM localEventStage
+WHERE eventId = :eventId
+ORDER BY startDateUTC;

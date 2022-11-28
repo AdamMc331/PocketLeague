@@ -24,7 +24,6 @@ ORDER BY startDateUTC;
 selectById:
 SELECT *
 FROM localEvent
-JOIN localEventStage ON id = localEventStage_eventId
 WHERE localEvent.id = :eventId;
 
 insertFullEventObject:

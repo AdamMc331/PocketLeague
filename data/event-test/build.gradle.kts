@@ -12,6 +12,7 @@ kotlin {
                 implementation(project(":core:models"))
                 implementation(project(":core:models-test"))
                 implementation(project(":data:event"))
+                implementation(libs.kotlinx.coroutines.core)
             }
         }
         val commonTest by getting {

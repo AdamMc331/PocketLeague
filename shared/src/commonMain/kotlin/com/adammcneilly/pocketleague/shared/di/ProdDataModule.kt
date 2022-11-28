@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.di
 
 import com.adammcneilly.pocketleague.data.event.EventService
-import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
+import com.adammcneilly.pocketleague.data.event.OfflineFirstEventService
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.local.DatabaseDriverFactory
@@ -21,7 +21,10 @@ class ProdDataModule(
 ) : DataModule {
 
     override val eventService: EventService by lazy {
-        OctaneGGEventService()
+        OfflineFirstEventService(
+            database = this.database,
+            apiClient = OctaneGGAPIClient,
+        )
     }
 
     override val matchService: MatchService by lazy {

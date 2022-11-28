@@ -1,0 +1,43 @@
+CREATE TABLE localEventStage(
+    id TEXT NOT NULL,
+    eventId TEXT NOT NULL,
+    name TEXT NOT NULL,
+    region TEXT NOT NULL,
+    startDateUTC TEXT,
+    endDateUTC TEXT,
+    liquipedia TEXT NOT NULL,
+    qualifier INTEGER AS Boolean NOT NULL DEFAULT 0,
+    lan INTEGER AS Boolean NOT NULL DEFAULT 0,
+    PRIMARY KEY (id, eventId),
+    FOREIGN KEY (eventId) REFERENCES localEvent(id) ON DELETE CASCADE
+);
+
+insertFullEventStage:
+INSERT INTO localEventStage(
+    id,
+    eventId,
+    name,
+    region,
+    startDateUTC,
+    endDateUTC,
+    liquipedia,
+    qualifier,
+    lan
+)
+VALUES ?
+ON CONFLICT(id, eventId) DO
+UPDATE SET
+    name = excluded.name,
+    region = excluded.region,
+    startDateUTC = excluded.startDateUTC,
+    endDateUTC = excluded.endDateUTC,
+    liquipedia = excluded.liquipedia,
+    qualifier = excluded.qualifier,
+    lan = excluded.lan
+;
+
+selectAllForEvent:
+SELECT *
+FROM localEventStage
+WHERE eventId = :eventId
+ORDER BY startDateUTC;

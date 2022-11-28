@@ -1,11 +1,19 @@
 package com.adammcneilly.pocketleague.data.local
 
+import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventRegion
+import com.adammcneilly.pocketleague.core.models.EventStage
+import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.sqldelight.LocalEvent
+import com.adammcneilly.pocketleague.sqldelight.LocalEventStage
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
+import com.squareup.sqldelight.runtime.coroutines.mapToOne
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 
 /**
@@ -43,6 +51,54 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
             }
         }
     }
+
+    override fun getUpcomingEvents(): Flow<List<Event>> {
+        return database.localEventQueries
+            .selectUpcoming()
+            .asFlow()
+            .mapToList()
+            .map { eventList ->
+                eventList.map(LocalEvent::toEvent)
+            }
+    }
+
+    override suspend fun storeEvents(events: List<Event>) {
+        database.transaction {
+            events.forEach { event ->
+                database
+                    .localEventQueries
+                    .insertFullEventObject(event.toLocalEvent())
+
+                event.stages.forEach { eventStage ->
+                    database
+                        .localEventStageQueries
+                        .insertFullEventStage(eventStage.toLocalEventStage(event.id))
+                }
+            }
+        }
+    }
+
+    override fun getEvent(eventId: String): Flow<Event> {
+        val eventFlow = database.localEventQueries
+            .selectById(eventId)
+            .asFlow()
+            .mapToOne()
+            .map(LocalEvent::toEvent)
+
+        val eventStageFlow = database.localEventStageQueries
+            .selectAllForEvent(eventId)
+            .asFlow()
+            .mapToList()
+            .map { localEventStageList ->
+                localEventStageList.map(LocalEventStage::toEventStage)
+            }
+
+        return combine(eventFlow, eventStageFlow) { event, stageList ->
+            event.copy(
+                stages = stageList,
+            )
+        }
+    }
 }
 
 private fun Team.toLocalTeam(): LocalTeam {
@@ -60,5 +116,66 @@ private fun LocalTeam.toTeam(): Team {
         name = this.name,
         imageUrl = this.imageURL,
         isFavorite = this.isFavorite,
+    )
+}
+
+private fun LocalEvent.toEvent(): Event {
+    return Event(
+        id = this.id,
+        name = this.name,
+        startDateUTC = this.startDateUTC,
+        endDateUTC = this.endDateUTC,
+        imageURL = this.imageURL,
+        // ARM - NEED TO FIX
+        stages = emptyList(),
+        tier = EventTier.valueOf(this.tier),
+        mode = this.mode,
+        region = EventRegion.valueOf(this.region),
+        lan = this.lan,
+        // ARM - NEED TO FIX
+        prize = null,
+    )
+}
+
+private fun Event.toLocalEvent(): LocalEvent {
+    return LocalEvent(
+        id = this.id,
+        name = this.name,
+        startDateUTC = this.startDateUTC,
+        endDateUTC = this.endDateUTC,
+        imageURL = this.imageURL,
+        tier = this.tier.name,
+        mode = this.mode,
+        region = this.region.name,
+        lan = this.lan,
+    )
+}
+
+private fun EventStage.toLocalEventStage(
+    eventId: String
+): LocalEventStage {
+    return LocalEventStage(
+        id = this.id,
+        eventId = eventId,
+        name = this.name,
+        region = this.region,
+        startDateUTC = this.startDateUTC,
+        endDateUTC = this.endDateUTC,
+        liquipedia = this.liquipedia,
+        qualifier = this.qualifier,
+        lan = this.lan,
+    )
+}
+
+private fun LocalEventStage.toEventStage(): EventStage {
+    return EventStage(
+        id = this.id,
+        name = this.name,
+        region = this.region,
+        startDateUTC = this.startDateUTC,
+        endDateUTC = this.endDateUTC,
+        liquipedia = this.liquipedia,
+        qualifier = this.qualifier,
+        lan = this.lan,
     )
 }

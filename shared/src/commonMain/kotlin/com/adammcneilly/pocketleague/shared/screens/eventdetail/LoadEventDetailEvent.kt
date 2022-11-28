@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toOverviewDisplayModel
-import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.shared.screens.Events
 
@@ -34,15 +34,18 @@ private suspend fun Events.fetchEventParticipants(
     }
 }
 
-private suspend fun Events.fetchEventDetail(eventId: String) {
-    val repoResult = appModule
+private suspend fun Events.fetchEventDetail(
+    eventId: String,
+) {
+    appModule
         .dataModule
         .eventService
-        .fetchEvent(eventId)
-
-    stateManager.updateScreen(EventDetailViewState::class) { currentState ->
-        currentState.copy(
-            eventDetailState = repoResult.map(Event::toDetailDisplayModel),
-        )
-    }
+        .getEvent(eventId)
+        .collect { event ->
+            stateManager.updateScreen(EventDetailViewState::class) { currentState ->
+                currentState.copy(
+                    eventDetailState = DataState.Success(event.toDetailDisplayModel()),
+                )
+            }
+        }
 }

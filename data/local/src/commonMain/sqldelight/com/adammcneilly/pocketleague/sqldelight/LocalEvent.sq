@@ -1,0 +1,52 @@
+CREATE TABLE localEvent(
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    startDateUTC TEXT,
+    endDateUTC TEXT,
+    imageURL TEXT,
+    tier TEXT NOT NULL,
+    mode TEXT NOT NULL,
+    region TEXT NOT NULL,
+    lan INTEGER AS Boolean NOT NULL DEFAULT 0
+);
+
+selectAll:
+SELECT *
+FROM localEvent
+ORDER BY startDateUTC;
+
+selectUpcoming:
+SELECT *
+FROM localEvent
+WHERE startDateUTC > DATE()
+ORDER BY startDateUTC;
+
+selectById:
+SELECT *
+FROM localEvent
+WHERE localEvent.id = :eventId;
+
+insertFullEventObject:
+INSERT INTO localEvent(
+    id,
+    name,
+    startDateUTC,
+    endDateUTC,
+    imageURL,
+    tier,
+    mode,
+    region,
+    lan
+)
+VALUES ?
+ON CONFLICT(id) DO
+UPDATE SET
+    name = excluded.name,
+    startDateUTC = excluded.startDateUTC,
+    endDateUTC = excluded.endDateUTC,
+    imageURL = excluded.imageURL,
+    tier = excluded.tier,
+    mode = excluded.mode,
+    region = excluded.region,
+    lan = excluded.lan
+;

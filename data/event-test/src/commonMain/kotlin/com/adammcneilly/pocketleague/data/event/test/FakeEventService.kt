@@ -45,7 +45,7 @@ class FakeEventService : EventService {
         return flowOf(TestModel.event)
     }
 
-    override suspend fun sync() {
-        // No op in test scenarios.
+    override fun getOngoingEvents(): Flow<List<Event>> {
+        return flowOf(listOf(TestModel.event))
     }
 }

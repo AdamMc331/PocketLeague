@@ -32,6 +32,11 @@ interface PocketLeagueDatabase {
     fun getUpcomingEvents(): Flow<List<Event>>
 
     /**
+     * Retrieve a list of [Event] entities that are happening now.
+     */
+    fun getOngoingEvents(): Flow<List<Event>>
+
+    /**
      * Stores a list of [events] inside our local DB.
      */
     suspend fun storeEvents(

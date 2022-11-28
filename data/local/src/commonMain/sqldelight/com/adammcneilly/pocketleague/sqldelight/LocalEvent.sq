@@ -21,6 +21,12 @@ FROM localEvent
 WHERE startDateUTC > DATE()
 ORDER BY startDateUTC;
 
+selectOngoing:
+SELECT *
+FROM localEvent
+WHERE startDateUTC <= DATE() AND endDateUTC >= DATE()
+ORDER BY startDateUTC;
+
 selectById:
 SELECT *
 FROM localEvent

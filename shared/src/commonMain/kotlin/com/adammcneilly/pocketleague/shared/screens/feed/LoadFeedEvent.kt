@@ -5,7 +5,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.data.event.EventListRequest
 import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.CoroutineScope
@@ -21,20 +20,12 @@ const val NUM_DAYS_RECENT_MATCHES = 7
  * Loads the information for the feed state.
  */
 fun Events.loadFeed() = screenCoroutine { scope ->
-    appModule
-        .dataModule
-        .eventService
-        .sync()
-
     scope.launch {
         fetchRecentMatches()
     }
 
-    scope.launch {
-        fetchOngoingEvents()
-    }
-
     fetchUpcomingEvents(scope)
+    fetchOngoingEvents(scope)
 }
 
 private suspend fun Events.fetchRecentMatches() {
@@ -61,38 +52,23 @@ private suspend fun Events.fetchRecentMatches() {
         }
 }
 
-private suspend fun Events.fetchOngoingEvents() {
-    val ongoingEventsRequest = EventListRequest(
-        date = Clock.System.now(),
-        group = "rlcs",
-    )
-
-    val repoResult = appModule
+private fun Events.fetchOngoingEvents(
+    scope: CoroutineScope,
+) {
+    appModule
         .dataModule
         .eventService
-        .fetchEvents(ongoingEventsRequest)
+        .getOngoingEvents()
+        .onEach { eventList ->
+            stateManager.updateScreen(FeedViewState::class) {
+                val displayModelList = eventList.map(Event::toSummaryDisplayModel)
 
-    stateManager.updateScreen(FeedViewState::class) {
-        val mappedResult = when (repoResult) {
-            is DataState.Loading -> {
-                DataState.Loading
-            }
-            is DataState.Success -> {
-                DataState.Success(
-                    data = repoResult.data
-                        .sortedBy(Event::startDateUTC)
-                        .map(Event::toSummaryDisplayModel)
+                it.copy(
+                    ongoingEventsState = DataState.Success(displayModelList),
                 )
             }
-            is DataState.Error -> {
-                DataState.Error(repoResult.error)
-            }
         }
-
-        it.copy(
-            ongoingEventsState = mappedResult,
-        )
-    }
+        .launchIn(scope)
 }
 
 private fun Events.fetchUpcomingEvents(

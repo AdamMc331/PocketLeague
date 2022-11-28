@@ -45,7 +45,7 @@ interface EventService {
     fun getEvent(eventId: String): Flow<Event>
 
     /**
-     * Sync any remote event data with the local event data.
+     * Retrieve a list of rlcs events happening now.
      */
-    suspend fun sync()
+    fun getOngoingEvents(): Flow<List<Event>>
 }

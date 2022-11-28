@@ -12,7 +12,6 @@ import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.datetime.Clock
 
@@ -89,14 +88,45 @@ class OfflineFirstEventService(
     }
 
     override fun getUpcomingEvents(): Flow<List<Event>> {
-        return database.getUpcomingEvents()
+        return database
+            .getUpcomingEvents()
+            .onStart {
+                fetchAndPersistUpcomingRLCSEvents()
+            }
     }
 
-    override suspend fun sync() {
-        fetchAndPersistingUpcomingRLCSEvents()
+    override fun getOngoingEvents(): Flow<List<Event>> {
+        return database
+            .getOngoingEvents()
+            .onStart {
+                fetchAndPersistOngoingRLCSEvents()
+            }
     }
 
-    private suspend fun fetchAndPersistingUpcomingRLCSEvents() {
+    private suspend fun fetchAndPersistOngoingRLCSEvents() {
+        val ongoingRlcsEventsRequest = EventListRequest(
+            group = "rlcs",
+            date = Clock.System.now(),
+        )
+
+        val ongoingRlcsEventsResponse = fetchEvents(ongoingRlcsEventsRequest)
+
+        when (ongoingRlcsEventsResponse) {
+            is DataState.Error -> {
+                // ARM - DO WE NEED THIS?
+            }
+
+            DataState.Loading -> {
+                // ARM - DO WE NEED THIS?
+            }
+
+            is DataState.Success -> {
+                database.storeEvents(ongoingRlcsEventsResponse.data)
+            }
+        }
+    }
+
+    private suspend fun fetchAndPersistUpcomingRLCSEvents() {
         val upcomingRlcsEventsRequest = EventListRequest(
             group = "rlcs",
             after = Clock.System.now(),

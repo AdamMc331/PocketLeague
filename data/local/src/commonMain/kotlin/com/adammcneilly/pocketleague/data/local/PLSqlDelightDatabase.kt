@@ -62,6 +62,16 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
             }
     }
 
+    override fun getOngoingEvents(): Flow<List<Event>> {
+        return database.localEventQueries
+            .selectOngoing()
+            .asFlow()
+            .mapToList()
+            .map { eventList ->
+                eventList.map(LocalEvent::toEvent)
+            }
+    }
+
     override suspend fun storeEvents(events: List<Event>) {
         database.transaction {
             events.forEach { event ->

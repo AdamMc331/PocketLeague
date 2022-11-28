@@ -1,0 +1,20 @@
+CREATE TABLE localEventParticipant(
+    eventId TEXT NOT NULL,
+    teamId TEXT NOT NULL,
+    PRIMARY KEY (eventId, teamId),
+    FOREIGN KEY (eventId) REFERENCES localEvent(id) ON DELETE CASCADE,
+    FOREIGN KEY (teamId) REFERENCES localTeam(id) ON DELETE CASCADE
+);
+
+insertEventParticipant:
+INSERT OR REPLACE INTO localEventParticipant(
+    eventId,
+    teamId
+)
+VALUES (?, ?);
+
+selectTeamsForEvent:
+SELECT localTeam.*
+FROM localEventParticipant
+JOIN localTeam ON localEventParticipant.teamId = localTeam.id
+WHERE localEventParticipant.eventId = :eventId;

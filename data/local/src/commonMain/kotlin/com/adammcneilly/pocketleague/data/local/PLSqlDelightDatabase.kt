@@ -88,6 +88,18 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
         }
     }
 
+    override suspend fun storeEventParticipants(eventId: String, teams: List<Team>) {
+        storeTeams(teams)
+
+        database.transaction {
+            teams.forEach { team ->
+                database
+                    .localEventParticipantQueries
+                    .insertEventParticipant(eventId, team.id)
+            }
+        }
+    }
+
     override fun getEvent(eventId: String): Flow<Event> {
         val eventFlow = database.localEventQueries
             .selectById(eventId)
@@ -108,6 +120,16 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
                 stages = stageList,
             )
         }
+    }
+
+    override fun getEventParticipants(eventId: String): Flow<List<Team>> {
+        return database.localEventParticipantQueries
+            .selectTeamsForEvent(eventId)
+            .asFlow()
+            .mapToList()
+            .map { localTeamList ->
+                localTeamList.map(LocalTeam::toTeam)
+            }
     }
 }
 

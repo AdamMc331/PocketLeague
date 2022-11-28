@@ -24,7 +24,7 @@ class OfflineFirstEventService(
     private val apiClient: BaseKTORClient,
 ) : EventService {
 
-    override suspend fun fetchEvents(request: EventListRequest): DataState<List<Event>> {
+    private suspend fun fetchEvents(request: EventListRequest): DataState<List<Event>> {
         return apiClient.getResponse<OctaneGGEventListResponse>(
             endpoint = EVENTS_ENDPOINT,
             params = request.toOctaneParams(),
@@ -33,17 +33,7 @@ class OfflineFirstEventService(
         }
     }
 
-    override suspend fun fetchEvent(eventId: String): DataState<Event> {
-        val endpoint = "$EVENTS_ENDPOINT/$eventId"
-
-        return apiClient.getResponse<OctaneGGEvent>(
-            endpoint = endpoint,
-        ).map { octaneEvent ->
-            octaneEvent.toEvent()
-        }
-    }
-
-    override suspend fun fetchEventParticipants(eventId: String): DataState<List<Team>> {
+    private suspend fun fetchEventParticipants(eventId: String): DataState<List<Team>> {
         val endpoint = "$EVENTS_ENDPOINT/$eventId/participants"
 
         return apiClient.getResponse<OctaneGGEventParticipants>(
@@ -53,6 +43,26 @@ class OfflineFirstEventService(
                 it.toTeam()
             }
         }
+    }
+
+    override fun getEventParticipants(eventId: String): Flow<List<Team>> {
+        return database
+            .getEventParticipants(eventId)
+            .onStart {
+                val apiResponse = fetchEventParticipants(eventId)
+
+                when (apiResponse) {
+                    is DataState.Error -> {
+                        // Idk?
+                    }
+                    DataState.Loading -> {
+                        // Idk?
+                    }
+                    is DataState.Success -> {
+                        database.storeEventParticipants(eventId, apiResponse.data)
+                    }
+                }
+            }
     }
 
     override fun getEvent(eventId: String): Flow<Event> {

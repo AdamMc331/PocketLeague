@@ -44,7 +44,20 @@ interface PocketLeagueDatabase {
     )
 
     /**
+     * Store the [teams] in the DB for participating in the [eventId].
+     */
+    suspend fun storeEventParticipants(
+        eventId: String,
+        teams: List<Team>
+    )
+
+    /**
      * Retrieve an event by unique identifier.
      */
     fun getEvent(eventId: String): Flow<Event>
+
+    /**
+     * Retrieve all of the [Team]s participating in an event identified by [eventId].
+     */
+    fun getEventParticipants(eventId: String): Flow<List<Team>>
 }

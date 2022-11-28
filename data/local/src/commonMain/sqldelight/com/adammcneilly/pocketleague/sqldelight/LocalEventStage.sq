@@ -1,0 +1,37 @@
+CREATE TABLE localEventStage(
+    localEventStage_id TEXT NOT NULL,
+    localEventStage_eventId TEXT NOT NULL,
+    localEventStage_name TEXT NOT NULL,
+    localEventStage_region TEXT NOT NULL,
+    localEventStage_startDateUTC TEXT,
+    localEventStage_endDateUTC TEXT,
+    localEventStage_liquipedia TEXT NOT NULL,
+    localEventStage_qualifier INTEGER AS Boolean NOT NULL DEFAULT 0,
+    localEventStage_lan INTEGER AS Boolean NOT NULL DEFAULT 0,
+    PRIMARY KEY (localEventStage_id, localEventStage_eventId),
+    FOREIGN KEY (localEventStage_eventId) REFERENCES localEvent(id) ON DELETE CASCADE
+);
+
+insertFullEventStage:
+INSERT INTO localEventStage(
+    localEventStage_id,
+    localEventStage_eventId,
+    localEventStage_name,
+    localEventStage_region,
+    localEventStage_startDateUTC,
+    localEventStage_endDateUTC,
+    localEventStage_liquipedia,
+    localEventStage_qualifier,
+    localEventStage_lan
+)
+VALUES ?
+ON CONFLICT(localEventStage_id, localEventStage_eventId) DO
+UPDATE SET
+    localEventStage_name = excluded.localEventStage_name,
+    localEventStage_region = excluded.localEventStage_region,
+    localEventStage_startDateUTC = excluded.localEventStage_startDateUTC,
+    localEventStage_endDateUTC = excluded.localEventStage_endDateUTC,
+    localEventStage_liquipedia = excluded.localEventStage_liquipedia,
+    localEventStage_qualifier = excluded.localEventStage_qualifier,
+    localEventStage_lan = excluded.localEventStage_lan
+;

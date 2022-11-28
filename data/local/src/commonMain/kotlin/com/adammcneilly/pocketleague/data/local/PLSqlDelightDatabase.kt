@@ -91,11 +91,19 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
     override suspend fun storeEventParticipants(eventId: String, teams: List<Team>) {
         storeTeams(teams)
 
+        println("Persisting participants: $eventId, $teams")
+
         database.transaction {
             teams.forEach { team ->
+
+                println("Persisting row: $eventId, ${team.id}")
+
                 database
                     .localEventParticipantQueries
-                    .insertEventParticipant(eventId, team.id)
+                    .insertEventParticipant(
+                        eventId = eventId,
+                        teamId = team.id,
+                    )
             }
         }
     }

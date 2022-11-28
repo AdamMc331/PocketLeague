@@ -49,20 +49,28 @@ class OfflineFirstEventService(
         return database
             .getEventParticipants(eventId)
             .onStart {
-                val apiResponse = fetchEventParticipants(eventId)
-
-                when (apiResponse) {
-                    is DataState.Error -> {
-                        // Idk?
-                    }
-                    DataState.Loading -> {
-                        // Idk?
-                    }
-                    is DataState.Success -> {
-                        database.storeEventParticipants(eventId, apiResponse.data)
-                    }
-                }
+                fetchAndPersistEventParticipants(eventId)
             }
+    }
+
+    private suspend fun fetchAndPersistEventParticipants(
+        eventId: String
+    ) {
+        val apiResponse = fetchEventParticipants(eventId)
+
+        when (apiResponse) {
+            is DataState.Error -> {
+                // Idk?
+            }
+
+            DataState.Loading -> {
+                // Idk?
+            }
+
+            is DataState.Success -> {
+                database.storeEventParticipants(eventId, apiResponse.data)
+            }
+        }
     }
 
     override fun getEvent(eventId: String): Flow<Event> {
@@ -116,7 +124,7 @@ class OfflineFirstEventService(
     private suspend fun fetchAndPersistOngoingRLCSEvents() {
         val ongoingRlcsEventsRequest = EventListRequest(
             group = "rlcs",
-            date = Clock.System.now(),
+            before = Clock.System.now(),
         )
 
         val ongoingRlcsEventsResponse = fetchEvents(ongoingRlcsEventsRequest)

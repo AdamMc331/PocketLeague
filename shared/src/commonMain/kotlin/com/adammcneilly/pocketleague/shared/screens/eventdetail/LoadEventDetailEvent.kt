@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.onEach
 fun Events.loadEventDetail(
     eventId: String,
 ) = screenCoroutine {
-    fetchEventDetail(eventId)
+    fetchEventDetail(eventId, it)
 
     fetchEventParticipants(eventId, it)
 }
@@ -38,18 +38,20 @@ private fun Events.fetchEventParticipants(
         .launchIn(scope)
 }
 
-private suspend fun Events.fetchEventDetail(
+private fun Events.fetchEventDetail(
     eventId: String,
+    scope: CoroutineScope,
 ) {
     appModule
         .dataModule
         .eventService
         .getEvent(eventId)
-        .collect { event ->
+        .onEach { event ->
             stateManager.updateScreen(EventDetailViewState::class) { currentState ->
                 currentState.copy(
                     eventDetailState = DataState.Success(event.toDetailDisplayModel()),
                 )
             }
         }
+        .launchIn(scope)
 }

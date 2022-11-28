@@ -27,6 +27,7 @@ import kotlinx.datetime.Clock
  * An implementation of [EventService] that only returns data from the supplied [database]
  * but uses the given [apiClient] to [sync] data.
  */
+@Suppress("TooManyFunctions")
 class OfflineFirstEventService(
     private val database: PocketLeagueDB,
     private val apiClient: BaseKTORClient,

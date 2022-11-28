@@ -9,6 +9,7 @@ import com.adammcneilly.pocketleague.sqldelight.LocalTeam
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
+import com.squareup.sqldelight.runtime.coroutines.mapToOne
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -66,6 +67,14 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
                     .insertFullEventObject(event.toLocalEvent())
             }
         }
+    }
+
+    override fun getEvent(eventId: String): Flow<Event> {
+        return database.localEventQueries
+            .selectById(eventId)
+            .asFlow()
+            .mapToOne()
+            .map(LocalEvent::toEvent)
     }
 }
 

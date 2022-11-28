@@ -21,6 +21,11 @@ FROM localEvent
 WHERE startDateUTC > DATE()
 ORDER BY startDateUTC;
 
+selectById:
+SELECT *
+FROM localEvent
+WHERE id = :id;
+
 insertFullEventObject:
 INSERT INTO localEvent(
     id,

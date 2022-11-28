@@ -40,6 +40,11 @@ interface EventService {
     fun getUpcomingEvents(): Flow<List<Event>>
 
     /**
+     * Retrieves an [Event] by it's unique [eventId].
+     */
+    fun getEvent(eventId: String): Flow<Event>
+
+    /**
      * Sync any remote event data with the local event data.
      */
     suspend fun sync()

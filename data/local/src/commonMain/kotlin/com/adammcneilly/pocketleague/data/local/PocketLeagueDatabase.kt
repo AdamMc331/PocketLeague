@@ -37,4 +37,9 @@ interface PocketLeagueDatabase {
     suspend fun storeEvents(
         events: List<Event>,
     )
+
+    /**
+     * Retrieve an event by unique identifier.
+     */
+    fun getEvent(eventId: String): Flow<Event>
 }

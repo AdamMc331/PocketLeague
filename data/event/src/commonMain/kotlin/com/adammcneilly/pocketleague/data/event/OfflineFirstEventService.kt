@@ -12,6 +12,8 @@ import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import kotlinx.datetime.Clock
 
 /**
@@ -33,7 +35,7 @@ class OfflineFirstEventService(
     }
 
     override suspend fun fetchEvent(eventId: String): DataState<Event> {
-        val endpoint = "${EVENTS_ENDPOINT}/$eventId"
+        val endpoint = "$EVENTS_ENDPOINT/$eventId"
 
         return apiClient.getResponse<OctaneGGEvent>(
             endpoint = endpoint,
@@ -43,13 +45,45 @@ class OfflineFirstEventService(
     }
 
     override suspend fun fetchEventParticipants(eventId: String): DataState<List<Team>> {
-        val endpoint = "${EVENTS_ENDPOINT}/$eventId/participants"
+        val endpoint = "$EVENTS_ENDPOINT/$eventId/participants"
 
         return apiClient.getResponse<OctaneGGEventParticipants>(
             endpoint = endpoint,
         ).map { octaneEventParticipants ->
             octaneEventParticipants.participants.map {
                 it.toTeam()
+            }
+        }
+    }
+
+    override fun getEvent(eventId: String): Flow<Event> {
+        return database
+            .getEvent(eventId)
+            .onStart {
+                fetchAndPersistEvent(eventId)
+            }
+    }
+
+    private suspend fun fetchAndPersistEvent(eventId: String) {
+        val endpoint = "$EVENTS_ENDPOINT/$eventId"
+
+        val apiResponse = apiClient.getResponse<OctaneGGEvent>(
+            endpoint = endpoint,
+        ).map { octaneEvent ->
+            octaneEvent.toEvent()
+        }
+
+        when (apiResponse) {
+            is DataState.Error -> {
+                // Idk?
+            }
+
+            DataState.Loading -> {
+                // Idk?
+            }
+
+            is DataState.Success -> {
+                database.storeEvents(listOf(apiResponse.data))
             }
         }
     }

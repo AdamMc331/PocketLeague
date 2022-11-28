@@ -3,7 +3,7 @@ package com.adammcneilly.pocketleague.data.event
 import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
-import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
+import com.adammcneilly.pocketleague.data.local.PocketLeagueDatabase
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventParticipants
@@ -11,16 +11,17 @@ import com.adammcneilly.pocketleague.data.octanegg.models.toEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
+import kotlinx.coroutines.flow.Flow
+import kotlinx.datetime.Clock
 
 /**
- * A concrete implementation of [EventService] that requests data through the
- * given [apiClient].
+ * An implementation of [EventService] that only returns data from the supplied [database]
+ * but uses the given [apiClient] to [sync] data.
  */
-class OctaneGGEventService(
+class OfflineFirstEventService(
+    private val database: PocketLeagueDatabase,
     private val apiClient: BaseKTORClient,
 ) : EventService {
-
-    constructor() : this(OctaneGGAPIClient)
 
     override suspend fun fetchEvents(request: EventListRequest): DataState<List<Event>> {
         return apiClient.getResponse<OctaneGGEventListResponse>(
@@ -32,7 +33,7 @@ class OctaneGGEventService(
     }
 
     override suspend fun fetchEvent(eventId: String): DataState<Event> {
-        val endpoint = "$EVENTS_ENDPOINT/$eventId"
+        val endpoint = "${EVENTS_ENDPOINT}/$eventId"
 
         return apiClient.getResponse<OctaneGGEvent>(
             endpoint = endpoint,
@@ -42,13 +43,44 @@ class OctaneGGEventService(
     }
 
     override suspend fun fetchEventParticipants(eventId: String): DataState<List<Team>> {
-        val endpoint = "$EVENTS_ENDPOINT/$eventId/participants"
+        val endpoint = "${EVENTS_ENDPOINT}/$eventId/participants"
 
         return apiClient.getResponse<OctaneGGEventParticipants>(
             endpoint = endpoint,
         ).map { octaneEventParticipants ->
             octaneEventParticipants.participants.map {
                 it.toTeam()
+            }
+        }
+    }
+
+    override fun getUpcomingEvents(): Flow<List<Event>> {
+        return database.getUpcomingEvents()
+    }
+
+    override suspend fun sync() {
+        fetchAndPersistingUpcomingRLCSEvents()
+    }
+
+    private suspend fun fetchAndPersistingUpcomingRLCSEvents() {
+        val upcomingRlcsEventsRequest = EventListRequest(
+            group = "rlcs",
+            after = Clock.System.now(),
+        )
+
+        val upcomingRlcsEventsResponse = fetchEvents(upcomingRlcsEventsRequest)
+
+        when (upcomingRlcsEventsResponse) {
+            is DataState.Error -> {
+                // ARM - DO WE NEED THIS?
+            }
+
+            DataState.Loading -> {
+                // ARM - DO WE NEED THIS?
+            }
+
+            is DataState.Success -> {
+                database.storeEvents(upcomingRlcsEventsResponse.data)
             }
         }
     }

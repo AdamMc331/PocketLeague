@@ -1,6 +1,10 @@
 package com.adammcneilly.pocketleague.data.local
 
+import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventRegion
+import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.runtime.coroutines.asFlow
@@ -43,6 +47,26 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
             }
         }
     }
+
+    override fun getUpcomingEvents(): Flow<List<Event>> {
+        return database.localEventQueries
+            .selectUpcoming()
+            .asFlow()
+            .mapToList()
+            .map { eventList ->
+                eventList.map(LocalEvent::toEvent)
+            }
+    }
+
+    override suspend fun storeEvents(events: List<Event>) {
+        database.transaction {
+            events.forEach { event ->
+                database
+                    .localEventQueries
+                    .insertFullEventObject(event.toLocalEvent())
+            }
+        }
+    }
 }
 
 private fun Team.toLocalTeam(): LocalTeam {
@@ -60,5 +84,37 @@ private fun LocalTeam.toTeam(): Team {
         name = this.name,
         imageUrl = this.imageURL,
         isFavorite = this.isFavorite,
+    )
+}
+
+private fun LocalEvent.toEvent(): Event {
+    return Event(
+        id = this.id,
+        name = this.name,
+        startDateUTC = this.startDateUTC,
+        endDateUTC = this.endDateUTC,
+        imageURL = this.imageURL,
+        // ARM - NEED TO FIX
+        stages = emptyList(),
+        tier = EventTier.valueOf(this.tier),
+        mode = this.mode,
+        region = EventRegion.valueOf(this.region),
+        lan = this.lan,
+        // ARM - NEED TO FIX
+        prize = null,
+    )
+}
+
+private fun Event.toLocalEvent(): LocalEvent {
+    return LocalEvent(
+        id = this.id,
+        name = this.name,
+        startDateUTC = this.startDateUTC,
+        endDateUTC = this.endDateUTC,
+        imageURL = this.imageURL,
+        tier = this.tier.name,
+        mode = this.mode,
+        region = this.region.name,
+        lan = this.lan,
     )
 }

@@ -6,7 +6,6 @@ import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.event
 import com.adammcneilly.pocketleague.core.models.test.team
-import com.adammcneilly.pocketleague.data.event.EventListRequest
 import com.adammcneilly.pocketleague.data.event.EventService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -25,16 +24,8 @@ class FakeEventService : EventService {
         listOf(TestModel.team),
     )
 
-    override suspend fun fetchEvents(request: EventListRequest): DataState<List<Event>> {
-        return eventListResponse
-    }
-
-    override suspend fun fetchEvent(eventId: String): DataState<Event> {
-        return eventResponse
-    }
-
-    override suspend fun fetchEventParticipants(eventId: String): DataState<List<Team>> {
-        return eventParticipants
+    override fun getEventParticipants(eventId: String): Flow<List<Team>> {
+        return flowOf(listOf(TestModel.team))
     }
 
     override fun getUpcomingEvents(): Flow<List<Event>> {

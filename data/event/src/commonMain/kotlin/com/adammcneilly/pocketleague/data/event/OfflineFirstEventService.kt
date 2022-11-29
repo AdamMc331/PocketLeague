@@ -172,7 +172,7 @@ class OfflineFirstEventService(
     private suspend fun fetchAndPersistOngoingRLCSEvents() {
         val ongoingRlcsEventsRequest = EventListRequest(
             group = "rlcs",
-            before = Clock.System.now(),
+            date = Clock.System.now(),
         )
 
         val ongoingRlcsEventsResponse = fetchEvents(ongoingRlcsEventsRequest)

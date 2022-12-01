@@ -4,6 +4,7 @@ import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
+import com.adammcneilly.pocketleague.data.local.mappers.toLocalEventStage
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalMatch
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
 import com.adammcneilly.pocketleague.data.local.mappers.toMatch
@@ -72,30 +73,37 @@ class OfflineFirstMatchService(
             is DataState.Error -> {
                 // We need to log this somehow
             }
+
             DataState.Loading -> {
                 // I think we can remove this sealed class type.
             }
+
             is DataState.Success -> {
-                // Persist the data
-                database.transaction {
-                    // Store the event
-                    // Store the teams
-                    // Store the match
-                    apiResponse.data.forEach { match ->
-                        database.localEventQueries
-                            .insertFullEventObject(match.event.toLocalEvent())
-
-                        database.localTeamQueries
-                            .insertFullTeamObject(match.blueTeam.team.toLocalTeam())
-
-                        database.localTeamQueries
-                            .insertFullTeamObject(match.orangeTeam.team.toLocalTeam())
-
-                        database.localMatchQueries
-                            .insertFullMatchObject(match.toLocalMatch())
-                    }
-                }
+                persistMatches(apiResponse.data)
             }
+        }
+    }
+
+    private fun persistMatches(matches: List<Match>) {
+        matches.forEach { match ->
+            database.localEventStageQueries
+                .insertFullEventStage(
+                    match.stage.toLocalEventStage(
+                        eventId = match.event.id,
+                    )
+                )
+
+            database.localEventQueries
+                .insertFullEventObject(match.event.toLocalEvent())
+
+            database.localTeamQueries
+                .insertFullTeamObject(match.blueTeam.team.toLocalTeam())
+
+            database.localTeamQueries
+                .insertFullTeamObject(match.orangeTeam.team.toLocalTeam())
+
+            database.localMatchQueries
+                .insertFullMatchObject(match.toLocalMatch())
         }
     }
 

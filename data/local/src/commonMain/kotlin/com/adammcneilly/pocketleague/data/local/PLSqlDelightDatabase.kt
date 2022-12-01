@@ -1,10 +1,11 @@
 package com.adammcneilly.pocketleague.data.local
 
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.local.mappers.toEvent
+import com.adammcneilly.pocketleague.data.local.mappers.toEventStage
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
+import com.adammcneilly.pocketleague.data.local.mappers.toLocalEventStage
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
 import com.adammcneilly.pocketleague.data.local.mappers.toTeam
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
@@ -101,33 +102,4 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
             )
         }
     }
-}
-
-private fun EventStage.toLocalEventStage(
-    eventId: String
-): LocalEventStage {
-    return LocalEventStage(
-        id = this.id,
-        eventId = eventId,
-        name = this.name,
-        region = this.region,
-        startDateUTC = this.startDateUTC,
-        endDateUTC = this.endDateUTC,
-        liquipedia = this.liquipedia,
-        qualifier = this.qualifier,
-        lan = this.lan,
-    )
-}
-
-private fun LocalEventStage.toEventStage(): EventStage {
-    return EventStage(
-        id = this.id,
-        name = this.name,
-        region = this.region,
-        startDateUTC = this.startDateUTC,
-        endDateUTC = this.endDateUTC,
-        liquipedia = this.liquipedia,
-        qualifier = this.qualifier,
-        lan = this.lan,
-    )
 }

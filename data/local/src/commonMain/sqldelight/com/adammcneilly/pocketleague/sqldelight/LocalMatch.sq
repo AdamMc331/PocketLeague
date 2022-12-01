@@ -8,9 +8,11 @@ CREATE TABLE localMatch(
     orangeTeamGameWins INTEGER NOT NULL,
     formatType TEXT NOT NULL,
     formatLength INTEGER NOT NULL,
+    stageId TEXT NOT NULL,
     FOREIGN KEY (eventId) REFERENCES localEvent(id) ON DELETE CASCADE,
     FOREIGN KEY (blueTeamId) REFERENCES localTeam(id) ON DELETE CASCADE,
-    FOREIGN KEY (orangeTeamId) REFERENCES localTeam(id) ON DELETE CASCADE
+    FOREIGN KEY (orangeTeamId) REFERENCES localTeam(id) ON DELETE CASCADE,
+    FOREIGN KEY (stageId, eventId) REFERENCES localEventStage(id, eventId) ON DELETE CASCADE
 );
 
 insertFullMatchObject:
@@ -23,7 +25,8 @@ INSERT INTO localMatch(
     blueTeamGameWins,
     orangeTeamGameWins,
     formatType,
-    formatLength
+    formatLength,
+    stageId
 )
 VALUES ?
 ON CONFLICT(id) DO
@@ -35,7 +38,8 @@ UPDATE SET
     blueTeamGameWins = excluded.blueTeamGameWins,
     orangeTeamGameWins = excluded.orangeTeamGameWins,
     formatType = excluded.formatType,
-    formatLength = excluded.formatLength
+    formatLength = excluded.formatLength,
+    stageId = excluded.stageId
 ;
 
 CREATE VIEW matchWithEventAndTeams AS
@@ -49,6 +53,7 @@ SELECT
     localMatch.orangeTeamGameWins AS localMatchorangeTeamGameWins,
     localMatch.formatType AS localMatchFormatType,
     localMatch.formatLength AS localMatchFormatLength,
+    localMatch.stageId AS localMatchStageId,
     localEvent.id AS localEventId,
     localEvent.name AS localEventName,
     localEvent.startDateUTC AS localEventStartDateUTC,
@@ -65,11 +70,21 @@ SELECT
     orangeTeam.id AS orangeTeamId,
     orangeTeam.name AS orangeTeamName,
     orangeTeam.imageURL AS orangeTeamImageURL,
-    orangeTeam.isFavorite AS orangeTeamIsFavorite
+    orangeTeam.isFavorite AS orangeTeamIsFavorite,
+    localEventStage.id AS localEventStageId,
+    localEventStage.eventId AS localEventStageEventId, 
+    localEventStage.name AS localEventStageName,
+    localEventStage.region AS localEventStageRegion, 
+    localEventStage.startDateUTC AS localEventStageStartDateUTC, 
+    localEventStage.endDateUTC AS localEventStageEndDateUTC,
+    localEventStage.liquipedia AS localEventStageLiquipedia,
+    localEventStage.qualifier AS localEventStageQualifier,
+    localEventStage.lan AS localEventStageLan
 FROM localMatch
 JOIN localEvent ON localMatch.eventId = localEvent.id
 JOIN localTeam AS blueTeam ON localMatch.blueTeamId = blueTeam.id
-JOIN localTeam AS orangeTeam ON localMatch.orangeTeamId = orangeTeam.id;
+JOIN localTeam AS orangeTeam ON localMatch.orangeTeamId = orangeTeam.id
+JOIN localEventStage ON localMatch.eventId = localEventStage.eventId AND localMatch.stageId = localEventStage.id;
 
 selectPastWeekMatches:
 SELECT *

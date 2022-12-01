@@ -1,0 +1,45 @@
+CREATE TABLE localMatch(
+    id TEXT NOT NULL PRIMARY KEY,
+    dateUTC TEXT,
+    eventId TEXT NOT NULL,
+    blueTeamId TEXT NOT NULL,
+    orangeTeamId TEXT NOT NULL,
+    blueTeamGoals INTEGER NOT NULL,
+    orangeTeamGoals INTEGER NOT NULL,
+    formatType TEXT NOT NULL,
+    formatLength INTEGER NOT NULL,
+    FOREIGN KEY (eventId) REFERENCES localEvent(id) ON DELETE CASCADE,
+    FOREIGN KEY (blueTeamId) REFERENCES localTeam(id) ON DELETE CASCADE,
+    FOREIGN KEY (orangeTeamId) REFERENCES localTeam(id) ON DELETE CASCADE
+);
+
+insertFullMatchObject:
+INSERT INTO localMatch(
+    id,
+    dateUTC,
+    eventId,
+    blueTeamId,
+    orangeTeamId,
+    blueTeamGoals,
+    orangeTeamGoals,
+    formatType,
+    formatLength
+)
+VALUES ?
+ON CONFLICT(id) DO
+UPDATE SET
+    dateUTC = excluded.dateUTC,
+    eventId = excluded.eventId,
+    blueTeamId = excluded.blueTeamId,
+    orangeTeamId = excluded.orangeTeamId,
+    blueTeamGoals = excluded.blueTeamGoals,
+    orangeTeamGoals = excluded.orangeTeamGoals,
+    formatType = excluded.formatType,
+    formatLength = excluded.formatLength
+;
+
+selectPastWeekMatches:
+SELECT *
+FROM localMatch
+WHERE dateUTC <= DATE() AND dateUTC >= DATE('now', '-7 day')
+ORDER BY dateUTC DESC;

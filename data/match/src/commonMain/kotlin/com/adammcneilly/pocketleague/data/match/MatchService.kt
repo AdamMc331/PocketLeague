@@ -20,7 +20,16 @@ interface MatchService {
      * Returns a stream of [Match] entities as a list. We should only return
      * events that meet the criteria defined by the given [request].
      */
+    @Deprecated(
+        "We no longer want to make one off requests, " +
+            "prefer the reactive alternative."
+    )
     fun fetchMatches(
         request: MatchListRequest,
     ): Flow<DataState<List<Match>>>
+
+    /**
+     * Returns a reactive stream of [Match] entities that have occured within the last week.
+     */
+    fun getPastWeeksMatches(): Flow<List<Match>>
 }

@@ -46,6 +46,10 @@ class OctaneGGMatchService(
         }
     }
 
+    override fun getPastWeeksMatches(): Flow<List<Match>> {
+        TODO("Not yet implemented")
+    }
+
     companion object {
         private const val MATCHES_ENDPOINT = "/matches"
     }

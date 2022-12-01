@@ -1,10 +1,12 @@
 package com.adammcneilly.pocketleague.data.local
 
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventStage
-import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.data.local.mappers.toEvent
+import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
+import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
+import com.adammcneilly.pocketleague.data.local.mappers.toTeam
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.adammcneilly.pocketleague.sqldelight.LocalEventStage
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
@@ -99,56 +101,6 @@ class PLSqlDelightDatabase(databaseDriver: SqlDriver) : PocketLeagueDatabase {
             )
         }
     }
-}
-
-private fun Team.toLocalTeam(): LocalTeam {
-    return LocalTeam(
-        id = this.id,
-        name = this.name,
-        imageURL = this.imageUrl,
-        isFavorite = this.isFavorite,
-    )
-}
-
-private fun LocalTeam.toTeam(): Team {
-    return Team(
-        id = this.id,
-        name = this.name,
-        imageUrl = this.imageURL,
-        isFavorite = this.isFavorite,
-    )
-}
-
-private fun LocalEvent.toEvent(): Event {
-    return Event(
-        id = this.id,
-        name = this.name,
-        startDateUTC = this.startDateUTC,
-        endDateUTC = this.endDateUTC,
-        imageURL = this.imageURL,
-        // ARM - NEED TO FIX
-        stages = emptyList(),
-        tier = EventTier.valueOf(this.tier),
-        mode = this.mode,
-        region = EventRegion.valueOf(this.region),
-        lan = this.lan,
-        // ARM - NEED TO FIX
-        prize = null,
-    )
-}
-
-private fun Event.toLocalEvent(): LocalEvent {
-    return LocalEvent(
-        id = this.id,
-        name = this.name,
-        startDateUTC = this.startDateUTC,
-        endDateUTC = this.endDateUTC,
-        imageURL = this.imageURL,
-        tier = this.tier.name,
-        mode = this.mode,
-        region = this.region.name,
-        lan = this.lan,
-    )
 }
 
 private fun EventStage.toLocalEventStage(

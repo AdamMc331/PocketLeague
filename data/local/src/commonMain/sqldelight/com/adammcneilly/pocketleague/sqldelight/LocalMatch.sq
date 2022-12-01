@@ -4,8 +4,8 @@ CREATE TABLE localMatch(
     eventId TEXT NOT NULL,
     blueTeamId TEXT NOT NULL,
     orangeTeamId TEXT NOT NULL,
-    blueTeamGoals INTEGER NOT NULL,
-    orangeTeamGoals INTEGER NOT NULL,
+    blueTeamGameWins INTEGER NOT NULL,
+    orangeTeamGameWins INTEGER NOT NULL,
     formatType TEXT NOT NULL,
     formatLength INTEGER NOT NULL,
     FOREIGN KEY (eventId) REFERENCES localEvent(id) ON DELETE CASCADE,
@@ -20,8 +20,8 @@ INSERT INTO localMatch(
     eventId,
     blueTeamId,
     orangeTeamId,
-    blueTeamGoals,
-    orangeTeamGoals,
+    blueTeamGameWins,
+    orangeTeamGameWins,
     formatType,
     formatLength
 )
@@ -32,8 +32,8 @@ UPDATE SET
     eventId = excluded.eventId,
     blueTeamId = excluded.blueTeamId,
     orangeTeamId = excluded.orangeTeamId,
-    blueTeamGoals = excluded.blueTeamGoals,
-    orangeTeamGoals = excluded.orangeTeamGoals,
+    blueTeamGameWins = excluded.blueTeamGameWins,
+    orangeTeamGameWins = excluded.orangeTeamGameWins,
     formatType = excluded.formatType,
     formatLength = excluded.formatLength
 ;
@@ -45,8 +45,8 @@ SELECT
     localMatch.eventId AS localMatchEventId,
     localMatch.blueTeamId AS localMatchBlueTeamId,
     localMatch.orangeTeamId AS localMatchOrangeTeamId,
-    localMatch.blueTeamGoals AS localMatchBlueTeamGoals,
-    localMatch.orangeTeamGoals AS localMatchOrangeTeamGoals,
+    localMatch.blueTeamGameWins AS localMatchblueTeamGameWins,
+    localMatch.orangeTeamGameWins AS localMatchorangeTeamGameWins,
     localMatch.formatType AS localMatchFormatType,
     localMatch.formatLength AS localMatchFormatLength,
     localEvent.id AS localEventId,

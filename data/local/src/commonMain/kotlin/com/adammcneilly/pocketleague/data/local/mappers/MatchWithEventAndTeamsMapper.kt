@@ -11,71 +11,87 @@ import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
 
 fun MatchWithEventAndTeams.toMatch(): Match {
-    val blueTeamGameWins = this.localMatchBlueTeamGoals.toInt()
-    val orangeTeamGameWins = this.localMatchOrangeTeamGoals.toInt()
+    val blueTeamGameWins = this.localMatchblueTeamGameWins.toInt()
+    val orangeTeamGameWins = this.localMatchorangeTeamGameWins.toInt()
 
     val blueTeamWinner = blueTeamGameWins > orangeTeamGameWins
     val orangeTeamWinner = orangeTeamGameWins > blueTeamGameWins
 
     return Match(
         id = this.localMatchId,
-        event = Event(
-            id = this.localEventId,
-            name = this.localEventName,
-            startDateUTC = this.localEventStartDateUTC,
-            endDateUTC = this.localEventEndDateUTC,
-            imageURL = this.localEventImageURL,
-            // ADAM NEEDS TO STORE THIS,
-            stages = emptyList(),
-            tier = EventTier.valueOf(this.localEventTier),
-            mode = this.localEventMode,
-            region = EventRegion.valueOf(this.localEventRegion),
-            lan = this.localEventLan,
-            // Need to store prize
-            prize = null,
-        ),
+        event = mapEvent(),
         dateUTC = this.localMatchDateUTC,
-        blueTeam = MatchTeamResult(
-            score = blueTeamGameWins,
-            winner = blueTeamWinner,
-            team = Team(
-                id = this.blueTeamId,
-                name = this.blueTeamName,
-                imageUrl = this.blueTeamImageURL,
-                isFavorite = this.blueTeamIsFavorite,
-            ),
-            // We should store these
-            players = emptyList(),
-            stats = null,
-        ),
-        orangeTeam = MatchTeamResult(
-            score = orangeTeamGameWins,
-            winner = orangeTeamWinner,
-            team = Team(
-                id = this.orangeTeamId,
-                name = this.orangeTeamName,
-                imageUrl = this.orangeTeamImageURL,
-                isFavorite = this.orangeTeamIsFavorite,
-            ),
-            // We should store these
-            players = emptyList(),
-            stats = null,
-        ),
-        stage = EventStage(
-            id = "TODO",
-            name = "TODO",
-            region = "TODO",
-            startDateUTC = "TODO",
-            endDateUTC = "TODO",
-            liquipedia = "TODO",
-            qualifier = false,
-            lan = false,
-        ),
-        format = Format(
-            type = this.localMatchFormatType,
-            length = this.localMatchFormatLength.toInt(),
-        ),
+        blueTeam = mapBlueTeamResult(blueTeamGameWins, blueTeamWinner),
+        orangeTeam = mapOrangeTeamResult(orangeTeamGameWins, orangeTeamWinner),
+        stage = mapEventStage(),
+        format = mapFormat(),
         // NEED TO STORE GAME INFO
         gameOverviews = emptyList(),
     )
 }
+
+private fun MatchWithEventAndTeams.mapEvent() = Event(
+    id = this.localEventId,
+    name = this.localEventName,
+    startDateUTC = this.localEventStartDateUTC,
+    endDateUTC = this.localEventEndDateUTC,
+    imageURL = this.localEventImageURL,
+    // ADAM NEEDS TO STORE THIS,
+    stages = emptyList(),
+    tier = EventTier.valueOf(this.localEventTier),
+    mode = this.localEventMode,
+    region = EventRegion.valueOf(this.localEventRegion),
+    lan = this.localEventLan,
+    // Need to store prize
+    prize = null,
+)
+
+private fun MatchWithEventAndTeams.mapFormat() = Format(
+    type = this.localMatchFormatType,
+    length = this.localMatchFormatLength.toInt(),
+)
+
+private fun mapEventStage() = EventStage(
+    id = "TODO",
+    name = "TODO",
+    region = "TODO",
+    startDateUTC = "TODO",
+    endDateUTC = "TODO",
+    liquipedia = "TODO",
+    qualifier = false,
+    lan = false,
+)
+
+private fun MatchWithEventAndTeams.mapBlueTeamResult(
+    blueTeamGameWins: Int,
+    blueTeamWinner: Boolean,
+) = MatchTeamResult(
+    score = blueTeamGameWins,
+    winner = blueTeamWinner,
+    team = Team(
+        id = this.blueTeamId,
+        name = this.blueTeamName,
+        imageUrl = this.blueTeamImageURL,
+        isFavorite = this.blueTeamIsFavorite,
+    ),
+    // We should store these
+    players = emptyList(),
+    stats = null,
+)
+
+private fun MatchWithEventAndTeams.mapOrangeTeamResult(
+    orangeTeamGameWins: Int,
+    orangeTeamWinner: Boolean,
+) = MatchTeamResult(
+    score = orangeTeamGameWins,
+    winner = orangeTeamWinner,
+    team = Team(
+        id = this.orangeTeamId,
+        name = this.orangeTeamName,
+        imageUrl = this.orangeTeamImageURL,
+        isFavorite = this.orangeTeamIsFavorite,
+    ),
+    // We should store these
+    players = emptyList(),
+    stats = null,
+)

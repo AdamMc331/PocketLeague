@@ -6,10 +6,12 @@ import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalMatch
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
+import com.adammcneilly.pocketleague.data.local.mappers.toMatch
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatch
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatchListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.toMatch
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
+import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
@@ -44,10 +46,8 @@ class OfflineFirstMatchService(
             .selectPastWeekMatches()
             .asFlow()
             .mapToList()
-            .map { localTeamList ->
-                // Return domain team list
-                // localTeamList.map(LocalMatch::toMatch)
-                emptyList<Match>()
+            .map { localMatchList ->
+                localMatchList.map(MatchWithEventAndTeams::toMatch)
             }
             .onStart {
                 fetchAndPersistRecentMatches()

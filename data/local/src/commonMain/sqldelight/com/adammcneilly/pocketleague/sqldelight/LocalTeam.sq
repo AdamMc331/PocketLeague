@@ -17,7 +17,12 @@ WHERE isFavorite = 1
 ORDER BY name;
 
 insertFullTeamObject:
-INSERT INTO localTeam(id, name, imageURL, isFavorite)
+INSERT INTO localTeam(
+    id,
+    name,
+    imageURL,
+    isFavorite
+)
 VALUES ?
 ON CONFLICT(id) DO
 UPDATE SET

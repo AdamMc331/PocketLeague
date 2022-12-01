@@ -5,15 +5,13 @@ import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
 import com.adammcneilly.pocketleague.data.local.mappers.toTeam
+import com.adammcneilly.pocketleague.data.local.util.asFlowList
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGTeamDetail
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGTeamListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
-import com.squareup.sqldelight.runtime.coroutines.asFlow
-import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
 /**
  * An implementation of [TeamService] that only returns data from the supplied [database]
@@ -28,22 +26,14 @@ class OfflineFirstTeamService(
         return database
             .localTeamQueries
             .selectFavorites()
-            .asFlow()
-            .mapToList()
-            .map { localTeamList ->
-                localTeamList.map(LocalTeam::toTeam)
-            }
+            .asFlowList(LocalTeam::toTeam)
     }
 
     override fun getActiveRLCSTeams(): Flow<List<Team>> {
         return database
             .localTeamQueries
             .selectAll()
-            .asFlow()
-            .mapToList()
-            .map { localTeamList ->
-                localTeamList.map(LocalTeam::toTeam)
-            }
+            .asFlowList(LocalTeam::toTeam)
     }
 
     override suspend fun sync() {

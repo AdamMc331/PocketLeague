@@ -6,6 +6,7 @@ import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.mappers.toEvent
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
+import com.adammcneilly.pocketleague.data.local.util.asFlowList
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventParticipants
@@ -15,7 +16,6 @@ import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.squareup.sqldelight.runtime.coroutines.asFlow
-import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.squareup.sqldelight.runtime.coroutines.mapToOne
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -104,11 +104,7 @@ class OfflineFirstEventService(
         return database
             .localEventQueries
             .selectUpcoming()
-            .asFlow()
-            .mapToList()
-            .map { localEventList ->
-                localEventList.map(LocalEvent::toEvent)
-            }
+            .asFlowList(LocalEvent::toEvent)
     }
 
     override suspend fun sync() {

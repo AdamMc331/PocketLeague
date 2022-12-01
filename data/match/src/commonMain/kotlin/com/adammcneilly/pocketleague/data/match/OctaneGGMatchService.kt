@@ -1,59 +1,6 @@
 package com.adammcneilly.pocketleague.data.match
 
-import com.adammcneilly.pocketleague.core.models.DataState
-import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
-import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatch
-import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatchListResponse
-import com.adammcneilly.pocketleague.data.octanegg.models.toMatch
-import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-
-/**
- * A concrete implementation of a [MatchService] that will request data using
- * the supplied [apiClient].
- */
-class OctaneGGMatchService(
-    private val apiClient: BaseKTORClient,
-) : MatchService {
-
-    constructor() : this(OctaneGGAPIClient)
-
-    override suspend fun fetchMatchDetail(matchId: String): DataState<Match> {
-        return apiClient.getResponse<OctaneGGMatch>(
-            endpoint = "$MATCHES_ENDPOINT/$matchId",
-        ).map { octaneMatch ->
-            octaneMatch.toMatch()
-        }
-    }
-
-    override fun fetchMatches(request: MatchListRequest): Flow<DataState<List<Match>>> {
-        return flow {
-            val apiResponse = apiClient.getResponse<OctaneGGMatchListResponse>(
-                endpoint = MATCHES_ENDPOINT,
-                params = request.toOctaneParams(),
-            ).map { octaneMatchListResponse ->
-                val mappedMatches = octaneMatchListResponse.matches?.map(OctaneGGMatch::toMatch).orEmpty()
-
-                val sortedMatches = mappedMatches.sortedByDescending(Match::dateUTC)
-
-                sortedMatches
-            }
-
-            emit(apiResponse)
-        }
-    }
-
-    override fun getPastWeeksMatches(): Flow<List<Match>> {
-        TODO("Not yet implemented")
-    }
-
-    companion object {
-        private const val MATCHES_ENDPOINT = "/matches"
-    }
-}
 
 private fun MatchListRequest.toOctaneParams(): RemoteParams {
     return mapOf(

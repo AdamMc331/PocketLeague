@@ -92,7 +92,7 @@ FROM matchWithEventAndTeams
 WHERE localMatchDateUTC <= DATE() AND localMatchDateUTC >= DATE('now', '-7 day')
 ORDER BY localMatchDateUTC DESC;
 
-selectMatchesByEvent:
+selectMatchesByEventStage:
 SELECT *
 FROM matchWithEventAndTeams
-WHERE localEventId = :eventId;
+WHERE localEventId = :eventId AND localMatchStageId = :stageId;

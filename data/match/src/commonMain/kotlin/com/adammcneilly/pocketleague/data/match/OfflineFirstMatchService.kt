@@ -37,8 +37,34 @@ class OfflineFirstMatchService(
         }
     }
 
-    override fun fetchMatches(request: MatchListRequest): Flow<DataState<List<Match>>> {
-        TODO("Not yet implemented")
+    override fun getMatchesForEventStage(eventId: String, stageId: String): Flow<List<Match>> {
+        return database
+            .localMatchQueries
+            .selectMatchesByEventStage(eventId, stageId)
+            .asFlow()
+            .mapToList()
+            .map { localMatchList ->
+                localMatchList.map(MatchWithEventAndTeams::toMatch)
+            }
+            .onStart {
+                fetchAndPersistMatchesForStage(eventId, stageId)
+            }
+    }
+
+    private suspend fun fetchAndPersistMatchesForStage(eventId: String, stageId: String) {
+        val apiResponse = apiClient.getResponse<OctaneGGMatchListResponse>(
+            endpoint = MATCHES_ENDPOINT,
+            params = mapOf(
+                "event" to eventId,
+                "stage" to stageId,
+            ),
+        ).map { octaneGGMatchListResponse ->
+            octaneGGMatchListResponse.matches?.map(OctaneGGMatch::toMatch).orEmpty()
+        }
+
+        val matches = (apiResponse as? DataState.Success)?.data.orEmpty()
+
+        persistMatches(matches)
     }
 
     override fun getPastWeeksMatches(): Flow<List<Match>> {
@@ -86,15 +112,15 @@ class OfflineFirstMatchService(
 
     private fun persistMatches(matches: List<Match>) {
         matches.forEach { match ->
+            database.localEventQueries
+                .insertFullEventObject(match.event.toLocalEvent())
+
             database.localEventStageQueries
                 .insertFullEventStage(
                     match.stage.toLocalEventStage(
                         eventId = match.event.id,
                     )
                 )
-
-            database.localEventQueries
-                .insertFullEventObject(match.event.toLocalEvent())
 
             database.localTeamQueries
                 .insertFullTeamObject(match.blueTeam.team.toLocalTeam())

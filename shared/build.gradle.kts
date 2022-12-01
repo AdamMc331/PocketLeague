@@ -22,6 +22,7 @@ kotlin {
                 implementation(project(":data:team"))
                 implementation(libs.bundles.ktor.client)
                 implementation(libs.kotlinx.serialization.json)
+                implementation(libs.square.sqldelight.coroutines)
             }
         }
         val commonTest by getting {

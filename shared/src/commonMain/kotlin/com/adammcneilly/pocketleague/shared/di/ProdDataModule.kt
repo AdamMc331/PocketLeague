@@ -5,7 +5,6 @@ import com.adammcneilly.pocketleague.data.event.OfflineFirstEventService
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.local.DatabaseDriverFactory
-import com.adammcneilly.pocketleague.data.local.PLSqlDelightDatabase
 import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.match.MatchService
 import com.adammcneilly.pocketleague.data.match.OfflineFirstMatchService
@@ -30,7 +29,7 @@ class ProdDataModule(
 
     override val matchService: MatchService by lazy {
         OfflineFirstMatchService(
-            database = PocketLeagueDB(databaseDriverFactory.createDriver()),
+            database = this.database,
             apiClient = OctaneGGAPIClient,
         )
     }
@@ -46,7 +45,7 @@ class ProdDataModule(
         )
     }
 
-    override val database: PLSqlDelightDatabase by lazy {
-        PLSqlDelightDatabase(databaseDriverFactory.createDriver())
+    override val database: PocketLeagueDB by lazy {
+        PocketLeagueDB(databaseDriverFactory.createDriver())
     }
 }

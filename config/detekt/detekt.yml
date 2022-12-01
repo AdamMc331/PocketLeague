@@ -70,6 +70,7 @@ comments:
     searchInInnerInterface: true
   UndocumentedPublicFunction:
     active: true
+    excludes: ['**/com/adammcneilly/pocketleague/data/local/mappers/**',]
   UndocumentedPublicProperty:
     active: false
   OutdatedDocumentation:

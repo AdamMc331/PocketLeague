@@ -17,10 +17,15 @@ interface MatchService {
     ): DataState<Match>
 
     /**
-     * Returns a stream of [Match] entities as a list. We should only return
-     * events that meet the criteria defined by the given [request].
+     * Returns a reactive stream of [Match] entities that have occured within the last week.
      */
-    fun fetchMatches(
-        request: MatchListRequest,
-    ): Flow<DataState<List<Match>>>
+    fun getPastWeeksMatches(): Flow<List<Match>>
+
+    /**
+     * Retrieves all matches that occured in the given [eventId] and [stageId].
+     */
+    fun getMatchesForEventStage(
+        eventId: String,
+        stageId: String,
+    ): Flow<List<Match>>
 }

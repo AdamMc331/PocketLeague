@@ -3,7 +3,9 @@ package com.adammcneilly.pocketleague.data.event
 import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
-import com.adammcneilly.pocketleague.data.local.PocketLeagueDatabase
+import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
+import com.adammcneilly.pocketleague.data.local.mappers.toEvent
+import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventParticipants
@@ -11,6 +13,10 @@ import com.adammcneilly.pocketleague.data.octanegg.models.toEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
+import com.adammcneilly.pocketleague.sqldelight.LocalEvent
+import com.squareup.sqldelight.runtime.coroutines.asFlow
+import com.squareup.sqldelight.runtime.coroutines.mapToList
+import com.squareup.sqldelight.runtime.coroutines.mapToOne
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
@@ -21,7 +27,7 @@ import kotlinx.datetime.Clock
  * but uses the given [apiClient] to [sync] data.
  */
 class OfflineFirstEventService(
-    private val database: PocketLeagueDatabase,
+    private val database: PocketLeagueDB,
     private val apiClient: BaseKTORClient,
 ) : EventService {
 
@@ -58,7 +64,11 @@ class OfflineFirstEventService(
 
     override fun getEvent(eventId: String): Flow<Event> {
         return database
-            .getEvent(eventId)
+            .localEventQueries
+            .selectById(eventId)
+            .asFlow()
+            .mapToOne()
+            .map(LocalEvent::toEvent)
             .onStart {
                 fetchAndPersistEvent(eventId)
             }
@@ -83,13 +93,22 @@ class OfflineFirstEventService(
             }
 
             is DataState.Success -> {
-                database.storeEvents(listOf(apiResponse.data))
+                database
+                    .localEventQueries
+                    .insertFullEventObject(apiResponse.data.toLocalEvent())
             }
         }
     }
 
     override fun getUpcomingEvents(): Flow<List<Event>> {
-        return database.getUpcomingEvents()
+        return database
+            .localEventQueries
+            .selectUpcoming()
+            .asFlow()
+            .mapToList()
+            .map { localEventList ->
+                localEventList.map(LocalEvent::toEvent)
+            }
     }
 
     override suspend fun sync() {
@@ -114,7 +133,11 @@ class OfflineFirstEventService(
             }
 
             is DataState.Success -> {
-                database.storeEvents(upcomingRlcsEventsResponse.data)
+                upcomingRlcsEventsResponse.data.forEach { event ->
+                    database
+                        .localEventQueries
+                        .insertFullEventObject(event.toLocalEvent())
+                }
             }
         }
     }

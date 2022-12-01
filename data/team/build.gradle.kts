@@ -14,6 +14,7 @@ kotlin {
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
                 implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.square.sqldelight.coroutines)
             }
         }
         val commonTest by getting {

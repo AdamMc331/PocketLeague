@@ -5,13 +5,17 @@ import com.adammcneilly.pocketleague.core.displaymodels.toOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.data.local.mappers.toTeam
 import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
+import com.adammcneilly.pocketleague.sqldelight.LocalTeam
+import com.squareup.sqldelight.runtime.coroutines.asFlow
+import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.datetime.Clock
 
@@ -28,7 +32,13 @@ private suspend fun Events.fetchFavoriteTeams(
     appModule
         .dataModule
         .database
-        .getFavoriteTeams()
+        .localTeamQueries
+        .selectFavorites()
+        .asFlow()
+        .mapToList()
+        .map { localTeamList ->
+            localTeamList.map(LocalTeam::toTeam)
+        }
         .onEach { favoriteTeamsList ->
             stateManager.updateScreen(MyTeamsViewState::class) { currentState ->
                 currentState.copy(
@@ -83,11 +93,7 @@ private suspend fun Events.fetchRecentMatchesForTeam(
         before = Clock.System.now(),
     )
 
-    return appModule
-        .dataModule
-        .matchService
-        .fetchMatches(matchListRequest)
-        // This is not ideal, in a perfect world we observe multiple flows & just resort the list
-        // each time a flow emits something.
-        .first()
+    // In the future we need to observe matches from our DB.
+
+    return DataState.Success(emptyList())
 }

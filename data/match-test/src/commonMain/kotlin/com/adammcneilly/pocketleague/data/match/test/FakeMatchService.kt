@@ -4,7 +4,6 @@ import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.matchBlueWinner
-import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.data.match.MatchService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -19,11 +18,20 @@ class FakeMatchService : MatchService {
         TestModel.matchBlueWinner,
     )
 
-    override suspend fun fetchMatchDetail(matchId: String): DataState<Match> {
+    override suspend fun fetchMatchDetail(
+        matchId: String,
+    ): DataState<Match> {
         return matchDetailResponse
     }
 
-    override fun fetchMatches(request: MatchListRequest): Flow<DataState<List<Match>>> {
-        return flowOf(matchListResponse)
+    override fun getPastWeeksMatches(): Flow<List<Match>> {
+        return flowOf(listOf(TestModel.matchBlueWinner))
+    }
+
+    override fun getMatchesForEventStage(
+        eventId: String,
+        stageId: String,
+    ): Flow<List<Match>> {
+        return flowOf(listOf(TestModel.matchBlueWinner))
     }
 }

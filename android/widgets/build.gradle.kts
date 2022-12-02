@@ -44,7 +44,13 @@ android {
 dependencies {
 
     implementation(project(":core:displaymodels"))
-    implementation(project(":core:displaymodels-test"))
+    implementation(project(":core:models"))
+    implementation(project(":data:local"))
+    implementation(project(":data:match"))
+    implementation(project(":data:octanegg"))
+    implementation(project(":data:remote"))
+    implementation(libs.androidx.workmanager.ktx)
     implementation(libs.bundles.androidx.glance)
     implementation(libs.google.material)
+    implementation(libs.kotlinx.coroutines.core)
 }

@@ -23,12 +23,18 @@ object DateUtils {
     }
 
     /**
-     * Given an [instant], convert it to a relative timestamp such as 5m ago, or 5d ago.
+     * Given an [instant], convert it to a relative timestamp to now such as 5m ago, or 5d ago.
+     *
+     * If the date is in the future, we'll return one of:
+     * Today (time)
+     * Tomorrow (time)
+     * Date, time
      */
-    fun getRelativeTimestamp(utcString: String): String {
-        val instant = Instant.parse(utcString)
-
-        val now = Clock.System.now()
+    fun getRelativeTimestamp(
+        instant: Instant,
+        clock: Clock = Clock.System,
+    ): String {
+        val now = clock.now()
 
         val duration = now.minus(instant)
 

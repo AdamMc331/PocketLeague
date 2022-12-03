@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.core.displaymodels
 import com.adammcneilly.pocketleague.core.datetime.DateUtils
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
+import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 
 private const val MATCH_DATE_FORMAT = "MMM dd, yyyy"
@@ -80,7 +81,9 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
         eventName = this.event.name,
         stageName = this.stage.name,
         relativeDateTime = startDate?.let { date ->
-            DateUtils.getRelativeTimestamp(date)
+            DateUtils.getRelativeTimestamp(
+                instant = Instant.parse(date)
+            )
         }.orEmpty(),
         isLive = isLive,
     )

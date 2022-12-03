@@ -96,3 +96,9 @@ selectMatchesByEventStage:
 SELECT *
 FROM matchWithEventAndTeams
 WHERE localEventId = :eventId AND localMatchStageId = :stageId;
+
+selectUpcoming:
+SELECT *
+FROM matchWithEventAndTeams
+WHERE localMatchDateUTC >= DATE()
+ORDER BY localMatchDateUTC ASC;

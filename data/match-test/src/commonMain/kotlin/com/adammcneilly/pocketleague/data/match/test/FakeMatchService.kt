@@ -28,6 +28,10 @@ class FakeMatchService : MatchService {
         return flowOf(listOf(TestModel.matchBlueWinner))
     }
 
+    override fun getUpcomingMatches(): Flow<List<Match>> {
+        return flowOf(listOf(TestModel.matchBlueWinner))
+    }
+
     override fun getMatchesForEventStage(
         eventId: String,
         stageId: String,

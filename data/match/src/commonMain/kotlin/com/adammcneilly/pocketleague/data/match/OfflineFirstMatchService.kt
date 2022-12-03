@@ -72,6 +72,34 @@ class OfflineFirstMatchService(
             }
     }
 
+    override fun getUpcomingMatches(): Flow<List<Match>> {
+        return database
+            .localMatchQueries
+            .selectUpcoming()
+            .asFlowList(MatchWithEventAndTeams::toMatch)
+            .onStart {
+                fetchAndPersistUpcomingMatches()
+            }
+    }
+
+    private suspend fun fetchAndPersistUpcomingMatches() {
+        val apiResponse = apiClient.getResponse<OctaneGGMatchListResponse>(
+            endpoint = MATCHES_ENDPOINT,
+            params = mapOf(
+                "after" to Clock.System.now(),
+            )
+        ).map { octaneMatchListResponse ->
+            val mappedMatches =
+                octaneMatchListResponse.matches?.map(OctaneGGMatch::toMatch).orEmpty()
+
+            mappedMatches
+        }
+
+        (apiResponse as? DataState.Success)?.data?.let { matchList ->
+            persistMatches(matchList)
+        }
+    }
+
     private suspend fun fetchAndPersistRecentMatches() {
         val apiResponse = apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,

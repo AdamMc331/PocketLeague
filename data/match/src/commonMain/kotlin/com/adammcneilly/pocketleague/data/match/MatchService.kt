@@ -22,6 +22,11 @@ interface MatchService {
     fun getPastWeeksMatches(): Flow<List<Match>>
 
     /**
+     * Retrieve a list of match entities that haven't happened yet.
+     */
+    fun getUpcomingMatches(): Flow<List<Match>>
+
+    /**
      * Retrieves all matches that occured in the given [eventId] and [stageId].
      */
     fun getMatchesForEventStage(

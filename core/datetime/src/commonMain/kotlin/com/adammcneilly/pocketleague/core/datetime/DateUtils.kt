@@ -24,11 +24,6 @@ object DateUtils {
 
     /**
      * Given an [instant], convert it to a relative timestamp to now such as 5m ago, or 5d ago.
-     *
-     * If the date is in the future, we'll return one of:
-     * Today (time)
-     * Tomorrow (time)
-     * Date, time
      */
     fun getRelativeTimestamp(
         instant: Instant,
@@ -40,7 +35,7 @@ object DateUtils {
 
         return when {
             duration.inWholeMinutes < MINUTES_IN_HOUR -> {
-                "${duration.inWholeDays}m ago"
+                "${duration.inWholeMinutes}m ago"
             }
             duration.inWholeHours < HOURS_IN_DAY -> {
                 "${duration.inWholeHours}h ago"

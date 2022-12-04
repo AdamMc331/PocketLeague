@@ -9,23 +9,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":data:local"))
-                implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
-                implementation(libs.kotlinx.coroutines.core)
-                implementation(libs.square.sqldelight.coroutines)
+                implementation(libs.bundles.ktor.client)
+                implementation(libs.ktor.client.testing)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:models-test"))
-                implementation(project(":data:remote-test"))
-                implementation(project(":data:team-test"))
-                implementation(libs.cash.turbine)
-                implementation(libs.kotlinx.coroutines.test)
-                implementation(libs.square.sqldelight.sqlite.driver)
             }
         }
         val androidMain by getting

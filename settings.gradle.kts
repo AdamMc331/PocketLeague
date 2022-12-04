@@ -25,3 +25,5 @@ include(":data:team-test")
 
 include(":shared")
 include(":shared-test")
+
+include(":data:remote-test")

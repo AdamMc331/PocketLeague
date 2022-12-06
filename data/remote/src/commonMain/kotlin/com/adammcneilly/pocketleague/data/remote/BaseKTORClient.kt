@@ -11,15 +11,7 @@ open class BaseKTORClient(
     val baseURL: String,
     val httpClient: HttpClient,
 ) {
-
-    /**
-     * By creating a separate constructor, instead of using a default argument, it seems
-     * we can trick the compiler into being able to instantiate this class without the
-     * need of our other modules depending on ktor.
-     *
-     * Although it would probably be best if we used an interface.
-     */
-    constructor(baseURL: String) : this(baseURL, defaultHTTPClient)
+    constructor(baseURL: String) : this(baseURL, defaultHttpClient())
 
     /**
      * A helper function to build the [baseURL] and [endpoint] operation and performs a get request.

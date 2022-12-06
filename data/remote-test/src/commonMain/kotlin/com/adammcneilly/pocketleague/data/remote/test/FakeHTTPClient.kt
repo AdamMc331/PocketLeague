@@ -1,21 +1,17 @@
 package com.adammcneilly.pocketleague.data.remote.test
 
-import io.ktor.client.HttpClient
+import com.adammcneilly.pocketleague.data.remote.defaultHttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
-import io.ktor.client.features.logging.SIMPLE
-import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
-import kotlinx.serialization.json.Json
 
+/**
+ * Create a custom [MockEngine] that will determine the response to return based on the supplied
+ * mock [responses].
+ */
 fun mockEngine(
     responses: Map<String, String>,
 ) = MockEngine {
@@ -30,19 +26,9 @@ fun mockEngine(
     )
 }
 
+/**
+ * Creates an implementation of our [defaultHttpClient] that uses a [mockEngine].
+ */
 fun fakeHttpClient(
     responses: Map<String, String>,
-) = HttpClient(mockEngine(responses)) {
-    install(JsonFeature) {
-        serializer = KotlinxSerializer(
-            Json {
-                ignoreUnknownKeys = true
-                acceptContentTypes = acceptContentTypes + ContentType.Any
-            }
-        )
-    }
-    install(Logging) {
-        logger = Logger.SIMPLE
-        level = LogLevel.ALL
-    }
-}
+) = defaultHttpClient(mockEngine(responses))

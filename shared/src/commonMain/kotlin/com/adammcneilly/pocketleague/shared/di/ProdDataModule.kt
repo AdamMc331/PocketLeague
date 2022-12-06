@@ -9,8 +9,10 @@ import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.match.MatchService
 import com.adammcneilly.pocketleague.data.match.OfflineFirstMatchService
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
-import com.adammcneilly.pocketleague.data.team.OfflineFirstTeamService
-import com.adammcneilly.pocketleague.data.team.TeamService
+import com.adammcneilly.pocketleague.data.team.OctaneGGTeamRepository
+import com.adammcneilly.pocketleague.data.team.OfflineFirstTeamRepository
+import com.adammcneilly.pocketleague.data.team.SQLDelightTeamRepository
+import com.adammcneilly.pocketleague.data.team.TeamRepository
 
 /**
  * A concrete implementation of [DataModule] that defines all of the dependencies
@@ -38,10 +40,10 @@ class ProdDataModule(
         OctaneGGGameService()
     }
 
-    override val teamService: TeamService by lazy {
-        OfflineFirstTeamService(
-            database = this.database,
-            apiClient = OctaneGGAPIClient,
+    override val teamRepository: TeamRepository by lazy {
+        OfflineFirstTeamRepository(
+            localDataSource = SQLDelightTeamRepository(this.database),
+            remoteDataSource = OctaneGGTeamRepository(OctaneGGAPIClient),
         )
     }
 

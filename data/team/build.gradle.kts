@@ -24,6 +24,7 @@ kotlin {
                 implementation(project(":data:team-test"))
                 implementation(libs.cash.turbine)
                 implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.square.sqldelight.sqlite.driver)
             }
         }
         val androidMain by getting

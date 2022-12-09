@@ -1,5 +1,5 @@
-# <Module Name>
+# Team Data Test
 
 ## Overview
 
-<!-- Explanation of this module's responsibilities. -->
+This module contains test helpers related to creating fake implementations from dependencies in the [team](../team) module.

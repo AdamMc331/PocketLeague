@@ -10,20 +10,13 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:models"))
-                implementation(project(":data:local"))
-                implementation(project(":data:octanegg"))
-                implementation(project(":data:remote"))
+                implementation(project(":data:team"))
                 implementation(libs.kotlinx.coroutines.core)
-                implementation(libs.square.sqldelight.coroutines)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:models-test"))
-                implementation(project(":data:team-test"))
-                implementation(libs.cash.turbine)
-                implementation(libs.kotlinx.coroutines.test)
             }
         }
         val androidMain by getting

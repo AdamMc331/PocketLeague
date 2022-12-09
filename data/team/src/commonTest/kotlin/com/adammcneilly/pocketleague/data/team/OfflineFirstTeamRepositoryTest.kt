@@ -27,7 +27,7 @@ class OfflineFirstTeamRepositoryTest {
     }
 
     @Test
-    fun getFavoriteTeams() = runTest {
+    fun getFavoriteTeamsOnlyReturnsLocalSource() = runTest {
         val localFavoriteTeams = listOf(TestModel.team)
         localDataSource.favoriteTeams = localFavoriteTeams
 
@@ -39,6 +39,8 @@ class OfflineFirstTeamRepositoryTest {
                     awaitItem(),
                 )
 
+                awaitComplete()
+
                 assertEquals(emptyList(), localDataSource.insertedTeams)
                 assertEquals(emptyList(), remoteDataSource.insertedTeams)
                 assertEquals(0, remoteDataSource.favoriteTeamsRequestCount)
@@ -46,7 +48,7 @@ class OfflineFirstTeamRepositoryTest {
     }
 
     @Test
-    fun getActiveRLCSTeams() = runTest {
+    fun getActiveTeamsReturnsLocalAndFetchesRemote() = runTest {
         val localActiveTeams = listOf(TestModel.team).map {
             it.copy(name = "Local Team")
         }
@@ -67,6 +69,8 @@ class OfflineFirstTeamRepositoryTest {
                     awaitItem(),
                 )
 
+                awaitComplete()
+
                 // Ensure remote teams got inserted to local
                 assertEquals(
                     remoteActiveTeams,
@@ -79,5 +83,15 @@ class OfflineFirstTeamRepositoryTest {
                     remoteDataSource.insertedTeams
                 )
             }
+    }
+
+    @Test
+    fun insertTeamsOnlyInsertsToLocal() = runTest {
+        val testTeams = listOf(TestModel.team)
+
+        repository.insertTeams(testTeams)
+
+        assertEquals(testTeams, localDataSource.insertedTeams)
+        assertEquals(emptyList(), remoteDataSource.insertedTeams)
     }
 }

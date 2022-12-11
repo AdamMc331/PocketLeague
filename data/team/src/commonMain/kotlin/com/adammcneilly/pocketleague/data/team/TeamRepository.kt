@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
  * Defines the data contract for any requests related to teams within
  * RLCS.
  */
-interface TeamService {
+interface TeamRepository {
 
     /**
      * Return a list of [Team] entities that are favorited by the user.
@@ -20,7 +20,7 @@ interface TeamService {
     fun getActiveRLCSTeams(): Flow<List<Team>>
 
     /**
-     * Sync the remote data with local data with respect to the team domain.
+     * Persist the supplied [teams] in the data source.
      */
-    suspend fun sync()
+    suspend fun insertTeams(teams: List<Team>)
 }

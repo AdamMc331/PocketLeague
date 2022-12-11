@@ -21,6 +21,7 @@ include(":data:match-test")
 include(":data:octanegg")
 include(":data:remote")
 include(":data:team")
+include(":data:team-test")
 
 include(":shared")
 include(":shared-test")

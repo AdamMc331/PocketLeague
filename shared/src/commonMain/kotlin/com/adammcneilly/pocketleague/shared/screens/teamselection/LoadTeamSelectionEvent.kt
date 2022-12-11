@@ -7,7 +7,6 @@ import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 /**
  * Load the information to populate the my teams screen.
@@ -15,13 +14,6 @@ import kotlinx.coroutines.launch
 fun Events.loadTeamSelection() = screenCoroutine {
     fetchFavoriteTeams(it)
     fetchActiveTeams(it)
-
-    it.launch {
-        appModule
-            .dataModule
-            .teamService
-            .sync()
-    }
 }
 
 private fun Events.fetchActiveTeams(
@@ -29,7 +21,7 @@ private fun Events.fetchActiveTeams(
 ) {
     appModule
         .dataModule
-        .teamService
+        .teamRepository
         .getActiveRLCSTeams()
         .onEach { teamList ->
             stateManager.updateScreen(TeamSelectionViewState::class) { currentState ->
@@ -48,7 +40,7 @@ private fun Events.fetchFavoriteTeams(
 ) {
     appModule
         .dataModule
-        .teamService
+        .teamRepository
         .getFavoriteTeams()
         .onEach { teamList ->
             val displayModelList = teamList.map(Team::toOverviewDisplayModel)

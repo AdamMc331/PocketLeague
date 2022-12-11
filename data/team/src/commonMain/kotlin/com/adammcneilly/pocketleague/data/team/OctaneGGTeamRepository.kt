@@ -43,6 +43,6 @@ class OctaneGGTeamRepository(
     }
 
     companion object {
-        private const val ACTIVE_TEAMS_ENDPOINT = "/teams/active"
+        const val ACTIVE_TEAMS_ENDPOINT = "/teams/active"
     }
 }

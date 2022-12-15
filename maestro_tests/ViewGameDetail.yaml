@@ -1,0 +1,15 @@
+appId: com.adammcneilly.pocketleague
+---
+- launchApp
+- takeScreenshot: screenshots/FeedScreen
+- tapOn:
+    id: "MATCH_CARD"
+    containsChild: "Moist Esports"
+    index: 0
+- assertVisible: "Moist Esports vs Gen.G Esports"
+- takeScreenshot: screenshots/MatchDetail
+- tapOn: "Mannfield (Night)"
+- assertVisible: "Game 1"
+- assertVisible: "Moist Esports [icon]"
+- assertVisible: "Gen.G Esports"
+- takeScreenshot: screenshots/GameDetailDialog

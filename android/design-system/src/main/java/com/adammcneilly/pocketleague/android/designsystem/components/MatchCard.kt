@@ -19,9 +19,12 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -37,6 +40,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
  * Renders a [match] inside a card component. Likely to be used in a carousel of recent matches,
  * but is intentionally agnostic of where it could be used.
  */
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun MatchCard(
     match: MatchDetailDisplayModel,
@@ -53,6 +57,8 @@ fun MatchCard(
             )
             .semantics {
                 isPlaceholder = match.isPlaceholder
+                testTag = "MATCH_CARD"
+                testTagsAsResourceId = true
             },
     ) {
         Column(

@@ -1,0 +1,25 @@
+appId: com.adammcneilly.pocketleague
+---
+- launchApp
+- takeScreenshot: screenshots/FeedScreen
+- tapOn:
+    id: "MATCH_CARD"
+    containsChild: "Moist Esports"
+    index: 0
+- assertVisible: "Moist Esports vs Gen.G Esports"
+- takeScreenshot: screenshots/MatchDetail
+- scroll
+- assertVisible: "RISE."
+- assertVisible: "AZTRAL"
+- assertVisible: "JOYO"
+- takeScreenshot: screenshots/BlueTeamRosterCard
+- scroll
+- assertVisible: "APPARENTLYJACK"
+- assertVisible: "NOLY"
+- assertVisible: "CHRONIC"
+- takeScreenshot: screenshots/OrangeTeamRosterCard
+- scroll
+- assertVisible: "Goals"
+- assertVisible: "Assists"
+- assertVisible: "Saves"
+- takeScreenshot: screenshots/MatchStatsCard

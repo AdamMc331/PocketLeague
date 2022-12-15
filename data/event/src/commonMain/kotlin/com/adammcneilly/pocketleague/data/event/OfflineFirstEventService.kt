@@ -4,6 +4,8 @@ import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
+import com.adammcneilly.pocketleague.data.local.mappers.parseEvent
+import com.adammcneilly.pocketleague.data.local.mappers.parseStage
 import com.adammcneilly.pocketleague.data.local.mappers.toEvent
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
 import com.adammcneilly.pocketleague.data.local.util.asFlowList
@@ -14,9 +16,10 @@ import com.adammcneilly.pocketleague.data.octanegg.models.toEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
+import com.adammcneilly.pocketleague.sqldelight.EventWithStages
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.squareup.sqldelight.runtime.coroutines.asFlow
-import com.squareup.sqldelight.runtime.coroutines.mapToOne
+import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
@@ -67,8 +70,16 @@ class OfflineFirstEventService(
             .localEventQueries
             .selectById(eventId)
             .asFlow()
-            .mapToOne()
-            .map(LocalEvent::toEvent)
+            .mapToList()
+            .map { eventWithStageList ->
+                eventWithStageList
+                    .groupBy(EventWithStages::parseEvent)
+                    .map {
+                        val stages = it.value.map(EventWithStages::parseStage)
+                        it.key.copy(stages = stages)
+                    }
+                    .first()
+            }
             .onStart {
                 fetchAndPersistEvent(eventId)
             }

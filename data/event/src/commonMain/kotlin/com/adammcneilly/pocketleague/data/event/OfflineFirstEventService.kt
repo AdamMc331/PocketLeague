@@ -8,6 +8,7 @@ import com.adammcneilly.pocketleague.data.local.mappers.parseEvent
 import com.adammcneilly.pocketleague.data.local.mappers.parseStage
 import com.adammcneilly.pocketleague.data.local.mappers.toEvent
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
+import com.adammcneilly.pocketleague.data.local.mappers.toLocalEventStage
 import com.adammcneilly.pocketleague.data.local.util.asFlowList
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventListResponse
@@ -107,6 +108,12 @@ class OfflineFirstEventService(
                 database
                     .localEventQueries
                     .insertFullEventObject(apiResponse.data.toLocalEvent())
+
+                apiResponse.data.stages.map { stage ->
+                    database
+                        .localEventStageQueries
+                        .insertFullEventStage(stage.toLocalEventStage(apiResponse.data.id))
+                }
             }
         }
     }

@@ -96,28 +96,34 @@ class OfflineFirstEventService(
             .selectParticipantsForEvent(eventId)
             .asFlowList(LocalTeam::toTeam)
             .onStart {
-                val apiResponse = fetchEventParticipants(eventId)
-
-                // We should log if an error occurs here.
-                val teams = (apiResponse as? DataState.Success)?.data.orEmpty()
-
-                teams.forEach { team ->
-                    database
-                        .localTeamQueries
-                        .insertFullTeamObject(team.toLocalTeam())
-
-                    // This assumes the event entity is already in DB.
-                    // Test this?
-                    database
-                        .localEventParticipantQueries
-                        .insertEventParticipant(
-                            LocalEventParticipant(
-                                eventId = eventId,
-                                teamId = team.id,
-                            )
-                        )
-                }
+                fetchAndPersistParticipants(eventId)
             }
+    }
+
+    private suspend fun fetchAndPersistParticipants(
+        eventId: String,
+    ) {
+        val apiResponse = fetchEventParticipants(eventId)
+
+        // We should log if an error occurs here.
+        val teams = (apiResponse as? DataState.Success)?.data.orEmpty()
+
+        teams.forEach { team ->
+            database
+                .localTeamQueries
+                .insertFullTeamObject(team.toLocalTeam())
+
+            // This assumes the event entity is already in DB.
+            // Test this?
+            database
+                .localEventParticipantQueries
+                .insertEventParticipant(
+                    LocalEventParticipant(
+                        eventId = eventId,
+                        teamId = team.id,
+                    )
+                )
+        }
     }
 
     private suspend fun fetchAndPersistEvent(eventId: String) {
@@ -191,7 +197,7 @@ class OfflineFirstEventService(
     }
 
     companion object {
-        private const val EVENTS_ENDPOINT = "/events"
+        const val EVENTS_ENDPOINT = "/events"
     }
 }
 

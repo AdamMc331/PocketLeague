@@ -45,6 +45,11 @@ interface EventService {
     fun getEvent(eventId: String): Flow<Event>
 
     /**
+     * Observe the list of [Team] entities that participated in the given [eventId].
+     */
+    fun getEventParticipants(eventId: String): Flow<List<Team>>
+
+    /**
      * Sync any remote event data with the local event data.
      */
     suspend fun sync()

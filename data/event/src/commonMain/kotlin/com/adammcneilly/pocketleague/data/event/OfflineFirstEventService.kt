@@ -9,6 +9,8 @@ import com.adammcneilly.pocketleague.data.local.mappers.parseStage
 import com.adammcneilly.pocketleague.data.local.mappers.toEvent
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalEventStage
+import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
+import com.adammcneilly.pocketleague.data.local.mappers.toTeam
 import com.adammcneilly.pocketleague.data.local.util.asFlowList
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventListResponse
@@ -19,6 +21,8 @@ import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.data.remote.RemoteParams
 import com.adammcneilly.pocketleague.sqldelight.EventWithStages
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
+import com.adammcneilly.pocketleague.sqldelight.LocalEventParticipant
+import com.adammcneilly.pocketleague.sqldelight.LocalTeam
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
@@ -83,6 +87,36 @@ class OfflineFirstEventService(
             }
             .onStart {
                 fetchAndPersistEvent(eventId)
+            }
+    }
+
+    override fun getEventParticipants(eventId: String): Flow<List<Team>> {
+        return database
+            .localEventParticipantQueries
+            .selectParticipantsForEvent(eventId)
+            .asFlowList(LocalTeam::toTeam)
+            .onStart {
+                val apiResponse = fetchEventParticipants(eventId)
+
+                // We should log if an error occurs here.
+                val teams = (apiResponse as? DataState.Success)?.data.orEmpty()
+
+                teams.forEach { team ->
+                    database
+                        .localTeamQueries
+                        .insertFullTeamObject(team.toLocalTeam())
+
+                    // This assumes the event entity is already in DB.
+                    // Test this?
+                    database
+                        .localEventParticipantQueries
+                        .insertEventParticipant(
+                            LocalEventParticipant(
+                                eventId = eventId,
+                                teamId = team.id,
+                            )
+                        )
+                }
             }
     }
 

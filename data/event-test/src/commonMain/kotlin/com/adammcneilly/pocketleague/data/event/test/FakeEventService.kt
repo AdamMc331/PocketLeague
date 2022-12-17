@@ -48,4 +48,8 @@ class FakeEventService : EventService {
     override suspend fun sync() {
         // No op in test scenarios.
     }
+
+    override fun getEventParticipants(eventId: String): Flow<List<Team>> {
+        TODO("Not yet implemented")
+    }
 }

@@ -38,6 +38,12 @@ SELECT *
 FROM localEvent
 ORDER BY startDateUTC;
 
+selectOngoing:
+SELECT *
+FROM localEvent
+WHERE startDateUTC <= DATE() AND endDateUTC >= DATE()
+ORDER BY startDateUTC;
+
 selectUpcoming:
 SELECT *
 FROM localEvent

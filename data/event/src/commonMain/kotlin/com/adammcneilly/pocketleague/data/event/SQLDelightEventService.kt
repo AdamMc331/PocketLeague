@@ -4,15 +4,19 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.mappers.toEvent
+import com.adammcneilly.pocketleague.data.local.mappers.toEventStage
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalEventStage
 import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
 import com.adammcneilly.pocketleague.data.local.mappers.toTeam
 import com.adammcneilly.pocketleague.data.local.util.asFlowList
+import com.adammcneilly.pocketleague.data.local.util.asFlowSingle
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.adammcneilly.pocketleague.sqldelight.LocalEventParticipant
+import com.adammcneilly.pocketleague.sqldelight.LocalEventStage
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 
 /**
  * An implementation of [EventRepository] that requests all data from
@@ -30,7 +34,22 @@ class SQLDelightEventService(
     }
 
     override fun getEvent(eventId: String): Flow<Event> {
-        TODO("Not yet implemented")
+        val eventFlow = database
+            .localEventQueries
+            .selectById(eventId)
+            .asFlowSingle(LocalEvent::toEvent)
+
+        val stagesFlow = database
+            .localEventStageQueries
+            .selectAllForEvent(eventId)
+            .asFlowList(LocalEventStage::toEventStage)
+
+        return eventFlow
+            .combine(stagesFlow) { event, stages ->
+                event.copy(
+                    stages = stages,
+                )
+            }
     }
 
     override fun getEventParticipants(eventId: String): Flow<List<Team>> {

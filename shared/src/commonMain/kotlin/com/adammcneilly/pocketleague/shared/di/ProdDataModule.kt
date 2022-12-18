@@ -1,7 +1,9 @@
 package com.adammcneilly.pocketleague.shared.di
 
-import com.adammcneilly.pocketleague.data.event.EventService
-import com.adammcneilly.pocketleague.data.event.OfflineFirstEventService
+import com.adammcneilly.pocketleague.data.event.EventRepository
+import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
+import com.adammcneilly.pocketleague.data.event.OfflineFirstEventRepository
+import com.adammcneilly.pocketleague.data.event.SQLDelightEventService
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.local.DatabaseDriverFactory
@@ -22,10 +24,10 @@ class ProdDataModule(
     databaseDriverFactory: DatabaseDriverFactory,
 ) : DataModule {
 
-    override val eventService: EventService by lazy {
-        OfflineFirstEventService(
-            database = this.database,
-            apiClient = OctaneGGAPIClient,
+    override val eventRepository: EventRepository by lazy {
+        OfflineFirstEventRepository(
+            localEventService = SQLDelightEventService(this.database),
+            remoteEventService = OctaneGGEventService(),
         )
     }
 

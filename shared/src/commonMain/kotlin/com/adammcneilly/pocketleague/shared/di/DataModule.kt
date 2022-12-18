@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.di
 
-import com.adammcneilly.pocketleague.data.event.EventService
+import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.match.MatchService
@@ -11,7 +11,7 @@ import com.adammcneilly.pocketleague.data.team.TeamRepository
  */
 interface DataModule {
 
-    val eventService: EventService
+    val eventRepository: EventRepository
 
     val matchService: MatchService
 

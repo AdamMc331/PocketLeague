@@ -26,7 +26,7 @@ private fun Events.fetchEventParticipants(
 ) {
     appModule
         .dataModule
-        .eventService
+        .eventRepository
         .getEventParticipants(eventId)
         .onEach { teamList ->
             stateManager.updateScreen(EventDetailViewState::class) { currentState ->
@@ -44,7 +44,7 @@ private fun Events.fetchEventDetail(
 ) {
     appModule
         .dataModule
-        .eventService
+        .eventRepository
         .getEvent(eventId)
         .onEach { event ->
             stateManager.updateScreen(EventDetailViewState::class) { currentState ->

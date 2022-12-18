@@ -27,4 +27,17 @@ interface EventRepository {
      * Observe a list of [Event] entities that are happening now.
      */
     fun getOngoingEvents(): Flow<List<Event>>
+
+    /**
+     * Persist the supplied [events] in a local data source.
+     */
+    suspend fun insertEvents(events: List<Event>)
+
+    /**
+     * Persist the supplied [teams] in a local data source.
+     */
+    suspend fun insertEventParticipants(
+        teams: List<Team>,
+        eventId: String,
+    )
 }

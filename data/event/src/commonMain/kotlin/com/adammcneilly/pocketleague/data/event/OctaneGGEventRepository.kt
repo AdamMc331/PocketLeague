@@ -93,6 +93,14 @@ class OctaneGGEventRepository(
         }
     }
 
+    override suspend fun insertEvents(events: List<Event>) {
+        throw UnsupportedOperationException("Inserting events is not supported by the octane.gg API.")
+    }
+
+    override suspend fun insertEventParticipants(teams: List<Team>, eventId: String) {
+        throw UnsupportedOperationException("Inserting teams is not supported by the octane.gg API.")
+    }
+
     companion object {
         const val EVENTS_ENDPOINT = "/events"
     }

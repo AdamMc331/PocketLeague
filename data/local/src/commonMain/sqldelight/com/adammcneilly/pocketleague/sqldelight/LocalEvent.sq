@@ -18,7 +18,7 @@ ORDER BY startDateUTC;
 selectOngoing:
 SELECT *
 FROM localEvent
-WHERE startDateUTC <= DATETIME('now') AND endDateUTC >= DATETIME('now')
+WHERE DATE(startDateUTC) <= DATE('now') AND DATE(endDateUTC) >= DATE('now')
 ORDER BY startDateUTC;
 
 selectUpcoming:
@@ -33,7 +33,7 @@ FROM localEvent
 WHERE id = :eventId;
 
 insertFullEventObject:
-INSERT INTO localEvent(
+INSERT OR IGNORE INTO localEvent(
     id,
     name,
     startDateUTC,

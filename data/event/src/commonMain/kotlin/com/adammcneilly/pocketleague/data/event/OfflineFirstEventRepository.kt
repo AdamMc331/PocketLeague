@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.event
 
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import kotlinx.coroutines.flow.Flow
@@ -7,71 +8,100 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 
 /**
- * An implementation of [EventRepository] that uses the [localDataSource] as the
- * source of truth, but syncs data with our [remoteDataSource].
+ * An implementation of [EventRepository] that uses the [localEventService] as the
+ * source of truth, but syncs data with our [remoteEventService].
  */
 class OfflineFirstEventRepository(
-    private val localDataSource: EventRepository,
-    private val remoteDataSource: EventRepository,
+    private val localEventService: LocalEventService,
+    private val remoteEventService: RemoteEventService,
 ) : EventRepository {
     override fun getUpcomingEvents(): Flow<List<Event>> {
-        return localDataSource
+        return localEventService
             .getUpcomingEvents()
             .onStart {
-                remoteDataSource
+                val remoteResponse = remoteEventService
                     .getUpcomingEvents()
-                    .collect { events ->
-                        localDataSource.insertEvents(events)
+
+                when (remoteResponse) {
+                    is DataState.Error -> {
+                        println("Unable to request upcoming events: ${remoteResponse.error.message}")
                     }
+                    DataState.Loading -> {
+                        // Deprecated, will remove.
+                    }
+                    is DataState.Success -> {
+                        localEventService.insertEvents(remoteResponse.data)
+                    }
+                }
             }
     }
 
     override fun getEvent(eventId: String): Flow<Event> {
-        return localDataSource
+        return localEventService
             .getEvent(eventId)
             .onStart {
-                remoteDataSource
+                val remoteResponse = remoteEventService
                     .getEvent(eventId)
-                    .collect { event ->
-                        localDataSource.insertEvents(listOf(event))
+
+                when (remoteResponse) {
+                    is DataState.Error -> {
+                        println("Unable to request event $eventId: ${remoteResponse.error.message}")
                     }
+                    DataState.Loading -> {
+                        // Deprecated, will remove
+                    }
+                    is DataState.Success -> {
+                        localEventService.insertEvents(listOf(remoteResponse.data))
+                    }
+                }
             }
     }
 
     override fun getEventParticipants(eventId: String): Flow<List<Team>> {
-        return localDataSource
+        return localEventService
             .getEventParticipants(eventId)
             .onStart {
-                remoteDataSource
+                val remoteResponse = remoteEventService
                     .getEventParticipants(eventId)
-                    .collect { teams ->
-                        localDataSource.insertEventParticipants(teams, eventId)
+
+                when (remoteResponse) {
+                    is DataState.Error -> {
+                        println("Unable to request event participants for event $eventId: ${remoteResponse.error.message}")
                     }
+                    DataState.Loading -> {
+                        // Deprecated, will replace
+                    }
+                    is DataState.Success -> {
+                        localEventService.insertEventParticipants(
+                            teams = remoteResponse.data,
+                            eventId = eventId,
+                        )
+                    }
+                }
             }
     }
 
     override fun getOngoingEvents(): Flow<List<Event>> {
-        return localDataSource
+        return localEventService
             .getOngoingEvents()
             .onEach {
                 println("ARM - local ongoing: $it")
             }
             .onStart {
-                remoteDataSource
+                val remoteResponse = remoteEventService
                     .getOngoingEvents()
-                    .collect { events ->
-                        println("ARM - remote ongoing: $events")
 
-                        localDataSource.insertEvents(events)
+                when (remoteResponse) {
+                    is DataState.Error -> {
+                        println("Unable to request ongoing events: ${remoteResponse.error.message}")
                     }
+                    DataState.Loading -> {
+                        // Deprecated, will replace.
+                    }
+                    is DataState.Success -> {
+                        localEventService.insertEvents(remoteResponse.data)
+                    }
+                }
             }
-    }
-
-    override suspend fun insertEvents(events: List<Event>) {
-        localDataSource.insertEvents(events)
-    }
-
-    override suspend fun insertEventParticipants(teams: List<Team>, eventId: String) {
-        localDataSource.insertEventParticipants(teams, eventId)
     }
 }

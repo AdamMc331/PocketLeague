@@ -18,9 +18,9 @@ import kotlinx.coroutines.flow.Flow
  * An implementation of [EventRepository] that requests all data from
  * the local [database].
  */
-class SQLDelightEventRepository(
+class SQLDelightEventService(
     private val database: PocketLeagueDB,
-) : EventRepository {
+) : LocalEventService {
 
     override fun getUpcomingEvents(): Flow<List<Event>> {
         return database

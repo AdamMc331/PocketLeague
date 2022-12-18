@@ -1,30 +1,31 @@
 package com.adammcneilly.pocketleague.data.event
 
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
-import kotlinx.coroutines.flow.Flow
 
 /**
- * Defines the data contract for dealing with data within the event space.
+ * Defines the data contract for requesting data from a remote service for event information.
  */
-interface EventRepository {
+interface RemoteEventService {
+
     /**
      * Retrieves a list of upcoming [Event] entities for events that haven't started yet.
      */
-    fun getUpcomingEvents(): Flow<List<Event>>
+    suspend fun getUpcomingEvents(): DataState<List<Event>>
 
     /**
      * Retrieves an [Event] by it's unique [eventId].
      */
-    fun getEvent(eventId: String): Flow<Event>
+    suspend fun getEvent(eventId: String): DataState<Event>
 
     /**
      * Observe the list of [Team] entities that participated in the given [eventId].
      */
-    fun getEventParticipants(eventId: String): Flow<List<Team>>
+    suspend fun getEventParticipants(eventId: String): DataState<List<Team>>
 
     /**
      * Observe a list of [Event] entities that are happening now.
      */
-    fun getOngoingEvents(): Flow<List<Event>>
+    suspend fun getOngoingEvents(): DataState<List<Event>>
 }

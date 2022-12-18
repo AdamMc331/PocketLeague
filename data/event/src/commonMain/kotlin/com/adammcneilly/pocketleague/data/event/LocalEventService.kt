@@ -5,9 +5,9 @@ import com.adammcneilly.pocketleague.core.models.Team
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Defines the data contract for dealing with data within the event space.
+ * Defines the data contract for requesting local information from the events domain.
  */
-interface EventRepository {
+interface LocalEventService {
     /**
      * Retrieves a list of upcoming [Event] entities for events that haven't started yet.
      */
@@ -27,4 +27,17 @@ interface EventRepository {
      * Observe a list of [Event] entities that are happening now.
      */
     fun getOngoingEvents(): Flow<List<Event>>
+
+    /**
+     * Persist the supplied [events] in a local data source.
+     */
+    suspend fun insertEvents(events: List<Event>)
+
+    /**
+     * Persist the supplied [teams] in a local data source.
+     */
+    suspend fun insertEventParticipants(
+        teams: List<Team>,
+        eventId: String,
+    )
 }

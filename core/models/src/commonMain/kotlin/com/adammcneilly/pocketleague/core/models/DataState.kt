@@ -11,6 +11,7 @@ sealed class DataState<out T> {
     /**
      * This is used to imply we are still loading a piece of data.
      */
+    @Deprecated("We should phase this out, we don't want to use this to signify a loading state.")
     object Loading : DataState<Nothing>()
 
     /**

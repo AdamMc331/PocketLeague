@@ -26,9 +26,6 @@ class OfflineFirstEventRepository(
                     is DataState.Error -> {
                         println("Unable to request upcoming events: ${remoteResponse.error.message}")
                     }
-                    DataState.Loading -> {
-                        // Deprecated, will remove.
-                    }
                     is DataState.Success -> {
                         localEventService.insertEvents(remoteResponse.data)
                     }
@@ -46,9 +43,6 @@ class OfflineFirstEventRepository(
                 when (remoteResponse) {
                     is DataState.Error -> {
                         println("Unable to request event $eventId: ${remoteResponse.error.message}")
-                    }
-                    DataState.Loading -> {
-                        // Deprecated, will remove
                     }
                     is DataState.Success -> {
                         localEventService.insertEvents(listOf(remoteResponse.data))
@@ -70,9 +64,6 @@ class OfflineFirstEventRepository(
                             "Unable to request event participants for event " +
                                 "$eventId: ${remoteResponse.error.message}"
                         )
-                    }
-                    DataState.Loading -> {
-                        // Deprecated, will replace
                     }
                     is DataState.Success -> {
                         localEventService.insertEventParticipants(
@@ -97,9 +88,6 @@ class OfflineFirstEventRepository(
                 when (remoteResponse) {
                     is DataState.Error -> {
                         println("Unable to request ongoing events: ${remoteResponse.error.message}")
-                    }
-                    DataState.Loading -> {
-                        // Deprecated, will replace.
                     }
                     is DataState.Success -> {
                         localEventService.insertEvents(remoteResponse.data)

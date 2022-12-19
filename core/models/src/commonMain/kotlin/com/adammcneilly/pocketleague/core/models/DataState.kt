@@ -8,11 +8,6 @@ package com.adammcneilly.pocketleague.core.models
  * exceptions will be wrapped inside an [Error] class.
  */
 sealed class DataState<out T> {
-    /**
-     * This is used to imply we are still loading a piece of data.
-     */
-    @Deprecated("We should phase this out, we don't want to use this to signify a loading state.")
-    object Loading : DataState<Nothing>()
 
     /**
      * A successful result which implies we will have some [data] returned.
@@ -29,7 +24,6 @@ sealed class DataState<out T> {
      */
     fun <R> map(mapper: (T) -> R): DataState<R> {
         return when (this) {
-            Loading -> Loading
             is Success -> {
                 try {
                     val mappedData = mapper(this.data)

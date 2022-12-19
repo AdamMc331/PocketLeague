@@ -33,7 +33,7 @@ private fun Events.fetchRecentMatches(
 
             stateManager.updateScreen(FeedViewState::class) {
                 it.copy(
-                    recentMatchesState = DataState.Success(displayModels),
+                    recentMatches = DataState.Success(displayModels),
                 )
             }
         }
@@ -54,7 +54,7 @@ private fun Events.fetchOngoingEvents(
                 val displayModels = eventList.map(Event::toSummaryDisplayModel)
 
                 it.copy(
-                    ongoingEventsState = DataState.Success(displayModels)
+                    ongoingEvents = DataState.Success(displayModels)
                 )
             }
         }
@@ -73,7 +73,7 @@ private fun Events.fetchUpcomingEvents(
                 val displayModelList = eventList.map(Event::toSummaryDisplayModel)
 
                 it.copy(
-                    upcomingEventsState = DataState.Success(displayModelList),
+                    upcomingEvents = DataState.Success(displayModelList),
                 )
             }
         }

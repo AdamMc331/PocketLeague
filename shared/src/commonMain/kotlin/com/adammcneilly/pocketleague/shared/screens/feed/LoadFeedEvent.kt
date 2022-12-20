@@ -2,7 +2,6 @@ package com.adammcneilly.pocketleague.shared.screens.feed
 
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.screens.Events
@@ -33,7 +32,7 @@ private fun Events.fetchRecentMatches(
 
             stateManager.updateScreen(FeedViewState::class) {
                 it.copy(
-                    recentMatchesState = DataState.Success(displayModels),
+                    recentMatches = displayModels,
                 )
             }
         }
@@ -54,7 +53,7 @@ private fun Events.fetchOngoingEvents(
                 val displayModels = eventList.map(Event::toSummaryDisplayModel)
 
                 it.copy(
-                    ongoingEventsState = DataState.Success(displayModels)
+                    ongoingEvents = displayModels,
                 )
             }
         }
@@ -73,7 +72,7 @@ private fun Events.fetchUpcomingEvents(
                 val displayModelList = eventList.map(Event::toSummaryDisplayModel)
 
                 it.copy(
-                    upcomingEventsState = DataState.Success(displayModelList),
+                    upcomingEvents = displayModelList,
                 )
             }
         }

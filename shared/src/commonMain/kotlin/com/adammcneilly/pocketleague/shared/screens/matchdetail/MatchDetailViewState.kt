@@ -2,7 +2,6 @@ package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.screens.ScreenState
 
@@ -11,8 +10,8 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  */
 data class MatchDetailViewState(
     val matchId: String = "",
-    private val matchDetailState: DataState<MatchDetailDisplayModel> = DataState.Loading,
-    private val gamesState: DataState<List<GameDetailDisplayModel>> = DataState.Loading,
+    val matchDetail: MatchDetailDisplayModel? = null,
+    val games: List<GameDetailDisplayModel> = emptyList(),
 ) : ScreenState {
 
     override val title: String?
@@ -25,38 +24,6 @@ data class MatchDetailViewState(
             val orangeTeamName = matchDetail.orangeTeamResult.team.name
 
             return "$blueTeamName vs $orangeTeamName"
-        }
-
-    /**
-     * This returns a [MatchDetailDisplayModel] if available based on the current
-     * [matchDetailState].
-     */
-    val matchDetail: MatchDetailDisplayModel?
-        get() = when (matchDetailState) {
-            is DataState.Error -> {
-                null
-            }
-            DataState.Loading -> {
-                MatchDetailDisplayModel.placeholder
-            }
-            is DataState.Success -> {
-                matchDetailState.data
-            }
-        }
-
-    val games: List<GameDetailDisplayModel>?
-        get() = when (gamesState) {
-            is DataState.Error -> {
-                null
-            }
-            DataState.Loading -> {
-                (1..NUM_PLACEHOLDER_GAMES).map {
-                    GameDetailDisplayModel.placeholder
-                }
-            }
-            is DataState.Success -> {
-                gamesState.data
-            }
         }
 
     companion object {

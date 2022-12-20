@@ -118,11 +118,6 @@ class OfflineFirstMatchService(
             is DataState.Error -> {
                 // We need to log this somehow
             }
-
-            DataState.Loading -> {
-                // I think we can remove this sealed class type.
-            }
-
             is DataState.Success -> {
                 persistMatches(apiResponse.data)
             }

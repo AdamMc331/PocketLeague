@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.data.team
 
 import com.adammcneilly.pocketleague.core.models.Team
-import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
-import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
-import com.adammcneilly.pocketleague.data.local.mappers.toTeam
-import com.adammcneilly.pocketleague.data.local.util.asFlowList
+import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalTeam
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toTeam
+import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
 import kotlinx.coroutines.flow.Flow
 

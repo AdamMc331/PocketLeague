@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.data.local
+package com.adammcneilly.pocketleague.data.local.sqldelight
 
 import android.content.Context
 import com.squareup.sqldelight.android.AndroidSqliteDriver

@@ -116,7 +116,7 @@ dependencies {
     implementation(project(":android:widgets"))
     implementation(project(":core:displaymodels"))
     implementation(project(":core:models"))
-    implementation(project(":data:local"))
+    implementation(project(":data:local-sqldelight"))
     implementation(project(":shared"))
     implementation(libs.accompanist.flowlayout)
     implementation(libs.accompanist.placeholder.material)

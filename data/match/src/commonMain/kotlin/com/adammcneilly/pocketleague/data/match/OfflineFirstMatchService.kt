@@ -2,20 +2,19 @@ package com.adammcneilly.pocketleague.data.match
 
 import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
-import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
-import com.adammcneilly.pocketleague.data.local.mappers.toLocalEventStage
-import com.adammcneilly.pocketleague.data.local.mappers.toLocalMatch
-import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
-import com.adammcneilly.pocketleague.data.local.mappers.toMatch
-import com.adammcneilly.pocketleague.data.local.util.asFlowList
+import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalEvent
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalEventStage
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalMatch
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalTeam
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toMatch
+import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatch
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatchListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.toMatch
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.datetime.Clock
 import kotlin.time.Duration.Companion.days

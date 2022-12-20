@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague
 
 import android.content.Context
-import com.adammcneilly.pocketleague.data.local.DatabaseDriverFactory
+import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.shared.di.PlatformModule
 
 /**

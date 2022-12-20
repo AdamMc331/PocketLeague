@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.data.local.mappers
+package com.adammcneilly.pocketleague.data.local.sqldelight.mappers
 
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion

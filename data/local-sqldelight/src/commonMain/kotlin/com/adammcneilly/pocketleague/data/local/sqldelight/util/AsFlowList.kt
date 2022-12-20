@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.data.local.util
+package com.adammcneilly.pocketleague.data.local.sqldelight.util
 
 import com.squareup.sqldelight.Query
 import com.squareup.sqldelight.runtime.coroutines.asFlow

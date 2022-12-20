@@ -24,9 +24,9 @@ import androidx.glance.text.TextStyle
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.data.local.DatabaseDriverFactory
-import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
-import com.adammcneilly.pocketleague.data.local.mappers.toMatch
+import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
+import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toMatch
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
 
 /**

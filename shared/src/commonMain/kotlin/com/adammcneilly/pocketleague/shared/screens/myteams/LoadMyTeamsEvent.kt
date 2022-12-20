@@ -5,8 +5,8 @@ import com.adammcneilly.pocketleague.core.displaymodels.toOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.Team
-import com.adammcneilly.pocketleague.data.local.mappers.toTeam
-import com.adammcneilly.pocketleague.data.local.util.asFlowList
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toTeam
+import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
 import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam

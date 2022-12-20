@@ -86,7 +86,7 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
 
 sqldelight {
     database("PocketLeagueDB") {
-        packageName = "com.adammcneilly.pocketleague.data.local"
+        packageName = "com.adammcneilly.pocketleague.data.local.sqldelight"
         dialect = "sqlite:3.24"
     }
 }

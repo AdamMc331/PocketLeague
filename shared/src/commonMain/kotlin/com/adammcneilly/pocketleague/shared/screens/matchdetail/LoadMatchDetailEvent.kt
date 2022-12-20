@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens.matchdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Game
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.game.MatchGamesRequest
@@ -23,9 +24,7 @@ private suspend fun Events.fetchGames(matchId: String) {
 
     stateManager.updateScreen(MatchDetailViewState::class) { currentState ->
         currentState.copy(
-            gamesState = repoResult.map { gameList ->
-                gameList.map(Game::toDetailDisplayModel)
-            },
+            games = (repoResult as? DataState.Success)?.data?.map(Game::toDetailDisplayModel).orEmpty(),
         )
     }
 }
@@ -38,7 +37,7 @@ private suspend fun Events.fetchMatchDetail(matchId: String) {
 
     stateManager.updateScreen(MatchDetailViewState::class) { currentState ->
         currentState.copy(
-            matchDetailState = repoResult.map(Match::toDetailDisplayModel),
+            matchDetail = (repoResult as? DataState.Success)?.data?.let(Match::toDetailDisplayModel),
         )
     }
 }

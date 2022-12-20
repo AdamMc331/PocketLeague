@@ -2,7 +2,6 @@ package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toOverviewDisplayModel
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.CoroutineScope
@@ -31,7 +30,7 @@ private fun Events.fetchEventParticipants(
         .onEach { teamList ->
             stateManager.updateScreen(EventDetailViewState::class) { currentState ->
                 currentState.copy(
-                    participantsState = DataState.Success(teamList.map(Team::toOverviewDisplayModel)),
+                    participants = teamList.map(Team::toOverviewDisplayModel),
                 )
             }
         }
@@ -49,7 +48,7 @@ private fun Events.fetchEventDetail(
         .onEach { event ->
             stateManager.updateScreen(EventDetailViewState::class) { currentState ->
                 currentState.copy(
-                    eventDetailState = DataState.Success(event.toDetailDisplayModel()),
+                    eventDetail = event.toDetailDisplayModel(),
                 )
             }
         }

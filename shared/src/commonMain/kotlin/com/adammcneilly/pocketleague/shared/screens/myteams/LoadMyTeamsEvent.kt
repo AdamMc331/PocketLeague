@@ -36,7 +36,7 @@ private suspend fun Events.fetchFavoriteTeams(
         .onEach { favoriteTeamsList ->
             stateManager.updateScreen(MyTeamsViewState::class) { currentState ->
                 currentState.copy(
-                    teamsDataState = DataState.Success(favoriteTeamsList.map(Team::toOverviewDisplayModel)),
+                    teams = favoriteTeamsList.map(Team::toOverviewDisplayModel),
                 )
             }
 
@@ -69,7 +69,7 @@ private suspend fun Events.fetchAllRecentMatches(
 
     stateManager.updateScreen(MyTeamsViewState::class) { currentState ->
         currentState.copy(
-            recentMatchesDataState = DataState.Success(sortedMatches),
+            recentMatches = sortedMatches,
         )
     }
 }

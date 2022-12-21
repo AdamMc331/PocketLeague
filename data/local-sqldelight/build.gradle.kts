@@ -21,6 +21,7 @@ kotlin {
                 implementation(kotlin("test"))
                 implementation(libs.cash.turbine)
                 implementation(libs.square.sqldelight.sqlite.driver)
+                implementation(libs.varabyte.truthish)
             }
         }
         val androidMain by getting {

@@ -4,10 +4,8 @@ import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.core.models.Prize
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
+import com.varabyte.truthish.assertThat
 import org.junit.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNull
 
 class LocalEventMappersTest {
 
@@ -30,16 +28,17 @@ class LocalEventMappersTest {
         val domainEvent = localEvent.toEvent()
 
         with(domainEvent) {
-            assertEquals("1234", this.id)
-            assertEquals("name", this.name)
-            assertEquals("startDateUTC", this.startDateUTC)
-            assertEquals("endDateUTC", this.endDateUTC)
-            assertEquals("imageURL", this.imageURL)
-            assertEquals(EventTier.S, this.tier)
-            assertEquals("3", this.mode)
-            assertEquals(EventRegion.NA, this.region)
-            assertFalse(this.lan)
-            assertEquals(Prize(10.0, "USD"), this.prize)
+            assertThat(this.id).isEqualTo("1234")
+            assertThat(this.name).isEqualTo("name")
+            assertThat(this.startDateUTC).isEqualTo("startDateUTC")
+            assertThat(this.endDateUTC).isEqualTo("endDateUTC")
+            assertThat(this.imageURL).isEqualTo("imageURL")
+            assertThat(this.tier).isEqualTo(EventTier.S)
+            assertThat(this.mode).isEqualTo("3")
+            assertThat(this.region).isEqualTo(EventRegion.NA)
+            assertThat(this.lan).isFalse()
+            assertThat(this.stages).isEmpty()
+            assertThat(this.prize).isEqualTo(Prize(10.0, "USD"))
         }
     }
 
@@ -62,16 +61,17 @@ class LocalEventMappersTest {
         val domainEvent = localEvent.toEvent()
 
         with(domainEvent) {
-            assertEquals("1234", this.id)
-            assertEquals("name", this.name)
-            assertEquals("startDateUTC", this.startDateUTC)
-            assertEquals("endDateUTC", this.endDateUTC)
-            assertEquals("imageURL", this.imageURL)
-            assertEquals(EventTier.S, this.tier)
-            assertEquals("3", this.mode)
-            assertEquals(EventRegion.NA, this.region)
-            assertFalse(this.lan)
-            assertNull(this.prize)
+            assertThat(this.id).isEqualTo("1234")
+            assertThat(this.name).isEqualTo("name")
+            assertThat(this.startDateUTC).isEqualTo("startDateUTC")
+            assertThat(this.endDateUTC).isEqualTo("endDateUTC")
+            assertThat(this.imageURL).isEqualTo("imageURL")
+            assertThat(this.tier).isEqualTo(EventTier.S)
+            assertThat(this.mode).isEqualTo("3")
+            assertThat(this.region).isEqualTo(EventRegion.NA)
+            assertThat(this.lan).isFalse()
+            assertThat(this.stages).isEmpty()
+            assertThat(this.prize).isNull()
         }
     }
 }

@@ -3,6 +3,8 @@ package com.adammcneilly.pocketleague.data.local.sqldelight.mappers
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.core.models.Prize
+import com.adammcneilly.pocketleague.core.models.test.TestModel
+import com.adammcneilly.pocketleague.core.models.test.event
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.varabyte.truthish.assertThat
 import org.junit.Test
@@ -72,6 +74,27 @@ class LocalEventMappersTest {
             assertThat(this.lan).isFalse()
             assertThat(this.stages).isEmpty()
             assertThat(this.prize).isNull()
+        }
+    }
+
+    @Test
+    fun convertToLocalEvent() {
+        val domainEvent = TestModel.event
+
+        val localEvent = domainEvent.toLocalEvent()
+
+        with(localEvent) {
+            assertThat(this.id).isEqualTo(domainEvent.id)
+            assertThat(this.name).isEqualTo(domainEvent.name)
+            assertThat(this.startDateUTC).isEqualTo(domainEvent.startDateUTC)
+            assertThat(this.endDateUTC).isEqualTo(domainEvent.endDateUTC)
+            assertThat(this.imageURL).isEqualTo(domainEvent.imageURL)
+            assertThat(this.tier).isEqualTo(domainEvent.tier.name)
+            assertThat(this.mode).isEqualTo(domainEvent.mode)
+            assertThat(this.region).isEqualTo(domainEvent.region.name)
+            assertThat(this.lan).isEqualTo(domainEvent.lan)
+            assertThat(this.prizeAmount).isEqualTo(domainEvent.prize?.amount)
+            assertThat(this.prizeCurrency).isEqualTo(domainEvent.prize?.currency)
         }
     }
 }

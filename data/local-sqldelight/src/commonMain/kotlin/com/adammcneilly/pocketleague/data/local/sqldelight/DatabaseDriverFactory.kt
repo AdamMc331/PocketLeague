@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.data.local
+package com.adammcneilly.pocketleague.data.local.sqldelight
 
 import com.squareup.sqldelight.db.SqlDriver
 

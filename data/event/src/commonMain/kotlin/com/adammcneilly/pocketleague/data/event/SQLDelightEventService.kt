@@ -2,15 +2,15 @@ package com.adammcneilly.pocketleague.data.event
 
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
-import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
-import com.adammcneilly.pocketleague.data.local.mappers.toEvent
-import com.adammcneilly.pocketleague.data.local.mappers.toEventStage
-import com.adammcneilly.pocketleague.data.local.mappers.toLocalEvent
-import com.adammcneilly.pocketleague.data.local.mappers.toLocalEventStage
-import com.adammcneilly.pocketleague.data.local.mappers.toLocalTeam
-import com.adammcneilly.pocketleague.data.local.mappers.toTeam
-import com.adammcneilly.pocketleague.data.local.util.asFlowList
-import com.adammcneilly.pocketleague.data.local.util.asFlowSingle
+import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toEvent
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toEventStage
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalEvent
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalEventStage
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalTeam
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toTeam
+import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
+import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowSingle
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.adammcneilly.pocketleague.sqldelight.LocalEventParticipant
 import com.adammcneilly.pocketleague.sqldelight.LocalEventStage

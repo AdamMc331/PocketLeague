@@ -11,7 +11,7 @@ kotlin {
             dependencies {
                 implementation(project(":core:datetime"))
                 implementation(project(":core:models"))
-                implementation(project(":data:local"))
+                implementation(project(":data:local-sqldelight"))
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
                 implementation(libs.kotlinx.coroutines.core)

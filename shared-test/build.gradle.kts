@@ -13,7 +13,7 @@ kotlin {
                 implementation(project(":data:event"))
                 implementation(project(":data:event-test"))
                 implementation(project(":data:game"))
-                implementation(project(":data:local"))
+                implementation(project(":data:local-sqldelight"))
                 implementation(project(":data:match"))
                 implementation(project(":data:match-test"))
                 implementation(project(":data:team"))

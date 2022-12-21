@@ -70,7 +70,7 @@ comments:
     searchInInnerInterface: true
   UndocumentedPublicFunction:
     active: true
-    excludes: ['**/com/adammcneilly/pocketleague/data/local/mappers/**',]
+    excludes: ['**/com/adammcneilly/pocketleague/data/local/sqldelight/mappers/**',]
   UndocumentedPublicProperty:
     active: false
   OutdatedDocumentation:

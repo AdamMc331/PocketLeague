@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.di
 
-import com.adammcneilly.pocketleague.data.local.DatabaseDriverFactory
+import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
 
 /**
  * A dependency container for dependencies specific to a platform, that may require

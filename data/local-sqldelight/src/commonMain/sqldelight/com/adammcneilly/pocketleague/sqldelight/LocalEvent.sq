@@ -7,7 +7,9 @@ CREATE TABLE localEvent(
     tier TEXT NOT NULL,
     mode TEXT NOT NULL,
     region TEXT NOT NULL,
-    lan INTEGER AS Boolean NOT NULL DEFAULT 0
+    lan INTEGER AS Boolean NOT NULL DEFAULT 0,
+    prizeAmount REAL,
+    prizeCurrency TEXT
 );
 
 selectAll:
@@ -42,7 +44,9 @@ INSERT INTO localEvent(
     tier,
     mode,
     region,
-    lan
+    lan,
+    prizeAmount,
+    prizeCurrency
 )
 VALUES ?
 ON CONFLICT(id) DO
@@ -54,5 +58,7 @@ UPDATE SET
     tier = excluded.tier,
     mode = excluded.mode,
     region = excluded.region,
-    lan = excluded.lan
+    lan = excluded.lan,
+    prizeAmount = excluded.prizeAmount,
+    prizeCurrency = excluded.prizeCurrency
 ;

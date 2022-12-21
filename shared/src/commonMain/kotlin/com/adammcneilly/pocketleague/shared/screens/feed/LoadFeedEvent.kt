@@ -47,8 +47,6 @@ private fun Events.fetchOngoingEvents(
         .eventRepository
         .getOngoingEvents()
         .onEach { eventList ->
-            println("ARM - Ongoing Events: $eventList")
-
             stateManager.updateScreen(FeedViewState::class) {
                 val displayModels = eventList.map(Event::toSummaryDisplayModel)
 

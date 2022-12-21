@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.data.local.sqldelight.mappers
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventTier
+import com.adammcneilly.pocketleague.core.models.Prize
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 
 fun LocalEvent.toEvent(): Event {
@@ -19,8 +20,14 @@ fun LocalEvent.toEvent(): Event {
         mode = this.mode,
         region = EventRegion.valueOf(this.region),
         lan = this.lan,
-        // ARM - NEED TO FIX
-        prize = null,
+        prize = if (this.prizeAmount != null && this.prizeCurrency != null) {
+            Prize(
+                amount = this.prizeAmount,
+                currency = prizeCurrency,
+            )
+        } else {
+            null
+        },
     )
 }
 
@@ -35,5 +42,7 @@ fun Event.toLocalEvent(): LocalEvent {
         mode = this.mode,
         region = this.region.name,
         lan = this.lan,
+        prizeAmount = this.prize?.amount,
+        prizeCurrency = this.prize?.currency,
     )
 }

@@ -51,8 +51,6 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
             .map(MatchWithEventAndTeams::toMatch)
             .map(Match::toDetailDisplayModel)
 
-        println("ARM - Composition triggered: ${matchesToShow.size}")
-
         GlanceTheme {
             Column(
                 modifier = GlanceModifier

@@ -63,6 +63,8 @@ SELECT
     localEvent.mode AS localEventMode,
     localEvent.region AS localEventRegion,
     localEvent.lan AS localEventLan,
+    localEvent.prizeAmount AS localEventPrizeAmount,
+    localEvent.prizeCurrency AS localEventPrizeCurrency,
     blueTeam.id AS blueTeamId,
     blueTeam.name AS blueTeamName,
     blueTeam.imageURL AS blueTeamImageURL,

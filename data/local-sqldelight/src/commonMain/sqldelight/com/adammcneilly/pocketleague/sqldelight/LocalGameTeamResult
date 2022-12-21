@@ -1,0 +1,11 @@
+CREATE TABLE localGameTeamResult(
+    teamId TEXT NOT NULL,
+    gameId TEXT NOT NULL,
+    winner INTEGER AS Boolean NOT NULL DEFAULT 0,
+    matchWinner INTEGER AS Boolean NOT NULL DEFAULT 0,
+    goals INTEGER NOT NULL
+);
+
+selectByGameId:
+SELECT *
+FROM

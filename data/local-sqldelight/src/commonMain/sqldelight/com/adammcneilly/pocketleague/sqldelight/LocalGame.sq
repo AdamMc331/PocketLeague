@@ -1,0 +1,35 @@
+CREATE TABLE localGame(
+    id TEXT NOT NULL PRIMARY KEY,
+    map TEXT NOT NULL,
+    number INTEGER NOT NULL,
+    duration INTEGER NOT NULL,
+    matchId TEXT NOT NULL,
+    blueTeamId TEXT NOT NULL,
+    orangeTeamId TEXT NOT NULL,
+    FOREIGN KEY (matchId) REFERENCES localMatch(id),
+    FOREIGN KEY (blueTeamId) REFERENCES localTeam(id),
+    FOREIGN KEY (orangeTeamId) REFERENCES localTeam(orangeTeamId)
+);
+
+selectByMatchId:
+SELECT *
+FROM localGame
+WHERE matchId = :matchId
+ORDER BY number;
+
+insertFullGameObject:
+INSERT INTO localGame(
+    id,
+    map,
+    number,
+    duration,
+    matchId
+)
+VALUES ?
+ON CONFLICT(id) DO
+UPSET SET
+    map = excluded.map,
+    number = excluded.number,
+    duration = excluded.duration,
+    matchId = excluded.matchId
+;

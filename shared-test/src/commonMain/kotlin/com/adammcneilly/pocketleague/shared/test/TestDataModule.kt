@@ -4,7 +4,7 @@ import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.event.test.FakeEventRepository
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
-import com.adammcneilly.pocketleague.data.local.PocketLeagueDB
+import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.match.MatchService
 import com.adammcneilly.pocketleague.data.match.test.FakeMatchService
 import com.adammcneilly.pocketleague.data.team.TeamRepository

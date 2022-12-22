@@ -4,7 +4,6 @@ import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 
 /**
@@ -78,21 +77,23 @@ class OfflineFirstEventRepository(
     override fun getOngoingEvents(): Flow<List<Event>> {
         return localEventService
             .getOngoingEvents()
-            .onEach {
-                println("ARM - local ongoing: $it")
-            }
             .onStart {
-                val remoteResponse = remoteEventService
-                    .getOngoingEvents()
-
-                when (remoteResponse) {
-                    is DataState.Error -> {
-                        println("Unable to request ongoing events: ${remoteResponse.error.message}")
-                    }
-                    is DataState.Success -> {
-                        localEventService.insertEvents(remoteResponse.data)
-                    }
-                }
+                fetchAndPersistOngoingEvents()
             }
+    }
+
+    private suspend fun fetchAndPersistOngoingEvents() {
+        val remoteResponse = remoteEventService
+            .getOngoingEvents()
+
+        when (remoteResponse) {
+            is DataState.Error -> {
+                println("Unable to request ongoing events: ${remoteResponse.error.message}")
+            }
+
+            is DataState.Success -> {
+                localEventService.insertEvents(remoteResponse.data)
+            }
+        }
     }
 }

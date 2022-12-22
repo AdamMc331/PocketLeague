@@ -52,6 +52,11 @@ android {
 }
 
 dependencies {
+    val composeBom = platform(libs.compose.bom)
+    implementation(composeBom)
+    debugImplementation(composeBom)
+    androidTestImplementation(composeBom)
+
     androidTestImplementation(project(":core:displaymodels-test"))
     androidTestImplementation(libs.bundles.androidx.test)
     androidTestImplementation(libs.compose.bom)

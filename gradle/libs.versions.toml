@@ -90,7 +90,6 @@ androidx-test = [
 ]
 
 compose-ui = [
-    "compose-bom",
     "compose-material-icons-extended",
     "compose-material3",
     "compose-ui",
@@ -99,7 +98,6 @@ compose-ui = [
 ]
 
 compose-ui-debug = [
-    "compose-bom",
     "compose-ui-tooling",
     "compose-ui-test-manifest",
 ]

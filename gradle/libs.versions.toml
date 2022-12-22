@@ -99,6 +99,7 @@ compose-ui = [
 ]
 
 compose-ui-debug = [
+    "compose-bom",
     "compose-ui-tooling",
     "compose-ui-test-manifest",
 ]

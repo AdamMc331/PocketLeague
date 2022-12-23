@@ -21,7 +21,7 @@ import com.adammcneilly.pocketleague.data.team.TeamRepository
  * used in a production scenario.
  */
 class ProdDataModule(
-    databaseDriverFactory: DatabaseDriverFactory,
+    private val databaseDriverFactory: DatabaseDriverFactory,
 ) : DataModule {
 
     override val eventRepository: EventRepository by lazy {
@@ -49,7 +49,6 @@ class ProdDataModule(
         )
     }
 
-    override val database: PocketLeagueDB by lazy {
-        PocketLeagueDB(databaseDriverFactory.createDriver())
-    }
+    override val database: PocketLeagueDB
+        get() = PocketLeagueDB(databaseDriverFactory.createDriver())
 }

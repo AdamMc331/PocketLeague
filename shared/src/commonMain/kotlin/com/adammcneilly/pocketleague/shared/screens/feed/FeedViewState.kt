@@ -8,9 +8,15 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  * Defines the UI configuration for the [com.adammcneilly.pocketleague.shared.screens.Screens.Feed] screen.
  */
 data class FeedViewState(
-    val ongoingEvents: List<EventSummaryDisplayModel> = emptyList(),
-    val recentMatches: List<MatchDetailDisplayModel> = emptyList(),
-    val upcomingEvents: List<EventSummaryDisplayModel> = emptyList(),
+    val ongoingEvents: List<EventSummaryDisplayModel> = List(3) {
+        EventSummaryDisplayModel.placeholder
+    },
+    val recentMatches: List<MatchDetailDisplayModel> = List(3) {
+        MatchDetailDisplayModel.placeholder
+    },
+    val upcomingEvents: List<EventSummaryDisplayModel> = List(3) {
+        EventSummaryDisplayModel.placeholder
+    },
 ) : ScreenState {
 
     override val title: String? = null

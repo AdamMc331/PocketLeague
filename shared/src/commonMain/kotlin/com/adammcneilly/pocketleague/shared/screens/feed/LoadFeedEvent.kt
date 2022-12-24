@@ -25,7 +25,7 @@ private fun Events.fetchRecentMatches(
 ) {
     appModule
         .dataModule
-        .matchService
+        .matchRepository
         .getPastWeeksMatches()
         .onEach { matchList ->
             val displayModels = matchList.map(Match::toDetailDisplayModel)

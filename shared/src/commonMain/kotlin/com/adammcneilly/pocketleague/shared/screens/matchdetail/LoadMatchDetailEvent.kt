@@ -32,7 +32,7 @@ private suspend fun Events.fetchGames(matchId: String) {
 private suspend fun Events.fetchMatchDetail(matchId: String) {
     val repoResult = appModule
         .dataModule
-        .matchService
+        .matchRepository
         .fetchMatchDetail(matchId)
 
     stateManager.updateScreen(MatchDetailViewState::class) { currentState ->

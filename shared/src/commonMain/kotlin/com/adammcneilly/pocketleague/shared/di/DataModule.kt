@@ -3,7 +3,7 @@ package com.adammcneilly.pocketleague.shared.di
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
-import com.adammcneilly.pocketleague.data.match.MatchService
+import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.adammcneilly.pocketleague.data.team.TeamRepository
 
 /**
@@ -13,7 +13,7 @@ interface DataModule {
 
     val eventRepository: EventRepository
 
-    val matchService: MatchService
+    val matchRepository: MatchRepository
 
     val gameService: GameService
 

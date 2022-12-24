@@ -104,3 +104,8 @@ SELECT *
 FROM matchWithEventAndTeams
 WHERE localMatchDateUTC >= DATE()
 ORDER BY localMatchDateUTC ASC;
+
+selectById:
+SELECT *
+FROM matchWithEventAndTeams
+WHERE localMatchId = :matchId;

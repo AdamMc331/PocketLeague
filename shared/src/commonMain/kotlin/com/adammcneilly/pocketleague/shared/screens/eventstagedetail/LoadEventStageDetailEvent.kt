@@ -26,7 +26,7 @@ private fun Events.fetchMatchesForStage(
 ) {
     appModule
         .dataModule
-        .matchService
+        .matchRepository
         .getMatchesForEventStage(
             eventId = eventId,
             stageId = stageId,

@@ -8,8 +8,10 @@ import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
-import com.adammcneilly.pocketleague.data.match.MatchService
-import com.adammcneilly.pocketleague.data.match.OfflineFirstMatchService
+import com.adammcneilly.pocketleague.data.match.MatchRepository
+import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
+import com.adammcneilly.pocketleague.data.match.OfflineFirstMatchRepository
+import com.adammcneilly.pocketleague.data.match.SQLDelightMatchService
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.data.team.OctaneGGTeamRepository
 import com.adammcneilly.pocketleague.data.team.OfflineFirstTeamRepository
@@ -31,10 +33,10 @@ class ProdDataModule(
         )
     }
 
-    override val matchService: MatchService by lazy {
-        OfflineFirstMatchService(
-            database = this.database,
-            apiClient = OctaneGGAPIClient,
+    override val matchRepository: MatchRepository by lazy {
+        OfflineFirstMatchRepository(
+            localDataSource = SQLDelightMatchService(this.database),
+            remoteDataSource = OctaneGGMatchService(),
         )
     }
 

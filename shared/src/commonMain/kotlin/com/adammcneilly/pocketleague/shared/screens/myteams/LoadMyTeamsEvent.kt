@@ -7,7 +7,6 @@ import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toTeam
 import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
-import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.shared.screens.Events
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +14,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.datetime.Clock
 
 /**
  * Load the information to populate the my teams screen.
@@ -78,14 +76,14 @@ private suspend fun Events.fetchAllRecentMatches(
  * Given a specific [team], request the recent matches for that team and return
  * that data state to be combined with other teams in [fetchAllRecentMatches].
  */
-private suspend fun Events.fetchRecentMatchesForTeam(
+private fun Events.fetchRecentMatchesForTeam(
     team: Team,
 ): DataState<List<Match>> {
-    val matchListRequest = MatchListRequest(
-        team = team.id,
-        sort = "date:desc",
-        before = Clock.System.now(),
-    )
+//    val matchListRequest = MatchListRequest(
+//        team = team.id,
+//        sort = "date:desc",
+//        before = Clock.System.now(),
+//    )
 
     // In the future we need to observe matches from our DB.
 

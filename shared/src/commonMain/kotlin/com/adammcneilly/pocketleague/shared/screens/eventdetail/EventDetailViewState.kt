@@ -9,9 +9,14 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
  */
 data class EventDetailViewState(
     val eventId: String = "",
-    val eventDetail: EventDetailDisplayModel? = null,
-    val participants: List<TeamOverviewDisplayModel> = emptyList(),
+    val eventDetail: EventDetailDisplayModel? = EventDetailDisplayModel.placeholder,
+    val participants: List<TeamOverviewDisplayModel> = List(3) {
+        TeamOverviewDisplayModel.placeholder
+    },
 ) : ScreenState {
 
-    override val title: String? = null
+    override val title: String?
+        get() = eventDetail?.name?.takeIf {
+            !eventDetail.isPlaceholder
+        }
 }

@@ -20,7 +20,7 @@ package com.adammcneilly.pocketleague.shared.screens
  */
 class ScreenInitSettings(
     val title: String,
-    val initState: (ScreenIdentifier) -> ScreenState,
+    val initState: (ScreenIdentifier) -> com.adammcneilly.pocketleague.core.feature.ScreenState,
     val callOnInit: suspend (StateManager) -> Unit,
     val reInitOnEachNavigation: Boolean = false,
     val callOnInitAlsoAfterBackground: Boolean = false,

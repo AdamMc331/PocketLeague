@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens.teamselection
 
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.shared.screens.ScreenState
+import com.adammcneilly.pocketleague.core.feature.ScreenState
 
 /**
  * User friendly representation of the UI for the team selection screen.
@@ -9,7 +9,7 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenState
 data class TeamSelectionViewState(
     val teams: List<TeamOverviewDisplayModel> = emptyList(),
     private val favoriteTeams: List<TeamOverviewDisplayModel> = emptyList(),
-) : ScreenState {
+) : com.adammcneilly.pocketleague.core.feature.ScreenState {
 
     override val title: String? = null
 

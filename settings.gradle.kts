@@ -9,6 +9,7 @@ include(":core:datetime")
 include(":core:datetime-test")
 include(":core:displaymodels")
 include(":core:displaymodels-test")
+include(":core:feature")
 include(":core:models")
 include(":core:models-test")
 
@@ -23,6 +24,8 @@ include(":data:remote")
 include(":data:remote-test")
 include(":data:team")
 include(":data:team-test")
+
+include(":feature:feed")
 
 include(":shared")
 include(":shared-test")

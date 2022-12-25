@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.shared.screens.eventdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.shared.screens.ScreenState
+import com.adammcneilly.pocketleague.core.feature.ScreenState
 
 /**
  * Defines the UI state of the event detail screen.
@@ -13,7 +13,7 @@ data class EventDetailViewState(
     val participants: List<TeamOverviewDisplayModel> = List(3) {
         TeamOverviewDisplayModel.placeholder
     },
-) : ScreenState {
+) : com.adammcneilly.pocketleague.core.feature.ScreenState {
 
     override val title: String?
         get() = eventDetail?.name?.takeIf {

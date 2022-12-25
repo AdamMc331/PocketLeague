@@ -32,7 +32,7 @@ class Navigation(
      */
     fun getTitle(screenIdentifier: ScreenIdentifier): String {
         val screenInitSettings = screenIdentifier.getScreenInitSettings(this)
-        val customTitle = stateProvider.get<ScreenState>(screenIdentifier).title
+        val customTitle = stateProvider.get<com.adammcneilly.pocketleague.core.feature.ScreenState>(screenIdentifier).title
         return customTitle ?: screenInitSettings.title
     }
 

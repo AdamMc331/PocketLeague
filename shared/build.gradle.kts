@@ -12,6 +12,7 @@ kotlin {
             dependencies {
                 implementation(project(":core:datetime"))
                 implementation(project(":core:displaymodels"))
+                implementation(project(":core:feature"))
                 implementation(project(":core:models"))
                 implementation(project(":data:event"))
                 implementation(project(":data:game"))

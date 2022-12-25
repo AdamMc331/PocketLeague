@@ -29,6 +29,9 @@ class FeedPresenter(
     private val _state = MutableStateFlow(FeedViewState())
     val state = _state.asStateFlow()
 
+    /**
+     * Initializes the feed presenter by requesting all of the data to show.
+     */
     fun init(scope: CoroutineScope) {
         observePastWeeksMatches(scope)
         observeOngoingEvents(scope)

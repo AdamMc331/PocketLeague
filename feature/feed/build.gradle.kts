@@ -7,7 +7,12 @@ kotlin {
     android()
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(project(":core:displaymodels"))
+                implementation(project(":core:feature"))
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))

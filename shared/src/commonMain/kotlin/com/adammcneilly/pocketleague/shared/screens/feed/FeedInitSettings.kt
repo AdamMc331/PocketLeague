@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens.feed
 
+import com.adammcneilly.pocketleague.feature.feed.FeedViewState
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenInitSettings
 

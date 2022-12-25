@@ -12,7 +12,7 @@ data class EventStageDetailViewState(
     val eventId: String = "",
     val stageId: String = "",
     val matchesDataState: MatchDetailsByDateDisplayModel? = null,
-) : com.adammcneilly.pocketleague.core.feature.ScreenState {
+) : ScreenState {
 
     override val title: String? = null
 

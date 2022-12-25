@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.core.feature.ScreenState
+
 /**
  * When a screen is initialized, the following flow occurs.
  *
@@ -20,7 +22,7 @@ package com.adammcneilly.pocketleague.shared.screens
  */
 class ScreenInitSettings(
     val title: String,
-    val initState: (ScreenIdentifier) -> com.adammcneilly.pocketleague.core.feature.ScreenState,
+    val initState: (ScreenIdentifier) -> ScreenState,
     val callOnInit: suspend (StateManager) -> Unit,
     val reInitOnEachNavigation: Boolean = false,
     val callOnInitAlsoAfterBackground: Boolean = false,

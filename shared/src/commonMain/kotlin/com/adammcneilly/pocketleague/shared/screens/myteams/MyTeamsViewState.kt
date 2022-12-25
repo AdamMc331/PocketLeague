@@ -10,7 +10,7 @@ import com.adammcneilly.pocketleague.core.feature.ScreenState
 data class MyTeamsViewState(
     val teams: List<TeamOverviewDisplayModel> = emptyList(),
     val recentMatches: List<MatchDetailDisplayModel> = emptyList(),
-) : com.adammcneilly.pocketleague.core.feature.ScreenState {
+) : ScreenState {
 
     override val title: String? = null
 }

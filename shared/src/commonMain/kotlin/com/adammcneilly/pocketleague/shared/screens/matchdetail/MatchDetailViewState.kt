@@ -12,7 +12,7 @@ data class MatchDetailViewState(
     val matchId: String = "",
     val matchDetail: MatchDetailDisplayModel? = null,
     val games: List<GameDetailDisplayModel> = emptyList(),
-) : com.adammcneilly.pocketleague.core.feature.ScreenState {
+) : ScreenState {
 
     override val title: String?
         get() {

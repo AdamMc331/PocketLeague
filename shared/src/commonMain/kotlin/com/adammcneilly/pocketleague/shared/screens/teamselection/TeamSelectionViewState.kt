@@ -9,7 +9,7 @@ import com.adammcneilly.pocketleague.core.feature.ScreenState
 data class TeamSelectionViewState(
     val teams: List<TeamOverviewDisplayModel> = emptyList(),
     private val favoriteTeams: List<TeamOverviewDisplayModel> = emptyList(),
-) : com.adammcneilly.pocketleague.core.feature.ScreenState {
+) : ScreenState {
 
     override val title: String? = null
 

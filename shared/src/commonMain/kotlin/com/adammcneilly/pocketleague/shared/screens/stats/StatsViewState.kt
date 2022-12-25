@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.core.feature.ScreenState
  */
 data class StatsViewState(
     val showLoading: Boolean = true,
-) : com.adammcneilly.pocketleague.core.feature.ScreenState {
+) : ScreenState {
 
     override val title: String? = null
 }

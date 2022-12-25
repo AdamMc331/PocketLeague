@@ -13,7 +13,7 @@ data class EventDetailViewState(
     val participants: List<TeamOverviewDisplayModel> = List(3) {
         TeamOverviewDisplayModel.placeholder
     },
-) : com.adammcneilly.pocketleague.core.feature.ScreenState {
+) : ScreenState {
 
     override val title: String?
         get() = eventDetail?.name?.takeIf {

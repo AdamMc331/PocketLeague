@@ -1,5 +1,5 @@
-# <Module Name>
+# Core Feature
 
 ## Overview
 
-<!-- Explanation of this module's responsibilities. -->
+Collection of interfaces or other shared pieces of code that are common across multiple feature modules.

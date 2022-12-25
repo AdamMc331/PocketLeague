@@ -21,6 +21,7 @@ kotlin {
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
                 implementation(project(":data:team"))
+                implementation(project(":feature:feed"))
                 implementation(libs.bundles.ktor.client)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.square.sqldelight.coroutines)

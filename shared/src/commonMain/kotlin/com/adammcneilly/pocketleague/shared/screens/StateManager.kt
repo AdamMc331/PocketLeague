@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.core.feature.ScreenState
 import com.adammcneilly.pocketleague.shared.di.AppModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +24,7 @@ class StateManager(
     /**
      * A map of all screens and their current [ScreenState] in memory.
      */
-    val screenStatesMap: MutableMap<String, com.adammcneilly.pocketleague.core.feature.ScreenState> = mutableMapOf()
+    val screenStatesMap: MutableMap<String, ScreenState> = mutableMapOf()
 
     /**
      * A map of all screens and coroutine scopes associated with them in memory.
@@ -138,7 +139,7 @@ class StateManager(
      * Updates any screens with the matching [stateClass]. The update is calculated through the
      * given [update] lambda.
      */
-    inline fun <reified T : com.adammcneilly.pocketleague.core.feature.ScreenState> updateScreen(
+    inline fun <reified T : ScreenState> updateScreen(
         stateClass: KClass<T>,
         update: (T) -> T,
     ) {

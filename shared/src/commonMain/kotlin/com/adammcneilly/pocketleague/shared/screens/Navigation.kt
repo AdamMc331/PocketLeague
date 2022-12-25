@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.core.feature.ScreenState
+
 /**
  * This class manages all of the navigation logic within the pocket league app.
  */
@@ -32,7 +34,7 @@ class Navigation(
      */
     fun getTitle(screenIdentifier: ScreenIdentifier): String {
         val screenInitSettings = screenIdentifier.getScreenInitSettings(this)
-        val customTitle = stateProvider.get<com.adammcneilly.pocketleague.core.feature.ScreenState>(screenIdentifier).title
+        val customTitle = stateProvider.get<ScreenState>(screenIdentifier).title
         return customTitle ?: screenInitSettings.title
     }
 

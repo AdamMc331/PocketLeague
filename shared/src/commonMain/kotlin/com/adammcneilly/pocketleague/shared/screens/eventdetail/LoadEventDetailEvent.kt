@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.shared.screens.eventdetail
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.feature.event.detail.EventDetailViewState
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn

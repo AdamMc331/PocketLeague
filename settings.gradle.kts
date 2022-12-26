@@ -25,6 +25,7 @@ include(":data:remote-test")
 include(":data:team")
 include(":data:team-test")
 
+include(":feature:event-detail")
 include(":feature:feed")
 
 include(":shared")

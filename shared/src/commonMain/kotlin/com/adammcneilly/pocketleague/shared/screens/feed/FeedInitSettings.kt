@@ -17,6 +17,8 @@ fun Navigation.initFeed(): ScreenInitSettings {
             FeedViewState()
         },
         callOnInit = { stateManager ->
+            // ARM - In the future, we ideally create one presenter per screen
+            // and just observe when it's created.
             val presenter = FeedPresenter(
                 events.appModule.dataModule.eventRepository,
                 events.appModule.dataModule.matchRepository,

@@ -9,6 +9,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:displaymodels"))
+                implementation(project(":core:feature"))
+                implementation(project(":data:event"))
                 implementation(libs.kotlinx.coroutines.core)
             }
         }

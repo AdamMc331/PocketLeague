@@ -123,6 +123,7 @@ dependencies {
     implementation(project(":core:feature"))
     implementation(project(":core:models"))
     implementation(project(":data:local-sqldelight"))
+    implementation(project(":feature:event-detail"))
     implementation(project(":feature:feed"))
     implementation(project(":shared"))
     implementation(libs.accompanist.flowlayout)

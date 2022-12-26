@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.feature.feed
 
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.feature.PocketLeaguePresenter
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
@@ -24,15 +25,15 @@ import kotlinx.coroutines.flow.update
 class FeedPresenter(
     private val eventRepository: EventRepository,
     private val matchRepository: MatchRepository,
-) {
+) : PocketLeaguePresenter<FeedViewState> {
 
     private val _state = MutableStateFlow(FeedViewState())
-    val state = _state.asStateFlow()
+    override val state = _state.asStateFlow()
 
     /**
      * Initializes the feed presenter by requesting all of the data to show.
      */
-    fun init(scope: CoroutineScope) {
+    override fun init(scope: CoroutineScope) {
         observePastWeeksMatches(scope)
         observeOngoingEvents(scope)
         observeUpcomingEvents(scope)

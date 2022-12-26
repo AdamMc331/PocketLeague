@@ -4,10 +4,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.feature.event.detail.EventDetailParams
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 import com.adammcneilly.pocketleague.shared.screens.Screens
-import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailParams
 import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.EventStageDetailParams
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailParams
 

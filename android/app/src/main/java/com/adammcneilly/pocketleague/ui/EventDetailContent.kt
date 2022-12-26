@@ -43,7 +43,7 @@ import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceh
 import com.adammcneilly.pocketleague.android.designsystem.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.shared.screens.eventdetail.EventDetailViewState
+import com.adammcneilly.pocketleague.feature.event.detail.EventDetailViewState
 import com.adammcneilly.pocketleague.ui.composables.components.TooltipChip
 import com.adammcneilly.pocketleague.ui.composables.team.TeamOverviewListItem
 import com.google.accompanist.flowlayout.FlowRow

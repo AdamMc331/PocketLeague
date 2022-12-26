@@ -345,13 +345,21 @@ class StateManager(
      * or the current screen if one not passed.
      */
     fun runInScreenScope(screenIdentifier: ScreenIdentifier? = null, block: suspend (CoroutineScope) -> Unit) {
-        val uri = screenIdentifier?.uri ?: currentScreenIdentifier.uri
-
-        val screenScope = screenScopesMap[uri]
+        val screenScope = getScreenScope(screenIdentifier)
 
         screenScope?.launch {
             block(screenScope)
         }
+    }
+
+    /**
+     * Retrieves the [CoroutineScope] for the supplied [screenIdentifier] or current screen
+     * as default.
+     */
+    fun getScreenScope(screenIdentifier: ScreenIdentifier? = null): CoroutineScope? {
+        val uri = screenIdentifier?.uri ?: currentScreenIdentifier.uri
+
+        return screenScopesMap[uri]
     }
 
     /**

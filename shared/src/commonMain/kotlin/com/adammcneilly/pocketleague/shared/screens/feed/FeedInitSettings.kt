@@ -24,8 +24,8 @@ fun Navigation.initFeed(): ScreenInitSettings {
                 events.appModule.dataModule.matchRepository,
             )
 
-            events.screenCoroutine { scope ->
-                presenter.init(scope)
+            stateManager.getScreenScope()?.let { screenScope ->
+                presenter.init(screenScope)
 
                 presenter
                     .state
@@ -34,7 +34,7 @@ fun Navigation.initFeed(): ScreenInitSettings {
                             viewState
                         }
                     }
-                    .launchIn(scope)
+                    .launchIn(screenScope)
             }
         },
         reInitOnEachNavigation = false,

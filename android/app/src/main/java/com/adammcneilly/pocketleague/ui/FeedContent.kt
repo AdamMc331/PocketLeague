@@ -21,7 +21,7 @@ import com.adammcneilly.pocketleague.android.designsystem.matches.MatchesCarouse
 import com.adammcneilly.pocketleague.android.designsystem.matches.RecentMatchesEmptyState
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
+import com.adammcneilly.pocketleague.feature.feed.FeedViewState
 import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryListItem
 
 /**
@@ -29,7 +29,7 @@ import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryLis
  */
 @Composable
 fun FeedContent(
-    viewState: FeedViewState,
+    viewState: com.adammcneilly.pocketleague.feature.feed.FeedViewState,
     modifier: Modifier = Modifier,
     onMatchClicked: (String) -> Unit = {},
     onEventClicked: (String) -> Unit = {},
@@ -47,7 +47,7 @@ fun FeedContent(
 
 @Composable
 private fun SuccessContent(
-    viewState: FeedViewState,
+    viewState: com.adammcneilly.pocketleague.feature.feed.FeedViewState,
     onMatchClicked: (String) -> Unit,
     onEventClicked: (String) -> Unit,
 ) {

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.screens
+package com.adammcneilly.pocketleague.core.feature
 
 /**
  * An empty interface used to provide type safety for the current UI state of any screen in the application.

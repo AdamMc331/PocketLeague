@@ -2,8 +2,8 @@ package com.adammcneilly.pocketleague.shared.screens.eventstagedetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailsByDateDisplayModel
+import com.adammcneilly.pocketleague.core.feature.ScreenState
 import com.adammcneilly.pocketleague.core.models.EventStage
-import com.adammcneilly.pocketleague.shared.screens.ScreenState
 
 /**
  * Displays information about an [EventStage] in user friendly manner.

@@ -1,8 +1,8 @@
-package com.adammcneilly.pocketleague.shared.screens.feed
+package com.adammcneilly.pocketleague.feature.feed
 
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.shared.screens.ScreenState
+import com.adammcneilly.pocketleague.core.feature.ScreenState
 
 /**
  * Defines the UI configuration for the [com.adammcneilly.pocketleague.shared.screens.Screens.Feed] screen.

@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.core.feature.ScreenState
+
 /**
  * This class manages all of the navigation logic within the pocket league app.
  */

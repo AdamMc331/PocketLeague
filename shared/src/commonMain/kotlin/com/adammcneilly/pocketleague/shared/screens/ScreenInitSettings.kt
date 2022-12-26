@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.core.feature.ScreenState
+
 /**
  * When a screen is initialized, the following flow occurs.
  *

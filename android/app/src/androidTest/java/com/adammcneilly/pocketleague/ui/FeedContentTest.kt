@@ -5,8 +5,8 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
+import com.adammcneilly.pocketleague.feature.feed.FeedViewState
 import com.adammcneilly.pocketleague.setPocketLeagueContent
-import com.adammcneilly.pocketleague.shared.screens.feed.FeedViewState
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,7 +19,7 @@ class FeedContentTest {
 
     @Test
     fun renderEmptyRecentMatches() {
-        val viewState = FeedViewState(
+        val viewState = com.adammcneilly.pocketleague.feature.feed.FeedViewState(
             recentMatches = emptyList(),
         )
 
@@ -34,7 +34,7 @@ class FeedContentTest {
 
     @Test
     fun renderWithRecentMatches() {
-        val viewState = FeedViewState(
+        val viewState = com.adammcneilly.pocketleague.feature.feed.FeedViewState(
             recentMatches = listOf(TestDisplayModel.matchDetailBlueWinner),
         )
 

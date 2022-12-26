@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.shared.screens.myteams
 
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.shared.screens.ScreenState
+import com.adammcneilly.pocketleague.core.feature.ScreenState
 
 /**
  * Defines the UI for the "My Teams" screen.

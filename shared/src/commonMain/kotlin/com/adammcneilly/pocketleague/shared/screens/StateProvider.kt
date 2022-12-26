@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.screens
 
+import com.adammcneilly.pocketleague.core.feature.ScreenState
+
 /**
  * This class provides a way to get the [ScreenState] of a specific screen as needed.
  */

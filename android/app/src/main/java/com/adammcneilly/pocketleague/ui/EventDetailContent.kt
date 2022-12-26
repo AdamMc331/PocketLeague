@@ -56,7 +56,7 @@ private const val EVENT_IMAGE_ASPECT_RATIO = 3.0F
  */
 @Composable
 fun EventDetailContent(
-    viewState: com.adammcneilly.pocketleague.feature.event.detail.EventDetailViewState,
+    viewState: EventDetailViewState,
     onStageClicked: (String, String) -> Unit,
     modifier: Modifier = Modifier,
 ) {

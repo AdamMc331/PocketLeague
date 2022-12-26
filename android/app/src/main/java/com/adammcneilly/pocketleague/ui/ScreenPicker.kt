@@ -38,7 +38,7 @@ fun Navigation.ScreenPicker(
                 onEventClicked = { eventId ->
                     navigate(
                         screen = Screens.EventDetail,
-                        params = com.adammcneilly.pocketleague.feature.event.detail.EventDetailParams(
+                        params = EventDetailParams(
                             eventId = eventId,
                         ),
                     )

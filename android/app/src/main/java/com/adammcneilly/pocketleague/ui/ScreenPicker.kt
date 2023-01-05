@@ -4,12 +4,14 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.android.designsystem.teamselection.TeamSelectionListItemClickListener
 import com.adammcneilly.pocketleague.feature.event.detail.EventDetailParams
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 import com.adammcneilly.pocketleague.shared.screens.Screens
 import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.EventStageDetailParams
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailParams
+import com.adammcneilly.pocketleague.shared.screens.myteams.updateTeamIsFavorite
 
 /**
  * The screen picker tacks a current [screenIdentifier] and renders the content for that screen.
@@ -111,6 +113,11 @@ fun Navigation.ScreenPicker(
         Screens.TeamSelection -> {
             TeamSelectionContent(
                 viewState = stateProvider.get(screenIdentifier),
+                listItemClickListener = object : TeamSelectionListItemClickListener {
+                    override fun onFavoriteChanged(teamId: String, isFavorite: Boolean) {
+                        events.updateTeamIsFavorite(teamId, isFavorite)
+                    }
+                },
                 modifier = Modifier
                     .padding(paddingValues),
             )

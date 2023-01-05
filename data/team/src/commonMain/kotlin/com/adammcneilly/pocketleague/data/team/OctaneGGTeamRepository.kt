@@ -42,6 +42,10 @@ class OctaneGGTeamRepository(
         throw UnsupportedOperationException("Inserting teams is not supported by the octane.gg API.")
     }
 
+    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+        throw UnsupportedOperationException("Favoriting teams is not supported by the octane.gg API.")
+    }
+
     companion object {
         const val ACTIVE_TEAMS_ENDPOINT = "/teams/active"
     }

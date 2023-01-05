@@ -37,4 +37,13 @@ class SQLDelightTeamRepository(
                 .insertFullTeamObject(team.toLocalTeam())
         }
     }
+
+    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+        database
+            .localTeamQueries
+            .setFavorite(
+                isFavorite = isFavorite,
+                id = teamId,
+            )
+    }
 }

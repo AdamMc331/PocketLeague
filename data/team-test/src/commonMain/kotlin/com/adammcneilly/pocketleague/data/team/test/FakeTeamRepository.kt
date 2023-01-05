@@ -35,4 +35,8 @@ class FakeTeamRepository : TeamRepository {
     override suspend fun insertTeams(teams: List<Team>) {
         this._insertedTeams.addAll(teams)
     }
+
+    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+        TODO("Not yet implemented")
+    }
 }

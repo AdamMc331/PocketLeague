@@ -33,4 +33,8 @@ class OfflineFirstTeamRepository(
     override suspend fun insertTeams(teams: List<Team>) {
         localDataSource.insertTeams(teams)
     }
+
+    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+        localDataSource.updateIsFavorite(teamId, isFavorite)
+    }
 }

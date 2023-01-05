@@ -17,14 +17,32 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 
 /**
+ * This defines all the possible click actions that we want to expose
+ * from a [TeamSelectionListItem].
+ */
+interface TeamSelectionListItemClickListener {
+
+    /**
+     * Notifies a receive that the [isFavorite] status for a given [teamId] is changed.
+     */
+    fun onFavoriteChanged(
+        teamId: String,
+        isFavorite: Boolean,
+    )
+}
+
+/**
  * Renders a list item to be used inside the team selection screen, allowing the user to change
  * whether or not this [team] is one of their favorites.
+ *
+ * TODO: isFavorite should not be a separate property, but
+ *  stored inside our [TeamOverviewDisplayModel].
  */
 @Composable
 fun TeamSelectionListItem(
     team: TeamOverviewDisplayModel,
     isFavorite: Boolean,
-    onFavoriteChanged: (Boolean) -> Unit,
+    clickListener: TeamSelectionListItemClickListener,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -42,7 +60,10 @@ fun TeamSelectionListItem(
 
         IconButton(
             onClick = {
-                onFavoriteChanged.invoke(!isFavorite)
+                clickListener.onFavoriteChanged(
+                    teamId = team.teamId,
+                    isFavorite = !isFavorite,
+                )
             },
         ) {
             val icon = when {

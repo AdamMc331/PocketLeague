@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName")
+
 package com.adammcneilly.pocketleague.android.designsystem.teamselection
 
 import androidx.compose.foundation.layout.Row
@@ -20,7 +22,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
  * This defines all the possible click actions that we want to expose
  * from a [TeamSelectionListItem].
  */
-@Suppress("MatchingDeclarationName")
 interface TeamSelectionListItemClickListener {
 
     /**

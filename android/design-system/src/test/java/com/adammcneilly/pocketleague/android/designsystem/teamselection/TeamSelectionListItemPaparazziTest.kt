@@ -23,8 +23,11 @@ class TeamSelectionListItemPaparazziTest {
         paparazzi.snapshotScreen(useDarkTheme) {
             TeamSelectionListItem(
                 team = TestDisplayModel.knights,
-                isFavorite = true,
-                onFavoriteChanged = {},
+                clickListener = object : TeamSelectionListItemClickListener {
+                    override fun onFavoriteChanged(teamId: String, isFavorite: Boolean) {
+                        TODO("Not yet implemented")
+                    }
+                },
             )
         }
     }
@@ -34,8 +37,11 @@ class TeamSelectionListItemPaparazziTest {
         paparazzi.snapshotScreen(useDarkTheme) {
             TeamSelectionListItem(
                 team = TestDisplayModel.knights,
-                isFavorite = false,
-                onFavoriteChanged = {},
+                clickListener = object : TeamSelectionListItemClickListener {
+                    override fun onFavoriteChanged(teamId: String, isFavorite: Boolean) {
+                        TODO("Not yet implemented")
+                    }
+                },
             )
         }
     }

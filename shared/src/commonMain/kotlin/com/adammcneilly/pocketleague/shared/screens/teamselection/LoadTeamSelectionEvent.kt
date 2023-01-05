@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.onEach
  * Load the information to populate the my teams screen.
  */
 fun Events.loadTeamSelection() = screenCoroutine {
-    fetchFavoriteTeams(it)
     fetchActiveTeams(it)
 }
 
@@ -26,25 +25,6 @@ private fun Events.fetchActiveTeams(
             stateManager.updateScreen(TeamSelectionViewState::class) { currentState ->
                 currentState.copy(
                     teams = teamList.map(Team::toOverviewDisplayModel),
-                )
-            }
-        }
-        .launchIn(scope)
-}
-
-private fun Events.fetchFavoriteTeams(
-    scope: CoroutineScope,
-) {
-    appModule
-        .dataModule
-        .teamRepository
-        .getFavoriteTeams()
-        .onEach { teamList ->
-            val displayModelList = teamList.map(Team::toOverviewDisplayModel)
-
-            stateManager.updateScreen(TeamSelectionViewState::class) { currentState ->
-                currentState.copy(
-                    favoriteTeams = displayModelList,
                 )
             }
         }

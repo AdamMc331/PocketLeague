@@ -20,6 +20,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
  * This defines all the possible click actions that we want to expose
  * from a [TeamSelectionListItem].
  */
+@Suppress("MatchingDeclarationName")
 interface TeamSelectionListItemClickListener {
 
     /**
@@ -35,13 +36,10 @@ interface TeamSelectionListItemClickListener {
  * Renders a list item to be used inside the team selection screen, allowing the user to change
  * whether or not this [team] is one of their favorites.
  *
- * TODO: isFavorite should not be a separate property, but
- *  stored inside our [TeamOverviewDisplayModel].
  */
 @Composable
 fun TeamSelectionListItem(
     team: TeamOverviewDisplayModel,
-    isFavorite: Boolean,
     clickListener: TeamSelectionListItemClickListener,
     modifier: Modifier = Modifier,
 ) {
@@ -62,17 +60,17 @@ fun TeamSelectionListItem(
             onClick = {
                 clickListener.onFavoriteChanged(
                     teamId = team.teamId,
-                    isFavorite = !isFavorite,
+                    isFavorite = !team.isFavorite,
                 )
             },
         ) {
             val icon = when {
-                isFavorite -> Icons.Default.Star
+                team.isFavorite -> Icons.Default.Star
                 else -> Icons.Default.StarBorder
             }
 
             val contentDescription = when {
-                isFavorite -> "Click To Remove Favorite"
+                team.isFavorite -> "Click To Remove Favorite"
                 else -> "Click To Favorite"
             }
 

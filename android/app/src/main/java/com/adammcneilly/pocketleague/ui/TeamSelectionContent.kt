@@ -28,7 +28,6 @@ fun TeamSelectionContent(
         itemsIndexed(teams) { index, team ->
             TeamSelectionListItem(
                 team = team,
-                isFavorite = viewState.isFavorite(team),
                 clickListener = listItemClickListener,
             )
 

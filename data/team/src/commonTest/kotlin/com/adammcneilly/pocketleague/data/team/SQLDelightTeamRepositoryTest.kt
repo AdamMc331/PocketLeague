@@ -67,6 +67,7 @@ class SQLDelightTeamRepositoryTest {
         val teamList = List(3) {
             TestModel.team.copy(
                 id = it.toString(),
+                isActive = true,
             )
         }
 

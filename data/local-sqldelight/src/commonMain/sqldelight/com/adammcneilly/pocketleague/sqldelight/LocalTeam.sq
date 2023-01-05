@@ -2,12 +2,19 @@ CREATE TABLE localTeam(
   id TEXT NOT NULL PRIMARY KEY,
   name TEXT NOT NULL,
   imageURL TEXT,
-  isFavorite INTEGER AS Boolean NOT NULL DEFAULT 0
+  isFavorite INTEGER AS Boolean NOT NULL DEFAULT 0,
+  isActive INTEGER AS Boolean
 );
 
 selectAll:
 SELECT *
 FROM localTeam
+ORDER BY name;
+
+selectActive:
+SELECT *
+FROM localTeam
+WHERE isActive = 1
 ORDER BY name;
 
 selectFavorites:
@@ -21,13 +28,15 @@ INSERT INTO localTeam(
     id,
     name,
     imageURL,
-    isFavorite
+    isFavorite,
+    isActive
 )
 VALUES ?
 ON CONFLICT(id) DO
 UPDATE SET
     name = excluded.name,
-    imageURL = excluded.imageURL
+    imageURL = excluded.imageURL,
+    isActive = excluded.isActive
 ;
 
 setFavorite:

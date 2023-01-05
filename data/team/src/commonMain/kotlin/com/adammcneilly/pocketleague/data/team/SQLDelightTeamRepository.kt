@@ -26,7 +26,7 @@ class SQLDelightTeamRepository(
     override fun getActiveRLCSTeams(): Flow<List<Team>> {
         return database
             .localTeamQueries
-            .selectAll()
+            .selectActive()
             .asFlowList(LocalTeam::toTeam)
     }
 

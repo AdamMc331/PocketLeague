@@ -94,4 +94,15 @@ class OfflineFirstTeamRepositoryTest {
         assertEquals(testTeams, localDataSource.insertedTeams)
         assertEquals(emptyList(), remoteDataSource.insertedTeams)
     }
+
+    @Test
+    fun updateFavoritesOnlyCallsLocal() = runTest {
+        val teamId = "1234"
+        val isFavorite = true
+
+        repository.updateIsFavorite(teamId, isFavorite)
+
+        localDataSource.verifyFavoriteStatus(teamId, isFavorite)
+        remoteDataSource.verifyFavoriteStatusNotUpdated(teamId)
+    }
 }

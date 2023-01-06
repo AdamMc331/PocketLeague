@@ -154,6 +154,7 @@ class WidgetRefreshAction : ActionCallback {
  * Start a process to continually update the upcoming matches widget at
  * 15 minute intervals.
  */
+@Suppress("MagicNumber")
 fun Context.startUpcomingMatchesWorker() {
     val networkConstraint = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
 

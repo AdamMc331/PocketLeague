@@ -27,7 +27,12 @@ import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
+import androidx.work.BackoffPolicy
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
@@ -36,6 +41,7 @@ import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toMatch
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
+import java.util.concurrent.TimeUnit
 
 /**
  * A [GlanceAppWidget] implementation to render upcoming matches in RLCS.
@@ -142,4 +148,27 @@ class WidgetRefreshAction : ActionCallback {
         WorkManager.getInstance(context)
             .enqueue(oneTimeWorkRequest)
     }
+}
+
+/**
+ * Start a process to continually update the upcoming matches widget at
+ * 15 minute intervals.
+ */
+fun Context.startUpcomingMatchesWorker() {
+    val networkConstraint = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+
+    val request = PeriodicWorkRequest
+        .Builder(UpcomingMatchesWidgetWorker::class.java, 15, TimeUnit.MINUTES)
+        .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 5000L, TimeUnit.MILLISECONDS)
+        .setConstraints(networkConstraint)
+        .build()
+
+    val uniqueTag = "UPCOMING_MATCHES_WIDGET"
+
+    WorkManager.getInstance(this)
+        .enqueueUniquePeriodicWork(
+            uniqueTag,
+            ExistingPeriodicWorkPolicy.REPLACE,
+            request
+        )
 }

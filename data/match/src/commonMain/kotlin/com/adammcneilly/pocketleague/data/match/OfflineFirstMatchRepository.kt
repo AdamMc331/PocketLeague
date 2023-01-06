@@ -66,16 +66,20 @@ class OfflineFirstMatchRepository(
             }
     }
 
-    private suspend fun fetchAndPersistUpcomingMatches() {
+    override suspend fun fetchAndPersistUpcomingMatches(): DataState<Unit> {
         val remoteResponse = remoteDataSource.getUpcomingMatches()
 
-        when (remoteResponse) {
+        return when (remoteResponse) {
             is DataState.Error -> {
                 println("Unable to request past week's matches: ${remoteResponse.error.message}")
+
+                DataState.Error(remoteResponse.error)
             }
 
             is DataState.Success -> {
                 localDataSource.insertMatches(remoteResponse.data)
+
+                DataState.Success(Unit)
             }
         }
     }

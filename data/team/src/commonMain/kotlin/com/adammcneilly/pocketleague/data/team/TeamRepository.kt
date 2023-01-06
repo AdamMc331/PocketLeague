@@ -23,4 +23,12 @@ interface TeamRepository {
      * Persist the supplied [teams] in the data source.
      */
     suspend fun insertTeams(teams: List<Team>)
+
+    /**
+     * Update the [teamId] to whether or not it [isFavorite] in our data source.
+     */
+    suspend fun updateIsFavorite(
+        teamId: String,
+        isFavorite: Boolean,
+    )
 }

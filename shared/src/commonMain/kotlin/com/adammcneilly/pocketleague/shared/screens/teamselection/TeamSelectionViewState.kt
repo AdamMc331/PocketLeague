@@ -8,17 +8,7 @@ import com.adammcneilly.pocketleague.core.feature.ScreenState
  */
 data class TeamSelectionViewState(
     val teams: List<TeamOverviewDisplayModel> = emptyList(),
-    private val favoriteTeams: List<TeamOverviewDisplayModel> = emptyList(),
 ) : ScreenState {
 
     override val title: String? = null
-
-    /**
-     * Given some [team], check if a team with the same ID exists in our [favoriteTeams] list.
-     */
-    fun isFavorite(team: TeamOverviewDisplayModel): Boolean {
-        return favoriteTeams.any { favoriteTeam ->
-            favoriteTeam.teamId == team.teamId
-        }
-    }
 }

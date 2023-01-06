@@ -9,6 +9,7 @@ fun Team.toLocalTeam(): LocalTeam {
         name = this.name,
         imageURL = this.imageUrl,
         isFavorite = this.isFavorite,
+        isActive = this.isActive,
     )
 }
 
@@ -18,5 +19,6 @@ fun LocalTeam.toTeam(): Team {
         name = this.name,
         imageUrl = this.imageURL,
         isFavorite = this.isFavorite,
+        isActive = this.isActive,
     )
 }

@@ -26,7 +26,7 @@ class SQLDelightTeamRepository(
     override fun getActiveRLCSTeams(): Flow<List<Team>> {
         return database
             .localTeamQueries
-            .selectAll()
+            .selectActive()
             .asFlowList(LocalTeam::toTeam)
     }
 
@@ -36,5 +36,14 @@ class SQLDelightTeamRepository(
                 .localTeamQueries
                 .insertFullTeamObject(team.toLocalTeam())
         }
+    }
+
+    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+        database
+            .localTeamQueries
+            .setFavorite(
+                isFavorite = isFavorite,
+                id = teamId,
+            )
     }
 }

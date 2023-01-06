@@ -10,6 +10,7 @@ data class TeamOverviewDisplayModel(
     val name: String,
     val imageUrl: ThemedImageURL,
     val isPlaceholder: Boolean = false,
+    val isFavorite: Boolean = false,
 ) {
 
     companion object {
@@ -32,5 +33,6 @@ fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
         imageUrl = ThemedImageURL(
             lightThemeImageUrl = this.imageUrl,
         ),
+        isFavorite = isFavorite,
     )
 }

@@ -7,6 +7,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.android.designsystem.teamselection.TeamSelectionListItem
+import com.adammcneilly.pocketleague.android.designsystem.teamselection.TeamSelectionListItemClickListener
 import com.adammcneilly.pocketleague.shared.screens.teamselection.TeamSelectionViewState
 
 /**
@@ -15,21 +16,19 @@ import com.adammcneilly.pocketleague.shared.screens.teamselection.TeamSelectionV
 @Composable
 fun TeamSelectionContent(
     viewState: TeamSelectionViewState,
+    listItemClickListener: TeamSelectionListItemClickListener,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier
             .fillMaxWidth(),
     ) {
-        val teams = viewState.teams.orEmpty()
+        val teams = viewState.teams
 
         itemsIndexed(teams) { index, team ->
             TeamSelectionListItem(
                 team = team,
-                isFavorite = viewState.isFavorite(team),
-                onFavoriteChanged = { isFavorite ->
-                    // Need to save this value in the future.
-                },
+                clickListener = listItemClickListener,
             )
 
             if (index != teams.lastIndex) {

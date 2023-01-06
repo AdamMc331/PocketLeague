@@ -19,6 +19,21 @@ class FakeTeamRepository : TeamRepository {
 
     private val _insertedTeams: MutableList<Team> = mutableListOf()
 
+    private val _updatedFavorites: MutableMap<String, Boolean> = mutableMapOf()
+
+    fun verifyFavoriteStatus(
+        teamId: String,
+        expectedIsFavorite: Boolean,
+    ) {
+        require(_updatedFavorites[teamId] == expectedIsFavorite)
+    }
+
+    fun verifyFavoriteStatusNotUpdated(
+        teamId: String,
+    ) {
+        require(_updatedFavorites[teamId] == null)
+    }
+
     val insertedTeams: List<Team>
         get() = _insertedTeams.toList()
 
@@ -34,5 +49,9 @@ class FakeTeamRepository : TeamRepository {
 
     override suspend fun insertTeams(teams: List<Team>) {
         this._insertedTeams.addAll(teams)
+    }
+
+    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+        _updatedFavorites[teamId] = isFavorite
     }
 }

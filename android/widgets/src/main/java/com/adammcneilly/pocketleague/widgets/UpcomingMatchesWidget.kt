@@ -1,12 +1,18 @@
 package com.adammcneilly.pocketleague.widgets
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
+import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.Image
 import androidx.glance.ImageProvider
 import androidx.glance.LocalContext
+import androidx.glance.action.ActionParameters
+import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.action.ActionCallback
+import androidx.glance.appwidget.action.actionRunCallback
 import androidx.glance.appwidget.lazy.LazyColumn
 import androidx.glance.appwidget.lazy.itemsIndexed
 import androidx.glance.background
@@ -21,6 +27,13 @@ import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
+import androidx.work.BackoffPolicy
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Match
@@ -28,6 +41,7 @@ import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toMatch
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
+import java.util.concurrent.TimeUnit
 
 /**
  * A [GlanceAppWidget] implementation to render upcoming matches in RLCS.
@@ -40,16 +54,15 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
 
         val database = PocketLeagueDB(DatabaseDriverFactory(context).createDriver())
 
-        // This works to render from DB.
-        // Downfall is that query DB on every composition (though I don't think this triggers often?).
-        // We also lose the sync with network data (this only works because we did a sync once before).
-        // Maybe pull from DB when rendered, supply a refresh button to trigger a workmanager flow.
+        // Fetch latest match information from the database.
         val matchesToShow = database
             .localMatchQueries
             .selectUpcoming()
             .executeAsList()
             .map(MatchWithEventAndTeams::toMatch)
             .map(Match::toDetailDisplayModel)
+
+        println("ARM - Rendering matches: ${matchesToShow.size}")
 
         GlanceTheme {
             Column(
@@ -85,6 +98,8 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
             Image(
                 provider = ImageProvider(R.drawable.ic_refresh),
                 contentDescription = "Refresh",
+                modifier = GlanceModifier
+                    .clickable(onClick = actionRunCallback<WidgetRefreshAction>())
             )
         }
     }
@@ -117,4 +132,44 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
             }
         }
     }
+}
+
+/**
+ * This is an implementation of [ActionCallback] which refreshes our widget
+ * after making a request to trigger our [UpcomingMatchesWidgetWorker].
+ */
+class WidgetRefreshAction : ActionCallback {
+    override suspend fun onAction(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
+        // Trigger a one time work request to fetch and persist
+        // upcoming matches.
+        val oneTimeWorkRequest = OneTimeWorkRequestBuilder<UpcomingMatchesWidgetWorker>()
+            .build()
+
+        WorkManager.getInstance(context)
+            .enqueue(oneTimeWorkRequest)
+    }
+}
+
+/**
+ * Start a process to continually update the upcoming matches widget at
+ * 15 minute intervals.
+ */
+@Suppress("MagicNumber")
+fun Context.startUpcomingMatchesWorker() {
+    val networkConstraint = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+
+    val request = PeriodicWorkRequest
+        .Builder(UpcomingMatchesWidgetWorker::class.java, 15, TimeUnit.MINUTES)
+        .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 5000L, TimeUnit.MILLISECONDS)
+        .setConstraints(networkConstraint)
+        .build()
+
+    val uniqueTag = "UPCOMING_MATCHES_WIDGET"
+
+    WorkManager.getInstance(this)
+        .enqueueUniquePeriodicWork(
+            uniqueTag,
+            ExistingPeriodicWorkPolicy.REPLACE,
+            request
+        )
 }

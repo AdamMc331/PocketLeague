@@ -13,11 +13,21 @@ import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.adammcneilly.pocketleague.data.match.OfflineFirstMatchRepository
 import com.adammcneilly.pocketleague.data.match.SQLDelightMatchService
 
+/**
+ * An implementation of [CoroutineWorker] to request and persist upcoming matches.
+ * It will trigger a widget update upon success.
+ */
 class UpcomingMatchesWidgetWorker(
     private val appContext: Context,
     workerParameters: WorkerParameters,
 ) : CoroutineWorker(appContext, workerParameters) {
 
+    /**
+     * In a perfect world we may not want to create this dependency
+     * directly so I could consider writing some tests
+     * for our widget. However, because this module doesn't have any DI
+     * frameworks we'll just make it work.
+     */
     private val repository: MatchRepository by lazy {
         OfflineFirstMatchRepository(
             localDataSource = SQLDelightMatchService(PocketLeagueDB(DatabaseDriverFactory(appContext).createDriver())),

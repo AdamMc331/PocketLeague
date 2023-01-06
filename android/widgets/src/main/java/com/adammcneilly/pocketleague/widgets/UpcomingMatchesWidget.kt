@@ -128,6 +128,10 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
     }
 }
 
+/**
+ * This is an implementation of [ActionCallback] which refreshes our widget
+ * after making a request to trigger our [UpcomingMatchesWidgetWorker].
+ */
 class WidgetRefreshAction : ActionCallback {
     override suspend fun onAction(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
         // Trigger a one time work request to fetch and persist

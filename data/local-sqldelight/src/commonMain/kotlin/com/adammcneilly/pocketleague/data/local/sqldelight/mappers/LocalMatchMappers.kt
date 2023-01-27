@@ -20,10 +20,12 @@ fun Match.toLocalMatch(): LocalMatch {
         blueTeamTotalShots = this.blueTeam.stats?.core?.shots?.toLong() ?: 0,
         blueTeamTotalSaves = this.blueTeam.stats?.core?.saves?.toLong() ?: 0,
         blueTeamTotalAssists = this.blueTeam.stats?.core?.assists?.toLong() ?: 0,
+        blueTeamShootingPercentage = this.blueTeam.stats?.core?.shootingPercentage?.toDouble() ?: 0.0,
         orangeTeamTotalScore = this.orangeTeam.stats?.core?.score?.toLong() ?: 0,
         orangeTeamTotalGoals = this.orangeTeam.stats?.core?.goals?.toLong() ?: 0,
         orangeTeamTotalShots = this.orangeTeam.stats?.core?.shots?.toLong() ?: 0,
         orangeTeamTotalSaves = this.orangeTeam.stats?.core?.saves?.toLong() ?: 0,
         orangeTeamTotalAssists = this.orangeTeam.stats?.core?.assists?.toLong() ?: 0,
+        orangeTeamShootingPercentage = this.orangeTeam.stats?.core?.shootingPercentage?.toDouble() ?: 0.0,
     )
 }

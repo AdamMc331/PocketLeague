@@ -14,11 +14,13 @@ CREATE TABLE localMatch(
     blueTeamTotalShots INTEGER NOT NULL,
     blueTeamTotalSaves INTEGER NOT NULL,
     blueTeamTotalAssists INTEGER NOT NULL,
+    blueTeamShootingPercentage REAL NOT NULL,
     orangeTeamTotalScore INTEGER NOT NULL,
     orangeTeamTotalGoals INTEGER NOT NULL,
     orangeTeamTotalShots INTEGER NOT NULL,
     orangeTeamTotalSaves INTEGER NOT NULL,
     orangeTeamTotalAssists INTEGER NOT NULL,
+    orangeTeamShootingPercentage REAL NOT NULL,
     FOREIGN KEY (eventId) REFERENCES localEvent(id) ON DELETE CASCADE,
     FOREIGN KEY (blueTeamId) REFERENCES localTeam(id) ON DELETE CASCADE,
     FOREIGN KEY (orangeTeamId) REFERENCES localTeam(id) ON DELETE CASCADE,
@@ -42,11 +44,13 @@ INSERT INTO localMatch(
     blueTeamTotalShots,
     blueTeamTotalSaves,
     blueTeamTotalAssists,
+    blueTeamShootingPercentage,
     orangeTeamTotalScore,
     orangeTeamTotalGoals,
     orangeTeamTotalShots,
     orangeTeamTotalSaves,
-    orangeTeamTotalAssists
+    orangeTeamTotalAssists,
+    orangeTeamShootingPercentage
 )
 VALUES ?
 ON CONFLICT(id) DO
@@ -65,11 +69,13 @@ UPDATE SET
     blueTeamTotalShots = excluded.blueTeamTotalShots,
     blueTeamTotalSaves = excluded.blueTeamTotalSaves,
     blueTeamTotalAssists = excluded.blueTeamTotalAssists,
+    blueTeamShootingPercentage = excluded.blueTeamShootingPercentage,
     orangeTeamTotalScore = excluded.orangeTeamTotalScore,
     orangeTeamTotalGoals = excluded.orangeTeamTotalGoals,
     orangeTeamTotalShots = excluded.orangeTeamTotalShots,
     orangeTeamTotalSaves = excluded.orangeTeamTotalSaves,
-    orangeTeamTotalAssists = excluded.orangeTeamTotalAssists
+    orangeTeamTotalAssists = excluded.orangeTeamTotalAssists,
+    orangeTeamShootingPercentage = excluded.orangeTeamShootingPercentage
 ;
 
 CREATE VIEW matchWithEventAndTeams AS
@@ -89,11 +95,13 @@ SELECT
     localMatch.blueTeamTotalShots AS localMatchBlueTeamTotalShots,
     localMatch.blueTeamTotalSaves AS localMatchBlueTeamTotalSaves,
     localMatch.blueTeamTotalAssists AS localMatchBlueTeamTotalAssists,
+    localMatch.blueTeamShootingPercentage AS localMatchBlueTeamShootingPercentage,
     localMatch.orangeTeamTotalScore AS localMatchOrangeTeamTotalScore,
     localMatch.orangeTeamTotalGoals AS localMatchOrangeTeamTotalGoals,
     localMatch.orangeTeamTotalShots AS localMatchOrangeTeamTotalShots,
     localMatch.orangeTeamTotalSaves AS localMatchOrangeTeamTotalSaves,
     localMatch.orangeTeamTotalAssists AS localMatchOrangeTeamTotalAssists,
+    localMatch.orangeTeamShootingPercentage AS localMatchOrangeTeamShootingPercentage,
     localEvent.id AS localEventId,
     localEvent.name AS localEventName,
     localEvent.startDateUTC AS localEventStartDateUTC,

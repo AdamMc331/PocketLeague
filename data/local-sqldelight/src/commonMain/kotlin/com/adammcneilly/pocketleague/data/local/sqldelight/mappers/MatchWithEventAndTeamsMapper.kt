@@ -83,8 +83,7 @@ private fun MatchWithEventAndTeams.mapBlueTeamResult(
             saves = this.localMatchBlueTeamTotalSaves.toInt(),
             assists = this.localMatchBlueTeamTotalAssists.toInt(),
             score = this.localMatchBlueTeamTotalScore.toInt(),
-            // Need to store shooting percentage
-            shootingPercentage = 0.0f,
+            shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat(),
         )
     ),
     // We should store these
@@ -110,8 +109,7 @@ private fun MatchWithEventAndTeams.mapOrangeTeamResult(
             saves = this.localMatchOrangeTeamTotalSaves.toInt(),
             assists = this.localMatchOrangeTeamTotalAssists.toInt(),
             score = this.localMatchOrangeTeamTotalScore.toInt(),
-            // Need to store shooting percentage
-            shootingPercentage = 0.0f,
+            shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat(),
         )
     ),
     // We should store these

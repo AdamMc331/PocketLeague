@@ -3,7 +3,7 @@ package com.adammcneilly.pocketleague.android.designsystem.team
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -45,6 +46,11 @@ fun CircleTeamLogo(
     }
 }
 
+/**
+ * At the moment, this works but we don't see that the text is fully centered in some situations.
+ * We're not fully sure why, may need to tweak how bottom line padding is set, or something
+ * similar.
+ */
 @Composable
 private fun TeamLetterLogo(
     modifier: Modifier,
@@ -52,7 +58,7 @@ private fun TeamLetterLogo(
     displayModel: TeamOverviewDisplayModel,
     contentColor: Color
 ) {
-    Box(
+    BoxWithConstraints(
         modifier = modifier
             .background(
                 color = backgroundColor,
@@ -64,9 +70,16 @@ private fun TeamLetterLogo(
                 shape = CircleShape,
             ),
     ) {
+        val textSizeSp = with(LocalDensity.current) {
+            val sizeInPx = (maxHeight * 0.75F).toPx()
+            sizeInPx.toSp()
+        }
+
         Text(
             text = displayModel.name.firstOrNull()?.toString().orEmpty(),
             color = contentColor,
+            fontSize = textSizeSp,
+            lineHeight = textSizeSp,
             modifier = Modifier
                 .align(Alignment.Center),
         )

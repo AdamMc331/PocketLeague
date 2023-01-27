@@ -52,6 +52,7 @@ fun CircleTeamLogo(
  * similar.
  */
 @Composable
+@Suppress("MagicNumber")
 private fun TeamLetterLogo(
     modifier: Modifier,
     backgroundColor: Color,

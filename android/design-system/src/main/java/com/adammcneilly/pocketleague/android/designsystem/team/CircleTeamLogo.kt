@@ -71,7 +71,7 @@ private fun TeamLetterLogo(
             ),
     ) {
         val textSizeSp = with(LocalDensity.current) {
-            val sizeInPx = (maxHeight * 0.75F).toPx()
+            val sizeInPx = (maxHeight * 0.50F).toPx()
             sizeInPx.toSp()
         }
 

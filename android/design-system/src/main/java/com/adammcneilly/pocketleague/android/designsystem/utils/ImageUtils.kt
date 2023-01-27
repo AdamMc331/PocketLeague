@@ -13,6 +13,6 @@ fun ThemedImageURL.getForTheme(): String? {
     return if (isSystemInDarkTheme()) {
         this.darkThemeImageURL
     } else {
-        this.lightThemeImageUrl
+        this.lightThemeImageURL
     }
 }

@@ -24,7 +24,7 @@ class EventSummaryDisplayModelTest {
 
         with(displayModel) {
             assertEquals(testEvent.id, eventId)
-            assertEquals(testEvent.imageURL, imageURL.lightThemeImageUrl)
+            assertEquals(testEvent.imageURL, imageURL.lightThemeImageURL)
             assertEquals(testEvent.imageURL, imageURL.darkThemeImageURL)
             assertEquals(mockDateString, startDate)
             assertEquals(testEvent.name, name)

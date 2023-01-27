@@ -96,7 +96,7 @@ private fun MatchTeamResultCell(
         val imageUrl = if (isSystemInDarkTheme()) {
             displayModel.team.imageUrl.darkThemeImageURL
         } else {
-            displayModel.team.imageUrl.lightThemeImageUrl
+            displayModel.team.imageUrl.lightThemeImageURL
         }
 
         AsyncImage(

@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.local.sqldelight.mappers
 
+import com.adammcneilly.pocketleague.core.models.CoreStats
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventStage
@@ -7,6 +8,7 @@ import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.core.models.Format
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.MatchTeamResult
+import com.adammcneilly.pocketleague.core.models.Stats
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
 
@@ -74,9 +76,19 @@ private fun MatchWithEventAndTeams.mapBlueTeamResult(
         imageUrl = this.blueTeamImageURL,
         isFavorite = this.blueTeamIsFavorite,
     ),
+    stats = Stats(
+        core = CoreStats(
+            shots = this.localMatchBlueTeamTotalShots.toInt(),
+            goals = this.localMatchBlueTeamTotalGoals.toInt(),
+            saves = this.localMatchBlueTeamTotalSaves.toInt(),
+            assists = this.localMatchBlueTeamTotalAssists.toInt(),
+            score = this.localMatchBlueTeamTotalScore.toInt(),
+            // Need to store shooting percentage
+            shootingPercentage = 0.0f,
+        )
+    ),
     // We should store these
     players = emptyList(),
-    stats = null,
 )
 
 private fun MatchWithEventAndTeams.mapOrangeTeamResult(
@@ -91,7 +103,17 @@ private fun MatchWithEventAndTeams.mapOrangeTeamResult(
         imageUrl = this.orangeTeamImageURL,
         isFavorite = this.orangeTeamIsFavorite,
     ),
+    stats = Stats(
+        core = CoreStats(
+            shots = this.localMatchOrangeTeamTotalShots.toInt(),
+            goals = this.localMatchOrangeTeamTotalGoals.toInt(),
+            saves = this.localMatchOrangeTeamTotalSaves.toInt(),
+            assists = this.localMatchOrangeTeamTotalAssists.toInt(),
+            score = this.localMatchOrangeTeamTotalScore.toInt(),
+            // Need to store shooting percentage
+            shootingPercentage = 0.0f,
+        )
+    ),
     // We should store these
     players = emptyList(),
-    stats = null,
 )

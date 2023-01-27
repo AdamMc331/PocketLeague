@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.android.designsystem.team
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -55,6 +56,11 @@ private fun TeamLetterLogo(
         modifier = modifier
             .background(
                 color = backgroundColor,
+                shape = CircleShape,
+            )
+            .border(
+                width = 1.dp,
+                color = contentColor,
                 shape = CircleShape,
             ),
     ) {

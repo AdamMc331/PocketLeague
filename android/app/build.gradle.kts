@@ -21,8 +21,8 @@ kotlin {
 }
 
 android {
-    compileSdk = AndroidConfig.compileSDK
 
+    compileSdk = 33
     defaultConfig {
         applicationId = "com.adammcneilly.pocketleague"
         minSdk = AndroidConfig.minSDK

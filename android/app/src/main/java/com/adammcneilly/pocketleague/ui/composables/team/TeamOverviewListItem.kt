@@ -11,9 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
-import com.adammcneilly.pocketleague.android.designsystem.utils.getForTheme
+import com.adammcneilly.pocketleague.android.designsystem.team.CircleTeamLogo
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 
 /**
@@ -31,18 +30,14 @@ fun TeamOverviewListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        val imageUrl = displayModel.imageUrl.getForTheme()
-
-        val imageSize = 48.dp
-
-        AsyncImage(
-            model = imageUrl,
-            contentDescription = "Team Image",
+        CircleTeamLogo(
+            displayModel = displayModel,
             modifier = Modifier
-                .size(imageSize)
+                .size(48.dp)
                 .cardPlaceholder(
                     visible = displayModel.isPlaceholder,
-                ),
+
+                )
         )
 
         Text(

@@ -6,6 +6,6 @@ package com.adammcneilly.pocketleague.core.displaymodels
  * This helps keep classes organized and our UI module can provide a helper to pull the url we need.
  */
 data class ThemedImageURL(
-    val lightThemeImageUrl: String? = null,
-    val darkThemeImageURL: String? = lightThemeImageUrl,
+    val lightThemeImageURL: String? = null,
+    val darkThemeImageURL: String? = lightThemeImageURL,
 )

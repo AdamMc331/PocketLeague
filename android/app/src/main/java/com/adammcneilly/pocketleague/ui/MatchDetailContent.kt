@@ -24,7 +24,7 @@ fun MatchDetailContent(
         if (detailDisplayModel != null) {
             MatchDetail(
                 displayModel = detailDisplayModel,
-                games = viewState.games.orEmpty()
+                games = viewState.games
             )
         } else {
             // Show some error UI here.

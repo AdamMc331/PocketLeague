@@ -38,7 +38,7 @@ object TestDisplayModel {
         teamId = "6020bd98f1e4807cc700dc08",
         name = "Knights",
         imageUrl = ThemedImageURL(
-            lightThemeImageUrl = "https://griffon.octane.gg/teams/pittsburgh-knights.png",
+            lightThemeImageURL = "https://griffon.octane.gg/teams/pittsburgh-knights.png",
         ),
     )
 
@@ -46,7 +46,7 @@ object TestDisplayModel {
         teamId = "6020bc70f1e4807cc70023a5",
         name = "G2 Esports",
         imageUrl = ThemedImageURL(
-            lightThemeImageUrl = "https://griffon.octane.gg/teams/g2-esports.png",
+            lightThemeImageURL = "https://griffon.octane.gg/teams/g2-esports.png",
         ),
     )
 

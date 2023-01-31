@@ -64,7 +64,7 @@ fun Event.toSummaryDisplayModel(
         }.orEmpty(),
         name = this.name,
         imageURL = ThemedImageURL(
-            lightThemeImageUrl = this.imageURL,
+            lightThemeImageURL = this.imageURL,
         ),
         eventId = this.id,
     )

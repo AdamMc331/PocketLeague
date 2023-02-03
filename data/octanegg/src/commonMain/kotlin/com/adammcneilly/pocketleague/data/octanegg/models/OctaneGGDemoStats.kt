@@ -11,5 +11,5 @@ data class OctaneGGDemoStats(
     @SerialName("inflicted")
     val inflicted: Int? = null,
     @SerialName("taken")
-    val taken: Int? = null
+    val taken: Int? = null,
 )

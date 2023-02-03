@@ -92,14 +92,14 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
                     fontWeight = FontWeight.Bold,
                 ),
                 modifier = GlanceModifier
-                    .defaultWeight()
+                    .defaultWeight(),
             )
 
             Image(
                 provider = ImageProvider(R.drawable.ic_refresh),
                 contentDescription = "Refresh",
                 modifier = GlanceModifier
-                    .clickable(onClick = actionRunCallback<WidgetRefreshAction>())
+                    .clickable(onClick = actionRunCallback<WidgetRefreshAction>()),
             )
         }
     }
@@ -170,6 +170,6 @@ fun Context.startUpcomingMatchesWorker() {
         .enqueueUniquePeriodicWork(
             uniqueTag,
             ExistingPeriodicWorkPolicy.REPLACE,
-            request
+            request,
         )
 }

@@ -30,7 +30,7 @@ fun Navigation.Level1BottomBar(
                 icon = { Icon(Icons.Default.Feed, "Feed") },
                 label = { Text("FEED") },
                 selected = selectedTab.uri == Level1Navigation.Feed.screenIdentifier.uri,
-                onClick = { navigateByLevel1Menu(Level1Navigation.Feed) }
+                onClick = { navigateByLevel1Menu(Level1Navigation.Feed) },
             )
             NavigationBarItem(
                 icon = { Icon(Icons.Default.Bookmarks, "My Teams") },

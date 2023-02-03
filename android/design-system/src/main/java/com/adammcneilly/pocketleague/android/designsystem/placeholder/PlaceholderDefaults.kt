@@ -31,7 +31,7 @@ object PlaceholderDefaults {
     val shimmerAnimationSpec: InfiniteRepeatableSpec<Float> by lazy {
         infiniteRepeatable(
             animation = tween(durationMillis = 1700, delayMillis = 200),
-            repeatMode = RepeatMode.Restart
+            repeatMode = RepeatMode.Restart,
         )
     }
 

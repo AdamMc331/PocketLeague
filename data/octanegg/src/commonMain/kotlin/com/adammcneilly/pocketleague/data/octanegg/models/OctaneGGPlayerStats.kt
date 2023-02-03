@@ -16,7 +16,7 @@ data class OctaneGGPlayerStats(
     @SerialName("player")
     val player: OctaneGGPlayer? = null,
     @SerialName("stats")
-    val stats: OctaneGGStats? = null
+    val stats: OctaneGGStats? = null,
 )
 
 /**

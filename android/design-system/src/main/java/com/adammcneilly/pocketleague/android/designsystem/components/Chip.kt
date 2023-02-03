@@ -34,7 +34,7 @@ fun TooltipChip(
                 Text(
                     text = text,
                 )
-            }
+            },
         )
 
         Tooltip(showTooltip) {

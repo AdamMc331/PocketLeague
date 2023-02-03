@@ -14,5 +14,5 @@ data class OctaneGGMatchFormat(
     @SerialName("length")
     val length: Int? = null,
     @SerialName("type")
-    val type: String? = null
+    val type: String? = null,
 )

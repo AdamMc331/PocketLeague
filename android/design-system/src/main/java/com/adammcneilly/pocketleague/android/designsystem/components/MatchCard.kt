@@ -166,14 +166,14 @@ private fun MatchTeamResultDisplayModel.getInlineContent(): Map<String, InlineTe
                         width = LocalTextStyle.current.fontSize,
                         height = LocalTextStyle.current.fontSize,
                         placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
-                    )
+                    ),
                 ) {
                     Icon(
                         Icons.Default.EmojiEvents,
                         contentDescription = null,
                     )
-                }
-            )
+                },
+            ),
         )
     } else {
         mapOf()

@@ -43,5 +43,5 @@ data class OctaneGGMovementStats(
     @SerialName("timeSupersonicSpeed")
     val timeSupersonicSpeed: Double? = null,
     @SerialName("totalDistance")
-    val totalDistance: Double? = null
+    val totalDistance: Double? = null,
 )

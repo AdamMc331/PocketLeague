@@ -13,7 +13,7 @@ import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
  * [apiClient].
  */
 class OctaneGGGameService(
-    private val apiClient: BaseKTORClient
+    private val apiClient: BaseKTORClient,
 ) : GameService {
 
     constructor() : this(OctaneGGAPIClient)

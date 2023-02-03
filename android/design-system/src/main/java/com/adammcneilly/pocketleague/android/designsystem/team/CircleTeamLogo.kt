@@ -57,7 +57,7 @@ private fun TeamLetterLogo(
     modifier: Modifier,
     backgroundColor: Color,
     displayModel: TeamOverviewDisplayModel,
-    contentColor: Color
+    contentColor: Color,
 ) {
     BoxWithConstraints(
         modifier = modifier

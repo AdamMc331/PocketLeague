@@ -37,7 +37,7 @@ fun Navigation.TwoPane(
         },
         content = { paddingValues ->
             Row(
-                modifier = Modifier.padding(paddingValues)
+                modifier = Modifier.padding(paddingValues),
             ) {
 //                Column(
 //                    Modifier
@@ -48,7 +48,7 @@ fun Navigation.TwoPane(
 //                }
                 Column(
                     Modifier
-                        .weight(LIST_PANE_WIDTH_RATIO)
+                        .weight(LIST_PANE_WIDTH_RATIO),
                 ) {
                     saveableStateHolder.SaveableStateProvider(navigationLevelsMap[1]!!.uri) {
                         ScreenPicker(navigationLevelsMap[1]!!)
@@ -57,7 +57,7 @@ fun Navigation.TwoPane(
                 Column(
                     Modifier
                         .weight(DETAIL_PANE_WIDTH_RATIO)
-                        .padding(20.dp)
+                        .padding(20.dp),
                 ) {
                     if (navigationLevelsMap[2] == null) {
                         TwoPaneDefaultDetail(navigationLevelsMap[1]!!)
@@ -68,7 +68,7 @@ fun Navigation.TwoPane(
                     }
                 }
             }
-        }
+        },
     )
 }
 

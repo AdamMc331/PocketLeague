@@ -97,7 +97,7 @@ private fun StatComparisonRow(
                         .size(
                             width = blueWidth,
                             height = statBarHeight,
-                        )
+                        ),
                 )
 
                 Box(
@@ -119,7 +119,7 @@ private fun StatComparisonRow(
                             ),
                         )
                         .height(statBarHeight)
-                        .width(orangeWidth)
+                        .width(orangeWidth),
                 )
             }
         }

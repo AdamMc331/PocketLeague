@@ -30,7 +30,7 @@ interface DateTimeFormatter {
      */
     @Suppress("ImplicitDefaultLocale")
     fun formatExtraTime(
-        extraSeconds: Int
+        extraSeconds: Int,
     ): String {
         val minutes = extraSeconds / SECONDS_PER_MINUTE
         val seconds = extraSeconds % SECONDS_PER_MINUTE

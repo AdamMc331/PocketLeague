@@ -72,7 +72,7 @@ private val DarkColorScheme = darkColorScheme(
 @Composable
 fun PocketLeagueTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = if (!useDarkTheme) {
         LightColorScheme
@@ -82,6 +82,6 @@ fun PocketLeagueTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        content = content
+        content = content,
     )
 }

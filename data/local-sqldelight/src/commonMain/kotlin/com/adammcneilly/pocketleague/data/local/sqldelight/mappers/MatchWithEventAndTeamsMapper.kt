@@ -84,7 +84,7 @@ private fun MatchWithEventAndTeams.mapBlueTeamResult(
             assists = this.localMatchBlueTeamTotalAssists.toInt(),
             score = this.localMatchBlueTeamTotalScore.toInt(),
             shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat(),
-        )
+        ),
     ),
     // We should store these
     players = emptyList(),
@@ -110,7 +110,7 @@ private fun MatchWithEventAndTeams.mapOrangeTeamResult(
             assists = this.localMatchOrangeTeamTotalAssists.toInt(),
             score = this.localMatchOrangeTeamTotalScore.toInt(),
             shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat(),
-        )
+        ),
     ),
     // We should store these
     players = emptyList(),

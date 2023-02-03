@@ -4,7 +4,7 @@ import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.sqldelight.LocalEventStage
 
 fun EventStage.toLocalEventStage(
-    eventId: String
+    eventId: String,
 ): LocalEventStage {
     return LocalEventStage(
         id = this.id,

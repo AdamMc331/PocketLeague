@@ -24,7 +24,7 @@ fun defaultHttpClient(
             Json {
                 ignoreUnknownKeys = true
                 acceptContentTypes = acceptContentTypes + ContentType.Any
-            }
+            },
         )
     }
     install(Logging) {

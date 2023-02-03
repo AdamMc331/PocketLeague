@@ -11,5 +11,5 @@ data class OctaneGGBallStats(
     @SerialName("possessionTime")
     val possessionTime: Double? = null,
     @SerialName("timeInSide")
-    val timeInSide: Double? = null
+    val timeInSide: Double? = null,
 )

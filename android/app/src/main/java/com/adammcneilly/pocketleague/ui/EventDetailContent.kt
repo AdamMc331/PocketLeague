@@ -79,7 +79,7 @@ fun EventDetailContent(
             displayModels = displayModel.getStageSummaries(),
             onStageClicked = { stageId ->
                 onStageClicked.invoke(displayModel.eventId, stageId)
-            }
+            },
         )
 
         val participants = viewState.participants
@@ -143,7 +143,7 @@ private fun PlaceholderDetails() {
                 )
                 .placeholderMaterial(
                     visible = true,
-                )
+                ),
         )
     }
 }
@@ -264,7 +264,7 @@ private fun getCardColors(containerColor: Color): CardColors {
         CardDefaults.cardColors()
     } else {
         CardDefaults.cardColors(
-            containerColor = containerColor
+            containerColor = containerColor,
         )
     }
 }

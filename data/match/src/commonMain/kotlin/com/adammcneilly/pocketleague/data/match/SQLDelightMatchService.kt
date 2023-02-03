@@ -58,7 +58,7 @@ class SQLDelightMatchService(
                     .insertFullEventStage(
                         match.stage.toLocalEventStage(
                             eventId = match.event.id,
-                        )
+                        ),
                     )
 
                 database.localTeamQueries

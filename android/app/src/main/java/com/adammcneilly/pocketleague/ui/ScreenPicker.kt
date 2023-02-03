@@ -22,7 +22,6 @@ fun Navigation.ScreenPicker(
     screenIdentifier: ScreenIdentifier,
     paddingValues: PaddingValues = PaddingValues(),
 ) {
-
     when (screenIdentifier.screen) {
         Screens.Feed -> {
             FeedContent(
@@ -83,7 +82,7 @@ fun Navigation.ScreenPicker(
                         Screens.EventStageDetail,
                         params = params,
                     )
-                }
+                },
             )
         }
         Screens.EventStageDetail -> {
@@ -94,7 +93,7 @@ fun Navigation.ScreenPicker(
                 onMatchClicked = { matchId ->
                     navigate(
                         Screens.MatchDetail,
-                        MatchDetailParams(matchId)
+                        MatchDetailParams(matchId),
                     )
                 },
             )
@@ -106,7 +105,7 @@ fun Navigation.ScreenPicker(
                     .padding(paddingValues),
                 onAddTeamClicked = {
                     navigate(Screens.TeamSelection)
-                }
+                },
             )
         }
 

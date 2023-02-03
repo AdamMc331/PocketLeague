@@ -49,7 +49,7 @@ fun MatchDetail(
 
     LazyColumn(
         modifier = modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         item {
             MatchDetailHeader(
@@ -74,7 +74,7 @@ fun MatchDetail(
                     games = games,
                     onGameClicked = { game ->
                         selectedGame.value = game
-                    }
+                    },
                 )
             }
         } else {
@@ -85,7 +85,7 @@ fun MatchDetail(
                         .fillMaxWidth()
                         .padding(16.dp),
                     textModifier = Modifier
-                        .padding(32.dp)
+                        .padding(32.dp),
                 )
             }
         }
@@ -183,7 +183,7 @@ private fun GameList(
                 displayModel = gameDetailDisplayModel,
                 modifier = Modifier.clickable {
                     onGameClicked.invoke(gameDetailDisplayModel)
-                }
+                },
             )
 
             if (index != games.lastIndex) {

@@ -30,7 +30,7 @@ fun EventStageListCard(
                     modifier = Modifier
                         .clickable {
                             onStageClicked.invoke(stageSummary.stageId)
-                        }
+                        },
                 )
 
                 if (index != this.lastIndex) {

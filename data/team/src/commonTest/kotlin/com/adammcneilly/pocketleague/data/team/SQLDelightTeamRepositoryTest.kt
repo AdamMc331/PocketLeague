@@ -37,7 +37,7 @@ class SQLDelightTeamRepositoryTest {
             .test {
                 assertEquals(
                     insertedList,
-                    awaitItem()
+                    awaitItem(),
                 )
             }
     }
@@ -57,7 +57,7 @@ class SQLDelightTeamRepositoryTest {
             .test {
                 assertEquals(
                     emptyList(),
-                    awaitItem()
+                    awaitItem(),
                 )
             }
     }
@@ -78,7 +78,7 @@ class SQLDelightTeamRepositoryTest {
             .test {
                 assertEquals(
                     teamList,
-                    awaitItem()
+                    awaitItem(),
                 )
             }
     }

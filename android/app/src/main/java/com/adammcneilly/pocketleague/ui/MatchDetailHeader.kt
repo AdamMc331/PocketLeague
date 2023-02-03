@@ -97,7 +97,7 @@ private fun MatchTeamResultCell(
                 .padding(8.dp)
                 .cardPlaceholder(
                     visible = (displayModel.team.isPlaceholder),
-                )
+                ),
         )
 
         Text(
@@ -106,7 +106,7 @@ private fun MatchTeamResultCell(
             modifier = Modifier
                 .cardPlaceholder(
                     visible = displayModel.isPlaceholder,
-                )
+                ),
         )
     }
 }

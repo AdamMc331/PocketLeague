@@ -11,7 +11,6 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:7.3.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("org.jlleitschuh.gradle:ktlint-gradle:11.0.0")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.21.0")
         classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")
         classpath("com.hiya:jacoco-android:0.2")
@@ -58,6 +57,7 @@ afterEvaluate {
 
 plugins {
     id("io.gitlab.arturbosch.detekt").version("1.0.1")
+    id("org.jmailen.kotlinter").version("3.13.0").apply(false)
 }
 
 tasks {

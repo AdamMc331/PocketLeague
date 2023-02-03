@@ -54,7 +54,6 @@ private fun SuccessContent(
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
     ) {
-
         item {
             Text(
                 text = "Recent Matches",
@@ -114,7 +113,7 @@ private fun SuccessContent(
 @Composable
 private fun RecentMatchesSection(
     recentMatches: List<MatchDetailDisplayModel>,
-    onMatchClicked: (String) -> Unit
+    onMatchClicked: (String) -> Unit,
 ) {
     if (recentMatches.isNotEmpty()) {
         MatchesCarousel(
@@ -136,7 +135,7 @@ private fun LazyListScope.eventList(
             modifier = Modifier
                 .clickable {
                     onEventClicked.invoke(event.eventId)
-                }
+                },
         )
 
         if (index != events.lastIndex) {

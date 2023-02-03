@@ -17,5 +17,5 @@ data class OctaneGGStats(
     @SerialName("movement")
     val movement: OctaneGGMovementStats? = null,
     @SerialName("positioning")
-    val positioning: OctaneGGPositioningStats? = null
+    val positioning: OctaneGGPositioningStats? = null,
 )

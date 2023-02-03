@@ -33,6 +33,6 @@ fun OctaneGGMatchTeamResult?.toMatchTeamResult(): MatchTeamResult {
         winner = this?.winner ?: false,
         team = this?.team?.team.toTeam(),
         stats = this?.team?.stats?.toStats(),
-        players = this?.players?.map(OctaneGGPlayerStats::toGamePlayerResult).orEmpty()
+        players = this?.players?.map(OctaneGGPlayerStats::toGamePlayerResult).orEmpty(),
     )
 }

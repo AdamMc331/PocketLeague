@@ -94,15 +94,15 @@ private fun getInlineContent(
                         width = LocalTextStyle.current.fontSize,
                         height = LocalTextStyle.current.fontSize,
                         placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
-                    )
+                    ),
                 ) {
                     Icon(
                         imageVector = icon,
                         contentDescription = null,
                         tint = iconTint,
                     )
-                }
-            )
+                },
+            ),
         )
     }
 }

@@ -29,7 +29,7 @@ data class OctaneGGGame(
     @SerialName("octane_id")
     val octaneId: String? = null,
     @SerialName("orange")
-    val orange: OctaneGGGameTeamResult? = null
+    val orange: OctaneGGGameTeamResult? = null,
 )
 
 /**

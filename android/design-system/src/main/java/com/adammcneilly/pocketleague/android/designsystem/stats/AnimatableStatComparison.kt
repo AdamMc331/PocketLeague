@@ -54,7 +54,7 @@ fun AnimatableStatComparison(
                         ),
                     )
                 }
-            }
+            },
     )
 }
 
@@ -77,7 +77,7 @@ fun StatComparison(
     Canvas(
         modifier = modifier
             .fillMaxWidth()
-            .height(48.dp)
+            .height(48.dp),
     ) {
         val midHeight = size.height.div(2)
         val totalValue = blueTeamValue.plus(orangeTeamValue)

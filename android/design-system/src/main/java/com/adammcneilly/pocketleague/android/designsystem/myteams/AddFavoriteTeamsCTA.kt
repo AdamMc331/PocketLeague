@@ -45,7 +45,7 @@ fun AddFavoriteTeamsCTA(
                 Icons.Default.AddCircleOutline,
                 contentDescription = "Add Favorites",
                 modifier = Modifier
-                    .size(imageSize)
+                    .size(imageSize),
             )
 
             Text(

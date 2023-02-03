@@ -80,7 +80,7 @@ class OfflineFirstTeamRepositoryTest {
                 // Ensure remote insert call didn't happen
                 assertEquals(
                     emptyList(),
-                    remoteDataSource.insertedTeams
+                    remoteDataSource.insertedTeams,
                 )
             }
     }

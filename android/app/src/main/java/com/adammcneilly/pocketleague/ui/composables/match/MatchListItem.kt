@@ -31,7 +31,7 @@ fun MatchListItem(
         modifier = modifier
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
             text = displayModel.localTime,
@@ -70,7 +70,7 @@ private fun MatchTeamResultRow(
             text = displayModel.score.toString(),
             fontWeight = fontWeight,
             modifier = Modifier
-                .cardPlaceholder(visible = displayModel.isPlaceholder)
+                .cardPlaceholder(visible = displayModel.isPlaceholder),
         )
 
         InlineIconText(

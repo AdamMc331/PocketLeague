@@ -18,13 +18,12 @@ fun MatchDetailContent(
         modifier = modifier
             .fillMaxSize(),
     ) {
-
         val detailDisplayModel = viewState.matchDetail
 
         if (detailDisplayModel != null) {
             MatchDetail(
                 displayModel = detailDisplayModel,
-                games = viewState.games
+                games = viewState.games,
             )
         } else {
             // Show some error UI here.

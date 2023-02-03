@@ -39,7 +39,7 @@ fun EventStageDetailContent(
                     style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier
                         .defaultMinSize(minWidth = 100.dp)
-                        .placeholderMaterial(visible = viewState.matchesByDateDisplayModel?.isPlaceholder == true)
+                        .placeholderMaterial(visible = viewState.matchesByDateDisplayModel?.isPlaceholder == true),
                 )
             }
 
@@ -51,7 +51,7 @@ fun EventStageDetailContent(
                             modifier = Modifier
                                 .clickable {
                                     onMatchClicked.invoke(match.matchId)
-                                }
+                                },
                         )
 
                         if (index != matchList.lastIndex) {

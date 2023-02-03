@@ -37,7 +37,7 @@ fun TeamOverviewListItem(
                 .cardPlaceholder(
                     visible = displayModel.isPlaceholder,
 
-                )
+                ),
         )
 
         Text(

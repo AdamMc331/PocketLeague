@@ -24,7 +24,7 @@ class EventDetailPresenter(
     private val _state = MutableStateFlow(
         EventDetailViewState(
             eventId = params.eventId,
-        )
+        ),
     )
     override val state = _state.asStateFlow()
 
@@ -39,7 +39,7 @@ class EventDetailPresenter(
             .onEach { teamList ->
                 _state.update {
                     it.copy(
-                        participants = teamList.map(Team::toOverviewDisplayModel)
+                        participants = teamList.map(Team::toOverviewDisplayModel),
                     )
                 }
             }

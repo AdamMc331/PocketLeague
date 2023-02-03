@@ -92,7 +92,7 @@ class SQLDelightEventService(
                     LocalEventParticipant(
                         eventId = eventId,
                         teamId = team.id,
-                    )
+                    ),
                 )
         }
     }

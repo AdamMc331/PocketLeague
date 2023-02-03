@@ -61,7 +61,7 @@ class OfflineFirstEventRepository(
                     is DataState.Error -> {
                         println(
                             "Unable to request event participants for event " +
-                                "$eventId: ${remoteResponse.error.message}"
+                                "$eventId: ${remoteResponse.error.message}",
                         )
                     }
                     is DataState.Success -> {

@@ -81,5 +81,5 @@ enum class Screens(
             initTeamSelection()
         },
         stackableInstances = false,
-    )
+    ),
 }

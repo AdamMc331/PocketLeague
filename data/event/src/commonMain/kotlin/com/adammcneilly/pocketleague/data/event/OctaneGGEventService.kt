@@ -27,6 +27,7 @@ class OctaneGGEventService(
             endpoint = EVENTS_ENDPOINT,
             params = mapOf(
                 "after" to Clock.System.now().toString(),
+                "group" to "rlcs",
             ),
         ).map { eventListResponse ->
             eventListResponse.events?.map(OctaneGGEvent::toEvent).orEmpty()
@@ -60,6 +61,7 @@ class OctaneGGEventService(
             endpoint = EVENTS_ENDPOINT,
             params = mapOf(
                 "date" to Clock.System.now().toString(),
+                "group" to "rlcs",
             ),
         ).map { eventListResponse ->
             eventListResponse.events?.map(OctaneGGEvent::toEvent).orEmpty()

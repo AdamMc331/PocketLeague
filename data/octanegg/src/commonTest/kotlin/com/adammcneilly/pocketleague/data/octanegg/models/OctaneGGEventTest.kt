@@ -23,7 +23,7 @@ class OctaneGGEventTest {
             startDateUTC = "startDate",
             tier = "S",
             groups = listOf("testGroup"),
-            lan = false,
+            lan = false
         )
 
         val expectedEvent = Event(
@@ -37,14 +37,14 @@ class OctaneGGEventTest {
             stages = listOf(OctaneGGStage().toEventStage()),
             startDateUTC = "startDate",
             tier = EventTier.S,
-            lan = false,
+            lan = false
         )
 
         val domainEvent = octaneEvent.toEvent()
 
         assertEquals(
             expected = expectedEvent,
-            actual = domainEvent,
+            actual = domainEvent
         )
     }
 
@@ -63,14 +63,14 @@ class OctaneGGEventTest {
             mode = "",
             region = EventRegion.Unknown,
             lan = false,
-            prize = null,
+            prize = null
         )
 
         val domainEvent = octaneEvent.toEvent()
 
         assertEquals(
             expected = expectedEvent,
-            actual = domainEvent,
+            actual = domainEvent
         )
     }
 
@@ -78,37 +78,37 @@ class OctaneGGEventTest {
     fun mapEventTiers() {
         assertEquals(
             expected = EventTier.S,
-            actual = "S".toEventTier(),
+            actual = "S".toEventTier()
         )
 
         assertEquals(
             expected = EventTier.A,
-            actual = "A".toEventTier(),
+            actual = "A".toEventTier()
         )
 
         assertEquals(
             expected = EventTier.B,
-            actual = "B".toEventTier(),
+            actual = "B".toEventTier()
         )
 
         assertEquals(
             expected = EventTier.C,
-            actual = "C".toEventTier(),
+            actual = "C".toEventTier()
         )
 
         assertEquals(
             expected = EventTier.D,
-            actual = "D".toEventTier(),
+            actual = "D".toEventTier()
         )
 
         assertEquals(
             expected = EventTier.Unknown,
-            actual = "???".toEventTier(),
+            actual = "???".toEventTier()
         )
 
         assertEquals(
             expected = EventTier.Unknown,
-            actual = null.toEventTier(),
+            actual = null.toEventTier()
         )
     }
 
@@ -116,47 +116,47 @@ class OctaneGGEventTest {
     fun mapEventRegion() {
         assertEquals(
             expected = EventRegion.NA,
-            actual = "NA".toEventRegion(),
+            actual = "NA".toEventRegion()
         )
 
         assertEquals(
             expected = EventRegion.EU,
-            actual = "EU".toEventRegion(),
+            actual = "EU".toEventRegion()
         )
 
         assertEquals(
             expected = EventRegion.OCE,
-            actual = "OCE".toEventRegion(),
+            actual = "OCE".toEventRegion()
         )
 
         assertEquals(
             expected = EventRegion.SAM,
-            actual = "SAM".toEventRegion(),
+            actual = "SAM".toEventRegion()
         )
 
         assertEquals(
             expected = EventRegion.ASIA,
-            actual = "ASIA".toEventRegion(),
+            actual = "ASIA".toEventRegion()
         )
 
         assertEquals(
             expected = EventRegion.ME,
-            actual = "ME".toEventRegion(),
+            actual = "ME".toEventRegion()
         )
 
         assertEquals(
             expected = EventRegion.INT,
-            actual = "INT".toEventRegion(),
+            actual = "INT".toEventRegion()
         )
 
         assertEquals(
             expected = EventRegion.Unknown,
-            actual = "???".toEventRegion(),
+            actual = "???".toEventRegion()
         )
 
         assertEquals(
             expected = EventRegion.Unknown,
-            actual = null.toEventRegion(),
+            actual = null.toEventRegion()
         )
     }
 }

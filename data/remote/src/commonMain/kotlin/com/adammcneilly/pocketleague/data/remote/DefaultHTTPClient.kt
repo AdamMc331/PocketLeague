@@ -17,7 +17,7 @@ import kotlinx.serialization.json.Json
  * by the platform it's being used on. This allows us to override for tests.
  */
 fun defaultHttpClient(
-    engine: HttpClientEngine = CIO.create(),
+    engine: HttpClientEngine = CIO.create()
 ) = HttpClient(engine) {
     install(JsonFeature) {
         serializer = KotlinxSerializer(

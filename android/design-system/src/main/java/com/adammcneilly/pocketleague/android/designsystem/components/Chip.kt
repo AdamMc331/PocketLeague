@@ -21,7 +21,7 @@ import com.adammcneilly.pocketleague.android.designsystem.components.Tooltip
 @Composable
 fun TooltipChip(
     text: String,
-    tooltipText: String,
+    tooltipText: String
 ) {
     Box {
         val showTooltip = remember { mutableStateOf(false) }
@@ -32,7 +32,7 @@ fun TooltipChip(
             },
             label = {
                 Text(
-                    text = text,
+                    text = text
                 )
             }
         )

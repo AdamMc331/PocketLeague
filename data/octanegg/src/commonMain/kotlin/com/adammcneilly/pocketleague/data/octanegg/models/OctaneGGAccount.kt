@@ -11,5 +11,5 @@ data class OctaneGGAccount(
     @SerialName("id")
     val id: String? = null,
     @SerialName("platform")
-    val platform: String? = null,
+    val platform: String? = null
 )

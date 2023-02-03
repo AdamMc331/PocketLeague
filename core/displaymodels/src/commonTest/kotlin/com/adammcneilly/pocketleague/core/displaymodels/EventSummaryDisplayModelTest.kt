@@ -16,7 +16,7 @@ class EventSummaryDisplayModelTest {
         val dateTimeFormatter = FakeDateTimeFormatter().apply {
             mockResponseForUTCString(
                 utcString = testEvent.startDateUTC.orEmpty(),
-                response = mockDateString,
+                response = mockDateString
             )
         }
 

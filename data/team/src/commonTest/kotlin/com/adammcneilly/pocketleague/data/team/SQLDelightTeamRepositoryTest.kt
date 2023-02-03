@@ -25,7 +25,7 @@ class SQLDelightTeamRepositoryTest {
     @Test
     fun insertReadFavoriteTeam() = runTest {
         val favoriteTeam = TestModel.team.copy(
-            isFavorite = true,
+            isFavorite = true
         )
 
         val insertedList = listOf(favoriteTeam)
@@ -45,7 +45,7 @@ class SQLDelightTeamRepositoryTest {
     @Test
     fun insertReadNonFavoriteTeam() = runTest {
         val nonFavoriteTeam = TestModel.team.copy(
-            isFavorite = false,
+            isFavorite = false
         )
 
         val insertedList = listOf(nonFavoriteTeam)
@@ -67,7 +67,7 @@ class SQLDelightTeamRepositoryTest {
         val teamList = List(3) {
             TestModel.team.copy(
                 id = it.toString(),
-                isActive = true,
+                isActive = true
             )
         }
 

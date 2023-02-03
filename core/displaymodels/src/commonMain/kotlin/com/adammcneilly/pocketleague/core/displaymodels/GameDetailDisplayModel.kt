@@ -12,7 +12,7 @@ data class GameDetailDisplayModel(
     val map: String,
     val gameNumber: String,
     val otLabel: String?,
-    val isPlaceholder: Boolean = false,
+    val isPlaceholder: Boolean = false
 ) {
 
     companion object {
@@ -22,7 +22,7 @@ data class GameDetailDisplayModel(
             map = "",
             gameNumber = "",
             otLabel = null,
-            isPlaceholder = true,
+            isPlaceholder = true
         )
     }
 }
@@ -42,6 +42,6 @@ fun Game.toDetailDisplayModel(): GameDetailDisplayModel {
         gameNumber = this.number.toString(),
         otLabel = otLabel.takeIf {
             extraTime != 0
-        },
+        }
     )
 }

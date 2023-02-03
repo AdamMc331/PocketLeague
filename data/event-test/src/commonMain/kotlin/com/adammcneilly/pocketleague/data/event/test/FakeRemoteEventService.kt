@@ -13,10 +13,10 @@ class FakeRemoteEventService : RemoteEventService {
     var upcomingEvents: DataState<List<Event>> = DataState.Success(listOf(TestModel.event))
     var ongoingEvents: DataState<List<Event>> = DataState.Success(listOf(TestModel.event))
     val eventsById: MutableMap<String, DataState<Event>> = mutableMapOf(
-        TestModel.event.id to DataState.Success(TestModel.event),
+        TestModel.event.id to DataState.Success(TestModel.event)
     )
     val eventParticipantsByEventId: MutableMap<String, DataState<List<Team>>> = mutableMapOf(
-        TestModel.event.id to DataState.Success(listOf(TestModel.team)),
+        TestModel.event.id to DataState.Success(listOf(TestModel.team))
     )
 
     override suspend fun getUpcomingEvents(): DataState<List<Event>> {

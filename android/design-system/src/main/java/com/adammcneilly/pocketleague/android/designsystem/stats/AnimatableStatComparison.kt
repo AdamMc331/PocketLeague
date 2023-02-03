@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
 fun AnimatableStatComparison(
     blueTeamValue: Int,
     orangeTeamValue: Int,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     val animationPercentage = remember {
         AnimationState(0F)
@@ -50,8 +50,8 @@ fun AnimatableStatComparison(
                     animationPercentage.animateTo(
                         targetValue = 1F,
                         animationSpec = tween(
-                            durationMillis = 1000,
-                        ),
+                            durationMillis = 1000
+                        )
                     )
                 }
             }
@@ -70,7 +70,7 @@ fun StatComparison(
     blueTeamValue: Int,
     orangeTeamValue: Int,
     modifier: Modifier = Modifier,
-    percentageToRender: Float = 1F,
+    percentageToRender: Float = 1F
 ) {
     val dividerColor = LocalContentColor.current
 
@@ -96,7 +96,7 @@ private fun DrawScope.drawDivider(
     midHeight: Float,
     lineWidth: Float,
     dividerColor: Color,
-    animationPercentage: Float,
+    animationPercentage: Float
 ) {
     val totalDividerOffset = lineWidth.times(2)
     val dividerOffset = totalDividerOffset * animationPercentage
@@ -105,13 +105,13 @@ private fun DrawScope.drawDivider(
         color = dividerColor,
         start = Offset(
             x = dividingPoint,
-            y = midHeight.minus(dividerOffset),
+            y = midHeight.minus(dividerOffset)
         ),
         end = Offset(
             x = dividingPoint,
-            y = midHeight.plus(dividerOffset),
+            y = midHeight.plus(dividerOffset)
         ),
-        strokeWidth = lineWidth,
+        strokeWidth = lineWidth
     )
 }
 
@@ -119,7 +119,7 @@ private fun DrawScope.drawOrangeLine(
     dividingPoint: Float,
     midHeight: Float,
     lineWidth: Float,
-    animationPercentage: Float,
+    animationPercentage: Float
 ) {
     val totalLength = (size.width - dividingPoint)
     val lengthToRender = totalLength * animationPercentage
@@ -129,13 +129,13 @@ private fun DrawScope.drawOrangeLine(
         color = rlcsOrange,
         start = Offset(
             x = dividingPoint,
-            y = midHeight,
+            y = midHeight
         ),
         end = Offset(
             x = endingX,
-            y = midHeight,
+            y = midHeight
         ),
-        strokeWidth = lineWidth,
+        strokeWidth = lineWidth
     )
 }
 
@@ -143,7 +143,7 @@ private fun DrawScope.drawBlueLine(
     midHeight: Float,
     dividingPoint: Float,
     lineWidth: Float,
-    animationPercentage: Float,
+    animationPercentage: Float
 ) {
     val lineLengthToRender = animationPercentage * dividingPoint
     val startingX = (dividingPoint - lineLengthToRender)
@@ -152,23 +152,23 @@ private fun DrawScope.drawBlueLine(
         color = rlcsBlue,
         start = Offset(
             x = startingX,
-            y = midHeight,
+            y = midHeight
         ),
         end = Offset(
             x = dividingPoint,
-            y = midHeight,
+            y = midHeight
         ),
-        strokeWidth = lineWidth,
+        strokeWidth = lineWidth
     )
 }
 
 @Preview(
     name = "Night Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
 )
 @Preview(
     name = "Day Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    uiMode = Configuration.UI_MODE_NIGHT_NO
 )
 @Composable
 private fun StatComparisonPreview() {
@@ -178,7 +178,7 @@ private fun StatComparisonPreview() {
                 blueTeamValue = 7,
                 orangeTeamValue = 1,
                 modifier = Modifier
-                    .padding(16.dp),
+                    .padding(16.dp)
             )
         }
     }

@@ -16,6 +16,6 @@ fun Navigation.initMyTeams(): ScreenInitSettings {
         callOnInit = {
             events.loadMyTeams()
         },
-        reInitOnEachNavigation = false,
+        reInitOnEachNavigation = false
     )
 }

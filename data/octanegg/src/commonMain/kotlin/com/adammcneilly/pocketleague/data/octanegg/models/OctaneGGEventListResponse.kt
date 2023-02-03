@@ -15,5 +15,5 @@ data class OctaneGGEventListResponse(
     @SerialName("perPage")
     val perPage: Int? = null,
     @SerialName("pageSize")
-    val pageSize: Int? = null,
+    val pageSize: Int? = null
 )

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
  * Root view model for the application that exposes a [stateFlow] of our application's state.
  */
 class DKMPViewModel(
-    private val appModule: AppModule,
+    private val appModule: AppModule
 ) {
 
     private val stateManager by lazy {

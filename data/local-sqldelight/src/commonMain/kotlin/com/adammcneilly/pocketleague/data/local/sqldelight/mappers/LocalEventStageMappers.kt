@@ -15,7 +15,7 @@ fun EventStage.toLocalEventStage(
         endDateUTC = this.endDateUTC,
         liquipedia = this.liquipedia,
         qualifier = this.qualifier,
-        lan = this.lan,
+        lan = this.lan
     )
 }
 
@@ -28,6 +28,6 @@ fun LocalEventStage.toEventStage(): EventStage {
         endDateUTC = this.endDateUTC,
         liquipedia = this.liquipedia,
         qualifier = this.qualifier,
-        lan = this.lan,
+        lan = this.lan
     )
 }

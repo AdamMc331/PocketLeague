@@ -25,5 +25,5 @@ class ScreenInitSettings(
     val initState: (ScreenIdentifier) -> ScreenState,
     val callOnInit: suspend (StateManager) -> Unit,
     val reInitOnEachNavigation: Boolean = false,
-    val callOnInitAlsoAfterBackground: Boolean = false,
+    val callOnInitAlsoAfterBackground: Boolean = false
 )

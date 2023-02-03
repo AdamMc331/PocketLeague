@@ -9,5 +9,5 @@ data class Team(
     val name: String = "TBD",
     val imageUrl: String? = null,
     val isFavorite: Boolean = false,
-    val isActive: Boolean? = null,
+    val isActive: Boolean? = null
 )

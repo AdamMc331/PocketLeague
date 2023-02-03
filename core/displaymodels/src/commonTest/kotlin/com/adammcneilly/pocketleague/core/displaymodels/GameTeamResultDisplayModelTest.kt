@@ -16,40 +16,40 @@ class GameTeamResultDisplayModelTest {
         val players = listOf(
             GamePlayerResult(
                 player = Player(
-                    tag = "AdamMc331",
+                    tag = "AdamMc331"
                 ),
                 stats = Stats(
                     core = CoreStats(
-                        score = 123,
-                    ),
-                ),
+                        score = 123
+                    )
+                )
             ),
             GamePlayerResult(
                 player = Player(
-                    tag = "PleasantlyPlump",
+                    tag = "PleasantlyPlump"
                 ),
                 stats = Stats(
                     core = CoreStats(
-                        score = 1234,
-                    ),
-                ),
+                        score = 1234
+                    )
+                )
             ),
             GamePlayerResult(
                 player = Player(
-                    tag = "mTeo",
+                    tag = "mTeo"
                 ),
                 stats = Stats(
                     core = CoreStats(
-                        score = 500,
-                    ),
-                ),
-            ),
+                        score = 500
+                    )
+                )
+            )
         )
 
         val gameTeamResult = GameTeamResult(
             players = players,
             goals = 4,
-            winner = true,
+            winner = true
         )
 
         val mappedModel = gameTeamResult.toDisplayModel()

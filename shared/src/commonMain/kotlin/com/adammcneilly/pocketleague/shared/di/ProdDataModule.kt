@@ -23,20 +23,20 @@ import com.adammcneilly.pocketleague.data.team.TeamRepository
  * used in a production scenario.
  */
 class ProdDataModule(
-    private val databaseDriverFactory: DatabaseDriverFactory,
+    private val databaseDriverFactory: DatabaseDriverFactory
 ) : DataModule {
 
     override val eventRepository: EventRepository by lazy {
         OfflineFirstEventRepository(
             localEventService = SQLDelightEventService(this.database),
-            remoteEventService = OctaneGGEventService(),
+            remoteEventService = OctaneGGEventService()
         )
     }
 
     override val matchRepository: MatchRepository by lazy {
         OfflineFirstMatchRepository(
             localDataSource = SQLDelightMatchService(this.database),
-            remoteDataSource = OctaneGGMatchService(),
+            remoteDataSource = OctaneGGMatchService()
         )
     }
 
@@ -47,7 +47,7 @@ class ProdDataModule(
     override val teamRepository: TeamRepository by lazy {
         OfflineFirstTeamRepository(
             localDataSource = SQLDelightTeamRepository(this.database),
-            remoteDataSource = OctaneGGTeamRepository(OctaneGGAPIClient),
+            remoteDataSource = OctaneGGTeamRepository(OctaneGGAPIClient)
         )
     }
 

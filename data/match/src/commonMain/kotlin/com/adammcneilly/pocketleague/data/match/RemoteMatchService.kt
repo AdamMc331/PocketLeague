@@ -12,7 +12,7 @@ interface RemoteMatchService {
      * Fetches detailed information about a [Match] using the supplied [matchId].
      */
     suspend fun getMatchDetail(
-        matchId: String,
+        matchId: String
     ): DataState<Match>
 
     /**
@@ -30,6 +30,6 @@ interface RemoteMatchService {
      */
     suspend fun getMatchesForEventStage(
         eventId: String,
-        stageId: String,
+        stageId: String
     ): DataState<List<Match>>
 }

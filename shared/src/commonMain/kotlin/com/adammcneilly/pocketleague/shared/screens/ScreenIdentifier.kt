@@ -12,7 +12,7 @@ import kotlinx.serialization.json.Json
 class ScreenIdentifier private constructor(
     val screen: Screens,
     var params: ScreenParams? = null,
-    val paramsAsString: String? = null,
+    val paramsAsString: String? = null
 ) {
     /**
      * Builds a string that represents a unique URI for this [screen] and its [params].

@@ -23,11 +23,11 @@ class EmptyStateCardPaparazziTest {
     @Test
     fun renderCard() {
         paparazzi.snapshotScreen(
-            useDarkTheme = useDarkTheme,
+            useDarkTheme = useDarkTheme
         ) {
             EmptyStateCard(
                 text = "Demo Empty State Card",
-                textModifier = Modifier.padding(32.dp),
+                textModifier = Modifier.padding(32.dp)
             )
         }
     }

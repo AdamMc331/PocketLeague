@@ -16,14 +16,14 @@ import androidx.compose.ui.Modifier
 @Composable
 fun TopBar(
     title: String,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     TopAppBar(
         title = {
             Text(
-                text = title,
+                text = title
             )
         },
-        modifier = modifier,
+        modifier = modifier
     )
 }

@@ -15,7 +15,7 @@ fun Events.loadTeamSelection() = screenCoroutine {
 }
 
 private fun Events.fetchActiveTeams(
-    scope: CoroutineScope,
+    scope: CoroutineScope
 ) {
     appModule
         .dataModule
@@ -24,7 +24,7 @@ private fun Events.fetchActiveTeams(
         .onEach { teamList ->
             stateManager.updateScreen(TeamSelectionViewState::class) { currentState ->
                 currentState.copy(
-                    teams = teamList.map(Team::toOverviewDisplayModel),
+                    teams = teamList.map(Team::toOverviewDisplayModel)
                 )
             }
         }

@@ -22,11 +22,11 @@ class MatchCardPaparazziTest {
     @Test
     fun renderBlueTeamWinner() {
         paparazzi.snapshotScreen(
-            useDarkTheme = useDarkTheme,
+            useDarkTheme = useDarkTheme
         ) {
             MatchCard(
                 match = TestDisplayModel.matchDetailBlueWinner,
-                onClick = {},
+                onClick = {}
             )
         }
     }
@@ -34,11 +34,11 @@ class MatchCardPaparazziTest {
     @Test
     fun renderOrangeTeamWinner() {
         paparazzi.snapshotScreen(
-            useDarkTheme = useDarkTheme,
+            useDarkTheme = useDarkTheme
         ) {
             MatchCard(
                 match = TestDisplayModel.matchDetailOrangeWinner,
-                onClick = {},
+                onClick = {}
             )
         }
     }
@@ -46,11 +46,11 @@ class MatchCardPaparazziTest {
     @Test
     fun renderPlaceholder() {
         paparazzi.snapshotScreen(
-            useDarkTheme = useDarkTheme,
+            useDarkTheme = useDarkTheme
         ) {
             MatchCard(
                 match = MatchDetailDisplayModel.placeholder,
-                onClick = {},
+                onClick = {}
             )
         }
     }

@@ -7,5 +7,5 @@ data class Player(
     val id: String = "",
     val slug: String = "",
     val tag: String = "",
-    val country: String = "",
+    val country: String = ""
 )

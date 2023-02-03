@@ -11,5 +11,5 @@ val TestModel.eventStage: EventStage
         region = "eventStageRegion",
         liquipedia = "eventStageLiquipedia",
         qualifier = false,
-        lan = false,
+        lan = false
     )

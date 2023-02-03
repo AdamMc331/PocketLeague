@@ -9,7 +9,7 @@ import com.adammcneilly.pocketleague.shared.di.PlatformModule
  * used on the Android platform.
  */
 class AndroidPlatformModule(
-    appContext: Context,
+    appContext: Context
 ) : PlatformModule {
 
     override val databaseDriverFactory: DatabaseDriverFactory by lazy {

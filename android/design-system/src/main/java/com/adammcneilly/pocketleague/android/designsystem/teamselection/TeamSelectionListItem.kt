@@ -29,7 +29,7 @@ interface TeamSelectionListItemClickListener {
      */
     fun onFavoriteChanged(
         teamId: String,
-        isFavorite: Boolean,
+        isFavorite: Boolean
     )
 }
 
@@ -42,28 +42,28 @@ interface TeamSelectionListItemClickListener {
 fun TeamSelectionListItem(
     team: TeamOverviewDisplayModel,
     clickListener: TeamSelectionListItemClickListener,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = team.name,
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier
-                .weight(1F),
+                .weight(1F)
         )
 
         IconButton(
             onClick = {
                 clickListener.onFavoriteChanged(
                     teamId = team.teamId,
-                    isFavorite = !team.isFavorite,
+                    isFavorite = !team.isFavorite
                 )
-            },
+            }
         ) {
             val icon = when {
                 team.isFavorite -> Icons.Default.Star
@@ -77,7 +77,7 @@ fun TeamSelectionListItem(
 
             Icon(
                 imageVector = icon,
-                contentDescription = contentDescription,
+                contentDescription = contentDescription
             )
         }
     }

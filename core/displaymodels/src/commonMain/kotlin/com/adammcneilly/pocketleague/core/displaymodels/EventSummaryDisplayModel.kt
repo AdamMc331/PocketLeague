@@ -23,7 +23,7 @@ data class EventSummaryDisplayModel(
     val startDate: String,
     val endDate: String,
     val name: String,
-    val isPlaceholder: Boolean = false,
+    val isPlaceholder: Boolean = false
 ) {
 
     companion object {
@@ -33,7 +33,7 @@ data class EventSummaryDisplayModel(
             startDate = "",
             endDate = "",
             name = "",
-            isPlaceholder = true,
+            isPlaceholder = true
         )
     }
 
@@ -52,20 +52,20 @@ fun Event.toSummaryDisplayModel(
             dateTimeFormatter.formatUTCString(
                 utcString = startDate,
                 formatPattern = EVENT_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
+                timeZone = TimeZone.currentSystemDefault()
             )
         }.orEmpty(),
         endDate = this.endDateUTC?.let { endDate ->
             dateTimeFormatter.formatUTCString(
                 utcString = endDate,
                 formatPattern = EVENT_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
+                timeZone = TimeZone.currentSystemDefault()
             )
         }.orEmpty(),
         name = this.name,
         imageURL = ThemedImageURL(
-            lightThemeImageURL = this.imageURL,
+            lightThemeImageURL = this.imageURL
         ),
-        eventId = this.id,
+        eventId = this.id
     )
 }

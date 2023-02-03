@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.core.feature.ScreenState
  * This class manages all of the navigation logic within the pocket league app.
  */
 class Navigation(
-    private val stateManager: StateManager,
+    private val stateManager: StateManager
 ) {
     /**
      * Creates a [StateProvider] allowing apps to get the state of necessary

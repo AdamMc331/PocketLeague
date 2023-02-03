@@ -27,13 +27,13 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
 @Composable
 fun MatchDetailHeader(
     displayModel: MatchDetailDisplayModel,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TeamResultsRow(displayModel = displayModel)
 
@@ -45,9 +45,9 @@ fun MatchDetailHeader(
                     .fillMaxWidth()
                     .padding(24.dp)
                     .cardPlaceholder(
-                        visible = displayModel.isPlaceholder,
+                        visible = displayModel.isPlaceholder
                     ),
-                style = MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.headlineSmall
             )
 
             Text(
@@ -55,9 +55,9 @@ fun MatchDetailHeader(
                     .padding(bottom = 12.dp)
                     .defaultMinSize(minWidth = 100.dp)
                     .cardPlaceholder(
-                        visible = displayModel.isPlaceholder,
+                        visible = displayModel.isPlaceholder
                     ),
-                text = displayModel.localDate,
+                text = displayModel.localDate
             )
         }
     }
@@ -65,30 +65,30 @@ fun MatchDetailHeader(
 
 @Composable
 private fun TeamResultsRow(
-    displayModel: MatchDetailDisplayModel,
+    displayModel: MatchDetailDisplayModel
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(24.dp),
+            .padding(24.dp)
     ) {
         MatchTeamResultCell(
-            displayModel = displayModel.blueTeamResult,
+            displayModel = displayModel.blueTeamResult
         )
 
         MatchTeamResultCell(
-            displayModel = displayModel.orangeTeamResult,
+            displayModel = displayModel.orangeTeamResult
         )
     }
 }
 
 @Composable
 private fun MatchTeamResultCell(
-    displayModel: MatchTeamResultDisplayModel,
+    displayModel: MatchTeamResultDisplayModel
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CircleTeamLogo(
             displayModel = displayModel.team,
@@ -96,7 +96,7 @@ private fun MatchTeamResultCell(
                 .size(72.dp)
                 .padding(8.dp)
                 .cardPlaceholder(
-                    visible = (displayModel.team.isPlaceholder),
+                    visible = (displayModel.team.isPlaceholder)
                 )
         )
 
@@ -105,7 +105,7 @@ private fun MatchTeamResultCell(
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier
                 .cardPlaceholder(
-                    visible = displayModel.isPlaceholder,
+                    visible = displayModel.isPlaceholder
                 )
         )
     }

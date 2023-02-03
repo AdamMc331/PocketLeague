@@ -12,7 +12,7 @@ data class EventDetailViewState(
     val eventDetail: EventDetailDisplayModel? = EventDetailDisplayModel.placeholder,
     val participants: List<TeamOverviewDisplayModel> = List(3) {
         TeamOverviewDisplayModel.placeholder
-    },
+    }
 ) : ScreenState {
 
     override val title: String?

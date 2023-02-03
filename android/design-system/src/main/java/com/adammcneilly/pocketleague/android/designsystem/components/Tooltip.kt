@@ -85,7 +85,7 @@ fun Tooltip(
     backgroundColor: Color = MaterialTheme.colorScheme.secondaryContainer,
     offset: DpOffset = DpOffset(0.dp, 0.dp),
     properties: PopupProperties = PopupProperties(focusable = true),
-    content: @Composable ColumnScope.() -> Unit,
+    content: @Composable ColumnScope.() -> Unit
 ) {
     val expandedStates = remember { MutableTransitionState(false) }
     expandedStates.targetState = expanded.value
@@ -101,11 +101,11 @@ fun Tooltip(
         Popup(
             onDismissRequest = { expanded.value = false },
             popupPositionProvider = DropdownMenuPositionProvider(offset, LocalDensity.current),
-            properties = properties,
+            properties = properties
         ) {
             Box(
                 // Add space for elevation shadow
-                modifier = Modifier.padding(TooltipElevation),
+                modifier = Modifier.padding(TooltipElevation)
             ) {
                 TooltipContent(expandedStates, backgroundColor, modifier, content)
             }
@@ -119,7 +119,7 @@ private fun TooltipContent(
     expandedStates: MutableTransitionState<Boolean>,
     backgroundColor: Color,
     modifier: Modifier,
-    content: @Composable ColumnScope.() -> Unit,
+    content: @Composable ColumnScope.() -> Unit
 ) {
     // Tooltip open/close animation.
     val transition = updateTransition(expandedStates, "Tooltip")
@@ -139,11 +139,11 @@ private fun TooltipContent(
 
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = backgroundColor,
+            containerColor = backgroundColor
         ),
         modifier = Modifier
             .fillMaxWidth(TOOLTIP_MAX_WIDTH_RATIO)
-            .alpha(alpha),
+            .alpha(alpha)
         // Fix elevation?
 //        elevation = TooltipElevation,
     ) {
@@ -154,10 +154,10 @@ private fun TooltipContent(
                     start = p,
                     top = p * TOOLTIP_TOP_PADDING_SCALE,
                     end = p,
-                    bottom = p * TOOLTIP_BOTTOM_PADDING_SCALE,
+                    bottom = p * TOOLTIP_BOTTOM_PADDING_SCALE
                 )
                 .width(IntrinsicSize.Max),
-            content = content,
+            content = content
         )
     }
 }

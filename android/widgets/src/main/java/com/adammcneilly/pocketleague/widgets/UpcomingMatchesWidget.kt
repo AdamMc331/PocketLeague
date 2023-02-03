@@ -67,7 +67,7 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
         GlanceTheme {
             Column(
                 modifier = GlanceModifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
             ) {
                 WidgetToolbar()
 
@@ -83,13 +83,13 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
                 .fillMaxWidth()
                 .padding(16.dp)
                 .background(GlanceTheme.colors.primaryContainer),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = "Upcoming Matches",
                 style = TextStyle(
                     color = GlanceTheme.colors.onPrimaryContainer,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Bold
                 ),
                 modifier = GlanceModifier
                     .defaultWeight()
@@ -110,14 +110,14 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
             modifier = GlanceModifier
                 .fillMaxSize()
                 .background(
-                    GlanceTheme.colors.surfaceVariant,
-                ),
+                    GlanceTheme.colors.surfaceVariant
+                )
         ) {
             itemsIndexed(matchesToShow) { index, match ->
                 Column {
                     UpcomingMatchListItem(
                         displayModel = match,
-                        contentColor = GlanceTheme.colors.onSurfaceVariant,
+                        contentColor = GlanceTheme.colors.onSurfaceVariant
                     )
 
                     if (index != matchesToShow.lastIndex) {
@@ -125,7 +125,7 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
                             modifier = GlanceModifier
                                 .fillMaxWidth()
                                 .height(1.dp)
-                                .background(GlanceTheme.colors.onSurfaceVariant),
+                                .background(GlanceTheme.colors.onSurfaceVariant)
                         )
                     }
                 }

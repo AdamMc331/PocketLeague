@@ -26,7 +26,7 @@ data class OctaneGGMatch(
     @SerialName("format")
     val format: OctaneGGFormat? = null,
     @SerialName("games")
-    val games: List<OctaneGGGameOverview>? = null,
+    val games: List<OctaneGGGameOverview>? = null
 )
 
 /**
@@ -41,6 +41,6 @@ fun OctaneGGMatch.toMatch(): Match {
         orangeTeam = this.orange.toMatchTeamResult(),
         stage = this.stage.toEventStage(),
         format = this.format.toFormat(),
-        gameOverviews = this.games?.map(OctaneGGGameOverview::toGameOverview).orEmpty(),
+        gameOverviews = this.games?.map(OctaneGGGameOverview::toGameOverview).orEmpty()
     )
 }

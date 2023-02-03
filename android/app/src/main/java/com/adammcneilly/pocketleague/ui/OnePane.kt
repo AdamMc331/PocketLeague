@@ -18,20 +18,20 @@ import com.adammcneilly.pocketleague.ui.composables.bars.Level1BottomBar
 @OptIn(ExperimentalMaterial3Api::class)
 fun Navigation.OnePane(
     saveableStateHolder: SaveableStateHolder,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Scaffold(
         topBar = {
             TopBar(
                 title = getTitle(currentScreenIdentifier),
-                modifier = Modifier.statusBarsPadding(),
+                modifier = Modifier.statusBarsPadding()
             )
         },
         content = { paddingValues ->
             saveableStateHolder.SaveableStateProvider(currentScreenIdentifier.uri) {
                 ScreenPicker(
                     currentScreenIdentifier,
-                    paddingValues = paddingValues,
+                    paddingValues = paddingValues
                 )
             }
         },
@@ -40,10 +40,10 @@ fun Navigation.OnePane(
                 Level1BottomBar(
                     selectedTab = currentScreenIdentifier,
                     modifier = Modifier
-                        .navigationBarsPadding(),
+                        .navigationBarsPadding()
                 )
             }
         },
-        modifier = modifier,
+        modifier = modifier
     )
 }

@@ -12,7 +12,7 @@ import com.adammcneilly.pocketleague.shared.screens.records.RecordsViewState
 @Composable
 fun RecordsContent(
     viewState: RecordsViewState,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Box(modifier) {
         Text(text = "Records screen: $viewState")

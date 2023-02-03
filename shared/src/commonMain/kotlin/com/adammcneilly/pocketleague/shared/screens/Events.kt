@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineScope
  * exposing the [screenCoroutine] function to run asynchronous work.
  */
 class Events(
-    val stateManager: StateManager,
+    val stateManager: StateManager
 ) {
     val appModule: AppModule
         get() = stateManager.appModule

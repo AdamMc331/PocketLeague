@@ -20,7 +20,7 @@ data class OctaneGGCoreStats(
     @SerialName("score")
     val score: Int? = null,
     @SerialName("shootingPercentage")
-    val shootingPercentage: Float? = null,
+    val shootingPercentage: Float? = null
 )
 
 /**
@@ -33,6 +33,6 @@ fun OctaneGGCoreStats.toCoreStats(): CoreStats {
         saves = this.saves ?: 0,
         assists = this.assists ?: 0,
         score = this.score ?: 0,
-        shootingPercentage = this.shootingPercentage ?: 0F,
+        shootingPercentage = this.shootingPercentage ?: 0F
     )
 }

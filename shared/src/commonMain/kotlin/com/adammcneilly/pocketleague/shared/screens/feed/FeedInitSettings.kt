@@ -21,7 +21,7 @@ fun Navigation.initFeed(): ScreenInitSettings {
             // and just observe when it's created.
             val presenter = FeedPresenter(
                 events.appModule.dataModule.eventRepository,
-                events.appModule.dataModule.matchRepository,
+                events.appModule.dataModule.matchRepository
             )
 
             stateManager.getScreenScope()?.let { screenScope ->
@@ -37,6 +37,6 @@ fun Navigation.initFeed(): ScreenInitSettings {
                     .launchIn(screenScope)
             }
         },
-        reInitOnEachNavigation = false,
+        reInitOnEachNavigation = false
     )
 }

@@ -10,5 +10,5 @@ data class GameOverview(
     val id: String = "",
     val blueScore: Int = 0,
     val orangeScore: Int = 0,
-    val durationSeconds: Int = 0,
+    val durationSeconds: Int = 0
 )

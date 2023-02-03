@@ -19,7 +19,7 @@ import com.adammcneilly.pocketleague.data.match.SQLDelightMatchService
  */
 class UpcomingMatchesWidgetWorker(
     private val appContext: Context,
-    workerParameters: WorkerParameters,
+    workerParameters: WorkerParameters
 ) : CoroutineWorker(appContext, workerParameters) {
 
     /**
@@ -31,7 +31,7 @@ class UpcomingMatchesWidgetWorker(
     private val repository: MatchRepository by lazy {
         OfflineFirstMatchRepository(
             localDataSource = SQLDelightMatchService(PocketLeagueDB(DatabaseDriverFactory(appContext).createDriver())),
-            remoteDataSource = OctaneGGMatchService(),
+            remoteDataSource = OctaneGGMatchService()
         )
     }
 
@@ -47,7 +47,7 @@ class UpcomingMatchesWidgetWorker(
                 Data
                     .Builder()
                     .putString("FAILURE_REASON", "NULL_GLANCE_ID")
-                    .build(),
+                    .build()
             )
         }
 
@@ -61,7 +61,7 @@ class UpcomingMatchesWidgetWorker(
                     Data
                         .Builder()
                         .putString("FAILURE_REASON", "FAILED_REQUEST")
-                        .build(),
+                        .build()
                 )
             }
 
@@ -75,7 +75,7 @@ class UpcomingMatchesWidgetWorker(
                     Data
                         .Builder()
                         .putString("FAILURE_REASON", "NONE")
-                        .build(),
+                        .build()
                 )
             }
         }

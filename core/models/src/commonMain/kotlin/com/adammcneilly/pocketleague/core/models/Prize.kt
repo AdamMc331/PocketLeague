@@ -8,5 +8,5 @@ package com.adammcneilly.pocketleague.core.models
  */
 data class Prize(
     val amount: Double,
-    val currency: String,
+    val currency: String
 )

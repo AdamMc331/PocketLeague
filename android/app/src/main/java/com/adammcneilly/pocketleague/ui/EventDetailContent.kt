@@ -58,7 +58,7 @@ private const val EVENT_IMAGE_ASPECT_RATIO = 3.0F
 fun EventDetailContent(
     viewState: EventDetailViewState,
     onStageClicked: (String, String) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     // If display model is null, that means we had an error
     // and instead we should render an error UI.
@@ -69,7 +69,7 @@ fun EventDetailContent(
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
             .padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
+        verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         EventImageName(displayModel)
 
@@ -92,17 +92,17 @@ fun EventDetailContent(
 
 @Composable
 private fun EventParticipants(
-    participants: List<TeamOverviewDisplayModel>,
+    participants: List<TeamOverviewDisplayModel>
 ) {
     Text(
         text = "Participants",
-        style = MaterialTheme.typography.headlineSmall,
+        style = MaterialTheme.typography.headlineSmall
     )
 
     Card {
         participants.forEachIndexed { index, participant ->
             TeamOverviewListItem(
-                displayModel = participant,
+                displayModel = participant
             )
 
             if (index != participants.lastIndex) {
@@ -116,12 +116,12 @@ private fun EventParticipants(
 private fun EventDetails(displayModel: EventDetailDisplayModel) {
     Text(
         text = "Details",
-        style = MaterialTheme.typography.headlineSmall,
+        style = MaterialTheme.typography.headlineSmall
     )
 
     FlowRow(
         mainAxisSpacing = 12.dp,
-        crossAxisSpacing = 12.dp,
+        crossAxisSpacing = 12.dp
     ) {
         if (displayModel.isPlaceholder) {
             PlaceholderDetails()
@@ -139,10 +139,10 @@ private fun PlaceholderDetails() {
             modifier = Modifier
                 .defaultMinSize(
                     minWidth = 100.dp,
-                    minHeight = 25.dp,
+                    minHeight = 25.dp
                 )
                 .placeholderMaterial(
-                    visible = true,
+                    visible = true
                 )
         )
     }
@@ -152,22 +152,22 @@ private fun PlaceholderDetails() {
 private fun RealDetails(displayModel: EventDetailDisplayModel) {
     TooltipChip(
         text = displayModel.tier.name,
-        tooltipText = displayModel.tier.description,
+        tooltipText = displayModel.tier.description
     )
 
     TooltipChip(
         text = displayModel.region.name,
-        tooltipText = displayModel.region.description,
+        tooltipText = displayModel.region.description
     )
 
     TooltipChip(
         text = displayModel.onlineOrLAN,
-        tooltipText = "This event takes place over the internet.",
+        tooltipText = "This event takes place over the internet."
     )
 
     TooltipChip(
         text = "Mode: ${displayModel.mode}",
-        tooltipText = "The number of players on each team.",
+        tooltipText = "The number of players on each team."
     )
 
     val prize = displayModel.prize
@@ -175,7 +175,7 @@ private fun RealDetails(displayModel: EventDetailDisplayModel) {
     if (prize != null) {
         TooltipChip(
             text = "Prize: ${prize.prizeAmount}",
-            tooltipText = "This is the total prize pool for top finishers.",
+            tooltipText = "This is the total prize pool for top finishers."
         )
     }
 }
@@ -189,7 +189,7 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
     val cardColors = getCardColors(containerColor.value)
 
     Card(
-        colors = cardColors,
+        colors = cardColors
     ) {
         // First we determine which image URL we want to load
         val imageUrl = if (isDarkTheme) {
@@ -221,7 +221,7 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
                         isDarkTheme = isDarkTheme,
                         onColorGenerated = { generatedColor ->
                             containerColor.value = generatedColor
-                        },
+                        }
                     )
                 }
             }
@@ -236,8 +236,8 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
                 .aspectRatio(EVENT_IMAGE_ASPECT_RATIO)
                 .padding(12.dp)
                 .cardPlaceholder(
-                    visible = imageUrl == null,
-                ),
+                    visible = imageUrl == null
+                )
         )
 
         Text(
@@ -247,9 +247,9 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
                 .fillMaxWidth()
                 .padding(16.dp)
                 .cardPlaceholder(
-                    visible = displayModel.isPlaceholder,
+                    visible = displayModel.isPlaceholder
                 ),
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.headlineMedium
         )
     }
 }
@@ -281,7 +281,7 @@ private fun getCardColors(containerColor: Color): CardColors {
 private fun getMutedColorFromBitmap(
     bitmap: Bitmap,
     isDarkTheme: Boolean,
-    onColorGenerated: (Color) -> Unit,
+    onColorGenerated: (Color) -> Unit
 ) {
     Palette.from(bitmap).generate { palette ->
         val rgb = if (isDarkTheme) {

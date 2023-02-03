@@ -12,7 +12,7 @@ data class OctaneGGPrize(
     @SerialName("amount")
     val amount: Double? = null,
     @SerialName("currency")
-    val currency: String? = null,
+    val currency: String? = null
 )
 
 /**
@@ -21,6 +21,6 @@ data class OctaneGGPrize(
 fun OctaneGGPrize.toPrize(): Prize {
     return Prize(
         amount = this.amount ?: 0.0,
-        currency = this.currency.orEmpty(),
+        currency = this.currency.orEmpty()
     )
 }

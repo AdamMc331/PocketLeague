@@ -7,5 +7,5 @@ val TestModel.gameOverview: GameOverview
         id = "1234",
         blueScore = 7,
         orangeScore = 1,
-        durationSeconds = 300,
+        durationSeconds = 300
     )

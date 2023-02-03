@@ -21,21 +21,21 @@ import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 @Composable
 fun TeamOverviewListItem(
     displayModel: TeamOverviewDisplayModel,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         CircleTeamLogo(
             displayModel = displayModel,
             modifier = Modifier
                 .size(48.dp)
                 .cardPlaceholder(
-                    visible = displayModel.isPlaceholder,
+                    visible = displayModel.isPlaceholder
 
                 )
         )
@@ -45,9 +45,9 @@ fun TeamOverviewListItem(
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
                 .cardPlaceholder(
-                    visible = displayModel.isPlaceholder,
+                    visible = displayModel.isPlaceholder
                 )
-                .weight(1F),
+                .weight(1F)
         )
     }
 }

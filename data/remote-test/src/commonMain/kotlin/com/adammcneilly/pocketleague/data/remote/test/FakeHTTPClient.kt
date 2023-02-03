@@ -13,7 +13,7 @@ import io.ktor.utils.io.ByteReadChannel
  * mock [responses].
  */
 fun mockEngine(
-    responses: Map<String, String>,
+    responses: Map<String, String>
 ) = MockEngine {
     val url = it.url.encodedPath
     // The encoded path drops the first slash, but all of our defined endpoints we hit include it.
@@ -22,7 +22,7 @@ fun mockEngine(
     respond(
         content = ByteReadChannel(response!!),
         status = HttpStatusCode.OK,
-        headers = headersOf(HttpHeaders.ContentType, "application/json"),
+        headers = headersOf(HttpHeaders.ContentType, "application/json")
     )
 }
 
@@ -30,5 +30,5 @@ fun mockEngine(
  * Creates an implementation of our [defaultHttpClient] that uses a [mockEngine].
  */
 fun fakeHttpClient(
-    responses: Map<String, String>,
+    responses: Map<String, String>
 ) = defaultHttpClient(mockEngine(responses))

@@ -16,5 +16,5 @@ val TestModel.event: Event
         mode = "3",
         region = EventRegion.INT,
         lan = true,
-        prize = TestModel.prize,
+        prize = TestModel.prize
     )

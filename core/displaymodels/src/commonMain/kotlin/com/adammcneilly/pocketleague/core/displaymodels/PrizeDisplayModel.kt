@@ -11,13 +11,13 @@ import com.adammcneilly.pocketleague.core.models.Prize
  */
 data class PrizeDisplayModel(
     val prizeAmount: String,
-    val isPlaceholder: Boolean = false,
+    val isPlaceholder: Boolean = false
 ) {
 
     companion object {
         val placeholder = PrizeDisplayModel(
             prizeAmount = "",
-            isPlaceholder = true,
+            isPlaceholder = true
         )
     }
 }
@@ -27,12 +27,12 @@ data class PrizeDisplayModel(
  * so that it actually converts the currency.
  */
 fun Prize.toDisplayModel(
-    currencyFormatter: CurrencyFormatter = com.adammcneilly.pocketleague.core.currency.currencyFormatter(),
+    currencyFormatter: CurrencyFormatter = com.adammcneilly.pocketleague.core.currency.currencyFormatter()
 ): PrizeDisplayModel {
     return PrizeDisplayModel(
         prizeAmount = currencyFormatter.formatCurrency(
             amount = this.amount,
-            currency = this.currency,
-        ).orEmpty(),
+            currency = this.currency
+        ).orEmpty()
     )
 }

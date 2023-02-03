@@ -8,7 +8,7 @@ import com.adammcneilly.pocketleague.core.models.GamePlayerResult
 data class GamePlayerResultDisplayModel(
     val player: PlayerDisplayModel,
     val coreStats: CoreStatsDisplayModel,
-    val isPlaceholder: Boolean = false,
+    val isPlaceholder: Boolean = false
 )
 
 /**
@@ -17,6 +17,6 @@ data class GamePlayerResultDisplayModel(
 fun GamePlayerResult.toDisplayModel(): GamePlayerResultDisplayModel {
     return GamePlayerResultDisplayModel(
         player = this.player.toDisplayModel(),
-        coreStats = this.stats.core.toDisplayModel(),
+        coreStats = this.stats.core.toDisplayModel()
     )
 }

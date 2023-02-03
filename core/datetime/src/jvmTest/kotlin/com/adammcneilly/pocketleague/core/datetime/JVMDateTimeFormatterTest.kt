@@ -14,12 +14,12 @@ class JVMDateTimeFormatterTest {
         val output = dateTimeFormatter.formatUTCString(
             utcString = input,
             formatPattern = "MMM dd, yyyy",
-            timeZone = TimeZone.UTC,
+            timeZone = TimeZone.UTC
         )
 
         assertEquals(
             expected = "Aug 03, 2022",
-            actual = output,
+            actual = output
         )
     }
 

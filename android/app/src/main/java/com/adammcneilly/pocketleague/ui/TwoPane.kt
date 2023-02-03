@@ -25,14 +25,14 @@ private const val DETAIL_PANE_WIDTH_RATIO = 0.6F
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Navigation.TwoPane(
-    saveableStateHolder: SaveableStateHolder,
+    saveableStateHolder: SaveableStateHolder
 ) {
     val navigationLevelsMap = getNavigationLevelsMap(currentLevel1ScreenIdentifier)!!
     Scaffold(
         topBar = {
             TopBar(
                 title = getTitle(currentScreenIdentifier),
-                modifier = Modifier.statusBarsPadding(),
+                modifier = Modifier.statusBarsPadding()
             )
         },
         content = { paddingValues ->
@@ -78,7 +78,7 @@ fun Navigation.TwoPane(
  */
 @Composable
 fun Navigation.TwoPaneDefaultDetail(
-    screenIdentifier: ScreenIdentifier,
+    screenIdentifier: ScreenIdentifier
 ) {
 //    when (screenIdentifier.screen) {
 //

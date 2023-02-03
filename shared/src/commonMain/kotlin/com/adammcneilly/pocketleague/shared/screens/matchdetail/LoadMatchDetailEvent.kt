@@ -26,14 +26,14 @@ private suspend fun Events.fetchGames(matchId: String) {
 
     stateManager.updateScreen(MatchDetailViewState::class) { currentState ->
         currentState.copy(
-            games = (repoResult as? DataState.Success)?.data?.map(Game::toDetailDisplayModel).orEmpty(),
+            games = (repoResult as? DataState.Success)?.data?.map(Game::toDetailDisplayModel).orEmpty()
         )
     }
 }
 
 private fun Events.fetchMatchDetail(
     matchId: String,
-    scope: CoroutineScope,
+    scope: CoroutineScope
 ) {
     appModule
         .dataModule
@@ -42,7 +42,7 @@ private fun Events.fetchMatchDetail(
         .onEach { match ->
             stateManager.updateScreen(MatchDetailViewState::class) { currentState ->
                 currentState.copy(
-                    matchDetail = match.toDetailDisplayModel(),
+                    matchDetail = match.toDetailDisplayModel()
                 )
             }
         }

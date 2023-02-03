@@ -29,6 +29,6 @@ data class OctaneGGPlayerStats(
 fun OctaneGGPlayerStats.toGamePlayerResult(): GamePlayerResult {
     return GamePlayerResult(
         player = this.player?.toPlayer() ?: Player(),
-        stats = this.stats?.toStats() ?: Stats(),
+        stats = this.stats?.toStats() ?: Stats()
     )
 }

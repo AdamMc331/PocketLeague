@@ -25,7 +25,7 @@ fun TeamRosterCard(
     players: List<PlayerDisplayModel>,
     teamColor: Color,
     modifier: Modifier = Modifier,
-    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    useDarkTheme: Boolean = isSystemInDarkTheme()
 ) {
     val containerColor = if (useDarkTheme) {
         teamColor.darken()
@@ -35,13 +35,13 @@ fun TeamRosterCard(
 
     val colors = CardDefaults.cardColors(
         containerColor = containerColor,
-        contentColor = Color.White,
+        contentColor = Color.White
     )
 
     Card(
         colors = colors,
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
     ) {
         players.forEachIndexed { index, playerDisplayModel ->
             Text(
@@ -49,12 +49,12 @@ fun TeamRosterCard(
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp),
+                    .padding(8.dp)
             )
 
             if (index != players.lastIndex) {
                 Divider(
-                    color = Color.White,
+                    color = Color.White
                 )
             }
         }

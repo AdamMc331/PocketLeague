@@ -11,5 +11,5 @@ val TestModel.matchBlueWinner: Match
         orangeTeam = TestModel.matchTeamResultLoser,
         stage = TestModel.eventStage,
         format = TestModel.formatBO7,
-        gameOverviews = listOf(TestModel.gameOverview),
+        gameOverviews = listOf(TestModel.gameOverview)
     )

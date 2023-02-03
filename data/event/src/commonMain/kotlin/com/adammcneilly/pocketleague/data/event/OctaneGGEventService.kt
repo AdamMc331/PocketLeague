@@ -17,7 +17,7 @@ import kotlinx.datetime.Clock
  * from the remote [apiClient].
  */
 class OctaneGGEventService(
-    private val apiClient: BaseKTORClient,
+    private val apiClient: BaseKTORClient
 ) : RemoteEventService {
 
     constructor() : this(OctaneGGAPIClient)
@@ -27,8 +27,8 @@ class OctaneGGEventService(
             endpoint = EVENTS_ENDPOINT,
             params = mapOf(
                 "after" to Clock.System.now().toString(),
-                "group" to "rlcs",
-            ),
+                "group" to "rlcs"
+            )
         ).map { eventListResponse ->
             eventListResponse.events?.map(OctaneGGEvent::toEvent).orEmpty()
         }
@@ -38,7 +38,7 @@ class OctaneGGEventService(
         val endpoint = "$EVENTS_ENDPOINT/$eventId"
 
         return apiClient.getResponse<OctaneGGEvent>(
-            endpoint = endpoint,
+            endpoint = endpoint
         ).map { octaneEvent ->
             octaneEvent.toEvent()
         }
@@ -48,7 +48,7 @@ class OctaneGGEventService(
         val endpoint = "$EVENTS_ENDPOINT/$eventId/participants"
 
         return apiClient.getResponse<OctaneGGEventParticipants>(
-            endpoint = endpoint,
+            endpoint = endpoint
         ).map { octaneEventParticipants ->
             octaneEventParticipants.participants.map {
                 it.toTeam()
@@ -61,8 +61,8 @@ class OctaneGGEventService(
             endpoint = EVENTS_ENDPOINT,
             params = mapOf(
                 "date" to Clock.System.now().toString(),
-                "group" to "rlcs",
-            ),
+                "group" to "rlcs"
+            )
         ).map { eventListResponse ->
             eventListResponse.events?.map(OctaneGGEvent::toEvent).orEmpty()
         }

@@ -15,6 +15,6 @@ fun Navigation.initStats(): ScreenInitSettings {
         callOnInit = {
             // Coming soon.
         },
-        reInitOnEachNavigation = false,
+        reInitOnEachNavigation = false
     )
 }

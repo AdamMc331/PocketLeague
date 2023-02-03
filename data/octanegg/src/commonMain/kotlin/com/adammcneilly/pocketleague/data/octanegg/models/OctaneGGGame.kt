@@ -42,6 +42,6 @@ fun OctaneGGGame.toGame(): Game {
         orange = this.orange?.toGameTeamResult() ?: GameTeamResult(),
         map = this.map?.name.orEmpty(),
         number = this.number ?: 0,
-        duration = this.duration ?: Game.GAME_DEFAULT_DURATION_SECONDS,
+        duration = this.duration ?: Game.GAME_DEFAULT_DURATION_SECONDS
     )
 }

@@ -10,19 +10,19 @@ class OctaneGGPrizeTest {
     fun mapFromValidPrize() {
         val octanePrize = OctaneGGPrize(
             amount = 1.23,
-            currency = "currency",
+            currency = "currency"
         )
 
         val expectedPrize = Prize(
             amount = 1.23,
-            currency = "currency",
+            currency = "currency"
         )
 
         val domainPrize = octanePrize.toPrize()
 
         assertEquals(
             expected = expectedPrize,
-            actual = domainPrize,
+            actual = domainPrize
         )
     }
 
@@ -32,14 +32,14 @@ class OctaneGGPrizeTest {
 
         val expectedPrize = Prize(
             amount = 0.0,
-            currency = "",
+            currency = ""
         )
 
         val domainPrize = octanePrize.toPrize()
 
         assertEquals(
             expected = expectedPrize,
-            actual = domainPrize,
+            actual = domainPrize
         )
     }
 }

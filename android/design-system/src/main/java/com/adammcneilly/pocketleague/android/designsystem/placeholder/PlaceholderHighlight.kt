@@ -49,10 +49,10 @@ interface PlaceholderHighlight {
  */
 fun PlaceholderHighlight.Companion.fade(
     highlightColor: Color,
-    animationSpec: InfiniteRepeatableSpec<Float> = PlaceholderDefaults.fadeAnimationSpec,
+    animationSpec: InfiniteRepeatableSpec<Float> = PlaceholderDefaults.fadeAnimationSpec
 ): PlaceholderHighlight = Fade(
     highlightColor = highlightColor,
-    animationSpec = animationSpec,
+    animationSpec = animationSpec
 )
 
 /**
@@ -70,16 +70,16 @@ fun PlaceholderHighlight.Companion.fade(
 fun PlaceholderHighlight.Companion.shimmer(
     highlightColor: Color,
     animationSpec: InfiniteRepeatableSpec<Float> = PlaceholderDefaults.shimmerAnimationSpec,
-    progressForMaxAlpha: Float = 0.6f,
+    progressForMaxAlpha: Float = 0.6f
 ): PlaceholderHighlight = Shimmer(
     highlightColor = highlightColor,
     animationSpec = animationSpec,
-    progressForMaxAlpha = progressForMaxAlpha,
+    progressForMaxAlpha = progressForMaxAlpha
 )
 
 private data class Fade(
     private val highlightColor: Color,
-    override val animationSpec: InfiniteRepeatableSpec<Float>,
+    override val animationSpec: InfiniteRepeatableSpec<Float>
 ) : PlaceholderHighlight {
     private val brush = SolidColor(highlightColor)
 
@@ -90,19 +90,19 @@ private data class Fade(
 private data class Shimmer(
     private val highlightColor: Color,
     override val animationSpec: InfiniteRepeatableSpec<Float>,
-    private val progressForMaxAlpha: Float = 0.6f,
+    private val progressForMaxAlpha: Float = 0.6f
 ) : PlaceholderHighlight {
     override fun brush(
         progress: Float,
-        size: Size,
+        size: Size
     ): Brush = Brush.radialGradient(
         colors = listOf(
             highlightColor.copy(alpha = 0f),
             highlightColor,
-            highlightColor.copy(alpha = 0f),
+            highlightColor.copy(alpha = 0f)
         ),
         center = Offset(x = 0f, y = 0f),
-        radius = (max(size.width, size.height) * progress * 2).coerceAtLeast(0.01f),
+        radius = (max(size.width, size.height) * progress * 2).coerceAtLeast(0.01f)
     )
 
     override fun alpha(progress: Float): Float = when {
@@ -133,10 +133,10 @@ private data class Shimmer(
  */
 @Composable
 fun PlaceholderHighlight.Companion.fade(
-    animationSpec: InfiniteRepeatableSpec<Float> = PlaceholderDefaults.fadeAnimationSpec,
+    animationSpec: InfiniteRepeatableSpec<Float> = PlaceholderDefaults.fadeAnimationSpec
 ): PlaceholderHighlight = PlaceholderHighlight.fade(
     highlightColor = PlaceholderDefaults.fadeHighlightColor(),
-    animationSpec = animationSpec,
+    animationSpec = animationSpec
 )
 
 /**
@@ -153,11 +153,11 @@ fun PlaceholderHighlight.Companion.fade(
 @Composable
 fun PlaceholderHighlight.Companion.shimmer(
     animationSpec: InfiniteRepeatableSpec<Float> = PlaceholderDefaults.shimmerAnimationSpec,
-    progressForMaxAlpha: Float = 0.6f,
+    progressForMaxAlpha: Float = 0.6f
 ): PlaceholderHighlight = PlaceholderHighlight.shimmer(
     highlightColor = PlaceholderDefaults.shimmerHighlightColor(),
     animationSpec = animationSpec,
-    progressForMaxAlpha = progressForMaxAlpha,
+    progressForMaxAlpha = progressForMaxAlpha
 )
 
 /**

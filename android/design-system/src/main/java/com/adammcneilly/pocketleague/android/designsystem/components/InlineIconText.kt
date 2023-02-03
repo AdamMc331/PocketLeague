@@ -36,19 +36,19 @@ fun InlineIconText(
     modifier: Modifier = Modifier,
     leadingIcon: Boolean = false,
     showIcon: Boolean = true,
-    iconTint: Color = LocalContentColor.current,
+    iconTint: Color = LocalContentColor.current
 ) {
     Text(
         text = text.getAnnotatedString(
             leadingIcon = leadingIcon,
-            showIcon = showIcon,
+            showIcon = showIcon
         ),
         inlineContent = getInlineContent(
             icon = icon,
             showIcon = showIcon,
-            iconTint = iconTint,
+            iconTint = iconTint
         ),
-        modifier = modifier,
+        modifier = modifier
     )
 }
 
@@ -57,7 +57,7 @@ fun InlineIconText(
  */
 private fun String.getAnnotatedString(
     leadingIcon: Boolean,
-    showIcon: Boolean,
+    showIcon: Boolean
 ): AnnotatedString {
     return buildAnnotatedString {
         if (leadingIcon && showIcon) {
@@ -81,7 +81,7 @@ private fun String.getAnnotatedString(
 private fun getInlineContent(
     icon: ImageVector,
     showIcon: Boolean,
-    iconTint: Color,
+    iconTint: Color
 ): Map<String, InlineTextContent> {
     return if (!showIcon) {
         emptyMap()
@@ -93,13 +93,13 @@ private fun getInlineContent(
                     Placeholder(
                         width = LocalTextStyle.current.fontSize,
                         height = LocalTextStyle.current.fontSize,
-                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter
                     )
                 ) {
                     Icon(
                         imageVector = icon,
                         contentDescription = null,
-                        tint = iconTint,
+                        tint = iconTint
                     )
                 }
             )

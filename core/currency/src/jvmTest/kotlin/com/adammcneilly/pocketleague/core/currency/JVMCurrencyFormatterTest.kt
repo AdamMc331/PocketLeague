@@ -12,8 +12,8 @@ class JVMCurrencyFormatterTest {
             expected = "$10.00",
             actual = currencyFormatter.formatCurrency(
                 amount = 10.0,
-                currency = "USD",
-            ),
+                currency = "USD"
+            )
         )
     }
 
@@ -23,8 +23,8 @@ class JVMCurrencyFormatterTest {
             expected = "€10.00",
             actual = currencyFormatter.formatCurrency(
                 amount = 10.0,
-                currency = "EUR",
-            ),
+                currency = "EUR"
+            )
         )
     }
 }

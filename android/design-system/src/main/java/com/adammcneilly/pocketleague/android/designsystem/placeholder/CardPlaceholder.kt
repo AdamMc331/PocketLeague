@@ -12,10 +12,10 @@ import androidx.compose.ui.Modifier
  */
 @Composable
 fun Modifier.cardPlaceholder(
-    visible: Boolean,
+    visible: Boolean
 ) = this.placeholderMaterial(
     visible = visible,
     color = PlaceholderDefaults.color(
-        backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-    ),
+        backgroundColor = MaterialTheme.colorScheme.surfaceVariant
+    )
 )

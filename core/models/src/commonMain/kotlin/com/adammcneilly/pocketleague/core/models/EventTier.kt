@@ -12,5 +12,5 @@ enum class EventTier {
     B,
     C,
     D,
-    Unknown,
+    Unknown
 }

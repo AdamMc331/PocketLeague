@@ -7,5 +7,5 @@ package com.adammcneilly.pocketleague.core.displaymodels
  */
 data class MatchDetailsByDateDisplayModel(
     val matchesByDate: Map<String, List<MatchDetailDisplayModel>> = emptyMap(),
-    val isPlaceholder: Boolean = false,
+    val isPlaceholder: Boolean = false
 )

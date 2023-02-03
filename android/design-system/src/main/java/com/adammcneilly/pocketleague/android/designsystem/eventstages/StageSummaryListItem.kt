@@ -19,13 +19,13 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplay
 @Composable
 fun StageSummaryListItem(
     displayModel: EventStageSummaryDisplayModel,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
             text = displayModel.name,
@@ -33,8 +33,8 @@ fun StageSummaryListItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .cardPlaceholder(
-                    visible = displayModel.isPlaceholder,
-                ),
+                    visible = displayModel.isPlaceholder
+                )
         )
 
         Text(
@@ -43,8 +43,8 @@ fun StageSummaryListItem(
             modifier = Modifier
                 .defaultMinSize(minWidth = 50.dp)
                 .cardPlaceholder(
-                    visible = displayModel.isPlaceholder,
-                ),
+                    visible = displayModel.isPlaceholder
+                )
         )
     }
 }

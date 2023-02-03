@@ -6,7 +6,7 @@ import com.adammcneilly.pocketleague.core.feature.ScreenState
  * The view state for the stats screen.
  */
 data class StatsViewState(
-    val showLoading: Boolean = true,
+    val showLoading: Boolean = true
 ) : ScreenState {
 
     override val title: String? = null

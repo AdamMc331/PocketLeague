@@ -29,6 +29,6 @@ interface TeamRepository {
      */
     suspend fun updateIsFavorite(
         teamId: String,
-        isFavorite: Boolean,
+        isFavorite: Boolean
     )
 }

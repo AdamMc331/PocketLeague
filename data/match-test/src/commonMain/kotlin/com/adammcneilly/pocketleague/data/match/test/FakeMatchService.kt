@@ -11,15 +11,15 @@ import kotlinx.coroutines.flow.flowOf
 class FakeMatchService : MatchService {
 
     var matchListResponse: DataState<List<Match>> = DataState.Success(
-        listOf(TestModel.matchBlueWinner),
+        listOf(TestModel.matchBlueWinner)
     )
 
     var matchDetailResponse: DataState<Match> = DataState.Success(
-        TestModel.matchBlueWinner,
+        TestModel.matchBlueWinner
     )
 
     override suspend fun fetchMatchDetail(
-        matchId: String,
+        matchId: String
     ): DataState<Match> {
         return matchDetailResponse
     }
@@ -34,7 +34,7 @@ class FakeMatchService : MatchService {
 
     override fun getMatchesForEventStage(
         eventId: String,
-        stageId: String,
+        stageId: String
     ): Flow<List<Match>> {
         return flowOf(listOf(TestModel.matchBlueWinner))
     }

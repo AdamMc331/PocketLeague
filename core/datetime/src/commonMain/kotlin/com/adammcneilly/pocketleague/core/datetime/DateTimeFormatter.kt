@@ -21,7 +21,7 @@ interface DateTimeFormatter {
     fun formatUTCString(
         utcString: String,
         formatPattern: String,
-        timeZone: TimeZone,
+        timeZone: TimeZone
     ): String?
 
     /**

@@ -24,13 +24,13 @@ import com.adammcneilly.pocketleague.ui.composables.match.MatchListItem
 fun EventStageDetailContent(
     viewState: EventStageDetailViewState,
     onMatchClicked: (String) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         viewState.matchesByDateDisplayModel?.matchesByDate?.forEach { (date, matchList) ->
             item {

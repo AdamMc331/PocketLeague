@@ -14,6 +14,6 @@ fun Color.darken(
     return Color(
         red = this.red * ratio,
         green = this.green * ratio,
-        blue = this.blue * ratio,
+        blue = this.blue * ratio
     )
 }

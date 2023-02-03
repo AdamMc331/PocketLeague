@@ -29,16 +29,16 @@ import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 @Composable
 fun FavoriteTeamRowItem(
     displayModel: TeamOverviewDisplayModel,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
-                .padding(8.dp),
+                .padding(8.dp)
         ) {
             val imageUrl = displayModel.imageUrl.getForTheme()
 
@@ -54,11 +54,11 @@ fun FavoriteTeamRowItem(
                 modifier = Modifier
                     .size(imageSize)
                     .cardPlaceholder(
-                        visible = displayModel.isPlaceholder || !hasImageLoaded.value,
+                        visible = displayModel.isPlaceholder || !hasImageLoaded.value
                     ),
                 onState = { state ->
                     hasImageLoaded.value = (state is AsyncImagePainter.State.Success)
-                },
+                }
             )
 
             Text(
@@ -70,8 +70,8 @@ fun FavoriteTeamRowItem(
                 modifier = Modifier
                     .width(imageSize * 3)
                     .cardPlaceholder(
-                        visible = displayModel.isPlaceholder,
-                    ),
+                        visible = displayModel.isPlaceholder
+                    )
             )
         }
     }

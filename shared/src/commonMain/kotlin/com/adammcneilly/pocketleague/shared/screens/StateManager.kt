@@ -17,7 +17,7 @@ import kotlin.reflect.KClass
  */
 @Suppress("TooManyFunctions")
 class StateManager(
-    val appModule: AppModule,
+    val appModule: AppModule
 ) {
     internal val mutableStateFlow = MutableStateFlow(AppState())
 
@@ -141,7 +141,7 @@ class StateManager(
      */
     inline fun <reified T : ScreenState> updateScreen(
         stateClass: KClass<T>,
-        update: (T) -> T,
+        update: (T) -> T
     ) {
         lateinit var screenIdentifier: ScreenIdentifier
         var screenState: T? = null

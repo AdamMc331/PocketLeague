@@ -19,4 +19,4 @@ jobs:
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
       - name: Lint Checks
-        run: ./gradlew detektAll ktlintCheck android:app:lint
+        run: ./gradlew detektAll lintKotlin android:app:lint

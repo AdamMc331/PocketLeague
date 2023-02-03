@@ -28,5 +28,5 @@ data class Event(
     val mode: String,
     val region: EventRegion,
     val lan: Boolean,
-    val prize: Prize?,
+    val prize: Prize?
 )

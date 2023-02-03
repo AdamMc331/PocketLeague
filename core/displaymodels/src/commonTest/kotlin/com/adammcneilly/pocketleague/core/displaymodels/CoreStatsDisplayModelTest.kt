@@ -13,7 +13,7 @@ class CoreStatsDisplayModelTest {
             goals = 1,
             assists = 2,
             saves = 3,
-            shots = 4,
+            shots = 4
         )
 
         val displayModel = coreStats.toDisplayModel()

@@ -25,7 +25,7 @@ data class EventDetailDisplayModel(
     val prize: PrizeDisplayModel?,
     private val stageSummaries: List<EventStageSummaryDisplayModel>,
     val darkThemeImageUrl: String? = lightThemeImageUrl,
-    val isPlaceholder: Boolean = false,
+    val isPlaceholder: Boolean = false
 ) {
     companion object {
         val placeholder = EventDetailDisplayModel(
@@ -40,7 +40,7 @@ data class EventDetailDisplayModel(
             onlineOrLAN = "",
             prize = null,
             stageSummaries = emptyList(),
-            isPlaceholder = true,
+            isPlaceholder = true
         )
     }
 
@@ -70,14 +70,14 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
             dateTimeFormatter.formatUTCString(
                 utcString = startDate,
                 formatPattern = EVENT_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
+                timeZone = TimeZone.currentSystemDefault()
             )
         }.orEmpty(),
         endDate = this.endDateUTC?.let { endDate ->
             dateTimeFormatter.formatUTCString(
                 utcString = endDate,
                 formatPattern = EVENT_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
+                timeZone = TimeZone.currentSystemDefault()
             )
         }.orEmpty(),
         name = this.name,
@@ -99,6 +99,6 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
         } else {
             "ONLINE"
         },
-        prize = this.prize?.toDisplayModel(),
+        prize = this.prize?.toDisplayModel()
     )
 }

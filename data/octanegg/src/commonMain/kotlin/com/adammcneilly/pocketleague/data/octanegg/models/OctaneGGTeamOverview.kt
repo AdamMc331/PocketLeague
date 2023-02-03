@@ -20,7 +20,7 @@ data class OctaneGGTeamOverview(
     @SerialName("relevant")
     val relevant: Boolean? = null,
     @SerialName("slug")
-    val slug: String? = null,
+    val slug: String? = null
 )
 
 /**
@@ -30,6 +30,6 @@ fun OctaneGGTeamOverview?.toTeam(): Team {
     return Team(
         id = this?.id.orEmpty(),
         name = this?.name ?: "TBD",
-        imageUrl = this?.image,
+        imageUrl = this?.image
     )
 }

@@ -24,7 +24,7 @@ class OctaneGGTeamOverviewTest {
         val octaneModel = OctaneGGTeamOverview(
             id = "someRandomId",
             name = "someRandomName",
-            image = "someRandomImageUrl",
+            image = "someRandomImageUrl"
         )
 
         val domainModel = octaneModel.toTeam()

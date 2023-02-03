@@ -7,18 +7,18 @@ package com.adammcneilly.pocketleague.shared.screens
  */
 enum class Level1Navigation(
     val screenIdentifier: ScreenIdentifier,
-    val rememberVerticalStack: Boolean = false,
+    val rememberVerticalStack: Boolean = false
 ) {
     Feed(
-        screenIdentifier = ScreenIdentifier.get(screen = Screens.Feed, params = null),
+        screenIdentifier = ScreenIdentifier.get(screen = Screens.Feed, params = null)
     ),
     MyTeams(
-        screenIdentifier = ScreenIdentifier.get(screen = Screens.MyTeams, params = null),
+        screenIdentifier = ScreenIdentifier.get(screen = Screens.MyTeams, params = null)
     ),
     Stats(
-        screenIdentifier = ScreenIdentifier.get(screen = Screens.Stats, params = null),
+        screenIdentifier = ScreenIdentifier.get(screen = Screens.Stats, params = null)
     ),
     Records(
-        screenIdentifier = ScreenIdentifier.get(screen = Screens.Records, params = null),
-    ),
+        screenIdentifier = ScreenIdentifier.get(screen = Screens.Records, params = null)
+    )
 }

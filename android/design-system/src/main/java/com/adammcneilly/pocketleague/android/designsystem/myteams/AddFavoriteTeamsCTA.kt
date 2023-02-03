@@ -25,19 +25,19 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AddFavoriteTeamsCTA(
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
             .clickable(
-                onClick = onClick,
-            ),
+                onClick = onClick
+            )
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
-                .padding(8.dp),
+                .padding(8.dp)
         ) {
             val imageSize = 48.dp
 
@@ -55,7 +55,7 @@ fun AddFavoriteTeamsCTA(
                 textAlign = TextAlign.Center,
                 maxLines = 1,
                 modifier = Modifier
-                    .width(imageSize * 3),
+                    .width(imageSize * 3)
             )
         }
     }

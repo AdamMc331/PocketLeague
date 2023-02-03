@@ -17,7 +17,7 @@ class JVMDateTimeFormatter : com.adammcneilly.pocketleague.core.datetime.DateTim
     override fun formatUTCString(
         utcString: String,
         formatPattern: String,
-        timeZone: TimeZone,
+        timeZone: TimeZone
     ): String? {
         val instant = Instant.parse(utcString)
 

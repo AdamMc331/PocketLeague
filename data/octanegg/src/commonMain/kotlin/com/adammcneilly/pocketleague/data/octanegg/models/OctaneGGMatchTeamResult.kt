@@ -21,7 +21,7 @@ data class OctaneGGMatchTeamResult(
     @SerialName("team")
     val team: OctaneGGTeamStats? = null,
     @SerialName("players")
-    val players: List<OctaneGGPlayerStats>? = null,
+    val players: List<OctaneGGPlayerStats>? = null
 )
 
 /**

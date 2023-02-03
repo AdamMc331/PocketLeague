@@ -9,7 +9,7 @@ data class Game(
     val orange: GameTeamResult = GameTeamResult(),
     val map: String = "",
     val number: Int = 0,
-    val duration: Int = GAME_DEFAULT_DURATION_SECONDS,
+    val duration: Int = GAME_DEFAULT_DURATION_SECONDS
 ) {
 
     companion object {

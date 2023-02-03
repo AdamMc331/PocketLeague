@@ -23,11 +23,11 @@ fun LocalEvent.toEvent(): Event {
         prize = if (this.prizeAmount != null && this.prizeCurrency != null) {
             Prize(
                 amount = this.prizeAmount,
-                currency = prizeCurrency,
+                currency = prizeCurrency
             )
         } else {
             null
-        },
+        }
     )
 }
 
@@ -43,6 +43,6 @@ fun Event.toLocalEvent(): LocalEvent {
         region = this.region.name,
         lan = this.lan,
         prizeAmount = this.prize?.amount,
-        prizeCurrency = this.prize?.currency,
+        prizeCurrency = this.prize?.currency
     )
 }

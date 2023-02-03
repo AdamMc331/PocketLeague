@@ -18,6 +18,6 @@ interface CurrencyFormatter {
      */
     fun formatCurrency(
         amount: Double,
-        currency: String,
+        currency: String
     ): String?
 }

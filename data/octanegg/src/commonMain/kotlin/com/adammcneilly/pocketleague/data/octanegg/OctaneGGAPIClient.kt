@@ -6,5 +6,5 @@ import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
  * An instance of a [BaseKTORClient] that makes all requests to the octane.gg API.
  */
 object OctaneGGAPIClient : BaseKTORClient(
-    baseURL = "https://zsr.octane.gg/",
+    baseURL = "https://zsr.octane.gg/"
 )

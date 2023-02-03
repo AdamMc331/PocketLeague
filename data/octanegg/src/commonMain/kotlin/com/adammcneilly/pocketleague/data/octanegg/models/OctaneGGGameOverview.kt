@@ -17,7 +17,7 @@ data class OctaneGGGameOverview(
     @SerialName("orange")
     val orangeScore: Int? = null,
     @SerialName("duration")
-    val durationSeconds: Int? = null,
+    val durationSeconds: Int? = null
 )
 
 /**
@@ -28,6 +28,6 @@ fun OctaneGGGameOverview.toGameOverview(): GameOverview {
         id = this.id.orEmpty(),
         blueScore = this.blueScore ?: 0,
         orangeScore = this.orangeScore ?: 0,
-        durationSeconds = this.durationSeconds ?: 0,
+        durationSeconds = this.durationSeconds ?: 0
     )
 }

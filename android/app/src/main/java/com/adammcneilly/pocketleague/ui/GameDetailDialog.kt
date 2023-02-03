@@ -10,10 +10,10 @@ import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 @Composable
 fun GameDetailDialog(
     displayModel: GameDetailDisplayModel,
-    onDismissRequest: () -> Unit,
+    onDismissRequest: () -> Unit
 ) {
     Dialog(
-        onDismissRequest = onDismissRequest,
+        onDismissRequest = onDismissRequest
     ) {
         GameDetailContent(displayModel = displayModel)
     }

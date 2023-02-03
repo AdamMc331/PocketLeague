@@ -23,13 +23,13 @@ class FakeTeamRepository : TeamRepository {
 
     fun verifyFavoriteStatus(
         teamId: String,
-        expectedIsFavorite: Boolean,
+        expectedIsFavorite: Boolean
     ) {
         require(_updatedFavorites[teamId] == expectedIsFavorite)
     }
 
     fun verifyFavoriteStatusNotUpdated(
-        teamId: String,
+        teamId: String
     ) {
         require(_updatedFavorites[teamId] == null)
     }

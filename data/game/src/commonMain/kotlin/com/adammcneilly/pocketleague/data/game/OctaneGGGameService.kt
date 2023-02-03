@@ -22,7 +22,7 @@ class OctaneGGGameService(
         val matchId = request.matchId
 
         return apiClient.getResponse<OctaneGGGameListResponse>(
-            endpoint = "$MATCHES_ENDPOINT/$matchId/games",
+            endpoint = "$MATCHES_ENDPOINT/$matchId/games"
         ).map { gameListResponse ->
             val mappedGames = gameListResponse.games?.map(OctaneGGGame::toGame)
 

@@ -9,5 +9,5 @@ data class CoreStats(
     val saves: Int = 0,
     val assists: Int = 0,
     val score: Int = 0,
-    val shootingPercentage: Float = 0F,
+    val shootingPercentage: Float = 0F
 )

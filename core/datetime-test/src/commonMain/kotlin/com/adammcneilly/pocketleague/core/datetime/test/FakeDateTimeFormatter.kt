@@ -10,14 +10,14 @@ class FakeDateTimeFormatter : DateTimeFormatter {
     override fun formatUTCString(
         utcString: String,
         formatPattern: String,
-        timeZone: TimeZone,
+        timeZone: TimeZone
     ): String? {
         return mockResponses[utcString]
     }
 
     fun mockResponseForUTCString(
         utcString: String,
-        response: String?,
+        response: String?
     ) {
         mockResponses[utcString] = response
     }

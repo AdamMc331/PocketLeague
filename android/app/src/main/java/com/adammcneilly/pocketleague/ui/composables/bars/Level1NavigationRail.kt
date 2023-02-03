@@ -24,30 +24,30 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 @Composable
 fun Navigation.Level1NavigationRail(
     selectedTab: ScreenIdentifier,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     NavigationRail(
-        modifier = modifier,
+        modifier = modifier
     ) {
         NavigationRailItem(
             icon = { Icon(Icons.Default.Feed, "Feed") },
             label = { Text("FEED") },
             selected = selectedTab.uri == Level1Navigation.Feed.screenIdentifier.uri,
-            onClick = { navigateByLevel1Menu(Level1Navigation.Feed) },
+            onClick = { navigateByLevel1Menu(Level1Navigation.Feed) }
         )
 
         NavigationRailItem(
             icon = { Icon(Icons.Default.BarChart, "Stats") },
             label = { Text("STATS") },
             selected = selectedTab.uri == Level1Navigation.Stats.screenIdentifier.uri,
-            onClick = { navigateByLevel1Menu(Level1Navigation.Stats) },
+            onClick = { navigateByLevel1Menu(Level1Navigation.Stats) }
         )
 
         NavigationRailItem(
             icon = { Icon(Icons.Default.Leaderboard, "Records") },
             label = { Text("RECORDS") },
             selected = selectedTab.uri == Level1Navigation.Records.screenIdentifier.uri,
-            onClick = { navigateByLevel1Menu(Level1Navigation.Records) },
+            onClick = { navigateByLevel1Menu(Level1Navigation.Records) }
         )
     }
 }

@@ -7,5 +7,5 @@ import com.adammcneilly.pocketleague.core.feature.ScreenParams
  */
 data class EventStageDetailParams(
     val eventId: String,
-    val stageId: String,
+    val stageId: String
 ) : ScreenParams

@@ -10,7 +10,7 @@ data class TeamOverviewDisplayModel(
     val name: String,
     val imageUrl: ThemedImageURL,
     val isPlaceholder: Boolean = false,
-    val isFavorite: Boolean = false,
+    val isFavorite: Boolean = false
 ) {
 
     companion object {
@@ -18,7 +18,7 @@ data class TeamOverviewDisplayModel(
             teamId = "",
             name = "",
             imageUrl = ThemedImageURL(),
-            isPlaceholder = true,
+            isPlaceholder = true
         )
     }
 }
@@ -31,8 +31,8 @@ fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
         teamId = this.id,
         name = this.name,
         imageUrl = ThemedImageURL(
-            lightThemeImageURL = this.imageUrl,
+            lightThemeImageURL = this.imageUrl
         ),
-        isFavorite = isFavorite,
+        isFavorite = isFavorite
     )
 }

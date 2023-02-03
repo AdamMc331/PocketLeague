@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class OctaneGGEventParticipants(
     @SerialName("participants")
-    val participants: List<OctaneGGTeamDetail>,
+    val participants: List<OctaneGGTeamDetail>
 )

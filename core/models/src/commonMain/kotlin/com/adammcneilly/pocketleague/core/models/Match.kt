@@ -12,5 +12,5 @@ data class Match(
     val orangeTeam: MatchTeamResult,
     val stage: EventStage,
     val format: Format,
-    val gameOverviews: List<GameOverview>,
+    val gameOverviews: List<GameOverview>
 )

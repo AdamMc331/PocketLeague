@@ -26,6 +26,6 @@ fun Match.toLocalMatch(): LocalMatch {
         orangeTeamTotalShots = this.orangeTeam.stats?.core?.shots?.toLong() ?: 0,
         orangeTeamTotalSaves = this.orangeTeam.stats?.core?.saves?.toLong() ?: 0,
         orangeTeamTotalAssists = this.orangeTeam.stats?.core?.assists?.toLong() ?: 0,
-        orangeTeamShootingPercentage = this.orangeTeam.stats?.core?.shootingPercentage?.toDouble() ?: 0.0,
+        orangeTeamShootingPercentage = this.orangeTeam.stats?.core?.shootingPercentage?.toDouble() ?: 0.0
     )
 }

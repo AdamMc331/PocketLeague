@@ -12,13 +12,13 @@ import kotlinx.coroutines.flow.onEach
  * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.Screens.EventDetail] screen.
  */
 fun Navigation.initEventDetail(
-    params: EventDetailParams,
+    params: EventDetailParams
 ): ScreenInitSettings {
     return ScreenInitSettings(
         title = "Event Detail",
         initState = {
             EventDetailViewState(
-                eventId = params.eventId,
+                eventId = params.eventId
             )
         },
         callOnInit = { stateManager ->
@@ -26,7 +26,7 @@ fun Navigation.initEventDetail(
             // and just observe when it's created.
             val presenter = EventDetailPresenter(
                 eventRepository = events.appModule.dataModule.eventRepository,
-                params = params,
+                params = params
             )
 
             stateManager.getScreenScope()?.let { screenScope ->
@@ -42,6 +42,6 @@ fun Navigation.initEventDetail(
                     .launchIn(screenScope)
             }
         },
-        reInitOnEachNavigation = false,
+        reInitOnEachNavigation = false
     )
 }

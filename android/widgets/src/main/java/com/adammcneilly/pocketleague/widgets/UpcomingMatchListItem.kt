@@ -19,26 +19,26 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 fun UpcomingMatchListItem(
     displayModel: MatchDetailDisplayModel,
     contentColor: ColorProvider,
-    modifier: GlanceModifier = GlanceModifier,
+    modifier: GlanceModifier = GlanceModifier
 ) {
     Column(
         modifier = modifier
-            .padding(16.dp),
+            .padding(16.dp)
     ) {
         Text(
             text = displayModel.eventName,
             style = TextStyle(
                 color = contentColor,
-                fontWeight = FontWeight.Bold,
-            ),
+                fontWeight = FontWeight.Bold
+            )
         )
 
         Text(
             text = displayModel.relativeDateTime,
             style = TextStyle(
                 color = contentColor,
-                fontSize = 10.sp,
-            ),
+                fontSize = 10.sp
+            )
         )
 
         val blueTeamName = displayModel.blueTeamResult.team.name
@@ -48,8 +48,8 @@ fun UpcomingMatchListItem(
         Text(
             text = teamNames,
             style = TextStyle(
-                color = contentColor,
-            ),
+                color = contentColor
+            )
         )
     }
 }

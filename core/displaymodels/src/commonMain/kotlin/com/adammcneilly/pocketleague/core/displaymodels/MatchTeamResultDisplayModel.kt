@@ -12,7 +12,7 @@ data class MatchTeamResultDisplayModel(
     val winner: Boolean,
     val coreStats: CoreStatsDisplayModel?,
     val players: List<GamePlayerResultDisplayModel>,
-    val isPlaceholder: Boolean = false,
+    val isPlaceholder: Boolean = false
 ) {
 
     companion object {
@@ -22,7 +22,7 @@ data class MatchTeamResultDisplayModel(
             winner = false,
             coreStats = CoreStatsDisplayModel.placeholder,
             players = emptyList(),
-            isPlaceholder = true,
+            isPlaceholder = true
         )
     }
 }
@@ -36,6 +36,6 @@ fun MatchTeamResult.toDisplayModel(): MatchTeamResultDisplayModel {
         score = this.score,
         winner = this.winner,
         players = this.players.map(GamePlayerResult::toDisplayModel),
-        coreStats = this.stats?.core?.toDisplayModel(),
+        coreStats = this.stats?.core?.toDisplayModel()
     )
 }

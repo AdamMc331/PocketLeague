@@ -11,7 +11,7 @@ data class GameTeamResultDisplayModel(
     val goals: Int,
     val winner: Boolean,
     val players: List<GamePlayerResultDisplayModel>,
-    val isPlaceholder: Boolean = false,
+    val isPlaceholder: Boolean = false
 ) {
 
     companion object {
@@ -20,7 +20,7 @@ data class GameTeamResultDisplayModel(
             goals = 0,
             winner = false,
             players = emptyList(),
-            isPlaceholder = true,
+            isPlaceholder = true
         )
     }
 }
@@ -35,6 +35,6 @@ fun GameTeamResult.toDisplayModel(): GameTeamResultDisplayModel {
         winner = this.winner,
         players = this.players
             .sortedByDescending { it.stats.core.score }
-            .map(GamePlayerResult::toDisplayModel),
+            .map(GamePlayerResult::toDisplayModel)
     )
 }

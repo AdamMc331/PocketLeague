@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
  * supplied sql delight [database].
  */
 class SQLDelightTeamRepository(
-    private val database: PocketLeagueDB,
+    private val database: PocketLeagueDB
 ) : TeamRepository {
 
     override fun getFavoriteTeams(): Flow<List<Team>> {
@@ -43,7 +43,7 @@ class SQLDelightTeamRepository(
             .localTeamQueries
             .setFavorite(
                 isFavorite = isFavorite,
-                id = teamId,
+                id = teamId
             )
     }
 }

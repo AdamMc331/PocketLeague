@@ -27,18 +27,18 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 @Composable
 fun EventSummaryListItem(
     displayModel: EventSummaryDisplayModel,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         EventImage(displayModel)
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             EventDates(displayModel)
 
@@ -54,8 +54,8 @@ private fun EventName(displayModel: EventSummaryDisplayModel) {
         modifier = Modifier
             .fillMaxWidth()
             .placeholderMaterial(
-                visible = displayModel.isPlaceholder,
-            ),
+                visible = displayModel.isPlaceholder
+            )
     )
 }
 
@@ -67,8 +67,8 @@ private fun EventDates(displayModel: EventSummaryDisplayModel) {
         modifier = Modifier
             .fillMaxWidth()
             .placeholderMaterial(
-                visible = displayModel.isPlaceholder,
-            ),
+                visible = displayModel.isPlaceholder
+            )
     )
 }
 
@@ -82,15 +82,15 @@ private fun EventImage(displayModel: EventSummaryDisplayModel) {
         modifier = Modifier
             .size(imageSize)
             .placeholderMaterial(
-                visible = displayModel.isPlaceholder,
-            ),
+                visible = displayModel.isPlaceholder
+            )
     ) {
         if (imageUrl.isNotEmpty()) {
             AsyncImage(
                 model = imageUrl,
                 contentDescription = "Event Image",
                 modifier = Modifier
-                    .size(imageSize),
+                    .size(imageSize)
 //                crossfade = true,
 //                onLoading = {
 //                    Box(

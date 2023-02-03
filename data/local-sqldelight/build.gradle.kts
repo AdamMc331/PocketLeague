@@ -92,3 +92,11 @@ sqldelight {
         dialect = "sqlite:3.24"
     }
 }
+
+tasks.formatKotlinCommonMain {
+    exclude { it.file.path.contains("generated/")}
+}
+
+tasks.lintKotlinCommonMain {
+    exclude { it.file.path.contains("generated/")}
+}

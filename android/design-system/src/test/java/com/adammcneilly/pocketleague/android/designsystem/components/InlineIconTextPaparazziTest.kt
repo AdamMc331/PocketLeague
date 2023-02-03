@@ -22,12 +22,12 @@ class InlineIconTextPaparazziTest {
     @Test
     fun renderWithoutIcon() {
         paparazzi.snapshotScreen(
-            useDarkTheme = useDarkTheme
+            useDarkTheme = useDarkTheme,
         ) {
             InlineIconText(
                 text = "Inline Icon Text",
                 icon = Icons.Default.EmojiEvents,
-                showIcon = false
+                showIcon = false,
             )
         }
     }
@@ -35,12 +35,12 @@ class InlineIconTextPaparazziTest {
     @Test
     fun renderLeadingIcon() {
         paparazzi.snapshotScreen(
-            useDarkTheme = useDarkTheme
+            useDarkTheme = useDarkTheme,
         ) {
             InlineIconText(
                 text = "Inline Icon Text",
                 icon = Icons.Default.EmojiEvents,
-                leadingIcon = true
+                leadingIcon = true,
             )
         }
     }
@@ -48,12 +48,12 @@ class InlineIconTextPaparazziTest {
     @Test
     fun renderTrailingIcon() {
         paparazzi.snapshotScreen(
-            useDarkTheme = useDarkTheme
+            useDarkTheme = useDarkTheme,
         ) {
             InlineIconText(
                 text = "Inline Icon Text",
                 icon = Icons.Default.EmojiEvents,
-                leadingIcon = false
+                leadingIcon = false,
             )
         }
     }

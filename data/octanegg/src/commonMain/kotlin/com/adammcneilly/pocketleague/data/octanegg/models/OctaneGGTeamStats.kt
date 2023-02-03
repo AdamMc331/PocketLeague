@@ -13,7 +13,7 @@ data class OctaneGGTeamStats(
     @SerialName("team")
     val team: OctaneGGTeamOverview? = null,
     @SerialName("stats")
-    val stats: OctaneGGStats? = null
+    val stats: OctaneGGStats? = null,
 )
 
 /**
@@ -21,6 +21,6 @@ data class OctaneGGTeamStats(
  */
 fun OctaneGGStats.toStats(): Stats {
     return Stats(
-        core = this.core?.toCoreStats() ?: CoreStats()
+        core = this.core?.toCoreStats() ?: CoreStats(),
     )
 }

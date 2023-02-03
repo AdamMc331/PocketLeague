@@ -22,43 +22,43 @@ import com.adammcneilly.pocketleague.core.displaymodels.CoreStatsDisplayModel
 fun CoreStatsComparisonCard(
     blueTeamStats: CoreStatsDisplayModel,
     orangeTeamStats: CoreStatsDisplayModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card(
         modifier = modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(16.dp),
         ) {
             Text(
-                text = "Goals"
+                text = "Goals",
             )
 
             AnimatableStatComparison(
                 blueTeamValue = blueTeamStats.goals,
-                orangeTeamValue = orangeTeamStats.goals
+                orangeTeamValue = orangeTeamStats.goals,
             )
 
             Text(
-                text = "Assists"
+                text = "Assists",
             )
 
             AnimatableStatComparison(
                 blueTeamValue = blueTeamStats.assists,
-                orangeTeamValue = orangeTeamStats.assists
+                orangeTeamValue = orangeTeamStats.assists,
             )
 
             Text(
-                text = "Saves"
+                text = "Saves",
             )
 
             AnimatableStatComparison(
                 blueTeamValue = blueTeamStats.saves,
-                orangeTeamValue = orangeTeamStats.saves
+                orangeTeamValue = orangeTeamStats.saves,
             )
         }
     }
@@ -66,11 +66,11 @@ fun CoreStatsComparisonCard(
 
 @Preview(
     name = "Night Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Preview(
     name = "Day Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_NO
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
 @Composable
 private fun CoreStatsComparisonCardPreview() {
@@ -81,17 +81,17 @@ private fun CoreStatsComparisonCardPreview() {
                 goals = 7,
                 assists = 4,
                 saves = 3,
-                shots = 1
+                shots = 1,
             ),
             orangeTeamStats = CoreStatsDisplayModel(
                 score = 8729374,
                 goals = 3,
                 assists = 8,
                 saves = 0,
-                shots = 5
+                shots = 5,
             ),
             modifier = Modifier
-                .padding(16.dp)
+                .padding(16.dp),
         )
     }
 }

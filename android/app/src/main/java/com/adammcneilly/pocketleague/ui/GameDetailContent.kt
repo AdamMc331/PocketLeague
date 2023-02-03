@@ -25,13 +25,13 @@ import com.adammcneilly.pocketleague.ui.composables.stats.PlayerStatsTable
 @Composable
 fun GameDetailContent(
     displayModel: GameDetailDisplayModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val blueTeamSelected = remember { mutableStateOf(true) }
 
     Card(
         modifier = modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         GameNumberHeader(displayModel)
 
@@ -43,7 +43,7 @@ fun GameDetailContent(
             },
             onOrangeTeamSelected = {
                 blueTeamSelected.value = false
-            }
+            },
         )
 
         val playerStats = if (blueTeamSelected.value) {
@@ -53,7 +53,7 @@ fun GameDetailContent(
         }
 
         PlayerStatsTable(
-            displayModels = playerStats
+            displayModels = playerStats,
         )
     }
 }
@@ -66,7 +66,7 @@ private fun GameNumberHeader(displayModel: GameDetailDisplayModel) {
             .fillMaxWidth()
             .padding(8.dp),
         textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.headlineSmall
+        style = MaterialTheme.typography.headlineSmall,
     )
 }
 
@@ -75,7 +75,7 @@ private fun TeamTabs(
     displayModel: GameDetailDisplayModel,
     blueTeamSelected: Boolean,
     onBlueTeamSelected: () -> Unit,
-    onOrangeTeamSelected: () -> Unit
+    onOrangeTeamSelected: () -> Unit,
 ) {
     val selectedIndex = if (blueTeamSelected) {
         0
@@ -86,25 +86,25 @@ private fun TeamTabs(
     TabRow(selectedTabIndex = selectedIndex) {
         Tab(
             selected = blueTeamSelected,
-            onClick = onBlueTeamSelected
+            onClick = onBlueTeamSelected,
         ) {
             InlineIconText(
                 text = displayModel.blueTeamResult.team.name,
                 icon = Icons.Default.EmojiEvents,
                 showIcon = displayModel.blueTeamResult.winner,
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp),
             )
         }
 
         Tab(
             selected = !blueTeamSelected,
-            onClick = onOrangeTeamSelected
+            onClick = onOrangeTeamSelected,
         ) {
             InlineIconText(
                 text = displayModel.orangeTeamResult.team.name,
                 icon = Icons.Default.EmojiEvents,
                 showIcon = displayModel.orangeTeamResult.winner,
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp),
             )
         }
     }

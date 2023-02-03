@@ -15,11 +15,11 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplay
 @Composable
 fun EventStageListCard(
     displayModels: List<EventStageSummaryDisplayModel>,
-    onStageClicked: (String) -> Unit
+    onStageClicked: (String) -> Unit,
 ) {
     Text(
         text = "Stages",
-        style = MaterialTheme.typography.headlineSmall
+        style = MaterialTheme.typography.headlineSmall,
     )
 
     Card {
@@ -30,7 +30,7 @@ fun EventStageListCard(
                     modifier = Modifier
                         .clickable {
                             onStageClicked.invoke(stageSummary.stageId)
-                        }
+                        },
                 )
 
                 if (index != this.lastIndex) {

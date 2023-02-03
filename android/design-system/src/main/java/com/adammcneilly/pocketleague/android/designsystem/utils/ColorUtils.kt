@@ -9,11 +9,11 @@ private const val DARKEN_COLOR_RATIO = 0.75F
  * of this color.
  */
 fun Color.darken(
-    ratio: Float = DARKEN_COLOR_RATIO
+    ratio: Float = DARKEN_COLOR_RATIO,
 ): Color {
     return Color(
         red = this.red * ratio,
         green = this.green * ratio,
-        blue = this.blue * ratio
+        blue = this.blue * ratio,
     )
 }

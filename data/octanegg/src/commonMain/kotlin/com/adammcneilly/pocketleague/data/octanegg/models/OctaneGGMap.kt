@@ -11,5 +11,5 @@ data class OctaneGGMap(
     @SerialName("id")
     val id: String? = null,
     @SerialName("name")
-    val name: String? = null
+    val name: String? = null,
 )

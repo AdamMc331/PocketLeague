@@ -28,7 +28,7 @@ class StatComparisonPaparazziTest {
                 orangeTeamValue = 1,
                 percentageToRender = 1F,
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(16.dp),
             )
         }
     }
@@ -41,7 +41,7 @@ class StatComparisonPaparazziTest {
                 orangeTeamValue = 1,
                 percentageToRender = 0.5F,
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(16.dp),
             )
         }
     }
@@ -54,7 +54,7 @@ class StatComparisonPaparazziTest {
                 orangeTeamValue = 1,
                 percentageToRender = 0.25F,
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(16.dp),
             )
         }
     }

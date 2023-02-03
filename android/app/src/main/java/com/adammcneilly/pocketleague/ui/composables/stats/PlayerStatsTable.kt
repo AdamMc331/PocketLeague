@@ -13,7 +13,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.GamePlayerResultDisplayM
 @Composable
 fun PlayerStatsTable(
     displayModels: List<GamePlayerResultDisplayModel>,
-    showFinalDivider: Boolean = false
+    showFinalDivider: Boolean = false,
 ) {
     Column {
         StatTableRow(
@@ -23,10 +23,10 @@ fun PlayerStatsTable(
                 "Goals",
                 "Assists",
                 "Saves",
-                "Shots"
+                "Shots",
             ),
             boldCells = true,
-            textStyle = MaterialTheme.typography.bodyMedium
+            textStyle = MaterialTheme.typography.bodyMedium,
         )
 
         Divider()
@@ -39,8 +39,8 @@ fun PlayerStatsTable(
                     displayModel.coreStats.goals.toString(),
                     displayModel.coreStats.assists.toString(),
                     displayModel.coreStats.saves.toString(),
-                    displayModel.coreStats.shots.toString()
-                )
+                    displayModel.coreStats.shots.toString(),
+                ),
             )
 
             if (index != displayModels.lastIndex || showFinalDivider) {

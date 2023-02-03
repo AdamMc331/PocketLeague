@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.onStart
  */
 class OfflineFirstTeamRepository(
     private val localDataSource: TeamRepository,
-    private val remoteDataSource: TeamRepository
+    private val remoteDataSource: TeamRepository,
 ) : TeamRepository {
 
     override fun getFavoriteTeams(): Flow<List<Team>> {

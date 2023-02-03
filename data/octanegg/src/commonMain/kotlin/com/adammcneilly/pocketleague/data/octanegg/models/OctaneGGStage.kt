@@ -28,7 +28,7 @@ data class OctaneGGStage(
     @SerialName("region")
     val region: String? = null,
     @SerialName("qualifier")
-    val qualifier: Boolean? = null
+    val qualifier: Boolean? = null,
 )
 
 /**
@@ -43,6 +43,6 @@ fun OctaneGGStage?.toEventStage(): EventStage {
         endDateUTC = this?.endDateUTC,
         liquipedia = this?.liquipedia.orEmpty(),
         qualifier = this?.qualifier ?: false,
-        lan = this?.lan ?: false
+        lan = this?.lan ?: false,
     )
 }

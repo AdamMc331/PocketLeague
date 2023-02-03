@@ -27,7 +27,7 @@ class MatchCardTest {
                     match = TestDisplayModel.matchDetailBlueWinner,
                     onClick = {
                         clickedId = it
-                    }
+                    },
                 )
             }
         }
@@ -46,7 +46,7 @@ class MatchCardTest {
 
         assertEquals(
             TestDisplayModel.matchDetailBlueWinner.matchId,
-            clickedId
+            clickedId,
         )
     }
 
@@ -60,7 +60,7 @@ class MatchCardTest {
                     match = MatchDetailDisplayModel.placeholder,
                     onClick = {
                         clickedId = it
-                    }
+                    },
                 )
             }
         }

@@ -21,7 +21,7 @@ object PlaceholderDefaults {
     val fadeAnimationSpec: InfiniteRepeatableSpec<Float> by lazy {
         infiniteRepeatable(
             animation = tween(delayMillis = 200, durationMillis = 600),
-            repeatMode = RepeatMode.Reverse
+            repeatMode = RepeatMode.Reverse,
         )
     }
 
@@ -31,7 +31,7 @@ object PlaceholderDefaults {
     val shimmerAnimationSpec: InfiniteRepeatableSpec<Float> by lazy {
         infiniteRepeatable(
             animation = tween(durationMillis = 1700, delayMillis = 200),
-            repeatMode = RepeatMode.Restart
+            repeatMode = RepeatMode.Restart,
         )
     }
 
@@ -48,7 +48,7 @@ object PlaceholderDefaults {
     fun color(
         backgroundColor: Color = MaterialTheme.colorScheme.surface,
         contentColor: Color = contentColorFor(backgroundColor),
-        contentAlpha: Float = 0.1f
+        contentAlpha: Float = 0.1f,
     ): Color = contentColor.copy(contentAlpha).compositeOver(backgroundColor)
 
     /**
@@ -62,7 +62,7 @@ object PlaceholderDefaults {
     @Composable
     fun fadeHighlightColor(
         backgroundColor: Color = MaterialTheme.colorScheme.surface,
-        alpha: Float = 0.3f
+        alpha: Float = 0.3f,
     ): Color = backgroundColor.copy(alpha = alpha)
 
     /**
@@ -76,7 +76,7 @@ object PlaceholderDefaults {
     @Composable
     fun shimmerHighlightColor(
         backgroundColor: Color = MaterialTheme.colorScheme.surface,
-        alpha: Float = 0.75f
+        alpha: Float = 0.75f,
     ): Color {
         return backgroundColor.copy(alpha = alpha)
     }

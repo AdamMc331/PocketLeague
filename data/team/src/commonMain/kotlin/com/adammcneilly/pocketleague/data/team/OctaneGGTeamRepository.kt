@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.isActive
  * from an octane gg [apiClient].
  */
 class OctaneGGTeamRepository(
-    private val apiClient: BaseKTORClient
+    private val apiClient: BaseKTORClient,
 ) : TeamRepository {
     override fun getFavoriteTeams(): Flow<List<Team>> {
         throw UnsupportedOperationException("Fetching favorite teams is not supported by the octane.gg API.")
@@ -24,7 +24,7 @@ class OctaneGGTeamRepository(
     override fun getActiveRLCSTeams(): Flow<List<Team>> {
         return flow {
             val apiResponse = apiClient.getResponse<OctaneGGTeamListResponse>(
-                endpoint = ACTIVE_TEAMS_ENDPOINT
+                endpoint = ACTIVE_TEAMS_ENDPOINT,
             ).map { octaneGGTeamListResponse ->
                 octaneGGTeamListResponse.teams
                     ?.map(OctaneGGTeamDetail::toTeam)

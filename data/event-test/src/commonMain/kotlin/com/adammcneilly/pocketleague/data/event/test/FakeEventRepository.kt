@@ -14,10 +14,10 @@ class FakeEventRepository : EventRepository {
     var upcomingEvents: List<Event> = listOf(TestModel.event)
     var ongoingEvents: List<Event> = listOf(TestModel.event)
     val eventsById: MutableMap<String, Event> = mutableMapOf(
-        TestModel.event.id to TestModel.event
+        TestModel.event.id to TestModel.event,
     )
     val eventParticipantsByEventId: MutableMap<String, List<Team>> = mutableMapOf(
-        TestModel.event.id to listOf(TestModel.team)
+        TestModel.event.id to listOf(TestModel.team),
     )
 
     override fun getUpcomingEvents(): Flow<List<Event>> {

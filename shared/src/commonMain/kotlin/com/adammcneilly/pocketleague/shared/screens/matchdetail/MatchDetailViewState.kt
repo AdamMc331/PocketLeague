@@ -11,7 +11,7 @@ import com.adammcneilly.pocketleague.core.models.Match
 data class MatchDetailViewState(
     val matchId: String = "",
     val matchDetail: MatchDetailDisplayModel? = null,
-    val games: List<GameDetailDisplayModel> = emptyList()
+    val games: List<GameDetailDisplayModel> = emptyList(),
 ) : ScreenState {
 
     override val title: String?

@@ -29,7 +29,7 @@ data class OctaneGGGame(
     @SerialName("octane_id")
     val octaneId: String? = null,
     @SerialName("orange")
-    val orange: OctaneGGGameTeamResult? = null
+    val orange: OctaneGGGameTeamResult? = null,
 )
 
 /**
@@ -42,6 +42,6 @@ fun OctaneGGGame.toGame(): Game {
         orange = this.orange?.toGameTeamResult() ?: GameTeamResult(),
         map = this.map?.name.orEmpty(),
         number = this.number ?: 0,
-        duration = this.duration ?: Game.GAME_DEFAULT_DURATION_SECONDS
+        duration = this.duration ?: Game.GAME_DEFAULT_DURATION_SECONDS,
     )
 }

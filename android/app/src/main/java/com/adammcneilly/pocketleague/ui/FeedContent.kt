@@ -32,15 +32,15 @@ fun FeedContent(
     viewState: com.adammcneilly.pocketleague.feature.feed.FeedViewState,
     modifier: Modifier = Modifier,
     onMatchClicked: (String) -> Unit = {},
-    onEventClicked: (String) -> Unit = {}
+    onEventClicked: (String) -> Unit = {},
 ) {
     Box(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize(),
     ) {
         SuccessContent(
             viewState = viewState,
             onMatchClicked = onMatchClicked,
-            onEventClicked = onEventClicked
+            onEventClicked = onEventClicked,
         )
     }
 }
@@ -49,24 +49,24 @@ fun FeedContent(
 private fun SuccessContent(
     viewState: com.adammcneilly.pocketleague.feature.feed.FeedViewState,
     onMatchClicked: (String) -> Unit,
-    onEventClicked: (String) -> Unit
+    onEventClicked: (String) -> Unit,
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         item {
             Text(
                 text = "Recent Matches",
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(16.dp),
             )
         }
 
         item {
             RecentMatchesSection(
                 viewState.recentMatches,
-                onMatchClicked
+                onMatchClicked,
             )
         }
 
@@ -75,7 +75,7 @@ private fun SuccessContent(
                 text = "Ongoing Events",
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(16.dp),
             )
         }
 
@@ -84,7 +84,7 @@ private fun SuccessContent(
         } else {
             item {
                 EventListEmptyState(
-                    textRes = R.string.err_no_ongoing_events
+                    textRes = R.string.err_no_ongoing_events,
                 )
             }
         }
@@ -94,7 +94,7 @@ private fun SuccessContent(
                 text = "Upcoming Events",
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(16.dp),
             )
         }
 
@@ -103,7 +103,7 @@ private fun SuccessContent(
         } else {
             item {
                 EventListEmptyState(
-                    textRes = R.string.err_no_upcoming_events
+                    textRes = R.string.err_no_upcoming_events,
                 )
             }
         }
@@ -113,12 +113,12 @@ private fun SuccessContent(
 @Composable
 private fun RecentMatchesSection(
     recentMatches: List<MatchDetailDisplayModel>,
-    onMatchClicked: (String) -> Unit
+    onMatchClicked: (String) -> Unit,
 ) {
     if (recentMatches.isNotEmpty()) {
         MatchesCarousel(
             matches = recentMatches,
-            onMatchClicked = onMatchClicked
+            onMatchClicked = onMatchClicked,
         )
     } else {
         RecentMatchesEmptyState()
@@ -127,7 +127,7 @@ private fun RecentMatchesSection(
 
 private fun LazyListScope.eventList(
     events: List<EventSummaryDisplayModel>,
-    onEventClicked: (String) -> Unit
+    onEventClicked: (String) -> Unit,
 ) {
     itemsIndexed(events) { index, event ->
         EventSummaryListItem(
@@ -135,7 +135,7 @@ private fun LazyListScope.eventList(
             modifier = Modifier
                 .clickable {
                     onEventClicked.invoke(event.eventId)
-                }
+                },
         )
 
         if (index != events.lastIndex) {
@@ -146,15 +146,15 @@ private fun LazyListScope.eventList(
 
 @Composable
 private fun EventListEmptyState(
-    @StringRes textRes: Int
+    @StringRes textRes: Int,
 ) {
     EmptyStateCard(
         text = stringResource(id = textRes),
         modifier = Modifier
             .padding(
-                horizontal = 16.dp
+                horizontal = 16.dp,
             ),
         textModifier = Modifier
-            .padding(32.dp)
+            .padding(32.dp),
     )
 }

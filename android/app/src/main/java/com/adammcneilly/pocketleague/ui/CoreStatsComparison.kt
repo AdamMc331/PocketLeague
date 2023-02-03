@@ -28,29 +28,29 @@ import com.adammcneilly.pocketleague.core.models.CoreStats
 fun CoreStatsComparison(
     blueTeamStats: CoreStats,
     orangeTeamStats: CoreStats,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         StatComparisonRow(
             title = "Goals",
             blueValue = blueTeamStats.goals.toFloat(),
-            orangeValue = orangeTeamStats.goals.toFloat()
+            orangeValue = orangeTeamStats.goals.toFloat(),
         )
 
         StatComparisonRow(
             title = "Saves",
             blueValue = blueTeamStats.saves.toFloat(),
-            orangeValue = orangeTeamStats.saves.toFloat()
+            orangeValue = orangeTeamStats.saves.toFloat(),
         )
 
         StatComparisonRow(
             title = "Shots",
             blueValue = blueTeamStats.shots.toFloat(),
-            orangeValue = orangeTeamStats.shots.toFloat()
+            orangeValue = orangeTeamStats.shots.toFloat(),
         )
     }
 }
@@ -59,14 +59,14 @@ fun CoreStatsComparison(
 private fun StatComparisonRow(
     title: String,
     blueValue: Float,
-    orangeValue: Float
+    orangeValue: Float,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
-            text = title
+            text = title,
         )
 
         BoxWithConstraints {
@@ -83,7 +83,7 @@ private fun StatComparisonRow(
             val orangeWidth = availableWidth * orangeWeight
 
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(
                     modifier = Modifier
@@ -91,13 +91,13 @@ private fun StatComparisonRow(
                             color = com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue,
                             shape = RoundedCornerShape(
                                 topStartPercent = 50,
-                                bottomStartPercent = 50
-                            )
+                                bottomStartPercent = 50,
+                            ),
                         )
                         .size(
                             width = blueWidth,
-                            height = statBarHeight
-                        )
+                            height = statBarHeight,
+                        ),
                 )
 
                 Box(
@@ -105,8 +105,8 @@ private fun StatComparisonRow(
                         .background(color = Color.White)
                         .size(
                             width = dividerWidth,
-                            height = dividerHeight
-                        )
+                            height = dividerHeight,
+                        ),
                 )
 
                 Box(
@@ -115,11 +115,11 @@ private fun StatComparisonRow(
                             color = com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange,
                             shape = RoundedCornerShape(
                                 topEndPercent = 50,
-                                bottomEndPercent = 50
-                            )
+                                bottomEndPercent = 50,
+                            ),
                         )
                         .height(statBarHeight)
-                        .width(orangeWidth)
+                        .width(orangeWidth),
                 )
             }
         }

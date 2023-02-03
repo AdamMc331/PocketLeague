@@ -85,7 +85,7 @@ fun Tooltip(
     backgroundColor: Color = MaterialTheme.colorScheme.secondaryContainer,
     offset: DpOffset = DpOffset(0.dp, 0.dp),
     properties: PopupProperties = PopupProperties(focusable = true),
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     val expandedStates = remember { MutableTransitionState(false) }
     expandedStates.targetState = expanded.value
@@ -101,11 +101,11 @@ fun Tooltip(
         Popup(
             onDismissRequest = { expanded.value = false },
             popupPositionProvider = DropdownMenuPositionProvider(offset, LocalDensity.current),
-            properties = properties
+            properties = properties,
         ) {
             Box(
                 // Add space for elevation shadow
-                modifier = Modifier.padding(TooltipElevation)
+                modifier = Modifier.padding(TooltipElevation),
             ) {
                 TooltipContent(expandedStates, backgroundColor, modifier, content)
             }
@@ -119,7 +119,7 @@ private fun TooltipContent(
     expandedStates: MutableTransitionState<Boolean>,
     backgroundColor: Color,
     modifier: Modifier,
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     // Tooltip open/close animation.
     val transition = updateTransition(expandedStates, "Tooltip")
@@ -134,16 +134,16 @@ private fun TooltipContent(
                 // Expanded to dismissed.
                 tween(durationMillis = OUT_TRANSITION_DURATION)
             }
-        }
+        },
     ) { if (it) 1f else 0f }
 
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = backgroundColor
+            containerColor = backgroundColor,
         ),
         modifier = Modifier
             .fillMaxWidth(TOOLTIP_MAX_WIDTH_RATIO)
-            .alpha(alpha)
+            .alpha(alpha),
         // Fix elevation?
 //        elevation = TooltipElevation,
     ) {
@@ -154,10 +154,10 @@ private fun TooltipContent(
                     start = p,
                     top = p * TOOLTIP_TOP_PADDING_SCALE,
                     end = p,
-                    bottom = p * TOOLTIP_BOTTOM_PADDING_SCALE
+                    bottom = p * TOOLTIP_BOTTOM_PADDING_SCALE,
                 )
                 .width(IntrinsicSize.Max),
-            content = content
+            content = content,
         )
     }
 }
@@ -180,13 +180,13 @@ private const val TOOLTIP_TIMEOUT = 3_000L - OUT_TRANSITION_DURATION
 private data class DropdownMenuPositionProvider(
     val contentOffset: DpOffset,
     val density: Density,
-    val onPositionCalculated: (IntRect, IntRect) -> Unit = { _, _ -> }
+    val onPositionCalculated: (IntRect, IntRect) -> Unit = { _, _ -> },
 ) : PopupPositionProvider {
     override fun calculatePosition(
         anchorBounds: IntRect,
         windowSize: IntSize,
         layoutDirection: LayoutDirection,
-        popupContentSize: IntSize
+        popupContentSize: IntSize,
     ): IntOffset {
         // The min margin above and below the menu, relative to the screen.
         val verticalMargin = with(density) { 48.dp.roundToPx() }
@@ -205,7 +205,7 @@ private data class DropdownMenuPositionProvider(
                 toLeft,
                 // If the anchor gets outside of the window on the left, we want to position
                 // toDisplayLeft for proximity to the anchor. Otherwise, toDisplayRight.
-                if (anchorBounds.left >= 0) toDisplayRight else toDisplayLeft
+                if (anchorBounds.left >= 0) toDisplayRight else toDisplayLeft,
             )
         } else {
             sequenceOf(
@@ -213,7 +213,7 @@ private data class DropdownMenuPositionProvider(
                 toRight,
                 // If the anchor gets outside of the window on the right, we want to position
                 // toDisplayRight for proximity to the anchor. Otherwise, toDisplayLeft.
-                if (anchorBounds.right <= windowSize.width) toDisplayLeft else toDisplayRight
+                if (anchorBounds.right <= windowSize.width) toDisplayLeft else toDisplayRight,
             )
         }.firstOrNull {
             it >= 0 && it + popupContentSize.width <= windowSize.width
@@ -231,7 +231,7 @@ private data class DropdownMenuPositionProvider(
 
         onPositionCalculated(
             anchorBounds,
-            IntRect(x, y, x + popupContentSize.width, y + popupContentSize.height)
+            IntRect(x, y, x + popupContentSize.width, y + popupContentSize.height),
         )
         return IntOffset(x, y)
     }

@@ -7,22 +7,22 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenInitSettings
  * Creates the [ScreenInitSettings] for the event stage detail screen.
  */
 fun Navigation.initEventStageDetail(
-    params: EventStageDetailParams
+    params: EventStageDetailParams,
 ): ScreenInitSettings {
     return ScreenInitSettings(
         title = "Event Stage Detail",
         initState = {
             EventStageDetailViewState(
                 eventId = params.eventId,
-                stageId = params.stageId
+                stageId = params.stageId,
             )
         },
         callOnInit = {
             events.loadEventStageDetail(
                 eventId = params.eventId,
-                stageId = params.stageId
+                stageId = params.stageId,
             )
         },
-        reInitOnEachNavigation = false
+        reInitOnEachNavigation = false,
     )
 }

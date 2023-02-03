@@ -41,7 +41,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
 fun MatchCard(
     match: MatchDetailDisplayModel,
     onClick: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card(
         modifier = modifier
@@ -49,23 +49,23 @@ fun MatchCard(
                 enabled = !match.isPlaceholder,
                 onClick = {
                     onClick.invoke(match.matchId)
-                }
+                },
             )
             .semantics {
                 isPlaceholder = match.isPlaceholder
-            }
+            },
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),
             modifier = Modifier
-                .padding(16.dp)
+                .padding(16.dp),
         ) {
             EventName(match)
 
             RelativeTime(match)
 
             Spacer(
-                modifier = Modifier.height(8.dp)
+                modifier = Modifier.height(8.dp),
             )
 
             BlueTeamResult(match)
@@ -85,8 +85,8 @@ private fun EventName(match: MatchDetailDisplayModel) {
         modifier = Modifier
             .fillMaxWidth()
             .cardPlaceholder(
-                visible = match.isPlaceholder
-            )
+                visible = match.isPlaceholder,
+            ),
     )
 }
 
@@ -98,8 +98,8 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
         modifier = Modifier
             .defaultMinSize(minWidth = 50.dp)
             .cardPlaceholder(
-                visible = match.isPlaceholder
-            )
+                visible = match.isPlaceholder,
+            ),
     )
 }
 
@@ -111,7 +111,7 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
 private fun MatchTeamResultRow(
     teamResult: MatchTeamResultDisplayModel,
     isPlaceholder: Boolean,
-    teamColor: String
+    teamColor: String,
 ) {
     val fontWeight: FontWeight? = if (teamResult.winner) {
         FontWeight.Bold
@@ -124,14 +124,14 @@ private fun MatchTeamResultRow(
         modifier = Modifier
             .fillMaxWidth()
             .cardPlaceholder(
-                visible = isPlaceholder
-            )
+                visible = isPlaceholder,
+            ),
     ) {
         Text(
             text = teamResult.score.toString(),
             fontWeight = fontWeight,
             modifier = Modifier
-                .testTag("${teamColor}_match_score")
+                .testTag("${teamColor}_match_score"),
         )
 
         Text(
@@ -139,7 +139,7 @@ private fun MatchTeamResultRow(
             fontWeight = fontWeight,
             inlineContent = teamResult.getInlineContent(),
             modifier = Modifier
-                .testTag("${teamColor}_match_team_name")
+                .testTag("${teamColor}_match_team_name"),
         )
     }
 }
@@ -165,15 +165,15 @@ private fun MatchTeamResultDisplayModel.getInlineContent(): Map<String, InlineTe
                     Placeholder(
                         width = LocalTextStyle.current.fontSize,
                         height = LocalTextStyle.current.fontSize,
-                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter
-                    )
+                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                    ),
                 ) {
                     Icon(
                         Icons.Default.EmojiEvents,
-                        contentDescription = null
+                        contentDescription = null,
                     )
-                }
-            )
+                },
+            ),
         )
     } else {
         mapOf()
@@ -185,7 +185,7 @@ private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.orangeTeamResult,
         isPlaceholder = match.isPlaceholder,
-        teamColor = "orange"
+        teamColor = "orange",
     )
 }
 
@@ -194,6 +194,6 @@ private fun BlueTeamResult(match: MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.blueTeamResult,
         isPlaceholder = match.isPlaceholder,
-        teamColor = "blue"
+        teamColor = "blue",
     )
 }

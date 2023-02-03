@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.core.models.EventTier
  */
 data class EventTierDisplayModel(
     val name: String,
-    val description: String
+    val description: String,
 )
 
 /**
@@ -39,6 +39,6 @@ fun EventTier.toDisplayModel(): EventTierDisplayModel {
 
     return EventTierDisplayModel(
         name = name,
-        description = description
+        description = description,
     )
 }

@@ -15,14 +15,14 @@ import kotlin.time.Duration.Companion.days
  * data from the supplied [apiClient].
  */
 class OctaneGGMatchService(
-    private val apiClient: BaseKTORClient
+    private val apiClient: BaseKTORClient,
 ) : RemoteMatchService {
 
     constructor() : this(OctaneGGAPIClient)
 
     override suspend fun getMatchDetail(matchId: String): DataState<Match> {
         return apiClient.getResponse<OctaneGGMatch>(
-            endpoint = "$MATCHES_ENDPOINT/$matchId"
+            endpoint = "$MATCHES_ENDPOINT/$matchId",
         ).map { octaneMatch ->
             octaneMatch.toMatch()
         }
@@ -34,8 +34,8 @@ class OctaneGGMatchService(
             params = mapOf(
                 "before" to Clock.System.now(),
                 "after" to Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),
-                "group" to "rlcs"
-            )
+                "group" to "rlcs",
+            ),
         ).map { octaneMatchListResponse ->
             val mappedMatches =
                 octaneMatchListResponse.matches?.map(OctaneGGMatch::toMatch).orEmpty()
@@ -49,8 +49,8 @@ class OctaneGGMatchService(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(
                 "after" to Clock.System.now(),
-                "group" to "rlcs"
-            )
+                "group" to "rlcs",
+            ),
         ).map { octaneMatchListResponse ->
             val mappedMatches =
                 octaneMatchListResponse.matches?.map(OctaneGGMatch::toMatch).orEmpty()
@@ -61,14 +61,14 @@ class OctaneGGMatchService(
 
     override suspend fun getMatchesForEventStage(
         eventId: String,
-        stageId: String
+        stageId: String,
     ): DataState<List<Match>> {
         return apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(
                 "event" to eventId,
-                "stage" to stageId
-            )
+                "stage" to stageId,
+            ),
         ).map { octaneGGMatchListResponse ->
             octaneGGMatchListResponse.matches?.map(OctaneGGMatch::toMatch).orEmpty()
         }

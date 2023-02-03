@@ -21,10 +21,10 @@ class TopBarPaparazziTest {
     fun renderTopBar() {
         paparazzi.snapshotScreen(
             useDarkTheme = useDarkTheme,
-            screenPaddingDp = 0
+            screenPaddingDp = 0,
         ) {
             TopBar(
-                title = "Top App Bar"
+                title = "Top App Bar",
             )
         }
     }

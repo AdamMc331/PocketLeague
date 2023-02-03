@@ -24,13 +24,13 @@ import com.adammcneilly.pocketleague.ui.composables.match.MatchListItem
 fun EventStageDetailContent(
     viewState: EventStageDetailViewState,
     onMatchClicked: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         viewState.matchesByDateDisplayModel?.matchesByDate?.forEach { (date, matchList) ->
             item {
@@ -39,7 +39,7 @@ fun EventStageDetailContent(
                     style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier
                         .defaultMinSize(minWidth = 100.dp)
-                        .placeholderMaterial(visible = viewState.matchesByDateDisplayModel?.isPlaceholder == true)
+                        .placeholderMaterial(visible = viewState.matchesByDateDisplayModel?.isPlaceholder == true),
                 )
             }
 
@@ -51,7 +51,7 @@ fun EventStageDetailContent(
                             modifier = Modifier
                                 .clickable {
                                     onMatchClicked.invoke(match.matchId)
-                                }
+                                },
                         )
 
                         if (index != matchList.lastIndex) {

@@ -16,7 +16,7 @@ enum class Screens(
     val asString: String,
     val navigationLevel: Int = 1,
     val initSettings: Navigation.(ScreenIdentifier) -> ScreenInitSettings,
-    val stackableInstances: Boolean = false
+    val stackableInstances: Boolean = false,
 ) {
     Feed(
         asString = "feed",
@@ -24,7 +24,7 @@ enum class Screens(
         initSettings = {
             initFeed()
         },
-        stackableInstances = true
+        stackableInstances = true,
     ),
     MyTeams(
         asString = "my_teams",
@@ -32,7 +32,7 @@ enum class Screens(
         initSettings = {
             initMyTeams()
         },
-        stackableInstances = true
+        stackableInstances = true,
     ),
     Stats(
         asString = "stats",
@@ -40,7 +40,7 @@ enum class Screens(
         initSettings = {
             initStats()
         },
-        stackableInstances = true
+        stackableInstances = true,
     ),
     Records(
         asString = "records",
@@ -48,7 +48,7 @@ enum class Screens(
         initSettings = {
             initRecords()
         },
-        stackableInstances = true
+        stackableInstances = true,
     ),
     MatchDetail(
         asString = "match_detail",
@@ -56,7 +56,7 @@ enum class Screens(
         initSettings = {
             initMatchDetail(it.params())
         },
-        stackableInstances = false
+        stackableInstances = false,
     ),
     EventDetail(
         asString = "event_detail",
@@ -64,7 +64,7 @@ enum class Screens(
         initSettings = {
             initEventDetail(it.params())
         },
-        stackableInstances = false
+        stackableInstances = false,
     ),
     EventStageDetail(
         asString = "event_stage_detail",
@@ -72,7 +72,7 @@ enum class Screens(
         initSettings = {
             initEventStageDetail(it.params())
         },
-        stackableInstances = false
+        stackableInstances = false,
     ),
     TeamSelection(
         asString = "team_selection",
@@ -80,6 +80,6 @@ enum class Screens(
         initSettings = {
             initTeamSelection()
         },
-        stackableInstances = false
-    )
+        stackableInstances = false,
+    ),
 }

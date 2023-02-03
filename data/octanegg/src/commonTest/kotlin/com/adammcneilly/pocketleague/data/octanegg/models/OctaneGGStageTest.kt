@@ -18,7 +18,7 @@ class OctaneGGStageTest {
             lan = false,
             liquipedia = "liquipedia",
             region = "NA",
-            qualifier = false
+            qualifier = false,
         )
 
         val expectedStage = EventStage(
@@ -29,12 +29,12 @@ class OctaneGGStageTest {
             endDateUTC = "endDate",
             liquipedia = "liquipedia",
             qualifier = false,
-            lan = false
+            lan = false,
         )
 
         assertEquals(
             expected = expectedStage,
-            actual = octaneStage.toEventStage()
+            actual = octaneStage.toEventStage(),
         )
     }
 
@@ -50,12 +50,12 @@ class OctaneGGStageTest {
             endDateUTC = null,
             liquipedia = "",
             qualifier = false,
-            lan = false
+            lan = false,
         )
 
         assertEquals(
             expected = expectedStage,
-            actual = octaneStage.toEventStage()
+            actual = octaneStage.toEventStage(),
         )
     }
 }

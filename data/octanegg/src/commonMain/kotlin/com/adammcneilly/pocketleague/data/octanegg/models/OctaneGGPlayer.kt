@@ -28,7 +28,7 @@ data class OctaneGGPlayer(
     @SerialName("tag")
     val tag: String? = null,
     @SerialName("team")
-    val team: OctaneGGTeamOverview? = null
+    val team: OctaneGGTeamOverview? = null,
 )
 
 /**
@@ -39,6 +39,6 @@ fun OctaneGGPlayer.toPlayer(): Player {
         id = this.id.orEmpty(),
         slug = this.slug.orEmpty(),
         tag = this.tag.orEmpty(),
-        country = this.country.orEmpty()
+        country = this.country.orEmpty(),
     )
 }

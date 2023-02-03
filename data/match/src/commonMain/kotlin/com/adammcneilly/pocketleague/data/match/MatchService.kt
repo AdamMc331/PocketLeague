@@ -13,7 +13,7 @@ interface MatchService {
      * Fetches detailed information about a [Match] using the supplied [matchId].
      */
     suspend fun fetchMatchDetail(
-        matchId: String
+        matchId: String,
     ): DataState<Match>
 
     /**
@@ -31,6 +31,6 @@ interface MatchService {
      */
     fun getMatchesForEventStage(
         eventId: String,
-        stageId: String
+        stageId: String,
     ): Flow<List<Match>>
 }

@@ -28,7 +28,7 @@ fun MatchWithEventAndTeams.toMatch(): Match {
         stage = mapEventStage(),
         format = mapFormat(),
         // NEED TO STORE GAME INFO
-        gameOverviews = emptyList()
+        gameOverviews = emptyList(),
     )
 }
 
@@ -45,12 +45,12 @@ private fun MatchWithEventAndTeams.mapEvent() = Event(
     region = EventRegion.valueOf(this.localEventRegion),
     lan = this.localEventLan,
     // Need to store prize
-    prize = null
+    prize = null,
 )
 
 private fun MatchWithEventAndTeams.mapFormat() = Format(
     type = this.localMatchFormatType,
-    length = this.localMatchFormatLength.toInt()
+    length = this.localMatchFormatLength.toInt(),
 )
 
 private fun mapEventStage() = EventStage(
@@ -61,12 +61,12 @@ private fun mapEventStage() = EventStage(
     endDateUTC = "TODO",
     liquipedia = "TODO",
     qualifier = false,
-    lan = false
+    lan = false,
 )
 
 private fun MatchWithEventAndTeams.mapBlueTeamResult(
     blueTeamGameWins: Int,
-    blueTeamWinner: Boolean
+    blueTeamWinner: Boolean,
 ) = MatchTeamResult(
     score = blueTeamGameWins,
     winner = blueTeamWinner,
@@ -74,7 +74,7 @@ private fun MatchWithEventAndTeams.mapBlueTeamResult(
         id = this.blueTeamId,
         name = this.blueTeamName,
         imageUrl = this.blueTeamImageURL,
-        isFavorite = this.blueTeamIsFavorite
+        isFavorite = this.blueTeamIsFavorite,
     ),
     stats = Stats(
         core = CoreStats(
@@ -83,16 +83,16 @@ private fun MatchWithEventAndTeams.mapBlueTeamResult(
             saves = this.localMatchBlueTeamTotalSaves.toInt(),
             assists = this.localMatchBlueTeamTotalAssists.toInt(),
             score = this.localMatchBlueTeamTotalScore.toInt(),
-            shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat()
-        )
+            shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat(),
+        ),
     ),
     // We should store these
-    players = emptyList()
+    players = emptyList(),
 )
 
 private fun MatchWithEventAndTeams.mapOrangeTeamResult(
     orangeTeamGameWins: Int,
-    orangeTeamWinner: Boolean
+    orangeTeamWinner: Boolean,
 ) = MatchTeamResult(
     score = orangeTeamGameWins,
     winner = orangeTeamWinner,
@@ -100,7 +100,7 @@ private fun MatchWithEventAndTeams.mapOrangeTeamResult(
         id = this.orangeTeamId,
         name = this.orangeTeamName,
         imageUrl = this.orangeTeamImageURL,
-        isFavorite = this.orangeTeamIsFavorite
+        isFavorite = this.orangeTeamIsFavorite,
     ),
     stats = Stats(
         core = CoreStats(
@@ -109,9 +109,9 @@ private fun MatchWithEventAndTeams.mapOrangeTeamResult(
             saves = this.localMatchOrangeTeamTotalSaves.toInt(),
             assists = this.localMatchOrangeTeamTotalAssists.toInt(),
             score = this.localMatchOrangeTeamTotalScore.toInt(),
-            shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat()
-        )
+            shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat(),
+        ),
     ),
     // We should store these
-    players = emptyList()
+    players = emptyList(),
 )

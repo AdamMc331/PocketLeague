@@ -6,7 +6,7 @@ package com.adammcneilly.pocketleague.core.models
  */
 data class Format(
     val type: String = "",
-    val length: Int = 0
+    val length: Int = 0,
 ) {
 
     /**

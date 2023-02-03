@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.core.models.EventRegion
  */
 data class EventRegionDisplayModel(
     val name: String,
-    val description: String
+    val description: String,
 )
 
 /**
@@ -45,6 +45,6 @@ fun EventRegion.toDisplayModel(): EventRegionDisplayModel {
 
     return EventRegionDisplayModel(
         name = name,
-        description = description
+        description = description,
     )
 }

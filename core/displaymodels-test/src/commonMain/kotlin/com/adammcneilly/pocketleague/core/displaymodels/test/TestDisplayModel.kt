@@ -16,38 +16,38 @@ object TestDisplayModel {
         goals = 7,
         assists = 5,
         saves = 3,
-        shots = 1
+        shots = 1,
     )
 
     val cheese = PlayerDisplayModel(
         id = "cheeseId",
-        tag = "CHEESE"
+        tag = "CHEESE",
     )
 
     val sosa = PlayerDisplayModel(
         id = "sosaId",
-        tag = "sosa"
+        tag = "sosa",
     )
 
     val zps = PlayerDisplayModel(
         id = "zpsId",
-        tag = "ZPS"
+        tag = "ZPS",
     )
 
     val knights = TeamOverviewDisplayModel(
         teamId = "6020bd98f1e4807cc700dc08",
         name = "Knights",
         imageUrl = ThemedImageURL(
-            lightThemeImageURL = "https://griffon.octane.gg/teams/pittsburgh-knights.png"
-        )
+            lightThemeImageURL = "https://griffon.octane.gg/teams/pittsburgh-knights.png",
+        ),
     )
 
     val g2 = TeamOverviewDisplayModel(
         teamId = "6020bc70f1e4807cc70023a5",
         name = "G2 Esports",
         imageUrl = ThemedImageURL(
-            lightThemeImageURL = "https://griffon.octane.gg/teams/g2-esports.png"
-        )
+            lightThemeImageURL = "https://griffon.octane.gg/teams/g2-esports.png",
+        ),
     )
 
     val matchTeamResultWinner = MatchTeamResultDisplayModel(
@@ -55,7 +55,7 @@ object TestDisplayModel {
         score = 7,
         winner = true,
         coreStats = coreStats,
-        players = emptyList()
+        players = emptyList(),
     )
 
     val matchTeamResultLoser = MatchTeamResultDisplayModel(
@@ -63,7 +63,7 @@ object TestDisplayModel {
         score = 1,
         winner = false,
         coreStats = coreStats,
-        players = emptyList()
+        players = emptyList(),
     )
 
     val matchDetailBlueWinner = MatchDetailDisplayModel(
@@ -74,26 +74,26 @@ object TestDisplayModel {
         stageName = "Playoffs",
         relativeDateTime = "1d ago",
         orangeTeamResult = matchTeamResultLoser,
-        blueTeamResult = matchTeamResultWinner
+        blueTeamResult = matchTeamResultWinner,
     )
 
     val matchDetailOrangeWinner = matchDetailBlueWinner.copy(
         orangeTeamResult = matchTeamResultWinner,
-        blueTeamResult = matchTeamResultLoser
+        blueTeamResult = matchTeamResultLoser,
     )
 
     val gameTeamResultWinner = GameTeamResultDisplayModel(
         team = knights,
         goals = 7,
         winner = true,
-        players = emptyList()
+        players = emptyList(),
     )
 
     val gameTeamResultLoser = GameTeamResultDisplayModel(
         team = g2,
         goals = 1,
         winner = false,
-        players = emptyList()
+        players = emptyList(),
     )
 
     val gameDetailBlueWinner = GameDetailDisplayModel(
@@ -101,12 +101,12 @@ object TestDisplayModel {
         blueTeamResult = gameTeamResultWinner,
         map = "Wasteland",
         gameNumber = "1",
-        otLabel = null
+        otLabel = null,
     )
 
     val gameDetailOrangeWinner = gameDetailBlueWinner.copy(
         orangeTeamResult = gameTeamResultWinner,
-        blueTeamResult = gameTeamResultLoser
+        blueTeamResult = gameTeamResultLoser,
     )
 
     val eventStageSummary = EventStageSummaryDisplayModel(
@@ -115,6 +115,6 @@ object TestDisplayModel {
         startDate = "Jan 01, 2000",
         endDate = "Jan 02, 2000",
         lan = false,
-        liquipedia = "liquipediaURL"
+        liquipedia = "liquipediaURL",
     )
 }

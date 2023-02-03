@@ -36,7 +36,7 @@ data class OctaneGGEvent(
     @SerialName("groups")
     val groups: List<String>? = null,
     @SerialName("lan")
-    val lan: Boolean? = null
+    val lan: Boolean? = null,
 )
 
 /**
@@ -54,7 +54,7 @@ fun OctaneGGEvent?.toEvent(): Event {
         mode = this?.mode?.toString().orEmpty(),
         region = this?.region.toEventRegion(),
         lan = this?.lan ?: false,
-        prize = this?.prize?.toPrize()
+        prize = this?.prize?.toPrize(),
     )
 }
 

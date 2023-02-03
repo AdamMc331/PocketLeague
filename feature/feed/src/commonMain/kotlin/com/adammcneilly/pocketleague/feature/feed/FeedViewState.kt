@@ -16,7 +16,7 @@ data class FeedViewState(
     },
     val upcomingEvents: List<EventSummaryDisplayModel> = List(3) {
         EventSummaryDisplayModel.placeholder
-    }
+    },
 ) : ScreenState {
 
     override val title: String? = null

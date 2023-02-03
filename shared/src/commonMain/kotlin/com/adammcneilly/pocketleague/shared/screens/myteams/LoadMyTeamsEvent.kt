@@ -20,7 +20,7 @@ fun Events.loadMyTeams() = screenCoroutine { scope ->
 }
 
 private suspend fun Events.fetchFavoriteTeams(
-    scope: CoroutineScope
+    scope: CoroutineScope,
 ) {
     appModule
         .dataModule
@@ -29,7 +29,7 @@ private suspend fun Events.fetchFavoriteTeams(
         .onEach { favoriteTeamsList ->
             stateManager.updateScreen(MyTeamsViewState::class) { currentState ->
                 currentState.copy(
-                    teams = favoriteTeamsList.map(Team::toOverviewDisplayModel)
+                    teams = favoriteTeamsList.map(Team::toOverviewDisplayModel),
                 )
             }
 
@@ -40,7 +40,7 @@ private suspend fun Events.fetchFavoriteTeams(
 
 private suspend fun Events.fetchAllRecentMatches(
     teams: List<Team>,
-    scope: CoroutineScope
+    scope: CoroutineScope,
 ) {
     val matchesRequests = teams.map { team ->
         scope.async {
@@ -62,7 +62,7 @@ private suspend fun Events.fetchAllRecentMatches(
 
     stateManager.updateScreen(MyTeamsViewState::class) { currentState ->
         currentState.copy(
-            recentMatches = sortedMatches
+            recentMatches = sortedMatches,
         )
     }
 }
@@ -72,7 +72,7 @@ private suspend fun Events.fetchAllRecentMatches(
  * that data state to be combined with other teams in [fetchAllRecentMatches].
  */
 private fun Events.fetchRecentMatchesForTeam(
-    team: Team
+    team: Team,
 ): DataState<List<Match>> {
 //    val matchListRequest = MatchListRequest(
 //        team = team.id,

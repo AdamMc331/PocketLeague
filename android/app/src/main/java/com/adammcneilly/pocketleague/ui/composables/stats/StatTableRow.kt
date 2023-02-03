@@ -30,7 +30,7 @@ fun StatTableRow(
     title: String,
     cells: List<String>,
     boldCells: Boolean = false,
-    textStyle: TextStyle = LocalTextStyle.current
+    textStyle: TextStyle = LocalTextStyle.current,
 ) {
     val fontWeight: FontWeight? = if (boldCells) {
         FontWeight.Bold
@@ -43,21 +43,21 @@ fun StatTableRow(
             .fillMaxWidth()
             .padding(
                 horizontal = 8.dp,
-                vertical = 4.dp
+                vertical = 4.dp,
             ),
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         TitleCell(
             title = title,
             fontWeight = fontWeight,
-            textStyle = textStyle
+            textStyle = textStyle,
         )
 
         cells.forEach { stat ->
             StatCell(
                 text = stat,
                 fontWeight = fontWeight,
-                textStyle = textStyle
+                textStyle = textStyle,
             )
         }
     }
@@ -67,7 +67,7 @@ fun StatTableRow(
 private fun RowScope.TitleCell(
     title: String,
     fontWeight: FontWeight?,
-    textStyle: TextStyle
+    textStyle: TextStyle,
 ) {
     Text(
         text = title,
@@ -76,7 +76,7 @@ private fun RowScope.TitleCell(
         fontWeight = fontWeight,
         modifier = Modifier.Companion
             .weight(2F),
-        style = textStyle
+        style = textStyle,
     )
 }
 
@@ -84,7 +84,7 @@ private fun RowScope.TitleCell(
 private fun RowScope.StatCell(
     text: String,
     fontWeight: FontWeight?,
-    textStyle: TextStyle
+    textStyle: TextStyle,
 ) {
     Text(
         text = text,
@@ -94,6 +94,6 @@ private fun RowScope.StatCell(
         fontWeight = fontWeight,
         modifier = Modifier
             .weight(1F),
-        style = textStyle
+        style = textStyle,
     )
 }

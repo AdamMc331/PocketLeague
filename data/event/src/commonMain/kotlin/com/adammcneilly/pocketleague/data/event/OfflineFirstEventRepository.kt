@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.onStart
  */
 class OfflineFirstEventRepository(
     private val localEventService: LocalEventService,
-    private val remoteEventService: RemoteEventService
+    private val remoteEventService: RemoteEventService,
 ) : EventRepository {
     override fun getUpcomingEvents(): Flow<List<Event>> {
         return localEventService
@@ -61,13 +61,13 @@ class OfflineFirstEventRepository(
                     is DataState.Error -> {
                         println(
                             "Unable to request event participants for event " +
-                                "$eventId: ${remoteResponse.error.message}"
+                                "$eventId: ${remoteResponse.error.message}",
                         )
                     }
                     is DataState.Success -> {
                         localEventService.insertEventParticipants(
                             teams = remoteResponse.data,
-                            eventId = eventId
+                            eventId = eventId,
                         )
                     }
                 }

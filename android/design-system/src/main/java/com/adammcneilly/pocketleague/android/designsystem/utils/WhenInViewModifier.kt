@@ -17,7 +17,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
  */
 @Composable
 fun Modifier.whenInView(
-    callback: () -> Unit
+    callback: () -> Unit,
 ): Modifier = composed {
     var hasBeenShown by remember { mutableStateOf(false) }
 

@@ -45,8 +45,8 @@ class GameListItemPaparazziTest {
         paparazzi.snapshotScreen(useDarkTheme) {
             GameListItem(
                 displayModel = TestDisplayModel.gameDetailBlueWinner.copy(
-                    otLabel = "OT +1:23"
-                )
+                    otLabel = "OT +1:23",
+                ),
             )
         }
     }

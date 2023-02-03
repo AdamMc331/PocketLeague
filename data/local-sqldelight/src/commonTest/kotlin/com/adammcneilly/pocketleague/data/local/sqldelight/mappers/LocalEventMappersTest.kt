@@ -24,7 +24,7 @@ class LocalEventMappersTest {
             region = "NA",
             lan = false,
             prizeAmount = 10.0,
-            prizeCurrency = "USD"
+            prizeCurrency = "USD",
         )
 
         val domainEvent = localEvent.toEvent()
@@ -57,7 +57,7 @@ class LocalEventMappersTest {
             region = "NA",
             lan = false,
             prizeAmount = null,
-            prizeCurrency = null
+            prizeCurrency = null,
         )
 
         val domainEvent = localEvent.toEvent()

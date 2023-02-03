@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.update
  */
 class FeedPresenter(
     private val eventRepository: EventRepository,
-    private val matchRepository: MatchRepository
+    private val matchRepository: MatchRepository,
 ) : PocketLeaguePresenter<FeedViewState> {
 
     private val _state = MutableStateFlow(FeedViewState())
@@ -47,7 +47,7 @@ class FeedPresenter(
 
                 _state.update {
                     it.copy(
-                        recentMatches = displayModels
+                        recentMatches = displayModels,
                     )
                 }
             }
@@ -62,7 +62,7 @@ class FeedPresenter(
 
                 _state.update {
                     it.copy(
-                        ongoingEvents = displayModels
+                        ongoingEvents = displayModels,
                     )
                 }
             }
@@ -77,7 +77,7 @@ class FeedPresenter(
 
                 _state.update {
                     it.copy(
-                        upcomingEvents = displayModels
+                        upcomingEvents = displayModels,
                     )
                 }
             }

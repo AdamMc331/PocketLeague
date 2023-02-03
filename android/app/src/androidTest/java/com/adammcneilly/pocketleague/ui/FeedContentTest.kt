@@ -20,7 +20,7 @@ class FeedContentTest {
     @Test
     fun renderEmptyRecentMatches() {
         val viewState = com.adammcneilly.pocketleague.feature.feed.FeedViewState(
-            recentMatches = emptyList()
+            recentMatches = emptyList(),
         )
 
         composeTestRule.setPocketLeagueContent {
@@ -35,7 +35,7 @@ class FeedContentTest {
     @Test
     fun renderWithRecentMatches() {
         val viewState = com.adammcneilly.pocketleague.feature.feed.FeedViewState(
-            recentMatches = listOf(TestDisplayModel.matchDetailBlueWinner)
+            recentMatches = listOf(TestDisplayModel.matchDetailBlueWinner),
         )
 
         composeTestRule.setPocketLeagueContent {

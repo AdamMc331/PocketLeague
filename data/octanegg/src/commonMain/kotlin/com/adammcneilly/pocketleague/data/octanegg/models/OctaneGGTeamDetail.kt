@@ -12,7 +12,7 @@ data class OctaneGGTeamDetail(
     @SerialName("players")
     val players: List<OctaneGGPlayer>? = null,
     @SerialName("team")
-    val team: OctaneGGTeamOverview? = null
+    val team: OctaneGGTeamOverview? = null,
 )
 
 /**

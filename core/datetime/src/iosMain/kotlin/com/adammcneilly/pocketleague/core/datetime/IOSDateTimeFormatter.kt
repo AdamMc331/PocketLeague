@@ -10,7 +10,7 @@ class IOSDateTimeFormatter : DateTimeFormatter {
     override fun formatUTCString(
         utcString: String,
         formatPattern: String,
-        timeZone: TimeZone
+        timeZone: TimeZone,
     ): String? {
         return utcString
     }

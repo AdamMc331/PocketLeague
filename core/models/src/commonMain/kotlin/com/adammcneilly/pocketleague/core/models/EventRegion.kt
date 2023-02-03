@@ -11,5 +11,5 @@ enum class EventRegion {
     ASIA,
     ME,
     INT,
-    Unknown
+    Unknown,
 }

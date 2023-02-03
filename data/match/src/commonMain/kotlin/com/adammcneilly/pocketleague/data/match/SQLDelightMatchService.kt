@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.Flow
  * from the supplied [database].
  */
 class SQLDelightMatchService(
-    private val database: PocketLeagueDB
+    private val database: PocketLeagueDB,
 ) : LocalMatchService {
 
     override fun getMatchDetail(matchId: String): Flow<Match> {
@@ -57,8 +57,8 @@ class SQLDelightMatchService(
                 database.localEventStageQueries
                     .insertFullEventStage(
                         match.stage.toLocalEventStage(
-                            eventId = match.event.id
-                        )
+                            eventId = match.event.id,
+                        ),
                     )
 
                 database.localTeamQueries

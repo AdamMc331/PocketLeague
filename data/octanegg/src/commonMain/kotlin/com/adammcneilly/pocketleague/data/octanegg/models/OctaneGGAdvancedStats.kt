@@ -13,5 +13,5 @@ data class OctaneGGAdvancedStats(
     @SerialName("mvp")
     val mvp: Boolean? = null,
     @SerialName("rating")
-    val rating: Double? = null
+    val rating: Double? = null,
 )

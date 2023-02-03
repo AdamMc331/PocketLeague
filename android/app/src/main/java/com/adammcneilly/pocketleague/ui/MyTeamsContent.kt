@@ -25,18 +25,18 @@ import com.adammcneilly.pocketleague.shared.screens.myteams.MyTeamsViewState
 fun MyTeamsContent(
     viewState: MyTeamsViewState,
     onAddTeamClicked: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxSize(),
     ) {
         val teams = viewState.teams
 
         if (teams != null) {
             LazyRow(
                 contentPadding = PaddingValues(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 items(teams) { team ->
                     FavoriteTeamRowItem(displayModel = team)
@@ -44,7 +44,7 @@ fun MyTeamsContent(
 
                 item {
                     AddFavoriteTeamsCTA(
-                        onClick = onAddTeamClicked
+                        onClick = onAddTeamClicked,
                     )
                 }
             }
@@ -56,7 +56,7 @@ fun MyTeamsContent(
             text = "Recent Matches",
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier
-                .padding(16.dp)
+                .padding(16.dp),
         )
 
         val recentMatches = viewState.recentMatches
@@ -67,7 +67,7 @@ fun MyTeamsContent(
                     matches = recentMatches,
                     onMatchClicked = {
                         // Coming soon!
-                    }
+                    },
                 )
             } else {
                 RecentMatchesEmptyState()

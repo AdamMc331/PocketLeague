@@ -15,6 +15,6 @@ fun Navigation.initTeamSelection(): ScreenInitSettings {
         callOnInit = {
             events.loadTeamSelection()
         },
-        reInitOnEachNavigation = false
+        reInitOnEachNavigation = false,
     )
 }

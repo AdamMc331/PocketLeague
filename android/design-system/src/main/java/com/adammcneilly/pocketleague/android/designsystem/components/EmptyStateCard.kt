@@ -14,16 +14,16 @@ import androidx.compose.ui.text.style.TextAlign
 fun EmptyStateCard(
     text: String,
     modifier: Modifier = Modifier,
-    textModifier: Modifier = Modifier
+    textModifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Text(
             text = text,
             modifier = textModifier
                 .fillMaxWidth(),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
     }
 }

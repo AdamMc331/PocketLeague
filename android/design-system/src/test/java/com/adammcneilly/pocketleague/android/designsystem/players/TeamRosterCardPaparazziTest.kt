@@ -27,10 +27,10 @@ class TeamRosterCardPaparazziTest {
                 players = listOf(
                     TestDisplayModel.cheese,
                     TestDisplayModel.sosa,
-                    TestDisplayModel.zps
+                    TestDisplayModel.zps,
                 ),
                 teamColor = rlcsBlue,
-                useDarkTheme = useDarkTheme
+                useDarkTheme = useDarkTheme,
             )
         }
     }
@@ -42,10 +42,10 @@ class TeamRosterCardPaparazziTest {
                 players = listOf(
                     TestDisplayModel.cheese,
                     TestDisplayModel.sosa,
-                    TestDisplayModel.zps
+                    TestDisplayModel.zps,
                 ),
                 teamColor = rlcsOrange,
-                useDarkTheme = useDarkTheme
+                useDarkTheme = useDarkTheme,
             )
         }
     }

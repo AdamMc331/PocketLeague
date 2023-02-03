@@ -38,6 +38,6 @@ interface LocalEventService {
      */
     suspend fun insertEventParticipants(
         teams: List<Team>,
-        eventId: String
+        eventId: String,
     )
 }

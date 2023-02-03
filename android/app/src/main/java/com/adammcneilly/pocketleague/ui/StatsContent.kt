@@ -12,7 +12,7 @@ import com.adammcneilly.pocketleague.shared.screens.stats.StatsViewState
 @Composable
 fun StatsContent(
     viewState: StatsViewState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(modifier) {
         Text(text = "Stats screen: $viewState")

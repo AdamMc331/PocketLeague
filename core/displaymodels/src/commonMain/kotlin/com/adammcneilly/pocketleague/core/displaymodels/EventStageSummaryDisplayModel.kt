@@ -16,7 +16,7 @@ data class EventStageSummaryDisplayModel(
     val endDate: String,
     val lan: Boolean,
     val liquipedia: String,
-    val isPlaceholder: Boolean = false
+    val isPlaceholder: Boolean = false,
 ) {
 
     companion object {
@@ -27,7 +27,7 @@ data class EventStageSummaryDisplayModel(
             endDate = "",
             lan = false,
             liquipedia = "",
-            isPlaceholder = true
+            isPlaceholder = true,
         )
     }
 
@@ -46,19 +46,19 @@ fun EventStage.toSummaryDisplayModel(): EventStageSummaryDisplayModel {
             dateTimeFormatter.formatUTCString(
                 utcString = startDate,
                 formatPattern = STAGE_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault()
+                timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
         endDate = this.endDateUTC?.let { endDate ->
             dateTimeFormatter.formatUTCString(
                 utcString = endDate,
                 formatPattern = STAGE_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault()
+                timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
         stageId = this.id,
         name = this.name,
         lan = this.lan,
-        liquipedia = this.liquipedia
+        liquipedia = this.liquipedia,
     )
 }

@@ -20,5 +20,5 @@ data class EventStage(
     val endDateUTC: String?,
     val liquipedia: String,
     val qualifier: Boolean,
-    val lan: Boolean
+    val lan: Boolean,
 )

@@ -9,7 +9,7 @@ import io.ktor.client.request.get
  */
 open class BaseKTORClient(
     val baseURL: String,
-    val httpClient: HttpClient
+    val httpClient: HttpClient,
 ) {
     constructor(baseURL: String) : this(baseURL, defaultHttpClient())
 
@@ -20,7 +20,7 @@ open class BaseKTORClient(
      */
     suspend inline fun <reified T : Any> getResponse(
         endpoint: String,
-        params: RemoteParams = emptyMap()
+        params: RemoteParams = emptyMap(),
     ): DataState<T> {
         val url = "$baseURL$endpoint"
 

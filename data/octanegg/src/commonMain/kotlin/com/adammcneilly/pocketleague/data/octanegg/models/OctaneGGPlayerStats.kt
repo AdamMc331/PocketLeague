@@ -16,7 +16,7 @@ data class OctaneGGPlayerStats(
     @SerialName("player")
     val player: OctaneGGPlayer? = null,
     @SerialName("stats")
-    val stats: OctaneGGStats? = null
+    val stats: OctaneGGStats? = null,
 )
 
 /**
@@ -29,6 +29,6 @@ data class OctaneGGPlayerStats(
 fun OctaneGGPlayerStats.toGamePlayerResult(): GamePlayerResult {
     return GamePlayerResult(
         player = this.player?.toPlayer() ?: Player(),
-        stats = this.stats?.toStats() ?: Stats()
+        stats = this.stats?.toStats() ?: Stats(),
     )
 }

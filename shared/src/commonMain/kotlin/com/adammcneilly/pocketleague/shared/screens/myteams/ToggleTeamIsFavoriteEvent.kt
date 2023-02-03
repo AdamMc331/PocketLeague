@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.shared.screens.Events
  */
 fun Events.updateTeamIsFavorite(
     teamId: String,
-    isFavorite: Boolean
+    isFavorite: Boolean,
 ) = screenCoroutine {
     appModule
         .dataModule

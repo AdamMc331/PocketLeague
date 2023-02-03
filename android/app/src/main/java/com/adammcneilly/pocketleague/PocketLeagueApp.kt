@@ -20,14 +20,14 @@ open class PocketLeagueApp : Application() {
 
     open val appModule: AppModule by lazy {
         ProdAppModule(
-            platformModule = AndroidPlatformModule(this)
+            platformModule = AndroidPlatformModule(this),
         )
     }
 
     override fun onCreate() {
         super.onCreate()
         viewModel = DKMPViewModel.Factory.getAndroidInstance(
-            appModule = this.appModule
+            appModule = this.appModule,
         )
 
         val appLifecycleObserver = AppLifecycleObserver(viewModel)

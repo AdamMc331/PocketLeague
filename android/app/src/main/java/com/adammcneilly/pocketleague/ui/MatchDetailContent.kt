@@ -12,18 +12,18 @@ import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailViewS
 @Composable
 fun MatchDetailContent(
     viewState: MatchDetailViewState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxSize(),
     ) {
         val detailDisplayModel = viewState.matchDetail
 
         if (detailDisplayModel != null) {
             MatchDetail(
                 displayModel = detailDisplayModel,
-                games = viewState.games
+                games = viewState.games,
             )
         } else {
             // Show some error UI here.

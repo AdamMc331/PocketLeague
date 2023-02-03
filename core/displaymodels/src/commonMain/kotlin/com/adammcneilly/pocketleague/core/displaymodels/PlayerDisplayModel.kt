@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.core.models.Player
  */
 data class PlayerDisplayModel(
     val id: String,
-    val tag: String
+    val tag: String,
 )
 
 /**
@@ -16,6 +16,6 @@ data class PlayerDisplayModel(
 fun Player.toDisplayModel(): PlayerDisplayModel {
     return PlayerDisplayModel(
         id = this.id,
-        tag = this.tag
+        tag = this.tag,
     )
 }

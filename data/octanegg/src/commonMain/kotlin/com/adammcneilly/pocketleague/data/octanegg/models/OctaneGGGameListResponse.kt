@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class OctaneGGGameListResponse(
     @SerialName("games")
-    val games: List<OctaneGGGame>? = null
+    val games: List<OctaneGGGame>? = null,
 )

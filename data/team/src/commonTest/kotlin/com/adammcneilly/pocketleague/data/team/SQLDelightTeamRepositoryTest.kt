@@ -25,7 +25,7 @@ class SQLDelightTeamRepositoryTest {
     @Test
     fun insertReadFavoriteTeam() = runTest {
         val favoriteTeam = TestModel.team.copy(
-            isFavorite = true
+            isFavorite = true,
         )
 
         val insertedList = listOf(favoriteTeam)
@@ -37,7 +37,7 @@ class SQLDelightTeamRepositoryTest {
             .test {
                 assertEquals(
                     insertedList,
-                    awaitItem()
+                    awaitItem(),
                 )
             }
     }
@@ -45,7 +45,7 @@ class SQLDelightTeamRepositoryTest {
     @Test
     fun insertReadNonFavoriteTeam() = runTest {
         val nonFavoriteTeam = TestModel.team.copy(
-            isFavorite = false
+            isFavorite = false,
         )
 
         val insertedList = listOf(nonFavoriteTeam)
@@ -57,7 +57,7 @@ class SQLDelightTeamRepositoryTest {
             .test {
                 assertEquals(
                     emptyList(),
-                    awaitItem()
+                    awaitItem(),
                 )
             }
     }
@@ -67,7 +67,7 @@ class SQLDelightTeamRepositoryTest {
         val teamList = List(3) {
             TestModel.team.copy(
                 id = it.toString(),
-                isActive = true
+                isActive = true,
             )
         }
 
@@ -78,7 +78,7 @@ class SQLDelightTeamRepositoryTest {
             .test {
                 assertEquals(
                     teamList,
-                    awaitItem()
+                    awaitItem(),
                 )
             }
     }

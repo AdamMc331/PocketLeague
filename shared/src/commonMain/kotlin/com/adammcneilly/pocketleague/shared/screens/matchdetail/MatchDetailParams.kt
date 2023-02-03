@@ -8,5 +8,5 @@ import com.adammcneilly.pocketleague.core.feature.ScreenParams
  * @property[matchId] The identifier of the match to request details for.
  */
 data class MatchDetailParams(
-    val matchId: String
+    val matchId: String,
 ) : ScreenParams

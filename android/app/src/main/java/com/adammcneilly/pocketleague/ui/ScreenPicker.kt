@@ -20,7 +20,7 @@ import com.adammcneilly.pocketleague.shared.screens.myteams.updateTeamIsFavorite
 @Suppress("LongMethod")
 fun Navigation.ScreenPicker(
     screenIdentifier: ScreenIdentifier,
-    paddingValues: PaddingValues = PaddingValues()
+    paddingValues: PaddingValues = PaddingValues(),
 ) {
     when (screenIdentifier.screen) {
         Screens.Feed -> {
@@ -32,39 +32,39 @@ fun Navigation.ScreenPicker(
                     navigate(
                         screen = Screens.MatchDetail,
                         params = MatchDetailParams(
-                            matchId = matchId
-                        )
+                            matchId = matchId,
+                        ),
                     )
                 },
                 onEventClicked = { eventId ->
                     navigate(
                         screen = Screens.EventDetail,
                         params = EventDetailParams(
-                            eventId = eventId
-                        )
+                            eventId = eventId,
+                        ),
                     )
-                }
+                },
             )
         }
         Screens.Stats -> {
             StatsContent(
                 viewState = stateProvider.get(screenIdentifier),
                 modifier = Modifier
-                    .padding(paddingValues)
+                    .padding(paddingValues),
             )
         }
         Screens.Records -> {
             RecordsContent(
                 viewState = stateProvider.get(screenIdentifier),
                 modifier = Modifier
-                    .padding(paddingValues)
+                    .padding(paddingValues),
             )
         }
         Screens.MatchDetail -> {
             MatchDetailContent(
                 viewState = stateProvider.get(screenIdentifier),
                 modifier = Modifier
-                    .padding(paddingValues)
+                    .padding(paddingValues),
             )
         }
         Screens.EventDetail -> {
@@ -75,14 +75,14 @@ fun Navigation.ScreenPicker(
                 onStageClicked = { eventId, stageId ->
                     val params = EventStageDetailParams(
                         eventId = eventId,
-                        stageId = stageId
+                        stageId = stageId,
                     )
 
                     navigate(
                         Screens.EventStageDetail,
-                        params = params
+                        params = params,
                     )
-                }
+                },
             )
         }
         Screens.EventStageDetail -> {
@@ -93,9 +93,9 @@ fun Navigation.ScreenPicker(
                 onMatchClicked = { matchId ->
                     navigate(
                         Screens.MatchDetail,
-                        MatchDetailParams(matchId)
+                        MatchDetailParams(matchId),
                     )
-                }
+                },
             )
         }
         Screens.MyTeams -> {
@@ -105,7 +105,7 @@ fun Navigation.ScreenPicker(
                     .padding(paddingValues),
                 onAddTeamClicked = {
                     navigate(Screens.TeamSelection)
-                }
+                },
             )
         }
 
@@ -118,7 +118,7 @@ fun Navigation.ScreenPicker(
                     }
                 },
                 modifier = Modifier
-                    .padding(paddingValues)
+                    .padding(paddingValues),
             )
         }
     }

@@ -40,18 +40,18 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
 @Composable
 fun RecentMatchCardContent(
     match: MatchDetailDisplayModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier.padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         EventName(match)
 
         RelativeTimeOrLiveIndicator(match)
 
         Spacer(
-            modifier = Modifier.height(8.dp)
+            modifier = Modifier.height(8.dp),
         )
 
         BlueTeamResult(match)
@@ -64,7 +64,7 @@ fun RecentMatchCardContent(
 private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.orangeTeamResult,
-        isPlaceholder = match.isPlaceholder
+        isPlaceholder = match.isPlaceholder,
     )
 }
 
@@ -72,7 +72,7 @@ private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
 private fun BlueTeamResult(match: MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.blueTeamResult,
-        isPlaceholder = match.isPlaceholder
+        isPlaceholder = match.isPlaceholder,
     )
 }
 
@@ -89,9 +89,9 @@ private fun RelativeTimeOrLiveIndicator(match: MatchDetailDisplayModel) {
             .placeholderMaterial(
                 visible = match.isPlaceholder,
                 color = PlaceholderDefaults.color(
-                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant
-                )
-            )
+                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+                ),
+            ),
     )
 }
 
@@ -107,9 +107,9 @@ private fun EventName(match: MatchDetailDisplayModel) {
             .placeholderMaterial(
                 visible = match.isPlaceholder,
                 color = PlaceholderDefaults.color(
-                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant
-                )
-            )
+                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+                ),
+            ),
     )
 }
 
@@ -120,7 +120,7 @@ private fun EventName(match: MatchDetailDisplayModel) {
 @Composable
 private fun MatchTeamResultRow(
     teamResult: MatchTeamResultDisplayModel,
-    isPlaceholder: Boolean
+    isPlaceholder: Boolean,
 ) {
     val fontWeight: FontWeight? = if (teamResult.winner) {
         FontWeight.Bold
@@ -135,19 +135,19 @@ private fun MatchTeamResultRow(
             .placeholderMaterial(
                 visible = isPlaceholder,
                 color = PlaceholderDefaults.color(
-                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant
-                )
-            )
+                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+                ),
+            ),
     ) {
         Text(
             text = teamResult.score.toString(),
-            fontWeight = fontWeight
+            fontWeight = fontWeight,
         )
 
         Text(
             text = teamResult.getDisplayName(),
             fontWeight = fontWeight,
-            inlineContent = teamResult.getInlineContent()
+            inlineContent = teamResult.getInlineContent(),
         )
     }
 }
@@ -173,15 +173,15 @@ private fun MatchTeamResultDisplayModel.getInlineContent(): Map<String, InlineTe
                     Placeholder(
                         width = LocalTextStyle.current.fontSize,
                         height = LocalTextStyle.current.fontSize,
-                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter
-                    )
+                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                    ),
                 ) {
                     Icon(
                         Icons.Default.EmojiEvents,
-                        contentDescription = null
+                        contentDescription = null,
                     )
-                }
-            )
+                },
+            ),
         )
     } else {
         mapOf()

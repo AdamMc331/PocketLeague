@@ -13,7 +13,7 @@ import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
  * [apiClient].
  */
 class OctaneGGGameService(
-    private val apiClient: BaseKTORClient
+    private val apiClient: BaseKTORClient,
 ) : GameService {
 
     constructor() : this(OctaneGGAPIClient)
@@ -22,7 +22,7 @@ class OctaneGGGameService(
         val matchId = request.matchId
 
         return apiClient.getResponse<OctaneGGGameListResponse>(
-            endpoint = "$MATCHES_ENDPOINT/$matchId/games"
+            endpoint = "$MATCHES_ENDPOINT/$matchId/games",
         ).map { gameListResponse ->
             val mappedGames = gameListResponse.games?.map(OctaneGGGame::toGame)
 

@@ -19,20 +19,20 @@ private const val MATCH_CARD_WIDTH_RATIO = 0.8F
 @Composable
 fun MatchesCarousel(
     matches: List<MatchDetailDisplayModel>,
-    onMatchClicked: (String) -> Unit
+    onMatchClicked: (String) -> Unit,
 ) {
     LazyRow(
         contentPadding = PaddingValues(
-            horizontal = 16.dp
+            horizontal = 16.dp,
         ),
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(matches) { match ->
             MatchCard(
                 match = match,
                 onClick = onMatchClicked,
                 modifier = Modifier
-                    .fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO)
+                    .fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO),
             )
         }
     }

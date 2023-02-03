@@ -36,13 +36,13 @@ private const val MAP_TEXT_WEIGHT = 4F
 @Composable
 fun GameListItem(
     displayModel: GameDetailDisplayModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         TeamScore(
             displayModel = displayModel.blueTeamResult,
@@ -51,28 +51,28 @@ fun GameListItem(
             weight = SCORE_TEXT_WEIGHT,
             modifier = Modifier
                 .cardPlaceholder(
-                    visible = displayModel.isPlaceholder
-                )
+                    visible = displayModel.isPlaceholder,
+                ),
         )
 
         Column(
             modifier = Modifier
                 .weight(MAP_TEXT_WEIGHT),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 text = displayModel.map,
                 modifier = Modifier
                     .cardPlaceholder(
-                        visible = displayModel.isPlaceholder
-                    )
+                        visible = displayModel.isPlaceholder,
+                    ),
             )
 
             val otLabel = displayModel.otLabel
 
             if (otLabel != null) {
                 Text(
-                    text = otLabel
+                    text = otLabel,
                 )
             }
         }
@@ -84,8 +84,8 @@ fun GameListItem(
             weight = SCORE_TEXT_WEIGHT,
             modifier = Modifier
                 .cardPlaceholder(
-                    visible = displayModel.isPlaceholder
-                )
+                    visible = displayModel.isPlaceholder,
+                ),
         )
     }
 }
@@ -103,7 +103,7 @@ private fun RowScope.TeamScore(
     showIconFirst: Boolean,
     textAlign: TextAlign,
     weight: Float,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val isWinner = displayModel.winner
 
@@ -139,15 +139,15 @@ private fun RowScope.TeamScore(
                     Placeholder(
                         width = LocalTextStyle.current.fontSize,
                         height = LocalTextStyle.current.fontSize,
-                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter
-                    )
+                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                    ),
                 ) {
                     Icon(
                         Icons.Default.EmojiEvents,
-                        contentDescription = null
+                        contentDescription = null,
                     )
-                }
-            )
+                },
+            ),
         )
     } else {
         mapOf()
@@ -159,6 +159,6 @@ private fun RowScope.TeamScore(
         inlineContent = inlineContent,
         textAlign = textAlign,
         modifier = modifier
-            .weight(weight)
+            .weight(weight),
     )
 }

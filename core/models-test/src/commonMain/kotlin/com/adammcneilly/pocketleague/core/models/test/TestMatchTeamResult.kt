@@ -8,11 +8,11 @@ val TestModel.matchTeamResultWinner: MatchTeamResult
         winner = true,
         team = TestModel.team,
         players = emptyList(),
-        stats = null
+        stats = null,
     )
 
 val TestModel.matchTeamResultLoser: MatchTeamResult
     get() = matchTeamResultWinner.copy(
         score = 1,
-        winner = false
+        winner = false,
     )

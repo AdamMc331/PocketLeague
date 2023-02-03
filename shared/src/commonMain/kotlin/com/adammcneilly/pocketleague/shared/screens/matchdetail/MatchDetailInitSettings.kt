@@ -7,18 +7,18 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenInitSettings
  * Returns the [ScreenInitSettings] for our [com.adammcneilly.pocketleague.shared.screens.Screens.MatchDetail] screen.
  */
 fun Navigation.initMatchDetail(
-    params: MatchDetailParams
+    params: MatchDetailParams,
 ): ScreenInitSettings {
     return ScreenInitSettings(
         title = "Match Detail",
         initState = {
             MatchDetailViewState(
-                matchId = params.matchId
+                matchId = params.matchId,
             )
         },
         callOnInit = {
             events.loadMatchDetail(params.matchId)
         },
-        reInitOnEachNavigation = false
+        reInitOnEachNavigation = false,
     )
 }

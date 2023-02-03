@@ -61,5 +61,5 @@ data class OctaneGGPositioningStats(
     @SerialName("timeOffensiveHalf")
     val timeOffensiveHalf: Double? = null,
     @SerialName("timeOffensiveThird")
-    val timeOffensiveThird: Double? = null
+    val timeOffensiveThird: Double? = null,
 )

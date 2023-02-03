@@ -25,24 +25,24 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
 @Composable
 fun MatchListItem(
     displayModel: MatchDetailDisplayModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
             text = displayModel.localTime,
             modifier = Modifier
-                .cardPlaceholder(visible = displayModel.isPlaceholder)
+                .cardPlaceholder(visible = displayModel.isPlaceholder),
         )
 
         Column(
             modifier = Modifier
                 .weight(1F),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             MatchTeamResultRow(displayModel = displayModel.blueTeamResult)
 
@@ -53,7 +53,7 @@ fun MatchListItem(
 
 @Composable
 private fun MatchTeamResultRow(
-    displayModel: MatchTeamResultDisplayModel
+    displayModel: MatchTeamResultDisplayModel,
 ) {
     val fontWeight: FontWeight? = if (displayModel.winner) {
         FontWeight.Bold
@@ -64,13 +64,13 @@ private fun MatchTeamResultRow(
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         Text(
             text = displayModel.score.toString(),
             fontWeight = fontWeight,
             modifier = Modifier
-                .cardPlaceholder(visible = displayModel.isPlaceholder)
+                .cardPlaceholder(visible = displayModel.isPlaceholder),
         )
 
         InlineIconText(
@@ -79,7 +79,7 @@ private fun MatchTeamResultRow(
             showIcon = displayModel.winner,
             modifier = Modifier
                 .weight(1F)
-                .cardPlaceholder(visible = displayModel.isPlaceholder)
+                .cardPlaceholder(visible = displayModel.isPlaceholder),
         )
     }
 }

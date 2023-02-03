@@ -12,7 +12,7 @@ data class OctaneGGFormat(
     @SerialName("type")
     val type: String? = null,
     @SerialName("length")
-    val length: Int? = null
+    val length: Int? = null,
 )
 
 /**
@@ -21,6 +21,6 @@ data class OctaneGGFormat(
 fun OctaneGGFormat?.toFormat(): Format {
     return Format(
         type = this?.type.orEmpty(),
-        length = this?.length ?: 0
+        length = this?.length ?: 0,
     )
 }

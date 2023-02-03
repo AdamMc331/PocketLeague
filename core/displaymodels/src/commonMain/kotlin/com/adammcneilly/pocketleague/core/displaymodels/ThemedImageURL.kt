@@ -7,5 +7,5 @@ package com.adammcneilly.pocketleague.core.displaymodels
  */
 data class ThemedImageURL(
     val lightThemeImageURL: String? = null,
-    val darkThemeImageURL: String? = lightThemeImageURL
+    val darkThemeImageURL: String? = lightThemeImageURL,
 )

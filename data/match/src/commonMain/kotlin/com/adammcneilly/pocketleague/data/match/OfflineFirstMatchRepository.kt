@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.onStart
  */
 class OfflineFirstMatchRepository(
     private val localDataSource: LocalMatchService,
-    private val remoteDataSource: RemoteMatchService
+    private val remoteDataSource: RemoteMatchService,
 ) : MatchRepository {
 
     override fun getMatchDetail(matchId: String): Flow<Match> {

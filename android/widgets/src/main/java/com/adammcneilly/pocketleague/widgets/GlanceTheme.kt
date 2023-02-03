@@ -65,7 +65,7 @@ data class ColorProviders(
     val inverseSurface: ColorProvider,
     val inversePrimary: ColorProvider,
     val inverseTextColorPrimary: ColorProvider,
-    val inverseTextColorSecondary: ColorProvider
+    val inverseTextColorSecondary: ColorProvider,
 )
 
 /**
@@ -104,6 +104,6 @@ fun dynamicThemeColorProviders(): ColorProviders {
         inverseSurface = ColorProvider(R.color.colorSurfaceInverse),
         inversePrimary = ColorProvider(R.color.colorPrimaryInverse),
         inverseTextColorPrimary = ColorProvider(R.color.textColorPrimaryInverse),
-        inverseTextColorSecondary = ColorProvider(R.color.textColorSecondaryInverse)
+        inverseTextColorSecondary = ColorProvider(R.color.textColorSecondaryInverse),
     )
 }

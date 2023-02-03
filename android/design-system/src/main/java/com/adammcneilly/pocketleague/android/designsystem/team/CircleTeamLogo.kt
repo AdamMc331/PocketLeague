@@ -35,7 +35,7 @@ fun CircleTeamLogo(
     displayModel: TeamOverviewDisplayModel,
     modifier: Modifier = Modifier,
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
-    contentColor: Color = contentColorFor(backgroundColor = backgroundColor)
+    contentColor: Color = contentColorFor(backgroundColor = backgroundColor),
 ) {
     val imageUrl = displayModel.imageUrl.getForTheme()
 
@@ -57,19 +57,19 @@ private fun TeamLetterLogo(
     modifier: Modifier,
     backgroundColor: Color,
     displayModel: TeamOverviewDisplayModel,
-    contentColor: Color
+    contentColor: Color,
 ) {
     BoxWithConstraints(
         modifier = modifier
             .background(
                 color = backgroundColor,
-                shape = CircleShape
+                shape = CircleShape,
             )
             .border(
                 width = 1.dp,
                 color = contentColor,
-                shape = CircleShape
-            )
+                shape = CircleShape,
+            ),
     ) {
         val textSizeSp = with(LocalDensity.current) {
             val sizeInPx = (maxHeight * 0.50F).toPx()
@@ -82,7 +82,7 @@ private fun TeamLetterLogo(
             fontSize = textSizeSp,
             lineHeight = textSizeSp,
             modifier = Modifier
-                .align(Alignment.Center)
+                .align(Alignment.Center),
         )
     }
 }
@@ -95,17 +95,17 @@ private fun RemoteImage(imageUrl: String?, modifier: Modifier) {
             .crossfade(true)
             .build(),
         contentDescription = "Team Image",
-        modifier = modifier
+        modifier = modifier,
     )
 }
 
 @Preview(
     name = "Night Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Preview(
     name = "Night Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
 private fun CircleTeamLogoDefaultPreview() {
@@ -114,14 +114,14 @@ private fun CircleTeamLogoDefaultPreview() {
         teamId = "",
         name = "Knights",
         isPlaceholder = false,
-        isFavorite = false
+        isFavorite = false,
     )
 
     PocketLeagueTheme {
         CircleTeamLogo(
             displayModel = displayModel,
             modifier = Modifier
-                .size(48.dp)
+                .size(48.dp),
         )
     }
 }

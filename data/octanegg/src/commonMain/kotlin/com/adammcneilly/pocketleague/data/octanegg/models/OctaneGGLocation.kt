@@ -13,5 +13,5 @@ data class OctaneGGLocation(
     @SerialName("country")
     val country: String? = null,
     @SerialName("venue")
-    val venue: String? = null
+    val venue: String? = null,
 )

@@ -22,7 +22,7 @@ import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 @Composable
 fun Navigation.Level1BottomBar(
     selectedTab: ScreenIdentifier,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     NavigationBar(
         content = {
@@ -30,13 +30,13 @@ fun Navigation.Level1BottomBar(
                 icon = { Icon(Icons.Default.Feed, "Feed") },
                 label = { Text("FEED") },
                 selected = selectedTab.uri == Level1Navigation.Feed.screenIdentifier.uri,
-                onClick = { navigateByLevel1Menu(Level1Navigation.Feed) }
+                onClick = { navigateByLevel1Menu(Level1Navigation.Feed) },
             )
             NavigationBarItem(
                 icon = { Icon(Icons.Default.Bookmarks, "My Teams") },
                 label = { Text("MY TEAMS") },
                 selected = selectedTab.uri == Level1Navigation.MyTeams.screenIdentifier.uri,
-                onClick = { navigateByLevel1Menu(Level1Navigation.MyTeams) }
+                onClick = { navigateByLevel1Menu(Level1Navigation.MyTeams) },
             )
 //            NavigationBarItem(
 //                icon = { Icon(Icons.Default.BarChart, "Stats") },
@@ -51,6 +51,6 @@ fun Navigation.Level1BottomBar(
 //                onClick = { navigateByLevel1Menu(Level1Navigation.Records) },
 //            )
         },
-        modifier = modifier
+        modifier = modifier,
     )
 }

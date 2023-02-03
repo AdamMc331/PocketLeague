@@ -22,7 +22,7 @@ class AnimatableStatComparisonTest : ScreenshotTest {
         composeTestRule.setContent {
             AnimatableStatComparison(
                 blueTeamValue = 1,
-                orangeTeamValue = 1
+                orangeTeamValue = 1,
             )
         }
 

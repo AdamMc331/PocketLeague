@@ -15,9 +15,9 @@ fun RecentMatchesEmptyState() {
         text = "There are no recent match results.",
         modifier = Modifier
             .padding(
-                horizontal = 16.dp
+                horizontal = 16.dp,
             ),
         textModifier = Modifier
-            .padding(32.dp)
+            .padding(32.dp),
     )
 }

@@ -17,18 +17,18 @@ import com.adammcneilly.pocketleague.shared.screens.teamselection.TeamSelectionV
 fun TeamSelectionContent(
     viewState: TeamSelectionViewState,
     listItemClickListener: TeamSelectionListItemClickListener,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         val teams = viewState.teams
 
         itemsIndexed(teams) { index, team ->
             TeamSelectionListItem(
                 team = team,
-                clickListener = listItemClickListener
+                clickListener = listItemClickListener,
             )
 
             if (index != teams.lastIndex) {

@@ -27,7 +27,7 @@ class TeamSelectionListItemPaparazziTest {
                     override fun onFavoriteChanged(teamId: String, isFavorite: Boolean) {
                         TODO("Not yet implemented")
                     }
-                }
+                },
             )
         }
     }
@@ -41,7 +41,7 @@ class TeamSelectionListItemPaparazziTest {
                     override fun onFavoriteChanged(teamId: String, isFavorite: Boolean) {
                         TODO("Not yet implemented")
                     }
-                }
+                },
             )
         }
     }

@@ -8,7 +8,7 @@ import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueThem
  * Helper function that renders the supplied [content] inside a [PocketLeagueTheme].
  */
 fun ComposeContentTestRule.setPocketLeagueContent(
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     this.setContent {
         PocketLeagueTheme {

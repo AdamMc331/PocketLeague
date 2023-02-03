@@ -8,5 +8,5 @@ data class MatchTeamResult(
     val winner: Boolean = false,
     val team: Team = Team(),
     val players: List<GamePlayerResult> = emptyList(),
-    val stats: Stats? = null
+    val stats: Stats? = null,
 )

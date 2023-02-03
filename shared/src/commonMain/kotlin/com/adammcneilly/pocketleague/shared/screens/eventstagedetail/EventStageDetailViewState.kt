@@ -11,7 +11,7 @@ import com.adammcneilly.pocketleague.core.models.EventStage
 data class EventStageDetailViewState(
     val eventId: String = "",
     val stageId: String = "",
-    val matchesDataState: MatchDetailsByDateDisplayModel? = null
+    val matchesDataState: MatchDetailsByDateDisplayModel? = null,
 ) : ScreenState {
 
     override val title: String? = null
@@ -24,7 +24,7 @@ data class EventStageDetailViewState(
 
             MatchDetailsByDateDisplayModel(
                 matchesByDate = matchesByDate,
-                isPlaceholder = true
+                isPlaceholder = true,
             )
         }
 }

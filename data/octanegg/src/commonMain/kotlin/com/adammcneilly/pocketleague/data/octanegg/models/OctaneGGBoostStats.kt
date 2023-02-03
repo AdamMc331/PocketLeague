@@ -63,5 +63,5 @@ data class OctaneGGBoostStats(
     @SerialName("timeFullBoost")
     val timeFullBoost: Double? = null,
     @SerialName("timeZeroBoost")
-    val timeZeroBoost: Double? = null
+    val timeZeroBoost: Double? = null,
 )

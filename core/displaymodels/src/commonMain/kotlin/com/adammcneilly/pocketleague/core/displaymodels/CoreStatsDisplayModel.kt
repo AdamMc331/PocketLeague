@@ -11,7 +11,7 @@ data class CoreStatsDisplayModel(
     val assists: Int,
     val saves: Int,
     val shots: Int,
-    val placeholder: Boolean = false
+    val placeholder: Boolean = false,
 ) {
 
     companion object {
@@ -21,7 +21,7 @@ data class CoreStatsDisplayModel(
             assists = 0,
             saves = 0,
             shots = 0,
-            placeholder = true
+            placeholder = true,
         )
     }
 }
@@ -35,6 +35,6 @@ fun CoreStats.toDisplayModel(): CoreStatsDisplayModel {
         goals = this.goals,
         assists = this.assists,
         saves = this.saves,
-        shots = this.shots
+        shots = this.shots,
     )
 }

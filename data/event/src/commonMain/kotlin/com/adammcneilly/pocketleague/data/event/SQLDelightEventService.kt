@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.combine
  * the local [database].
  */
 class SQLDelightEventService(
-    private val database: PocketLeagueDB
+    private val database: PocketLeagueDB,
 ) : LocalEventService {
 
     override fun getUpcomingEvents(): Flow<List<Event>> {
@@ -47,7 +47,7 @@ class SQLDelightEventService(
         return eventFlow
             .combine(stagesFlow) { event, stages ->
                 event.copy(
-                    stages = stages
+                    stages = stages,
                 )
             }
     }
@@ -91,8 +91,8 @@ class SQLDelightEventService(
                 .insertEventParticipant(
                     LocalEventParticipant(
                         eventId = eventId,
-                        teamId = team.id
-                    )
+                        teamId = team.id,
+                    ),
                 )
         }
     }

@@ -5,5 +5,5 @@ package com.adammcneilly.pocketleague.core.models
  */
 data class GamePlayerResult(
     val player: Player,
-    val stats: Stats
+    val stats: Stats,
 )

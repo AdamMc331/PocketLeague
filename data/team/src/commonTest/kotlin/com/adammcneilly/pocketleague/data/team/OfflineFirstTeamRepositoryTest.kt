@@ -22,7 +22,7 @@ class OfflineFirstTeamRepositoryTest {
 
         repository = OfflineFirstTeamRepository(
             localDataSource = localDataSource,
-            remoteDataSource = remoteDataSource
+            remoteDataSource = remoteDataSource,
         )
     }
 
@@ -36,7 +36,7 @@ class OfflineFirstTeamRepositoryTest {
             .test {
                 assertEquals(
                     localFavoriteTeams,
-                    awaitItem()
+                    awaitItem(),
                 )
 
                 awaitComplete()
@@ -66,7 +66,7 @@ class OfflineFirstTeamRepositoryTest {
                 // Should return local teams
                 assertEquals(
                     localActiveTeams,
-                    awaitItem()
+                    awaitItem(),
                 )
 
                 awaitComplete()
@@ -74,13 +74,13 @@ class OfflineFirstTeamRepositoryTest {
                 // Ensure remote teams got inserted to local
                 assertEquals(
                     remoteActiveTeams,
-                    localDataSource.insertedTeams
+                    localDataSource.insertedTeams,
                 )
 
                 // Ensure remote insert call didn't happen
                 assertEquals(
                     emptyList(),
-                    remoteDataSource.insertedTeams
+                    remoteDataSource.insertedTeams,
                 )
             }
     }

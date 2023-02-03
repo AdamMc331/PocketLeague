@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.onEach
  */
 fun Events.loadEventStageDetail(
     eventId: String,
-    stageId: String
+    stageId: String,
 ) = screenCoroutine {
     fetchMatchesForStage(eventId, stageId, it)
 }
@@ -22,14 +22,14 @@ fun Events.loadEventStageDetail(
 private fun Events.fetchMatchesForStage(
     eventId: String,
     stageId: String,
-    scope: CoroutineScope
+    scope: CoroutineScope,
 ) {
     appModule
         .dataModule
         .matchRepository
         .getMatchesForEventStage(
             eventId = eventId,
-            stageId = stageId
+            stageId = stageId,
         )
         .onEach { matchList ->
             val sortedMatches = matchList.sortedBy(Match::dateUTC)
@@ -39,7 +39,7 @@ private fun Events.fetchMatchesForStage(
 
             stateManager.updateScreen(EventStageDetailViewState::class) { currentState ->
                 currentState.copy(
-                    matchesDataState = matchesByDateDisplayModel
+                    matchesDataState = matchesByDateDisplayModel,
                 )
             }
         }

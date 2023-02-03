@@ -32,7 +32,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 fun MatchDetail(
     displayModel: MatchDetailDisplayModel,
     games: List<GameDetailDisplayModel>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val selectedGame: MutableState<GameDetailDisplayModel?> = remember {
         mutableStateOf(null)
@@ -43,19 +43,19 @@ fun MatchDetail(
             displayModel = game,
             onDismissRequest = {
                 selectedGame.value = null
-            }
+            },
         )
     }
 
     LazyColumn(
         modifier = modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         item {
             MatchDetailHeader(
                 displayModel = displayModel,
                 modifier = Modifier
-                    .padding(24.dp)
+                    .padding(24.dp),
             )
         }
 
@@ -64,7 +64,7 @@ fun MatchDetail(
                 text = "Games",
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier
-                    .padding(horizontal = 24.dp)
+                    .padding(horizontal = 24.dp),
             )
         }
 
@@ -74,7 +74,7 @@ fun MatchDetail(
                     games = games,
                     onGameClicked = { game ->
                         selectedGame.value = game
-                    }
+                    },
                 )
             }
         } else {
@@ -85,7 +85,7 @@ fun MatchDetail(
                         .fillMaxWidth()
                         .padding(16.dp),
                     textModifier = Modifier
-                        .padding(32.dp)
+                        .padding(32.dp),
                 )
             }
         }
@@ -105,7 +105,7 @@ private fun LazyListScope.matchStats(displayModel: MatchDetailDisplayModel) {
             text = "Match Stats",
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = 24.dp),
         )
     }
 
@@ -115,7 +115,7 @@ private fun LazyListScope.matchStats(displayModel: MatchDetailDisplayModel) {
             orangeTeamStats = orangeStats,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(16.dp),
         )
     }
 }
@@ -133,7 +133,7 @@ private fun LazyListScope.teamRosters(displayModel: MatchDetailDisplayModel) {
             text = displayModel.blueTeamResult.team.name,
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = 24.dp),
         )
     }
 
@@ -144,7 +144,7 @@ private fun LazyListScope.teamRosters(displayModel: MatchDetailDisplayModel) {
             },
             teamColor = rlcsBlue,
             modifier = Modifier
-                .padding(24.dp)
+                .padding(24.dp),
         )
     }
 
@@ -153,7 +153,7 @@ private fun LazyListScope.teamRosters(displayModel: MatchDetailDisplayModel) {
             text = displayModel.orangeTeamResult.team.name,
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = 24.dp),
         )
     }
 
@@ -164,7 +164,7 @@ private fun LazyListScope.teamRosters(displayModel: MatchDetailDisplayModel) {
             },
             teamColor = rlcsOrange,
             modifier = Modifier
-                .padding(24.dp)
+                .padding(24.dp),
         )
     }
 }
@@ -172,18 +172,18 @@ private fun LazyListScope.teamRosters(displayModel: MatchDetailDisplayModel) {
 @Composable
 private fun GameList(
     games: List<GameDetailDisplayModel>,
-    onGameClicked: (GameDetailDisplayModel) -> Unit
+    onGameClicked: (GameDetailDisplayModel) -> Unit,
 ) {
     Card(
         modifier = Modifier
-            .padding(24.dp)
+            .padding(24.dp),
     ) {
         games.forEachIndexed { index, gameDetailDisplayModel ->
             GameListItem(
                 displayModel = gameDetailDisplayModel,
                 modifier = Modifier.clickable {
                     onGameClicked.invoke(gameDetailDisplayModel)
-                }
+                },
             )
 
             if (index != games.lastIndex) {

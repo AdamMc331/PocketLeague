@@ -21,7 +21,7 @@ data class MatchDetailDisplayModel(
     val orangeTeamResult: MatchTeamResultDisplayModel,
     val blueTeamResult: MatchTeamResultDisplayModel,
     val isLive: Boolean = false,
-    val isPlaceholder: Boolean = false
+    val isPlaceholder: Boolean = false,
 ) {
 
     companion object {
@@ -35,7 +35,7 @@ data class MatchDetailDisplayModel(
             isLive = false,
             orangeTeamResult = MatchTeamResultDisplayModel.placeholder,
             blueTeamResult = MatchTeamResultDisplayModel.placeholder,
-            isPlaceholder = true
+            isPlaceholder = true,
         )
     }
 }
@@ -67,14 +67,14 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
             dateTimeFormatter.formatUTCString(
                 utcString = date,
                 formatPattern = MATCH_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault()
+                timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
         localTime = startDate?.let { date ->
             dateTimeFormatter.formatUTCString(
                 utcString = date,
                 formatPattern = MATCH_TIME_FORMAT,
-                timeZone = TimeZone.currentSystemDefault()
+                timeZone = TimeZone.currentSystemDefault(),
             )
         }.orEmpty(),
         eventName = this.event.name,
@@ -82,6 +82,6 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
         relativeDateTime = startDate?.let { date ->
             DateUtils.getRelativeTimestamp(date)
         }.orEmpty(),
-        isLive = isLive
+        isLive = isLive,
     )
 }

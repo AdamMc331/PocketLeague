@@ -33,7 +33,7 @@ private val LightColorScheme = lightColorScheme(
     errorContainer = md_theme_light_errorContainer,
     onErrorContainer = md_theme_light_onErrorContainer,
     outline = md_theme_light_outline,
-    outlineVariant = md_theme_light_outline
+    outlineVariant = md_theme_light_outline,
 )
 
 private val DarkColorScheme = darkColorScheme(
@@ -63,7 +63,7 @@ private val DarkColorScheme = darkColorScheme(
     errorContainer = md_theme_dark_errorContainer,
     onErrorContainer = md_theme_dark_onErrorContainer,
     outline = md_theme_dark_outline,
-    outlineVariant = md_theme_dark_outline
+    outlineVariant = md_theme_dark_outline,
 )
 
 /**
@@ -72,7 +72,7 @@ private val DarkColorScheme = darkColorScheme(
 @Composable
 fun PocketLeagueTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = if (!useDarkTheme) {
         LightColorScheme
@@ -82,6 +82,6 @@ fun PocketLeagueTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        content = content
+        content = content,
     )
 }

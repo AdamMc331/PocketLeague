@@ -5,7 +5,7 @@ package com.adammcneilly.pocketleague.shared.di
  * used in a production scenario.
  */
 class ProdAppModule(
-    override val platformModule: PlatformModule
+    override val platformModule: PlatformModule,
 ) : AppModule {
 
     override val dataModule: DataModule by lazy {

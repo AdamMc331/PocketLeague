@@ -18,13 +18,13 @@ import kotlinx.coroutines.flow.update
  */
 class EventDetailPresenter(
     private val eventRepository: EventRepository,
-    private val params: EventDetailParams
+    private val params: EventDetailParams,
 ) : PocketLeaguePresenter<EventDetailViewState> {
 
     private val _state = MutableStateFlow(
         EventDetailViewState(
-            eventId = params.eventId
-        )
+            eventId = params.eventId,
+        ),
     )
     override val state = _state.asStateFlow()
 
@@ -39,7 +39,7 @@ class EventDetailPresenter(
             .onEach { teamList ->
                 _state.update {
                     it.copy(
-                        participants = teamList.map(Team::toOverviewDisplayModel)
+                        participants = teamList.map(Team::toOverviewDisplayModel),
                     )
                 }
             }
@@ -52,7 +52,7 @@ class EventDetailPresenter(
             .onEach { event ->
                 _state.update {
                     it.copy(
-                        eventDetail = event.toDetailDisplayModel()
+                        eventDetail = event.toDetailDisplayModel(),
                     )
                 }
             }

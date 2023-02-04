@@ -26,7 +26,7 @@ ORDER BY startDateUTC;
 selectUpcoming:
 SELECT *
 FROM localEvent
-WHERE startDateUTC > DATE()
+WHERE startDateUTC > DATE() AND startDateUTC < DATE('now', '1 month')
 ORDER BY startDateUTC;
 
 selectById:

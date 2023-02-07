@@ -1,9 +1,8 @@
 package com.adammcneilly.pocketleague.ui.composables.bars
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BarChart
+import androidx.compose.material.icons.filled.Bookmarks
 import androidx.compose.material.icons.filled.Feed
-import androidx.compose.material.icons.filled.Leaderboard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
@@ -37,17 +36,24 @@ fun Navigation.Level1NavigationRail(
         )
 
         NavigationRailItem(
-            icon = { Icon(Icons.Default.BarChart, "Stats") },
-            label = { Text("STATS") },
-            selected = selectedTab.uri == Level1Navigation.Stats.screenIdentifier.uri,
-            onClick = { navigateByLevel1Menu(Level1Navigation.Stats) },
+            icon = { Icon(Icons.Default.Bookmarks, "My Teams") },
+            label = { Text("MY TEAMS") },
+            selected = selectedTab.uri == Level1Navigation.MyTeams.screenIdentifier.uri,
+            onClick = { navigateByLevel1Menu(Level1Navigation.MyTeams) },
         )
 
-        NavigationRailItem(
-            icon = { Icon(Icons.Default.Leaderboard, "Records") },
-            label = { Text("RECORDS") },
-            selected = selectedTab.uri == Level1Navigation.Records.screenIdentifier.uri,
-            onClick = { navigateByLevel1Menu(Level1Navigation.Records) },
-        )
+//        NavigationRailItem(
+//            icon = { Icon(Icons.Default.BarChart, "Stats") },
+//            label = { Text("STATS") },
+//            selected = selectedTab.uri == Level1Navigation.Stats.screenIdentifier.uri,
+//            onClick = { navigateByLevel1Menu(Level1Navigation.Stats) },
+//        )
+//
+//        NavigationRailItem(
+//            icon = { Icon(Icons.Default.Leaderboard, "Records") },
+//            label = { Text("RECORDS") },
+//            selected = selectedTab.uri == Level1Navigation.Records.screenIdentifier.uri,
+//            onClick = { navigateByLevel1Menu(Level1Navigation.Records) },
+//        )
     }
 }

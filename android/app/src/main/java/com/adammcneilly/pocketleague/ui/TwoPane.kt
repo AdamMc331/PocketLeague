@@ -3,8 +3,10 @@ package com.adammcneilly.pocketleague.ui
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -14,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.designsystem.components.bars.TopBar
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
+import com.adammcneilly.pocketleague.ui.composables.bars.Level1NavigationRail
 
 private const val LIST_PANE_WIDTH_RATIO = 0.4F
 private const val DETAIL_PANE_WIDTH_RATIO = 0.6F
@@ -39,13 +42,13 @@ fun Navigation.TwoPane(
             Row(
                 modifier = Modifier.padding(paddingValues),
             ) {
-//                Column(
-//                    Modifier
-//                        .fillMaxHeight()
-//                        .width(80.dp)
-//                ) {
-//                    Level1NavigationRail(selectedTab = navigationLevelsMap[1]!!)
-//                }
+                Column(
+                    Modifier
+                        .fillMaxHeight()
+                        .width(80.dp),
+                ) {
+                    Level1NavigationRail(selectedTab = navigationLevelsMap[1]!!)
+                }
                 Column(
                     Modifier
                         .weight(LIST_PANE_WIDTH_RATIO),

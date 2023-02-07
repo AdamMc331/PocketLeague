@@ -2,12 +2,18 @@
 
 package com.adammcneilly.pocketleague.android.designsystem.teamselection
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Icon
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -51,8 +57,9 @@ fun TeamSelectionListItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(25.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         val imageUrl = team.imageUrl.getForTheme()
 
@@ -61,7 +68,6 @@ fun TeamSelectionListItem(
         val hasImageLoaded = remember {
             mutableStateOf(false)
         }
-        
         AsyncImage(
             model = imageUrl,
             contentDescription = "Team Image",

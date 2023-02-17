@@ -63,7 +63,7 @@ fun Navigation.TwoPane(
                         .padding(20.dp),
                 ) {
                     if (navigationLevelsMap[2] == null) {
-                        TwoPaneDefaultDetail(navigationLevelsMap[1]!!)
+                        DualPaneDefaultDetail(navigationLevelsMap[1]!!)
                     } else {
                         saveableStateHolder.SaveableStateProvider(navigationLevelsMap[2]!!.uri) {
                             ScreenPicker(navigationLevelsMap[2]!!)
@@ -80,7 +80,7 @@ fun Navigation.TwoPane(
  * If there's no default data to supply, we can just use a Box.
  */
 @Composable
-fun Navigation.TwoPaneDefaultDetail(
+fun Navigation.DualPaneDefaultDetail(
     screenIdentifier: ScreenIdentifier,
 ) {
 //    when (screenIdentifier.screen) {

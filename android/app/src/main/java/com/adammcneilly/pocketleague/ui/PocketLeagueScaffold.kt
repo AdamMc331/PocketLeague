@@ -31,6 +31,7 @@ private const val DETAIL_PANE_WIDTH_RATIO = 0.6F
  */
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
+@Suppress("LongMethod")
 fun Navigation.PocketLeagueScaffold(
     navigationType: NavigationType,
     contentType: ContentType,

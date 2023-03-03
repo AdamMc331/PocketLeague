@@ -48,6 +48,7 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
 compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material3-windowsize = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
@@ -92,6 +93,7 @@ androidx-test = [
 compose-ui = [
     "compose-material-icons-extended",
     "compose-material3",
+    "compose-material3-windowsize",
     "compose-ui",
     "compose-ui-util",
     "compose-ui-tooling-preview",

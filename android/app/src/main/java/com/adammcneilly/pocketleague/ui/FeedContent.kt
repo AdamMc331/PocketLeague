@@ -29,7 +29,7 @@ import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryLis
  */
 @Composable
 fun FeedContent(
-    viewState: com.adammcneilly.pocketleague.feature.feed.FeedViewState,
+    viewState: FeedViewState,
     modifier: Modifier = Modifier,
     onMatchClicked: (String) -> Unit = {},
     onEventClicked: (String) -> Unit = {},
@@ -47,7 +47,7 @@ fun FeedContent(
 
 @Composable
 private fun SuccessContent(
-    viewState: com.adammcneilly.pocketleague.feature.feed.FeedViewState,
+    viewState: FeedViewState,
     onMatchClicked: (String) -> Unit,
     onEventClicked: (String) -> Unit,
 ) {
@@ -55,12 +55,7 @@ private fun SuccessContent(
         modifier = Modifier.fillMaxSize(),
     ) {
         item {
-            Text(
-                text = "Recent Matches",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier
-                    .padding(16.dp),
-            )
+            FeedSectionTitle(title = "Recent Matches")
         }
 
         item {
@@ -71,12 +66,7 @@ private fun SuccessContent(
         }
 
         item {
-            Text(
-                text = "Ongoing Events",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier
-                    .padding(16.dp),
-            )
+            FeedSectionTitle(title = "Ongoing Events")
         }
 
         if (viewState.ongoingEvents.isNotEmpty()) {
@@ -90,12 +80,7 @@ private fun SuccessContent(
         }
 
         item {
-            Text(
-                text = "Upcoming Events",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier
-                    .padding(16.dp),
-            )
+            FeedSectionTitle(title = "Upcoming Events")
         }
 
         if (viewState.upcomingEvents.isNotEmpty()) {
@@ -108,6 +93,18 @@ private fun SuccessContent(
             }
         }
     }
+}
+
+@Composable
+private fun FeedSectionTitle(
+    title: String,
+) {
+    Text(
+        text = title,
+        style = MaterialTheme.typography.titleLarge,
+        modifier = Modifier
+            .padding(16.dp),
+    )
 }
 
 @Composable

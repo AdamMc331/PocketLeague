@@ -12,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -62,6 +63,7 @@ fun GameListItem(
         ) {
             Text(
                 text = displayModel.map,
+                textAlign = TextAlign.Center,
                 modifier = Modifier
                     .cardPlaceholder(
                         visible = displayModel.isPlaceholder,
@@ -73,6 +75,7 @@ fun GameListItem(
             if (otLabel != null) {
                 Text(
                     text = otLabel,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
             }
         }

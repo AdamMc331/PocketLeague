@@ -39,6 +39,9 @@ private fun MatchWithEventAndTeams.mapEvent() = Event(
     endDateUTC = this.localEventEndDateUTC,
     imageURL = this.localEventImageURL,
     // ADAM NEEDS TO STORE THIS,
+    // Does this actually make sense? In this mapping scenario, all I need is the stage that the
+    // match is taking part of, I don't need all of the stages for the event.
+    // Maybe it's fine to say: emptyList() is okay in this scenario, because I don't care about all the stages.
     stages = emptyList(),
     tier = EventTier.valueOf(this.localEventTier),
     mode = this.localEventMode,
@@ -53,15 +56,15 @@ private fun MatchWithEventAndTeams.mapFormat() = Format(
     length = this.localMatchFormatLength.toInt(),
 )
 
-private fun mapEventStage() = EventStage(
-    id = "TODO",
-    name = "TODO",
-    region = "TODO",
-    startDateUTC = "TODO",
-    endDateUTC = "TODO",
-    liquipedia = "TODO",
-    qualifier = false,
-    lan = false,
+private fun MatchWithEventAndTeams.mapEventStage() = EventStage(
+    id = this.localEventStageId,
+    name = this.localEventStageName,
+    region = this.localEventStageRegion,
+    startDateUTC = this.localEventStageStartDateUTC,
+    endDateUTC = this.localEventStageEndDateUTC,
+    liquipedia = this.localEventStageLiquipedia,
+    qualifier = this.localEventStageQualifier,
+    lan = this.localEventStageLan,
 )
 
 private fun MatchWithEventAndTeams.mapBlueTeamResult(

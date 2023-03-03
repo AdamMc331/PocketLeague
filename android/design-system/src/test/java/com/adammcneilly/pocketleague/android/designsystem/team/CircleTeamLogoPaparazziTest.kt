@@ -32,7 +32,7 @@ class CircleTeamLogoPaparazziTest {
             CircleTeamLogo(
                 displayModel = displayModel,
                 modifier = Modifier
-                    .size(48.dp),
+                    .size(96.dp),
             )
         }
     }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
@@ -15,6 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -76,6 +79,8 @@ private fun TeamLetterLogo(
             sizeInPx.toSp()
         }
 
+        // Shout out Lemanja on YouTube for the text style idea:
+        // https://www.youtube.com/watch?v=NBRNa1rtRSA&lc=UgxKzB3IGAXjIdH6VP54AaABAg
         Text(
             text = displayModel.name.firstOrNull()?.toString().orEmpty(),
             color = contentColor,
@@ -83,6 +88,13 @@ private fun TeamLetterLogo(
             lineHeight = textSizeSp,
             modifier = Modifier
                 .align(Alignment.Center),
+            style = LocalTextStyle.current.merge(
+                TextStyle(
+                    platformStyle = PlatformTextStyle(
+                        includeFontPadding = false,
+                    ),
+                ),
+            ),
         )
     }
 }

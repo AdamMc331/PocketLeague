@@ -72,4 +72,11 @@ class SQLDelightMatchService(
             }
         }
     }
+
+    override fun getPastWeeksMatchesForTeams(teamIds: List<String>): Flow<List<Match>> {
+        return database
+            .localMatchQueries
+            .selectPastWeekForTeams(teamIds)
+            .asFlowList(MatchWithEventAndTeams::toMatch)
+    }
 }

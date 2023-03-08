@@ -157,3 +157,9 @@ selectById:
 SELECT *
 FROM matchWithEventAndTeams
 WHERE localMatchId = :matchId;
+
+selectPastWeekForTeams:
+SELECT *
+FROM matchWithEventAndTeams
+WHERE localMatchBlueTeamId IN :teamIds OR localMatchOrangeTeamId IN :teamIds
+ORDER BY localMatchDateUTC DESC;

@@ -105,4 +105,9 @@ class OfflineFirstMatchRepository(
             }
         }
     }
+
+    override fun getPastWeeksMatchesForTeams(teamIds: List<String>): Flow<List<Match>> {
+        return localDataSource
+            .getPastWeeksMatchesForTeams(teamIds)
+    }
 }

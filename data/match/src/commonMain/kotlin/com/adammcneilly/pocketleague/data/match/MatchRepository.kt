@@ -38,4 +38,12 @@ interface MatchRepository {
         eventId: String,
         stageId: String,
     ): Flow<List<Match>>
+
+    /**
+     * Retrieve a list of match entities that have happened over
+     * the last week, where one of the participants is in the [teamIds].
+     */
+    fun getPastWeeksMatchesForTeams(
+        teamIds: List<String>,
+    ): Flow<List<Match>>
 }

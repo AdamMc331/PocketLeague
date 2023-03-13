@@ -13,11 +13,11 @@ plugins {
 
 android {
     namespace = "com.adammcneilly.pocketleague.android.designsystem"
-    compileSdk = AndroidConfig.compileSDK
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = AndroidConfig.minSDK
-        targetSdk = AndroidConfig.targetSDK
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.compileSdk.get().toInt()
 
         testApplicationId = "com.adammcneilly.pocketleague.android.designsystem.test"
         testInstrumentationRunner = "com.karumi.shot.ShotTestRunner"
@@ -45,7 +45,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 }
 

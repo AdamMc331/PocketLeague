@@ -41,11 +41,15 @@ data class EventSummaryDisplayModel(
         get() = "$startDate – $endDate"
 }
 
+fun Event.toSummaryDisplayModel(): EventSummaryDisplayModel {
+    return this.toSummaryDisplayModel(dateTimeFormatter())
+}
+
 /**
  * Converts an [Event] entity to the user friendly [EventSummaryDisplayModel].
  */
 fun Event.toSummaryDisplayModel(
-    dateTimeFormatter: DateTimeFormatter = dateTimeFormatter(),
+    dateTimeFormatter: DateTimeFormatter,
 ): EventSummaryDisplayModel {
     return EventSummaryDisplayModel(
         startDate = this.startDateUTC?.let { startDate ->

@@ -123,6 +123,8 @@ dependencies {
     implementation(project(":core:feature"))
     implementation(project(":core:models"))
     implementation(project(":data:local-sqldelight"))
+    implementation(project(":data:event"))
+    implementation(project(":data:match"))
     implementation(project(":feature:event-detail"))
     implementation(project(":feature:feed"))
     implementation(project(":shared"))
@@ -141,7 +143,11 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.google.material)
 
+    testImplementation(project(":core:models-test"))
+    testImplementation(project(":data:event-test"))
+    testImplementation(project(":data:match-test"))
     testImplementation(libs.cash.turbine)
     testImplementation(libs.google.truth)
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

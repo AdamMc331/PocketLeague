@@ -11,3 +11,4 @@ local.properties
 /shared/build/
 /composables/build/
 /app/src/main/graphql/com/adammcneilly/pocketleague/.graphqlconfig
+/android/app/release/app-release.aab

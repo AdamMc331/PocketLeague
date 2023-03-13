@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.adammcneilly.pocketleague.widgets"
-    compileSdk = AndroidConfig.compileSDK
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = AndroidConfig.minSDK
-        targetSdk = AndroidConfig.targetSDK
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.compileSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("com.google.devtools.ksp").version("${Versions.kotlin}-1.0.6")
+    id("com.google.devtools.ksp").version("1.7.20-1.0.6")
 }
 
 apply(from = "../../buildscripts/jacoco.gradle")
@@ -25,8 +25,8 @@ android {
     compileSdk = 33
     defaultConfig {
         applicationId = "com.adammcneilly.pocketleague"
-        minSdk = AndroidConfig.minSDK
-        targetSdk = AndroidConfig.targetSDK
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.compileSdk.get().toInt()
         versionCode = 1
         versionName = "0.0.1"
 
@@ -66,7 +66,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
     packagingOptions {

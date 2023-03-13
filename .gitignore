@@ -8,7 +8,6 @@
 .externalNativeBuild
 .cxx
 local.properties
-/buildSrc/build/
 /shared/build/
 /composables/build/
 /app/src/main/graphql/com/adammcneilly/pocketleague/.graphqlconfig

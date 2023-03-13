@@ -16,6 +16,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 
+/**
+ * State management container for the feed screen.
+ */
 class FeedViewModel(
     private val eventRepository: EventRepository,
     private val matchRepository: MatchRepository,

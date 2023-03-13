@@ -41,6 +41,9 @@ data class EventSummaryDisplayModel(
         get() = "$startDate – $endDate"
 }
 
+/**
+ * Converts an [Event] entity to the user friendly [EventSummaryDisplayModel].
+ */
 fun Event.toSummaryDisplayModel(): EventSummaryDisplayModel {
     return this.toSummaryDisplayModel(dateTimeFormatter())
 }

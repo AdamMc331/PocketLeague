@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -21,14 +22,13 @@ import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange
 fun PieChart(
     segments: List<PieChartSegment>,
     modifier: Modifier = Modifier,
-    strokeWidth: Dp = 8.dp,
+    segmentStyle: PieChartSegmentStyle = PieChartSegmentStyle.Fill,
     percentageToRender: Float = 1F,
 ) {
     Canvas(
         modifier = modifier,
     ) {
         val fullCircleAngle = 360F
-        val strokeWidthPx = strokeWidth.toPx()
         var currentStartAngle = 0F
         // We need to sum all values, so we can get the percentage a segment
         // takes compared to everything. For example, 10 wins and 5 losses
@@ -48,7 +48,7 @@ fun PieChart(
                 startAngle = currentStartAngle,
                 sweepAngle = sweepAngleToRender,
                 color = segment.color,
-                strokeWidthPx = strokeWidthPx,
+                style = segmentStyle,
             )
 
             currentStartAngle += totalSweepAngle
@@ -60,17 +60,34 @@ private fun DrawScope.drawSegment(
     startAngle: Float,
     sweepAngle: Float,
     color: Color,
-    strokeWidthPx: Float,
+    style: PieChartSegmentStyle,
 ) {
+    val drawStyle = when (style) {
+        PieChartSegmentStyle.Fill -> {
+            Fill
+        }
+        is PieChartSegmentStyle.Stroke -> {
+            Stroke(
+                width = style.strokeWidthDp.toPx(),
+            )
+        }
+    }
+
     drawArc(
         color = color,
         startAngle = startAngle,
         sweepAngle = sweepAngle,
-        useCenter = false,
-        style = Stroke(
-            width = strokeWidthPx,
-        ),
+        useCenter = (style == PieChartSegmentStyle.Fill),
+        style = drawStyle,
     )
+}
+
+sealed class PieChartSegmentStyle {
+    object Fill : PieChartSegmentStyle()
+
+    data class Stroke(
+        val strokeWidthDp: Dp,
+    ) : PieChartSegmentStyle()
 }
 
 @Preview(
@@ -123,6 +140,35 @@ private fun PieChartThreeSegmentPreview() {
                 modifier = Modifier
                     .padding(16.dp)
                     .size(96.dp),
+            )
+        }
+    }
+}
+
+@Preview(
+    name = "Day Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+)
+@Preview(
+    name = "Night Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
+@Composable
+private fun PieChartThreeSegmentStrokePreview() {
+    val segments = listOf(
+        PieChartSegment(7, rlcsBlue),
+        PieChartSegment(10, rlcsOrange),
+        PieChartSegment(2, Color.Gray),
+    )
+
+    PocketLeagueTheme {
+        Surface {
+            PieChart(
+                segments = segments,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .size(96.dp),
+                segmentStyle = PieChartSegmentStyle.Stroke(8.dp),
             )
         }
     }

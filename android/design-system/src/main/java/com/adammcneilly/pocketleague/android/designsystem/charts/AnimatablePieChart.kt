@@ -13,7 +13,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue
@@ -25,7 +24,7 @@ import kotlinx.coroutines.launch
 fun AnimatablePieChart(
     segments: List<PieChartSegment>,
     modifier: Modifier = Modifier,
-    strokeWidth: Dp = 8.dp,
+    segmentStyle: PieChartSegmentStyle = PieChartSegmentStyle.Fill,
 ) {
     val animationPercentage = remember {
         AnimationState(0F)
@@ -35,8 +34,8 @@ fun AnimatablePieChart(
 
     PieChart(
         segments = segments,
-        strokeWidth = strokeWidth,
         percentageToRender = animationPercentage.value,
+        segmentStyle = segmentStyle,
         modifier = modifier
             .whenInView {
                 coroutineScope.launch {

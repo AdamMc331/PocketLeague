@@ -20,6 +20,10 @@ import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange
 import com.adammcneilly.pocketleague.android.designsystem.utils.whenInView
 import kotlinx.coroutines.launch
 
+/**
+ * This is a wrapper around [PieChart] that triggers an animation when the
+ * pie chart comes into view.
+ */
 @Composable
 fun AnimatablePieChart(
     segments: List<PieChartSegment>,

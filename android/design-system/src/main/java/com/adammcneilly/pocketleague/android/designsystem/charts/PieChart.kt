@@ -18,6 +18,13 @@ import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueThem
 import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue
 import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange
 
+private const val FULL_CIRCLE_ANGLE = 360F
+
+/**
+ * Renders each of the supplied [segments] in a pie chart format.
+ *
+ * If you want to animate this component, reference [AnimatablePieChart].
+ */
 @Composable
 fun PieChart(
     segments: List<PieChartSegment>,
@@ -28,7 +35,6 @@ fun PieChart(
     Canvas(
         modifier = modifier,
     ) {
-        val fullCircleAngle = 360F
         var currentStartAngle = 0F
         // We need to sum all values, so we can get the percentage a segment
         // takes compared to everything. For example, 10 wins and 5 losses
@@ -40,7 +46,7 @@ fun PieChart(
 
         segments.forEach { segment ->
             val segmentPercentage = segment.value / sumValues
-            val totalSweepAngle = (segmentPercentage * fullCircleAngle)
+            val totalSweepAngle = (segmentPercentage * FULL_CIRCLE_ANGLE)
 
             val sweepAngleToRender = totalSweepAngle * percentageToRender
 
@@ -82,9 +88,19 @@ private fun DrawScope.drawSegment(
     )
 }
 
+/**
+ * Defines the different ways that a segment can be rendered inside a pie chart.
+ */
 sealed class PieChartSegmentStyle {
+    /**
+     * If used, the pie chart segment will be completely filled and connected into
+     * the center of the circle.
+     */
     object Fill : PieChartSegmentStyle()
 
+    /**
+     * If used, the segments of the pie chart will be a stroke with empty space inside the circle.
+     */
     data class Stroke(
         val strokeWidthDp: Dp,
     ) : PieChartSegmentStyle()

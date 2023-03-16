@@ -22,6 +22,7 @@ fun PieChart(
     segments: List<PieChartSegment>,
     modifier: Modifier = Modifier,
     strokeWidth: Dp = 8.dp,
+    percentageToRender: Float = 1F,
 ) {
     Canvas(
         modifier = modifier,
@@ -39,16 +40,18 @@ fun PieChart(
 
         segments.forEach { segment ->
             val segmentPercentage = segment.value / sumValues
-            val sweepAngle = (segmentPercentage * fullCircleAngle)
+            val totalSweepAngle = (segmentPercentage * fullCircleAngle)
+
+            val sweepAngleToRender = totalSweepAngle * percentageToRender
 
             drawSegment(
                 startAngle = currentStartAngle,
-                sweepAngle = sweepAngle,
+                sweepAngle = sweepAngleToRender,
                 color = segment.color,
                 strokeWidthPx = strokeWidthPx,
             )
 
-            currentStartAngle += sweepAngle
+            currentStartAngle += totalSweepAngle
         }
     }
 }
@@ -120,6 +123,35 @@ private fun PieChartThreeSegmentPreview() {
                 modifier = Modifier
                     .padding(16.dp)
                     .size(96.dp),
+            )
+        }
+    }
+}
+
+@Preview(
+    name = "Day Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+)
+@Preview(
+    name = "Night Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
+@Composable
+private fun PieChartHalfwayRendered() {
+    val segments = listOf(
+        PieChartSegment(7, rlcsBlue),
+        PieChartSegment(10, rlcsOrange),
+        PieChartSegment(2, Color.Gray),
+    )
+
+    PocketLeagueTheme {
+        Surface {
+            PieChart(
+                segments = segments,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .size(96.dp),
+                percentageToRender = 0.5F,
             )
         }
     }

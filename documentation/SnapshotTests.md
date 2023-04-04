@@ -1,6 +1,6 @@
 # Snapshot Tests
 
-The Pocket League app leverages [Paparazzi](https://github.com/chashapp/paparazzi) for snapshot testing. Most of this happens inside the [android design system module](../android/design-system).
+The Pocket League app leverages [Paparazzi](https://github.com/cashapp/paparazzi) for snapshot testing. Most of this happens inside the [android design system module](../android/design-system).
 
 ## Verifying Paparazzi Tests
 

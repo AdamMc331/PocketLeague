@@ -119,6 +119,7 @@ dependencies {
 
     implementation(project(":android:design-system"))
     implementation(project(":android:widgets"))
+    implementation(project(":core:datetime"))
     implementation(project(":core:displaymodels"))
     implementation(project(":core:feature"))
     implementation(project(":core:models"))

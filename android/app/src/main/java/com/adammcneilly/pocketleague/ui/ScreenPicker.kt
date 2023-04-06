@@ -10,6 +10,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.adammcneilly.pocketleague.android.designsystem.teamselection.TeamSelectionListItemClickListener
+import com.adammcneilly.pocketleague.core.datetime.DateUtils
 import com.adammcneilly.pocketleague.feature.event.detail.EventDetailParams
 import com.adammcneilly.pocketleague.notifications.NotificationHelper
 import com.adammcneilly.pocketleague.notifications.NotificationWorker
@@ -58,10 +59,11 @@ fun Navigation.ScreenPicker(
 
                         val blueTeamName = matchEntity.blueTeam.team.name
                         val orangeTeamName = matchEntity.orangeTeam.team.name
+                        val delayMillis = DateUtils.getDurationFromNowMillis(matchEntity.dateUTC.orEmpty())
 
                         val myWorkRequest = OneTimeWorkRequestBuilder<NotificationWorker>()
                             // We should replace this with a delay that is the time difference between now and when the match starts.
-                            .setInitialDelay(5, TimeUnit.SECONDS)
+                            .setInitialDelay(delayMillis, TimeUnit.MILLISECONDS)
                             .setInputData(
                                 workDataOf(
                                     "title" to "$blueTeamName vs $orangeTeamName Starting Now",

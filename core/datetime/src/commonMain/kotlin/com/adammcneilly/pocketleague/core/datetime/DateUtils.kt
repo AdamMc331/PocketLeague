@@ -23,6 +23,15 @@ object DateUtils {
     }
 
     /**
+     * Given a [utcString], calculate the number of milliseconds between now and when this instant is occurring.
+     */
+    fun getDurationFromNowMillis(utcString: String): Long {
+        val instant = Instant.parse(utcString)
+        val now = Clock.System.now()
+        return instant.minus(now).inWholeMilliseconds
+    }
+
+    /**
      * Given an [instant], convert it to a relative timestamp such as 5m ago, or 5d ago.
      */
     fun getRelativeTimestamp(utcString: String): String {

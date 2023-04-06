@@ -17,7 +17,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.notifications.PocketLeagueNotificationManager
+import com.adammcneilly.pocketleague.notifications.NotificationHelper
 import com.adammcneilly.pocketleague.ui.MainComposable
 import com.adammcneilly.pocketleague.ui.sizeconfigs.ContentType
 import com.adammcneilly.pocketleague.ui.sizeconfigs.NavigationType
@@ -109,7 +109,7 @@ class MainActivity : ComponentActivity() {
             val descriptionText = "Be notified when a match is starting"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(
-                PocketLeagueNotificationManager.MATCH_STARTED_CHANNEL_ID,
+                NotificationHelper.MATCH_STARTED_CHANNEL_ID,
                 name,
                 importance,
             ).apply {

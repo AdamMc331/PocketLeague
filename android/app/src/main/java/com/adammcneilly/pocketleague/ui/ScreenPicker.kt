@@ -11,8 +11,8 @@ import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.adammcneilly.pocketleague.android.designsystem.teamselection.TeamSelectionListItemClickListener
 import com.adammcneilly.pocketleague.feature.event.detail.EventDetailParams
+import com.adammcneilly.pocketleague.notifications.NotificationHelper
 import com.adammcneilly.pocketleague.notifications.NotificationWorker
-import com.adammcneilly.pocketleague.notifications.PocketLeagueNotificationManager
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
 import com.adammcneilly.pocketleague.shared.screens.Screens
@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit
  * The screen picker tacks a current [screenIdentifier] and renders the content for that screen.
  */
 @Composable
-@Suppress("LongMethod")
+@Suppress("LongMethod", "MagicNumber")
 fun Navigation.ScreenPicker(
     screenIdentifier: ScreenIdentifier,
     paddingValues: PaddingValues = PaddingValues(),
@@ -56,14 +56,17 @@ fun Navigation.ScreenPicker(
                             .getMatchDetail(matchId)
                             .first()
 
+                        val blueTeamName = matchEntity.blueTeam.team.name
+                        val orangeTeamName = matchEntity.orangeTeam.team.name
+
                         val myWorkRequest = OneTimeWorkRequestBuilder<NotificationWorker>()
                             // We should replace this with a delay that is the time difference between now and when the match starts.
                             .setInitialDelay(5, TimeUnit.SECONDS)
                             .setInputData(
                                 workDataOf(
-                                    "title" to "${matchEntity.blueTeam.team.name} vs ${matchEntity.orangeTeam.team.name} Starting Now",
+                                    "title" to "$blueTeamName vs $orangeTeamName Starting Now",
                                     "text" to "Click here to watch live!",
-                                    "channelId" to PocketLeagueNotificationManager.MATCH_STARTED_CHANNEL_ID,
+                                    "channelId" to NotificationHelper.MATCH_STARTED_CHANNEL_ID,
                                     "notificationId" to matchEntity.id.hashCode(),
                                 ),
                             )

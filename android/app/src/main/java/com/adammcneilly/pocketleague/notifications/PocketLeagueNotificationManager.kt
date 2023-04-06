@@ -32,6 +32,38 @@ object PocketLeagueNotificationManager {
             .build()
     }
 
+    fun buildAndSendNotification(
+        title: String,
+        text: String,
+        channelId: String,
+        notificationId: Int,
+        context: Context,
+    ) {
+        val notification = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(R.drawable.ic_launcher_foreground_monochrome)
+            .setContentTitle(title)
+            .setContentText(text)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .build()
+
+        val permissionResult = ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+
+        if (permissionResult != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
+
+        with(NotificationManagerCompat.from(context)) {
+            notify(notificationId, notification)
+        }
+    }
+
     fun requestPermissionOrSendNotification(
         context: Context,
         notification: Notification,

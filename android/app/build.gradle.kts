@@ -138,6 +138,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.palette.ktx)
     implementation(libs.androidx.window)
+    implementation(libs.androidx.workmanager.ktx)
     implementation(libs.bundles.compose.ui)
     implementation(libs.coil.compose)
     implementation(libs.kotlinx.datetime)

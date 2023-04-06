@@ -6,8 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.adammcneilly.pocketleague.android.designsystem.teamselection.TeamSelectionListItemClickListener
 import com.adammcneilly.pocketleague.feature.event.detail.EventDetailParams
+import com.adammcneilly.pocketleague.notifications.NotificationWorker
 import com.adammcneilly.pocketleague.notifications.PocketLeagueNotificationManager
 import com.adammcneilly.pocketleague.shared.screens.Navigation
 import com.adammcneilly.pocketleague.shared.screens.ScreenIdentifier
@@ -17,6 +21,7 @@ import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailParam
 import com.adammcneilly.pocketleague.shared.screens.myteams.updateTeamIsFavorite
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 /**
  * The screen picker tacks a current [screenIdentifier] and renders the content for that screen.
@@ -51,15 +56,20 @@ fun Navigation.ScreenPicker(
                             .getMatchDetail(matchId)
                             .first()
 
-                        PocketLeagueNotificationManager
-                            .requestPermissionOrSendNotification(
-                                context = localContext,
-                                notification = PocketLeagueNotificationManager.buildMatchStartedNotification(
-                                    match = matchEntity,
-                                    context = localContext,
+                        val myWorkRequest = OneTimeWorkRequestBuilder<NotificationWorker>()
+                            // We should replace this with a delay that is the time difference between now and when the match starts.
+                            .setInitialDelay(5, TimeUnit.SECONDS)
+                            .setInputData(
+                                workDataOf(
+                                    "title" to "${matchEntity.blueTeam.team.name} vs ${matchEntity.orangeTeam.team.name} Starting Now",
+                                    "text" to "Click here to watch live!",
+                                    "channelId" to PocketLeagueNotificationManager.MATCH_STARTED_CHANNEL_ID,
+                                    "notificationId" to matchEntity.id.hashCode(),
                                 ),
-                                notificationId = matchId.hashCode(),
                             )
+                            .build()
+
+                        WorkManager.getInstance(localContext).enqueue(myWorkRequest)
                     }
 
 //                    navigate(
@@ -79,6 +89,7 @@ fun Navigation.ScreenPicker(
                 },
             )
         }
+
         Screens.Stats -> {
             StatsContent(
                 viewState = stateProvider.get(screenIdentifier),
@@ -86,6 +97,7 @@ fun Navigation.ScreenPicker(
                     .padding(paddingValues),
             )
         }
+
         Screens.Records -> {
             RecordsContent(
                 viewState = stateProvider.get(screenIdentifier),
@@ -93,6 +105,7 @@ fun Navigation.ScreenPicker(
                     .padding(paddingValues),
             )
         }
+
         Screens.MatchDetail -> {
             MatchDetailContent(
                 viewState = stateProvider.get(screenIdentifier),
@@ -100,6 +113,7 @@ fun Navigation.ScreenPicker(
                     .padding(paddingValues),
             )
         }
+
         Screens.EventDetail -> {
             EventDetailContent(
                 viewState = stateProvider.get(screenIdentifier),
@@ -118,6 +132,7 @@ fun Navigation.ScreenPicker(
                 },
             )
         }
+
         Screens.EventStageDetail -> {
             EventStageDetailContent(
                 viewState = stateProvider.get(screenIdentifier),
@@ -131,6 +146,7 @@ fun Navigation.ScreenPicker(
                 },
             )
         }
+
         Screens.MyTeams -> {
             MyTeamsContent(
                 viewState = stateProvider.get(screenIdentifier),

@@ -1,25 +1,16 @@
 package com.adammcneilly.pocketleague.android.designsystem.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
-import androidx.compose.material3.Card
-import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
@@ -39,14 +30,14 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
  */
 @Composable
 fun MatchCard(
-    match: MatchDetailDisplayModel,
-    onClick: (String) -> Unit,
-    modifier: Modifier = Modifier,
+    match : MatchDetailDisplayModel,
+    onClick : (String) -> Unit,
+    modifier : Modifier = Modifier,
 ) {
     Card(
         modifier = modifier
             .clickable(
-                enabled = !match.isPlaceholder,
+                enabled = ! match.isPlaceholder,
                 onClick = {
                     onClick.invoke(match.matchId)
                 },
@@ -76,7 +67,7 @@ fun MatchCard(
 }
 
 @Composable
-private fun EventName(match: MatchDetailDisplayModel) {
+private fun EventName(match : MatchDetailDisplayModel) {
     Text(
         text = match.eventName,
         fontWeight = FontWeight.Bold,
@@ -91,7 +82,7 @@ private fun EventName(match: MatchDetailDisplayModel) {
 }
 
 @Composable
-private fun RelativeTime(match: MatchDetailDisplayModel) {
+private fun RelativeTime(match : MatchDetailDisplayModel) {
     Text(
         text = match.relativeDateTime,
         style = MaterialTheme.typography.labelSmall,
@@ -109,23 +100,23 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
  */
 @Composable
 private fun MatchTeamResultRow(
-    teamResult: MatchTeamResultDisplayModel,
-    isPlaceholder: Boolean,
-    teamColor: String,
+    teamResult : MatchTeamResultDisplayModel,
+    isPlaceholder : Boolean,
+    teamColor : String,
 ) {
-    val fontWeight: FontWeight? = if (teamResult.winner) {
+    val fontWeight : FontWeight? = if (teamResult.winner) {
         FontWeight.Bold
     } else {
         null
     }
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier
             .fillMaxWidth()
             .cardPlaceholder(
                 visible = isPlaceholder,
             ),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = teamResult.score.toString(),
@@ -135,53 +126,30 @@ private fun MatchTeamResultRow(
         )
 
         Text(
-            text = teamResult.getDisplayName(),
+            text = teamResult.team.name,
             fontWeight = fontWeight,
-            inlineContent = teamResult.getInlineContent(),
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
             modifier = Modifier
+                .weight(1f, false)
+                .padding(start = 16.dp, end = 4.dp)
                 .testTag("${teamColor}_match_team_name"),
         )
-    }
-}
 
-private fun MatchTeamResultDisplayModel.getDisplayName(): AnnotatedString {
-    return buildAnnotatedString {
-        append(team.name)
+        if (teamResult.winner){
 
-        if (winner) {
-            append(" ")
-            appendInlineContent("inlineContent", "[winner]")
+            Icon(
+                Icons.Default.EmojiEvents,
+                contentDescription = null,
+                modifier = Modifier
+                    .size(with(LocalDensity.current) { LocalTextStyle.current.fontSize.toDp() }),
+            )
         }
     }
 }
 
 @Composable
-private fun MatchTeamResultDisplayModel.getInlineContent(): Map<String, InlineTextContent> {
-    return if (this.winner) {
-        mapOf(
-            Pair(
-                "inlineContent",
-                InlineTextContent(
-                    Placeholder(
-                        width = LocalTextStyle.current.fontSize,
-                        height = LocalTextStyle.current.fontSize,
-                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
-                    ),
-                ) {
-                    Icon(
-                        Icons.Default.EmojiEvents,
-                        contentDescription = null,
-                    )
-                },
-            ),
-        )
-    } else {
-        mapOf()
-    }
-}
-
-@Composable
-private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
+private fun OrangeTeamResult(match : MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.orangeTeamResult,
         isPlaceholder = match.isPlaceholder,
@@ -190,7 +158,7 @@ private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
 }
 
 @Composable
-private fun BlueTeamResult(match: MatchDetailDisplayModel) {
+private fun BlueTeamResult(match : MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.blueTeamResult,
         isPlaceholder = match.isPlaceholder,

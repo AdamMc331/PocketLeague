@@ -5,6 +5,4 @@ information from the octane.gg API.
 
 ## Contributing
 
-Testing 12
-
 Pocket League is open to ideas or contributions from the community! For some insights into that process, check out the [contributing guide](CONTRIBUTING.md).

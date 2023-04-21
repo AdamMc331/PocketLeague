@@ -44,8 +44,12 @@ class LiquipediaTeamRepository : TeamRepository {
  * In the Liquipedia web page for teams, we know a team is active if it exists within a `toggle-group` div (because there's toggles to show
  * roster information). Any disbanded teams are in a separate div, but they also share the `team-template-team-standard` class, so we need
  * to differentiate based on that.
+ *
+ * If we wanted to select teams for a specific region, we can look for toggle groups that are preceded by a header
+ * with the region's name. Example: "h3:contains(North America)+.toggle-group .team-template-team-standard"
  */
-private fun Element.selectActiveTeams() = this.select(".toggle-group .team-template-team-standard")
+private fun Element.selectActiveTeams() = this
+    .select(".toggle-group .team-template-team-standard")
 
 private fun Element.selectTeamText() = this.select(".team-template-text").text()
 

@@ -37,6 +37,7 @@ fun TeamSelectionContent(
     ) {
         item {
             RegionSelectionDropdown(
+                viewState = viewState,
                 clickListener = listItemClickListener,
             )
         }
@@ -59,6 +60,7 @@ fun TeamSelectionContent(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun RegionSelectionDropdown(
+    viewState: TeamSelectionViewState,
     clickListener: TeamSelectionListItemClickListener,
 ) {
     // This code is duplicated, we really should have a shared enum for team regions.
@@ -72,7 +74,6 @@ private fun RegionSelectionDropdown(
         "Asia-Pacific",
     )
 
-    var dropdownText by remember { mutableStateOf(regions.first()) }
     var expanded by remember { mutableStateOf(false) }
 
     ExposedDropdownMenuBox(
@@ -85,7 +86,7 @@ private fun RegionSelectionDropdown(
             .padding(horizontal = 16.dp),
     ) {
         OutlinedTextField(
-            value = dropdownText,
+            value = viewState.selectedRegionName,
             onValueChange = {},
             readOnly = true,
             trailingIcon = {
@@ -110,7 +111,6 @@ private fun RegionSelectionDropdown(
                         Text(text = regionName)
                     },
                     onClick = {
-                        dropdownText = regionName
                         expanded = false
                         clickListener.onRegionChanged(regionName)
                     },

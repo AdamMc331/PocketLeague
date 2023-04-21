@@ -76,7 +76,8 @@ private fun MatchWithEventAndTeams.mapBlueTeamResult(
     team = Team(
         id = this.blueTeamId,
         name = this.blueTeamName,
-        imageUrl = this.blueTeamImageURL,
+        lightThemeImageURL = this.blueTeamLightImageURL,
+        darkThemeImageURL = this.blueTeamDarkImageURL,
         isFavorite = this.blueTeamIsFavorite,
     ),
     stats = Stats(
@@ -102,7 +103,8 @@ private fun MatchWithEventAndTeams.mapOrangeTeamResult(
     team = Team(
         id = this.orangeTeamId,
         name = this.orangeTeamName,
-        imageUrl = this.orangeTeamImageURL,
+        lightThemeImageURL = this.orangeTeamLightImageURL,
+        darkThemeImageURL = this.orangeTeamDarkImageURL,
         isFavorite = this.orangeTeamIsFavorite,
     ),
     stats = Stats(

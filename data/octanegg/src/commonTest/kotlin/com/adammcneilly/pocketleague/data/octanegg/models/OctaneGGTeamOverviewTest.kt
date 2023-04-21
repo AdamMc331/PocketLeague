@@ -15,7 +15,7 @@ class OctaneGGTeamOverviewTest {
         with(domainModel) {
             assertEquals("", id)
             assertEquals("TBD", name)
-            assertNull(imageUrl)
+            assertNull(lightThemeImageURL)
         }
     }
 
@@ -32,7 +32,7 @@ class OctaneGGTeamOverviewTest {
         with(domainModel) {
             assertEquals("someRandomId", id)
             assertEquals("someRandomName", name)
-            assertEquals("someRandomImageUrl", imageUrl)
+            assertEquals("someRandomImageUrl", lightThemeImageURL)
         }
     }
 }

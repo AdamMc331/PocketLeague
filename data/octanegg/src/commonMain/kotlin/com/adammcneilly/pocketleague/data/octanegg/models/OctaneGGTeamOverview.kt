@@ -30,6 +30,6 @@ fun OctaneGGTeamOverview?.toTeam(): Team {
     return Team(
         id = this?.id.orEmpty(),
         name = this?.name ?: "TBD",
-        imageUrl = this?.image,
+        lightThemeImageURL = this?.image,
     )
 }

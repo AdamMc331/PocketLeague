@@ -7,7 +7,8 @@ fun Team.toLocalTeam(): LocalTeam {
     return LocalTeam(
         id = this.id,
         name = this.name,
-        imageURL = this.imageUrl,
+        lightImageURL = this.lightThemeImageURL,
+        darkImageURL = this.darkThemeImageURL,
         isFavorite = this.isFavorite,
         isActive = this.isActive,
     )
@@ -17,8 +18,9 @@ fun LocalTeam.toTeam(): Team {
     return Team(
         id = this.id,
         name = this.name,
-        imageUrl = this.imageURL,
+        lightThemeImageURL = this.lightImageURL,
+        darkThemeImageURL = this.darkImageURL,
         isFavorite = this.isFavorite,
-        isActive = this.isActive,
+        isActive = this.isActive ?: false,
     )
 }

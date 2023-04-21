@@ -31,7 +31,8 @@ fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
         teamId = this.id,
         name = this.name,
         imageUrl = ThemedImageURL(
-            lightThemeImageURL = this.imageUrl,
+            lightThemeImageURL = this.lightThemeImageURL,
+            darkThemeImageURL = this.darkThemeImageURL,
         ),
         isFavorite = isFavorite,
     )

@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Element
 
 /**
  * A custom implementation of [TeamRepository] that will send and request data
@@ -22,27 +23,9 @@ class LiquipediaTeamRepository : TeamRepository {
                 Jsoup.connect("https://liquipedia.net/rocketleague/Portal:Teams").get()
             }
 
-            // Since all of this gets stored in a database
-            // This flow only works if the emitted items have all of the properties that they need.
-            // .team-template-text
             val teamList = teamDoc
-                .select(".toggle-group .team-template-team-standard")
-                .map { element ->
-                    val name = element.select(".team-template-text").text()
-                    val lightModeImage = element.select(".team-template-image-icon.team-template-lightmode")
-                    val darkModeImage = element.select(".team-template-image-icon.team-template-darkmode")
-
-                    val lightModeImageUrl = lightModeImage.select("a img").attr("abs:src")
-                    val darkModeImageUrl = darkModeImage.select("a img").attr("abs:src")
-
-                    Team(
-                        id = name,
-                        name = name,
-                        isActive = true,
-                        lightThemeImageURL = lightModeImageUrl,
-                        darkThemeImageURL = darkModeImageUrl,
-                    )
-                }
+                .selectActiveTeams()
+                .map(Element::parseTeam)
 
             emit(teamList)
         }
@@ -55,4 +38,39 @@ class LiquipediaTeamRepository : TeamRepository {
     override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
         throw UnsupportedOperationException("Favoriting teams is not supported by the Liquipedia API.")
     }
+}
+
+/**
+ * In the Liquipedia web page for teams, we know a team is active if it exists within a `toggle-group` div (because there's toggles to show
+ * roster information). Any disbanded teams are in a separate div, but they also share the `team-template-team-standard` class, so we need
+ * to differentiate based on that.
+ */
+private fun Element.selectActiveTeams() = this.select(".toggle-group .team-template-team-standard")
+
+private fun Element.selectTeamText() = this.select(".team-template-text").text()
+
+private fun Element.selectTeamImageSource(lightTheme: Boolean): String {
+    val themeKey = if (lightTheme) {
+        "lightmode"
+    } else {
+        "darkmode"
+    }
+
+    return this
+        .select(".team-template-image-icon.team-template-$themeKey")
+        .select("a img")
+        .attr("abs:src")
+}
+
+/**
+ * Assuming this element represents an element returned by [selectActiveTeams], we can use this to parse a [Team] entity from it.
+ */
+private fun Element.parseTeam(): Team {
+    return Team(
+        id = selectTeamText(),
+        name = selectTeamText(),
+        lightThemeImageURL = selectTeamImageSource(lightTheme = true),
+        darkThemeImageURL = selectTeamImageSource(lightTheme = false),
+        isActive = true,
+    )
 }

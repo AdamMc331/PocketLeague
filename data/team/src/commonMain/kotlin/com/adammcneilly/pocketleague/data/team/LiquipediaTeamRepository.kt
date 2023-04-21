@@ -11,7 +11,7 @@ import org.jsoup.Jsoup
  * A custom implementation of [TeamRepository] that will send and request data
  * from the Liquipedia Rocket League website.
  */
-class LiquipediaTeamRepository() : TeamRepository {
+class LiquipediaTeamRepository : TeamRepository {
     override fun getFavoriteTeams(): Flow<List<Team>> {
         throw UnsupportedOperationException("Fetching favorite teams is not supported by the Liquipedia API.")
     }

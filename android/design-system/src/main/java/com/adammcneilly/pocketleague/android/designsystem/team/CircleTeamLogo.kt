@@ -127,6 +127,7 @@ private fun CircleTeamLogoDefaultPreview() {
         name = "Knights",
         isPlaceholder = false,
         isFavorite = false,
+        regionName = "North America",
     )
 
     PocketLeagueTheme {

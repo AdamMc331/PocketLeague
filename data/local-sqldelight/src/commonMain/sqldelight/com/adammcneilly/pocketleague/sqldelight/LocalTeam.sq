@@ -4,7 +4,8 @@ CREATE TABLE localTeam(
   lightImageURL TEXT,
   darkImageURL TEXT,
   isFavorite INTEGER AS Boolean NOT NULL DEFAULT 0,
-  isActive INTEGER AS Boolean
+  isActive INTEGER AS Boolean,
+  region TEXT
 );
 
 selectAll:
@@ -31,7 +32,8 @@ INSERT INTO localTeam(
     lightImageURL,
     darkImageURL,
     isFavorite,
-    isActive
+    isActive,
+    region
 )
 VALUES ?
 ON CONFLICT(id) DO
@@ -39,7 +41,8 @@ UPDATE SET
     name = excluded.name,
     lightImageURL = excluded.lightImageURL,
     darkImageURL = excluded.darkImageURL,
-    isActive = excluded.isActive
+    isActive = excluded.isActive,
+    region = excluded.region
 ;
 
 setFavorite:

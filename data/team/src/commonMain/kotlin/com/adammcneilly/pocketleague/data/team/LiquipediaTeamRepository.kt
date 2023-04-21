@@ -23,11 +23,26 @@ class LiquipediaTeamRepository : TeamRepository {
                 Jsoup.connect("https://liquipedia.net/rocketleague/Portal:Teams").get()
             }
 
-            val teamList = teamDoc
-                .selectActiveTeams()
-                .map(Element::parseTeam)
+            val regions = listOf(
+                "Europe",
+                "North America",
+                "Oceania",
+                "South America",
+                "Middle East and North Africa",
+                "Asia-Pacific",
+            )
 
-            emit(teamList)
+            val allTeams = regions
+                .map { regionName ->
+                    teamDoc
+                        .selectActiveTeams(regionName)
+                        .map { element ->
+                            element.parseTeam(regionName)
+                        }
+                }
+                .flatten()
+
+            emit(allTeams)
         }
     }
 
@@ -48,8 +63,10 @@ class LiquipediaTeamRepository : TeamRepository {
  * If we wanted to select teams for a specific region, we can look for toggle groups that are preceded by a header
  * with the region's name. Example: "h3:contains(North America)+.toggle-group .team-template-team-standard"
  */
-private fun Element.selectActiveTeams() = this
-    .select(".toggle-group .team-template-team-standard")
+private fun Element.selectActiveTeams(
+    regionName: String,
+) = this
+    .select("h3:contains($regionName)+.toggle-group .team-template-team-standard")
 
 private fun Element.selectTeamText() = this.select(".team-template-text").text()
 
@@ -69,12 +86,15 @@ private fun Element.selectTeamImageSource(lightTheme: Boolean): String {
 /**
  * Assuming this element represents an element returned by [selectActiveTeams], we can use this to parse a [Team] entity from it.
  */
-private fun Element.parseTeam(): Team {
+private fun Element.parseTeam(
+    regionName: String,
+): Team {
     return Team(
         id = selectTeamText(),
         name = selectTeamText(),
         lightThemeImageURL = selectTeamImageSource(lightTheme = true),
         darkThemeImageURL = selectTeamImageSource(lightTheme = false),
         isActive = true,
+        region = regionName,
     )
 }

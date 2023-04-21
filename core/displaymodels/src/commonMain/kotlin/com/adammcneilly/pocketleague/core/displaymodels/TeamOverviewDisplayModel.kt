@@ -9,6 +9,7 @@ data class TeamOverviewDisplayModel(
     val teamId: String,
     val name: String,
     val imageUrl: ThemedImageURL,
+    val regionName: String,
     val isPlaceholder: Boolean = false,
     val isFavorite: Boolean = false,
 ) {
@@ -18,6 +19,7 @@ data class TeamOverviewDisplayModel(
             teamId = "",
             name = "",
             imageUrl = ThemedImageURL(),
+            regionName = "",
             isPlaceholder = true,
         )
     }
@@ -35,5 +37,6 @@ fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
             darkThemeImageURL = this.darkThemeImageURL,
         ),
         isFavorite = isFavorite,
+        regionName = this.region,
     )
 }

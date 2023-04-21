@@ -3,6 +3,7 @@
 package com.adammcneilly.pocketleague.android.designsystem.teamselection
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -68,6 +69,7 @@ fun TeamSelectionListItem(
         val hasImageLoaded = remember {
             mutableStateOf(false)
         }
+
         AsyncImage(
             model = imageUrl,
             contentDescription = "Team Image",
@@ -82,12 +84,20 @@ fun TeamSelectionListItem(
         )
 
         Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = team.name,
-            style = MaterialTheme.typography.headlineSmall,
+
+        Column(
             modifier = Modifier
                 .weight(1F),
-        )
+        ) {
+            Text(
+                text = team.name,
+                style = MaterialTheme.typography.headlineSmall,
+            )
+
+            Text(
+                text = team.regionName,
+            )
+        }
 
         IconButton(
             onClick = {

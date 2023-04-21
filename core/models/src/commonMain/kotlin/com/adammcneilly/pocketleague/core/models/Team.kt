@@ -11,4 +11,5 @@ data class Team(
     val darkThemeImageURL: String? = lightThemeImageURL,
     val isFavorite: Boolean = false,
     val isActive: Boolean = false,
+    val region: String = "",
 )

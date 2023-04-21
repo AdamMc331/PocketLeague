@@ -24,13 +24,23 @@ class LiquipediaTeamRepository() : TeamRepository {
 
             // Since all of this gets stored in a database
             // This flow only works if the emitted items have all of the properties that they need.
+            // .team-template-text
             val teamList = teamDoc
-                .select(".toggle-group .team-template-team-standard .team-template-text")
+                .select(".toggle-group .team-template-team-standard")
                 .mapIndexed { index, element ->
+                    // Parse name and parse images
+                    val name = element.select(".team-template-text").text()
+                    val lightModeImage = element.select(".team-template-image-icon.team-template-lightmode")
+                    val darkModeImage = element.select(".team-template-image-icon.team-template-darkmode")
+
+                    val lightModeImageUrl = lightModeImage.select("a img").attr("abs:src")
+                    val darkModeImageUrl = darkModeImage.select("a img").attr("abs:src")
+
                     Team(
                         id = "TEAM_$index",
-                        name = element.text(),
+                        name = name,
                         isActive = true,
+                        imageUrl = lightModeImageUrl,
                     )
                 }
 

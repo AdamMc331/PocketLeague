@@ -19,6 +19,6 @@ fun LocalTeam.toTeam(): Team {
         name = this.name,
         imageUrl = this.imageURL,
         isFavorite = this.isFavorite,
-        isActive = this.isActive,
+        isActive = this.isActive ?: false,
     )
 }

@@ -6,5 +6,5 @@ val TestModel.team: Team
     get() = Team(
         id = "12345",
         name = "Knights",
-        imageUrl = "teamImageURL",
+        lightThemeImageURL = "teamImageURL",
     )

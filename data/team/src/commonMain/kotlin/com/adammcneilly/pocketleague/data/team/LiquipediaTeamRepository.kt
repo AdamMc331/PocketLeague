@@ -27,8 +27,7 @@ class LiquipediaTeamRepository() : TeamRepository {
             // .team-template-text
             val teamList = teamDoc
                 .select(".toggle-group .team-template-team-standard")
-                .mapIndexed { index, element ->
-                    // Parse name and parse images
+                .map { element ->
                     val name = element.select(".team-template-text").text()
                     val lightModeImage = element.select(".team-template-image-icon.team-template-lightmode")
                     val darkModeImage = element.select(".team-template-image-icon.team-template-darkmode")
@@ -37,10 +36,11 @@ class LiquipediaTeamRepository() : TeamRepository {
                     val darkModeImageUrl = darkModeImage.select("a img").attr("abs:src")
 
                     Team(
-                        id = "TEAM_$index",
+                        id = name,
                         name = name,
                         isActive = true,
-                        imageUrl = lightModeImageUrl,
+                        lightThemeImageURL = lightModeImageUrl,
+                        darkThemeImageURL = darkModeImageUrl,
                     )
                 }
 

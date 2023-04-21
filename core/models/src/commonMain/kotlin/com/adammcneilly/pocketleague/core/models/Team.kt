@@ -7,7 +7,8 @@ package com.adammcneilly.pocketleague.core.models
 data class Team(
     val id: String = "",
     val name: String = "TBD",
-    val imageUrl: String? = null,
+    val lightThemeImageURL: String? = null,
+    val darkThemeImageURL: String? = lightThemeImageURL,
     val isFavorite: Boolean = false,
     val isActive: Boolean = false,
 )

@@ -1,7 +1,8 @@
 CREATE TABLE localTeam(
   id TEXT NOT NULL PRIMARY KEY,
   name TEXT NOT NULL,
-  imageURL TEXT,
+  lightImageURL TEXT,
+  darkImageURL TEXT,
   isFavorite INTEGER AS Boolean NOT NULL DEFAULT 0,
   isActive INTEGER AS Boolean
 );
@@ -27,7 +28,8 @@ insertFullTeamObject:
 INSERT INTO localTeam(
     id,
     name,
-    imageURL,
+    lightImageURL,
+    darkImageURL,
     isFavorite,
     isActive
 )
@@ -35,7 +37,8 @@ VALUES ?
 ON CONFLICT(id) DO
 UPDATE SET
     name = excluded.name,
-    imageURL = excluded.imageURL,
+    lightImageURL = excluded.lightImageURL,
+    darkImageURL = excluded.darkImageURL,
     isActive = excluded.isActive
 ;
 

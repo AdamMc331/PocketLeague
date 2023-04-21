@@ -37,11 +37,19 @@ import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 interface TeamSelectionListItemClickListener {
 
     /**
-     * Notifies a receive that the [isFavorite] status for a given [teamId] is changed.
+     * Notifies a receiver that the [isFavorite] status for a given [teamId] is changed.
      */
     fun onFavoriteChanged(
         teamId: String,
         isFavorite: Boolean,
+    )
+
+    /**
+     * Notifies a receiver that a new [regionName] is selected and the team list should update
+     * accordingly.
+     */
+    fun onRegionChanged(
+        regionName: String,
     )
 }
 

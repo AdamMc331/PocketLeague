@@ -8,7 +8,18 @@ import com.adammcneilly.pocketleague.core.feature.ScreenState
  */
 data class TeamSelectionViewState(
     val teams: List<TeamOverviewDisplayModel> = emptyList(),
+    val selectedRegionName: String = "All Regions",
 ) : ScreenState {
 
     override val title: String? = null
+
+    val filteredTeams: List<TeamOverviewDisplayModel>
+        get() {
+            return when (selectedRegionName) {
+                "All Regions" -> teams
+                else -> teams.filter { team ->
+                    team.regionName == selectedRegionName
+                }
+            }
+        }
 }

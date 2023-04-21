@@ -36,10 +36,12 @@ fun TeamSelectionContent(
             .fillMaxWidth(),
     ) {
         item {
-            RegionSelectionDropdown()
+            RegionSelectionDropdown(
+                clickListener = listItemClickListener,
+            )
         }
 
-        val teams = viewState.teams
+        val teams = viewState.filteredTeams
 
         itemsIndexed(teams) { index, team ->
             TeamSelectionListItem(
@@ -56,7 +58,9 @@ fun TeamSelectionContent(
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun RegionSelectionDropdown() {
+private fun RegionSelectionDropdown(
+    clickListener: TeamSelectionListItemClickListener,
+) {
     // This code is duplicated, we really should have a shared enum for team regions.
     val regions = listOf(
         "All Regions",
@@ -108,6 +112,7 @@ private fun RegionSelectionDropdown() {
                     onClick = {
                         dropdownText = regionName
                         expanded = false
+                        clickListener.onRegionChanged(regionName)
                     },
                 )
             }

@@ -41,6 +41,9 @@ fun EventRegion.toDisplayModel(): EventRegionDisplayModel {
         EventRegion.Unknown -> {
             "The region of this event is unreported."
         }
+        EventRegion.SSA -> {
+            "This event takes place in Sub-Saharan Africa."
+        }
     }
 
     return EventRegionDisplayModel(

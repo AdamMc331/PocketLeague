@@ -19,8 +19,8 @@ data class TeamOverviewDisplayModel(
             teamId = "",
             name = "",
             imageUrl = ThemedImageURL(),
-            regionName = "",
             isPlaceholder = true,
+            regionName = "",
         )
     }
 }
@@ -36,7 +36,7 @@ fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
             lightThemeImageURL = this.lightThemeImageURL,
             darkThemeImageURL = this.darkThemeImageURL,
         ),
-        isFavorite = isFavorite,
-        regionName = this.region,
+        isFavorite = this.isFavorite,
+        regionName = this.regionName,
     )
 }

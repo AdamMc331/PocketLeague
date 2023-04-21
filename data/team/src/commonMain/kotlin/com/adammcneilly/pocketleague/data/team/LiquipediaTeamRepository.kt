@@ -95,6 +95,6 @@ private fun Element.parseTeam(
         lightThemeImageURL = selectTeamImageSource(lightTheme = true),
         darkThemeImageURL = selectTeamImageSource(lightTheme = false),
         isActive = true,
-        region = regionName,
+        regionName = regionName,
     )
 }

@@ -40,6 +40,7 @@ object TestDisplayModel {
         imageUrl = ThemedImageURL(
             lightThemeImageURL = "https://griffon.octane.gg/teams/pittsburgh-knights.png",
         ),
+        regionName = "North America",
     )
 
     val g2 = TeamOverviewDisplayModel(
@@ -48,6 +49,7 @@ object TestDisplayModel {
         imageUrl = ThemedImageURL(
             lightThemeImageURL = "https://griffon.octane.gg/teams/g2-esports.png",
         ),
+        regionName = "North America",
     )
 
     val matchTeamResultWinner = MatchTeamResultDisplayModel(

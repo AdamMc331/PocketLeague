@@ -12,6 +12,7 @@ import com.adammcneilly.pocketleague.shared.screens.Screens
 import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.EventStageDetailParams
 import com.adammcneilly.pocketleague.shared.screens.matchdetail.MatchDetailParams
 import com.adammcneilly.pocketleague.shared.screens.myteams.updateTeamIsFavorite
+import com.adammcneilly.pocketleague.shared.screens.teamselection.TeamSelectionViewState
 
 /**
  * The screen picker tacks a current [screenIdentifier] and renders the content for that screen.
@@ -115,6 +116,14 @@ fun Navigation.ScreenPicker(
                 listItemClickListener = object : TeamSelectionListItemClickListener {
                     override fun onFavoriteChanged(teamId: String, isFavorite: Boolean) {
                         events.updateTeamIsFavorite(teamId, isFavorite)
+                    }
+
+                    override fun onRegionChanged(regionName: String) {
+                        events.stateManager.updateScreen(TeamSelectionViewState::class) { currentState ->
+                            currentState.copy(
+                                selectedRegionName = regionName,
+                            )
+                        }
                     }
                 },
                 modifier = Modifier

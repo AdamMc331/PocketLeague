@@ -3,7 +3,9 @@
 package com.adammcneilly.pocketleague.android.designsystem.teamselection
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -35,11 +37,19 @@ import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 interface TeamSelectionListItemClickListener {
 
     /**
-     * Notifies a receive that the [isFavorite] status for a given [teamId] is changed.
+     * Notifies a receiver that the [isFavorite] status for a given [teamId] is changed.
      */
     fun onFavoriteChanged(
         teamId: String,
         isFavorite: Boolean,
+    )
+
+    /**
+     * Notifies a receiver that a new [regionName] is selected and the team list should update
+     * accordingly.
+     */
+    fun onRegionChanged(
+        regionName: String,
     )
 }
 
@@ -61,56 +71,83 @@ fun TeamSelectionListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        val imageUrl = team.imageUrl.getForTheme()
-
-        val imageSize = 48.dp
-
-        val hasImageLoaded = remember {
-            mutableStateOf(false)
-        }
-        AsyncImage(
-            model = imageUrl,
-            contentDescription = "Team Image",
-            modifier = Modifier
-                .size(imageSize)
-                .cardPlaceholder(
-                    visible = team.isPlaceholder || !hasImageLoaded.value,
-                ),
-            onState = { state ->
-                hasImageLoaded.value = (state is AsyncImagePainter.State.Success)
-            },
-        )
+        TeamImage(team)
 
         Spacer(modifier = Modifier.width(16.dp))
+
+        TeamNameAndRegion(team)
+
+        FavoriteIcon(clickListener, team)
+    }
+}
+
+@Composable
+private fun FavoriteIcon(
+    clickListener: TeamSelectionListItemClickListener,
+    team: TeamOverviewDisplayModel,
+) {
+    IconButton(
+        onClick = {
+            clickListener.onFavoriteChanged(
+                teamId = team.teamId,
+                isFavorite = !team.isFavorite,
+            )
+        },
+    ) {
+        val icon = when {
+            team.isFavorite -> Icons.Default.Star
+            else -> Icons.Default.StarBorder
+        }
+
+        val contentDescription = when {
+            team.isFavorite -> "Click To Remove Favorite"
+            else -> "Click To Favorite"
+        }
+
+        Icon(
+            imageVector = icon,
+            contentDescription = contentDescription,
+        )
+    }
+}
+
+@Composable
+private fun RowScope.TeamNameAndRegion(team: TeamOverviewDisplayModel) {
+    Column(
+        modifier = Modifier.Companion
+            .weight(1F),
+    ) {
         Text(
             text = team.name,
             style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier
-                .weight(1F),
         )
 
-        IconButton(
-            onClick = {
-                clickListener.onFavoriteChanged(
-                    teamId = team.teamId,
-                    isFavorite = !team.isFavorite,
-                )
-            },
-        ) {
-            val icon = when {
-                team.isFavorite -> Icons.Default.Star
-                else -> Icons.Default.StarBorder
-            }
-
-            val contentDescription = when {
-                team.isFavorite -> "Click To Remove Favorite"
-                else -> "Click To Favorite"
-            }
-
-            Icon(
-                imageVector = icon,
-                contentDescription = contentDescription,
-            )
-        }
+        Text(
+            text = team.regionName,
+        )
     }
+}
+
+@Composable
+private fun TeamImage(team: TeamOverviewDisplayModel) {
+    val imageUrl = team.imageUrl.getForTheme()
+
+    val imageSize = 48.dp
+
+    val hasImageLoaded = remember {
+        mutableStateOf(false)
+    }
+
+    AsyncImage(
+        model = imageUrl,
+        contentDescription = "Team Image",
+        modifier = Modifier
+            .size(imageSize)
+            .cardPlaceholder(
+                visible = team.isPlaceholder || !hasImageLoaded.value,
+            ),
+        onState = { state ->
+            hasImageLoaded.value = (state is AsyncImagePainter.State.Success)
+        },
+    )
 }

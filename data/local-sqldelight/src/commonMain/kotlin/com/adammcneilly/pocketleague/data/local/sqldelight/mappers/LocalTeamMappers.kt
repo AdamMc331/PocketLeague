@@ -11,6 +11,7 @@ fun Team.toLocalTeam(): LocalTeam {
         darkImageURL = this.darkThemeImageURL,
         isFavorite = this.isFavorite,
         isActive = this.isActive,
+        region = this.regionName,
     )
 }
 
@@ -22,5 +23,6 @@ fun LocalTeam.toTeam(): Team {
         darkThemeImageURL = this.darkImageURL,
         isFavorite = this.isFavorite,
         isActive = this.isActive ?: false,
+        regionName = this.region.orEmpty(),
     )
 }

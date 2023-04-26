@@ -34,6 +34,7 @@ class UpcomingMatchesWidgetWorker(
         )
     }
 
+    @Suppress("ReturnCount")
     override suspend fun doWork(): Result {
         val glanceId = GlanceAppWidgetManager(appContext)
             .getGlanceIds(UpcomingMatchesWidget::class.java)

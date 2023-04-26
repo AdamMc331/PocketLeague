@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.event
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 
@@ -12,20 +11,20 @@ interface RemoteEventService {
     /**
      * Retrieves a list of upcoming [Event] entities for events that haven't started yet.
      */
-    suspend fun getUpcomingEvents(): DataState<List<Event>>
+    suspend fun getUpcomingEvents(): Result<List<Event>>
 
     /**
      * Retrieves an [Event] by it's unique [eventId].
      */
-    suspend fun getEvent(eventId: String): DataState<Event>
+    suspend fun getEvent(eventId: String): Result<Event>
 
     /**
      * Observe the list of [Team] entities that participated in the given [eventId].
      */
-    suspend fun getEventParticipants(eventId: String): DataState<List<Team>>
+    suspend fun getEventParticipants(eventId: String): Result<List<Team>>
 
     /**
      * Observe a list of [Event] entities that are happening now.
      */
-    suspend fun getOngoingEvents(): DataState<List<Event>>
+    suspend fun getOngoingEvents(): Result<List<Event>>
 }

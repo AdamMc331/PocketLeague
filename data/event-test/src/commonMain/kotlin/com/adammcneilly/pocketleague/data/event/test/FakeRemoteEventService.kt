@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.event.test
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.core.models.test.TestModel
@@ -10,28 +9,28 @@ import com.adammcneilly.pocketleague.data.event.RemoteEventService
 
 class FakeRemoteEventService : RemoteEventService {
 
-    var upcomingEvents: DataState<List<Event>> = DataState.Success(listOf(TestModel.event))
-    var ongoingEvents: DataState<List<Event>> = DataState.Success(listOf(TestModel.event))
-    val eventsById: MutableMap<String, DataState<Event>> = mutableMapOf(
+    var upcomingEvents: Result<List<Event>> = DataState.Success(listOf(TestModel.event))
+    var ongoingEvents: Result<List<Event>> = DataState.Success(listOf(TestModel.event))
+    val eventsById: MutableMap<String, Result<Event>> = mutableMapOf(
         TestModel.event.id to DataState.Success(TestModel.event),
     )
-    val eventParticipantsByEventId: MutableMap<String, DataState<List<Team>>> = mutableMapOf(
+    val eventParticipantsByEventId: MutableMap<String, Result<List<Team>>> = mutableMapOf(
         TestModel.event.id to DataState.Success(listOf(TestModel.team)),
     )
 
-    override suspend fun getUpcomingEvents(): DataState<List<Event>> {
+    override suspend fun getUpcomingEvents(): Result<List<Event>> {
         return this.upcomingEvents
     }
 
-    override suspend fun getEvent(eventId: String): DataState<Event> {
+    override suspend fun getEvent(eventId: String): Result<Event> {
         return this.eventsById[eventId]!!
     }
 
-    override suspend fun getEventParticipants(eventId: String): DataState<List<Team>> {
+    override suspend fun getEventParticipants(eventId: String): Result<List<Team>> {
         return this.eventParticipantsByEventId[eventId]!!
     }
 
-    override suspend fun getOngoingEvents(): DataState<List<Event>> {
+    override suspend fun getOngoingEvents(): Result<List<Event>> {
         return this.ongoingEvents
     }
 }

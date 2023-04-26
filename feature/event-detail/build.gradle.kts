@@ -51,6 +51,8 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.compileSdk.get().toInt()
     }
+
+    namespace = "com.adammcneilly.pocketleague.feature.event.detail"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

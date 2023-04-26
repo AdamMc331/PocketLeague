@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.3.1")
+        classpath("com.android.tools.build:gradle:8.0.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.21.0")
         classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")

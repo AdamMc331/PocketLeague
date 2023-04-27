@@ -37,10 +37,16 @@ class StartupBenchmarks {
     @get:Rule
     val rule = MacrobenchmarkRule()
 
+    /**
+     * Tests the startup performance without a baseline profile.
+     */
     @Test
     fun startupCompilationNone() =
         benchmark(CompilationMode.None())
 
+    /**
+     * Tests the startup performance with a baseline profile.
+     */
     @Test
     fun startupCompilationBaselineProfiles() =
         benchmark(CompilationMode.Partial(BaselineProfileMode.Require))

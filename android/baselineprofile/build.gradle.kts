@@ -1,6 +1,6 @@
 import com.android.build.api.dsl.ManagedVirtualDevice
 
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
+@Suppress("DSL_SCOPE_VIOLATION") // Remove once KTIJ-19369 is fixed
 plugins {
     id("com.android.test")
     id("org.jetbrains.kotlin.android")

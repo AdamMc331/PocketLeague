@@ -15,6 +15,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
+@Suppress("MagicNumber")
 class NavigateToEventDetailBenchmarks {
 
     @get:Rule

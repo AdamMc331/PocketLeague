@@ -13,6 +13,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Runs a set of benchmark tests to see how much the baseline profile
+ * improves navigating to the event detail screen.
+ */
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 @Suppress("MagicNumber")

@@ -1,0 +1,8 @@
+schema: schema.graphqls
+documents: '**/*.graphql'
+extensions:
+  endpoints:
+    StartGG:
+      url: https://api.start.gg/gql/alpha
+      headers:
+        Authorization: Bearer 24a270722c5612eef2ddf509817672ce

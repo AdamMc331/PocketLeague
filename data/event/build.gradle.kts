@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.apollographql.apollo3").version(libs.versions.apollo)
 }
 
 kotlin {
@@ -14,6 +15,7 @@ kotlin {
                 implementation(project(":data:local-sqldelight"))
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
+                implementation(libs.apollo.runtime)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.square.sqldelight.coroutines)
             }
@@ -68,7 +70,7 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
             listOf(
                 iosX64(),
                 iosArm64(),
-                iosSimulatorArm64()
+                iosSimulatorArm64(),
             ).forEach {
                 it.binaries.framework {
                     baseName = project.name
@@ -81,3 +83,9 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
             }
         }
     }
+
+apollo {
+    service("service") {
+        packageName.set("com.adammcneilly.pocketleague.data.remote.graphql")
+    }
+}

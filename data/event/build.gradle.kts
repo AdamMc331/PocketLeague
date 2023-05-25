@@ -1,7 +1,12 @@
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("com.apollographql.apollo3").version(libs.versions.apollo)
+    id("com.codingfeline.buildkonfig").version("0.13.3")
 }
 
 kotlin {
@@ -87,5 +92,17 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
 apollo {
     service("service") {
         packageName.set("com.adammcneilly.pocketleague.data.remote.graphql")
+    }
+}
+
+buildkonfig {
+    packageName = "com.adammcneilly.pocketleague.data.event"
+
+    val properties = Properties()
+    properties.load(FileInputStream(project.rootProject.file("local.properties")))
+
+    // default config is required
+    defaultConfigs {
+        buildConfigField(STRING, "START_GG_API_KEY", properties["START_GG_API_KEY"].toString())
     }
 }

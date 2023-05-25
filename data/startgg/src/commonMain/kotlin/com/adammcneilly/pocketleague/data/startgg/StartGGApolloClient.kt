@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.data.event
+package com.adammcneilly.pocketleague.data.startgg
 
 import com.apollographql.apollo3.ApolloClient
 

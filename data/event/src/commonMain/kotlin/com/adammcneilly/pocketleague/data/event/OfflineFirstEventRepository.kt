@@ -5,7 +5,7 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.core.models.Team
-import com.adammcneilly.pocketleague.data.remote.graphql.TournamentDetailQuery
+import com.adammcneilly.pocketleague.data.startgg.startGGApolloClient
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart

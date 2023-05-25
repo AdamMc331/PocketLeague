@@ -13,7 +13,11 @@ kotlin {
     android()
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.apollo.runtime)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -76,6 +80,7 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
 apollo {
     service("service") {
         packageName.set("com.adammcneilly.pocketleague.data.startgg")
+        generateApolloMetadata.set(true)
     }
 }
 

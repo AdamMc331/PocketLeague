@@ -39,3 +39,5 @@ include(":feature:feed")
 
 include(":shared")
 include(":shared-test")
+
+include(":data:startgg")

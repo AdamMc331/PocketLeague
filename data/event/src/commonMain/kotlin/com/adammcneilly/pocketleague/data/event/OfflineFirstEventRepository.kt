@@ -41,7 +41,9 @@ class OfflineFirstEventRepository(
         // For testing sake, we're shortcutting all of this and returning an event
         // from our apollo client just to make sure that it can work.
         return flow {
-            val apolloResponse = startGGApolloClient.query(TournamentDetailQuery(slug = "rlcs-2022-23-spring-cup-north-america")).execute()
+            val apolloResponse = startGGApolloClient
+                .query(TournamentDetailQuery(slug = "rlcs-2022-23-spring-cup-north-america"))
+                .execute()
 
             val apolloTournament = apolloResponse.data?.tournament
 

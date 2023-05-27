@@ -94,3 +94,11 @@ buildkonfig {
         buildConfigField(STRING, "START_GG_API_KEY", properties["START_GG_API_KEY"].toString())
     }
 }
+
+tasks.formatKotlinCommonMain {
+    exclude { it.file.path.contains("generated/")}
+}
+
+tasks.lintKotlinCommonMain {
+    exclude { it.file.path.contains("generated/")}
+}

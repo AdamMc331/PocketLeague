@@ -94,3 +94,11 @@ apollo {
         packageName.set("com.adammcneilly.pocketleague.data.event")
     }
 }
+
+tasks.formatKotlinCommonMain {
+    exclude { it.file.path.contains("generated/")}
+}
+
+tasks.lintKotlinCommonMain {
+    exclude { it.file.path.contains("generated/")}
+}

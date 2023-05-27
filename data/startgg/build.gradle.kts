@@ -1,7 +1,12 @@
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("com.squareup.sqldelight")
+    id("com.apollographql.apollo3").version(libs.versions.apollo)
+    id("com.codingfeline.buildkonfig").version(libs.versions.buildkonfig)
 }
 
 kotlin {
@@ -10,27 +15,15 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":core:models-test"))
-                implementation(libs.square.sqldelight.coroutines)
-                implementation(libs.square.sqldelight.runtime)
+                implementation(libs.apollo.runtime)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:models-test"))
-                implementation(libs.cash.turbine)
-                implementation(libs.square.sqldelight.sqlite.driver)
-                implementation(libs.varabyte.truthish)
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.square.sqldelight.android.driver)
-                implementation("com.github.requery:sqlite-android:3.39.2")
-            }
-        }
+        val androidMain by getting
         val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
@@ -40,10 +33,6 @@ kotlin {
             getAt("iosX64Main").dependsOn(this)
             getAt("iosArm64Main").dependsOn(this)
             getAt("iosSimulatorArm64Main").dependsOn(this)
-
-            dependencies {
-                implementation(libs.square.sqldelight.native.driver)
-            }
         }
         maybeCreate("iosX64Test")
         maybeCreate("iosArm64Test")
@@ -62,14 +51,10 @@ android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.compileSdk.get().toInt()
     }
 
-    namespace = "com.adammcneilly.pocketleague.data.local.sqldelight"
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+    namespace = "com.adammcneilly.pocketleague.data.startgg"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)
@@ -92,10 +77,21 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
         }
     }
 
-sqldelight {
-    database("PocketLeagueDB") {
-        packageName = "com.adammcneilly.pocketleague.data.local.sqldelight"
-        dialect = "sqlite:3.24"
+apollo {
+    service("service") {
+        packageName.set("com.adammcneilly.pocketleague.data.startgg")
+        generateApolloMetadata.set(true)
+    }
+}
+
+buildkonfig {
+    packageName = "com.adammcneilly.pocketleague.data.startgg"
+
+    val properties = Properties()
+    properties.load(FileInputStream(project.rootProject.file("local.properties")))
+
+    defaultConfigs {
+        buildConfigField(STRING, "START_GG_API_KEY", properties["START_GG_API_KEY"].toString())
     }
 }
 

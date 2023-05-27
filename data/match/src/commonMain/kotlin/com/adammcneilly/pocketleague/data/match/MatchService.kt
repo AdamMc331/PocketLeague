@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.match
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.coroutines.flow.Flow
 
@@ -14,7 +13,7 @@ interface MatchService {
      */
     suspend fun fetchMatchDetail(
         matchId: String,
-    ): DataState<Match>
+    ): Result<Match>
 
     /**
      * Returns a reactive stream of [Match] entities that have occured within the last week.

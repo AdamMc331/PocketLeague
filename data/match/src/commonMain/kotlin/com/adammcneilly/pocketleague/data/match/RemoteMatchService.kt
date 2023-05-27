@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.match
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 
 /**
@@ -13,17 +12,17 @@ interface RemoteMatchService {
      */
     suspend fun getMatchDetail(
         matchId: String,
-    ): DataState<Match>
+    ): Result<Match>
 
     /**
      * Returns a reactive stream of [Match] entities that have occured within the last week.
      */
-    suspend fun getPastWeeksMatches(): DataState<List<Match>>
+    suspend fun getPastWeeksMatches(): Result<List<Match>>
 
     /**
      * Retrieve a list of match entities that haven't happened yet.
      */
-    suspend fun getUpcomingMatches(): DataState<List<Match>>
+    suspend fun getUpcomingMatches(): Result<List<Match>>
 
     /**
      * Retrieves all matches that occurred in the given [eventId] and [stageId].
@@ -31,5 +30,5 @@ interface RemoteMatchService {
     suspend fun getMatchesForEventStage(
         eventId: String,
         stageId: String,
-    ): DataState<List<Match>>
+    ): Result<List<Match>>
 }

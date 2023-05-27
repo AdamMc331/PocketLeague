@@ -1,6 +1,11 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.apollographql.apollo3").version(libs.versions.apollo)
+}
+
+dependencies {
+    apolloMetadata(project(":data:startgg"))
 }
 
 kotlin {
@@ -14,6 +19,8 @@ kotlin {
                 implementation(project(":data:local-sqldelight"))
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
+                implementation(project(":data:startgg"))
+                implementation(libs.apollo.runtime)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.square.sqldelight.coroutines)
             }
@@ -68,7 +75,7 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
             listOf(
                 iosX64(),
                 iosArm64(),
-                iosSimulatorArm64()
+                iosSimulatorArm64(),
             ).forEach {
                 it.binaries.framework {
                     baseName = project.name
@@ -81,3 +88,17 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
             }
         }
     }
+
+apollo {
+    service("service") {
+        packageName.set("com.adammcneilly.pocketleague.data.event")
+    }
+}
+
+tasks.formatKotlinCommonMain {
+    exclude { it.file.path.contains("build/")}
+}
+
+tasks.lintKotlinCommonMain {
+    exclude { it.file.path.contains("build/")}
+}

@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.event
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import kotlinx.coroutines.flow.Flow
@@ -21,14 +20,14 @@ class OfflineFirstEventRepository(
                 val remoteResponse = remoteEventService
                     .getUpcomingEvents()
 
-                when (remoteResponse) {
-                    is DataState.Error -> {
-                        println("Unable to request upcoming events: ${remoteResponse.error.message}")
-                    }
-                    is DataState.Success -> {
-                        localEventService.insertEvents(remoteResponse.data)
-                    }
-                }
+                remoteResponse.fold(
+                    onSuccess = { events ->
+                        localEventService.insertEvents(events)
+                    },
+                    onFailure = { error ->
+                        println("Unable to request upcoming events: ${error.message}")
+                    },
+                )
             }
     }
 
@@ -39,14 +38,14 @@ class OfflineFirstEventRepository(
                 val remoteResponse = remoteEventService
                     .getEvent(eventId)
 
-                when (remoteResponse) {
-                    is DataState.Error -> {
-                        println("Unable to request event $eventId: ${remoteResponse.error.message}")
-                    }
-                    is DataState.Success -> {
-                        localEventService.insertEvents(listOf(remoteResponse.data))
-                    }
-                }
+                remoteResponse.fold(
+                    onSuccess = { event ->
+                        localEventService.insertEvents(listOf(event))
+                    },
+                    onFailure = { error ->
+                        println("Unable to request event $eventId: ${error.message}")
+                    },
+                )
             }
     }
 
@@ -57,20 +56,20 @@ class OfflineFirstEventRepository(
                 val remoteResponse = remoteEventService
                     .getEventParticipants(eventId)
 
-                when (remoteResponse) {
-                    is DataState.Error -> {
-                        println(
-                            "Unable to request event participants for event " +
-                                "$eventId: ${remoteResponse.error.message}",
-                        )
-                    }
-                    is DataState.Success -> {
+                remoteResponse.fold(
+                    onSuccess = { participants ->
                         localEventService.insertEventParticipants(
-                            teams = remoteResponse.data,
+                            teams = participants,
                             eventId = eventId,
                         )
-                    }
-                }
+                    },
+                    onFailure = { error ->
+                        println(
+                            "Unable to request event participants for event " +
+                                "$eventId: ${error.message}",
+                        )
+                    },
+                )
             }
     }
 
@@ -86,14 +85,13 @@ class OfflineFirstEventRepository(
         val remoteResponse = remoteEventService
             .getOngoingEvents()
 
-        when (remoteResponse) {
-            is DataState.Error -> {
-                println("Unable to request ongoing events: ${remoteResponse.error.message}")
-            }
-
-            is DataState.Success -> {
-                localEventService.insertEvents(remoteResponse.data)
-            }
-        }
+        remoteResponse.fold(
+            onSuccess = { events ->
+                localEventService.insertEvents(events)
+            },
+            onFailure = { error ->
+                println("Unable to request ongoing events: ${error.message}")
+            },
+        )
     }
 }

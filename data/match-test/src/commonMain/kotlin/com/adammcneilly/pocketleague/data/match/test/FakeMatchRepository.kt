@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.match.test
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import kotlinx.coroutines.flow.Flow
@@ -25,8 +24,8 @@ class FakeMatchRepository : MatchRepository {
         return flowOf(upcomingMatches)
     }
 
-    override suspend fun fetchAndPersistUpcomingMatches(): DataState<Unit> {
-        return DataState.Success(Unit)
+    override suspend fun fetchAndPersistUpcomingMatches(): Result<Unit> {
+        return Result.success(Unit)
     }
 
     override fun getMatchesForEventStage(eventId: String, stageId: String): Flow<List<Match>> {

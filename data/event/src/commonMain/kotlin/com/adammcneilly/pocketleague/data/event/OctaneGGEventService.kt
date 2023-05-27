@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.event
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
@@ -22,7 +21,7 @@ class OctaneGGEventService(
 
     constructor() : this(OctaneGGAPIClient)
 
-    override suspend fun getUpcomingEvents(): DataState<List<Event>> {
+    override suspend fun getUpcomingEvents(): Result<List<Event>> {
         return apiClient.getResponse<OctaneGGEventListResponse>(
             endpoint = EVENTS_ENDPOINT,
             params = mapOf(
@@ -34,7 +33,7 @@ class OctaneGGEventService(
         }
     }
 
-    override suspend fun getEvent(eventId: String): DataState<Event> {
+    override suspend fun getEvent(eventId: String): Result<Event> {
         val endpoint = "$EVENTS_ENDPOINT/$eventId"
 
         return apiClient.getResponse<OctaneGGEvent>(
@@ -44,7 +43,7 @@ class OctaneGGEventService(
         }
     }
 
-    override suspend fun getEventParticipants(eventId: String): DataState<List<Team>> {
+    override suspend fun getEventParticipants(eventId: String): Result<List<Team>> {
         val endpoint = "$EVENTS_ENDPOINT/$eventId/participants"
 
         return apiClient.getResponse<OctaneGGEventParticipants>(
@@ -56,7 +55,7 @@ class OctaneGGEventService(
         }
     }
 
-    override suspend fun getOngoingEvents(): DataState<List<Event>> {
+    override suspend fun getOngoingEvents(): Result<List<Event>> {
         return apiClient.getResponse<OctaneGGEventListResponse>(
             endpoint = EVENTS_ENDPOINT,
             params = mapOf(

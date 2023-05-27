@@ -1,1 +1,3 @@
 /build
+/src/release/generated/baselineProfiles/baseline-prof.txt
+/src/release/generated/baselineProfiles/startup-prof.txt

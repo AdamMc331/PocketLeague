@@ -3,10 +3,11 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("com.google.devtools.ksp").version("1.7.20-1.0.6")
+    alias(libs.plugins.androidx.baselineprofile)
 }
 
-apply(from = "../../buildscripts/jacoco.gradle")
-apply(from = "../../buildscripts/jacocoCoverage.gradle")
+//apply(from = "../../buildscripts/jacoco.gradle")
+//apply(from = "../../buildscripts/jacocoCoverage.gradle")
 apply(from = "../../buildscripts/coveralls.gradle")
 
 kotlin {
@@ -104,6 +105,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.profileinstaller)
+    "baselineProfile"(project(mapOf("path" to ":android:baselineprofile")))
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     debugImplementation(composeBom)

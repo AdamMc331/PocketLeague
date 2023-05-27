@@ -19,11 +19,6 @@ task combinedJacocoTestReport(
             "**/databinding/**",
     ]
 
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-
     // generated classes
     classDirectories.from = fileTree(
             dir: "$buildDir/intermediates/classes/debug",

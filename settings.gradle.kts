@@ -1,6 +1,15 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = "PocketLeague"
 
 include(":android:app")
+include(":android:baselineprofile")
 include(":android:design-system")
 include(":android:widgets")
 

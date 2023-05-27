@@ -9,13 +9,13 @@ import com.adammcneilly.pocketleague.data.event.RemoteEventService
 
 class FakeRemoteEventService : RemoteEventService {
 
-    var upcomingEvents: Result<List<Event>> = DataState.Success(listOf(TestModel.event))
-    var ongoingEvents: Result<List<Event>> = DataState.Success(listOf(TestModel.event))
+    var upcomingEvents: Result<List<Event>> = Result.success(listOf(TestModel.event))
+    var ongoingEvents: Result<List<Event>> = Result.success(listOf(TestModel.event))
     val eventsById: MutableMap<String, Result<Event>> = mutableMapOf(
-        TestModel.event.id to DataState.Success(TestModel.event),
+        TestModel.event.id to Result.success(TestModel.event),
     )
     val eventParticipantsByEventId: MutableMap<String, Result<List<Team>>> = mutableMapOf(
-        TestModel.event.id to DataState.Success(listOf(TestModel.team)),
+        TestModel.event.id to Result.success(listOf(TestModel.team)),
     )
 
     override suspend fun getUpcomingEvents(): Result<List<Event>> {

@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.flowOf
 
 class FakeMatchService : MatchService {
 
-    var matchListResponse: Result<List<Match>> = DataState.Success(
+    var matchListResponse: Result<List<Match>> = Result.success(
         listOf(TestModel.matchBlueWinner),
     )
 
-    var matchDetailResponse: Result<Match> = DataState.Success(
+    var matchDetailResponse: Result<Match> = Result.success(
         TestModel.matchBlueWinner,
     )
 

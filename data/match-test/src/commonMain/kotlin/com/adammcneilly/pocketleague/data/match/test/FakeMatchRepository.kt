@@ -25,7 +25,7 @@ class FakeMatchRepository : MatchRepository {
     }
 
     override suspend fun fetchAndPersistUpcomingMatches(): Result<Unit> {
-        return DataState.Success(Unit)
+        return Result.success(Unit)
     }
 
     override fun getMatchesForEventStage(eventId: String, stageId: String): Flow<List<Match>> {

@@ -4,7 +4,9 @@ accompanist = "0.28.0"
 activity-compose = "1.6.1"
 androidx-core = "1.9.0"
 androidx-test = "1.1.5"
+apollo = "3.8.1"
 appCompat = "1.6.0"
+buildkonfig = "0.13.3"
 coil = "2.2.2"
 compileSdk = "33"
 compose = "2023.01.00"
@@ -55,6 +57,7 @@ androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core",
 androidx-test-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test" }
 androidx-window = { module = "androidx.window:window", version.ref = "windowManager" }
 androidx-workmanager-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workManager" }
+apollo-runtime = { module = "com.apollographql.apollo3:apollo-runtime", version.ref = "apollo" }
 cash-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }

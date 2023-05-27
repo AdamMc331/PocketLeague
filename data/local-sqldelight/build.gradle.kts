@@ -96,9 +96,9 @@ sqldelight {
 }
 
 tasks.formatKotlinCommonMain {
-    exclude { it.file.path.contains("generated/")}
+    exclude { it.file.path.contains("build/")}
 }
 
 tasks.lintKotlinCommonMain {
-    exclude { it.file.path.contains("generated/")}
+    exclude { it.file.path.contains("build/")}
 }

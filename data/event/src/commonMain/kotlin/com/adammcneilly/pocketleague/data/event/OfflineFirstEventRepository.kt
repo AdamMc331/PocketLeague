@@ -2,14 +2,9 @@ package com.adammcneilly.pocketleague.data.event
 
 import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.EventRegion
-import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.core.models.Team
-import com.adammcneilly.pocketleague.data.startgg.startGGApolloClient
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
-import kotlinx.datetime.Instant
 
 /**
  * An implementation of [EventRepository] that uses the [localEventService] as the
@@ -38,61 +33,22 @@ class OfflineFirstEventRepository(
     }
 
     override fun getEvent(eventId: String): Flow<Event> {
-        // For testing sake, we're shortcutting all of this and returning an event
-        // from our apollo client just to make sure that it can work.
-        return flow {
-            val apolloResponse = startGGApolloClient
-                .query(TournamentDetailQuery(slug = "rlcs-2022-23-spring-cup-north-america"))
-                .execute()
+        return localEventService
+            .getEvent(eventId)
+            .onStart {
+                val remoteResponse = remoteEventService
+                    .getEvent(eventId)
 
-            val apolloTournament = apolloResponse.data?.tournament
-
-            if (apolloTournament != null) {
-                val domainEvent = with(apolloTournament) {
-                    val startUtc = (apolloTournament.startAt as? Long)?.let { startAt ->
-                        Instant.fromEpochMilliseconds(startAt).toString()
+                when (remoteResponse) {
+                    is DataState.Error -> {
+                        println("Unable to request event $eventId: ${remoteResponse.error.message}")
                     }
 
-                    val endUtc = (apolloTournament.endAt as? Long)?.let { endAt ->
-                        Instant.fromEpochMilliseconds(endAt).toString()
+                    is DataState.Success -> {
+                        localEventService.insertEvents(listOf(remoteResponse.data))
                     }
-
-                    Event(
-                        id = this.id.orEmpty(),
-                        name = this.name.orEmpty(),
-                        startDateUTC = startUtc,
-                        endDateUTC = endUtc,
-                        imageURL = this.images?.firstOrNull()?.url,
-                        stages = emptyList(),
-                        tier = EventTier.Unknown,
-                        mode = "",
-                        region = EventRegion.Unknown,
-                        lan = this.hasOfflineEvents == true,
-                        prize = null,
-                    )
                 }
-
-                emit(domainEvent)
-            } else {
-                // Need to handle API error here.
             }
-        }
-
-//        return localEventService
-//            .getEvent(eventId)
-//            .onStart {
-//                val remoteResponse = remoteEventService
-//                    .getEvent(eventId)
-//
-//                when (remoteResponse) {
-//                    is DataState.Error -> {
-//                        println("Unable to request event $eventId: ${remoteResponse.error.message}")
-//                    }
-//                    is DataState.Success -> {
-//                        localEventService.insertEvents(listOf(remoteResponse.data))
-//                    }
-//                }
-//            }
     }
 
     override fun getEventParticipants(eventId: String): Flow<List<Team>> {

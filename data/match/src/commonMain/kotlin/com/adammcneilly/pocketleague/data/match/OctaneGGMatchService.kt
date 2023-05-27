@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.match
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatch
@@ -20,7 +19,7 @@ class OctaneGGMatchService(
 
     constructor() : this(OctaneGGAPIClient)
 
-    override suspend fun getMatchDetail(matchId: String): DataState<Match> {
+    override suspend fun getMatchDetail(matchId: String): Result<Match> {
         return apiClient.getResponse<OctaneGGMatch>(
             endpoint = "$MATCHES_ENDPOINT/$matchId",
         ).map { octaneMatch ->
@@ -28,7 +27,7 @@ class OctaneGGMatchService(
         }
     }
 
-    override suspend fun getPastWeeksMatches(): DataState<List<Match>> {
+    override suspend fun getPastWeeksMatches(): Result<List<Match>> {
         return apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(
@@ -44,7 +43,7 @@ class OctaneGGMatchService(
         }
     }
 
-    override suspend fun getUpcomingMatches(): DataState<List<Match>> {
+    override suspend fun getUpcomingMatches(): Result<List<Match>> {
         return apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(
@@ -62,7 +61,7 @@ class OctaneGGMatchService(
     override suspend fun getMatchesForEventStage(
         eventId: String,
         stageId: String,
-    ): DataState<List<Match>> {
+    ): Result<List<Match>> {
         return apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(

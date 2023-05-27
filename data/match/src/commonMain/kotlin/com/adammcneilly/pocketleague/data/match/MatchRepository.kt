@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.match
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.coroutines.flow.Flow
 
@@ -29,7 +28,7 @@ interface MatchRepository {
     /**
      * Unlike [getUpcomingMatches], this makes a singular request to fetch upcoming matches.
      */
-    suspend fun fetchAndPersistUpcomingMatches(): DataState<Unit>
+    suspend fun fetchAndPersistUpcomingMatches(): Result<Unit>
 
     /**
      * Retrieves all matches that occurred in the given [eventId] and [stageId].

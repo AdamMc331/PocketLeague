@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.match.test
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.matchBlueWinner
@@ -10,17 +9,17 @@ import kotlinx.coroutines.flow.flowOf
 
 class FakeMatchService : MatchService {
 
-    var matchListResponse: DataState<List<Match>> = DataState.Success(
+    var matchListResponse: Result<List<Match>> = Result.success(
         listOf(TestModel.matchBlueWinner),
     )
 
-    var matchDetailResponse: DataState<Match> = DataState.Success(
+    var matchDetailResponse: Result<Match> = Result.success(
         TestModel.matchBlueWinner,
     )
 
     override suspend fun fetchMatchDetail(
         matchId: String,
-    ): DataState<Match> {
+    ): Result<Match> {
         return matchDetailResponse
     }
 

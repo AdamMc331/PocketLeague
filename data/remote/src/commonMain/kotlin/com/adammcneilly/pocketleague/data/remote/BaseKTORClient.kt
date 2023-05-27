@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.data.remote
 
-import com.adammcneilly.pocketleague.core.models.DataState
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 
@@ -21,16 +20,16 @@ open class BaseKTORClient(
     suspend inline fun <reified T : Any> getResponse(
         endpoint: String,
         params: RemoteParams = emptyMap(),
-    ): DataState<T> {
+    ): Result<T> {
         val url = "$baseURL$endpoint"
 
         return try {
             val apiResult: T = httpClient.get(url) {
                 addParams(params)
             }
-            DataState.Success(apiResult)
+            Result.success(apiResult)
         } catch (e: Exception) {
-            DataState.Error(e)
+            Result.failure(e)
         }
     }
 }

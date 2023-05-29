@@ -9,15 +9,15 @@ plugins {
 
 android {
     namespace = "com.adammcneilly.pocketleague.baselineprofile"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     kotlinOptions {
         jvmTarget = "17"
     }
 
     defaultConfig {
-        minSdk = 24
-        targetSdk = 33
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.compileSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

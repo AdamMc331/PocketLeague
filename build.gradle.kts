@@ -44,7 +44,7 @@ subprojects {
     apply(from = "${rootProject.projectDir}/buildscripts/kover.gradle")
 
     afterEvaluate {
-        if (this.hasProperty("android")) {
+        gradle.projectsEvaluated {
             tasks.withType(JavaCompile::class.java) {
                 sourceCompatibility = "17"
                 targetCompatibility = "17"

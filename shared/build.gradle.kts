@@ -72,11 +72,6 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
     }
 
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_17)
-        targetCompatibility(JavaVersion.VERSION_17)
-//        isCoreLibraryDesugaringEnabled = true
-    }
     namespace = "com.adammcneilly.pocketleague.shared"
 }
 

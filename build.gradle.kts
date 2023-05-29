@@ -10,15 +10,15 @@ buildscript {
 
     dependencies {
         classpath("com.android.tools.build:gradle:8.0.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.21.0")
         classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")
         classpath("com.hiya:jacoco-android:0.2")
         classpath("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.12.0")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:1.7.20")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:1.8.21")
         classpath("org.jetbrains.kotlinx:kover:0.6.1")
         classpath("com.karumi:shot:5.14.1")
-        classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
+        classpath(libs.square.sqldelight.plugin)
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -42,6 +42,15 @@ subprojects {
     apply(from = "${rootProject.projectDir}/buildscripts/ktlint.gradle")
     apply(from = "${rootProject.projectDir}/buildscripts/versionsplugin.gradle")
     apply(from = "${rootProject.projectDir}/buildscripts/kover.gradle")
+
+    afterEvaluate {
+        gradle.projectsEvaluated {
+            tasks.withType(JavaCompile::class.java) {
+                sourceCompatibility = "17"
+                targetCompatibility = "17"
+            }
+        }
+    }
 }
 
 tasks.register("clean", Delete::class) {

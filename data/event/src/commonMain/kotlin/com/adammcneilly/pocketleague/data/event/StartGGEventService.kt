@@ -2,10 +2,11 @@ package com.adammcneilly.pocketleague.data.event
 
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.data.startgg.RLCSTournamentFilter
 import com.adammcneilly.pocketleague.data.startgg.StartGGApolloClient
 import com.adammcneilly.pocketleague.data.startgg.TournamentListQuery
+import com.adammcneilly.pocketleague.data.startgg.fragment.TournamentFragment
 import com.adammcneilly.pocketleague.data.startgg.mappers.toEvent
-import com.adammcneilly.pocketleague.data.startgg.type.TournamentPageFilter
 import com.adammcneilly.pocketleague.data.startgg.type.TournamentQuery
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
@@ -19,12 +20,8 @@ class StartGGEventService(
     override suspend fun getUpcomingEvents(): Result<List<Event>> {
         val upcomingEventsQuery = TournamentQuery(
             filter = Optional.present(
-                TournamentPageFilter(
+                RLCSTournamentFilter.copy(
                     upcoming = Optional.present(true),
-                    name = Optional.present("RLCS"),
-                    // We're hardcoding the Rocket League video game Id.
-                    // Let's see if there's another way to search for RLCS events? Maybe by league or something?
-                    videogameIds = Optional.present(listOf("14")),
                 ),
             ),
         )
@@ -32,9 +29,9 @@ class StartGGEventService(
         val response = apiClient.query(TournamentListQuery(upcomingEventsQuery)).execute()
 
         return if (response.data != null && !response.hasErrors()) {
-            val eventList = response.data?.tournaments?.nodes?.mapNotNull {
-                it?.tournamentFragment?.toEvent()
-            }.orEmpty()
+            val fragments = response.data?.tournaments?.nodes?.mapNotNull { it?.tournamentFragment }.orEmpty()
+
+            val eventList = fragments.map(TournamentFragment::toEvent)
 
             Result.success(eventList)
         } else {
@@ -56,13 +53,9 @@ class StartGGEventService(
     override suspend fun getOngoingEvents(): Result<List<Event>> {
         val ongoingEventsQuery = TournamentQuery(
             filter = Optional.present(
-                TournamentPageFilter(
+                RLCSTournamentFilter.copy(
                     past = Optional.present(false),
                     upcoming = Optional.present(false),
-                    name = Optional.present("RLCS"),
-                    // We're hardcoding the Rocket League video game Id.
-                    // Let's see if there's another way to search for RLCS events? Maybe by league or something?
-                    videogameIds = Optional.present(listOf("14")),
                 ),
             ),
         )
@@ -70,15 +63,9 @@ class StartGGEventService(
         val response = apiClient.query(TournamentListQuery(ongoingEventsQuery)).execute()
 
         return if (response.data != null && !response.hasErrors()) {
-            val fragments = response.data?.tournaments?.nodes?.map { it?.tournamentFragment }.orEmpty()
+            val fragments = response.data?.tournaments?.nodes?.mapNotNull { it?.tournamentFragment }.orEmpty()
 
-            val rlcsOwnerIds = fragments.filter {
-                it?.name?.contains("RLCS") == true
-            }.map {
-                it?.owner?.id
-            }
-
-            val eventList = fragments.mapNotNull { it?.toEvent() }
+            val eventList = fragments.map(TournamentFragment::toEvent)
 
             Result.success(eventList)
         } else {

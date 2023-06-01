@@ -24,11 +24,14 @@ fun TournamentFragment.toEvent(): Event {
         startDateUTC = startUtc,
         endDateUTC = endUtc,
         imageURL = this.images?.firstOrNull()?.url,
-        stages = emptyList(),
+        stages = this.events?.mapNotNull {
+            it?.eventFragment?.toEventStage()
+        }.orEmpty(),
+        lan = this.hasOfflineEvents == true,
+        // Start API doesn't have this information, so can we remove it, or make it null, or something else?
         tier = EventTier.Unknown,
         mode = "",
         region = EventRegion.Unknown,
-        lan = this.hasOfflineEvents == true,
         prize = null,
     )
 }

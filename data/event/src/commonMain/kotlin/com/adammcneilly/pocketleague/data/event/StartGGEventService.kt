@@ -11,6 +11,9 @@ import com.adammcneilly.pocketleague.data.startgg.type.TournamentQuery
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
 
+/**
+ * A concrete implementation of a [RemoteEventService] that requests data from the supplied [apiClient].
+ */
 class StartGGEventService(
     private val apiClient: ApolloClient,
 ) : RemoteEventService {

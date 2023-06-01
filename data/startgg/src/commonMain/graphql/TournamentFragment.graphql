@@ -1,0 +1,21 @@
+fragment TournamentFragment on Tournament {
+    id
+    name
+    startAt
+    endAt
+    images {
+        url
+    }
+    # Can't query for stages because the way they're defined
+    # in the app matches the octane API, where as start treats
+    # them a little different so we'll do this mapping later.
+    # TODO: Stages
+    # TODO: Tier
+    # TODO: Mode
+    # TODO: Region
+    hasOfflineEvents
+    currency
+    owner {
+        id
+    }
+}

@@ -1,9 +1,9 @@
 package com.adammcneilly.pocketleague.shared.di
 
 import com.adammcneilly.pocketleague.data.event.EventRepository
-import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
 import com.adammcneilly.pocketleague.data.event.OfflineFirstEventRepository
 import com.adammcneilly.pocketleague.data.event.SQLDelightEventService
+import com.adammcneilly.pocketleague.data.event.StartGGEventService
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
@@ -28,7 +28,8 @@ class ProdDataModule(
     override val eventRepository: EventRepository by lazy {
         OfflineFirstEventRepository(
             localEventService = SQLDelightEventService(this.database),
-            remoteEventService = OctaneGGEventService(),
+//            remoteEventService = OctaneGGEventService(),
+            remoteEventService = StartGGEventService(),
         )
     }
 

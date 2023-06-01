@@ -43,11 +43,24 @@ class StartGGEventService(
     }
 
     override suspend fun getEvent(eventId: String): Result<Event> {
-        TODO("Not yet implemented")
+        val eventQuery = TournamentDetailQuery(
+            id = Optional.present(eventId),
+        )
+
+        val response = apiClient.query(eventQuery).execute()
+
+        val event = response.data?.tournament?.tournamentFragment?.toEvent()
+
+        return if (event != null) {
+            Result.success(event)
+        } else {
+            Result.failure(Throwable("Unable to request event for id: $eventId."))
+        }
     }
 
     override suspend fun getEventParticipants(eventId: String): Result<List<Team>> {
-        TODO("Not yet implemented")
+        // Not yet implemented
+        return Result.success(emptyList())
     }
 
     /**

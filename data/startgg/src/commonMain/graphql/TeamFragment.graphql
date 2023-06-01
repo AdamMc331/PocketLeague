@@ -1,0 +1,7 @@
+fragment TeamFragment on Team {
+    id
+    name
+    images {
+        url
+    }
+}

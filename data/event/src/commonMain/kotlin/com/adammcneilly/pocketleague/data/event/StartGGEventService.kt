@@ -7,6 +7,7 @@ import com.adammcneilly.pocketleague.data.startgg.StartGGApolloClient
 import com.adammcneilly.pocketleague.data.startgg.TournamentListQuery
 import com.adammcneilly.pocketleague.data.startgg.fragment.TournamentFragment
 import com.adammcneilly.pocketleague.data.startgg.mappers.toEvent
+import com.adammcneilly.pocketleague.data.startgg.mappers.toTeam
 import com.adammcneilly.pocketleague.data.startgg.type.TournamentQuery
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
@@ -58,9 +59,22 @@ class StartGGEventService(
         }
     }
 
+    /**
+     * Technically this is duplicating an API call, because [getEvent] makes the same GQL fragment query
+     * behind the scenes, but to stay consistent with existing data layers, we're just fetching the event again.
+     */
     override suspend fun getEventParticipants(eventId: String): Result<List<Team>> {
-        // Not yet implemented
-        return Result.success(emptyList())
+        val eventQuery = TournamentDetailQuery(
+            id = Optional.present(eventId),
+        )
+
+        val response = apiClient.query(eventQuery).execute()
+
+        val teamList = response.data?.tournament?.tournamentFragment?.teams?.nodes?.mapNotNull {
+            it?.teamFragment?.toTeam()
+        }.orEmpty()
+
+        return Result.success(teamList)
     }
 
     /**

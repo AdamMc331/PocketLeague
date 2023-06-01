@@ -1,0 +1,11 @@
+query TournamentParticipantsQuery(
+    $id: ID
+) {
+    tournament(id: $id) {
+        teams(query: {}) {
+            nodes {
+                ...TeamFragment
+            }
+        }
+    }
+}

@@ -9,15 +9,6 @@ fragment TournamentFragment on Tournament {
     events {
         ...EventFragment
     }
-    teams(
-        query: {
-
-        }
-    ) {
-        nodes {
-            ...TeamFragment
-        }
-    }
     # Can't query for stages because the way they're defined
     # in the app matches the octane API, where as start treats
     # them a little different so we'll do this mapping later.

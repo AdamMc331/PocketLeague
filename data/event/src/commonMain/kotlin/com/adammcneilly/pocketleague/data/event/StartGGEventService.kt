@@ -59,18 +59,14 @@ class StartGGEventService(
         }
     }
 
-    /**
-     * Technically this is duplicating an API call, because [getEvent] makes the same GQL fragment query
-     * behind the scenes, but to stay consistent with existing data layers, we're just fetching the event again.
-     */
     override suspend fun getEventParticipants(eventId: String): Result<List<Team>> {
-        val eventQuery = TournamentDetailQuery(
+        val eventQuery = TournamentParticipantsQuery(
             id = Optional.present(eventId),
         )
 
         val response = apiClient.query(eventQuery).execute()
 
-        val teamList = response.data?.tournament?.tournamentFragment?.teams?.nodes?.mapNotNull {
+        val teamList = response.data?.tournament?.teams?.nodes?.mapNotNull {
             it?.teamFragment?.toTeam()
         }.orEmpty()
 

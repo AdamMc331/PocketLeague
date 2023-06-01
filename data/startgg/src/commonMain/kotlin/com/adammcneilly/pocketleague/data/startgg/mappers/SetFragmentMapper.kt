@@ -19,32 +19,46 @@ fun SetFragment.toMatch(): Match {
     val orangeSlot = orderedSlots[0]!!
     val blueSlot = orderedSlots[1]!!
 
+    // The only way to get the number of wins for each team is to loop through all of the games, and
+    // check based on winnerID.
+    // First we calculate the number of games won by the orange team, then we subtract that from the total
+    // number of games to calculate how many games were won by the blue team.
     val orangeTeamWins = this.games?.count {
         it?.winnerId?.toString() == orangeSlot.entrant?.team?.teamFragment?.id
     } ?: 0
-
     val blueTeamWins = this.games?.size?.minus(orangeTeamWins) ?: 0
 
     return Match(
         id = this.id.orEmpty(),
         event = this.event?.tournament?.tournamentFragment?.toEvent()!!,
         dateUTC = startDateUTC,
-        blueTeam = MatchTeamResult(
-            score = blueTeamWins,
-            winner = (blueSlot.entrant?.team?.teamFragment?.id == this.winnerId?.toString()),
-            team = blueSlot.entrant?.team?.teamFragment?.toTeam() ?: Team(),
-            players = emptyList(),
-            stats = null,
+        blueTeam = blueSlot.toMatchTeamResult(
+            teamWins = blueTeamWins,
+            winnerId = this.winnerId,
         ),
-        orangeTeam = MatchTeamResult(
-            score = orangeTeamWins,
-            winner = (orangeSlot.entrant?.team?.teamFragment?.id == this.winnerId?.toString()),
-            team = orangeSlot.entrant?.team?.teamFragment?.toTeam() ?: Team(),
-            players = emptyList(),
-            stats = null,
+        orangeTeam = orangeSlot.toMatchTeamResult(
+            teamWins = orangeTeamWins,
+            winnerId = this.winnerId,
         ),
         stage = this.event.eventFragment.toEventStage(),
+        // We should be able to get this information from the API,
+        // we just need to add more to this mapping function.
         format = Format(),
         gameOverviews = emptyList(),
+    )
+}
+
+private fun SetFragment.Slot.toMatchTeamResult(
+    teamWins: Int,
+    winnerId: Int?,
+): MatchTeamResult {
+    val team = this.entrant?.team?.teamFragment?.toTeam() ?: Team()
+
+    return MatchTeamResult(
+        score = teamWins,
+        winner = (team.id == winnerId.toString()),
+        team = team,
+        players = emptyList(),
+        stats = null,
     )
 }

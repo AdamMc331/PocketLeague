@@ -23,7 +23,7 @@ class StartGGEventService(
                     upcoming = Optional.present(true),
                     name = Optional.present("RLCS"),
                     // We're hardcoding the Rocket League video game Id.
-                    // TODO: Let's see if there's another way to search for RLCS events? Maybe by league or something?
+                    // Let's see if there's another way to search for RLCS events? Maybe by league or something?
                     videogameIds = Optional.present(listOf("14")),
                 ),
             ),
@@ -61,7 +61,7 @@ class StartGGEventService(
                     upcoming = Optional.present(false),
                     name = Optional.present("RLCS"),
                     // We're hardcoding the Rocket League video game Id.
-                    // TODO: Let's see if there's another way to search for RLCS events? Maybe by league or something?
+                    // Let's see if there's another way to search for RLCS events? Maybe by league or something?
                     videogameIds = Optional.present(listOf("14")),
                 ),
             ),

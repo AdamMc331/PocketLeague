@@ -11,11 +11,12 @@ import kotlinx.datetime.Instant
  */
 fun TournamentFragment.toEvent(): Event {
     val startUtc = (this.startAt as? Int)?.let { startAt ->
-        Instant.fromEpochMilliseconds(startAt.toLong()).toString()
+        val startLong = startAt.toLong() * 1000
+        Instant.fromEpochMilliseconds(startLong).toString()
     }
 
     val endUtc = (this.endAt as? Int)?.let { endAt ->
-        Instant.fromEpochMilliseconds(endAt.toLong()).toString()
+        Instant.fromEpochMilliseconds(endAt.toLong() * 1000).toString()
     }
 
     return Event(

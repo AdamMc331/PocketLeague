@@ -50,6 +50,9 @@ class StartGGEventService(
         TODO("Not yet implemented")
     }
 
+    /**
+     * Unable to figure out how to filter for ongoing events on the Start.gg side, may need to reach out to developer support on Discord.
+     */
     override suspend fun getOngoingEvents(): Result<List<Event>> {
         val ongoingEventsQuery = TournamentQuery(
             filter = Optional.present(

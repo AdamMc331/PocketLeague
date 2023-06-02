@@ -1,11 +1,7 @@
 package com.adammcneilly.pocketleague.data.match
 
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.data.startgg.StartGGApolloClient
-import com.adammcneilly.pocketleague.data.startgg.mappers.toMatch
-import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
 
 /**
@@ -87,21 +83,25 @@ class OfflineFirstMatchRepository(
      * that the [stageId] is what is passed into this query.
      */
     override fun getMatchesForEventStage(eventId: String, stageId: String): Flow<List<Match>> {
-        return flow {
-            val response = StartGGApolloClient.query(EventSetsQuery(Optional.present(stageId))).execute()
-
-            val matches = response.data?.event?.sets?.nodes?.mapNotNull {
-                it?.setFragment?.toMatch()
-            }.orEmpty()
-
-            emit(matches)
-        }
-        // Commented out for now so I can hardcode in my new API for quick UI testing.
-//        return localDataSource
-//            .getMatchesForEventStage(eventId, stageId)
-//            .onStart {
-//                fetchAndPersistMatchesForEventStage(eventId, stageId)
-//            }
+        // Commented out because I want to remember this note:
+        /**
+         * For the start API, what we call a "stage", they define as an "event", so it's important
+         * that the [stageId] is what is passed into this query.
+         */
+//        return flow {
+//            val response = StartGGApolloClient.query(EventSetsQuery(Optional.present(stageId))).execute()
+//
+//            val matches = response.data?.event?.sets?.nodes?.mapNotNull {
+//                it?.setFragment?.toMatch()
+//            }.orEmpty()
+//
+//            emit(matches)
+//        }
+        return localDataSource
+            .getMatchesForEventStage(eventId, stageId)
+            .onStart {
+                fetchAndPersistMatchesForEventStage(eventId, stageId)
+            }
     }
 
     private suspend fun fetchAndPersistMatchesForEventStage(eventId: String, stageId: String) {

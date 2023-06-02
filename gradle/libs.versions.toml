@@ -27,6 +27,7 @@ minSdk = "23"
 palette = "1.0.0"
 sqldelight = "1.5.5"
 testParameterInjector = "1.9"
+tournamentBracket = "0.1"
 truth = "1.1.3"
 truthish = "0.6.3"
 turbine = "0.13.0"
@@ -93,6 +94,7 @@ square-sqldelight-native-driver = { module = "com.squareup.sqldelight:native-dri
 square-sqldelight-plugin = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
 square-sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
 square-sqldelight-sqlite-driver = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqldelight" }
+tournament-bracket = { module = "com.adammcneilly.tournamentbracket:tournamentbracket", version.ref = "tournamentBracket" }
 varabyte-truthish = { module = "com.varabyte.truthish:truthish", version.ref = "truthish" }
 uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
 benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmark-macro-junit4" }

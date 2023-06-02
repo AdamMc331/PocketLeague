@@ -2,7 +2,7 @@ query EventSetsQuery(
     $eventId: ID
 ) {
     event(id: $eventId) {
-        sets {
+        sets(perPage: 100) {
             nodes {
                 ...SetFragment
             }

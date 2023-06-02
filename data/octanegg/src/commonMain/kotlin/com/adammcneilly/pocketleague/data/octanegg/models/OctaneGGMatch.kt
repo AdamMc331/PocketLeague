@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
 import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.core.models.StageRound
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -42,5 +43,7 @@ fun OctaneGGMatch.toMatch(): Match {
         stage = this.stage.toEventStage(),
         format = this.format.toFormat(),
         gameOverviews = this.games?.map(OctaneGGGameOverview::toGameOverview).orEmpty(),
+        // Octane.GG API has no concept of a stage round, so we'll just return a default here.
+        round = StageRound(0, ""),
     )
 }

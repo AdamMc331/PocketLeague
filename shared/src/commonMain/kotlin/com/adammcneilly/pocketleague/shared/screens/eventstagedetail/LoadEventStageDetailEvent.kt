@@ -40,6 +40,7 @@ private fun Events.fetchMatchesForStage(
             stateManager.updateScreen(EventStageDetailViewState::class) { currentState ->
                 currentState.copy(
                     matchesByDateDisplayModel = matchesByDateDisplayModel,
+                    allMatches = displayModels,
                 )
             }
         }

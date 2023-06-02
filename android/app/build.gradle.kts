@@ -140,6 +140,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.kotlinx.datetime)
     implementation(libs.google.material)
+    implementation(libs.tournament.bracket)
 
     testImplementation(project(":core:models-test"))
     testImplementation(project(":data:event-test"))

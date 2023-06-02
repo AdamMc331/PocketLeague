@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.core.displaymodels
 import com.adammcneilly.pocketleague.core.datetime.DateUtils
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.core.models.StageRound
 import kotlinx.datetime.TimeZone
 
 private const val MATCH_DATE_FORMAT = "MMM dd, yyyy"
@@ -20,6 +21,7 @@ data class MatchDetailDisplayModel(
     val relativeDateTime: String,
     val orangeTeamResult: MatchTeamResultDisplayModel,
     val blueTeamResult: MatchTeamResultDisplayModel,
+    val round: StageRound,
     val isLive: Boolean = false,
     val isPlaceholder: Boolean = false,
 ) {
@@ -35,6 +37,7 @@ data class MatchDetailDisplayModel(
             isLive = false,
             orangeTeamResult = MatchTeamResultDisplayModel.placeholder,
             blueTeamResult = MatchTeamResultDisplayModel.placeholder,
+            round = StageRound(0, ""),
             isPlaceholder = true,
         )
     }
@@ -83,5 +86,6 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
             DateUtils.getRelativeTimestamp(date)
         }.orEmpty(),
         isLive = isLive,
+        round = this.round,
     )
 }

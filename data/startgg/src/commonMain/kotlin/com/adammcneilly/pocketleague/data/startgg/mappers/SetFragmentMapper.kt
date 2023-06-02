@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.data.startgg.mappers
 import com.adammcneilly.pocketleague.core.models.Format
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.MatchTeamResult
+import com.adammcneilly.pocketleague.core.models.StageRound
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.startgg.fragment.SetFragment
 import kotlinx.datetime.Instant
@@ -45,6 +46,10 @@ fun SetFragment.toMatch(): Match {
         // we just need to add more to this mapping function.
         format = Format(),
         gameOverviews = emptyList(),
+        round = StageRound(
+            number = this.round ?: 0,
+            name = this.fullRoundText.orEmpty(),
+        ),
     )
 }
 

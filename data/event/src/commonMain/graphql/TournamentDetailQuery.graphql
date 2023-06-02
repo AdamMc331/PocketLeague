@@ -1,5 +1,8 @@
-query TournamentDetailQuery($slug: String!) {
-    tournament(slug: $slug) {
+query TournamentDetailQuery(
+    $id: ID,
+    $slug: String,
+) {
+    tournament(id: $id, slug: $slug) {
         ...TournamentFragment
     }
 }

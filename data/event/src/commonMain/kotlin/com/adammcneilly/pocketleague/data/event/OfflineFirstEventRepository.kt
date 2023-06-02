@@ -3,7 +3,6 @@ package com.adammcneilly.pocketleague.data.event
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
 
 /**
@@ -15,34 +14,21 @@ class OfflineFirstEventRepository(
     private val remoteEventService: RemoteEventService,
 ) : EventRepository {
     override fun getUpcomingEvents(): Flow<List<Event>> {
-        return flow {
-            val remoteResponse = remoteEventService
-                .getUpcomingEvents()
+        return localEventService
+            .getUpcomingEvents()
+            .onStart {
+                val remoteResponse = remoteEventService
+                    .getUpcomingEvents()
 
-            remoteResponse.fold(
-                onSuccess = { events ->
-                    emit(events)
-                },
-                onFailure = { error ->
-                    println("Unable to request upcoming events: ${error.message}")
-                },
-            )
-        }
-//        return localEventService
-//            .getUpcomingEvents()
-//            .onStart {
-//                val remoteResponse = remoteEventService
-//                    .getUpcomingEvents()
-//
-//                remoteResponse.fold(
-//                    onSuccess = { events ->
-//                        localEventService.insertEvents(events)
-//                    },
-//                    onFailure = { error ->
-//                        println("Unable to request upcoming events: ${error.message}")
-//                    },
-//                )
-//            }
+                remoteResponse.fold(
+                    onSuccess = { events ->
+                        localEventService.insertEvents(events)
+                    },
+                    onFailure = { error ->
+                        println("Unable to request upcoming events: ${error.message}")
+                    },
+                )
+            }
     }
 
     override fun getEvent(eventId: String): Flow<Event> {
@@ -88,37 +74,20 @@ class OfflineFirstEventRepository(
     }
 
     override fun getOngoingEvents(): Flow<List<Event>> {
-        return flow {
-            val remoteResponse = remoteEventService
-                .getOngoingEvents()
-
-            remoteResponse.fold(
-                onSuccess = { events ->
-                    emit(events)
-                },
-                onFailure = { error ->
-                    println("Unable to request ongoing events: ${error.message}")
-                },
-            )
-        }
-//        return localEventService
-//            .getOngoingEvents()
-//            .onStart {
-//                fetchAndPersistOngoingEvents()
-//            }
-    }
-
-    private suspend fun fetchAndPersistOngoingEvents() {
-        val remoteResponse = remoteEventService
+        return localEventService
             .getOngoingEvents()
+            .onStart {
+                val remoteResponse = remoteEventService
+                    .getOngoingEvents()
 
-        remoteResponse.fold(
-            onSuccess = { events ->
-                localEventService.insertEvents(events)
-            },
-            onFailure = { error ->
-                println("Unable to request ongoing events: ${error.message}")
-            },
-        )
+                remoteResponse.fold(
+                    onSuccess = { events ->
+                        localEventService.insertEvents(events)
+                    },
+                    onFailure = { error ->
+                        println("Unable to request ongoing events: ${error.message}")
+                    },
+                )
+            }
     }
 }

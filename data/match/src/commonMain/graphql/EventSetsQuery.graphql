@@ -1,0 +1,11 @@
+query EventSetsQuery(
+    $eventId: ID
+) {
+    event(id: $eventId) {
+        sets {
+            nodes {
+                ...SetFragment
+            }
+        }
+    }
+}

@@ -73,18 +73,25 @@ fun EventDetailContent(
     ) {
         EventImageName(displayModel)
 
-        EventDetails(displayModel)
+        // Do we really need to show this?
+        // Maybe we can add a section for prize money, but otherwise most of this information
+        // is implied.
+//        EventDetails(displayModel)
 
-        EventStageListCard(
-            displayModels = displayModel.getStageSummaries(),
-            onStageClicked = { stageId ->
-                onStageClicked.invoke(displayModel.eventId, stageId)
-            },
-        )
+        val stageSummaries = displayModel.getStageSummaries()
+
+        if (stageSummaries.isNotEmpty()) {
+            EventStageListCard(
+                displayModels = displayModel.getStageSummaries(),
+                onStageClicked = { stageId ->
+                    onStageClicked.invoke(displayModel.eventId, stageId)
+                },
+            )
+        }
 
         val participants = viewState.participants
 
-        if (participants?.isNotEmpty() == true) {
+        if (participants.isNotEmpty()) {
             EventParticipants(participants = participants)
         }
     }

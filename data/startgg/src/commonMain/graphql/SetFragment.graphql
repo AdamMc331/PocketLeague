@@ -1,0 +1,22 @@
+fragment SetFragment on Set {
+    id
+    event {
+        ...EventFragment
+        tournament {
+            ...TournamentFragment
+        }
+    }
+    startAt
+    slots {
+        slotIndex
+        entrant {
+            team {
+                ...TeamFragment
+            }
+        }
+    }
+    games {
+        winnerId
+    }
+    winnerId
+}

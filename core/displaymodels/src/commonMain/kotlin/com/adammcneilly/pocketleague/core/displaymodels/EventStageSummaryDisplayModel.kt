@@ -32,7 +32,13 @@ data class EventStageSummaryDisplayModel(
     }
 
     val dateString: String
-        get() = "$startDate – $endDate"
+        get() = if (endDate.isNotEmpty()) {
+            "$startDate – $endDate"
+        } else if (startDate.isNotEmpty()) {
+            startDate
+        } else {
+            "Date Unavailable"
+        }
 }
 
 /**

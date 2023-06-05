@@ -9,6 +9,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:displaymodels"))
+                implementation(project(":core:models"))
             }
         }
         val commonTest by getting {

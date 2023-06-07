@@ -3,7 +3,6 @@ package com.adammcneilly.pocketleague.data.match
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.startgg.StartGGApolloClient
 import com.adammcneilly.pocketleague.data.startgg.mappers.toMatch
-import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
@@ -88,7 +87,12 @@ class OfflineFirstMatchRepository(
      */
     override fun getMatchesForEventStage(eventId: String, stageId: String): Flow<List<Match>> {
         return flow {
-            val response = StartGGApolloClient.query(EventSetsQuery(Optional.present(stageId))).execute()
+            // First request the total, then request the sets.
+            val totalResponse = StartGGApolloClient.query(EventSetsCountQuery(stageId)).execute()
+
+            val total = totalResponse.data?.event?.sets?.pageInfo?.total ?: 0
+
+            val response = StartGGApolloClient.query(EventSetsQuery(stageId, total)).execute()
 
             val matches = response.data?.event?.sets?.nodes?.mapNotNull {
                 it?.setFragment?.toMatch()

@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.core.models.test
 
 import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.core.models.StageRound
 
 val TestModel.matchBlueWinner: Match
     get() = Match(
@@ -12,4 +13,5 @@ val TestModel.matchBlueWinner: Match
         stage = TestModel.eventStage,
         format = TestModel.formatBO7,
         gameOverviews = listOf(TestModel.gameOverview),
+        round = StageRound(1, "First Round"),
     )

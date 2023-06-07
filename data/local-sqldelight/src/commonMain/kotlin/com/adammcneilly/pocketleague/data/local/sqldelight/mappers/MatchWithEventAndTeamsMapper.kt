@@ -8,6 +8,7 @@ import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.core.models.Format
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.MatchTeamResult
+import com.adammcneilly.pocketleague.core.models.StageRound
 import com.adammcneilly.pocketleague.core.models.Stats
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
@@ -27,6 +28,10 @@ fun MatchWithEventAndTeams.toMatch(): Match {
         orangeTeam = mapOrangeTeamResult(orangeTeamGameWins, orangeTeamWinner),
         stage = mapEventStage(),
         format = mapFormat(),
+        round = StageRound(
+            number = this.localMatchRoundNumber.toInt(),
+            name = this.localMatchRoundName,
+        ),
         // NEED TO STORE GAME INFO
         gameOverviews = emptyList(),
     )

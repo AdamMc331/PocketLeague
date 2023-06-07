@@ -9,6 +9,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
+import com.adammcneilly.pocketleague.core.models.StageRound
 
 object TestDisplayModel {
     val coreStats = CoreStatsDisplayModel(
@@ -68,6 +69,11 @@ object TestDisplayModel {
         players = emptyList(),
     )
 
+    val stageRound = StageRound(
+        number = 1,
+        name = "First Round",
+    )
+
     val matchDetailBlueWinner = MatchDetailDisplayModel(
         matchId = "matchId",
         localDate = "Jan 01, 2000",
@@ -77,6 +83,7 @@ object TestDisplayModel {
         relativeDateTime = "1d ago",
         orangeTeamResult = matchTeamResultLoser,
         blueTeamResult = matchTeamResultWinner,
+        round = stageRound,
     )
 
     val matchDetailOrangeWinner = matchDetailBlueWinner.copy(

@@ -1,10 +1,25 @@
 query EventSetsQuery(
-    $eventId: ID
+    $eventId: ID!,
+    $perPage: Int!
+) {
+    event(id: $eventId) {
+        sets(perPage: $perPage) {
+            nodes {
+                ...SetFragment
+            }
+        }
+    }
+}
+
+# This query is used to determine the number of sets in an event, so we can make a subsequent call
+# for all of them.
+query EventSetsCountQuery(
+    $eventId: ID!
 ) {
     event(id: $eventId) {
         sets {
-            nodes {
-                ...SetFragment
+            pageInfo {
+                total
             }
         }
     }

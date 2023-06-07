@@ -13,4 +13,5 @@ data class Match(
     val stage: EventStage,
     val format: Format,
     val gameOverviews: List<GameOverview>,
+    val round: StageRound,
 )

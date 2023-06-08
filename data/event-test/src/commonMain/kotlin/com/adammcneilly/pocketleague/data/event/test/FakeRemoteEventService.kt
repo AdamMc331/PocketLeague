@@ -26,6 +26,7 @@ class FakeRemoteEventService : RemoteEventService {
     private var eventParticipantsRequestCount = 0
 
     override suspend fun getUpcomingEvents(): Result<List<Event>> {
+        upcomingEventsRequestCount += 1
         return this.upcomingEvents
     }
 
@@ -34,10 +35,12 @@ class FakeRemoteEventService : RemoteEventService {
     }
 
     override suspend fun getEventParticipants(eventId: String): Result<List<Team>> {
+        eventParticipantsRequestCount += 1
         return this.eventParticipantsByEventId[eventId]!!
     }
 
     override suspend fun getOngoingEvents(): Result<List<Event>> {
+        ongoingEventsRequestCount += 1
         return this.ongoingEvents
     }
 

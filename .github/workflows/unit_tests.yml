@@ -29,7 +29,5 @@ jobs:
           LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
-      - name: Build Project
-        run: |
-          ./gradlew check
-          ./gradlew android:app:test
+      - name: Run Tests
+        run: ./gradlew testDebugUnitTest

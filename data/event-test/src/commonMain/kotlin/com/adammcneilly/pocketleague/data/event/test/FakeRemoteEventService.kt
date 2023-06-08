@@ -14,6 +14,9 @@ class FakeRemoteEventService : RemoteEventService {
     val eventsById: MutableMap<String, Result<Event>> = mutableMapOf(
         TestModel.event.id to Result.success(TestModel.event),
     )
+    val eventsByName: MutableMap<String, Result<Event>> = mutableMapOf(
+        TestModel.event.name to Result.success(TestModel.event),
+    )
     val eventParticipantsByEventId: MutableMap<String, Result<List<Team>>> = mutableMapOf(
         TestModel.event.id to Result.success(listOf(TestModel.team)),
     )
@@ -32,5 +35,9 @@ class FakeRemoteEventService : RemoteEventService {
 
     override suspend fun getOngoingEvents(): Result<List<Event>> {
         return this.ongoingEvents
+    }
+
+    override suspend fun getEventByName(eventName: String): Result<Event> {
+        return this.eventsByName[eventName]!!
     }
 }

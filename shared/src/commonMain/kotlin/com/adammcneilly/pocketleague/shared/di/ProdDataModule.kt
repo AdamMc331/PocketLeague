@@ -1,6 +1,8 @@
 package com.adammcneilly.pocketleague.shared.di
 
+import com.adammcneilly.pocketleague.data.event.CombinedStartOctaneEventService
 import com.adammcneilly.pocketleague.data.event.EventRepository
+import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
 import com.adammcneilly.pocketleague.data.event.OfflineFirstEventRepository
 import com.adammcneilly.pocketleague.data.event.SQLDelightEventService
 import com.adammcneilly.pocketleague.data.event.StartGGEventService
@@ -29,7 +31,11 @@ class ProdDataModule(
         OfflineFirstEventRepository(
             localEventService = SQLDelightEventService(this.database),
 //            remoteEventService = OctaneGGEventService(),
-            remoteEventService = StartGGEventService(),
+//            remoteEventService = StartGGEventService(),
+            remoteEventService = CombinedStartOctaneEventService(
+                octaneGGEventService = OctaneGGEventService(),
+                startGGEventService = StartGGEventService(),
+            ),
         )
     }
 

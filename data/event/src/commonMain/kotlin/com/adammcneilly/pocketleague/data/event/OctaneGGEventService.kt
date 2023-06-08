@@ -33,7 +33,7 @@ class OctaneGGEventService(
         }
     }
 
-    override suspend fun getEvent(eventId: String): Result<Event> {
+    override suspend fun getEventById(eventId: String): Result<Event> {
         val endpoint = "$EVENTS_ENDPOINT/$eventId"
 
         return apiClient.getResponse<OctaneGGEvent>(
@@ -64,6 +64,19 @@ class OctaneGGEventService(
             ),
         ).map { eventListResponse ->
             eventListResponse.events?.map(OctaneGGEvent::toEvent).orEmpty()
+        }
+    }
+
+    override suspend fun getEventByName(eventName: String): Result<Event> {
+        return apiClient.getResponse<OctaneGGEventListResponse>(
+            endpoint = EVENTS_ENDPOINT,
+            params = mapOf(
+                "name" to eventName,
+            ),
+        ).map { eventListResponse ->
+            eventListResponse.events?.map(OctaneGGEvent::toEvent).orEmpty()
+        }.map { eventList ->
+            eventList.first()
         }
     }
 

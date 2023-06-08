@@ -43,7 +43,7 @@ class StartGGEventService(
         }
     }
 
-    override suspend fun getEvent(eventId: String): Result<Event> {
+    override suspend fun getEventById(eventId: String): Result<Event> {
         val eventQuery = TournamentDetailQuery(
             id = Optional.present(eventId),
         )
@@ -97,5 +97,9 @@ class StartGGEventService(
         } else {
             Result.failure(Throwable("Unable to request ongoing events."))
         }
+    }
+
+    override suspend fun getEventByName(eventName: String): Result<Event> {
+        throw UnsupportedOperationException("Fetching an event by name not supported by the start.gg api.")
     }
 }

@@ -28,7 +28,8 @@ fun TournamentFragment.toEvent(): Event {
             it?.eventFragment?.toEventStage()
         }.orEmpty(),
         lan = this.hasOfflineEvents == true,
-        // Start API doesn't have this information, so can we remove it, or make it null, or something else?
+        // Start API doesn't have this information, so we just return defaults. Ideally, further up
+        // the data pipeline in this project, we'll find a way to populate this information.
         tier = EventTier.Unknown,
         mode = "",
         region = EventRegion.Unknown,

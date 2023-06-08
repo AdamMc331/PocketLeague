@@ -16,7 +16,12 @@ interface RemoteEventService {
     /**
      * Retrieves an [Event] by it's unique [eventId].
      */
-    suspend fun getEvent(eventId: String): Result<Event>
+    suspend fun getEventById(eventId: String): Result<Event>
+
+    /**
+     * Retrieves an event based on its [eventName].
+     */
+    suspend fun getEventByName(eventName: String): Result<Event>
 
     /**
      * Observe the list of [Team] entities that participated in the given [eventId].

@@ -36,7 +36,7 @@ class OfflineFirstEventRepository(
             .getEvent(eventId)
             .onStart {
                 val remoteResponse = remoteEventService
-                    .getEvent(eventId)
+                    .getEventById(eventId)
 
                 remoteResponse.fold(
                     onSuccess = { event ->

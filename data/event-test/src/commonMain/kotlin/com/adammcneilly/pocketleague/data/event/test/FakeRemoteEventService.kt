@@ -21,6 +21,10 @@ class FakeRemoteEventService : RemoteEventService {
         TestModel.event.id to Result.success(listOf(TestModel.team)),
     )
 
+    private var upcomingEventsRequestCount = 0
+    private var ongoingEventsRequestCount = 0
+    private var eventParticipantsRequestCount = 0
+
     override suspend fun getUpcomingEvents(): Result<List<Event>> {
         return this.upcomingEvents
     }
@@ -39,5 +43,26 @@ class FakeRemoteEventService : RemoteEventService {
 
     override suspend fun getEventByName(eventName: String): Result<Event> {
         return this.eventsByName[eventName]!!
+    }
+
+    fun verifyUpcomingEventsRequested(count: Int) {
+        requireInvocationCount(count, upcomingEventsRequestCount)
+    }
+
+    fun verifyOngoingEventsRequested(count: Int) {
+        requireInvocationCount(count, ongoingEventsRequestCount)
+    }
+
+    fun verifyEventParticipantsRequested(count: Int) {
+        requireInvocationCount(count, eventParticipantsRequestCount)
+    }
+
+    private fun requireInvocationCount(
+        expectedCount: Int,
+        invocationCount: Int,
+    ) {
+        require(expectedCount == invocationCount) {
+            "Expected $expectedCount invocations, was: $invocationCount"
+        }
     }
 }

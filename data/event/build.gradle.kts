@@ -29,6 +29,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(project(":core:models-test"))
+                implementation(project(":data:event-test"))
                 implementation(project(":data:remote-test"))
                 implementation(libs.cash.turbine)
                 implementation(libs.kotlinx.coroutines.test)

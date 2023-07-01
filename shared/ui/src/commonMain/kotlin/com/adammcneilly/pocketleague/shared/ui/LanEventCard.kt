@@ -20,6 +20,11 @@ import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
 import com.adammcneilly.pocketleague.shared.ui.utils.VerticalSpacer
 
+/**
+ * A custom card component used to highlight a LAN event. Unlike an online
+ * regional, a LAN event is an in-person international competition and deserves
+ * special highlighting within [FeedContent].
+ */
 @Composable
 fun LanEventCard(
     modifier: Modifier = Modifier,

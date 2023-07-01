@@ -9,6 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * The main list of events and matches to show within the feed screen
+ * that is the landing page when opening the app.
+ */
 @Composable
 fun FeedContent(
     modifier: Modifier = Modifier,

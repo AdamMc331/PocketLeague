@@ -38,5 +38,6 @@ include(":feature:event-detail")
 include(":feature:feed")
 
 include(":shared")
+include(":shared:ui")
 include(":shared-test")
 include(":data:startgg")

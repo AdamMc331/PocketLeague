@@ -1,0 +1,39 @@
+package com.adammcneilly.pocketleague.shared.ui
+
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+
+/**
+ * A card component that shows a list of event summaries.
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+@Suppress("MagicNumber")
+fun EventSummaryListCard(
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        modifier = modifier
+            .fillMaxWidth(),
+    ) {
+        for (i in 0 until 5) {
+            // We need to propogate the container color over to our list item,
+            // otherwise the list item will set its own background.
+            EventSummaryListItem(
+                colors = ListItemDefaults.colors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                ),
+            )
+
+            if (i != 4) {
+                Divider()
+            }
+        }
+    }
+}

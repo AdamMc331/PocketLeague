@@ -30,6 +30,10 @@ fun FeedContent(
         }
 
         item {
+            EventSummaryListCard()
+        }
+
+        item {
             LanEventCard()
         }
     }

@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("com.google.devtools.ksp").version("1.8.21-1.0.11")
+    id("com.google.devtools.ksp").version("1.8.20-1.0.11")
     alias(libs.plugins.androidx.baselineprofile)
 }
 

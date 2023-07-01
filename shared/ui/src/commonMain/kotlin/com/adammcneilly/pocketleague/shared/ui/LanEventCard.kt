@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.design.system.theme.md_theme_dark_onSurface
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
@@ -46,7 +46,7 @@ fun LanEventCard(
         ) {
             Column(
                 modifier = Modifier
-                    .padding(16.dp),
+                    .padding(PocketLeagueTheme.sizes.cardPadding),
             ) {
                 Text(
                     text = "RLCS 2022-23 World Championship",
@@ -57,7 +57,7 @@ fun LanEventCard(
                         .fillMaxWidth(),
                 )
 
-                VerticalSpacer(16.dp)
+                VerticalSpacer(PocketLeagueTheme.sizes.cardPadding)
 
                 Text(
                     text = "August 3 - 13, 2023",

@@ -7,7 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 
 /**
  * The main list of events and matches to show within the feed screen
@@ -19,8 +19,8 @@ fun FeedContent(
 ) {
     LazyColumn(
         modifier = modifier,
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(PocketLeagueTheme.sizes.screenPadding),
+        verticalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.listItemSpacing),
     ) {
         item {
             Text(

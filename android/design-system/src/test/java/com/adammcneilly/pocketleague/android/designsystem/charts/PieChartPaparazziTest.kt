@@ -5,8 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.android.designsystem.snapshotScreen
-import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue
-import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange
+import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
+import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule

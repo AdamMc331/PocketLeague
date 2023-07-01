@@ -43,7 +43,7 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
     }
 
-    namespace = "NAMESPACE_PLACEHOLDER"
+    namespace = "com.adammcneilly.pocketleague.shared.ui"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

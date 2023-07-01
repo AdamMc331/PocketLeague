@@ -16,6 +16,7 @@ espresso = "3.5.1"
 glance = "1.0.0-alpha05"
 jsoup = "1.15.4"
 junit = "4.13.2"
+kmpCompose = "1.4.1"
 kotlin = "1.8.20"
 kotlinxCoroutines = "1.7.1"
 kotlinxDatetime = "0.4.0"
@@ -25,6 +26,7 @@ lifecycle = "2.6.1"
 material = "1.9.0"
 minSdk = "23"
 palette = "1.0.0"
+paparazzi = "1.2.0"
 sqldelight = "1.5.5"
 testParameterInjector = "1.9"
 tournamentBracket = "0.0.1"
@@ -133,5 +135,8 @@ ktor-client = [
     "ktor-client-logging",
     "ktor-client-serialization",
 ]
+
 [plugins]
 androidx-baselineprofile = { id = "androidx.baselineprofile", version.ref = "androidx-baselineprofile" }
+cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
+kotlin-compose = { id = "org.jetbrains.compose", version.ref = "kmpCompose" }

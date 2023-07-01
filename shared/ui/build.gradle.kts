@@ -1,13 +1,23 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.cash.paparazzi)
 }
 
 kotlin {
     android()
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(project(":shared:design-system"))
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.preview)
+                implementation(compose.runtime)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))

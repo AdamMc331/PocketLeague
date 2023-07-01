@@ -7,8 +7,8 @@ buildscript {
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("app.cash.paparazzi").version("1.2.0")
     id("shot")
+    alias(libs.plugins.cash.paparazzi)
 }
 
 android {

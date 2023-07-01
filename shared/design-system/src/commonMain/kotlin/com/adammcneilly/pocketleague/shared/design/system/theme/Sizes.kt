@@ -14,14 +14,14 @@ import androidx.compose.ui.unit.dp
  * @property[cardPadding] The spacing between text/components and the edge of a card component.
  */
 @Immutable
-data class PocketLeagueSizes(
+data class Sizes(
     val screenPadding: Dp,
     val listItemSpacing: Dp,
     val cardPadding: Dp,
 )
 
 val LocalPocketLeagueSizes = staticCompositionLocalOf {
-    PocketLeagueSizes(
+    Sizes(
         screenPadding = 0.dp,
         listItemSpacing = 0.dp,
         cardPadding = 0.dp,

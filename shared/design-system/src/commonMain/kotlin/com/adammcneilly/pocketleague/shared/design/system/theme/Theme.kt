@@ -82,7 +82,7 @@ fun PocketLeagueTheme(
         DarkColorScheme
     }
 
-    val sizes = PocketLeagueSizes(
+    val sizes = Sizes(
         screenPadding = 16.dp,
         listItemSpacing = 16.dp,
         cardPadding = 16.dp,
@@ -104,7 +104,7 @@ fun PocketLeagueTheme(
  * Inspiration: https://developer.android.com/jetpack/compose/designsystems/custom#extending-material
  */
 object PocketLeagueTheme {
-    val sizes: PocketLeagueSizes
+    val sizes: Sizes
         @Composable
         get() = LocalPocketLeagueSizes.current
 }

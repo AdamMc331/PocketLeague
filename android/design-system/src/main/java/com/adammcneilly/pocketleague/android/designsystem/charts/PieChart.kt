@@ -14,9 +14,9 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue
-import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange
+import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
+import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
 
 private const val FULL_CIRCLE_ANGLE = 360F
 

@@ -59,6 +59,7 @@ dependencies {
 
     debugImplementation(libs.bundles.compose.ui.debug)
 
+    api(project(":shared:design-system"))
     implementation(project(":core:displaymodels"))
     implementation(libs.accompanist.placeholder.material)
     implementation(libs.bundles.compose.ui)

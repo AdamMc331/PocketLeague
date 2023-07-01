@@ -17,9 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue
-import com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange
 import com.adammcneilly.pocketleague.core.models.CoreStats
+import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
+import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
 
 /**
  * A composable to compare the [CoreStats] between two teams.
@@ -88,7 +88,7 @@ private fun StatComparisonRow(
                 Box(
                     modifier = Modifier
                         .background(
-                            color = com.adammcneilly.pocketleague.android.designsystem.theme.rlcsBlue,
+                            color = com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue,
                             shape = RoundedCornerShape(
                                 topStartPercent = 50,
                                 bottomStartPercent = 50,
@@ -112,7 +112,7 @@ private fun StatComparisonRow(
                 Box(
                     modifier = Modifier
                         .background(
-                            color = com.adammcneilly.pocketleague.android.designsystem.theme.rlcsOrange,
+                            color = com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange,
                             shape = RoundedCornerShape(
                                 topEndPercent = 50,
                                 bottomEndPercent = 50,

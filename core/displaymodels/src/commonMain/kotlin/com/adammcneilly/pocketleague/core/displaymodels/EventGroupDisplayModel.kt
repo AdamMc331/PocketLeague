@@ -27,26 +27,50 @@ sealed class EventGroupDisplayModel {
         fun mapFromEventList(
             events: List<EventSummaryDisplayModel>,
         ): List<EventGroupDisplayModel> {
-            val allGroups = mutableListOf<EventGroupDisplayModel>()
-            val regionalGroup = mutableListOf<EventSummaryDisplayModel>()
+            /**
+             * An accumulation of event groups so we can perform a single iteration over
+             * the supplied events using the fold function.
+             *
+             * @param[allGroups] All event groups calculated so far, which will be returned
+             * at the end.
+             * @param[currentRegionalList] The current grouping of regional events, which we will
+             * either add to, or clear and move into allGroups, after each iteration.
+             */
+            data class Accumulator(
+                val allGroups: List<EventGroupDisplayModel>,
+                val currentRegionalList: List<EventSummaryDisplayModel>,
+            )
 
-            for (event in events) {
+            val outputAccumulator = events.fold(Accumulator(emptyList(), emptyList())) { accumulator, event ->
                 if (event.isMajor) {
-                    if (regionalGroup.isNotEmpty()) {
-                        allGroups.add(Regionals(regionalGroup.toList()))
-                        regionalGroup.clear()
+                    val updatedAllGroups = buildList {
+                        addAll(accumulator.allGroups)
+                        if (accumulator.currentRegionalList.isNotEmpty()) {
+                            add(Regionals(accumulator.currentRegionalList))
+                        }
+                        add(Major(event))
                     }
-                    allGroups.add(Major(event))
+
+                    accumulator.copy(
+                        allGroups = updatedAllGroups,
+                        currentRegionalList = emptyList(),
+                    )
                 } else {
-                    regionalGroup.add(event)
+                    accumulator.copy(
+                        currentRegionalList = accumulator.currentRegionalList + event,
+                    )
                 }
             }
 
-            if (regionalGroup.isNotEmpty()) {
-                allGroups.add(Regionals(regionalGroup.toList()))
+            val finalGroups = buildList {
+                addAll(outputAccumulator.allGroups)
+
+                if (outputAccumulator.currentRegionalList.isNotEmpty()) {
+                    add(Regionals(outputAccumulator.currentRegionalList))
+                }
             }
 
-            return allGroups
+            return finalGroups
         }
     }
 }

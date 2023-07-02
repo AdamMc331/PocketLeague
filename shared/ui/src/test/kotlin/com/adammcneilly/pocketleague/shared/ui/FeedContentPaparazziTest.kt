@@ -27,12 +27,12 @@ class FeedContentPaparazziTest {
             useDarkTheme = useDarkTheme,
             screenPaddingDp = 0,
         ) {
-            val events = EventSummaryDisplayModel.springInvitationalForAllRegions().take(3)
+            val regionals = EventSummaryDisplayModel.springInvitationalForAllRegions().take(3)
             val springMajor = EventSummaryDisplayModel.springMajor()
             val worlds = EventSummaryDisplayModel.worldChampionship()
 
             val groups = EventGroupDisplayModel.mapFromEventList(
-                events = events + springMajor + worlds,
+                events = regionals + springMajor + worlds,
             )
 
             FeedContent(

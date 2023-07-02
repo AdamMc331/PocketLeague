@@ -36,6 +36,7 @@ sealed class EventGroupDisplayModel {
              * @param[currentRegionalList] The current grouping of regional events, which we will
              * either add to, or clear and move into allGroups, after each iteration.
              */
+            @Suppress("OutdatedDocumentation") // This isn't outdated, detekt is confused?
             data class Accumulator(
                 val allGroups: List<EventGroupDisplayModel>,
                 val currentRegionalList: List<EventSummaryDisplayModel>,

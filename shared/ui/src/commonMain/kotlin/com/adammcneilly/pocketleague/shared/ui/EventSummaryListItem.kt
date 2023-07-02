@@ -12,6 +12,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 /**
  * Shows high level summary information about an event.
  *
+ * @param[event] The event summary to show inside of this list item.
  * @param[modifier] Any optional modifications to apply to this component.
  * @param[containerColor] If supplied, use this color to specify the container color of the
  * list item, different from what is the default. This may be used in situations where a list item is shown

@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.ui
 
 import app.cash.paparazzi.Paparazzi
+import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.springInvitationalForAllRegions
 import com.adammcneilly.pocketleague.core.displaymodels.test.springMajor
@@ -30,10 +31,8 @@ class FeedContentPaparazziTest {
             val springMajor = EventSummaryDisplayModel.springMajor()
             val worlds = EventSummaryDisplayModel.worldChampionship()
 
-            val groups = listOf(
-                events,
-                listOf(springMajor),
-                listOf(worlds),
+            val groups = EventGroupDisplayModel.mapFromEventList(
+                events = events + springMajor + worlds,
             )
 
             FeedContent(

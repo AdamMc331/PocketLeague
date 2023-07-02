@@ -5,6 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.unit.dp
 
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
@@ -80,8 +82,29 @@ fun PocketLeagueTheme(
         DarkColorScheme
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        content = content,
+    val sizes = Sizes(
+        screenPadding = 16.dp,
+        listItemSpacing = 16.dp,
+        cardPadding = 16.dp,
     )
+
+    CompositionLocalProvider(
+        LocalPocketLeagueSizes provides sizes,
+    ) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            content = content,
+        )
+    }
+}
+
+/**
+ * Wrapper object for special theme properties used in the Pocket League design system.
+ *
+ * Inspiration: https://developer.android.com/jetpack/compose/designsystems/custom#extending-material
+ */
+object PocketLeagueTheme {
+    val sizes: Sizes
+        @Composable
+        get() = LocalPocketLeagueSizes.current
 }

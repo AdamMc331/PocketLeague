@@ -38,3 +38,15 @@ fun EventSummaryDisplayModel.Companion.worldChampionship(): EventSummaryDisplayM
         isMajor = true,
     )
 }
+
+fun EventSummaryDisplayModel.Companion.springMajor(): EventSummaryDisplayModel {
+    return EventSummaryDisplayModel(
+        eventId = "spring_major",
+        imageURL = ThemedImageURL(),
+        dateRange = "July 06 - 09, 2023",
+        name = "RLCS 2022-23 Spring Major",
+        arena = "Agganis Arena",
+        location = "Boston, USA",
+        isMajor = true,
+    )
+}

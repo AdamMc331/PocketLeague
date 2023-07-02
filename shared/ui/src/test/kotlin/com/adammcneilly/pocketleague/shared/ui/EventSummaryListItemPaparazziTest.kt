@@ -1,6 +1,8 @@
 package com.adammcneilly.pocketleague.shared.ui
 
 import app.cash.paparazzi.Paparazzi
+import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.test.springInvitationalForRegion
 import org.junit.Rule
 import org.junit.Test
 
@@ -15,7 +17,11 @@ class EventSummaryListItemPaparazziTest {
             useDarkTheme = false,
             screenPaddingDp = 0,
         ) {
-            EventSummaryListItem()
+            val event = EventSummaryDisplayModel.springInvitationalForRegion("NA")
+
+            EventSummaryListItem(
+                event = event,
+            )
         }
     }
 }

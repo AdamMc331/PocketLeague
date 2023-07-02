@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 
 /**
@@ -15,6 +16,7 @@ import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueThem
  */
 @Composable
 fun FeedContent(
+    events: List<EventSummaryDisplayModel>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -30,7 +32,9 @@ fun FeedContent(
         }
 
         item {
-            EventSummaryListCard()
+            EventSummaryListCard(
+                events = events,
+            )
         }
 
         item {

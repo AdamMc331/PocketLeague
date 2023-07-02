@@ -6,6 +6,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 
 /**
  * A card component that shows a list of event summaries.
@@ -13,20 +14,22 @@ import androidx.compose.ui.Modifier
 @Composable
 @Suppress("MagicNumber")
 fun EventSummaryListCard(
+    events: List<EventSummaryDisplayModel>,
     modifier: Modifier = Modifier,
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth(),
     ) {
-        for (i in 0 until 5) {
+        events.forEachIndexed { index, event ->
             // We need to propogate the container color over to our list item,
             // otherwise the list item will set its own background.
             EventSummaryListItem(
+                event = event,
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
             )
 
-            if (i != 4) {
+            if (index != events.lastIndex) {
                 Divider()
             }
         }

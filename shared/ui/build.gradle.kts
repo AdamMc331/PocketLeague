@@ -11,6 +11,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:displaymodels"))
                 implementation(project(":shared:design-system"))
                 implementation(compose.foundation)
                 implementation(compose.material3)
@@ -20,6 +21,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
+                implementation(project(":core:displaymodels-test"))
                 implementation(kotlin("test"))
             }
         }

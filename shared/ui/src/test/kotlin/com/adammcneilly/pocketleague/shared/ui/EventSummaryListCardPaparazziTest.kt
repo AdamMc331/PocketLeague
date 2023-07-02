@@ -1,6 +1,8 @@
 package com.adammcneilly.pocketleague.shared.ui
 
 import app.cash.paparazzi.Paparazzi
+import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.test.springInvitationalForAllRegions
 import org.junit.Rule
 import org.junit.Test
 
@@ -12,7 +14,11 @@ class EventSummaryListCardPaparazziTest {
     @Test
     fun renderEventSummaryListCard() {
         paparazzi.snapshotScreen(false) {
-            EventSummaryListCard()
+            val events = EventSummaryDisplayModel.springInvitationalForAllRegions()
+
+            EventSummaryListCard(
+                events = events,
+            )
         }
     }
 }

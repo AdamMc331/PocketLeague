@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 
 /**
  * Shows high level summary information about an event.
@@ -19,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EventSummaryListItem(
+    event: EventSummaryDisplayModel,
     modifier: Modifier = Modifier,
     containerColor: Color = Color.Unspecified,
 ) {
@@ -33,12 +35,12 @@ fun EventSummaryListItem(
     ListItem(
         headlineText = {
             Text(
-                text = "NA Spring Open",
+                text = event.name,
             )
         },
         overlineText = {
             Text(
-                text = "May 05 - May 07, 2023",
+                text = event.dateString,
             )
         },
         colors = colorsToUse,

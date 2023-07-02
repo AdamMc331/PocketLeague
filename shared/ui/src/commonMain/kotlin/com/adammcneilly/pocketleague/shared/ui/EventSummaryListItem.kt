@@ -41,7 +41,7 @@ fun EventSummaryListItem(
         },
         overlineText = {
             Text(
-                text = event.dateString,
+                text = event.dateRange,
             )
         },
         colors = colorsToUse,

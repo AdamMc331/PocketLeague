@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.design.system.theme.md_theme_dark_onSurface
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
@@ -26,7 +27,8 @@ import com.adammcneilly.pocketleague.shared.ui.utils.VerticalSpacer
  * special highlighting within [FeedContent].
  */
 @Composable
-fun LanEventCard(
+fun LanEventSummaryCard(
+    event: EventSummaryDisplayModel,
     modifier: Modifier = Modifier,
 ) {
     val rlcsGradientBrush = Brush.horizontalGradient(
@@ -49,7 +51,7 @@ fun LanEventCard(
                     .padding(PocketLeagueTheme.sizes.cardPadding),
             ) {
                 Text(
-                    text = "RLCS 2022-23 World Championship",
+                    text = event.name,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
@@ -60,7 +62,7 @@ fun LanEventCard(
                 VerticalSpacer(PocketLeagueTheme.sizes.cardPadding)
 
                 Text(
-                    text = "August 3 - 13, 2023",
+                    text = event.dateRange,
                     style = MaterialTheme.typography.labelMedium,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
@@ -68,7 +70,7 @@ fun LanEventCard(
                 )
 
                 Text(
-                    text = "PSD Bank Dome – Düsseldorf, Germany",
+                    text = event.arenaLocation,
                     style = MaterialTheme.typography.labelMedium,
                     textAlign = TextAlign.Center,
                     modifier = Modifier

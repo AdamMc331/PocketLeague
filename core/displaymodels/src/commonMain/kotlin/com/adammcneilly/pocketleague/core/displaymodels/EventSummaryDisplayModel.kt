@@ -20,9 +20,12 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
 data class EventSummaryDisplayModel(
     val eventId: String,
     val imageURL: ThemedImageURL,
-    val startDate: String,
-    val endDate: String,
     val name: String,
+    @Deprecated("Supply date range directly.") val startDate: String = "",
+    @Deprecated("Supply date range directly.") val endDate: String = "",
+    val dateRange: String = "$startDate – $endDate",
+    val arena: String? = null,
+    val location: String? = null,
     val isPlaceholder: Boolean = false,
 ) {
 
@@ -37,8 +40,12 @@ data class EventSummaryDisplayModel(
         )
     }
 
+    @Deprecated("Deprecated in favor of new dateRange property.", ReplaceWith("\"\$dateRange\""))
     val dateString: String
         get() = "$startDate – $endDate"
+
+    val arenaLocation: String
+        get() = listOfNotNull(arena, location).joinToString(" – ")
 }
 
 /**

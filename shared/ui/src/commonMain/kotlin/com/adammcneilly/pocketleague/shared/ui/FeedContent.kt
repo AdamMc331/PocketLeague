@@ -17,6 +17,7 @@ import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueThem
 @Composable
 fun FeedContent(
     events: List<EventSummaryDisplayModel>,
+    mainEvent: EventSummaryDisplayModel,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -38,7 +39,9 @@ fun FeedContent(
         }
 
         item {
-            LanEventCard()
+            LanEventSummaryCard(
+                event = mainEvent,
+            )
         }
     }
 }

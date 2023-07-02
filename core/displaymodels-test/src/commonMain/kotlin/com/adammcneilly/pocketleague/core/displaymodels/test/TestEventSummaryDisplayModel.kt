@@ -9,8 +9,7 @@ fun EventSummaryDisplayModel.Companion.springInvitationalForRegion(
     return EventSummaryDisplayModel(
         eventId = "spring_invitational",
         imageURL = ThemedImageURL(),
-        startDate = "May 05, 2023",
-        endDate = "May 07, 2023",
+        dateRange = "May 05 – 07, 2023",
         name = "$region Spring Invitational",
     )
 }
@@ -26,4 +25,15 @@ fun EventSummaryDisplayModel.Companion.springInvitationalForAllRegions(): List<E
     ).map { region ->
         EventSummaryDisplayModel.springInvitationalForRegion(region)
     }
+}
+
+fun EventSummaryDisplayModel.Companion.worldChampionship(): EventSummaryDisplayModel {
+    return EventSummaryDisplayModel(
+        eventId = "world_championship",
+        imageURL = ThemedImageURL(),
+        dateRange = "August 03 - 13, 2023",
+        name = "RLCS 2022-23 World Championship",
+        arena = "PSD Bank Arena",
+        location = "Düsseldorf, Germany",
+    )
 }

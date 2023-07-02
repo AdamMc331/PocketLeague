@@ -5,18 +5,25 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.springInvitationalForAllRegions
 import com.adammcneilly.pocketleague.core.displaymodels.test.springMajor
 import com.adammcneilly.pocketleague.core.displaymodels.test.worldChampionship
+import com.google.testing.junit.testparameterinjector.TestParameter
+import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
+import org.junit.runner.RunWith
 import kotlin.test.Test
 
+@RunWith(TestParameterInjector::class)
 class FeedContentPaparazziTest {
 
     @get:Rule
     val paparazzi = Paparazzi()
 
+    @TestParameter
+    val useDarkTheme: Boolean = false
+
     @Test
     fun renderFeedContent() {
         paparazzi.snapshotScreen(
-            useDarkTheme = false,
+            useDarkTheme = useDarkTheme,
             screenPaddingDp = 0,
         ) {
             val events = EventSummaryDisplayModel.springInvitationalForAllRegions().take(3)

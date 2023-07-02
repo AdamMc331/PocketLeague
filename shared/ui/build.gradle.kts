@@ -23,6 +23,7 @@ kotlin {
             dependencies {
                 implementation(project(":core:displaymodels-test"))
                 implementation(kotlin("test"))
+                implementation(libs.google.testparameterinjector)
             }
         }
         val androidMain by getting

@@ -22,7 +22,7 @@ fun EventSummaryListCard(
             .fillMaxWidth(),
     ) {
         events.forEachIndexed { index, event ->
-            // We need to propogate the container color over to our list item,
+            // We need to propagate the container color over to our list item,
             // otherwise the list item will set its own background.
             EventSummaryListItem(
                 event = event,

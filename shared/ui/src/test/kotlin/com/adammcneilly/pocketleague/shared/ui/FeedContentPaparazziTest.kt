@@ -19,10 +19,17 @@ class FeedContentPaparazziTest {
             screenPaddingDp = 0,
         ) {
             val events = EventSummaryDisplayModel.springInvitationalForAllRegions().take(3)
+            val worlds = EventSummaryDisplayModel.worldChampionship()
+
+            val groups = listOf(
+                events,
+                listOf(worlds),
+                listOf(worlds),
+                events,
+            )
 
             FeedContent(
-                events = events,
-                mainEvent = EventSummaryDisplayModel.worldChampionship(),
+                eventGroups = groups,
             )
         }
     }

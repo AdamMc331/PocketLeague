@@ -35,5 +35,6 @@ fun EventSummaryDisplayModel.Companion.worldChampionship(): EventSummaryDisplayM
         name = "RLCS 2022-23 World Championship",
         arena = "PSD Bank Arena",
         location = "Düsseldorf, Germany",
+        isMajor = true,
     )
 }

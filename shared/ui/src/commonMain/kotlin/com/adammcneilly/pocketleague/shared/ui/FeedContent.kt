@@ -16,8 +16,7 @@ import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueThem
  */
 @Composable
 fun FeedContent(
-    events: List<EventSummaryDisplayModel>,
-    mainEvent: EventSummaryDisplayModel,
+    eventGroups: List<List<EventSummaryDisplayModel>>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -32,16 +31,20 @@ fun FeedContent(
             )
         }
 
-        item {
-            EventSummaryListCard(
-                events = events,
-            )
-        }
-
-        item {
-            LanEventSummaryCard(
-                event = mainEvent,
-            )
+        eventGroups.forEach { eventList ->
+            if (eventList.size == 1) {
+                item {
+                    LanEventSummaryCard(
+                        event = eventList.first(),
+                    )
+                }
+            } else {
+                item {
+                    EventSummaryListCard(
+                        events = eventList,
+                    )
+                }
+            }
         }
     }
 }

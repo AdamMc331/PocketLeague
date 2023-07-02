@@ -28,23 +28,23 @@ sealed class EventGroupDisplayModel {
             events: List<EventSummaryDisplayModel>,
         ): List<EventGroupDisplayModel> {
             val allGroups = mutableListOf<EventGroupDisplayModel>()
-            var currentRegionalGroup = listOf<EventSummaryDisplayModel>()
+            val regionalGroup = mutableListOf<EventSummaryDisplayModel>()
 
-            events.forEach { event ->
+            for (event in events) {
                 if (event.isMajor) {
-                    val regionalGroup = Regionals(currentRegionalGroup)
-                    allGroups.add(regionalGroup)
-                    currentRegionalGroup = emptyList()
-
+                    if (regionalGroup.isNotEmpty()) {
+                        allGroups.add(Regionals(regionalGroup.toList()))
+                        regionalGroup.clear()
+                    }
                     allGroups.add(Major(event))
                 } else {
-                    currentRegionalGroup = currentRegionalGroup + event
+                    regionalGroup.add(event)
                 }
             }
 
-            val regionalGroup = Regionals(currentRegionalGroup)
-            allGroups.add(regionalGroup)
-            currentRegionalGroup = emptyList()
+            if (regionalGroup.isNotEmpty()) {
+                allGroups.add(Regionals(regionalGroup.toList()))
+            }
 
             return allGroups
         }

@@ -1,7 +1,9 @@
 package com.adammcneilly.pocketleague.shared.ui.match
 
+import androidx.compose.foundation.layout.PaddingValues
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
+import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.snapshotScreen
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
@@ -26,7 +28,10 @@ class MatchCarouselPaparazziTest {
             useDarkTheme = useDarkTheme,
             screenPaddingDp = 0,
         ) {
-            MatchCarousel(matchList) {}
+            MatchCarousel(
+                matches = matchList,
+                contentPadding = PaddingValues(PocketLeagueTheme.sizes.screenPadding),
+            ) {}
         }
     }
 
@@ -42,7 +47,10 @@ class MatchCarouselPaparazziTest {
             useDarkTheme = useDarkTheme,
             screenPaddingDp = 0,
         ) {
-            MatchCarousel(matchList) {}
+            MatchCarousel(
+                matches = matchList,
+                contentPadding = PaddingValues(PocketLeagueTheme.sizes.screenPadding),
+            ) {}
         }
     }
 }

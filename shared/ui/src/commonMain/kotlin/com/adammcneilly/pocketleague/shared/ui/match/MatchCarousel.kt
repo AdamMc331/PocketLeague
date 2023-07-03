@@ -18,12 +18,11 @@ private const val MATCH_CARD_WIDTH_RATIO = 0.8F
 @Composable
 fun MatchCarousel(
     matches: List<MatchDetailDisplayModel>,
+    contentPadding: PaddingValues,
     onMatchClicked: (String) -> Unit,
 ) {
     LazyRow(
-        contentPadding = PaddingValues(
-            horizontal = PocketLeagueTheme.sizes.screenPadding,
-        ),
+        contentPadding = contentPadding,
         horizontalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.listItemSpacing),
     ) {
         items(matches) { match ->
@@ -36,4 +35,3 @@ fun MatchCarousel(
         }
     }
 }
-

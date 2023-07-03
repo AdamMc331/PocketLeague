@@ -10,6 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
+/**
+ * Top app bar component that appears at the top of our application.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PLTopAppBar(

@@ -48,6 +48,9 @@ object FeedScreen : Screen {
         ) : Event
     }
 
+    /**
+     * Factory to create the compose UI for the [FeedScreen].
+     */
     object UiFactory : Ui.Factory {
         override fun create(screen: Screen, context: CircuitContext): Ui<*>? {
             return when (screen) {
@@ -65,6 +68,9 @@ object FeedScreen : Screen {
         }
     }
 
+    /**
+     * Factory to create a [FeedPresenter] for the [FeedScreen].
+     */
     object PresenterFactory : Presenter.Factory {
         override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
             return when (screen) {

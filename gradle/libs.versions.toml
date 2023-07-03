@@ -22,7 +22,7 @@ kotlin = "1.8.20"
 kotlinxCoroutines = "1.7.1"
 kotlinxDatetime = "0.4.0"
 kotlinxSerialization = "1.4.1"
-ktor = "1.6.8"
+ktor = "2.3.2"
 lifecycle = "2.6.1"
 material = "1.9.0"
 minSdk = "23"
@@ -32,7 +32,7 @@ sqldelight = "1.5.5"
 testParameterInjector = "1.9"
 tournamentBracket = "0.0.1"
 truth = "1.1.3"
-truthish = "0.6.3"
+truthish = "0.6.5"
 turbine = "0.13.0"
 windowManager = "1.0.0"
 workManager = "2.8.1"
@@ -86,12 +86,13 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor" }
-ktor-client-json = { module = "io.ktor:ktor-client-json", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
 ktor-client-testing = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 # Using Chris Bane's fork for now to support iOS: Using a fork containing https://github.com/slackhq/circuit/pull/704
 slack-circuit = { module = "dev.chrisbanes.circuit:circuit-foundation", version.ref = "circuit" }
 square-sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
@@ -137,10 +138,11 @@ compose-ui-debug = [
 
 ktor-client = [
     "ktor-client-cio",
+    "ktor-client-content-negotiation",
     "ktor-client-core",
-    "ktor-client-json",
     "ktor-client-logging",
     "ktor-client-serialization",
+    "ktor-serialization-kotlinx-json",
 ]
 
 [plugins]

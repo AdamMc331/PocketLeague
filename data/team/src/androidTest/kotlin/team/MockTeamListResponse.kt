@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.data.team
+package team
 
 object MockTeamListResponse {
     val json = """

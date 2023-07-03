@@ -21,7 +21,6 @@ kotlin {
                 implementation(kotlin("test"))
                 implementation(project(":core:models-test"))
                 implementation(libs.cash.turbine)
-                implementation(libs.square.sqldelight.sqlite.driver)
                 implementation(libs.varabyte.truthish)
             }
         }

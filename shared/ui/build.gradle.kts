@@ -16,7 +16,6 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
-                implementation(compose.preview)
                 implementation(compose.runtime)
             }
         }

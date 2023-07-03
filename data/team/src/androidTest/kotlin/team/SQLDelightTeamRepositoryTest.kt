@@ -1,9 +1,10 @@
-package com.adammcneilly.pocketleague.data.team
+package team
 
 import app.cash.turbine.test
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.team
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
+import com.adammcneilly.pocketleague.data.team.SQLDelightTeamRepository
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

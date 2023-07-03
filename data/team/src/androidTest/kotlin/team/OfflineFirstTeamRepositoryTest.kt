@@ -1,8 +1,9 @@
-package com.adammcneilly.pocketleague.data.team
+package team
 
 import app.cash.turbine.test
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.team
+import com.adammcneilly.pocketleague.data.team.OfflineFirstTeamRepository
 import com.adammcneilly.pocketleague.data.team.test.FakeTeamRepository
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

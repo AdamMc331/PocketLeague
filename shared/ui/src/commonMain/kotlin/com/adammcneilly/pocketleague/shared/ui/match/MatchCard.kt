@@ -4,8 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -30,6 +28,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
+import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.utils.VerticalSpacer
 
 /**
  * Renders a [match] inside a card component. Likely to be used in a carousel of recent matches,
@@ -51,17 +51,15 @@ fun MatchCard(
             ),
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+//            verticalArrangement = Arrangement.spacedBy(4.dp),
             modifier = Modifier
-                .padding(16.dp),
+                .padding(PocketLeagueTheme.sizes.cardPadding),
         ) {
             EventName(match)
 
             RelativeTime(match)
 
-            Spacer(
-                modifier = Modifier.height(8.dp),
-            )
+            VerticalSpacer(PocketLeagueTheme.sizes.cardPadding)
 
             BlueTeamResult(match)
 
@@ -87,8 +85,6 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
     Text(
         text = match.relativeDateTime,
         style = MaterialTheme.typography.labelSmall,
-        modifier = Modifier
-            .defaultMinSize(minWidth = 50.dp),
     )
 }
 

@@ -42,3 +42,6 @@ include(":shared:design-system")
 include(":shared:ui")
 include(":shared-test")
 include(":data:startgg")
+
+include(":shared:app")
+include(":android:appv2")

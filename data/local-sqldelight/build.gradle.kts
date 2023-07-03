@@ -30,7 +30,7 @@ kotlin {
                 implementation("com.github.requery:sqlite-android:3.39.2")
             }
         }
-        val androidTest by getting
+        // val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")
@@ -76,6 +76,7 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
             ).forEach {
                 it.binaries.framework {
                     baseName = project.name
+                    linkerOpts.add("-lsqlite3")
                 }
             }
         }
@@ -91,6 +92,8 @@ sqldelight {
         packageName = "com.adammcneilly.pocketleague.data.local.sqldelight"
         dialect = "sqlite:3.24"
     }
+
+    linkSqlite = true
 }
 
 tasks.formatKotlinCommonMain {

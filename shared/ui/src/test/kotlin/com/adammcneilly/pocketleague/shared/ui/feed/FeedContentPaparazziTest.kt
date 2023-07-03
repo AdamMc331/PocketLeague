@@ -1,11 +1,13 @@
-package com.adammcneilly.pocketleague.shared.ui
+package com.adammcneilly.pocketleague.shared.ui.feed
 
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.springInvitationalForAllRegions
 import com.adammcneilly.pocketleague.core.displaymodels.test.springMajor
 import com.adammcneilly.pocketleague.core.displaymodels.test.worldChampionship
+import com.adammcneilly.pocketleague.shared.ui.snapshotScreen
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
@@ -35,7 +37,14 @@ class FeedContentPaparazziTest {
                 events = regionals + springMajor + worlds,
             )
 
+            val matchList = listOf(
+                TestDisplayModel.matchDetailBlueWinner,
+                TestDisplayModel.matchDetailBlueWinner,
+                TestDisplayModel.matchDetailBlueWinner,
+            )
+
             FeedContent(
+                matches = matchList,
                 eventGroups = groups,
             )
         }

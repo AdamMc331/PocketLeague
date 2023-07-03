@@ -12,11 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.matches.MatchesCarousel
 import com.adammcneilly.pocketleague.android.designsystem.matches.RecentMatchesEmptyState
 import com.adammcneilly.pocketleague.android.designsystem.myteams.AddFavoriteTeamsCTA
 import com.adammcneilly.pocketleague.android.designsystem.myteams.FavoriteTeamRowItem
 import com.adammcneilly.pocketleague.shared.screens.myteams.MyTeamsViewState
+import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
 
 /**
  * Render the supplied [viewState] to show the user's teams.
@@ -63,8 +63,9 @@ fun MyTeamsContent(
 
         if (recentMatches != null) {
             if (recentMatches.isNotEmpty()) {
-                MatchesCarousel(
+                MatchCarousel(
                     matches = recentMatches,
+                    contentPadding = PaddingValues(16.dp),
                     onMatchClicked = {
                         // Coming soon!
                     },

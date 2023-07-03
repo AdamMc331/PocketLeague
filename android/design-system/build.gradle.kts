@@ -61,6 +61,7 @@ dependencies {
 
     api(project(":shared:design-system"))
     implementation(project(":core:displaymodels"))
+    implementation(project(":shared:ui"))
     implementation(libs.accompanist.placeholder.material)
     implementation(libs.bundles.compose.ui)
     implementation(libs.coil.compose)

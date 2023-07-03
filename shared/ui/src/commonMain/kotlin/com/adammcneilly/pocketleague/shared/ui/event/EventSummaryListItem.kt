@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.ui
+package com.adammcneilly.pocketleague.shared.ui.event
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem

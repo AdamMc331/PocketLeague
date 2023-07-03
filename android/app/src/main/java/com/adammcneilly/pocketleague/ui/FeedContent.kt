@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.ui
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,11 +18,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.R
 import com.adammcneilly.pocketleague.android.designsystem.components.EmptyStateCard
-import com.adammcneilly.pocketleague.android.designsystem.matches.MatchesCarousel
 import com.adammcneilly.pocketleague.android.designsystem.matches.RecentMatchesEmptyState
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.feature.feed.FeedViewState
+import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
 import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryListItem
 
 /**
@@ -113,9 +114,10 @@ private fun RecentMatchesSection(
     onMatchClicked: (String) -> Unit,
 ) {
     if (recentMatches.isNotEmpty()) {
-        MatchesCarousel(
+        MatchCarousel(
             matches = recentMatches,
             onMatchClicked = onMatchClicked,
+            contentPadding = PaddingValues(16.dp),
         )
     } else {
         RecentMatchesEmptyState()

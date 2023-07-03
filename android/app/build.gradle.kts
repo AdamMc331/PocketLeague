@@ -126,6 +126,7 @@ dependencies {
     implementation(project(":feature:event-detail"))
     implementation(project(":feature:feed"))
     implementation(project(":shared"))
+    implementation(project(":shared:ui"))
     implementation(libs.accompanist.flowlayout)
     implementation(libs.accompanist.placeholder.material)
     implementation(libs.accompanist.systemuicontroller)

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.ui
+package com.adammcneilly.pocketleague.shared.ui.feed
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.event.EventSummaryListCard
+import com.adammcneilly.pocketleague.shared.ui.event.LanEventSummaryCard
 
 /**
  * The main list of events and matches to show within the feed screen

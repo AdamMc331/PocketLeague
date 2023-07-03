@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.ui
+package com.adammcneilly.pocketleague.shared.ui.event
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

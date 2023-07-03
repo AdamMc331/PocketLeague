@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.ui
+package com.adammcneilly.pocketleague.shared.ui.event
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Card

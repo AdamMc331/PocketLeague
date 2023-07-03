@@ -65,6 +65,7 @@ fun MyTeamsContent(
             if (recentMatches.isNotEmpty()) {
                 MatchCarousel(
                     matches = recentMatches,
+                    contentPadding = PaddingValues(16.dp),
                     onMatchClicked = {
                         // Coming soon!
                     },

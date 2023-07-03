@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.ui
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -116,6 +117,7 @@ private fun RecentMatchesSection(
         MatchCarousel(
             matches = recentMatches,
             onMatchClicked = onMatchClicked,
+            contentPadding = PaddingValues(16.dp),
         )
     } else {
         RecentMatchesEmptyState()

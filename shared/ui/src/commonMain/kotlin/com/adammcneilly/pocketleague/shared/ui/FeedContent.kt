@@ -7,7 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 
 /**
@@ -16,7 +16,7 @@ import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueThem
  */
 @Composable
 fun FeedContent(
-    eventGroups: List<List<EventSummaryDisplayModel>>,
+    eventGroups: List<EventGroupDisplayModel>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -31,18 +31,22 @@ fun FeedContent(
             )
         }
 
-        eventGroups.forEach { eventList ->
-            if (eventList.size == 1) {
-                item {
-                    LanEventSummaryCard(
-                        event = eventList.first(),
-                    )
+        eventGroups.forEach { group ->
+            when (group) {
+                is EventGroupDisplayModel.Regionals -> {
+                    item {
+                        EventSummaryListCard(
+                            events = group.events,
+                        )
+                    }
                 }
-            } else {
-                item {
-                    EventSummaryListCard(
-                        events = eventList,
-                    )
+
+                is EventGroupDisplayModel.Major -> {
+                    item {
+                        LanEventSummaryCard(
+                            event = group.event,
+                        )
+                    }
                 }
             }
         }

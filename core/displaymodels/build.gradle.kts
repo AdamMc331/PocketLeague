@@ -17,6 +17,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(project(":core:datetime-test"))
+                implementation(project(":core:displaymodels-test"))
                 implementation(project(":core:models-test"))
             }
         }

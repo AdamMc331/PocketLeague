@@ -12,6 +12,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:displaymodels"))
+                implementation(project(":core:models"))
+                implementation(project(":data:match"))
                 implementation(project(":shared:ui"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)

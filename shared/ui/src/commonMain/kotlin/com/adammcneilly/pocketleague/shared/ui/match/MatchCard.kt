@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.android.designsystem.components
+package com.adammcneilly.pocketleague.shared.ui.match
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -29,7 +28,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 
@@ -50,10 +48,7 @@ fun MatchCard(
                 onClick = {
                     onClick.invoke(match.matchId)
                 },
-            )
-            .semantics {
-                isPlaceholder = match.isPlaceholder
-            },
+            ),
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -83,10 +78,7 @@ private fun EventName(match: MatchDetailDisplayModel) {
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         modifier = Modifier
-            .fillMaxWidth()
-            .cardPlaceholder(
-                visible = match.isPlaceholder,
-            ),
+            .fillMaxWidth(),
     )
 }
 
@@ -96,10 +88,7 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
         text = match.relativeDateTime,
         style = MaterialTheme.typography.labelSmall,
         modifier = Modifier
-            .defaultMinSize(minWidth = 50.dp)
-            .cardPlaceholder(
-                visible = match.isPlaceholder,
-            ),
+            .defaultMinSize(minWidth = 50.dp),
     )
 }
 
@@ -110,7 +99,6 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
 @Composable
 private fun MatchTeamResultRow(
     teamResult: MatchTeamResultDisplayModel,
-    isPlaceholder: Boolean,
     teamColor: String,
 ) {
     val fontWeight: FontWeight? = if (teamResult.winner) {
@@ -122,10 +110,7 @@ private fun MatchTeamResultRow(
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier
-            .fillMaxWidth()
-            .cardPlaceholder(
-                visible = isPlaceholder,
-            ),
+            .fillMaxWidth(),
     ) {
         Text(
             text = teamResult.score.toString(),
@@ -184,7 +169,6 @@ private fun MatchTeamResultDisplayModel.getInlineContent(): Map<String, InlineTe
 private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.orangeTeamResult,
-        isPlaceholder = match.isPlaceholder,
         teamColor = "orange",
     )
 }
@@ -193,7 +177,6 @@ private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
 private fun BlueTeamResult(match: MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.blueTeamResult,
-        isPlaceholder = match.isPlaceholder,
         teamColor = "blue",
     )
 }

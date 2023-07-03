@@ -7,8 +7,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.components.MatchCard
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.match.MatchCard
 
 private const val MATCH_CARD_WIDTH_RATIO = 0.8F
 

@@ -1,9 +1,9 @@
-package com.adammcneilly.pocketleague.android.designsystem.components
+package com.adammcneilly.pocketleague.shared.ui.match
 
 import app.cash.paparazzi.Paparazzi
-import com.adammcneilly.pocketleague.android.designsystem.snapshotScreen
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.snapshotScreen
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
@@ -21,9 +21,7 @@ class MatchCardPaparazziTest {
 
     @Test
     fun renderBlueTeamWinner() {
-        paparazzi.snapshotScreen(
-            useDarkTheme = useDarkTheme,
-        ) {
+        paparazzi.snapshotScreen(useDarkTheme) {
             MatchCard(
                 match = TestDisplayModel.matchDetailBlueWinner,
                 onClick = {},
@@ -33,25 +31,12 @@ class MatchCardPaparazziTest {
 
     @Test
     fun renderOrangeTeamWinner() {
-        paparazzi.snapshotScreen(
-            useDarkTheme = useDarkTheme,
-        ) {
+        paparazzi.snapshotScreen(useDarkTheme) {
             MatchCard(
                 match = TestDisplayModel.matchDetailOrangeWinner,
                 onClick = {},
             )
         }
     }
-
-    @Test
-    fun renderPlaceholder() {
-        paparazzi.snapshotScreen(
-            useDarkTheme = useDarkTheme,
-        ) {
-            MatchCard(
-                match = MatchDetailDisplayModel.placeholder,
-                onClick = {},
-            )
-        }
-    }
 }
+

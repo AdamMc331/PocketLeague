@@ -84,6 +84,7 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
         ).forEach {
             it.binaries.framework {
                 baseName = project.name
+                linkerOpts.add("-lsqlite3")
             }
         }
     }

@@ -76,7 +76,6 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
             ).forEach {
                 it.binaries.framework {
                     baseName = project.name
-                    linkerOpts.add("-lsqlite3")
                 }
             }
         }
@@ -92,8 +91,6 @@ sqldelight {
         packageName = "com.adammcneilly.pocketleague.data.local.sqldelight"
         dialect = "sqlite:3.24"
     }
-
-    linkSqlite = true
 }
 
 tasks.formatKotlinCommonMain {

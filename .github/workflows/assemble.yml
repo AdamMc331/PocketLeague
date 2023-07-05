@@ -8,10 +8,6 @@ on:
 
 jobs:
   assemble:
-    strategy:
-        matrix:
-          buildWithIos: [true, false]
-
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -27,9 +23,6 @@ jobs:
           LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
-      - name: Set iOS Gradle Property
-        run: sed -i '' 's/ios=true/ios=${{ matrix.buildWithIos }}/g' gradle.properties
-
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
         with:
@@ -38,7 +31,7 @@ jobs:
 
       - name: Assemble
         run: |
-          ./gradlew assemble -x :android:baselineprofile:assemble
+          ./gradlew assemble
 
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -29,11 +29,11 @@ kotlin {
             }
         }
         val androidMain by getting
-        val androidTest by getting {
-            dependencies {
-                implementation(libs.square.sqldelight.sqlite.driver)
-            }
-        }
+//        val androidTest by getting {
+//            dependencies {
+//                implementation(libs.square.sqldelight.sqlite.driver)
+//            }
+//        }
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")

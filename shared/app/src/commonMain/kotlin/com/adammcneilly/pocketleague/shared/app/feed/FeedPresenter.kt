@@ -5,7 +5,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
@@ -28,16 +27,16 @@ class FeedPresenter(
 
     @Composable
     override fun present(): FeedScreen.State {
-        val coroutineScope = rememberCoroutineScope()
         var matches by remember {
             mutableStateOf(emptyList<MatchDetailDisplayModel>())
         }
+
         var events by remember {
             mutableStateOf(emptyList<EventGroupDisplayModel>())
         }
 
         LaunchedEffect(Unit) {
-            coroutineScope.async {
+            async {
                 matches = OctaneGGMatchService()
                     .getPastWeeksMatches()
                     .getOrNull()
@@ -46,7 +45,7 @@ class FeedPresenter(
                     .orEmpty()
             }
 
-            coroutineScope.async {
+            async {
                 events = OctaneGGEventService()
                     .getUpcomingEvents()
                     .getOrNull()

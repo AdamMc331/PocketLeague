@@ -38,7 +38,7 @@ jobs:
 
       - name: Assemble
         run: |
-          ./gradlew assemble
+          ./gradlew assemble -x :android:baselineprofile:assemble
 
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}

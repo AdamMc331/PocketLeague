@@ -50,7 +50,7 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
     }
 
-    namespace = "ram"
+    namespace = "com.adammcneilly.pocketleague.sahred.design.system"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

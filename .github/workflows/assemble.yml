@@ -28,7 +28,6 @@ jobs:
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
       - name: Set iOS Gradle Property
-        uses: jacobtomlinson/gha-find-replace@v3
         run: sed -i '' 's/ios=true/ios=${{ matrix.buildWithIos }}/g' gradle.properties
 
       - name: Setup Gradle

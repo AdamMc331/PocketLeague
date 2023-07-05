@@ -29,10 +29,7 @@ jobs:
 
       - name: Set iOS Gradle Property
         uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: "ios=true"
-          replace: "ios=${{ matrix.buildWithIos }}"
-          include: "**properties.gradle"
+        run: sed -i '' 's/ios=true/ios=${{ matrix.buildWithIos }}/g' gradle.properties
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2

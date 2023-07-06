@@ -29,11 +29,8 @@ jobs:
           # Only write to the cache for builds on the 'development' branch
           cache-read-only: ${{ github.ref != 'refs/heads/development' }}
 
-      - name: Compile
+      - name: Assemble
         run: |
-#          ./gradlew compileDebugKotlin
-#          ./gradlew compileReleaseKotlin
-#          Old task, took forever, trying a new one.
           ./gradlew assemble -x :android:baselineprofile:assemble
 
         env:

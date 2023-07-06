@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.kotlin.plugin.parcelize")
     alias(libs.plugins.kotlin.compose)
@@ -63,14 +64,21 @@ android {
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)
     ?.apply {
         if (project.findProperty("ios") == "true") {
-            listOf(
-                iosX64(),
-                iosArm64(),
-                iosSimulatorArm64()
-            ).forEach {
-                it.binaries.framework {
-                    baseName = project.name
+            iosX64()
+            iosArm64()
+            iosSimulatorArm64()
+
+            cocoapods {
+                version = "1.0.0"
+                summary = "Some description for the Shared Module"
+                homepage = "Link to the Shared Module homepage"
+                ios.deploymentTarget = "14.1"
+                podfile = project.file("../../pocketLeagueIos/Podfile")
+                framework {
+                    baseName = "shared"
+                    isStatic = true
                 }
+                extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
             }
         }
         if (project.findProperty("js") == "true") {

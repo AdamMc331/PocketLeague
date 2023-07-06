@@ -5,7 +5,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import org.junit.Ignore
 import org.junit.Rule
-import org.junit.Test
+import kotlin.test.Test
 
 class MainActivityTest {
     @get:Rule

@@ -12,7 +12,7 @@ import com.adammcneilly.pocketleague.shared.ui.match.MatchCard
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Rule
-import org.junit.Test
+import kotlin.test.Test
 
 class MatchCardTest {
     @get:Rule

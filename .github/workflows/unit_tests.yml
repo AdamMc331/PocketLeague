@@ -31,5 +31,5 @@ jobs:
 
       - name: Build Project
         run: |
-          ./gradlew check
+          ./gradlew allTests
           ./gradlew android:app:test

@@ -8,8 +8,8 @@ import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
 import com.adammcneilly.pocketleague.feature.feed.FeedViewState
 import com.adammcneilly.pocketleague.setPocketLeagueContent
 import org.junit.Rule
-import org.junit.Test
 import org.junit.runner.RunWith
+import kotlin.test.Test
 
 @RunWith(AndroidJUnit4::class)
 class FeedContentTest {

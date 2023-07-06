@@ -7,7 +7,7 @@ import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.event
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.varabyte.truthish.assertThat
-import org.junit.Test
+import kotlin.test.Test
 
 class LocalEventMappersTest {
 

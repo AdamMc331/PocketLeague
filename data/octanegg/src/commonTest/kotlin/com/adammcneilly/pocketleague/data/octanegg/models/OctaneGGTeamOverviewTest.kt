@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
-import org.junit.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 

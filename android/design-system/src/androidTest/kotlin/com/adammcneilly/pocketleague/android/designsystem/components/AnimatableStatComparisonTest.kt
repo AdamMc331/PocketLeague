@@ -4,7 +4,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import com.adammcneilly.pocketleague.android.designsystem.stats.AnimatableStatComparison
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
-import org.junit.Test
+import kotlin.test.Test
 
 class AnimatableStatComparisonTest : ScreenshotTest {
 

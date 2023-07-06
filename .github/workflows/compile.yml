@@ -1,4 +1,4 @@
-name: Assemble Code
+name: Compile Code
 
 on:
   push:

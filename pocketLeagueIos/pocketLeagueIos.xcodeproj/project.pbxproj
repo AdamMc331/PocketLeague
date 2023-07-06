@@ -1,0 +1,652 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8840553A2A571F1400123A5C /* pocketLeagueIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884055392A571F1400123A5C /* pocketLeagueIosApp.swift */; };
+		8840553C2A571F1400123A5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840553B2A571F1400123A5C /* ContentView.swift */; };
+		8840553E2A571F1500123A5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8840553D2A571F1500123A5C /* Assets.xcassets */; };
+		884055412A571F1500123A5C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 884055402A571F1500123A5C /* Preview Assets.xcassets */; };
+		8840554B2A571F1500123A5C /* pocketLeagueIosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840554A2A571F1500123A5C /* pocketLeagueIosTests.swift */; };
+		884055552A571F1500123A5C /* pocketLeagueIosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884055542A571F1500123A5C /* pocketLeagueIosUITests.swift */; };
+		884055572A571F1500123A5C /* pocketLeagueIosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884055562A571F1500123A5C /* pocketLeagueIosUITestsLaunchTests.swift */; };
+		AFB49A4C10FA128BFD7E0123 /* Pods_pocketLeagueIos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB09904BF2270A78F04766F /* Pods_pocketLeagueIos.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		884055472A571F1500123A5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8840552E2A571F1400123A5C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 884055352A571F1400123A5C;
+			remoteInfo = pocketLeagueIos;
+		};
+		884055512A571F1500123A5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8840552E2A571F1400123A5C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 884055352A571F1400123A5C;
+			remoteInfo = pocketLeagueIos;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		884055362A571F1400123A5C /* pocketLeagueIos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pocketLeagueIos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		884055392A571F1400123A5C /* pocketLeagueIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pocketLeagueIosApp.swift; sourceTree = "<group>"; };
+		8840553B2A571F1400123A5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8840553D2A571F1500123A5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		884055402A571F1500123A5C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		884055462A571F1500123A5C /* pocketLeagueIosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pocketLeagueIosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8840554A2A571F1500123A5C /* pocketLeagueIosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pocketLeagueIosTests.swift; sourceTree = "<group>"; };
+		884055502A571F1500123A5C /* pocketLeagueIosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pocketLeagueIosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		884055542A571F1500123A5C /* pocketLeagueIosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pocketLeagueIosUITests.swift; sourceTree = "<group>"; };
+		884055562A571F1500123A5C /* pocketLeagueIosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pocketLeagueIosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		965E505727829ADD82CFC453 /* Pods-pocketLeagueIos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pocketLeagueIos.debug.xcconfig"; path = "Target Support Files/Pods-pocketLeagueIos/Pods-pocketLeagueIos.debug.xcconfig"; sourceTree = "<group>"; };
+		A212C2E46B1F782BDE3DC411 /* Pods-pocketLeagueIos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pocketLeagueIos.release.xcconfig"; path = "Target Support Files/Pods-pocketLeagueIos/Pods-pocketLeagueIos.release.xcconfig"; sourceTree = "<group>"; };
+		EAB09904BF2270A78F04766F /* Pods_pocketLeagueIos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pocketLeagueIos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		884055332A571F1400123A5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFB49A4C10FA128BFD7E0123 /* Pods_pocketLeagueIos.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		884055432A571F1500123A5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8840554D2A571F1500123A5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		672CD0ED2BB56DB98E3D08DD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				965E505727829ADD82CFC453 /* Pods-pocketLeagueIos.debug.xcconfig */,
+				A212C2E46B1F782BDE3DC411 /* Pods-pocketLeagueIos.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8840552D2A571F1400123A5C = {
+			isa = PBXGroup;
+			children = (
+				884055382A571F1400123A5C /* pocketLeagueIos */,
+				884055492A571F1500123A5C /* pocketLeagueIosTests */,
+				884055532A571F1500123A5C /* pocketLeagueIosUITests */,
+				884055372A571F1400123A5C /* Products */,
+				672CD0ED2BB56DB98E3D08DD /* Pods */,
+				CCD85D52229FCF20A6B2251C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		884055372A571F1400123A5C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				884055362A571F1400123A5C /* pocketLeagueIos.app */,
+				884055462A571F1500123A5C /* pocketLeagueIosTests.xctest */,
+				884055502A571F1500123A5C /* pocketLeagueIosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		884055382A571F1400123A5C /* pocketLeagueIos */ = {
+			isa = PBXGroup;
+			children = (
+				884055392A571F1400123A5C /* pocketLeagueIosApp.swift */,
+				8840553B2A571F1400123A5C /* ContentView.swift */,
+				8840553D2A571F1500123A5C /* Assets.xcassets */,
+				8840553F2A571F1500123A5C /* Preview Content */,
+			);
+			path = pocketLeagueIos;
+			sourceTree = "<group>";
+		};
+		8840553F2A571F1500123A5C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				884055402A571F1500123A5C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		884055492A571F1500123A5C /* pocketLeagueIosTests */ = {
+			isa = PBXGroup;
+			children = (
+				8840554A2A571F1500123A5C /* pocketLeagueIosTests.swift */,
+			);
+			path = pocketLeagueIosTests;
+			sourceTree = "<group>";
+		};
+		884055532A571F1500123A5C /* pocketLeagueIosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				884055542A571F1500123A5C /* pocketLeagueIosUITests.swift */,
+				884055562A571F1500123A5C /* pocketLeagueIosUITestsLaunchTests.swift */,
+			);
+			path = pocketLeagueIosUITests;
+			sourceTree = "<group>";
+		};
+		CCD85D52229FCF20A6B2251C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EAB09904BF2270A78F04766F /* Pods_pocketLeagueIos.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		884055352A571F1400123A5C /* pocketLeagueIos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8840555A2A571F1500123A5C /* Build configuration list for PBXNativeTarget "pocketLeagueIos" */;
+			buildPhases = (
+				6190A6924B54A51A63662C1B /* [CP] Check Pods Manifest.lock */,
+				884055632A5720A100123A5C /* ShellScript */,
+				884055322A571F1400123A5C /* Sources */,
+				884055332A571F1400123A5C /* Frameworks */,
+				884055342A571F1400123A5C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pocketLeagueIos;
+			productName = pocketLeagueIos;
+			productReference = 884055362A571F1400123A5C /* pocketLeagueIos.app */;
+			productType = "com.apple.product-type.application";
+		};
+		884055452A571F1500123A5C /* pocketLeagueIosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8840555D2A571F1500123A5C /* Build configuration list for PBXNativeTarget "pocketLeagueIosTests" */;
+			buildPhases = (
+				884055422A571F1500123A5C /* Sources */,
+				884055432A571F1500123A5C /* Frameworks */,
+				884055442A571F1500123A5C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				884055482A571F1500123A5C /* PBXTargetDependency */,
+			);
+			name = pocketLeagueIosTests;
+			productName = pocketLeagueIosTests;
+			productReference = 884055462A571F1500123A5C /* pocketLeagueIosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8840554F2A571F1500123A5C /* pocketLeagueIosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 884055602A571F1500123A5C /* Build configuration list for PBXNativeTarget "pocketLeagueIosUITests" */;
+			buildPhases = (
+				8840554C2A571F1500123A5C /* Sources */,
+				8840554D2A571F1500123A5C /* Frameworks */,
+				8840554E2A571F1500123A5C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				884055522A571F1500123A5C /* PBXTargetDependency */,
+			);
+			name = pocketLeagueIosUITests;
+			productName = pocketLeagueIosUITests;
+			productReference = 884055502A571F1500123A5C /* pocketLeagueIosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8840552E2A571F1400123A5C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					884055352A571F1400123A5C = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					884055452A571F1500123A5C = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 884055352A571F1400123A5C;
+					};
+					8840554F2A571F1500123A5C = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 884055352A571F1400123A5C;
+					};
+				};
+			};
+			buildConfigurationList = 884055312A571F1400123A5C /* Build configuration list for PBXProject "pocketLeagueIos" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8840552D2A571F1400123A5C;
+			productRefGroup = 884055372A571F1400123A5C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				884055352A571F1400123A5C /* pocketLeagueIos */,
+				884055452A571F1500123A5C /* pocketLeagueIosTests */,
+				8840554F2A571F1500123A5C /* pocketLeagueIosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		884055342A571F1400123A5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				884055412A571F1500123A5C /* Preview Assets.xcassets in Resources */,
+				8840553E2A571F1500123A5C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		884055442A571F1500123A5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8840554E2A571F1500123A5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6190A6924B54A51A63662C1B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pocketLeagueIos-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		884055632A5720A100123A5C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		884055322A571F1400123A5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8840553C2A571F1400123A5C /* ContentView.swift in Sources */,
+				8840553A2A571F1400123A5C /* pocketLeagueIosApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		884055422A571F1500123A5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8840554B2A571F1500123A5C /* pocketLeagueIosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8840554C2A571F1500123A5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				884055552A571F1500123A5C /* pocketLeagueIosUITests.swift in Sources */,
+				884055572A571F1500123A5C /* pocketLeagueIosUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		884055482A571F1500123A5C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 884055352A571F1400123A5C /* pocketLeagueIos */;
+			targetProxy = 884055472A571F1500123A5C /* PBXContainerItemProxy */;
+		};
+		884055522A571F1500123A5C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 884055352A571F1400123A5C /* pocketLeagueIos */;
+			targetProxy = 884055512A571F1500123A5C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		884055582A571F1500123A5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		884055592A571F1500123A5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8840555B2A571F1500123A5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 965E505727829ADD82CFC453 /* Pods-pocketLeagueIos.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"pocketLeagueIos/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.pocketLeagueIos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8840555C2A571F1500123A5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A212C2E46B1F782BDE3DC411 /* Pods-pocketLeagueIos.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"pocketLeagueIos/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.pocketLeagueIos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8840555E2A571F1500123A5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.pocketLeagueIosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pocketLeagueIos.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/pocketLeagueIos";
+			};
+			name = Debug;
+		};
+		8840555F2A571F1500123A5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.pocketLeagueIosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pocketLeagueIos.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/pocketLeagueIos";
+			};
+			name = Release;
+		};
+		884055612A571F1500123A5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.pocketLeagueIosUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = pocketLeagueIos;
+			};
+			name = Debug;
+		};
+		884055622A571F1500123A5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammcneilly.pocketLeagueIosUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = pocketLeagueIos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		884055312A571F1400123A5C /* Build configuration list for PBXProject "pocketLeagueIos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				884055582A571F1500123A5C /* Debug */,
+				884055592A571F1500123A5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8840555A2A571F1500123A5C /* Build configuration list for PBXNativeTarget "pocketLeagueIos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8840555B2A571F1500123A5C /* Debug */,
+				8840555C2A571F1500123A5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8840555D2A571F1500123A5C /* Build configuration list for PBXNativeTarget "pocketLeagueIosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8840555E2A571F1500123A5C /* Debug */,
+				8840555F2A571F1500123A5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		884055602A571F1500123A5C /* Build configuration list for PBXNativeTarget "pocketLeagueIosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				884055612A571F1500123A5C /* Debug */,
+				884055622A571F1500123A5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8840552E2A571F1400123A5C /* Project object */;
+}

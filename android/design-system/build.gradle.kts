@@ -67,5 +67,6 @@ dependencies {
     implementation(libs.coil.compose)
 
     testImplementation(project(":core:displaymodels-test"))
+    testImplementation(kotlin("test"))
     testImplementation(libs.google.testparameterinjector)
 }

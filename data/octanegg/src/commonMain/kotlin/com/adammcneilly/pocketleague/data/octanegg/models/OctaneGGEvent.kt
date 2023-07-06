@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.data.octanegg.models
 
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.EventTier
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -43,17 +44,21 @@ data class OctaneGGEvent(
  * Convert an [OctaneGGEvent] to an [Event] in our domain.
  */
 fun OctaneGGEvent?.toEvent(): Event {
+    val stages = this?.stages?.map(OctaneGGStage::toEventStage).orEmpty()
+
+    val isLan = stages.any(EventStage::lan)
+
     return Event(
         id = this?.id.orEmpty(),
         name = this?.name.orEmpty(),
         startDateUTC = this?.startDateUTC,
         endDateUTC = this?.endDateUTC,
         imageURL = this?.imageURL,
-        stages = this?.stages?.map(OctaneGGStage::toEventStage).orEmpty(),
+        stages = stages,
         tier = this?.tier.toEventTier(),
         mode = this?.mode?.toString().orEmpty(),
         region = this?.region.toEventRegion(),
-        lan = this?.lan ?: false,
+        lan = isLan,
         prize = this?.prize?.toPrize(),
     )
 }

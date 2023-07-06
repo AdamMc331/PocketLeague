@@ -39,7 +39,7 @@ kotlin {
                 implementation(libs.ktor.client.android)
             }
         }
-        val androidTest by getting
+        // val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")
@@ -84,6 +84,7 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
         ).forEach {
             it.binaries.framework {
                 baseName = project.name
+                linkerOpts.add("-lsqlite3")
             }
         }
     }

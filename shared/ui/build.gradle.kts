@@ -16,7 +16,6 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
-                implementation(compose.preview)
                 implementation(compose.runtime)
             }
         }
@@ -28,7 +27,7 @@ kotlin {
             }
         }
         val androidMain by getting
-        val androidTest by getting
+        // val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")

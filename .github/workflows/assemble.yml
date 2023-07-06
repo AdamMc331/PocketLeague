@@ -1,0 +1,37 @@
+name: Assemble Code
+
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+
+jobs:
+  assemble:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.17
+
+      - name: Generate local.properties
+        env:
+          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+        run: echo $LOCAL_PROPERTIES > ./local.properties
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          # Only write to the cache for builds on the 'development' branch
+          cache-read-only: ${{ github.ref != 'refs/heads/development' }}
+
+      - name: Assemble
+        run: |
+          ./gradlew assemble -x :android:baselineprofile:assemble
+
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}

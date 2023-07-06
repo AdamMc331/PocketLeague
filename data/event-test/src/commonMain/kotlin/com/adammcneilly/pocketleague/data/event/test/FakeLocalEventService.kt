@@ -49,7 +49,7 @@ class FakeLocalEventService : LocalEventService {
 
     fun assertEventsInserted(events: List<Event>) {
         // Need to replace with truthish lib?
-        assert(insertedEvents.containsAll(events))
+        require(insertedEvents.containsAll(events))
     }
 
     fun assertEventParticipantsInserted(
@@ -59,6 +59,6 @@ class FakeLocalEventService : LocalEventService {
         val insertedTeams = insertedEventParticipantsByEventId[eventId]!!
 
         // Need to replace with truthish lib?
-        assert(insertedTeams == teams)
+        require(insertedTeams == teams)
     }
 }

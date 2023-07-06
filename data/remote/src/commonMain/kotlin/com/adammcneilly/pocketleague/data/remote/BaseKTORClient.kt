@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.remote
 
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.request.get
 
 /**
@@ -26,7 +27,7 @@ open class BaseKTORClient(
         return try {
             val apiResult: T = httpClient.get(url) {
                 addParams(params)
-            }
+            }.body()
             Result.success(apiResult)
         } catch (e: Exception) {
             Result.failure(e)

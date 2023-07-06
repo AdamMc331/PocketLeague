@@ -32,11 +32,10 @@ kotlin {
                 implementation(project(":data:remote-test"))
                 implementation(libs.cash.turbine)
                 implementation(libs.kotlinx.coroutines.test)
-                implementation(libs.square.sqldelight.sqlite.driver)
             }
         }
         val androidMain by getting
-        val androidTest by getting
+        // val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")

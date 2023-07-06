@@ -21,7 +21,6 @@ kotlin {
                 implementation(kotlin("test"))
                 implementation(project(":core:models-test"))
                 implementation(libs.cash.turbine)
-                implementation(libs.square.sqldelight.sqlite.driver)
                 implementation(libs.varabyte.truthish)
             }
         }
@@ -31,7 +30,7 @@ kotlin {
                 implementation("com.github.requery:sqlite-android:3.39.2")
             }
         }
-        val androidTest by getting
+        // val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")

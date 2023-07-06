@@ -21,7 +21,7 @@ kotlin {
             }
         }
         val androidMain by getting
-        val androidTest by getting
+        // val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")
@@ -50,7 +50,7 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
     }
 
-    namespace = "ram"
+    namespace = "com.adammcneilly.pocketleague.sahred.design.system"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

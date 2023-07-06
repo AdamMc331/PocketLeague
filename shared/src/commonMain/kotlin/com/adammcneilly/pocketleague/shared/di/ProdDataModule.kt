@@ -12,7 +12,8 @@ import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.adammcneilly.pocketleague.data.match.OfflineFirstMatchRepository
 import com.adammcneilly.pocketleague.data.match.SQLDelightMatchService
-import com.adammcneilly.pocketleague.data.team.LiquipediaTeamRepository
+import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
+import com.adammcneilly.pocketleague.data.team.OctaneGGTeamRepository
 import com.adammcneilly.pocketleague.data.team.OfflineFirstTeamRepository
 import com.adammcneilly.pocketleague.data.team.SQLDelightTeamRepository
 import com.adammcneilly.pocketleague.data.team.TeamRepository
@@ -47,8 +48,8 @@ class ProdDataModule(
     override val teamRepository: TeamRepository by lazy {
         OfflineFirstTeamRepository(
             localDataSource = SQLDelightTeamRepository(this.database),
-//            remoteDataSource = OctaneGGTeamRepository(OctaneGGAPIClient),
-            remoteDataSource = LiquipediaTeamRepository(),
+            remoteDataSource = OctaneGGTeamRepository(OctaneGGAPIClient),
+//            remoteDataSource = LiquipediaTeamRepository(),
         )
     }
 

@@ -19,6 +19,8 @@ buildscript {
         classpath("org.jetbrains.kotlinx:kover:0.6.1")
         classpath("com.karumi:shot:5.14.1")
         classpath(libs.square.sqldelight.plugin)
+        // Workaround: https://youtrack.jetbrains.com/issue/KT-44884/Kotlin-Native-Compiler-could-not-find-org.jetbrains.kotlinxatomicfu-cinterop-interop-when-caches-are-enabled#focus=Comments-27-7300749.0-0
+        classpath("org.jetbrains.kotlinx:atomicfu-gradle-plugin:0.21.0")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -67,6 +69,8 @@ afterEvaluate {
 plugins {
     id("io.gitlab.arturbosch.detekt").version("1.0.1")
     id("org.jmailen.kotlinter").version("3.13.0").apply(false)
+    alias(libs.plugins.androidApplication) apply false
+    alias(libs.plugins.kotlinAndroid) apply false
 }
 
 tasks {

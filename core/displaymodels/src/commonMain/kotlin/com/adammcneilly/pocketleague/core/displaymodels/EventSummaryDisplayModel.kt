@@ -86,5 +86,6 @@ fun Event.toSummaryDisplayModel(
             lightThemeImageURL = this.imageURL,
         ),
         eventId = this.id,
+        isMajor = this.lan,
     )
 }

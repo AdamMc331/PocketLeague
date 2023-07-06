@@ -31,10 +31,10 @@ jobs:
 
       - name: Compile
         run: |
-          ./gradlew compileDebugKotlin
-          ./gradlew compileReleaseKotlin
+#          ./gradlew compileDebugKotlin
+#          ./gradlew compileReleaseKotlin
 #          Old task, took forever, trying a new one.
-#          ./gradlew assemble -x :android:baselineprofile:assemble
+          ./gradlew assemble -x :android:baselineprofile:assemble
 
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.core.locale
 
 import com.varabyte.truthish.assertThat
-import org.junit.Test
+import kotlin.test.Test
 
 class LocaleHelperTest {
     private val localeHelper = JVMLocaleHelper()

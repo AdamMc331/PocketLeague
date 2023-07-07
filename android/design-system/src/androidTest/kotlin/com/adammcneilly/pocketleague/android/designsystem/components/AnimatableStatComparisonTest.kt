@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.android.designsystem.components
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import com.adammcneilly.pocketleague.android.designsystem.stats.AnimatableStatComparison
+import com.adammcneilly.pocketleague.shared.ui.stats.AnimatableStatComparison
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import kotlin.test.Test

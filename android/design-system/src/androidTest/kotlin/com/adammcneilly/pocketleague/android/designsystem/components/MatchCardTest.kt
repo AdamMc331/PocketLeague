@@ -34,7 +34,7 @@ class MatchCardTest {
         }
 
         composeTestRule
-            .onNodeWithText("Knights [winner]")
+            .onNodeWithText("Knights [icon]")
             .assertIsDisplayed()
 
         composeTestRule

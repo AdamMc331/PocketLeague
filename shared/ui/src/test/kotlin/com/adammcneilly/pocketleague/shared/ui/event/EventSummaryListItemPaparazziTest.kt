@@ -20,6 +20,20 @@ class EventSummaryListItemPaparazziTest {
     val useDarkTheme: Boolean = false
 
     @Test
+    fun renderPlaceholder() {
+        paparazzi.snapshotScreen(
+            useDarkTheme = useDarkTheme,
+            screenPaddingDp = 0,
+        ) {
+            val event = EventSummaryDisplayModel.placeholder
+
+            EventSummaryListItem(
+                event = event,
+            )
+        }
+    }
+
+    @Test
     fun renderEventSummaryListItem() {
         paparazzi.snapshotScreen(
             useDarkTheme = useDarkTheme,

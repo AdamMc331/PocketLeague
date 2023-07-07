@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.adammcneilly.pocketleague.android.designsystem.placeholder
+package com.adammcneilly.pocketleague.shared.ui.placeholder
 
 import androidx.compose.animation.core.InfiniteRepeatableSpec
 import androidx.compose.runtime.Composable

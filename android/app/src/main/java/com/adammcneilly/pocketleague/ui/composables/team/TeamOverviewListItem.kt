@@ -11,9 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.android.designsystem.team.CircleTeamLogo
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
 /**
  * Renders the given [displayModel] for team overview information.
@@ -34,9 +35,9 @@ fun TeamOverviewListItem(
             displayModel = displayModel,
             modifier = Modifier
                 .size(48.dp)
-                .cardPlaceholder(
+                .placeholderMaterial(
                     visible = displayModel.isPlaceholder,
-
+                    color = PlaceholderDefaults.cardColor(),
                 ),
         )
 
@@ -44,8 +45,9 @@ fun TeamOverviewListItem(
             text = displayModel.name,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
-                .cardPlaceholder(
+                .placeholderMaterial(
                     visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
                 )
                 .weight(1F),
         )

@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.ui.event
 
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -7,7 +9,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
 /**
  * Shows high level summary information about an event.
@@ -33,15 +38,35 @@ fun EventSummaryListItem(
         ListItemDefaults.colors()
     }
 
+    val placeholderColor = if (containerColor != Color.Unspecified) {
+        PlaceholderDefaults.color(
+            backgroundColor = containerColor,
+        )
+    } else {
+        PlaceholderDefaults.color()
+    }
+
     ListItem(
         headlineText = {
             Text(
                 text = event.name,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .placeholderMaterial(
+                        visible = event.isPlaceholder,
+                        color = placeholderColor,
+                    ),
             )
         },
         overlineText = {
             Text(
                 text = event.dateRange,
+                modifier = Modifier
+                    .defaultMinSize(100.dp)
+                    .placeholderMaterial(
+                        visible = event.isPlaceholder,
+                        color = placeholderColor,
+                    ),
             )
         },
         colors = colorsToUse,

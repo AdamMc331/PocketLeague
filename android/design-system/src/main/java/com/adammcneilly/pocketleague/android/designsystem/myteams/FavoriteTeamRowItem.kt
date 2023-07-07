@@ -18,9 +18,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.android.designsystem.utils.getForTheme
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
 /**
  * Renders a [displayModel] within our row of favorited teams
@@ -53,8 +54,9 @@ fun FavoriteTeamRowItem(
                 contentDescription = "Team Image",
                 modifier = Modifier
                     .size(imageSize)
-                    .cardPlaceholder(
+                    .placeholderMaterial(
                         visible = displayModel.isPlaceholder || !hasImageLoaded.value,
+                        color = PlaceholderDefaults.cardColor(),
                     ),
                 onState = { state ->
                     hasImageLoaded.value = (state is AsyncImagePainter.State.Success)
@@ -69,8 +71,9 @@ fun FavoriteTeamRowItem(
                 maxLines = 1,
                 modifier = Modifier
                     .width(imageSize * 3)
-                    .cardPlaceholder(
+                    .placeholderMaterial(
                         visible = displayModel.isPlaceholder,
+                        color = PlaceholderDefaults.cardColor(),
                     ),
             )
         }

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.android.designsystem.placeholder
+package com.adammcneilly.pocketleague.shared.ui.placeholder
 
 import androidx.compose.animation.core.InfiniteRepeatableSpec
 import androidx.compose.animation.core.RepeatMode
@@ -50,6 +50,16 @@ object PlaceholderDefaults {
         contentColor: Color = contentColorFor(backgroundColor),
         contentAlpha: Float = 0.1f,
     ): Color = contentColor.copy(contentAlpha).compositeOver(backgroundColor)
+
+    /**
+     * Proxies into [color] for a card component, which uses [androidx.compose.material3.ColorScheme.surfaceVariant].
+     */
+    @Composable
+    fun cardColor(): Color {
+        return color(
+            backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+        )
+    }
 
     /**
      * Returns the value used as the the `highlightColor` parameter value of

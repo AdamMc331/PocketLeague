@@ -4,30 +4,26 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.InlineTextContent
-import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Card
-import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.Placeholder
-import androidx.compose.ui.text.PlaceholderVerticalAlign
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.components.InlineIconText
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.shared.ui.utils.VerticalSpacer
 
 /**
@@ -74,7 +70,11 @@ private fun EventName(match: MatchDetailDisplayModel) {
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .placeholderMaterial(
+                visible = match.isPlaceholder,
+                color = PlaceholderDefaults.cardColor(),
+            ),
     )
 }
 
@@ -83,6 +83,14 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
     Text(
         text = match.relativeDateTime,
         style = MaterialTheme.typography.labelSmall,
+        modifier = Modifier
+            // Set for placeholder to show some portion of this component
+            // Maybe there's a better way/we can configure this inside placeholder.
+            .defaultMinSize(200.dp)
+            .placeholderMaterial(
+                visible = match.isPlaceholder,
+                color = PlaceholderDefaults.cardColor(),
+            ),
     )
 }
 
@@ -102,7 +110,7 @@ private fun MatchTeamResultRow(
     }
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.cardPadding),
         modifier = Modifier
             .fillMaxWidth(),
     ) {
@@ -110,52 +118,24 @@ private fun MatchTeamResultRow(
             text = teamResult.score.toString(),
             fontWeight = fontWeight,
             modifier = Modifier
-                .testTag("${teamColor}_match_score"),
+                .testTag("${teamColor}_match_score")
+                .placeholderMaterial(
+                    visible = teamResult.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
         )
 
-        Text(
-            text = teamResult.getDisplayName(),
-            fontWeight = fontWeight,
-            inlineContent = teamResult.getInlineContent(),
+        InlineIconText(
+            text = teamResult.team.name,
+            icon = Icons.Default.EmojiEvents,
+            showIcon = teamResult.winner,
             modifier = Modifier
-                .testTag("${teamColor}_match_team_name"),
+                .weight(1F)
+                .placeholderMaterial(
+                    visible = teamResult.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
         )
-    }
-}
-
-private fun MatchTeamResultDisplayModel.getDisplayName(): AnnotatedString {
-    return buildAnnotatedString {
-        append(team.name)
-
-        if (winner) {
-            append(" ")
-            appendInlineContent("inlineContent", "[winner]")
-        }
-    }
-}
-
-@Composable
-private fun MatchTeamResultDisplayModel.getInlineContent(): Map<String, InlineTextContent> {
-    return if (this.winner) {
-        mapOf(
-            Pair(
-                "inlineContent",
-                InlineTextContent(
-                    Placeholder(
-                        width = LocalTextStyle.current.fontSize,
-                        height = LocalTextStyle.current.fontSize,
-                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
-                    ),
-                ) {
-                    Icon(
-                        Icons.Default.EmojiEvents,
-                        contentDescription = null,
-                    )
-                },
-            ),
-        )
-    } else {
-        mapOf()
     }
 }
 

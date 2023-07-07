@@ -15,8 +15,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.components.InlineIconText
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.components.InlineIconText
 import com.adammcneilly.pocketleague.ui.composables.stats.PlayerStatsTable
 
 /**

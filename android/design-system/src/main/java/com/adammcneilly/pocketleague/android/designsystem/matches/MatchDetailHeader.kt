@@ -16,10 +16,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.android.designsystem.team.CircleTeamLogo
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
 /**
  * Renders the [displayModel] but only to show header information about
@@ -45,8 +46,9 @@ fun MatchDetailHeader(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(24.dp)
-                    .cardPlaceholder(
+                    .placeholderMaterial(
                         visible = displayModel.isPlaceholder,
+                        color = PlaceholderDefaults.cardColor(),
                     ),
                 style = MaterialTheme.typography.headlineSmall,
                 textAlign = TextAlign.Center,
@@ -56,8 +58,9 @@ fun MatchDetailHeader(
                 modifier = Modifier
                     .padding(bottom = 12.dp)
                     .defaultMinSize(minWidth = 100.dp)
-                    .cardPlaceholder(
+                    .placeholderMaterial(
                         visible = displayModel.isPlaceholder,
+                        color = PlaceholderDefaults.cardColor(),
                     ),
                 text = displayModel.localDate,
             )
@@ -97,8 +100,9 @@ private fun MatchTeamResultCell(
             modifier = Modifier
                 .size(72.dp)
                 .padding(8.dp)
-                .cardPlaceholder(
-                    visible = (displayModel.team.isPlaceholder),
+                .placeholderMaterial(
+                    visible = displayModel.team.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
                 ),
         )
 
@@ -106,8 +110,9 @@ private fun MatchTeamResultCell(
             text = displayModel.score.toString(),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier
-                .cardPlaceholder(
+                .placeholderMaterial(
                     visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
                 ),
         )
     }

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.android.designsystem.components
+package com.adammcneilly.pocketleague.shared.ui.components
 
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent

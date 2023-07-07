@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.adammcneilly.pocketleague.android.designsystem.placeholder
+package com.adammcneilly.pocketleague.shared.ui.placeholder
 
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.MutableTransitionState
@@ -33,6 +33,12 @@ import androidx.compose.ui.graphics.isSpecified
 import androidx.compose.ui.node.Ref
 import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.LayoutDirection
+
+/**
+ * We provide a custom scale onto the placeholder composable because we want to avoid seeing
+ * placeholders of multiple components touching each other.
+ */
+private const val PLACEHOLDER_SCALE = 0.90F
 
 /**
  * Draws some skeleton UI which is typically used whilst content is 'loading'.
@@ -181,6 +187,8 @@ private fun DrawScope.drawPlaceholder(
     lastLayoutDirection: LayoutDirection?,
     lastSize: Size?,
 ): Outline? {
+    val sizeToUse = size.times(PLACEHOLDER_SCALE)
+
     // shortcut to avoid Outline calculation and allocation
     if (shape === RectangleShape) {
         // Draw the initial background color
@@ -188,7 +196,7 @@ private fun DrawScope.drawPlaceholder(
 
         if (highlight != null) {
             drawRect(
-                brush = highlight.brush(progress, size),
+                brush = highlight.brush(progress, sizeToUse),
                 alpha = highlight.alpha(progress),
             )
         }
@@ -198,8 +206,8 @@ private fun DrawScope.drawPlaceholder(
 
     // Otherwise we need to create an outline from the shape
     val outline = lastOutline.takeIf {
-        size == lastSize && layoutDirection == lastLayoutDirection
-    } ?: shape.createOutline(size, layoutDirection, this)
+        sizeToUse == lastSize && layoutDirection == lastLayoutDirection
+    } ?: shape.createOutline(sizeToUse, layoutDirection, this)
 
     // Draw the placeholder color
     drawOutline(outline = outline, color = color)
@@ -207,7 +215,7 @@ private fun DrawScope.drawPlaceholder(
     if (highlight != null) {
         drawOutline(
             outline = outline,
-            brush = highlight.brush(progress, size),
+            brush = highlight.brush(progress, sizeToUse),
             alpha = highlight.alpha(progress),
         )
     }

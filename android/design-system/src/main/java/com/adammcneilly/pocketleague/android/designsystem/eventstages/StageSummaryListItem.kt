@@ -10,8 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
 /**
  * Displays information from the supplied [displayModel] for stage summary info.
@@ -32,8 +33,9 @@ fun StageSummaryListItem(
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
                 .fillMaxWidth()
-                .cardPlaceholder(
+                .placeholderMaterial(
                     visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
                 ),
         )
 
@@ -42,8 +44,9 @@ fun StageSummaryListItem(
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier
                 .defaultMinSize(minWidth = 50.dp)
-                .cardPlaceholder(
+                .placeholderMaterial(
                     visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
                 ),
         )
     }

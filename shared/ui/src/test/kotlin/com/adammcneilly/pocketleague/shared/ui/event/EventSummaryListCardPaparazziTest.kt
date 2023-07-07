@@ -20,6 +20,19 @@ class EventSummaryListCardPaparazziTest {
     val useDarkTheme: Boolean = false
 
     @Test
+    fun renderPlaceholder() {
+        paparazzi.snapshotScreen(useDarkTheme) {
+            val events = (1..5).map {
+                EventSummaryDisplayModel.placeholder
+            }
+
+            EventSummaryListCard(
+                events = events,
+            )
+        }
+    }
+
+    @Test
     fun renderEventSummaryListCard() {
         paparazzi.snapshotScreen(useDarkTheme) {
             val events = EventSummaryDisplayModel.springInvitationalForAllRegions()

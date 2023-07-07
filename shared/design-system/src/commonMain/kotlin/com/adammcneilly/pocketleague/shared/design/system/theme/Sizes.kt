@@ -12,12 +12,15 @@ import androidx.compose.ui.unit.dp
  * screen.
  * @property[listItemSpacing] The default spacing between items inside of a list.
  * @property[cardPadding] The spacing between text/components and the edge of a card component.
+ * @property[textSpacing] When two text components are placed on top of each other in a column,
+ * we may want to apply this so they don't seem too cramped.
  */
 @Immutable
 data class Sizes(
     val screenPadding: Dp,
     val listItemSpacing: Dp,
     val cardPadding: Dp,
+    val textSpacing: Dp,
 )
 
 val LocalPocketLeagueSizes = staticCompositionLocalOf {
@@ -25,5 +28,6 @@ val LocalPocketLeagueSizes = staticCompositionLocalOf {
         screenPadding = 0.dp,
         listItemSpacing = 0.dp,
         cardPadding = 0.dp,
+        textSpacing = 0.dp,
     )
 }

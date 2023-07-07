@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.ui.match
 
 import app.cash.paparazzi.Paparazzi
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
 import com.adammcneilly.pocketleague.shared.ui.snapshotScreen
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -17,6 +18,16 @@ class MatchCardPaparazziTest {
 
     @TestParameter
     val useDarkTheme: Boolean = false
+
+    @Test
+    fun renderPlaceholder() {
+        paparazzi.snapshotScreen(useDarkTheme) {
+            MatchCard(
+                match = MatchDetailDisplayModel.placeholder,
+                onClick = {},
+            )
+        }
+    }
 
     @Test
     fun renderBlueTeamWinner() {

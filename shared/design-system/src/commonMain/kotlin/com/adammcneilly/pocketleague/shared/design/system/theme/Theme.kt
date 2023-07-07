@@ -86,6 +86,7 @@ fun PocketLeagueTheme(
         screenPadding = 16.dp,
         listItemSpacing = 16.dp,
         cardPadding = 16.dp,
+        textSpacing = 4.dp,
     )
 
     CompositionLocalProvider(

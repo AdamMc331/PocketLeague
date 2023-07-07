@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.locale.LocaleHelper
+import com.adammcneilly.pocketleague.core.locale.provideLocaleHelper
 import com.adammcneilly.pocketleague.core.models.Location
 
 /**
@@ -11,14 +13,19 @@ data class LocationDisplayModel(
 )
 
 /**
- * Converts a [Location] to a more user friendly [LocationDisplayModel].
+ * Proxies to [toDisplayModel] with default [LocaleHelper].
  */
 fun Location.toDisplayModel(): LocationDisplayModel {
-    // We receive a country code from location (ex: us, de) and here we should convert it to a
-    // full name like "United States", or "Germany".
-    // Need to find out if there's a Kotlin, or platform specific library, that can help us do
-    // that.
-    val countryName = this.countryCode
+    return this.toDisplayModel(provideLocaleHelper())
+}
+
+/**
+ * Converts a [Location] to a more user friendly [LocationDisplayModel].
+ */
+fun Location.toDisplayModel(
+    localeHelper: LocaleHelper,
+): LocationDisplayModel {
+    val countryName = localeHelper.getCountryDisplayName(this.countryCode)
 
     return LocationDisplayModel(
         venue = this.venue,

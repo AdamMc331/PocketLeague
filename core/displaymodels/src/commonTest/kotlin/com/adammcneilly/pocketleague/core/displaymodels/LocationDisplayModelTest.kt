@@ -16,7 +16,7 @@ class LocationDisplayModelTest {
 
         val expectedDisplayModel = LocationDisplayModel(
             venue = "Agganis Arena",
-            cityCountry = "Boston, us",
+            cityCountry = "Boston, United States",
         )
 
         assertThat(location.toDisplayModel()).isEqualTo(expectedDisplayModel)

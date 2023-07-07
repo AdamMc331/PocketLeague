@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
 import com.adammcneilly.pocketleague.core.datetime.test.FakeDateTimeFormatter
+import com.adammcneilly.pocketleague.core.locale.provideLocaleHelper
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.event
 import com.adammcneilly.pocketleague.core.models.test.eventStage
@@ -45,7 +46,9 @@ class EventSummaryDisplayModelTest {
             ),
         )
 
-        val expectedLocation = "${testLocation.venue} – ${testLocation.city}, ${testLocation.countryCode}"
+        // Need to create FakeLocaleHelper still
+        val countryName = provideLocaleHelper().getCountryDisplayName(testLocation.countryCode)
+        val expectedLocation = "${testLocation.venue} – ${testLocation.city}, $countryName"
 
         val displayModel = testEvent.toSummaryDisplayModel(FakeDateTimeFormatter())
 

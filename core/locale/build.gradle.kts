@@ -6,22 +6,16 @@ kotlin {
     jvm()
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(project(":core:currency"))
-                implementation(project(":core:datetime"))
-                implementation(project(":core:locale"))
-                implementation(project(":core:models"))
-            }
-        }
+        val commonMain by getting
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:datetime-test"))
-                implementation(project(":core:displaymodels-test"))
-                implementation(project(":core:models-test"))
                 implementation(libs.varabyte.truthish)
             }
+        }
+        val jvmMain by getting
+        val jvmTest by getting {
+            dependsOn(commonTest)
         }
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
@@ -44,21 +38,22 @@ kotlin {
     }
 }
 
-project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)?.apply {
-    if (project.findProperty("ios") == "true") {
-        listOf(
-            iosX64(),
-            iosArm64(),
-            iosSimulatorArm64()
-        ).forEach {
-            it.binaries.framework {
-                baseName = project.name
+project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)
+    ?.apply {
+        if (project.findProperty("ios") == "true") {
+            listOf(
+                iosX64(),
+                iosArm64(),
+                iosSimulatorArm64()
+            ).forEach {
+                it.binaries.framework {
+                    baseName = project.name
+                }
+            }
+        }
+        if (project.findProperty("js") == "true") {
+            js(IR) {
+                browser()
             }
         }
     }
-    if (project.findProperty("js") == "true") {
-        js(IR) {
-            browser()
-        }
-    }
-}

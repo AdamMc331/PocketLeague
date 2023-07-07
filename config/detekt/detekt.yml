@@ -297,7 +297,7 @@ naming:
   MatchingDeclarationName:
     active: true
     mustBeFirst: true
-    excludes: ['**/androidMain/**', '**/iosMain/**']
+    excludes: ['**/androidMain/**', '**/androidTest/**', '**/iosMain/**', '**/iosTest/**', '**/jvmMain/**', '**/jvmTest/**']
   MemberNameEqualsClassName:
     active: true
     ignoreOverridden: true

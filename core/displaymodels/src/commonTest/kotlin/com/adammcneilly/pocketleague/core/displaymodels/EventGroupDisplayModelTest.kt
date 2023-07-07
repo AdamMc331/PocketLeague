@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.core.displaymodels
 
 import com.adammcneilly.pocketleague.core.displaymodels.test.springInvitationalForAllRegions
 import com.adammcneilly.pocketleague.core.displaymodels.test.worldChampionship
-import org.junit.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class EventGroupDisplayModelTest {

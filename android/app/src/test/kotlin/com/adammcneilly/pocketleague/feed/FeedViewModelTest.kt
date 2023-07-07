@@ -11,7 +11,7 @@ import com.adammcneilly.pocketleague.data.match.test.FakeMatchRepository
 import com.adammcneilly.pocketleague.feature.feed.FeedViewState
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule
-import org.junit.Test
+import kotlin.test.Test
 
 class FeedViewModelTest {
     private val eventRepository = FakeEventRepository()

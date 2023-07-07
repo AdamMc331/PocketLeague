@@ -6,8 +6,8 @@ import com.adammcneilly.pocketleague.ui.composables.components.TooltipChip
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
-import org.junit.Test
 import org.junit.runner.RunWith
+import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class ChipPaparazziTest {

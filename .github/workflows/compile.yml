@@ -1,4 +1,4 @@
-name: Assemble Code
+name: Compile Code
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
   pull_request:
 
 jobs:
-  assemble:
-    runs-on: macos-latest
+  compile:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -29,9 +29,10 @@ jobs:
           # Only write to the cache for builds on the 'development' branch
           cache-read-only: ${{ github.ref != 'refs/heads/development' }}
 
-      - name: Assemble
+      - name: Compile
         run: |
-          ./gradlew assemble -x :android:baselineprofile:assemble
+          ./gradlew compileDebugKotlin
+          ./gradlew compileReleaseKotlin
 
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}

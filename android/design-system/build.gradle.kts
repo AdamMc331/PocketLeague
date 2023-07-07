@@ -53,6 +53,7 @@ dependencies {
     androidTestImplementation(composeBom)
 
     androidTestImplementation(project(":core:displaymodels-test"))
+    androidTestImplementation(kotlin("test"))
     androidTestImplementation(libs.bundles.androidx.test)
     androidTestImplementation(libs.compose.bom)
     androidTestImplementation(libs.compose.ui.test.junit)
@@ -67,5 +68,6 @@ dependencies {
     implementation(libs.coil.compose)
 
     testImplementation(project(":core:displaymodels-test"))
+    testImplementation(kotlin("test"))
     testImplementation(libs.google.testparameterinjector)
 }

@@ -109,6 +109,7 @@ dependencies {
 
     androidTestImplementation(project(":core:displaymodels-test"))
     androidTestImplementation(project(":shared-test"))
+    androidTestImplementation(kotlin("test"))
     androidTestImplementation(libs.bundles.androidx.test)
     androidTestImplementation(libs.compose.bom)
     androidTestImplementation(libs.compose.ui.test.junit)
@@ -146,6 +147,7 @@ dependencies {
     testImplementation(project(":core:models-test"))
     testImplementation(project(":data:event-test"))
     testImplementation(project(":data:match-test"))
+    testImplementation(kotlin("test"))
     testImplementation(libs.cash.turbine)
     testImplementation(libs.google.truth)
     testImplementation(libs.junit)

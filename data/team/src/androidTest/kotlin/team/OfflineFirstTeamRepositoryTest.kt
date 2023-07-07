@@ -7,7 +7,7 @@
 // import com.adammcneilly.pocketleague.data.team.test.FakeTeamRepository
 // import kotlinx.coroutines.test.runTest
 // import org.junit.Before
-// import org.junit.Test
+// import kotlin.test.Test
 // import kotlin.test.assertEquals
 //
 // class OfflineFirstTeamRepositoryTest {

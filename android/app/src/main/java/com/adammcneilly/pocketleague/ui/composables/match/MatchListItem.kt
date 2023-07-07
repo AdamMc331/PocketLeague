@@ -13,9 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.components.InlineIconText
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.components.InlineIconText
 import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 

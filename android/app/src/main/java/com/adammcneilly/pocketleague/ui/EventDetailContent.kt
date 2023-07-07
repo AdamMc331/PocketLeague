@@ -39,7 +39,6 @@ import coil.imageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.adammcneilly.pocketleague.android.designsystem.eventstages.EventStageListCard
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.feature.event.detail.EventDetailViewState

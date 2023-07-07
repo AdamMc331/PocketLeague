@@ -9,7 +9,6 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.layout.findRootCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
 
-
 /**
  * This is a custom [Modifier] that observes whether or not a
  * composable has been rendered on the screen, and once it has
@@ -34,4 +33,3 @@ fun Modifier.whenInView(
         }
     }
 }
-

@@ -20,8 +20,9 @@ import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
  */
 @Composable
 fun FeedContent(
-    matches: List<MatchDetailDisplayModel>,
-    eventGroups: List<EventGroupDisplayModel>,
+    recentMatches: List<MatchDetailDisplayModel>,
+    ongoingEvents: List<EventGroupDisplayModel>,
+    upcomingEvents: List<EventGroupDisplayModel>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -41,7 +42,7 @@ fun FeedContent(
 
         item {
             MatchCarousel(
-                matches = matches,
+                matches = recentMatches,
                 contentPadding = PaddingValues(
                     horizontal = PocketLeagueTheme.sizes.screenPadding,
                 ),
@@ -50,13 +51,45 @@ fun FeedContent(
 
         item {
             FeedSectionHeader(
-                text = "Upcoming Events",
+                text = "Happening Now",
                 modifier = Modifier
                     .feedHorizontalPadding(),
             )
         }
 
-        eventGroups.forEach { group ->
+        ongoingEvents.forEach { group ->
+            when (group) {
+                is EventGroupDisplayModel.Regionals -> {
+                    item {
+                        EventSummaryListCard(
+                            events = group.events,
+                            modifier = Modifier
+                                .feedHorizontalPadding(),
+                        )
+                    }
+                }
+
+                is EventGroupDisplayModel.Major -> {
+                    item {
+                        LanEventSummaryCard(
+                            event = group.event,
+                            modifier = Modifier
+                                .feedHorizontalPadding(),
+                        )
+                    }
+                }
+            }
+        }
+
+        item {
+            FeedSectionHeader(
+                text = "Upcoming",
+                modifier = Modifier
+                    .feedHorizontalPadding(),
+            )
+        }
+
+        upcomingEvents.forEach { group ->
             when (group) {
                 is EventGroupDisplayModel.Regionals -> {
                     item {

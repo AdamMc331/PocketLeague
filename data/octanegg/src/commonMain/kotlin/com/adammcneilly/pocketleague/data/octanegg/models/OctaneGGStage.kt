@@ -44,5 +44,6 @@ fun OctaneGGStage?.toEventStage(): EventStage {
         liquipedia = this?.liquipedia.orEmpty(),
         qualifier = this?.qualifier ?: false,
         lan = this?.lan ?: false,
+        location = this?.location?.toLocation(),
     )
 }

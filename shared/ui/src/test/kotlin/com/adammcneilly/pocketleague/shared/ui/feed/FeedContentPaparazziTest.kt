@@ -44,8 +44,8 @@ class FeedContentPaparazziTest {
             )
 
             FeedContent(
-                matches = matchList,
-                eventGroups = groups,
+                recentMatches = matchList,
+                upcomingEvents = groups,
             )
         }
     }

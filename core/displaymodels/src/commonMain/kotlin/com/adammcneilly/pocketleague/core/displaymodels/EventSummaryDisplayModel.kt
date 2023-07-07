@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.core.displaymodels
 import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import kotlinx.datetime.TimeZone
 
 private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
@@ -28,8 +29,7 @@ data class EventSummaryDisplayModel(
     @Deprecated("Supply date range directly.") val startDate: String = "",
     @Deprecated("Supply date range directly.") val endDate: String = "",
     val dateRange: String = "$startDate – $endDate",
-    val arena: String? = null,
-    val location: String? = null,
+    val location: LocationDisplayModel? = null,
     val isMajor: Boolean = false,
     val isPlaceholder: Boolean = false,
 ) {
@@ -50,7 +50,7 @@ data class EventSummaryDisplayModel(
         get() = "$startDate – $endDate"
 
     val arenaLocation: String
-        get() = listOfNotNull(arena, location).joinToString(" – ")
+        get() = listOfNotNull(location?.venue, location?.cityCountry).joinToString(" – ")
 }
 
 /**
@@ -66,6 +66,13 @@ fun Event.toSummaryDisplayModel(): EventSummaryDisplayModel {
 fun Event.toSummaryDisplayModel(
     dateTimeFormatter: DateTimeFormatter,
 ): EventSummaryDisplayModel {
+    // It's unlikely that an event had more than one location, but we'll default to the
+    // last one because it's most likely the main stage if so.
+    val location = this.stages
+        .mapNotNull(EventStage::location)
+        .lastOrNull()
+        ?.toDisplayModel()
+
     return EventSummaryDisplayModel(
         startDate = this.startDateUTC?.let { startDate ->
             dateTimeFormatter.formatUTCString(
@@ -87,5 +94,6 @@ fun Event.toSummaryDisplayModel(
         ),
         eventId = this.id,
         isMajor = this.lan,
+        location = location,
     )
 }

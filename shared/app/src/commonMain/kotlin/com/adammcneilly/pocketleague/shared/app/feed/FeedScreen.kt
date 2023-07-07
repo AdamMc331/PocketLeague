@@ -24,6 +24,7 @@ object FeedScreen : Screen {
      */
     data class State(
         val recentMatches: List<MatchDetailDisplayModel>,
+        val ongoingEvents: List<EventGroupDisplayModel>,
         val upcomingEvents: List<EventGroupDisplayModel>,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
@@ -57,8 +58,9 @@ object FeedScreen : Screen {
                 FeedScreen -> {
                     ui<State> { state, modifier ->
                         FeedContent(
-                            matches = state.recentMatches,
-                            eventGroups = state.upcomingEvents,
+                            recentMatches = state.recentMatches,
+                            ongoingEvents = state.ongoingEvents,
+                            upcomingEvents = state.upcomingEvents,
                             modifier = modifier,
                         )
                     }

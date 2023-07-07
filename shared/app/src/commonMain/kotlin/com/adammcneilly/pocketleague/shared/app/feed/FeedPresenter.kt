@@ -16,7 +16,7 @@ import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
-import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 /**
  * State management container for the [FeedScreen].
@@ -31,12 +31,16 @@ class FeedPresenter(
             mutableStateOf(emptyList<MatchDetailDisplayModel>())
         }
 
-        var events by remember {
+        var ongoingEvents by remember {
+            mutableStateOf(emptyList<EventGroupDisplayModel>())
+        }
+
+        var upcomingEvents by remember {
             mutableStateOf(emptyList<EventGroupDisplayModel>())
         }
 
         LaunchedEffect(Unit) {
-            async {
+            launch {
                 matches = OctaneGGMatchService()
                     .getPastWeeksMatches()
                     .getOrNull()
@@ -45,8 +49,18 @@ class FeedPresenter(
                     .orEmpty()
             }
 
-            async {
-                events = OctaneGGEventService()
+            launch {
+                ongoingEvents = OctaneGGEventService()
+                    .getOngoingEvents()
+                    .getOrNull()
+                    ?.sortedBy(Event::startDateUTC)
+                    ?.map(Event::toSummaryDisplayModel)
+                    ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
+                    .orEmpty()
+            }
+
+            launch {
+                upcomingEvents = OctaneGGEventService()
                     .getUpcomingEvents()
                     .getOrNull()
                     ?.sortedBy(Event::startDateUTC)
@@ -58,7 +72,8 @@ class FeedPresenter(
 
         return FeedScreen.State(
             recentMatches = matches,
-            upcomingEvents = events,
+            ongoingEvents = ongoingEvents,
+            upcomingEvents = upcomingEvents,
         ) { event ->
             when (event) {
                 is FeedScreen.Event.EventClicked -> {

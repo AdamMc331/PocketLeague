@@ -9,8 +9,10 @@ import androidx.compose.runtime.setValue
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
@@ -44,21 +46,21 @@ class FeedPresenter(
                 ?.map { it.toDetailDisplayModel() }
                 .orEmpty()
 
-//            ongoingEvents = OctaneGGEventService()
-//                .getOngoingEvents()
-//                .getOrNull()
-//                ?.sortedBy(Event::startDateUTC)
-//                ?.map(Event::toSummaryDisplayModel)
-//                ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
-//                .orEmpty()
-//
-//            upcomingEvents = OctaneGGEventService()
-//                .getUpcomingEvents()
-//                .getOrNull()
-//                ?.sortedBy(Event::startDateUTC)
-//                ?.map(Event::toSummaryDisplayModel)
-//                ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
-//                .orEmpty()
+            ongoingEvents = OctaneGGEventService()
+                .getOngoingEvents()
+                .getOrNull()
+                ?.sortedBy(Event::startDateUTC)
+                ?.map(Event::toSummaryDisplayModel)
+                ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
+                .orEmpty()
+
+            upcomingEvents = OctaneGGEventService()
+                .getUpcomingEvents()
+                .getOrNull()
+                ?.sortedBy(Event::startDateUTC)
+                ?.map(Event::toSummaryDisplayModel)
+                ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
+                .orEmpty()
         }
 
         return FeedScreen.State(

@@ -6,28 +6,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.InlineTextContent
-import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Card
-import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.Placeholder
-import androidx.compose.ui.text.PlaceholderVerticalAlign
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.components.InlineIconText
 import com.adammcneilly.pocketleague.shared.ui.utils.VerticalSpacer
 
 /**
@@ -113,49 +106,11 @@ private fun MatchTeamResultRow(
                 .testTag("${teamColor}_match_score"),
         )
 
-        Text(
-            text = teamResult.getDisplayName(),
-            fontWeight = fontWeight,
-            inlineContent = teamResult.getInlineContent(),
-            modifier = Modifier
-                .testTag("${teamColor}_match_team_name"),
+        InlineIconText(
+            text = teamResult.team.name,
+            icon = Icons.Default.EmojiEvents,
+            showIcon = teamResult.winner,
         )
-    }
-}
-
-private fun MatchTeamResultDisplayModel.getDisplayName(): AnnotatedString {
-    return buildAnnotatedString {
-        append(team.name)
-
-        if (winner) {
-            append(" ")
-            appendInlineContent("inlineContent", "[winner]")
-        }
-    }
-}
-
-@Composable
-private fun MatchTeamResultDisplayModel.getInlineContent(): Map<String, InlineTextContent> {
-    return if (this.winner) {
-        mapOf(
-            Pair(
-                "inlineContent",
-                InlineTextContent(
-                    Placeholder(
-                        width = LocalTextStyle.current.fontSize,
-                        height = LocalTextStyle.current.fontSize,
-                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
-                    ),
-                ) {
-                    Icon(
-                        Icons.Default.EmojiEvents,
-                        contentDescription = null,
-                    )
-                },
-            ),
-        )
-    } else {
-        mapOf()
     }
 }
 

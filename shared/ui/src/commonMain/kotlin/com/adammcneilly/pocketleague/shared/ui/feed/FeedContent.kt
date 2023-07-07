@@ -20,6 +20,7 @@ fun FeedContent(
     recentMatches: List<MatchDetailDisplayModel>,
     ongoingEvents: List<EventGroupDisplayModel>,
     upcomingEvents: List<EventGroupDisplayModel>,
+    onMatchClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -31,7 +32,7 @@ fun FeedContent(
     ) {
         recentMatchesHeader()
 
-        recentMatchesCarousel(recentMatches)
+        recentMatchesCarousel(recentMatches, onMatchClicked)
 
         happeningNowHeader()
 
@@ -67,14 +68,18 @@ private fun LazyListScope.happeningNowHeader() {
     }
 }
 
-private fun LazyListScope.recentMatchesCarousel(recentMatches: List<MatchDetailDisplayModel>) {
+private fun LazyListScope.recentMatchesCarousel(
+    recentMatches: List<MatchDetailDisplayModel>,
+    onMatchClicked: (String) -> Unit,
+) {
     item {
         MatchCarousel(
             matches = recentMatches,
             contentPadding = PaddingValues(
                 horizontal = PocketLeagueTheme.sizes.screenPadding,
             ),
-        ) {}
+            onMatchClicked = onMatchClicked,
+        )
     }
 }
 

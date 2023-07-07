@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+private const val PLACEHOLDER_LIST_COUNT = 3
+
 /**
  * Describes the various groups of events that can be shown inside the app.
  */
@@ -19,6 +21,12 @@ sealed class EventGroupDisplayModel {
     ) : EventGroupDisplayModel()
 
     companion object {
+
+        val placeholder = mapFromEventList(
+            List(PLACEHOLDER_LIST_COUNT) {
+                EventSummaryDisplayModel.placeholder
+            },
+        )
 
         /**
          * Given a collection of [events], convert them to a list of [EventGroupDisplayModel]

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.android.designsystem.game
+package com.adammcneilly.pocketleague.shared.ui.game
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,6 +22,7 @@ import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
@@ -71,6 +72,8 @@ fun GameListItem(
                         visible = displayModel.isPlaceholder,
                         color = PlaceholderDefaults.cardColor(),
                     ),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
 
             val otLabel = displayModel.otLabel

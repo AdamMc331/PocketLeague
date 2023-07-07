@@ -3,7 +3,6 @@ package com.adammcneilly.pocketleague.shared.ui.match
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -45,6 +44,7 @@ fun MatchDetailHeader(
             Column(
                 modifier = Modifier
                     .padding(PocketLeagueTheme.sizes.cardPadding),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
                     text = displayModel.eventName,
@@ -73,7 +73,6 @@ fun MatchDetailHeader(
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .defaultMinSize(minWidth = 100.dp)
                         .placeholderMaterial(
                             visible = displayModel.isPlaceholder,
                             color = PlaceholderDefaults.cardColor(),

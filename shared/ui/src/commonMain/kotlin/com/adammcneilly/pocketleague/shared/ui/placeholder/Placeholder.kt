@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.isSpecified
 import androidx.compose.ui.node.Ref
 import androidx.compose.ui.platform.debugInspectorInfo
@@ -188,6 +189,8 @@ private fun DrawScope.drawPlaceholder(
     lastSize: Size?,
 ): Outline? {
     val sizeToUse = size.times(PLACEHOLDER_SCALE)
+    val widthDiff = size.width - sizeToUse.width
+    val heightDiff = size.height - sizeToUse.height
 
     // shortcut to avoid Outline calculation and allocation
     if (shape === RectangleShape) {
@@ -209,15 +212,20 @@ private fun DrawScope.drawPlaceholder(
         sizeToUse == lastSize && layoutDirection == lastLayoutDirection
     } ?: shape.createOutline(sizeToUse, layoutDirection, this)
 
-    // Draw the placeholder color
-    drawOutline(outline = outline, color = color)
+    translate(
+        left = (widthDiff / 2),
+        top = (heightDiff / 2),
+    ) {
+        // Draw the placeholder color
+        drawOutline(outline = outline, color = color)
 
-    if (highlight != null) {
-        drawOutline(
-            outline = outline,
-            brush = highlight.brush(progress, sizeToUse),
-            alpha = highlight.alpha(progress),
-        )
+        if (highlight != null) {
+            drawOutline(
+                outline = outline,
+                brush = highlight.brush(progress, sizeToUse),
+                alpha = highlight.alpha(progress),
+            )
+        }
     }
 
     // Return the outline we used

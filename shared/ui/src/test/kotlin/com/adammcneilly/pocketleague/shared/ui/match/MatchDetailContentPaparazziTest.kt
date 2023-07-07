@@ -11,7 +11,7 @@ import org.junit.runner.RunWith
 import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
-class MatchContentPaparazziTest {
+class MatchDetailContentPaparazziTest {
 
     @get:Rule
     val paparazzi = Paparazzi()
@@ -21,7 +21,10 @@ class MatchContentPaparazziTest {
 
     @Test
     fun renderMatchDetailContent() {
-        paparazzi.snapshotScreen(useDarkTheme) {
+        paparazzi.snapshotScreen(
+            useDarkTheme = useDarkTheme,
+            screenPaddingDp = 0,
+        ) {
             MatchDetailContent(
                 match = TestDisplayModel.matchDetailBlueWinner,
             )
@@ -30,7 +33,10 @@ class MatchContentPaparazziTest {
 
     @Test
     fun renderPlaceholder() {
-        paparazzi.snapshotScreen(useDarkTheme) {
+        paparazzi.snapshotScreen(
+            useDarkTheme = useDarkTheme,
+            screenPaddingDp = 0,
+        ) {
             MatchDetailContent(
                 match = MatchDetailDisplayModel.placeholder,
             )

@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.octanegg.models
 
 import com.adammcneilly.pocketleague.core.models.EventStage
+import com.adammcneilly.pocketleague.core.models.Location
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -30,6 +31,11 @@ class OctaneGGStageTest {
             liquipedia = "liquipedia",
             qualifier = false,
             lan = false,
+            location = Location(
+                venue = "",
+                city = "",
+                countryCode = "",
+            ),
         )
 
         assertEquals(
@@ -51,6 +57,7 @@ class OctaneGGStageTest {
             liquipedia = "",
             qualifier = false,
             lan = false,
+            location = null,
         )
 
         assertEquals(

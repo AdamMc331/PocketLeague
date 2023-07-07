@@ -12,7 +12,7 @@ data class OctaneGGLocation(
     @SerialName("city")
     val city: String? = null,
     @SerialName("country")
-    val country: String? = null,
+    val countryCode: String? = null,
     @SerialName("venue")
     val venue: String? = null,
 )
@@ -24,6 +24,6 @@ fun OctaneGGLocation.toLocation(): Location {
     return Location(
         venue = this.venue.orEmpty(),
         city = this.city.orEmpty(),
-        countryCode = this.country.orEmpty(),
+        countryCode = this.countryCode.orEmpty(),
     )
 }

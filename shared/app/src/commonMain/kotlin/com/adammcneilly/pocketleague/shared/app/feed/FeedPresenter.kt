@@ -17,6 +17,9 @@ import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
+import kotlinx.coroutines.launch
+
+private const val PLACEHOLDER_LIST_COUNT = 3
 
 /**
  * State management container for the [FeedScreen].
@@ -28,40 +31,49 @@ class FeedPresenter(
     @Composable
     override fun present(): FeedScreen.State {
         var matches by remember {
-            mutableStateOf(emptyList<MatchDetailDisplayModel>())
+            val initialList = List(PLACEHOLDER_LIST_COUNT) {
+                MatchDetailDisplayModel.placeholder
+            }
+            mutableStateOf(initialList)
         }
 
         var ongoingEvents by remember {
-            mutableStateOf(emptyList<EventGroupDisplayModel>())
+            mutableStateOf(EventGroupDisplayModel.placeholder)
         }
 
         var upcomingEvents by remember {
-            mutableStateOf(emptyList<EventGroupDisplayModel>())
+            mutableStateOf(EventGroupDisplayModel.placeholder)
         }
 
         LaunchedEffect(Unit) {
-            matches = OctaneGGMatchService()
-                .getPastWeeksMatches()
-                .getOrNull()
-                ?.sortedByDescending(Match::dateUTC)
-                ?.map { it.toDetailDisplayModel() }
-                .orEmpty()
+            launch {
+                matches = OctaneGGMatchService()
+                    .getPastWeeksMatches()
+                    .getOrNull()
+                    ?.sortedByDescending(Match::dateUTC)
+                    ?.map { it.toDetailDisplayModel() }
+                    .orEmpty()
+            }
 
-            ongoingEvents = OctaneGGEventService()
-                .getOngoingEvents()
-                .getOrNull()
-                ?.sortedBy(Event::startDateUTC)
-                ?.map(Event::toSummaryDisplayModel)
-                ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
-                .orEmpty()
+            launch {
+                ongoingEvents = OctaneGGEventService()
+                    .getOngoingEvents()
+                    .getOrNull()
+                    ?.sortedBy(Event::startDateUTC)
+                    ?.map(Event::toSummaryDisplayModel)
+                    ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
+                    .orEmpty()
+            }
 
-            upcomingEvents = OctaneGGEventService()
-                .getUpcomingEvents()
-                .getOrNull()
-                ?.sortedBy(Event::startDateUTC)
-                ?.map(Event::toSummaryDisplayModel)
-                ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
-                .orEmpty()
+            launch {
+                upcomingEvents = OctaneGGEventService()
+                    .getUpcomingEvents()
+                    .getOrNull()
+                    ?.sortedBy(Event::startDateUTC)
+                    ?.map(Event::toSummaryDisplayModel)
+                    ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
+                    .orEmpty()
+            }
         }
 
         return FeedScreen.State(

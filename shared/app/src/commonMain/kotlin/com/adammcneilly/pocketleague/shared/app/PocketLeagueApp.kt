@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.app.bars.PLTopAppBar
@@ -43,23 +44,25 @@ fun PocketLeagueApp(
                 // screen (probably just close the app?)
             }
 
-            Column(
+            Surface(
                 modifier = modifier,
             ) {
-                PLTopAppBar(
-                    text = "Pocket League",
-                    showBack = (backstack.size > 1),
-                    onBackClicked = {
-                        navigator.pop()
-                    },
-                )
+                Column {
+                    PLTopAppBar(
+                        text = "Pocket League",
+                        showBack = (backstack.size > 1),
+                        onBackClicked = {
+                            navigator.pop()
+                        },
+                    )
 
-                NavigableCircuitContent(
-                    navigator = navigator,
-                    backstack = backstack,
-                    modifier = Modifier
-                        .weight(1F),
-                )
+                    NavigableCircuitContent(
+                        navigator = navigator,
+                        backstack = backstack,
+                        modifier = Modifier
+                            .weight(1F),
+                    )
+                }
             }
         }
     }

@@ -56,6 +56,7 @@ dependencies {
 
     implementation(project(":shared:app"))
     implementation(project(":shared:design-system"))
+    implementation(libs.accompanist.systemuicontroller)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)

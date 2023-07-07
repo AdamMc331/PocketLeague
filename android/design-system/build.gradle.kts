@@ -62,6 +62,7 @@ dependencies {
     api(project(":shared:design-system"))
     implementation(project(":core:displaymodels"))
     implementation(project(":shared:ui"))
+    testImplementation(kotlin("test"))
     implementation(libs.accompanist.placeholder.material)
     implementation(libs.bundles.compose.ui)
     implementation(libs.coil.compose)

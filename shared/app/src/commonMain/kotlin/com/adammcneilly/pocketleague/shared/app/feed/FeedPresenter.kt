@@ -14,6 +14,7 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
+import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
 
@@ -74,7 +75,7 @@ class FeedPresenter(
                 }
 
                 is FeedScreen.Event.MatchClicked -> {
-                    // Handle match clicked
+                    navigator.goTo(MatchDetailScreen(event.matchId))
                 }
             }
         }

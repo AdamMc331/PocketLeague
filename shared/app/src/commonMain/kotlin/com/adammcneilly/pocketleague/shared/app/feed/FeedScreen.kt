@@ -61,10 +61,15 @@ object FeedScreen : Screen {
                             recentMatches = state.recentMatches,
                             ongoingEvents = state.ongoingEvents,
                             upcomingEvents = state.upcomingEvents,
+                            onMatchClicked = { matchId ->
+                                val event = Event.MatchClicked(matchId)
+                                state.eventSink.invoke(event)
+                            },
                             modifier = modifier,
                         )
                     }
                 }
+
                 else -> null
             }
         }

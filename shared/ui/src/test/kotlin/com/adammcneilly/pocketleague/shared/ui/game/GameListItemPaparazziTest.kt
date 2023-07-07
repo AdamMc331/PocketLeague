@@ -50,4 +50,15 @@ class GameListItemPaparazziTest {
             )
         }
     }
+
+    @Test
+    fun renderWithLongMapName() {
+        paparazzi.snapshotScreen(useDarkTheme) {
+            GameListItem(
+                displayModel = TestDisplayModel.gameDetailBlueWinner.copy(
+                    map = "Utopia Coliseum (Standard, Night)",
+                ),
+            )
+        }
+    }
 }

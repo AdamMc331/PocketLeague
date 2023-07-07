@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.InlineTextContent
@@ -68,6 +69,7 @@ fun GameListItem(
                 text = displayModel.map,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
+                    .defaultMinSize(minWidth = 100.dp)
                     .placeholderMaterial(
                         visible = displayModel.isPlaceholder,
                         color = PlaceholderDefaults.cardColor(),

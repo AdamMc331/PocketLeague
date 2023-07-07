@@ -51,6 +51,7 @@ class FeedContentPaparazziTest {
                 recentMatches = matchList,
                 ongoingEvents = ongoingEvents,
                 upcomingEvents = upcomingEvents,
+                onMatchClicked = {},
             )
         }
     }

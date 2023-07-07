@@ -146,6 +146,7 @@ dependencies {
     testImplementation(project(":core:models-test"))
     testImplementation(project(":data:event-test"))
     testImplementation(project(":data:match-test"))
+    testImplementation(kotlin("test"))
     testImplementation(libs.cash.turbine)
     testImplementation(libs.google.truth)
     testImplementation(libs.junit)

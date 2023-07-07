@@ -51,15 +51,11 @@ fun MatchCard(
         ) {
             EventName(match)
 
-            VerticalSpacer(PocketLeagueTheme.sizes.textSpacing)
-
             RelativeTime(match)
 
             VerticalSpacer(PocketLeagueTheme.sizes.cardPadding)
 
             BlueTeamResult(match)
-
-            VerticalSpacer(PocketLeagueTheme.sizes.textSpacing)
 
             OrangeTeamResult(match)
         }

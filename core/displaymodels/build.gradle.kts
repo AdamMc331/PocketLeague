@@ -10,6 +10,7 @@ kotlin {
             dependencies {
                 implementation(project(":core:currency"))
                 implementation(project(":core:datetime"))
+                implementation(project(":core:locale"))
                 implementation(project(":core:models"))
             }
         }

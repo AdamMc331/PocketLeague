@@ -20,6 +20,7 @@ include(":core:datetime-test")
 include(":core:displaymodels")
 include(":core:displaymodels-test")
 include(":core:feature")
+include(":core:locale")
 include(":core:models")
 include(":core:models-test")
 

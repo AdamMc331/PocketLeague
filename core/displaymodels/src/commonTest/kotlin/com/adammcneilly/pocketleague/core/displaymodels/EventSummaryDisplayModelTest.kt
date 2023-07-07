@@ -30,7 +30,7 @@ class EventSummaryDisplayModelTest {
             assertEquals(testEvent.imageURL, imageURL.darkThemeImageURL)
             assertEquals(mockDateString, startDate)
             assertEquals(testEvent.name, name)
-            assertThat(location).isNull()
+            assertThat(arenaLocation).isEmpty()
         }
     }
 
@@ -45,8 +45,10 @@ class EventSummaryDisplayModelTest {
             ),
         )
 
+        val expectedLocation = "${testLocation.venue} – ${testLocation.city}, ${testLocation.countryCode}"
+
         val displayModel = testEvent.toSummaryDisplayModel(FakeDateTimeFormatter())
 
-        assertThat(displayModel.location).isEqualTo(testLocation.toDisplayModel())
+        assertThat(displayModel.arenaLocation).isEqualTo(expectedLocation)
     }
 }

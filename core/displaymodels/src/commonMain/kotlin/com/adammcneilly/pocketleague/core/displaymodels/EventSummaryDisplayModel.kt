@@ -28,9 +28,9 @@ data class EventSummaryDisplayModel(
     @Deprecated("Supply date range directly.") val startDate: String = "",
     @Deprecated("Supply date range directly.") val endDate: String = "",
     val dateRange: String = "$startDate – $endDate",
-    val location: LocationDisplayModel? = null,
     val isMajor: Boolean = false,
     val isPlaceholder: Boolean = false,
+    private val location: LocationDisplayModel? = null,
 ) {
 
     companion object {

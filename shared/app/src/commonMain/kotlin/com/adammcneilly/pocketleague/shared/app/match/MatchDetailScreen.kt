@@ -40,10 +40,12 @@ data class MatchDetailScreen(
             return when (screen) {
                 is MatchDetailScreen -> {
                     ui<State> { state, modifier ->
-                        MatchDetailContent(
-                            matchId = state.displayModel?.matchId.orEmpty(),
-                            modifier = modifier,
-                        )
+                        if (state.displayModel != null) {
+                            MatchDetailContent(
+                                match = state.displayModel,
+                                modifier = modifier,
+                            )
+                        }
                     }
                 }
                 else -> null

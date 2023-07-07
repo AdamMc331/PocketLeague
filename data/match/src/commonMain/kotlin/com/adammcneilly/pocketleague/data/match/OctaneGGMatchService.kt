@@ -26,8 +26,7 @@ class OctaneGGMatchService(
             octaneMatch.toMatch()
         }
     }
-
-    @Suppress("MagicNumber")
+movin
     override suspend fun getPastWeeksMatches(): Result<List<Match>> {
         return apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,
@@ -35,7 +34,6 @@ class OctaneGGMatchService(
                 "before" to Clock.System.now(),
                 "after" to Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),
                 "group" to "rlcs",
-                "perPage" to 5, // Set to speed up API call because Amtrak wifi lmao
             ),
         ).map { octaneMatchListResponse ->
             val mappedMatches =

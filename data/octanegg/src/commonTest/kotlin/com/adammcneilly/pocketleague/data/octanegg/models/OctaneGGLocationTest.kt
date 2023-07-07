@@ -34,6 +34,6 @@ class OctaneGGLocationTest {
             countryCode = "",
         )
 
-        assertThat(octaneLocation).isEqualTo(expectedLocation)
+        assertThat(octaneLocation.toLocation()).isEqualTo(expectedLocation)
     }
 }

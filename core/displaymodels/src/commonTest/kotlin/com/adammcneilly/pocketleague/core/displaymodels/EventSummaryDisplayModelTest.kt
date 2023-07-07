@@ -46,7 +46,8 @@ class EventSummaryDisplayModelTest {
             ),
         )
 
-        val expectedLocation = "${testLocation.venue} – ${testLocation.city}, ${getCountryDisplayName(testLocation.countryCode)}"
+        val countryName = getCountryDisplayName(testLocation.countryCode)
+        val expectedLocation = "${testLocation.venue} – ${testLocation.city}, $countryName"
 
         val displayModel = testEvent.toSummaryDisplayModel(FakeDateTimeFormatter())
 

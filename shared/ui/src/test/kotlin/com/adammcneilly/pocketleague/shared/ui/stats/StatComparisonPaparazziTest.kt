@@ -1,10 +1,10 @@
-package com.adammcneilly.pocketleague.android.designsystem.stats
+package com.adammcneilly.pocketleague.shared.ui.stats
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import app.cash.paparazzi.Paparazzi
-import com.adammcneilly.pocketleague.android.designsystem.snapshotScreen
+import com.adammcneilly.pocketleague.shared.ui.snapshotScreen
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule

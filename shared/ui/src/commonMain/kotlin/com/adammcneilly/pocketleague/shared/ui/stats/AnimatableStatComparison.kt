@@ -1,15 +1,12 @@
-package com.adammcneilly.pocketleague.android.designsystem.stats
+package com.adammcneilly.pocketleague.shared.ui.stats
 
-import android.content.res.Configuration
 import androidx.compose.animation.core.AnimationState
 import androidx.compose.animation.core.animateTo
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -17,12 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.utils.whenInView
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
+import com.adammcneilly.pocketleague.shared.ui.utils.whenInView
 import kotlinx.coroutines.launch
 
 /**
@@ -160,26 +155,4 @@ private fun DrawScope.drawBlueLine(
         ),
         strokeWidth = lineWidth,
     )
-}
-
-@Preview(
-    name = "Night Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-)
-@Preview(
-    name = "Day Mode",
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-)
-@Composable
-private fun StatComparisonPreview() {
-    PocketLeagueTheme {
-        Surface {
-            StatComparison(
-                blueTeamValue = 7,
-                orangeTeamValue = 1,
-                modifier = Modifier
-                    .padding(16.dp),
-            )
-        }
-    }
 }

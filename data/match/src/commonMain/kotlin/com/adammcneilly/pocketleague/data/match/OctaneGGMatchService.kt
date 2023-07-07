@@ -33,7 +33,7 @@ class OctaneGGMatchService(
             params = mapOf(
                 "before" to Clock.System.now(),
                 "after" to Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),
-//                "group" to "rlcs",
+                "group" to "rlcs",
             ),
         ).map { octaneMatchListResponse ->
             val mappedMatches =
@@ -48,7 +48,7 @@ class OctaneGGMatchService(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(
                 "after" to Clock.System.now(),
-//                "group" to "rlcs",
+                "group" to "rlcs",
             ),
         ).map { octaneMatchListResponse ->
             val mappedMatches =

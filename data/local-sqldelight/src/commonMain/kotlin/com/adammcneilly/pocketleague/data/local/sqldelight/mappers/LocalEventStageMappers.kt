@@ -29,5 +29,6 @@ fun LocalEventStage.toEventStage(): EventStage {
         liquipedia = this.liquipedia,
         qualifier = this.qualifier,
         lan = this.lan,
+        location = null,
     )
 }

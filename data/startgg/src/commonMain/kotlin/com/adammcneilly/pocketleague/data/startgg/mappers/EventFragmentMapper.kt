@@ -23,5 +23,6 @@ fun EventFragment.toEventStage(): EventStage {
         endDateUTC = null,
         liquipedia = "",
         qualifier = false,
+        location = null,
     )
 }

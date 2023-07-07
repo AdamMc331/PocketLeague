@@ -2,16 +2,13 @@ package com.adammcneilly.pocketleague.shared.ui.feed
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.shared.ui.event.EventSummaryListCard
-import com.adammcneilly.pocketleague.shared.ui.event.LanEventSummaryCard
 import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
 
 /**
@@ -20,8 +17,9 @@ import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
  */
 @Composable
 fun FeedContent(
-    matches: List<MatchDetailDisplayModel>,
-    eventGroups: List<EventGroupDisplayModel>,
+    recentMatches: List<MatchDetailDisplayModel>,
+    ongoingEvents: List<EventGroupDisplayModel>,
+    upcomingEvents: List<EventGroupDisplayModel>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -31,57 +29,59 @@ fun FeedContent(
         ),
         verticalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.listItemSpacing),
     ) {
+        recentMatchesHeader()
+
+        recentMatchesCarousel(recentMatches)
+
+        happeningNowHeader()
+
+        eventGroupList(ongoingEvents)
+
+        upcomingHeader()
+
+        eventGroupList(upcomingEvents)
+    }
+}
+
+private fun LazyListScope.upcomingHeader() {
+    item {
+        FeedSectionHeader(
+            text = "Upcoming",
+        )
+    }
+}
+
+private fun LazyListScope.eventGroupList(ongoingEvents: List<EventGroupDisplayModel>) {
+    ongoingEvents.forEach { group ->
         item {
-            FeedSectionHeader(
-                text = "Recent Matches",
-                modifier = Modifier
-                    .feedHorizontalPadding(),
-            )
-        }
-
-        item {
-            MatchCarousel(
-                matches = matches,
-                contentPadding = PaddingValues(
-                    horizontal = PocketLeagueTheme.sizes.screenPadding,
-                ),
-            ) {}
-        }
-
-        item {
-            FeedSectionHeader(
-                text = "Upcoming Events",
-                modifier = Modifier
-                    .feedHorizontalPadding(),
-            )
-        }
-
-        eventGroups.forEach { group ->
-            when (group) {
-                is EventGroupDisplayModel.Regionals -> {
-                    item {
-                        EventSummaryListCard(
-                            events = group.events,
-                            modifier = Modifier
-                                .feedHorizontalPadding(),
-                        )
-                    }
-                }
-
-                is EventGroupDisplayModel.Major -> {
-                    item {
-                        LanEventSummaryCard(
-                            event = group.event,
-                            modifier = Modifier
-                                .feedHorizontalPadding(),
-                        )
-                    }
-                }
-            }
+            FeedEventGroup(group)
         }
     }
 }
 
-private fun Modifier.feedHorizontalPadding() = composed {
-    this.padding(horizontal = PocketLeagueTheme.sizes.screenPadding)
+private fun LazyListScope.happeningNowHeader() {
+    item {
+        FeedSectionHeader(
+            text = "Happening Now",
+        )
+    }
+}
+
+private fun LazyListScope.recentMatchesCarousel(recentMatches: List<MatchDetailDisplayModel>) {
+    item {
+        MatchCarousel(
+            matches = recentMatches,
+            contentPadding = PaddingValues(
+                horizontal = PocketLeagueTheme.sizes.screenPadding,
+            ),
+        ) {}
+    }
+}
+
+private fun LazyListScope.recentMatchesHeader() {
+    item {
+        FeedSectionHeader(
+            text = "Recent Matches",
+        )
+    }
 }

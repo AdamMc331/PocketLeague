@@ -70,6 +70,7 @@ private fun MatchWithEventAndTeams.mapEventStage() = EventStage(
     liquipedia = this.localEventStageLiquipedia,
     qualifier = this.localEventStageQualifier,
     lan = this.localEventStageLan,
+    location = null,
 )
 
 private fun MatchWithEventAndTeams.mapBlueTeamResult(

@@ -19,6 +19,7 @@ kotlin {
                 implementation(project(":core:datetime-test"))
                 implementation(project(":core:displaymodels-test"))
                 implementation(project(":core:models-test"))
+                implementation(libs.varabyte.truthish)
             }
         }
         maybeCreate("iosX64Main")

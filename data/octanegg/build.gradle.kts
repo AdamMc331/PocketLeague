@@ -18,6 +18,7 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(libs.varabyte.truthish)
             }
         }
         val androidMain by getting

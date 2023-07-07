@@ -3,13 +3,15 @@ package com.adammcneilly.pocketleague.core.displaymodels
 import com.adammcneilly.pocketleague.core.datetime.test.FakeDateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.event
+import com.adammcneilly.pocketleague.core.models.test.eventStage
+import com.varabyte.truthish.assertThat
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class EventSummaryDisplayModelTest {
 
     @Test
-    fun convertFromEvent() {
+    fun convertFromEventWithoutLocation() {
         val mockDateString = "mock date string"
         val testEvent = TestModel.event
 
@@ -28,6 +30,25 @@ class EventSummaryDisplayModelTest {
             assertEquals(testEvent.imageURL, imageURL.darkThemeImageURL)
             assertEquals(mockDateString, startDate)
             assertEquals(testEvent.name, name)
+            assertThat(arenaLocation).isEmpty()
         }
+    }
+
+    @Test
+    fun convertFromEventWithLocation() {
+        val testLocation = TestModel.agganisArenaLocation
+        val testEvent = TestModel.event.copy(
+            stages = listOf(
+                TestModel.eventStage.copy(
+                    location = testLocation,
+                ),
+            ),
+        )
+
+        val expectedLocation = "${testLocation.venue} – ${testLocation.city}, ${testLocation.countryCode}"
+
+        val displayModel = testEvent.toSummaryDisplayModel(FakeDateTimeFormatter())
+
+        assertThat(displayModel.arenaLocation).isEqualTo(expectedLocation)
     }
 }

@@ -10,7 +10,8 @@ package com.adammcneilly.pocketleague.core.models
  * @property[endDateUTC] The date this stage will complete.
  * @property[liquipedia] A link to the Liquipedia Wiki for this stage.
  * @property[qualifier] True if this stage is a qualifying round to a main event.
- * @property[lan] True if this stage is happening at a LAN.
+ * @property[lan] True if this stage is happening at a LAN event in person.
+ * @property[location] The location of this stage if it is a [lan].
  */
 data class EventStage(
     val id: String,
@@ -21,4 +22,5 @@ data class EventStage(
     val liquipedia: String,
     val qualifier: Boolean,
     val lan: Boolean,
+    val location: Location?,
 )

@@ -12,4 +12,5 @@ val TestModel.eventStage: EventStage
         liquipedia = "eventStageLiquipedia",
         qualifier = false,
         lan = false,
+        location = null,
     )

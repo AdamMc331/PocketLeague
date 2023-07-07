@@ -33,8 +33,12 @@ class FeedContentPaparazziTest {
             val springMajor = EventSummaryDisplayModel.springMajor()
             val worlds = EventSummaryDisplayModel.worldChampionship()
 
-            val groups = EventGroupDisplayModel.mapFromEventList(
-                events = regionals + springMajor + worlds,
+            val ongoingEvents = EventGroupDisplayModel.mapFromEventList(
+                events = regionals + springMajor,
+            )
+
+            val upcomingEvents = EventGroupDisplayModel.mapFromEventList(
+                events = listOf(worlds),
             )
 
             val matchList = listOf(
@@ -44,8 +48,9 @@ class FeedContentPaparazziTest {
             )
 
             FeedContent(
-                matches = matchList,
-                eventGroups = groups,
+                recentMatches = matchList,
+                ongoingEvents = ongoingEvents,
+                upcomingEvents = upcomingEvents,
             )
         }
     }

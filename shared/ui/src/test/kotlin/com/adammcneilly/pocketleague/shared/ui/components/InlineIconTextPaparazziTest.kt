@@ -1,9 +1,9 @@
-package com.adammcneilly.pocketleague.android.designsystem.components
+package com.adammcneilly.pocketleague.shared.ui.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
 import app.cash.paparazzi.Paparazzi
-import com.adammcneilly.pocketleague.android.designsystem.snapshotScreen
+import com.adammcneilly.pocketleague.shared.ui.snapshotScreen
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule

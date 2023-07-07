@@ -86,7 +86,7 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
         modifier = Modifier
             // Set for placeholder to show some portion of this component
             // Maybe there's a better way/we can configure this inside placeholder.
-            .defaultMinSize(200.dp)
+            .defaultMinSize(minWidth = 200.dp)
             .placeholderMaterial(
                 visible = match.isPlaceholder,
                 color = PlaceholderDefaults.cardColor(),

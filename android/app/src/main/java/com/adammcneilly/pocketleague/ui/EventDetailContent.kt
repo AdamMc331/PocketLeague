@@ -39,11 +39,12 @@ import coil.imageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.adammcneilly.pocketleague.android.designsystem.eventstages.EventStageListCard
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.android.designsystem.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.feature.event.detail.EventDetailViewState
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.ui.composables.components.TooltipChip
 import com.adammcneilly.pocketleague.ui.composables.team.TeamOverviewListItem
 import com.google.accompanist.flowlayout.FlowRow
@@ -242,8 +243,9 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
                 .fillMaxWidth()
                 .aspectRatio(EVENT_IMAGE_ASPECT_RATIO)
                 .padding(12.dp)
-                .cardPlaceholder(
+                .placeholderMaterial(
                     visible = imageUrl == null,
+                    color = PlaceholderDefaults.cardColor(),
                 ),
         )
 
@@ -253,8 +255,9 @@ private fun EventImageName(displayModel: EventDetailDisplayModel) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .cardPlaceholder(
+                .placeholderMaterial(
                     visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
                 ),
             style = MaterialTheme.typography.headlineMedium,
         )

@@ -14,9 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.android.designsystem.components.InlineIconText
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
 /**
  * Renders a [displayModel] inside of an individual list item along side other matches
@@ -36,7 +37,10 @@ fun MatchListItem(
         Text(
             text = displayModel.localTime,
             modifier = Modifier
-                .cardPlaceholder(visible = displayModel.isPlaceholder),
+                .placeholderMaterial(
+                    visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
         )
 
         Column(
@@ -70,7 +74,10 @@ private fun MatchTeamResultRow(
             text = displayModel.score.toString(),
             fontWeight = fontWeight,
             modifier = Modifier
-                .cardPlaceholder(visible = displayModel.isPlaceholder),
+                .placeholderMaterial(
+                    visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
         )
 
         InlineIconText(
@@ -79,7 +86,10 @@ private fun MatchTeamResultRow(
             showIcon = displayModel.winner,
             modifier = Modifier
                 .weight(1F)
-                .cardPlaceholder(visible = displayModel.isPlaceholder),
+                .placeholderMaterial(
+                    visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
         )
     }
 }

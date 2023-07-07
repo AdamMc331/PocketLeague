@@ -26,9 +26,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.android.designsystem.utils.getForTheme
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
 /**
  * This defines all the possible click actions that we want to expose
@@ -143,8 +144,9 @@ private fun TeamImage(team: TeamOverviewDisplayModel) {
         contentDescription = "Team Image",
         modifier = Modifier
             .size(imageSize)
-            .cardPlaceholder(
+            .placeholderMaterial(
                 visible = team.isPlaceholder || !hasImageLoaded.value,
+                color = PlaceholderDefaults.cardColor(),
             ),
         onState = { state ->
             hasImageLoaded.value = (state is AsyncImagePainter.State.Success)

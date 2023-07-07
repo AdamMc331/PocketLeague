@@ -23,9 +23,10 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.placeholder.cardPlaceholder
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
 private const val SCORE_TEXT_WEIGHT = 1F
 private const val MAP_TEXT_WEIGHT = 4F
@@ -51,8 +52,9 @@ fun GameListItem(
             textAlign = TextAlign.Start,
             weight = SCORE_TEXT_WEIGHT,
             modifier = Modifier
-                .cardPlaceholder(
+                .placeholderMaterial(
                     visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
                 ),
         )
 
@@ -65,8 +67,9 @@ fun GameListItem(
                 text = displayModel.map,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .cardPlaceholder(
+                    .placeholderMaterial(
                         visible = displayModel.isPlaceholder,
+                        color = PlaceholderDefaults.cardColor(),
                     ),
             )
 
@@ -86,8 +89,9 @@ fun GameListItem(
             textAlign = TextAlign.End,
             weight = SCORE_TEXT_WEIGHT,
             modifier = Modifier
-                .cardPlaceholder(
+                .placeholderMaterial(
                     visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
                 ),
         )
     }

@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.android.designsystem.utils.whenInView
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
+import com.adammcneilly.pocketleague.shared.ui.utils.whenInView
 import kotlinx.coroutines.launch
 
 /**

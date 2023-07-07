@@ -19,11 +19,11 @@ import com.adammcneilly.pocketleague.android.designsystem.components.EmptyStateC
 import com.adammcneilly.pocketleague.android.designsystem.game.GameListItem
 import com.adammcneilly.pocketleague.android.designsystem.matches.MatchDetailHeader
 import com.adammcneilly.pocketleague.android.designsystem.players.TeamRosterCard
-import com.adammcneilly.pocketleague.android.designsystem.stats.CoreStatsComparisonCard
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
+import com.adammcneilly.pocketleague.shared.ui.stats.CoreStatsComparisonCard
 
 /**
  * Renders the [displayModel] to show detailed information about a match between two teams.

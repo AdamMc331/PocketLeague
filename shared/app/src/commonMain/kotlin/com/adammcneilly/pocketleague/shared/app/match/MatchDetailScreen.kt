@@ -23,7 +23,7 @@ data class MatchDetailScreen(
      * UI state for the [MatchDetailScreen].
      */
     data class State(
-        val displayModel: MatchDetailDisplayModel?,
+        val displayModel: MatchDetailDisplayModel,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
 
@@ -41,7 +41,7 @@ data class MatchDetailScreen(
                 is MatchDetailScreen -> {
                     ui<State> { state, modifier ->
                         MatchDetailContent(
-                            matchId = state.displayModel?.matchId.orEmpty(),
+                            match = state.displayModel,
                             modifier = modifier,
                         )
                     }

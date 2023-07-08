@@ -29,17 +29,10 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
-import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.isSpecified
 import androidx.compose.ui.node.Ref
 import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.LayoutDirection
-
-/**
- * We provide a custom scale onto the placeholder composable because we want to avoid seeing
- * placeholders of multiple components touching each other.
- */
-private const val PLACEHOLDER_SCALE = 0.90F
 
 /**
  * Draws some skeleton UI which is typically used whilst content is 'loading'.
@@ -188,10 +181,6 @@ private fun DrawScope.drawPlaceholder(
     lastLayoutDirection: LayoutDirection?,
     lastSize: Size?,
 ): Outline? {
-    val sizeToUse = size.times(PLACEHOLDER_SCALE)
-    val widthDiff = size.width - sizeToUse.width
-    val heightDiff = size.height - sizeToUse.height
-
     // shortcut to avoid Outline calculation and allocation
     if (shape === RectangleShape) {
         // Draw the initial background color
@@ -199,7 +188,7 @@ private fun DrawScope.drawPlaceholder(
 
         if (highlight != null) {
             drawRect(
-                brush = highlight.brush(progress, sizeToUse),
+                brush = highlight.brush(progress, size),
                 alpha = highlight.alpha(progress),
             )
         }
@@ -209,23 +198,18 @@ private fun DrawScope.drawPlaceholder(
 
     // Otherwise we need to create an outline from the shape
     val outline = lastOutline.takeIf {
-        sizeToUse == lastSize && layoutDirection == lastLayoutDirection
-    } ?: shape.createOutline(sizeToUse, layoutDirection, this)
+        size == lastSize && layoutDirection == lastLayoutDirection
+    } ?: shape.createOutline(size, layoutDirection, this)
 
-    translate(
-        left = (widthDiff / 2),
-        top = (heightDiff / 2),
-    ) {
-        // Draw the placeholder color
-        drawOutline(outline = outline, color = color)
+    // Draw the placeholder color
+    drawOutline(outline = outline, color = color)
 
-        if (highlight != null) {
-            drawOutline(
-                outline = outline,
-                brush = highlight.brush(progress, sizeToUse),
-                alpha = highlight.alpha(progress),
-            )
-        }
+    if (highlight != null) {
+        drawOutline(
+            outline = outline,
+            brush = highlight.brush(progress, size),
+            alpha = highlight.alpha(progress),
+        )
     }
 
     // Return the outline we used

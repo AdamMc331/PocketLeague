@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
@@ -30,18 +30,18 @@ class FeedPresenter(
 
     @Composable
     override fun present(): FeedScreen.State {
-        var matches by remember {
+        var matches by rememberSaveable {
             val initialList = List(PLACEHOLDER_LIST_COUNT) {
                 MatchDetailDisplayModel.placeholder
             }
             mutableStateOf(initialList)
         }
 
-        var ongoingEvents by remember {
+        var ongoingEvents by rememberSaveable {
             mutableStateOf(EventGroupDisplayModel.placeholder)
         }
 
-        var upcomingEvents by remember {
+        var upcomingEvents by rememberSaveable {
             mutableStateOf(EventGroupDisplayModel.placeholder)
         }
 

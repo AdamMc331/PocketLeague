@@ -13,12 +13,17 @@ class EventSummaryDisplayModelTest {
 
     @Test
     fun convertFromEventWithoutLocation() {
-        val mockDateString = "mock date string"
+        val mockDateString = "Jul 07, 2023"
         val testEvent = TestModel.event
 
         val dateTimeFormatter = FakeDateTimeFormatter().apply {
             mockResponseForUTCString(
                 utcString = testEvent.startDateUTC.orEmpty(),
+                response = mockDateString,
+            )
+
+            mockResponseForUTCString(
+                utcString = testEvent.endDateUTC.orEmpty(),
                 response = mockDateString,
             )
         }
@@ -29,7 +34,7 @@ class EventSummaryDisplayModelTest {
             assertEquals(testEvent.id, eventId)
             assertEquals(testEvent.imageURL, imageURL.lightThemeImageURL)
             assertEquals(testEvent.imageURL, imageURL.darkThemeImageURL)
-            assertEquals(mockDateString, startDate)
+            assertEquals("Jul 07 – 07, 2023", dateRange)
             assertEquals(testEvent.name, name)
             assertThat(arenaLocation).isEmpty()
         }
@@ -37,6 +42,7 @@ class EventSummaryDisplayModelTest {
 
     @Test
     fun convertFromEventWithLocation() {
+        val mockDateString = "Jul 07, 2023"
         val testLocation = TestModel.agganisArenaLocation
         val testEvent = TestModel.event.copy(
             stages = listOf(
@@ -46,11 +52,23 @@ class EventSummaryDisplayModelTest {
             ),
         )
 
+        val dateTimeFormatter = FakeDateTimeFormatter().apply {
+            mockResponseForUTCString(
+                utcString = testEvent.startDateUTC.orEmpty(),
+                response = mockDateString,
+            )
+
+            mockResponseForUTCString(
+                utcString = testEvent.endDateUTC.orEmpty(),
+                response = mockDateString,
+            )
+        }
+
         // Need to create FakeLocaleHelper still
         val countryName = provideLocaleHelper().getCountryDisplayName(testLocation.countryCode)
         val expectedLocation = "${testLocation.venue} – ${testLocation.city}, $countryName"
 
-        val displayModel = testEvent.toSummaryDisplayModel(FakeDateTimeFormatter())
+        val displayModel = testEvent.toSummaryDisplayModel(dateTimeFormatter)
 
         assertThat(displayModel.arenaLocation).isEqualTo(expectedLocation)
     }

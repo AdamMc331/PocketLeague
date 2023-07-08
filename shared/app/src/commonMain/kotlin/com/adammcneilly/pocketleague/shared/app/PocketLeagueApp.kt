@@ -13,7 +13,6 @@ import com.slack.circuit.foundation.CircuitCompositionLocals
 import com.slack.circuit.foundation.CircuitConfig
 import com.slack.circuit.foundation.NavigableCircuitContent
 import com.slack.circuit.foundation.push
-import com.slack.circuit.foundation.rememberCircuitNavigator
 
 /**
  * Main composable entrypoint to the shared multiplatform version of
@@ -38,7 +37,7 @@ fun PocketLeagueApp(
                 push(FeedScreen)
             }
 
-            val navigator = rememberCircuitNavigator(backstack) {
+            val navigator = provideCircuitNavigator(backstack) {
                 println("Is this being called?")
                 // In the future, we need to handle a back press when we are at the root
                 // screen (probably just close the app?)

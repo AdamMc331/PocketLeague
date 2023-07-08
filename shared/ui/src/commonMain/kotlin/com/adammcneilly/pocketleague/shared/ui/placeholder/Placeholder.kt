@@ -188,8 +188,10 @@ private fun DrawScope.drawPlaceholder(
     lastLayoutDirection: LayoutDirection?,
     lastSize: Size?,
 ): Outline? {
-    val sizeToUse = size.times(PLACEHOLDER_SCALE)
-    val widthDiff = size.width - sizeToUse.width
+    val sizeToUse = size.copy(
+        height = size.height * PLACEHOLDER_SCALE,
+    )
+
     val heightDiff = size.height - sizeToUse.height
 
     // shortcut to avoid Outline calculation and allocation
@@ -213,7 +215,7 @@ private fun DrawScope.drawPlaceholder(
     } ?: shape.createOutline(sizeToUse, layoutDirection, this)
 
     translate(
-        left = (widthDiff / 2),
+        left = 0F,
         top = (heightDiff / 2),
     ) {
         // Draw the placeholder color

@@ -188,10 +188,7 @@ private fun DrawScope.drawPlaceholder(
     lastLayoutDirection: LayoutDirection?,
     lastSize: Size?,
 ): Outline? {
-    val sizeToUse = size.copy(
-        height = size.height * PLACEHOLDER_SCALE,
-    )
-
+    val sizeToUse = size.times(PLACEHOLDER_SCALE)
     val heightDiff = size.height - sizeToUse.height
 
     // shortcut to avoid Outline calculation and allocation

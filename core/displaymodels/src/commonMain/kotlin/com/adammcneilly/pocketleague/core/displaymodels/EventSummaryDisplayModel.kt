@@ -72,21 +72,23 @@ fun Event.toSummaryDisplayModel(
         .lastOrNull()
         ?.toDisplayModel()
 
+    val formattedStartDate = this.startDateUTC?.let { startDate ->
+        dateTimeFormatter.formatUTCString(
+            utcString = startDate,
+            formatPattern = EVENT_DATE_FORMAT,
+            timeZone = TimeZone.currentSystemDefault(),
+        )
+    }.orEmpty()
+
+    val formattedEndDate = this.endDateUTC?.let { endDate ->
+        dateTimeFormatter.formatUTCString(
+            utcString = endDate,
+            formatPattern = EVENT_DATE_FORMAT,
+            timeZone = TimeZone.currentSystemDefault(),
+        )
+    }.orEmpty()
+
     return EventSummaryDisplayModel(
-        startDate = this.startDateUTC?.let { startDate ->
-            dateTimeFormatter.formatUTCString(
-                utcString = startDate,
-                formatPattern = EVENT_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
-            )
-        }.orEmpty(),
-        endDate = this.endDateUTC?.let { endDate ->
-            dateTimeFormatter.formatUTCString(
-                utcString = endDate,
-                formatPattern = EVENT_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
-            )
-        }.orEmpty(),
         name = this.name,
         imageURL = ThemedImageURL(
             lightThemeImageURL = this.imageURL,
@@ -94,5 +96,29 @@ fun Event.toSummaryDisplayModel(
         eventId = this.id,
         isMajor = this.lan,
         location = location,
+        dateRange = parseDateRange(formattedStartDate, formattedEndDate),
     )
+}
+
+/**
+ * Given a [formattedStartDate] and [formattedEndDate] then we should check if they
+ * are in the same month, and if so, we can customize the output a little bit to simplify.
+ *
+ * If they span months, return the default range.
+ */
+private fun parseDateRange(
+    formattedStartDate: String,
+    formattedEndDate: String,
+): String {
+    val (startMonth, startDay, startYear) = formattedStartDate.replace(",", "").split(" ")
+    val (endMonth, endDay, endYear) = formattedEndDate.replace(",", "").split(" ")
+
+    val isSameMonth = (startMonth == endMonth)
+    val isSameYear = (startYear == endYear)
+
+    return if (isSameMonth && isSameYear) {
+        "$startMonth $startDay – $endDay, $startYear"
+    } else {
+        "$formattedStartDate – $formattedEndDate"
+    }
 }

@@ -51,6 +51,26 @@ fun EventSummaryListItem(
 
     val winningTeam = event.winningTeam
 
+    val dateRangeText = @Composable {
+        Text(
+            text = event.dateRange,
+            modifier = Modifier
+                .defaultMinSize(100.dp)
+                .placeholderMaterial(
+                    visible = event.isPlaceholder,
+                    color = placeholderColor,
+                ),
+        )
+    }
+
+    val winningTeamText = @Composable {
+        InlineIconText(
+            text = winningTeam?.name.orEmpty(),
+            icon = Icons.Default.EmojiEvents,
+            leadingIcon = true,
+        )
+    }
+
     ListItem(
         headlineText = {
             Text(
@@ -63,27 +83,15 @@ fun EventSummaryListItem(
                     ),
             )
         },
-        overlineText = {
-            if (winningTeam == null) {
-                Text(
-                    text = event.dateRange,
-                    modifier = Modifier
-                        .defaultMinSize(100.dp)
-                        .placeholderMaterial(
-                            visible = event.isPlaceholder,
-                            color = placeholderColor,
-                        ),
-                )
-            }
+        overlineText = if (winningTeam == null) {
+            dateRangeText
+        } else {
+            null
         },
-        supportingText = {
-            if (winningTeam != null) {
-                InlineIconText(
-                    text = winningTeam.name,
-                    icon = Icons.Default.EmojiEvents,
-                    leadingIcon = true,
-                )
-            }
+        supportingText = if (winningTeam != null) {
+            winningTeamText
+        } else {
+            null
         },
         colors = colorsToUse,
         modifier = modifier,

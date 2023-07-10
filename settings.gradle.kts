@@ -1,24 +1,19 @@
-fun includeProject(name: String, filePath: String? = null) {
+/**
+ * Custom function to include a project for a given [name], this
+ * allows us to call [configureBuildFileName] enabling us to specify
+ * files as `module.gradle.kts` instead of several `build.gradle.kts` files.
+ */
+fun includeProject(name: String) {
     settings.include(name)
     val project = project(name)
-    project.configureProjectDir(filePath)
     project.configureBuildFileName(name)
 }
 
-fun ProjectDescriptor.configureProjectDir(filePath: String? = null) {
-    if (filePath != null) {
-        projectDir = File(rootDir, filePath)
-    }
-
-    if (!projectDir.exists()) {
-        throw GradleException("Path: $projectDir does not exist. Cannot include project: $name")
-    }
-
-    if (!projectDir.isDirectory) {
-        throw GradleException("Path: $projectDir is a file instead of a directory. Cannot include project: $name")
-    }
-}
-
+/**
+ * Given a [projectName], parse out what that name looks like without
+ * colons and use the format `projectName.gradle.kts`. If the file is not found,
+ * default back to build.gradle.kts.
+ */
 fun ProjectDescriptor.configureBuildFileName(projectName: String) {
     // Project names typically start with a colon like :shared:app so we want
     // to drop the first one before replacing with periods.
@@ -33,7 +28,8 @@ fun ProjectDescriptor.configureBuildFileName(projectName: String) {
     }
 
     if (!buildFile.exists()) {
-        throw GradleException("Build file: build.gradle.kts or $name.gradle.kts does not exist. Cannot include project: $name")
+        throw GradleException("Build file: build.gradle.kts or $name.gradle.kts does not exist. " +
+            "Cannot include project: $name")
     }
 }
 

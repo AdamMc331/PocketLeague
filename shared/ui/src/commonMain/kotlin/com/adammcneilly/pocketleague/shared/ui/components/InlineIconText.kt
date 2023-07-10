@@ -13,7 +13,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 
 private const val INLINE_CONTENT_ID = "inlineContent"
 
@@ -28,6 +30,8 @@ private const val INLINE_CONTENT_ID = "inlineContent"
  * appears after.
  * @param[showIcon] If true, we'll actually show the icon. If false, we'll ignore it.
  * @param[iconTint] If supplied, we provide a tint to our [icon] using this color.
+ * @param[textAlign] @see [Text]
+ * @param[style] @see [Text]
  */
 @Composable
 fun InlineIconText(
@@ -37,6 +41,8 @@ fun InlineIconText(
     leadingIcon: Boolean = false,
     showIcon: Boolean = true,
     iconTint: Color = LocalContentColor.current,
+    textAlign: TextAlign? = null,
+    style: TextStyle = LocalTextStyle.current,
 ) {
     Text(
         text = text.getAnnotatedString(
@@ -49,6 +55,8 @@ fun InlineIconText(
             iconTint = iconTint,
         ),
         modifier = modifier,
+        textAlign = textAlign,
+        style = style,
     )
 }
 

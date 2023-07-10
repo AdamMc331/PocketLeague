@@ -83,16 +83,8 @@ fun EventSummaryListItem(
                     ),
             )
         },
-        overlineText = if (winningTeam == null) {
-            dateRangeText
-        } else {
-            null
-        },
-        supportingText = if (winningTeam != null) {
-            winningTeamText
-        } else {
-            null
-        },
+        overlineText = dateRangeText.takeIf { winningTeam == null },
+        supportingText = winningTeamText.takeIf { winningTeam != null },
         colors = colorsToUse,
         modifier = modifier,
     )

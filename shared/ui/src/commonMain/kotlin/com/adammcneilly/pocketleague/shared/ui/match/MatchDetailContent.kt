@@ -13,6 +13,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.game.GameListCard
+import com.adammcneilly.pocketleague.shared.ui.stats.CoreStatsComparisonCard
 
 /**
  * Compose content for the match detail screen.
@@ -31,10 +32,36 @@ fun MatchDetailContent(
     ) {
         matchDetailHeader(match)
 
-        gamesHeader()
+        gamesSection(games)
 
-        gamesList(games)
+        statsSection(match)
     }
+}
+
+private fun LazyListScope.statsSection(match: MatchDetailDisplayModel) {
+    val blueTeamCoreStats = match.blueTeamResult.coreStats
+    val orangeTeamCoreStats = match.orangeTeamResult.coreStats
+
+    if (blueTeamCoreStats != null && orangeTeamCoreStats != null) {
+        item {
+            SectionHeader(
+                text = "Stat Comparison",
+            )
+        }
+
+        item {
+            CoreStatsComparisonCard(
+                blueTeamStats = blueTeamCoreStats,
+                orangeTeamStats = orangeTeamCoreStats,
+            )
+        }
+    }
+}
+
+private fun LazyListScope.gamesSection(games: List<GameDetailDisplayModel>) {
+    gamesHeader()
+
+    gamesList(games)
 }
 
 private fun LazyListScope.gamesHeader() {

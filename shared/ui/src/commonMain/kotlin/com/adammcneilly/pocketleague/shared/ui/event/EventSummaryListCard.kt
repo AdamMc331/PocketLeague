@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.shared.ui.event
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
@@ -18,8 +17,7 @@ fun EventSummaryListCard(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier,
     ) {
         events.forEachIndexed { index, event ->
             // We need to propagate the container color over to our list item,

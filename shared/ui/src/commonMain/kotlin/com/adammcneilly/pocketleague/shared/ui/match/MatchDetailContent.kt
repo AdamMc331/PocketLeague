@@ -1,9 +1,12 @@
 package com.adammcneilly.pocketleague.shared.ui.match
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
@@ -22,20 +25,50 @@ fun MatchDetailContent(
 ) {
     LazyColumn(
         modifier = modifier
-            .fillMaxSize()
-            .padding(PocketLeagueTheme.sizes.screenPadding),
+            .fillMaxSize(),
+        contentPadding = PaddingValues(PocketLeagueTheme.sizes.screenPadding),
         verticalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.listItemSpacing),
     ) {
-        item {
-            MatchDetailHeader(
-                displayModel = match,
-            )
-        }
+        matchDetailHeader(match)
 
-        item {
-            GameListCard(
-                games = games,
-            )
-        }
+        gamesHeader()
+
+        gamesList(games)
     }
+}
+
+private fun LazyListScope.gamesHeader() {
+    item {
+        SectionHeader(
+            text = "Games",
+        )
+    }
+}
+
+private fun LazyListScope.gamesList(games: List<GameDetailDisplayModel>) {
+    item {
+        GameListCard(
+            games = games,
+        )
+    }
+}
+
+private fun LazyListScope.matchDetailHeader(match: MatchDetailDisplayModel) {
+    item {
+        MatchDetailHeader(
+            displayModel = match,
+        )
+    }
+}
+
+@Composable
+private fun SectionHeader(
+    text: String,
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.headlineSmall,
+        modifier = modifier,
+    )
 }

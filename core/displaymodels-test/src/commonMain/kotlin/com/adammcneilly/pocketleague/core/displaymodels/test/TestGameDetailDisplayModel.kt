@@ -21,3 +21,21 @@ fun GameDetailDisplayModel.Companion.orangeWinner(): GameDetailDisplayModel {
         otLabel = null,
     )
 }
+
+fun GameDetailDisplayModel.Companion.variations(): List<GameDetailDisplayModel> {
+    return listOf(
+        this.blueWinner(),
+        this.orangeWinner(),
+        this.orangeWinner().copy(
+            otLabel = "OT +12:02",
+        ),
+    )
+}
+
+fun GameDetailDisplayModel.Companion.placeholders(): List<GameDetailDisplayModel> {
+    return listOf(
+        this.placeholder,
+        this.placeholder,
+        this.placeholder,
+    )
+}

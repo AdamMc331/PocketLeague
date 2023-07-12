@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.match
 
+import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.app.CommonParcelize
 import com.adammcneilly.pocketleague.shared.ui.match.MatchDetailContent
@@ -23,7 +24,8 @@ data class MatchDetailScreen(
      * UI state for the [MatchDetailScreen].
      */
     data class State(
-        val displayModel: MatchDetailDisplayModel,
+        val match: MatchDetailDisplayModel,
+        val games: List<GameDetailDisplayModel>,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
 
@@ -41,7 +43,8 @@ data class MatchDetailScreen(
                 is MatchDetailScreen -> {
                     ui<State> { state, modifier ->
                         MatchDetailContent(
-                            match = state.displayModel,
+                            match = state.match,
+                            games = state.games,
                             modifier = modifier,
                         )
                     }

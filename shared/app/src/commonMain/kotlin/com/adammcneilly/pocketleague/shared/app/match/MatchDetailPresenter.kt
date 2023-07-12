@@ -6,8 +6,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.Game
+import com.adammcneilly.pocketleague.data.game.MatchGamesRequest
+import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.slack.circuit.runtime.presenter.Presenter
 
@@ -24,16 +28,33 @@ class MatchDetailPresenter(
             mutableStateOf(MatchDetailDisplayModel.placeholder)
         }
 
+        var games by remember {
+            mutableStateOf(
+                listOf(
+                    GameDetailDisplayModel.placeholder,
+                    GameDetailDisplayModel.placeholder,
+                    GameDetailDisplayModel.placeholder,
+                ),
+            )
+        }
+
         LaunchedEffect(Unit) {
             match = OctaneGGMatchService()
                 .getMatchDetail(matchId)
                 .getOrNull()
                 ?.toDetailDisplayModel()
                 ?: MatchDetailDisplayModel.placeholder
+
+            games = OctaneGGGameService()
+                .fetchGamesForMatch(MatchGamesRequest(matchId))
+                .getOrNull()
+                ?.map(Game::toDetailDisplayModel)
+                .orEmpty()
         }
 
         return MatchDetailScreen.State(
-            displayModel = match,
+            match = match,
+            games = games,
         ) { event ->
             when (event) {
                 // No events yet

@@ -15,6 +15,7 @@ kotlin {
                 implementation(project(":core:displaymodels"))
                 implementation(project(":core:models"))
                 implementation(project(":data:event"))
+                implementation(project(":data:game"))
                 implementation(project(":data:match"))
                 implementation(project(":shared:design-system"))
                 implementation(project(":shared:ui"))

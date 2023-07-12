@@ -2,8 +2,8 @@ package com.adammcneilly.pocketleague.shared.ui.game
 
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.test.blueWinner
-import com.adammcneilly.pocketleague.core.displaymodels.test.orangeWinner
+import com.adammcneilly.pocketleague.core.displaymodels.test.placeholders
+import com.adammcneilly.pocketleague.core.displaymodels.test.variations
 import com.adammcneilly.pocketleague.shared.ui.snapshotScreen
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
@@ -21,14 +21,19 @@ class GameListCardPaparazziTest {
     val useDarkTheme: Boolean = false
 
     @Test
-    fun render() {
-        val games = listOf(
-            GameDetailDisplayModel.blueWinner(),
-            GameDetailDisplayModel.orangeWinner(),
-            GameDetailDisplayModel.orangeWinner().copy(
-                otLabel = "OT +12:02",
-            ),
-        )
+    fun games() {
+        val games = GameDetailDisplayModel.variations()
+
+        paparazzi.snapshotScreen(useDarkTheme) {
+            GameListCard(
+                games = games,
+            )
+        }
+    }
+
+    @Test
+    fun placeholders() {
+        val games = GameDetailDisplayModel.placeholders()
 
         paparazzi.snapshotScreen(useDarkTheme) {
             GameListCard(

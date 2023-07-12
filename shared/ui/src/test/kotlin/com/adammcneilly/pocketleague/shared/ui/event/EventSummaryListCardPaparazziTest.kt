@@ -2,7 +2,9 @@ package com.adammcneilly.pocketleague.shared.ui.event
 
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.springInvitationalForAllRegions
+import com.adammcneilly.pocketleague.core.displaymodels.test.teamVitality
 import com.adammcneilly.pocketleague.shared.ui.snapshotScreen
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
@@ -36,6 +38,21 @@ class EventSummaryListCardPaparazziTest {
     fun renderEventSummaryListCard() {
         paparazzi.snapshotScreen(useDarkTheme) {
             val events = EventSummaryDisplayModel.springInvitationalForAllRegions()
+
+            EventSummaryListCard(
+                events = events,
+            )
+        }
+    }
+
+    @Test
+    fun renderEventSummaryListCardWithWinners() {
+        paparazzi.snapshotScreen(useDarkTheme) {
+            val events = EventSummaryDisplayModel.springInvitationalForAllRegions().map { event ->
+                event.copy(
+                    winningTeam = TeamOverviewDisplayModel.teamVitality(),
+                )
+            }
 
             EventSummaryListCard(
                 events = events,

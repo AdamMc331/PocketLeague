@@ -19,6 +19,8 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
  * @property[dateRange] A user friendly representation of the entire range of this event.
  * @property[isMajor] Whether or not this event is an in person LAN event with international competition.
  * @property[isPlaceholder] If true, we render this display model in a placeholder format
+ * @property[winningTeam] If this event is over, we can pass in the [TeamOverviewDisplayModel] of the team that won
+ * and highlight appropriately.
  * @property[location] If available, the city/state/country for this LAN event. ex: Boston, USA.
  */
 data class EventSummaryDisplayModel(
@@ -30,6 +32,7 @@ data class EventSummaryDisplayModel(
     val dateRange: String = "$startDate – $endDate",
     val isMajor: Boolean = false,
     val isPlaceholder: Boolean = false,
+    val winningTeam: TeamOverviewDisplayModel? = null,
     private val location: LocationDisplayModel? = null,
 ) {
 

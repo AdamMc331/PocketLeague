@@ -2,6 +2,8 @@ package com.adammcneilly.pocketleague.shared.ui.event
 
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -11,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.shared.ui.components.InlineIconText
 import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
@@ -46,6 +49,28 @@ fun EventSummaryListItem(
         PlaceholderDefaults.color()
     }
 
+    val winningTeam = event.winningTeam
+
+    val dateRangeText = @Composable {
+        Text(
+            text = event.dateRange,
+            modifier = Modifier
+                .defaultMinSize(100.dp)
+                .placeholderMaterial(
+                    visible = event.isPlaceholder,
+                    color = placeholderColor,
+                ),
+        )
+    }
+
+    val winningTeamText = @Composable {
+        InlineIconText(
+            text = winningTeam?.name.orEmpty(),
+            icon = Icons.Default.EmojiEvents,
+            leadingIcon = true,
+        )
+    }
+
     ListItem(
         headlineText = {
             Text(
@@ -58,17 +83,8 @@ fun EventSummaryListItem(
                     ),
             )
         },
-        overlineText = {
-            Text(
-                text = event.dateRange,
-                modifier = Modifier
-                    .defaultMinSize(100.dp)
-                    .placeholderMaterial(
-                        visible = event.isPlaceholder,
-                        color = placeholderColor,
-                    ),
-            )
-        },
+        overlineText = dateRangeText.takeIf { winningTeam == null },
+        supportingText = winningTeamText.takeIf { winningTeam != null },
         colors = colorsToUse,
         modifier = modifier,
     )

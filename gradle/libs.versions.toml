@@ -17,6 +17,7 @@ espresso = "3.5.1"
 glance = "1.0.0-alpha05"
 jsoup = "1.15.4"
 junit = "4.13.2"
+kamel = "0.6.1"
 kmpCompose = "1.4.1"
 kotlin = "1.8.20"
 kotlinxCoroutines = "1.7.2"
@@ -80,6 +81,7 @@ google-testparameterinjector = { module = "com.google.testparameterinjector:test
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
+kamel = { module = "media.kamel:kamel-image", version.ref = "kamel" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }

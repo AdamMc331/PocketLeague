@@ -1,8 +1,11 @@
 package com.adammcneilly.pocketleague.shared.ui.match
 
 import app.cash.paparazzi.Paparazzi
+import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.test.placeholders
+import com.adammcneilly.pocketleague.core.displaymodels.test.variations
 import com.adammcneilly.pocketleague.shared.ui.snapshotScreen
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
@@ -27,6 +30,7 @@ class MatchDetailContentPaparazziTest {
         ) {
             MatchDetailContent(
                 match = TestDisplayModel.matchDetailBlueWinner,
+                games = GameDetailDisplayModel.variations(),
             )
         }
     }
@@ -39,6 +43,7 @@ class MatchDetailContentPaparazziTest {
         ) {
             MatchDetailContent(
                 match = MatchDetailDisplayModel.placeholder,
+                games = GameDetailDisplayModel.placeholders(),
             )
         }
     }

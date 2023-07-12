@@ -4,12 +4,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
+import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
 
 /**
  * The main list of events and matches to show within the feed screen
@@ -89,4 +92,17 @@ private fun LazyListScope.recentMatchesHeader() {
             text = "Recent Matches",
         )
     }
+}
+
+@Composable
+private fun FeedSectionHeader(
+    text: String,
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.headlineSmall,
+        modifier = modifier
+            .screenHorizontalPadding(),
+    )
 }

@@ -38,18 +38,20 @@ object TestDisplayModel {
     val knights = TeamOverviewDisplayModel(
         teamId = "6020bd98f1e4807cc700dc08",
         name = "Knights",
-        imageUrl = ThemedImageURL(
-            lightThemeImageURL = "https://griffon.octane.gg/teams/pittsburgh-knights.png",
-        ),
+//        imageUrl = ThemedImageURL(
+//            lightThemeImageURL = "https://griffon.octane.gg/teams/pittsburgh-knights.png",
+//        ),
+        imageUrl = ThemedImageURL(),
         regionName = "North America",
     )
 
     val g2 = TeamOverviewDisplayModel(
         teamId = "6020bc70f1e4807cc70023a5",
         name = "G2 Esports",
-        imageUrl = ThemedImageURL(
-            lightThemeImageURL = "https://griffon.octane.gg/teams/g2-esports.png",
-        ),
+//        imageUrl = ThemedImageURL(
+//            lightThemeImageURL = "https://griffon.octane.gg/teams/g2-esports.png",
+//        ),
+        imageUrl = ThemedImageURL(),
         regionName = "North America",
     )
 

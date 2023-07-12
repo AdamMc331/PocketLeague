@@ -14,6 +14,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
+import io.kamel.image.KamelImage
+import io.kamel.image.asyncPainterResource
 
 /**
  * This will render a circular image with the logo for the given [displayModel].
@@ -28,16 +30,13 @@ fun CircleTeamLogo(
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
     contentColor: Color = contentColorFor(backgroundColor = backgroundColor),
 ) {
-    TeamLetterLogo(modifier, backgroundColor, displayModel, contentColor)
-    // Need to support images with KMM.
-//
-//    val imageUrl = displayModel.imageUrl.lightThemeImageURL
-//
-//    if (imageUrl != null) {
-//        RemoteImage(imageUrl, modifier)
-//    } else {
-//        TeamLetterLogo(modifier, backgroundColor, displayModel, contentColor)
-//    }
+    val imageUrl = displayModel.imageUrl.lightThemeImageURL
+
+    if (imageUrl != null) {
+        RemoteImage(imageUrl, modifier)
+    } else {
+        TeamLetterLogo(modifier, backgroundColor, displayModel, contentColor)
+    }
 }
 
 /**
@@ -92,14 +91,10 @@ private fun TeamLetterLogo(
 }
 
 @Composable
-private fun RemoteImage(imageUrl: String?, modifier: Modifier) {
-    // Need to find KMM version
-//    AsyncImage(
-//        model = ImageRequest.Builder(LocalContext.current)
-//            .data(imageUrl)
-//            .crossfade(true)
-//            .build(),
-//        contentDescription = "Team Image",
-//        modifier = modifier,
-//    )
+private fun RemoteImage(imageUrl: String, modifier: Modifier) {
+    KamelImage(
+        resource = asyncPainterResource(imageUrl),
+        contentDescription = "Team Image",
+        modifier = modifier,
+    )
 }

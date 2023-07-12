@@ -17,6 +17,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
+                implementation(libs.kamel)
             }
         }
         val commonTest by getting {

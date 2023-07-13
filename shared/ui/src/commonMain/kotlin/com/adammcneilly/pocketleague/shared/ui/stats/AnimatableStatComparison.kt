@@ -102,7 +102,7 @@ fun StatComparison(
             orangeTeamValue = orangeTeamValue,
             percentageToRender = percentageToRender,
             modifier = Modifier
-                .weight(4F),
+                .weight(1F),
         )
 
         AnimatedVisibility(

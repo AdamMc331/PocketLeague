@@ -29,6 +29,17 @@ class CoreStatsComparisonCardPaparazziTest {
     }
 
     @Test
+    fun renderHalfAnimatedCard() {
+        paparazzi.snapshotScreen(useDarkTheme) {
+            CoreStatsComparisonCard(
+                blueTeamStats = TestDisplayModel.coreStats,
+                orangeTeamStats = TestDisplayModel.coreStats,
+                initialAnimationPercentage = 0.5F,
+            )
+        }
+    }
+
+    @Test
     fun renderFullyAnimatedCard() {
         paparazzi.snapshotScreen(useDarkTheme) {
             CoreStatsComparisonCard(

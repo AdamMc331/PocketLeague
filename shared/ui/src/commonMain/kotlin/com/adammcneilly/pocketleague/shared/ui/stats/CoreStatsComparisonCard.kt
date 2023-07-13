@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.ui.stats
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -7,6 +8,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -23,8 +28,15 @@ fun CoreStatsComparisonCard(
     modifier: Modifier = Modifier,
     initialAnimationPercentage: Float = 0F,
 ) {
+    var showValues by remember {
+        mutableStateOf(false)
+    }
+
     Card(
         modifier = modifier
+            .clickable {
+                showValues = !showValues
+            }
             .fillMaxWidth(),
     ) {
         Column(
@@ -39,6 +51,7 @@ fun CoreStatsComparisonCard(
                     blueTeamValue = blueTeamStats.getStatsForType(statType),
                     orangeTeamValue = orangeTeamStats.getStatsForType(statType),
                     initialAnimationPercentage = initialAnimationPercentage,
+                    showValues = showValues,
                 )
             }
         }
@@ -51,6 +64,7 @@ private fun StatLine(
     blueTeamValue: Int,
     orangeTeamValue: Int,
     initialAnimationPercentage: Float,
+    showValues: Boolean,
 ) {
     Text(
         text = title,
@@ -61,6 +75,7 @@ private fun StatLine(
         blueTeamValue = blueTeamValue,
         orangeTeamValue = orangeTeamValue,
         initialAnimationPercentage = initialAnimationPercentage,
+        showValues = showValues,
     )
 }
 

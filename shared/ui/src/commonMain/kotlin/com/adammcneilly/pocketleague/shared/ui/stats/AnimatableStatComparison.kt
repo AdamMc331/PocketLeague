@@ -67,6 +67,13 @@ fun StatComparison(
     modifier: Modifier = Modifier,
     percentageToRender: Float = 1F,
 ) {
+    // Divider color should be the color of the team leading in this statistic
+    // or the local content color if they tied.
+//    val dividerColor = when {
+//        blueTeamValue > orangeTeamValue -> rlcsBlue
+//        orangeTeamValue > blueTeamValue -> rlcsOrange
+//        else -> LocalContentColor.current
+//    }
     val dividerColor = LocalContentColor.current
 
     Canvas(
@@ -79,9 +86,22 @@ fun StatComparison(
         val blueTeamPercentage = blueTeamValue.toFloat().div(totalValue)
         val dividingPoint = size.width.times(blueTeamPercentage)
         val lineWidth = 4.dp.toPx()
+        val leadingLineWidth = lineWidth * 1.5F
 
-        drawBlueLine(midHeight, dividingPoint, lineWidth, percentageToRender)
-        drawOrangeLine(dividingPoint, midHeight, lineWidth, percentageToRender)
+        val blueLineWidth = if (blueTeamValue > orangeTeamValue) {
+            leadingLineWidth
+        } else {
+            lineWidth
+        }
+
+        val orangeLineWidth = if (orangeTeamValue > blueTeamValue) {
+            leadingLineWidth
+        } else {
+            lineWidth
+        }
+
+        drawBlueLine(midHeight, dividingPoint, blueLineWidth, percentageToRender)
+        drawOrangeLine(dividingPoint, midHeight, orangeLineWidth, percentageToRender)
         drawDivider(dividingPoint, midHeight, lineWidth, dividerColor, percentageToRender)
     }
 }

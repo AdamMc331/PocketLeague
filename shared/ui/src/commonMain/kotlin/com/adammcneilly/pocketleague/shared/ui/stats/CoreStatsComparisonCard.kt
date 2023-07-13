@@ -32,35 +32,13 @@ fun CoreStatsComparisonCard(
                 .fillMaxWidth()
                 .padding(16.dp),
         ) {
-            StatLine(
-                title = "Score",
-                blueTeamValue = blueTeamStats.score,
-                orangeTeamValue = orangeTeamStats.score,
-            )
-
-            StatLine(
-                title = "Goals",
-                blueTeamValue = blueTeamStats.goals,
-                orangeTeamValue = orangeTeamStats.goals,
-            )
-
-            StatLine(
-                title = "Assists",
-                blueTeamValue = blueTeamStats.assists,
-                orangeTeamValue = orangeTeamStats.assists,
-            )
-
-            StatLine(
-                title = "Shots",
-                blueTeamValue = blueTeamStats.shots,
-                orangeTeamValue = orangeTeamStats.shots,
-            )
-
-            StatLine(
-                title = "Saves",
-                blueTeamValue = blueTeamStats.saves,
-                orangeTeamValue = orangeTeamStats.saves,
-            )
+            StatType.values().forEach { statType ->
+                StatLine(
+                    title = statType.displayName,
+                    blueTeamValue = blueTeamStats.getStatsForType(statType),
+                    orangeTeamValue = orangeTeamStats.getStatsForType(statType),
+                )
+            }
         }
     }
 }
@@ -80,4 +58,31 @@ private fun StatLine(
         blueTeamValue = blueTeamValue,
         orangeTeamValue = orangeTeamValue,
     )
+}
+
+/**
+ * A collection of types of stats that will be displayed on a [CoreStatsComparisonCard].
+ *
+ * NOTE: The order of these values is the order they will be rendered on the card.
+ * I don't love relying on the order of enum definitions, but it's fine for now.
+ *
+ * Also, in the future if we want to properly localize this, we may need a function to look
+ * up the display name based on stat type.
+ */
+private enum class StatType(val displayName: String) {
+    Score("Score"),
+    Goals("Goals"),
+    Assists("Assists"),
+    Shots("Shots"),
+    Saves("Saves"),
+}
+
+private fun CoreStatsDisplayModel.getStatsForType(statType: StatType): Int {
+    return when (statType) {
+        StatType.Score -> this.score
+        StatType.Goals -> this.goals
+        StatType.Assists -> this.assists
+        StatType.Shots -> this.shots
+        StatType.Saves -> this.saves
+    }
 }

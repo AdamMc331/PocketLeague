@@ -36,11 +36,18 @@ data class OctaneGGGame(
  * Converts an [OctaneGGGame] to a [Game] in our domain.
  */
 fun OctaneGGGame.toGame(): Game {
+    // Currently the octane.gg api does not include a map name for
+    // this map ID, so let's override it ourselves.
+    val mapName = when (this.map?.id) {
+        "outlaw_oasis_p" -> "Deadeye Canyon (Oasis)"
+        else -> this.map?.name.orEmpty()
+    }
+
     return Game(
         id = this.id.orEmpty(),
         blue = this.blue?.toGameTeamResult() ?: GameTeamResult(),
         orange = this.orange?.toGameTeamResult() ?: GameTeamResult(),
-        map = this.map?.name.orEmpty(),
+        map = mapName,
         number = this.number ?: 0,
         duration = this.duration ?: Game.GAME_DEFAULT_DURATION_SECONDS,
     )

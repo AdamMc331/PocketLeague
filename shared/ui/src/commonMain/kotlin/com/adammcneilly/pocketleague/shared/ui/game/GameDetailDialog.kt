@@ -11,9 +11,10 @@ import com.adammcneilly.pocketleague.shared.ui.components.DialogProperties
 @Composable
 fun GameDetailDialog(
     game: GameDetailDisplayModel,
+    onDismissRequest: () -> Unit,
 ) {
     Dialog(
-        onDismissRequest = {},
+        onDismissRequest = onDismissRequest,
         properties = DialogProperties(),
     ) {
         GameDetailContent(game)

@@ -23,12 +23,16 @@ import com.adammcneilly.pocketleague.shared.ui.stats.CoreStatsComparisonCard
 fun MatchDetailContent(
     match: MatchDetailDisplayModel,
     games: List<GameDetailDisplayModel>,
+    selectedGame: GameDetailDisplayModel?,
+    onSelectedGameDismissed: () -> Unit,
+    onGameClicked: (GameDetailDisplayModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    games.firstOrNull()?.let { game ->
-        if (!game.isPlaceholder) {
-            GameDetailDialog(game)
-        }
+    if (selectedGame != null) {
+        GameDetailDialog(
+            game = selectedGame,
+            onDismissRequest = onSelectedGameDismissed,
+        )
     }
 
     LazyColumn(
@@ -39,7 +43,7 @@ fun MatchDetailContent(
     ) {
         matchDetailHeader(match)
 
-        gamesSection(games)
+        gamesSection(games, onGameClicked)
 
         statsSection(match)
     }
@@ -65,10 +69,13 @@ private fun LazyListScope.statsSection(match: MatchDetailDisplayModel) {
     }
 }
 
-private fun LazyListScope.gamesSection(games: List<GameDetailDisplayModel>) {
+private fun LazyListScope.gamesSection(
+    games: List<GameDetailDisplayModel>,
+    onGameClicked: (GameDetailDisplayModel) -> Unit,
+) {
     gamesHeader()
 
-    gamesList(games)
+    gamesList(games, onGameClicked)
 }
 
 private fun LazyListScope.gamesHeader() {
@@ -79,10 +86,14 @@ private fun LazyListScope.gamesHeader() {
     }
 }
 
-private fun LazyListScope.gamesList(games: List<GameDetailDisplayModel>) {
+private fun LazyListScope.gamesList(
+    games: List<GameDetailDisplayModel>,
+    onGameClicked: (GameDetailDisplayModel) -> Unit,
+) {
     item {
         GameListCard(
             games = games,
+            onGameClicked = onGameClicked,
         )
     }
 }

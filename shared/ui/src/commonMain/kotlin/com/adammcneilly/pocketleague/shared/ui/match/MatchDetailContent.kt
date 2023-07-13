@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.game.GameDetailDialog
 import com.adammcneilly.pocketleague.shared.ui.game.GameListCard
 import com.adammcneilly.pocketleague.shared.ui.stats.CoreStatsComparisonCard
 
@@ -24,6 +25,12 @@ fun MatchDetailContent(
     games: List<GameDetailDisplayModel>,
     modifier: Modifier = Modifier,
 ) {
+    games.firstOrNull()?.let { game ->
+        if (!game.isPlaceholder) {
+            GameDetailDialog(game)
+        }
+    }
+
     LazyColumn(
         modifier = modifier
             .fillMaxSize(),

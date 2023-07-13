@@ -112,6 +112,7 @@ private fun DialogBackground(
 }
 
 @Composable
+@Suppress("MagicNumber")
 private fun DialogContent(
     visible: Boolean,
     content: @Composable () -> Unit,

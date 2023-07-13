@@ -5,9 +5,9 @@ import androidx.compose.animation.core.AnimationState
 import androidx.compose.animation.core.animateTo
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
@@ -87,13 +86,14 @@ fun StatComparison(
         modifier = modifier
             .height(48.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.cardPadding),
     ) {
         AnimatedVisibility(
             visible = showValues,
         ) {
             Text(
                 text = blueTeamValue.toString(),
+                modifier = Modifier
+                    .padding(end = PocketLeagueTheme.sizes.cardPadding),
             )
         }
 
@@ -110,7 +110,8 @@ fun StatComparison(
         ) {
             Text(
                 text = orangeTeamValue.toString(),
-                textAlign = TextAlign.End,
+                modifier = Modifier
+                    .padding(start = PocketLeagueTheme.sizes.cardPadding),
             )
         }
     }

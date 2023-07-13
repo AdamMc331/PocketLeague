@@ -21,6 +21,12 @@ import com.adammcneilly.pocketleague.shared.ui.utils.whenInView
 import kotlinx.coroutines.launch
 
 /**
+ * For the stat line of the team leading in a given statistic, multiply the thickness
+ * of that line by this scale, so it can be emphasized against the other team.
+ */
+private const val LEADING_TEAM_STAT_WIDTH_SCALE = 1.5F
+
+/**
  * Shows the comparison between [blueTeamValue] and [orangeTeamValue] by drawing lines on a canvas.
  */
 @Composable
@@ -67,13 +73,6 @@ fun StatComparison(
     modifier: Modifier = Modifier,
     percentageToRender: Float = 1F,
 ) {
-    // Divider color should be the color of the team leading in this statistic
-    // or the local content color if they tied.
-//    val dividerColor = when {
-//        blueTeamValue > orangeTeamValue -> rlcsBlue
-//        orangeTeamValue > blueTeamValue -> rlcsOrange
-//        else -> LocalContentColor.current
-//    }
     val dividerColor = LocalContentColor.current
 
     Canvas(
@@ -86,7 +85,7 @@ fun StatComparison(
         val blueTeamPercentage = blueTeamValue.toFloat().div(totalValue)
         val dividingPoint = size.width.times(blueTeamPercentage)
         val lineWidth = 4.dp.toPx()
-        val leadingLineWidth = lineWidth * 1.5F
+        val leadingLineWidth = lineWidth * LEADING_TEAM_STAT_WIDTH_SCALE
 
         val blueLineWidth = if (blueTeamValue > orangeTeamValue) {
             leadingLineWidth

@@ -21,6 +21,7 @@ fun CoreStatsComparisonCard(
     blueTeamStats: CoreStatsDisplayModel,
     orangeTeamStats: CoreStatsDisplayModel,
     modifier: Modifier = Modifier,
+    initialAnimationPercentage: Float = 0F,
 ) {
     Card(
         modifier = modifier
@@ -37,6 +38,7 @@ fun CoreStatsComparisonCard(
                     title = statType.displayName,
                     blueTeamValue = blueTeamStats.getStatsForType(statType),
                     orangeTeamValue = orangeTeamStats.getStatsForType(statType),
+                    initialAnimationPercentage = initialAnimationPercentage,
                 )
             }
         }
@@ -48,6 +50,7 @@ private fun StatLine(
     title: String,
     blueTeamValue: Int,
     orangeTeamValue: Int,
+    initialAnimationPercentage: Float,
 ) {
     Text(
         text = title,
@@ -57,6 +60,7 @@ private fun StatLine(
     AnimatableStatComparison(
         blueTeamValue = blueTeamValue,
         orangeTeamValue = orangeTeamValue,
+        initialAnimationPercentage = initialAnimationPercentage,
     )
 }
 

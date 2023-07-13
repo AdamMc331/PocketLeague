@@ -34,9 +34,10 @@ fun AnimatableStatComparison(
     blueTeamValue: Int,
     orangeTeamValue: Int,
     modifier: Modifier = Modifier,
+    initialAnimationPercentage: Float = 0F,
 ) {
     val animationPercentage = remember {
-        AnimationState(0F)
+        AnimationState(initialAnimationPercentage)
     }
 
     val coroutineScope = rememberCoroutineScope()

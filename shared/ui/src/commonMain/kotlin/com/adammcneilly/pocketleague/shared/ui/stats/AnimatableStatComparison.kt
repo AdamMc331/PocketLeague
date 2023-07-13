@@ -1,24 +1,36 @@
 package com.adammcneilly.pocketleague.shared.ui.stats
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.AnimationState
 import androidx.compose.animation.core.animateTo
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
 import com.adammcneilly.pocketleague.shared.ui.utils.whenInView
 import kotlinx.coroutines.launch
+
+/**
+ * For the stat line of the team leading in a given statistic, multiply the thickness
+ * of that line by this scale, so it can be emphasized against the other team.
+ */
+private const val LEADING_TEAM_STAT_WIDTH_SCALE = 1.5F
 
 /**
  * Shows the comparison between [blueTeamValue] and [orangeTeamValue] by drawing lines on a canvas.
@@ -28,9 +40,11 @@ fun AnimatableStatComparison(
     blueTeamValue: Int,
     orangeTeamValue: Int,
     modifier: Modifier = Modifier,
+    initialAnimationPercentage: Float = 0F,
+    showValues: Boolean = false,
 ) {
     val animationPercentage = remember {
-        AnimationState(0F)
+        AnimationState(initialAnimationPercentage)
     }
 
     val coroutineScope = rememberCoroutineScope()
@@ -39,6 +53,7 @@ fun AnimatableStatComparison(
         blueTeamValue = blueTeamValue,
         orangeTeamValue = orangeTeamValue,
         percentageToRender = animationPercentage.value,
+        showValues = showValues,
         modifier = modifier
             .whenInView {
                 coroutineScope.launch {
@@ -66,22 +81,74 @@ fun StatComparison(
     orangeTeamValue: Int,
     modifier: Modifier = Modifier,
     percentageToRender: Float = 1F,
+    showValues: Boolean = false,
+) {
+    Row(
+        modifier = modifier
+            .height(48.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.cardPadding),
+    ) {
+        AnimatedVisibility(
+            visible = showValues,
+        ) {
+            Text(
+                text = blueTeamValue.toString(),
+            )
+        }
+
+        StatComparisonLines(
+            blueTeamValue = blueTeamValue,
+            orangeTeamValue = orangeTeamValue,
+            percentageToRender = percentageToRender,
+            modifier = Modifier
+                .weight(1F),
+        )
+
+        AnimatedVisibility(
+            visible = showValues,
+        ) {
+            Text(
+                text = orangeTeamValue.toString(),
+                textAlign = TextAlign.End,
+            )
+        }
+    }
+}
+
+@Composable
+private fun StatComparisonLines(
+    blueTeamValue: Int,
+    orangeTeamValue: Int,
+    percentageToRender: Float,
+    modifier: Modifier = Modifier,
 ) {
     val dividerColor = LocalContentColor.current
 
     Canvas(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(48.dp),
+        modifier = modifier,
     ) {
         val midHeight = size.height.div(2)
         val totalValue = blueTeamValue.plus(orangeTeamValue)
         val blueTeamPercentage = blueTeamValue.toFloat().div(totalValue)
         val dividingPoint = size.width.times(blueTeamPercentage)
         val lineWidth = 4.dp.toPx()
+        val leadingLineWidth = lineWidth * LEADING_TEAM_STAT_WIDTH_SCALE
 
-        drawBlueLine(midHeight, dividingPoint, lineWidth, percentageToRender)
-        drawOrangeLine(dividingPoint, midHeight, lineWidth, percentageToRender)
+        val blueLineWidth = if (blueTeamValue > orangeTeamValue) {
+            leadingLineWidth
+        } else {
+            lineWidth
+        }
+
+        val orangeLineWidth = if (orangeTeamValue > blueTeamValue) {
+            leadingLineWidth
+        } else {
+            lineWidth
+        }
+
+        drawBlueLine(midHeight, dividingPoint, blueLineWidth, percentageToRender)
+        drawOrangeLine(dividingPoint, midHeight, orangeLineWidth, percentageToRender)
         drawDivider(dividingPoint, midHeight, lineWidth, dividerColor, percentageToRender)
     }
 }

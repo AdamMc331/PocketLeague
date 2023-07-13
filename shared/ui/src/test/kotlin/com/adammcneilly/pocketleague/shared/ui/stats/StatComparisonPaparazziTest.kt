@@ -21,6 +21,32 @@ class StatComparisonPaparazziTest {
     val useDarkTheme: Boolean = false
 
     @Test
+    fun blueTeamLeadingStat() {
+        paparazzi.snapshotScreen(useDarkTheme) {
+            StatComparison(
+                blueTeamValue = 3,
+                orangeTeamValue = 1,
+                percentageToRender = 1F,
+                modifier = Modifier
+                    .padding(16.dp),
+            )
+        }
+    }
+
+    @Test
+    fun orangeTeamLeadingStat() {
+        paparazzi.snapshotScreen(useDarkTheme) {
+            StatComparison(
+                blueTeamValue = 1,
+                orangeTeamValue = 3,
+                percentageToRender = 1F,
+                modifier = Modifier
+                    .padding(16.dp),
+            )
+        }
+    }
+
+    @Test
     fun renderCompleteStatComparison() {
         paparazzi.snapshotScreen(useDarkTheme) {
             StatComparison(

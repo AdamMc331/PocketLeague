@@ -27,6 +27,7 @@ class GameListCardPaparazziTest {
         paparazzi.snapshotScreen(useDarkTheme) {
             GameListCard(
                 games = games,
+                onGameClicked = {},
             )
         }
     }
@@ -38,6 +39,7 @@ class GameListCardPaparazziTest {
         paparazzi.snapshotScreen(useDarkTheme) {
             GameListCard(
                 games = games,
+                onGameClicked = {},
             )
         }
     }

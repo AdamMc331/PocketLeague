@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.ui.game
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
@@ -13,6 +14,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 @Composable
 fun GameListCard(
     games: List<GameDetailDisplayModel>,
+    onGameClicked: (GameDetailDisplayModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -20,7 +22,13 @@ fun GameListCard(
     ) {
         Column {
             games.forEachIndexed { index, game ->
-                GameListItem(game)
+                GameListItem(
+                    displayModel = game,
+                    modifier = Modifier
+                        .clickable {
+                            onGameClicked.invoke(game)
+                        },
+                )
 
                 if (index != games.lastIndex) {
                     Divider()

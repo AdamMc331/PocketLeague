@@ -1,11 +1,10 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
-    id("com.android.library")
 }
 
 kotlin {
-    android()
+    jvm()
 
     sourceSets {
         val commonMain by getting {
@@ -21,8 +20,6 @@ kotlin {
                 implementation(libs.varabyte.truthish)
             }
         }
-        val androidMain by getting
-        // val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")
@@ -42,16 +39,6 @@ kotlin {
             getAt("iosSimulatorArm64Test").dependsOn(this)
         }
     }
-}
-
-android {
-    compileSdk = libs.versions.compileSdk.get().toInt()
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
-    }
-
-    namespace = "com.adammcneilly.pocketleague.data.octanegg"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

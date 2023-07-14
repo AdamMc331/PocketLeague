@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.ui
+package com.adammcneilly.pocketleague.shared.ui.game
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.ui.components.InlineIconText
-import com.adammcneilly.pocketleague.ui.composables.stats.PlayerStatsTable
+import com.adammcneilly.pocketleague.shared.ui.stats.PlayerStatsTable
 
 /**
  * Renders a [displayModel] to show detailed information about a game.

@@ -31,6 +31,9 @@ class MatchDetailContentPaparazziTest {
             MatchDetailContent(
                 match = TestDisplayModel.matchDetailBlueWinner,
                 games = GameDetailDisplayModel.variations(),
+                selectedGame = null,
+                onSelectedGameDismissed = {},
+                onGameClicked = {},
             )
         }
     }
@@ -44,6 +47,9 @@ class MatchDetailContentPaparazziTest {
             MatchDetailContent(
                 match = MatchDetailDisplayModel.placeholder,
                 games = GameDetailDisplayModel.placeholders(),
+                selectedGame = null,
+                onSelectedGameDismissed = {},
+                onGameClicked = {},
             )
         }
     }

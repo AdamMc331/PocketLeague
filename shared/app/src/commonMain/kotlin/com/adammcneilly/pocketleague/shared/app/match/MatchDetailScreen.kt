@@ -26,13 +26,27 @@ data class MatchDetailScreen(
     data class State(
         val match: MatchDetailDisplayModel,
         val games: List<GameDetailDisplayModel>,
+        val selectedGame: GameDetailDisplayModel?,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
 
     /**
      * Any events that can be triggered by the [MatchDetailScreen].
      */
-    sealed interface Event : CircuitUiEvent
+    sealed interface Event : CircuitUiEvent {
+
+        /**
+         * Triggered when a user clicks on a specific game from the list.
+         */
+        data class GameSelected(
+            val game: GameDetailDisplayModel,
+        ) : Event
+
+        /**
+         * Triggered whenever the user dismisses the currently selected game dialog.
+         */
+        object SelectedGameDismissed : Event
+    }
 
     /**
      * Factory to create the compose UI for the [MatchDetailScreen].
@@ -45,10 +59,18 @@ data class MatchDetailScreen(
                         MatchDetailContent(
                             match = state.match,
                             games = state.games,
+                            selectedGame = state.selectedGame,
+                            onSelectedGameDismissed = {
+                                state.eventSink.invoke(Event.SelectedGameDismissed)
+                            },
+                            onGameClicked = { game ->
+                                state.eventSink.invoke(Event.GameSelected(game))
+                            },
                             modifier = modifier,
                         )
                     }
                 }
+
                 else -> null
             }
         }
@@ -63,6 +85,7 @@ data class MatchDetailScreen(
                 is MatchDetailScreen -> MatchDetailPresenter(
                     matchId = screen.matchId,
                 )
+
                 else -> null
             }
         }

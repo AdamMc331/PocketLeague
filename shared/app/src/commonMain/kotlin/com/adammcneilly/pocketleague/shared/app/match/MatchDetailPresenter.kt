@@ -38,6 +38,10 @@ class MatchDetailPresenter(
             )
         }
 
+        var selectedGame by remember {
+            mutableStateOf<GameDetailDisplayModel?>(null)
+        }
+
         LaunchedEffect(Unit) {
             match = OctaneGGMatchService()
                 .getMatchDetail(matchId)
@@ -54,11 +58,16 @@ class MatchDetailPresenter(
 
         return MatchDetailScreen.State(
             match = match,
+            selectedGame = selectedGame,
             games = games,
         ) { event ->
             when (event) {
-                // No events yet
-                else -> {}
+                is MatchDetailScreen.Event.GameSelected -> {
+                    selectedGame = event.game
+                }
+                MatchDetailScreen.Event.SelectedGameDismissed -> {
+                    selectedGame = null
+                }
             }
         }
     }

@@ -32,6 +32,10 @@ object DateUtils {
         utcString: String,
         clock: Clock = Clock.System,
     ): String {
+        require(isBeforeNow(utcString, clock)) {
+            "getRelativeTimestamp only valid for past dates."
+        }
+
         val instant = Instant.parse(utcString)
 
         val now = clock.now()
@@ -40,7 +44,7 @@ object DateUtils {
 
         return when {
             duration.inWholeMinutes < MINUTES_IN_HOUR -> {
-                "${duration.inWholeDays}m ago"
+                "${duration.inWholeMinutes}m ago"
             }
             duration.inWholeHours < HOURS_IN_DAY -> {
                 "${duration.inWholeHours}h ago"

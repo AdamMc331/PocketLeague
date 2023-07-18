@@ -8,9 +8,11 @@ import kotlinx.datetime.Instant
  *
  * Allows us to test the app at any given point in time.
  */
-class DebugClock : Clock {
+class DebugClock(
+    private val dateString: String = "2023-07-08T12:00:00Z",
+) : Clock {
 
     override fun now(): Instant {
-        return Instant.parse("2023-07-08T12:00:00Z")
+        return Instant.parse(dateString)
     }
 }

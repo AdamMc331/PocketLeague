@@ -6,6 +6,7 @@ plugins {
 
 kotlin {
     android()
+    jvm()
 
     sourceSets {
         val commonMain by getting {
@@ -30,7 +31,11 @@ kotlin {
                 implementation("com.github.requery:sqlite-android:3.39.2")
             }
         }
-        // val androidTest by getting
+        val jvmMain by getting {
+            dependencies {
+                implementation(libs.square.sqldelight.sqlite.driver)
+            }
+        }
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")

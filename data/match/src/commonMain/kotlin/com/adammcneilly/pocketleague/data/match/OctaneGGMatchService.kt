@@ -15,9 +15,10 @@ import kotlin.time.Duration.Companion.days
  */
 class OctaneGGMatchService(
     private val apiClient: BaseKTORClient,
+    private val clock: Clock,
 ) : RemoteMatchService {
 
-    constructor() : this(OctaneGGAPIClient)
+    constructor() : this(OctaneGGAPIClient, Clock.System)
 
     override suspend fun getMatchDetail(matchId: String): Result<Match> {
         return apiClient.getResponse<OctaneGGMatch>(
@@ -31,8 +32,8 @@ class OctaneGGMatchService(
         return apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(
-                "before" to Clock.System.now(),
-                "after" to Clock.System.now().minus(NUM_DAYS_RECENT_MATCHES.days),
+                "before" to clock.now(),
+                "after" to clock.now().minus(NUM_DAYS_RECENT_MATCHES.days),
                 "group" to "rlcs",
             ),
         ).map { octaneMatchListResponse ->
@@ -47,7 +48,7 @@ class OctaneGGMatchService(
         return apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(
-                "after" to Clock.System.now(),
+                "after" to clock.now(),
                 "group" to "rlcs",
             ),
         ).map { octaneMatchListResponse ->

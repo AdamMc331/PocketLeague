@@ -17,15 +17,16 @@ import kotlinx.datetime.Clock
  */
 class OctaneGGEventService(
     private val apiClient: BaseKTORClient,
+    private val clock: Clock,
 ) : RemoteEventService {
 
-    constructor() : this(OctaneGGAPIClient)
+    constructor() : this(OctaneGGAPIClient, Clock.System)
 
     override suspend fun getUpcomingEvents(): Result<List<Event>> {
         return apiClient.getResponse<OctaneGGEventListResponse>(
             endpoint = EVENTS_ENDPOINT,
             params = mapOf(
-                "after" to Clock.System.now().toString(),
+                "after" to clock.now().toString(),
                 "group" to "rlcs",
             ),
         ).map { eventListResponse ->
@@ -59,7 +60,7 @@ class OctaneGGEventService(
         return apiClient.getResponse<OctaneGGEventListResponse>(
             endpoint = EVENTS_ENDPOINT,
             params = mapOf(
-                "date" to Clock.System.now().toString(),
+                "date" to clock.now().toString(),
                 "group" to "rlcs",
             ),
         ).map { eventListResponse ->

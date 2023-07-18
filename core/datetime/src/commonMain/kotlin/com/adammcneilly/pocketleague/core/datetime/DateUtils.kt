@@ -16,25 +16,35 @@ object DateUtils {
      * Determines if the date represented by the supplied [utcString]
      * occurred before the current date.
      */
-    fun isBeforeNow(utcString: String): Boolean {
+    fun isBeforeNow(
+        utcString: String,
+        clock: Clock = Clock.System,
+    ): Boolean {
         val instant = Instant.parse(utcString)
 
-        return instant < Clock.System.now()
+        return instant < clock.now()
     }
 
     /**
-     * Given an [instant], convert it to a relative timestamp such as 5m ago, or 5d ago.
+     * Given a [utcString], convert it to a relative timestamp such as 5m ago, or 5d ago.
      */
-    fun getRelativeTimestamp(utcString: String): String {
+    fun getRelativeTimestamp(
+        utcString: String,
+        clock: Clock = Clock.System,
+    ): String {
+        require(isBeforeNow(utcString, clock)) {
+            "getRelativeTimestamp only valid for past dates."
+        }
+
         val instant = Instant.parse(utcString)
 
-        val now = Clock.System.now()
+        val now = clock.now()
 
         val duration = now.minus(instant)
 
         return when {
             duration.inWholeMinutes < MINUTES_IN_HOUR -> {
-                "${duration.inWholeDays}m ago"
+                "${duration.inWholeMinutes}m ago"
             }
             duration.inWholeHours < HOURS_IN_DAY -> {
                 "${duration.inWholeHours}h ago"

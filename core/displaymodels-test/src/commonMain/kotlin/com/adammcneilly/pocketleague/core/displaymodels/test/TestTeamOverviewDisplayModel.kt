@@ -14,3 +14,15 @@ fun TeamOverviewDisplayModel.Companion.teamVitality(): TeamOverviewDisplayModel 
         regionName = "Europe",
     )
 }
+
+fun TeamOverviewDisplayModel.Companion.testTeam(
+    name: String,
+    regionName: String = "Europe",
+): TeamOverviewDisplayModel {
+    return TeamOverviewDisplayModel(
+        teamId = name,
+        name = name,
+        imageUrl = ThemedImageURL(),
+        regionName = regionName,
+    )
+}

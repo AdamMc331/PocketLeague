@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.match
 
+import com.adammcneilly.pocketleague.core.datetime.defaultClock
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatch
@@ -18,7 +19,7 @@ class OctaneGGMatchService(
     private val clock: Clock,
 ) : RemoteMatchService {
 
-    constructor() : this(OctaneGGAPIClient, Clock.System)
+    constructor() : this(OctaneGGAPIClient, defaultClock())
 
     override suspend fun getMatchDetail(matchId: String): Result<Match> {
         return apiClient.getResponse<OctaneGGMatch>(

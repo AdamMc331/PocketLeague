@@ -38,6 +38,11 @@ fun SwissStageTeamResultListItem(
                 text = "${teamResult.matchRecord} | ${teamResult.gameRecord} | ${teamResult.gameDifferential}",
             )
         },
+        overlineText = {
+            Text(
+                text = "Qualified",
+            )
+        },
         modifier = modifier,
     )
 }

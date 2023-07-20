@@ -67,7 +67,7 @@ fun SwissStageTeamResultDisplayModel.Companion.fallMajorList(): List<SwissStageT
         SwissStageTeamResultDisplayModel(
             standing = 8,
             team = TeamOverviewDisplayModel.testTeam("Moist Esports"),
-            matchRecord = "3-3",
+            matchRecord = "3-2",
             gameRecord = "10-11",
             gameDifferential = "-1",
         ),

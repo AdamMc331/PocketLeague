@@ -41,3 +41,19 @@ SELECT *
 FROM localEventStage
 WHERE eventId = :eventId
 ORDER BY startDateUTC;
+
+selectSwissStageResults:
+SELECT localTeam.name, SUM(wins) || '-' || SUM(losses)
+FROM(
+    SELECT blueTeamId AS teamId, SUM(CASE WHEN blueTeamGameWins > orangeTeamGameWins THEN 1 ELSE 0 END) AS wins,  SUM(CASE WHEN blueTeamGameWins < orangeTeamGameWins THEN 1 ELSE 0 END) AS losses
+    FROM localMatch
+    WHERE eventId = "632ef4e7da9d7ca1c7bb467c" AND stageId = "0"
+    GROUP BY blueTeamId
+    UNION ALL
+    SELECT orangeTeamId AS teamId, SUM(CASE WHEN orangeTeamGameWins > blueTeamGameWins THEN 1 ELSE 0 END) AS wins,  SUM(CASE WHEN orangeTeamGameWins < blueTeamGameWins THEN 1 ELSE 0 END) AS losses
+    FROM localMatch
+    WHERE eventId = "632ef4e7da9d7ca1c7bb467c" AND stageId = "0"
+    GROUP BY orangeTeamId
+)
+INNER JOIN localTeam ON localTeam.id = teamId
+GROUP BY localTeam.name;

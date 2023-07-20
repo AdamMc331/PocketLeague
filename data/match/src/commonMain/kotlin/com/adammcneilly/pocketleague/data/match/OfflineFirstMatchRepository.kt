@@ -43,7 +43,7 @@ class OfflineFirstMatchRepository(
     }
 
     private suspend fun fetchAndPersistPastWeeksMatches() {
-        val remoteResponse = remoteDataSource.getPastWeeksMatches()
+        val remoteResponse = remoteDataSource.getMatchesForEventStage("632ef4e7da9d7ca1c7bb467c", "0")
 
         remoteResponse.fold(
             onSuccess = { matches ->

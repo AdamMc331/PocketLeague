@@ -15,6 +15,7 @@ import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
+import com.adammcneilly.pocketleague.shared.app.stage.SwissStageDetailScreen
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.launch
@@ -83,7 +84,7 @@ class FeedPresenter(
         ) { event ->
             when (event) {
                 is FeedScreen.Event.EventClicked -> {
-                    // Handle event clicked
+                    navigator.goTo(SwissStageDetailScreen(eventId = "632ef4e7da9d7ca1c7bb467c", stageId = "0"))
                 }
 
                 is FeedScreen.Event.MatchClicked -> {

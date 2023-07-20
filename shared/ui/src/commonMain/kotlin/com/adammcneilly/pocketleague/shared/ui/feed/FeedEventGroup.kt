@@ -14,6 +14,7 @@ import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
 @Composable
 fun FeedEventGroup(
     displayModel: EventGroupDisplayModel,
+    onEventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val groupModifier = modifier
@@ -24,6 +25,7 @@ fun FeedEventGroup(
             EventSummaryListCard(
                 events = displayModel.events,
                 modifier = groupModifier,
+                onEventClicked = onEventClicked,
             )
         }
 

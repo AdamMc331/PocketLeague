@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.app.bars.PLTopAppBar
 import com.adammcneilly.pocketleague.shared.app.feed.FeedScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
+import com.adammcneilly.pocketleague.shared.app.stage.SwissStageDetailScreen
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.slack.circuit.backstack.rememberSaveableBackStack
 import com.slack.circuit.foundation.CircuitCompositionLocals
@@ -30,6 +31,8 @@ fun PocketLeagueApp(
             .addPresenterFactory(FeedScreen.PresenterFactory)
             .addUiFactory(MatchDetailScreen.UiFactory)
             .addPresenterFactory(MatchDetailScreen.PresenterFactory)
+            .addUiFactory(SwissStageDetailScreen.UiFactory)
+            .addPresenterFactory(SwissStageDetailScreen.PresenterFactory)
             .build()
 
         CircuitCompositionLocals(circuitConfig) {

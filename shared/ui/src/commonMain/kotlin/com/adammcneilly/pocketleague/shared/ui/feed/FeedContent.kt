@@ -24,6 +24,7 @@ fun FeedContent(
     ongoingEvents: List<EventGroupDisplayModel>,
     upcomingEvents: List<EventGroupDisplayModel>,
     onMatchClicked: (String) -> Unit,
+    onEventClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -39,11 +40,11 @@ fun FeedContent(
 
         happeningNowHeader()
 
-        eventGroupList(ongoingEvents)
+        eventGroupList(ongoingEvents, onEventClicked)
 
         upcomingHeader()
 
-        eventGroupList(upcomingEvents)
+        eventGroupList(upcomingEvents, onEventClicked)
     }
 }
 
@@ -55,10 +56,13 @@ private fun LazyListScope.upcomingHeader() {
     }
 }
 
-private fun LazyListScope.eventGroupList(ongoingEvents: List<EventGroupDisplayModel>) {
+private fun LazyListScope.eventGroupList(
+    ongoingEvents: List<EventGroupDisplayModel>,
+    onEventClicked: (String) -> Unit,
+) {
     ongoingEvents.forEach { group ->
         item {
-            FeedEventGroup(group)
+            FeedEventGroup(group, onEventClicked)
         }
     }
 }

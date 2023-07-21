@@ -31,6 +31,8 @@ class ProdDataModule(
             localEventService = SQLDelightEventService(this.database),
 //            remoteEventService = OctaneGGEventService(),
             remoteEventService = StartGGEventService(),
+            localMatchService = SQLDelightMatchService(this.database),
+            remoteMatchService = OctaneGGMatchService(),
         )
     }
 

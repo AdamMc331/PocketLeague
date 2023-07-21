@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.event.test
 
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.SwissStageTeamResult
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.event
@@ -34,5 +35,9 @@ class FakeEventRepository : EventRepository {
 
     override fun getOngoingEvents(): Flow<List<Event>> {
         return flowOf(ongoingEvents)
+    }
+
+    override fun getSwissStageResults(eventId: String, stageId: String): Flow<List<SwissStageTeamResult>> {
+        TODO("Not yet implemented")
     }
 }

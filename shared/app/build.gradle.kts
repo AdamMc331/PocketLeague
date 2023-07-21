@@ -79,6 +79,7 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
                 framework {
                     baseName = "shared"
                     isStatic = true
+                    linkerOpts.add("-lsqlite3")
                 }
                 extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
             }

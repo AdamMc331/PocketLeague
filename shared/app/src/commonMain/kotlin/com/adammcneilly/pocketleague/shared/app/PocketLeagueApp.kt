@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.shared.app.bars.PLTopAppBar
 import com.adammcneilly.pocketleague.shared.app.feed.FeedScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
@@ -21,6 +22,7 @@ import com.slack.circuit.foundation.push
  */
 @Composable
 fun PocketLeagueApp(
+    eventRepository: EventRepository,
     modifier: Modifier = Modifier,
 ) {
     PocketLeagueTheme {
@@ -28,7 +30,11 @@ fun PocketLeagueApp(
         // in all of these factories, or even consider the codegen that Circuit offers.
         val circuitConfig = CircuitConfig.Builder()
             .addUiFactory(FeedScreen.UiFactory)
-            .addPresenterFactory(FeedScreen.PresenterFactory)
+            .addPresenterFactory(
+                FeedScreen.PresenterFactory(
+                    eventRepository = eventRepository,
+                ),
+            )
             .addUiFactory(MatchDetailScreen.UiFactory)
             .addPresenterFactory(MatchDetailScreen.PresenterFactory)
             .addUiFactory(SwissStageDetailScreen.UiFactory)

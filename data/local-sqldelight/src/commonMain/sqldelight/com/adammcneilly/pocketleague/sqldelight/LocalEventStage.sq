@@ -43,17 +43,32 @@ WHERE eventId = :eventId
 ORDER BY startDateUTC;
 
 selectSwissStageResults:
-SELECT localTeam.name, SUM(wins) || '-' || SUM(losses)
+SELECT
+    localTeam.*,
+    SUM(matchWins) AS matchWins,
+    SUM(matchLosses) AS matchLosses,
+    SUM(gameWins) AS gameWins,
+    SUM(gameLosses) AS gameLosses
 FROM(
-    SELECT blueTeamId AS teamId, SUM(CASE WHEN blueTeamGameWins > orangeTeamGameWins THEN 1 ELSE 0 END) AS wins,  SUM(CASE WHEN blueTeamGameWins < orangeTeamGameWins THEN 1 ELSE 0 END) AS losses
+    SELECT
+        blueTeamId AS teamId,
+        SUM(CASE WHEN blueTeamGameWins > orangeTeamGameWins THEN 1 ELSE 0 END) AS matchWins,
+        SUM(CASE WHEN orangeTeamGameWins > blueTeamGameWins THEN 1 ELSE 0 END) AS matchLosses,
+        SUM(blueTeamGameWins) AS gameWins,
+        SUM(orangeTeamGameWins) AS gameLosses
     FROM localMatch
-    WHERE eventId = "632ef4e7da9d7ca1c7bb467c" AND stageId = "0"
+    WHERE eventId = :eventId AND stageId = :stageId
     GROUP BY blueTeamId
     UNION ALL
-    SELECT orangeTeamId AS teamId, SUM(CASE WHEN orangeTeamGameWins > blueTeamGameWins THEN 1 ELSE 0 END) AS wins,  SUM(CASE WHEN orangeTeamGameWins < blueTeamGameWins THEN 1 ELSE 0 END) AS losses
+    SELECT
+        orangeTeamId AS teamId,
+        SUM(CASE WHEN orangeTeamGameWins > blueTeamGameWins THEN 1 ELSE 0 END) AS matchWins,
+        SUM(CASE WHEN blueTeamGameWins > orangeTeamGameWins THEN 1 ELSE 0 END) AS matchLosses,
+        SUM(orangeTeamGameWins) AS gameWins,
+        SUM(blueTeamGameWins) AS gameLosses
     FROM localMatch
-    WHERE eventId = "632ef4e7da9d7ca1c7bb467c" AND stageId = "0"
+    WHERE eventId = :eventId AND stageId = :stageId
     GROUP BY orangeTeamId
 )
 INNER JOIN localTeam ON localTeam.id = teamId
-GROUP BY localTeam.name;
+GROUP BY localTeam.id;

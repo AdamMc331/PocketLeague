@@ -12,12 +12,14 @@ import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
+import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.adammcneilly.pocketleague.shared.app.stage.SwissStageDetailScreen
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 private const val PLACEHOLDER_LIST_COUNT = 3
@@ -27,6 +29,7 @@ private const val PLACEHOLDER_LIST_COUNT = 3
  */
 class FeedPresenter(
     private val navigator: Navigator,
+    private val eventRepository: EventRepository,
 ) : Presenter<FeedScreen.State> {
 
     @Composable
@@ -56,25 +59,21 @@ class FeedPresenter(
                     .orEmpty()
             }
 
-            launch {
-                ongoingEvents = OctaneGGEventService()
-                    .getOngoingEvents()
-                    .getOrNull()
-                    ?.sortedBy(Event::startDateUTC)
-                    ?.map(Event::toSummaryDisplayModel)
-                    ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
-                    .orEmpty()
-            }
+            eventRepository
+                .getOngoingEvents()
+                .onEach { events ->
+                    val displayModels = events.map(Event::toSummaryDisplayModel)
+                    ongoingEvents = EventGroupDisplayModel.mapFromEventList(displayModels)
+                }
+                .launchIn(this)
 
-            launch {
-                upcomingEvents = OctaneGGEventService()
-                    .getUpcomingEvents()
-                    .getOrNull()
-                    ?.sortedBy(Event::startDateUTC)
-                    ?.map(Event::toSummaryDisplayModel)
-                    ?.let(EventGroupDisplayModel.Companion::mapFromEventList)
-                    .orEmpty()
-            }
+            eventRepository
+                .getUpcomingEvents()
+                .onEach { events ->
+                    val displayModels = events.map(Event::toSummaryDisplayModel)
+                    upcomingEvents = EventGroupDisplayModel.mapFromEventList(displayModels)
+                }
+                .launchIn(this)
         }
 
         return FeedScreen.State(

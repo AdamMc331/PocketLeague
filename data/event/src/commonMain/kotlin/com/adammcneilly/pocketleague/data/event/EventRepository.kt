@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.event
 
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.SwissStageTeamResult
 import com.adammcneilly.pocketleague.core.models.Team
 import kotlinx.coroutines.flow.Flow
 
@@ -27,4 +28,9 @@ interface EventRepository {
      * Observe a list of [Event] entities that are happening now.
      */
     fun getOngoingEvents(): Flow<List<Event>>
+
+    fun getSwissStageResults(
+        eventId: String,
+        stageId: String,
+    ): Flow<List<SwissStageTeamResult>>
 }

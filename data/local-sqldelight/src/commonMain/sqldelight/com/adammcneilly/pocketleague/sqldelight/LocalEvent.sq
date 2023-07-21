@@ -20,13 +20,13 @@ ORDER BY startDateUTC;
 selectOngoing:
 SELECT *
 FROM localEvent
-WHERE startDateUTC < DATE() AND endDateUTC > DATE()
+WHERE startDateUTC < :startDateUtc AND endDateUTC > :endDateUtc
 ORDER BY startDateUTC;
 
 selectUpcoming:
 SELECT *
 FROM localEvent
-WHERE startDateUTC > DATE()
+WHERE startDateUTC > :startDateUtc
 ORDER BY startDateUTC;
 
 selectById:

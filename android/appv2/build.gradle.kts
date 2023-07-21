@@ -65,6 +65,8 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
+    implementation(project(":data:event"))
+    implementation(project(":data:local-sqldelight"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)

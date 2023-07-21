@@ -8,6 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
+import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
+import com.adammcneilly.pocketleague.data.event.OfflineFirstEventRepository
+import com.adammcneilly.pocketleague.data.event.SQLDelightEventService
+import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
+import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.shared.app.PocketLeagueApp
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -21,11 +26,20 @@ class MainActivity : ComponentActivity() {
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
+        val eventRepository = OfflineFirstEventRepository(
+            localEventService = SQLDelightEventService(
+                database = PocketLeagueDB(DatabaseDriverFactory(this).createDriver()),
+            ),
+            remoteEventService = OctaneGGEventService(),
+        )
+
         setContent {
             PocketLeagueTheme {
                 SetSystemBarsTransparent()
 
-                PocketLeagueApp()
+                PocketLeagueApp(
+                    eventRepository = eventRepository,
+                )
             }
         }
     }

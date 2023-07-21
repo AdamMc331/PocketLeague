@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.event
 
+import com.adammcneilly.pocketleague.core.datetime.defaultClock
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
@@ -17,6 +18,7 @@ import com.adammcneilly.pocketleague.sqldelight.LocalEventStage
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.datetime.Clock
 
 /**
  * An implementation of [EventRepository] that requests all data from
@@ -24,12 +26,17 @@ import kotlinx.coroutines.flow.combine
  */
 class SQLDelightEventService(
     private val database: PocketLeagueDB,
+    private val clock: Clock,
 ) : LocalEventService {
+
+    constructor(database: PocketLeagueDB) : this(database, defaultClock())
 
     override fun getUpcomingEvents(): Flow<List<Event>> {
         return database
             .localEventQueries
-            .selectUpcoming()
+            .selectUpcoming(
+                startDateUtc = clock.now().toString(),
+            )
             .asFlowList(LocalEvent::toEvent)
     }
 
@@ -62,7 +69,10 @@ class SQLDelightEventService(
     override fun getOngoingEvents(): Flow<List<Event>> {
         return database
             .localEventQueries
-            .selectOngoing()
+            .selectOngoing(
+                startDateUtc = clock.now().toString(),
+                endDateUtc = clock.now().toString(),
+            )
             .asFlowList(LocalEvent::toEvent)
     }
 

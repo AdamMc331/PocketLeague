@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.event
 
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.SwissStageTeamResult
 import com.adammcneilly.pocketleague.core.models.Team
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onStart
@@ -89,5 +90,9 @@ class OfflineFirstEventRepository(
                     },
                 )
             }
+    }
+
+    override fun getSwissStageResults(eventId: String, stageId: String): Flow<List<SwissStageTeamResult>> {
+        TODO("Not yet implemented")
     }
 }

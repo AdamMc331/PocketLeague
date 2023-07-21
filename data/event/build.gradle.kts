@@ -16,6 +16,7 @@ kotlin {
                 implementation(project(":core:datetime"))
                 implementation(project(":core:models"))
                 implementation(project(":data:local-sqldelight"))
+                implementation(project(":data:match"))
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
                 implementation(project(":data:startgg"))

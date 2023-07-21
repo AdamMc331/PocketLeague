@@ -38,7 +38,11 @@ fun PocketLeagueApp(
             .addUiFactory(MatchDetailScreen.UiFactory)
             .addPresenterFactory(MatchDetailScreen.PresenterFactory)
             .addUiFactory(SwissStageDetailScreen.UiFactory)
-            .addPresenterFactory(SwissStageDetailScreen.PresenterFactory)
+            .addPresenterFactory(
+                SwissStageDetailScreen.PresenterFactory(
+                    eventRepository = eventRepository,
+                ),
+            )
             .build()
 
         CircuitCompositionLocals(circuitConfig) {

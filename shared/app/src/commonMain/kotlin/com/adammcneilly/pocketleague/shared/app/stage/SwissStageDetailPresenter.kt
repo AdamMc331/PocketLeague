@@ -7,11 +7,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.adammcneilly.pocketleague.core.displaymodels.SwissStageTeamResultDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.toDisplayModel
+import com.adammcneilly.pocketleague.core.models.SwissStageTeamResult
+import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.slack.circuit.runtime.presenter.Presenter
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class SwissStageDetailPresenter(
     private val eventId: String,
     private val stageId: String,
+    private val eventRepository: EventRepository,
 ) : Presenter<SwissStageDetailScreen.State> {
 
     @Composable
@@ -21,7 +27,12 @@ class SwissStageDetailPresenter(
         }
 
         LaunchedEffect(Unit) {
-            // TODO: Load teamResults
+            eventRepository
+                .getSwissStageResults(eventId, stageId)
+                .onEach { domainResults ->
+                    teamResults = domainResults.map(SwissStageTeamResult::toDisplayModel)
+                }
+                .launchIn(this)
         }
 
         return SwissStageDetailScreen.State(

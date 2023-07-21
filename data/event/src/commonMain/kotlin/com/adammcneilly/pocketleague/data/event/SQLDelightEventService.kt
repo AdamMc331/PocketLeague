@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.data.event
 
 import com.adammcneilly.pocketleague.core.datetime.defaultClock
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.SwissStageTeamResult
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toEvent
@@ -105,5 +106,30 @@ class SQLDelightEventService(
                     ),
                 )
         }
+    }
+
+    override fun getSwissStageResults(eventId: String, stageId: String): Flow<List<SwissStageTeamResult>> {
+        return database
+            .localEventStageQueries
+            .selectSwissStageResults(eventId, stageId)
+            .asFlowList { dbResult ->
+                SwissStageTeamResult(
+                    team = Team(
+                        id = dbResult.id,
+                        name = dbResult.name,
+                        lightThemeImageURL = dbResult.lightImageURL,
+                        darkThemeImageURL = dbResult.darkImageURL,
+                        isFavorite = dbResult.isFavorite,
+                        isActive = dbResult.isActive ?: false,
+                        regionName = dbResult.region.orEmpty(),
+                    ),
+                    matchWins = dbResult.matchWins?.toInt() ?: 0,
+                    matchLosses = dbResult.matchLosses?.toInt() ?: 0,
+                    gameWins = dbResult.gameWins?.toInt() ?: 0,
+                    gameLosses = dbResult.gameLosses?.toInt() ?: 0,
+                    eventId = eventId,
+                    stageId = stageId,
+                )
+            }
     }
 }

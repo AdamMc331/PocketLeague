@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.stage
 
 import com.adammcneilly.pocketleague.core.displaymodels.SwissStageTeamResultDisplayModel
+import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.shared.app.CommonParcelize
 import com.adammcneilly.pocketleague.shared.ui.brackets.swiss.SwissStageTeamResultList
 import com.slack.circuit.runtime.CircuitContext
@@ -49,12 +50,15 @@ data class SwissStageDetailScreen(
         }
     }
 
-    object PresenterFactory : Presenter.Factory {
+    class PresenterFactory(
+        private val eventRepository: EventRepository,
+    ) : Presenter.Factory {
         override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
             return when (screen) {
                 is SwissStageDetailScreen -> SwissStageDetailPresenter(
                     eventId = screen.eventId,
                     stageId = screen.stageId,
+                    eventRepository = eventRepository,
                 )
                 else -> null
             }

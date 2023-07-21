@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.models.SwissStageTeamResult
+
 /**
  * User friendly representation of how a team preformed
  * during the swiss stage of an event.
@@ -16,6 +18,33 @@ data class SwissStageTeamResultDisplayModel(
     val matchRecord: String,
     val gameRecord: String,
     val gameDifferential: String,
+    val overlineText: String,
 ) {
     companion object
+}
+
+fun SwissStageTeamResult.toDisplayModel(): SwissStageTeamResultDisplayModel {
+    val gameDifferentialVal = this.gameWins - this.gameLosses
+    // If positive, need to include plus symbol
+    // see if there's a helper for this already somewhere?
+    val gameDifferentialString = if (gameDifferentialVal > 0) {
+        "+$gameDifferentialVal"
+    } else {
+        gameDifferentialVal.toString()
+    }
+
+    val overlineText = if (this.qualified) {
+        "Qualified"
+    } else {
+        "Eliminated"
+    }
+
+    return SwissStageTeamResultDisplayModel(
+        standing = 0,
+        team = this.team.toOverviewDisplayModel(),
+        matchRecord = "${this.matchWins}-${this.matchLosses}",
+        gameRecord = "${this.gameWins}-${this.gameLosses}",
+        gameDifferential = gameDifferentialString,
+        overlineText = overlineText,
+    )
 }

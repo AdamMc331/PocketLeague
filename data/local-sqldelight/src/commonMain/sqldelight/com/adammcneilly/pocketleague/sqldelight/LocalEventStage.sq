@@ -48,7 +48,9 @@ SELECT
     SUM(matchWins) AS matchWins,
     SUM(matchLosses) AS matchLosses,
     SUM(gameWins) AS gameWins,
-    SUM(gameLosses) AS gameLosses
+    SUM(gameLosses) AS gameLosses,
+    SUM(gameWins) - SUM(gameLosses) AS gameDifferential,
+    SUM(matchWins) - SUM(matchLosses) AS matchDifferential
 FROM(
     SELECT
         blueTeamId AS teamId,
@@ -71,4 +73,5 @@ FROM(
     GROUP BY orangeTeamId
 )
 INNER JOIN localTeam ON localTeam.id = teamId
-GROUP BY localTeam.id;
+GROUP BY localTeam.id
+ORDER BY matchDifferential DESC, gameDifferential DESC;

@@ -11,4 +11,12 @@ data class SwissStageTeamResult(
     val gameLosses: Int,
     val eventId: String,
     val stageId: String,
-)
+) {
+
+    /**
+     * This logic only works if we've completed the swiss stage, we'll need to consider ongoing events
+     * in the future.
+     */
+    val qualified: Boolean
+        get() = matchWins > matchLosses
+}

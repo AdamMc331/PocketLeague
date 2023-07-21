@@ -13,6 +13,8 @@ import com.adammcneilly.pocketleague.data.event.OfflineFirstEventRepository
 import com.adammcneilly.pocketleague.data.event.SQLDelightEventService
 import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
+import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
+import com.adammcneilly.pocketleague.data.match.SQLDelightMatchService
 import com.adammcneilly.pocketleague.shared.app.PocketLeagueApp
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -26,11 +28,17 @@ class MainActivity : ComponentActivity() {
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
+        val database = PocketLeagueDB(DatabaseDriverFactory(this).createDriver())
+
         val eventRepository = OfflineFirstEventRepository(
             localEventService = SQLDelightEventService(
-                database = PocketLeagueDB(DatabaseDriverFactory(this).createDriver()),
+                database = database,
+            ),
+            localMatchService = SQLDelightMatchService(
+                database = database,
             ),
             remoteEventService = OctaneGGEventService(),
+            remoteMatchService = OctaneGGMatchService(),
         )
 
         setContent {

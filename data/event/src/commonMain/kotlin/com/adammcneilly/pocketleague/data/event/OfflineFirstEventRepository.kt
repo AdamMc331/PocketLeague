@@ -3,6 +3,8 @@ package com.adammcneilly.pocketleague.data.event
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.SwissStageTeamResult
 import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.data.match.LocalMatchService
+import com.adammcneilly.pocketleague.data.match.RemoteMatchService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onStart
 
@@ -13,6 +15,8 @@ import kotlinx.coroutines.flow.onStart
 class OfflineFirstEventRepository(
     private val localEventService: LocalEventService,
     private val remoteEventService: RemoteEventService,
+    private val remoteMatchService: RemoteMatchService,
+    private val localMatchService: LocalMatchService,
 ) : EventRepository {
     override fun getUpcomingEvents(): Flow<List<Event>> {
         return localEventService
@@ -93,6 +97,20 @@ class OfflineFirstEventRepository(
     }
 
     override fun getSwissStageResults(eventId: String, stageId: String): Flow<List<SwissStageTeamResult>> {
-        TODO("Not yet implemented")
+        return localEventService
+            .getSwissStageResults(eventId, stageId)
+            .onStart {
+                val remoteResponse = remoteMatchService
+                    .getMatchesForEventStage(eventId, stageId)
+
+                remoteResponse.fold(
+                    onSuccess = { matches ->
+                        localMatchService.insertMatches(matches)
+                    },
+                    onFailure = { error ->
+                        println("Unable to request event stage matches: ${error.message}")
+                    },
+                )
+            }
     }
 }

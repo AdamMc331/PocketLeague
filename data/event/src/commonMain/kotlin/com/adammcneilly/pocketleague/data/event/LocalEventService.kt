@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.event
 
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.SwissStageTeamResult
 import com.adammcneilly.pocketleague.core.models.Team
 import kotlinx.coroutines.flow.Flow
 
@@ -40,4 +41,12 @@ interface LocalEventService {
         teams: List<Team>,
         eventId: String,
     )
+
+    /**
+     * Fetch the results by team for a given [eventId] and [stageId].,
+     */
+    fun getSwissStageResults(
+        eventId: String,
+        stageId: String,
+    ): Flow<List<SwissStageTeamResult>>
 }

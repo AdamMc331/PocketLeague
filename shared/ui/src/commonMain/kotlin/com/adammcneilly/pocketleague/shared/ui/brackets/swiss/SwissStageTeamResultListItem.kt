@@ -1,10 +1,12 @@
 package com.adammcneilly.pocketleague.shared.ui.brackets.swiss
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.SwissStageTeamResultDisplayModel
@@ -22,11 +24,14 @@ fun SwissStageTeamResultListItem(
 ) {
     ListItem(
         leadingContent = {
-            CircleTeamLogo(
-                displayModel = teamResult.team,
-                modifier = Modifier
-                    .size(40.dp),
-            )
+            Box {
+                CircleTeamLogo(
+                    displayModel = teamResult.team,
+                    modifier = Modifier
+                        .size(40.dp)
+                        .align(Alignment.Center),
+                )
+            }
         },
         headlineText = {
             Text(
@@ -40,7 +45,7 @@ fun SwissStageTeamResultListItem(
         },
         overlineText = {
             Text(
-                text = "Qualified",
+                text = teamResult.overlineText,
             )
         },
         modifier = modifier,

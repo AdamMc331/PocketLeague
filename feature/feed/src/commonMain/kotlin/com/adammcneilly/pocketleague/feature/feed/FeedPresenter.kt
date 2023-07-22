@@ -41,7 +41,7 @@ class FeedPresenter(
 
     private fun observePastWeeksMatches(scope: CoroutineScope) {
         matchRepository
-            .getPastWeeksMatches()
+            .getMatchesInDateRange()
             .onEach { matchList ->
                 val displayModels = matchList.map(Match::toDetailDisplayModel)
 

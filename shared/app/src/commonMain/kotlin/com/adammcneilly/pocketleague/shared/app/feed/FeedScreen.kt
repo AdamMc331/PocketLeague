@@ -13,6 +13,7 @@ import com.slack.circuit.runtime.Screen
 import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
+import kotlinx.datetime.Clock
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -83,11 +84,13 @@ object FeedScreen : Screen {
      */
     object PresenterFactory : Presenter.Factory, KoinComponent {
         private val matchRepository: MatchRepository by inject()
+        private val clock: Clock by inject()
 
         override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
             return when (screen) {
                 FeedScreen -> FeedPresenter(
                     matchRepository = matchRepository,
+                    clock = clock,
                     navigator = navigator,
                 )
 

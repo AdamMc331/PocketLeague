@@ -27,10 +27,16 @@ class SQLDelightMatchService(
             .asFlowSingle(MatchWithEventAndTeams::toMatch)
     }
 
-    override fun getPastWeeksMatches(): Flow<List<Match>> {
+    override fun getMatchesInDateRange(
+        startDateUTC: String,
+        endDateUTC: String,
+    ): Flow<List<Match>> {
         return database
             .localMatchQueries
-            .selectPastWeekMatches()
+            .selectInDateRange(
+                startDateUTC = startDateUTC,
+                endDateUTC = endDateUTC,
+            )
             .asFlowList(MatchWithEventAndTeams::toMatch)
     }
 

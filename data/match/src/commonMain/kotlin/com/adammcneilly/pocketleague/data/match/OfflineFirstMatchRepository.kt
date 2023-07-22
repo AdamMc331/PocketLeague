@@ -37,9 +37,15 @@ class OfflineFirstMatchRepository(
         )
     }
 
-    override fun getPastWeeksMatches(): Flow<List<Match>> {
+    override fun getMatchesInDateRange(
+        startDateUTC: String,
+        endDateUTC: String,
+    ): Flow<List<Match>> {
         return localDataSource
-            .getPastWeeksMatches()
+            .getMatchesInDateRange(
+                startDateUTC = startDateUTC,
+                endDateUTC = endDateUTC,
+            )
             .onStart {
                 fetchAndPersistPastWeeksMatches()
             }

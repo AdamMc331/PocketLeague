@@ -18,7 +18,10 @@ interface MatchRepository {
     /**
      * Returns a reactive stream of [Match] entities that have occured within the last week.
      */
-    fun getPastWeeksMatches(): Flow<List<Match>>
+    fun getMatchesInDateRange(
+        startDateUTC: String,
+        endDateUTC: String,
+    ): Flow<List<Match>>
 
     /**
      * Retrieve a list of match entities that haven't happened yet.

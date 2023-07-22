@@ -21,6 +21,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
+import kotlin.time.Duration.Companion.days
 
 private const val PLACEHOLDER_LIST_COUNT = 3
 
@@ -29,6 +31,7 @@ private const val PLACEHOLDER_LIST_COUNT = 3
  */
 class FeedPresenter(
     private val matchRepository: MatchRepository,
+    private val clock: Clock,
     private val navigator: Navigator,
 ) : Presenter<FeedScreen.State> {
 
@@ -51,7 +54,10 @@ class FeedPresenter(
 
         LaunchedEffect(Unit) {
             matchRepository
-                .getPastWeeksMatches()
+                .getMatchesInDateRange(
+                    startDateUTC = clock.now().minus(7.days).toString(),
+                    endDateUTC = clock.now().toString(),
+                )
                 .map { matchList ->
                     matchList.sortedByDescending(Match::dateUTC)
                 }

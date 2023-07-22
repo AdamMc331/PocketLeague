@@ -16,7 +16,7 @@ class FakeMatchRepository : MatchRepository {
         return flowOf(matchDetailsById[matchId]!!)
     }
 
-    override fun getPastWeeksMatches(): Flow<List<Match>> {
+    override fun getMatchesInDateRange(): Flow<List<Match>> {
         return flowOf(pastWeeksMatches)
     }
 

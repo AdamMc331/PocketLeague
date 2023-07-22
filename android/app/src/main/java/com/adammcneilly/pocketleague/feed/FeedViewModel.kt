@@ -66,7 +66,7 @@ class FeedViewModel(
 
     private fun observePastWeeksMatches() {
         matchRepository
-            .getPastWeeksMatches()
+            .getMatchesInDateRange()
             .map { matchList ->
                 matchList.map(Match::toDetailDisplayModel)
             }

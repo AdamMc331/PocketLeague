@@ -27,11 +27,11 @@ class FakeLocalEventService : LocalEventService {
         return flowOf(upcomingEvents)
     }
 
-    override fun getEvent(eventId: String): Flow<Event> {
+    override fun getEvent(eventId: Event.Id): Flow<Event> {
         return flowOf(eventsById[eventId]!!)
     }
 
-    override fun getEventParticipants(eventId: String): Flow<List<Team>> {
+    override fun getEventParticipants(eventId: Event.Id): Flow<List<Team>> {
         return flowOf(eventParticipantsByEventId[eventId]!!)
     }
 
@@ -43,7 +43,7 @@ class FakeLocalEventService : LocalEventService {
         insertedEvents.addAll(events)
     }
 
-    override suspend fun insertEventParticipants(teams: List<Team>, eventId: String) {
+    override suspend fun insertEventParticipants(teams: List<Team>, eventId: Event.Id) {
         insertedEventParticipantsByEventId[eventId] = teams
     }
 
@@ -54,7 +54,7 @@ class FakeLocalEventService : LocalEventService {
 
     fun assertEventParticipantsInserted(
         teams: List<Team>,
-        eventId: String,
+        eventId: Event.Id,
     ) {
         val insertedTeams = insertedEventParticipantsByEventId[eventId]!!
 

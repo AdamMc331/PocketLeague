@@ -31,7 +31,7 @@ class OfflineFirstEventRepository(
             }
     }
 
-    override fun getEvent(eventId: String): Flow<Event> {
+    override fun getEvent(eventId: Event.Id): Flow<Event> {
         return localEventService
             .getEvent(eventId)
             .onStart {
@@ -49,7 +49,7 @@ class OfflineFirstEventRepository(
             }
     }
 
-    override fun getEventParticipants(eventId: String): Flow<List<Team>> {
+    override fun getEventParticipants(eventId: Event.Id): Flow<List<Team>> {
         return localEventService
             .getEventParticipants(eventId)
             .onStart {

@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.shared.screens.eventstagedetail
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailsByDateDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.CoroutineScope
@@ -13,14 +14,14 @@ import kotlinx.coroutines.flow.onEach
  * Loads the information necessary for the event stage detail screen.
  */
 fun Events.loadEventStageDetail(
-    eventId: String,
+    eventId: Event.Id,
     stageId: String,
 ) = screenCoroutine {
     fetchMatchesForStage(eventId, stageId, it)
 }
 
 private fun Events.fetchMatchesForStage(
-    eventId: String,
+    eventId: Event.Id,
     stageId: String,
     scope: CoroutineScope,
 ) {

@@ -19,7 +19,7 @@ fun TournamentFragment.toEvent(): Event {
     }
 
     return Event(
-        id = this.id.orEmpty(),
+        id = Event.Id(this.id.orEmpty()),
         name = this.name.orEmpty(),
         startDateUTC = startUtc,
         endDateUTC = endUtc,

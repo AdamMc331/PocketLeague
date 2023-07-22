@@ -38,7 +38,7 @@ fun MatchWithEventAndTeams.toMatch(): Match {
 }
 
 private fun MatchWithEventAndTeams.mapEvent() = Event(
-    id = this.localEventId,
+    id = Event.Id(this.localEventId),
     name = this.localEventName,
     startDateUTC = this.localEventStartDateUTC,
     endDateUTC = this.localEventEndDateUTC,

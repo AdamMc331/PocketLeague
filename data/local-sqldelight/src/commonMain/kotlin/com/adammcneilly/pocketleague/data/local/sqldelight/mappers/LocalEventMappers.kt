@@ -8,7 +8,7 @@ import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 
 fun LocalEvent.toEvent(): Event {
     return Event(
-        id = this.id,
+        id = Event.Id(this.id),
         name = this.name,
         startDateUTC = this.startDateUTC,
         endDateUTC = this.endDateUTC,
@@ -33,7 +33,7 @@ fun LocalEvent.toEvent(): Event {
 
 fun Event.toLocalEvent(): LocalEvent {
     return LocalEvent(
-        id = this.id,
+        id = this.id.id,
         name = this.name,
         startDateUTC = this.startDateUTC,
         endDateUTC = this.endDateUTC,

@@ -22,11 +22,11 @@ class FakeRemoteEventService : RemoteEventService {
         return this.upcomingEvents
     }
 
-    override suspend fun getEvent(eventId: String): Result<Event> {
+    override suspend fun getEvent(eventId: Event.Id): Result<Event> {
         return this.eventsById[eventId]!!
     }
 
-    override suspend fun getEventParticipants(eventId: String): Result<List<Team>> {
+    override suspend fun getEventParticipants(eventId: Event.Id): Result<List<Team>> {
         return this.eventParticipantsByEventId[eventId]!!
     }
 

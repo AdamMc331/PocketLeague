@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.match
 
+import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.coroutines.flow.Flow
 
@@ -29,7 +30,7 @@ interface MatchService {
      * Retrieves all matches that occured in the given [eventId] and [stageId].
      */
     fun getMatchesForEventStage(
-        eventId: String,
+        eventId: Event.Id,
         stageId: String,
     ): Flow<List<Match>>
 }

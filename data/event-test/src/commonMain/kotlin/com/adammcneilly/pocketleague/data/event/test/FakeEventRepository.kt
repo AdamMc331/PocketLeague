@@ -24,11 +24,11 @@ class FakeEventRepository : EventRepository {
         return flowOf(upcomingEvents)
     }
 
-    override fun getEvent(eventId: String): Flow<Event> {
+    override fun getEvent(eventId: Event.Id): Flow<Event> {
         return flowOf(eventsById[eventId]!!)
     }
 
-    override fun getEventParticipants(eventId: String): Flow<List<Team>> {
+    override fun getEventParticipants(eventId: Event.Id): Flow<List<Team>> {
         return flowOf(eventParticipantsByEventId[eventId]!!)
     }
 

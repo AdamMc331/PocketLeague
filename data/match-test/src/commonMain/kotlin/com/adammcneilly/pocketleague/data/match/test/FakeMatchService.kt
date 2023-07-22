@@ -32,7 +32,7 @@ class FakeMatchService : MatchService {
     }
 
     override fun getMatchesForEventStage(
-        eventId: String,
+        eventId: Event.Id,
         stageId: String,
     ): Flow<List<Match>> {
         return flowOf(listOf(TestModel.matchBlueWinner))

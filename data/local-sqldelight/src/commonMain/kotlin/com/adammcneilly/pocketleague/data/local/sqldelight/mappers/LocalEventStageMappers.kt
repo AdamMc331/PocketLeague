@@ -1,14 +1,15 @@
 package com.adammcneilly.pocketleague.data.local.sqldelight.mappers
 
+import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.sqldelight.LocalEventStage
 
 fun EventStage.toLocalEventStage(
-    eventId: String,
+    eventId: Event.Id,
 ): LocalEventStage {
     return LocalEventStage(
         id = this.id,
-        eventId = eventId,
+        eventId = eventId.id,
         name = this.name,
         region = this.region,
         startDateUTC = this.startDateUTC,

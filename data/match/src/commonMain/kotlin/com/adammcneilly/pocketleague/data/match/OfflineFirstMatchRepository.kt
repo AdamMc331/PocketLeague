@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.match
 
+import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.startgg.StartGGApolloClient
 import com.adammcneilly.pocketleague.data.startgg.mappers.toMatch
@@ -85,7 +86,7 @@ class OfflineFirstMatchRepository(
      * For the start API, what we call a "stage", they define as an "event", so it's important
      * that the [stageId] is what is passed into this query.
      */
-    override fun getMatchesForEventStage(eventId: String, stageId: String): Flow<List<Match>> {
+    override fun getMatchesForEventStage(eventId: Event.Id, stageId: String): Flow<List<Match>> {
         return flow {
             // First request the total, then request the sets.
             val totalResponse = StartGGApolloClient.query(EventSetsCountQuery(stageId)).execute()
@@ -108,7 +109,7 @@ class OfflineFirstMatchRepository(
 //            }
     }
 
-    private suspend fun fetchAndPersistMatchesForEventStage(eventId: String, stageId: String) {
+    private suspend fun fetchAndPersistMatchesForEventStage(eventId: Event.Id, stageId: String) {
         val remoteResponse = remoteDataSource.getMatchesForEventStage(eventId, stageId)
 
         remoteResponse.fold(

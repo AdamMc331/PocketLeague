@@ -28,7 +28,7 @@ class FakeMatchRepository : MatchRepository {
         return Result.success(Unit)
     }
 
-    override fun getMatchesForEventStage(eventId: String, stageId: String): Flow<List<Match>> {
+    override fun getMatchesForEventStage(eventId: Event.Id, stageId: String): Flow<List<Match>> {
         return flowOf(emptyList())
     }
 

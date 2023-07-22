@@ -87,7 +87,7 @@ class FeedPresenter(
                 }
 
                 is FeedScreen.Event.MatchClicked -> {
-                    navigator.goTo(MatchDetailScreen(event.matchId))
+                    navigator.goTo(MatchDetailScreen(event.matchId.id))
                 }
             }
         }

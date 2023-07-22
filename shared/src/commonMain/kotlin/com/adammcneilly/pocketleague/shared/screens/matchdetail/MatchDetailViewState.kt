@@ -9,7 +9,7 @@ import com.adammcneilly.pocketleague.core.models.Match
  * The UI state for detailed information about a [Match].
  */
 data class MatchDetailViewState(
-    val matchId: String = "",
+    val matchId: Match.Id = Match.Id(""),
     val matchDetail: MatchDetailDisplayModel? = null,
     val games: List<GameDetailDisplayModel> = emptyList(),
 ) : ScreenState {

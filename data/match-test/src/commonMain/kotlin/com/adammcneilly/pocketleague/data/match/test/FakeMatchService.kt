@@ -18,7 +18,7 @@ class FakeMatchService : MatchService {
     )
 
     override suspend fun fetchMatchDetail(
-        matchId: String,
+        matchId: Match.Id,
     ): Result<Match> {
         return matchDetailResponse
     }

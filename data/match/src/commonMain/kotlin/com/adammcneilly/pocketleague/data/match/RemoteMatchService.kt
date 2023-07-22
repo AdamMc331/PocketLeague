@@ -12,7 +12,7 @@ interface RemoteMatchService {
      * Fetches detailed information about a [Match] using the supplied [matchId].
      */
     suspend fun getMatchDetail(
-        matchId: String,
+        matchId: Match.Id,
     ): Result<Match>
 
     /**

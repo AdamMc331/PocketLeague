@@ -13,7 +13,7 @@ interface MatchRepository {
      * Fetches detailed information about a [Match] using the supplied [matchId].
      */
     fun getMatchDetail(
-        matchId: String,
+        matchId: Match.Id,
     ): Flow<Match>
 
     /**

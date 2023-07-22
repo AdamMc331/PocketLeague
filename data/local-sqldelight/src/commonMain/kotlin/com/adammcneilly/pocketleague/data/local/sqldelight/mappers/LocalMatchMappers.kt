@@ -5,9 +5,9 @@ import com.adammcneilly.pocketleague.sqldelight.LocalMatch
 
 fun Match.toLocalMatch(): LocalMatch {
     return LocalMatch(
-        id = this.id,
+        id = this.id.id,
         dateUTC = this.dateUTC,
-        eventId = this.event.id,
+        eventId = this.event.id.id,
         blueTeamId = this.blueTeam.team.id,
         orangeTeamId = this.orangeTeam.team.id,
         blueTeamGameWins = this.blueTeam.score.toLong(),

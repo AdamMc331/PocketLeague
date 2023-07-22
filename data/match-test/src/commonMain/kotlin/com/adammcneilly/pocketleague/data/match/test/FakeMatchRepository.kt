@@ -12,7 +12,7 @@ class FakeMatchRepository : MatchRepository {
 
     lateinit var upcomingMatches: List<Match>
 
-    override fun getMatchDetail(matchId: String): Flow<Match> {
+    override fun getMatchDetail(matchId: Match.Id): Flow<Match> {
         return flowOf(matchDetailsById[matchId]!!)
     }
 

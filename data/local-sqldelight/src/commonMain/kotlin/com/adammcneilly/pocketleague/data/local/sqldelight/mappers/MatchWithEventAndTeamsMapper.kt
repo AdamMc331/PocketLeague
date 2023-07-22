@@ -21,7 +21,7 @@ fun MatchWithEventAndTeams.toMatch(): Match {
     val orangeTeamWinner = orangeTeamGameWins > blueTeamGameWins
 
     return Match(
-        id = this.localMatchId,
+        id = Match.Id(this.localMatchId),
         event = mapEvent(),
         dateUTC = this.localMatchDateUTC,
         blueTeam = mapBlueTeamResult(blueTeamGameWins, blueTeamWinner),

@@ -17,7 +17,7 @@ class OfflineFirstMatchRepository(
     private val remoteDataSource: RemoteMatchService,
 ) : MatchRepository {
 
-    override fun getMatchDetail(matchId: String): Flow<Match> {
+    override fun getMatchDetail(matchId: Match.Id): Flow<Match> {
         return localDataSource
             .getMatchDetail(matchId)
             .onStart {
@@ -25,7 +25,7 @@ class OfflineFirstMatchRepository(
             }
     }
 
-    private suspend fun fetchAndPersistMatchDetail(matchId: String) {
+    private suspend fun fetchAndPersistMatchDetail(matchId: Match.Id) {
         val remoteResponse = remoteDataSource.getMatchDetail(matchId)
 
         remoteResponse.fold(

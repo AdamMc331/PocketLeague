@@ -22,7 +22,7 @@ class OctaneGGMatchService(
 
     constructor() : this(OctaneGGAPIClient, defaultClock())
 
-    override suspend fun getMatchDetail(matchId: String): Result<Match> {
+    override suspend fun getMatchDetail(matchId: Match.Id): Result<Match> {
         return apiClient.getResponse<OctaneGGMatch>(
             endpoint = "$MATCHES_ENDPOINT/$matchId",
         ).map { octaneMatch ->

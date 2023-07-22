@@ -22,6 +22,7 @@ import com.adammcneilly.pocketleague.android.designsystem.matches.RecentMatchesE
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.feature.feed.FeedViewState
 import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
 import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryListItem
@@ -33,7 +34,7 @@ import com.adammcneilly.pocketleague.ui.composables.eventsummary.EventSummaryLis
 fun FeedContent(
     viewState: FeedViewState,
     modifier: Modifier = Modifier,
-    onMatchClicked: (String) -> Unit = {},
+    onMatchClicked: (Match.Id) -> Unit = {},
     onEventClicked: (Event.Id) -> Unit = {},
 ) {
     Box(
@@ -50,7 +51,7 @@ fun FeedContent(
 @Composable
 private fun SuccessContent(
     viewState: FeedViewState,
-    onMatchClicked: (String) -> Unit,
+    onMatchClicked: (Match.Id) -> Unit,
     onEventClicked: (Event.Id) -> Unit,
 ) {
     LazyColumn(
@@ -112,7 +113,7 @@ private fun FeedSectionTitle(
 @Composable
 private fun RecentMatchesSection(
     recentMatches: List<MatchDetailDisplayModel>,
-    onMatchClicked: (String) -> Unit,
+    onMatchClicked: (Match.Id) -> Unit,
 ) {
     if (recentMatches.isNotEmpty()) {
         MatchCarousel(

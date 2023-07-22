@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 
 private const val MATCH_CARD_WIDTH_RATIO = 0.8F
@@ -19,7 +20,7 @@ private const val MATCH_CARD_WIDTH_RATIO = 0.8F
 fun MatchCarousel(
     matches: List<MatchDetailDisplayModel>,
     contentPadding: PaddingValues,
-    onMatchClicked: (String) -> Unit,
+    onMatchClicked: (Match.Id) -> Unit,
 ) {
     LazyRow(
         contentPadding = contentPadding,

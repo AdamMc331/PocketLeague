@@ -30,7 +30,7 @@ fun SetFragment.toMatch(): Match {
     val blueTeamWins = this.games?.size?.minus(orangeTeamWins) ?: 0
 
     return Match(
-        id = this.id.orEmpty(),
+        id = Match.Id(this.id.orEmpty()),
         event = this.event?.tournament?.tournamentFragment?.toEvent()!!,
         dateUTC = startDateUTC,
         blueTeam = blueSlot.toMatchTeamResult(

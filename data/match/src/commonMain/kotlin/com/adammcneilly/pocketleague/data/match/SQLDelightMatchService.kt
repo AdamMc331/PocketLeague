@@ -21,10 +21,10 @@ class SQLDelightMatchService(
     private val database: PocketLeagueDB,
 ) : LocalMatchService {
 
-    override fun getMatchDetail(matchId: String): Flow<Match> {
+    override fun getMatchDetail(matchId: Match.Id): Flow<Match> {
         return database
             .localMatchQueries
-            .selectById(matchId)
+            .selectById(matchId.id)
             .asFlowSingle(MatchWithEventAndTeams::toMatch)
     }
 

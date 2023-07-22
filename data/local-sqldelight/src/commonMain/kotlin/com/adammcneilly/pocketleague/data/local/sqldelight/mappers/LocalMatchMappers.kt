@@ -14,7 +14,7 @@ fun Match.toLocalMatch(): LocalMatch {
         orangeTeamGameWins = this.orangeTeam.score.toLong(),
         formatType = this.format.type,
         formatLength = this.format.length.toLong(),
-        stageId = this.stage.id,
+        stageId = this.stage.id.id,
         blueTeamTotalScore = this.blueTeam.stats?.core?.score?.toLong() ?: 0,
         blueTeamTotalGoals = this.blueTeam.stats?.core?.goals?.toLong() ?: 0,
         blueTeamTotalShots = this.blueTeam.stats?.core?.shots?.toLong() ?: 0,

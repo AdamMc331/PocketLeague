@@ -8,7 +8,7 @@ fun EventStage.toLocalEventStage(
     eventId: Event.Id,
 ): LocalEventStage {
     return LocalEventStage(
-        id = this.id,
+        id = this.id.id,
         eventId = eventId.id,
         name = this.name,
         region = this.region,
@@ -22,7 +22,7 @@ fun EventStage.toLocalEventStage(
 
 fun LocalEventStage.toEventStage(): EventStage {
     return EventStage(
-        id = this.id,
+        id = EventStage.Id(this.id),
         name = this.name,
         region = this.region,
         startDateUTC = this.startDateUTC,

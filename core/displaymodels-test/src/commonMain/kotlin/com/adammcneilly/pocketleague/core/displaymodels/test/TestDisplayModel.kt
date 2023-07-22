@@ -9,6 +9,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.StageRound
 
@@ -122,7 +123,7 @@ object TestDisplayModel {
     )
 
     val eventStageSummary = EventStageSummaryDisplayModel(
-        stageId = "stageId",
+        stageId = EventStage.Id("stageId"),
         name = "Playoffs",
         startDate = "Jan 01, 2000",
         endDate = "Jan 02, 2000",

@@ -62,7 +62,7 @@ private fun MatchWithEventAndTeams.mapFormat() = Format(
 )
 
 private fun MatchWithEventAndTeams.mapEventStage() = EventStage(
-    id = this.localEventStageId,
+    id = EventStage.Id(this.localEventStageId),
     name = this.localEventStageName,
     region = this.localEventStageRegion,
     startDateUTC = this.localEventStageStartDateUTC,

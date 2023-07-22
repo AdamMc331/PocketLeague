@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.match.test
 
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.matchBlueWinner
@@ -34,7 +35,7 @@ class FakeMatchService : MatchService {
 
     override fun getMatchesForEventStage(
         eventId: Event.Id,
-        stageId: String,
+        stageId: EventStage.Id,
     ): Flow<List<Match>> {
         return flowOf(listOf(TestModel.matchBlueWinner))
     }

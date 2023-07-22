@@ -4,6 +4,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailsByDateDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.screens.Events
 import kotlinx.coroutines.CoroutineScope
@@ -15,14 +16,14 @@ import kotlinx.coroutines.flow.onEach
  */
 fun Events.loadEventStageDetail(
     eventId: Event.Id,
-    stageId: String,
+    stageId: EventStage.Id,
 ) = screenCoroutine {
     fetchMatchesForStage(eventId, stageId, it)
 }
 
 private fun Events.fetchMatchesForStage(
     eventId: Event.Id,
-    stageId: String,
+    stageId: EventStage.Id,
     scope: CoroutineScope,
 ) {
     appModule

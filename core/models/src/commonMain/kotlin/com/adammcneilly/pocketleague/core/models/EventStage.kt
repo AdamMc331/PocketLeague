@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.core.models
 
+import kotlin.jvm.JvmInline
+
 /**
  * Defines information about a particular stage within an [Event].
  *
@@ -14,7 +16,7 @@ package com.adammcneilly.pocketleague.core.models
  * @property[location] The location of this stage if it is a [lan].
  */
 data class EventStage(
-    val id: String,
+    val id: Id,
     val name: String,
     val region: String,
     val startDateUTC: String?,
@@ -23,4 +25,13 @@ data class EventStage(
     val qualifier: Boolean,
     val lan: Boolean,
     val location: Location?,
-)
+) {
+
+    /**
+     * Type safety to ensure an Id string is being used for an [EventStage].
+     */
+    @JvmInline
+    value class Id(
+        val id: String,
+    )
+}

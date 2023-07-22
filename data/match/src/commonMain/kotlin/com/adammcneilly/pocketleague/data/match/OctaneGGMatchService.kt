@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.data.match
 
 import com.adammcneilly.pocketleague.core.datetime.defaultClock
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatch
@@ -63,7 +64,7 @@ class OctaneGGMatchService(
 
     override suspend fun getMatchesForEventStage(
         eventId: Event.Id,
-        stageId: String,
+        stageId: EventStage.Id,
     ): Result<List<Match>> {
         return apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,

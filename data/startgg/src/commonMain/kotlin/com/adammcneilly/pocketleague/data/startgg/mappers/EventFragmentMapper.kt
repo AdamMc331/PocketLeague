@@ -13,7 +13,7 @@ fun EventFragment.toEventStage(): EventStage {
     }
 
     return EventStage(
-        id = this.id.orEmpty(),
+        id = EventStage.Id(this.id.orEmpty()),
         name = this.name.orEmpty(),
         region = "",
         startDateUTC = startDateUtc,

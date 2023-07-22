@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.match
 
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 
 /**
@@ -30,6 +31,6 @@ interface RemoteMatchService {
      */
     suspend fun getMatchesForEventStage(
         eventId: Event.Id,
-        stageId: String,
+        stageId: EventStage.Id,
     ): Result<List<Match>>
 }

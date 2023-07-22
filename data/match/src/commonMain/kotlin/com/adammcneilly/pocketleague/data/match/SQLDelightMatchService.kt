@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.data.match
 
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalEvent
@@ -42,10 +43,10 @@ class SQLDelightMatchService(
             .asFlowList(MatchWithEventAndTeams::toMatch)
     }
 
-    override fun getMatchesForEventStage(eventId: Event.Id, stageId: String): Flow<List<Match>> {
+    override fun getMatchesForEventStage(eventId: Event.Id, stageId: EventStage.Id): Flow<List<Match>> {
         return database
             .localMatchQueries
-            .selectMatchesByEventStage(eventId.id, stageId)
+            .selectMatchesByEventStage(eventId.id, stageId.id)
             .asFlowList(MatchWithEventAndTeams::toMatch)
     }
 

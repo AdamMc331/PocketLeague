@@ -36,7 +36,7 @@ data class OctaneGGStage(
  */
 fun OctaneGGStage?.toEventStage(): EventStage {
     return EventStage(
-        id = this?.id?.toString().orEmpty(),
+        id = EventStage.Id(this?.id?.toString().orEmpty()),
         name = this?.name.orEmpty(),
         region = this?.region.orEmpty(),
         startDateUTC = this?.startDateUTC,

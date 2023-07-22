@@ -4,7 +4,7 @@ import com.adammcneilly.pocketleague.core.models.EventStage
 
 val TestModel.eventStage: EventStage
     get() = EventStage(
-        id = "eventStageId",
+        id = EventStage.Id("eventStageId"),
         name = "eventStageName",
         startDateUTC = "eventStageStartDate",
         endDateUTC = "eventStageEndDate",

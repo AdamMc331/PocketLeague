@@ -13,13 +13,14 @@ import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
-import com.adammcneilly.pocketleague.data.match.RemoteMatchService
+import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 private const val PLACEHOLDER_LIST_COUNT = 3
 
@@ -27,10 +28,9 @@ private const val PLACEHOLDER_LIST_COUNT = 3
  * State management container for the [FeedScreen].
  */
 class FeedPresenter(
+    private val matchRepository: MatchRepository,
     private val navigator: Navigator,
-) : Presenter<FeedScreen.State>, KoinComponent {
-
-    private val matchService: RemoteMatchService by inject()
+) : Presenter<FeedScreen.State> {
 
     @Composable
     override fun present(): FeedScreen.State {
@@ -50,14 +50,18 @@ class FeedPresenter(
         }
 
         LaunchedEffect(Unit) {
-            launch {
-                matches = matchService
-                    .getPastWeeksMatches()
-                    .getOrNull()
-                    ?.sortedByDescending(Match::dateUTC)
-                    ?.map { it.toDetailDisplayModel() }
-                    .orEmpty()
-            }
+            matchRepository
+                .getPastWeeksMatches()
+                .map { matchList ->
+                    matchList.sortedByDescending(Match::dateUTC)
+                }
+                .map { matchList ->
+                    matchList.map(Match::toDetailDisplayModel)
+                }
+                .onEach { matchList ->
+                    matches = matchList
+                }
+                .launchIn(this)
 
             launch {
                 ongoingEvents = OctaneGGEventService()

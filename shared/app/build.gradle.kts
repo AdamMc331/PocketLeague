@@ -17,6 +17,7 @@ kotlin {
                 implementation(project(":core:models"))
                 implementation(project(":data:event"))
                 implementation(project(":data:game"))
+                implementation(project(":data:local-sqldelight"))
                 implementation(project(":data:match"))
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))

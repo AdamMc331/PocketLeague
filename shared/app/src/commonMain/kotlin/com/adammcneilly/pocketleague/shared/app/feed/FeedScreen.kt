@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.shared.app.feed
 
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.adammcneilly.pocketleague.shared.app.CommonParcelize
 import com.adammcneilly.pocketleague.shared.ui.feed.FeedContent
 import com.slack.circuit.runtime.CircuitContext
@@ -12,6 +13,8 @@ import com.slack.circuit.runtime.Screen
 import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 /**
  * Initial screen of the app that shows a feed of recent matches,
@@ -78,10 +81,16 @@ object FeedScreen : Screen {
     /**
      * Factory to create a [FeedPresenter] for the [FeedScreen].
      */
-    object PresenterFactory : Presenter.Factory {
+    object PresenterFactory : Presenter.Factory, KoinComponent {
+        private val matchRepository: MatchRepository by inject()
+
         override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
             return when (screen) {
-                FeedScreen -> FeedPresenter(navigator)
+                FeedScreen -> FeedPresenter(
+                    matchRepository = matchRepository,
+                    navigator = navigator,
+                )
+
                 else -> null
             }
         }

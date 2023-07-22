@@ -13,10 +13,10 @@ class FakeEventRepository : EventRepository {
 
     var upcomingEvents: List<Event> = listOf(TestModel.event)
     var ongoingEvents: List<Event> = listOf(TestModel.event)
-    val eventsById: MutableMap<String, Event> = mutableMapOf(
+    val eventsById: MutableMap<Event.Id, Event> = mutableMapOf(
         TestModel.event.id to TestModel.event,
     )
-    val eventParticipantsByEventId: MutableMap<String, List<Team>> = mutableMapOf(
+    val eventParticipantsByEventId: MutableMap<Event.Id, List<Team>> = mutableMapOf(
         TestModel.event.id to listOf(TestModel.team),
     )
 

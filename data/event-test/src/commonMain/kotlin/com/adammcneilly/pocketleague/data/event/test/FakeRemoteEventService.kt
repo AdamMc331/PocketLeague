@@ -11,10 +11,10 @@ class FakeRemoteEventService : RemoteEventService {
 
     var upcomingEvents: Result<List<Event>> = Result.success(listOf(TestModel.event))
     var ongoingEvents: Result<List<Event>> = Result.success(listOf(TestModel.event))
-    val eventsById: MutableMap<String, Result<Event>> = mutableMapOf(
+    val eventsById: MutableMap<Event.Id, Result<Event>> = mutableMapOf(
         TestModel.event.id to Result.success(TestModel.event),
     )
-    val eventParticipantsByEventId: MutableMap<String, Result<List<Team>>> = mutableMapOf(
+    val eventParticipantsByEventId: MutableMap<Event.Id, Result<List<Team>>> = mutableMapOf(
         TestModel.event.id to Result.success(listOf(TestModel.team)),
     )
 

@@ -1,12 +1,13 @@
 package com.adammcneilly.pocketleague.data.match.test
 
+import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class FakeMatchRepository : MatchRepository {
-    val matchDetailsById: MutableMap<String, Match> = mutableMapOf()
+    val matchDetailsById: MutableMap<Match.Id, Match> = mutableMapOf()
 
     lateinit var pastWeeksMatches: List<Match>
 

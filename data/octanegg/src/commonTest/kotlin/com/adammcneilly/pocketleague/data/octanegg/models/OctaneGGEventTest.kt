@@ -27,7 +27,7 @@ class OctaneGGEventTest {
         )
 
         val expectedEvent = Event(
-            id = "eventId",
+            id = Event.Id("eventId"),
             endDateUTC = "endDate",
             imageURL = "image",
             mode = "1",
@@ -53,7 +53,7 @@ class OctaneGGEventTest {
         val octaneEvent = OctaneGGEvent()
 
         val expectedEvent = Event(
-            id = "",
+            id = Event.Id(""),
             name = "",
             startDateUTC = null,
             endDateUTC = null,

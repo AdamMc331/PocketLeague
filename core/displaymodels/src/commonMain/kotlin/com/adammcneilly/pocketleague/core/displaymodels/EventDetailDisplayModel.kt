@@ -13,7 +13,7 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
  * Displays detailed information about an [Event] in a user friendly fashion.
  */
 data class EventDetailDisplayModel(
-    val eventId: String,
+    val eventId: Event.Id,
     val name: String,
     val startDate: String,
     val endDate: String,
@@ -29,7 +29,7 @@ data class EventDetailDisplayModel(
 ) {
     companion object {
         val placeholder = EventDetailDisplayModel(
-            eventId = "",
+            eventId = Event.Id(""),
             name = "",
             startDate = "",
             endDate = "",

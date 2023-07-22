@@ -5,7 +5,7 @@ import com.adammcneilly.pocketleague.core.models.StageRound
 
 val TestModel.matchBlueWinner: Match
     get() = Match(
-        id = "1234",
+        id = Match.Id("1234"),
         event = TestModel.event,
         dateUTC = null,
         blueTeam = TestModel.matchTeamResultWinner,

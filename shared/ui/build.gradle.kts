@@ -12,6 +12,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:displaymodels"))
+                implementation(project(":core:models"))
                 implementation(project(":shared:design-system"))
                 implementation(compose.foundation)
                 implementation(compose.material3)

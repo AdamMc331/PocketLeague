@@ -30,7 +30,7 @@ class LocalEventMappersTest {
         val domainEvent = localEvent.toEvent()
 
         with(domainEvent) {
-            assertThat(this.id).isEqualTo("1234")
+            assertThat(this.id.id).isEqualTo("1234")
             assertThat(this.name).isEqualTo("name")
             assertThat(this.startDateUTC).isEqualTo("startDateUTC")
             assertThat(this.endDateUTC).isEqualTo("endDateUTC")
@@ -63,7 +63,7 @@ class LocalEventMappersTest {
         val domainEvent = localEvent.toEvent()
 
         with(domainEvent) {
-            assertThat(this.id).isEqualTo("1234")
+            assertThat(this.id.id).isEqualTo("1234")
             assertThat(this.name).isEqualTo("name")
             assertThat(this.startDateUTC).isEqualTo("startDateUTC")
             assertThat(this.endDateUTC).isEqualTo("endDateUTC")
@@ -84,7 +84,7 @@ class LocalEventMappersTest {
         val localEvent = domainEvent.toLocalEvent()
 
         with(localEvent) {
-            assertThat(this.id).isEqualTo(domainEvent.id)
+            assertThat(this.id).isEqualTo(domainEvent.id.id)
             assertThat(this.name).isEqualTo(domainEvent.name)
             assertThat(this.startDateUTC).isEqualTo(domainEvent.startDateUTC)
             assertThat(this.endDateUTC).isEqualTo(domainEvent.endDateUTC)

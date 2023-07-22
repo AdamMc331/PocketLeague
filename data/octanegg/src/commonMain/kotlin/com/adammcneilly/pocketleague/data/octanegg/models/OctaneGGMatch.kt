@@ -35,7 +35,7 @@ data class OctaneGGMatch(
  */
 fun OctaneGGMatch.toMatch(): Match {
     return Match(
-        id = this.id.orEmpty(),
+        id = Match.Id(this.id.orEmpty()),
         event = this.event.toEvent(),
         dateUTC = this.dateUTC,
         blueTeam = this.blue.toMatchTeamResult(),

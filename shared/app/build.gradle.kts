@@ -12,16 +12,20 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:datetime"))
                 implementation(project(":core:displaymodels"))
                 implementation(project(":core:models"))
                 implementation(project(":data:event"))
                 implementation(project(":data:game"))
                 implementation(project(":data:match"))
+                implementation(project(":data:octanegg"))
+                implementation(project(":data:remote"))
                 implementation(project(":shared:design-system"))
                 implementation(project(":shared:ui"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(libs.koin.core)
                 implementation(libs.slack.circuit)
             }
         }

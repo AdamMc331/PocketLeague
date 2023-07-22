@@ -13,11 +13,13 @@ import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
-import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
+import com.adammcneilly.pocketleague.data.match.RemoteMatchService
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 private const val PLACEHOLDER_LIST_COUNT = 3
 
@@ -26,7 +28,9 @@ private const val PLACEHOLDER_LIST_COUNT = 3
  */
 class FeedPresenter(
     private val navigator: Navigator,
-) : Presenter<FeedScreen.State> {
+) : Presenter<FeedScreen.State>, KoinComponent {
+
+    private val matchService: RemoteMatchService by inject()
 
     @Composable
     override fun present(): FeedScreen.State {
@@ -47,7 +51,7 @@ class FeedPresenter(
 
         LaunchedEffect(Unit) {
             launch {
-                matches = OctaneGGMatchService()
+                matches = matchService
                     .getPastWeeksMatches()
                     .getOrNull()
                     ?.sortedByDescending(Match::dateUTC)

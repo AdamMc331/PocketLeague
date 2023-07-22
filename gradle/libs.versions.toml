@@ -19,6 +19,7 @@ jsoup = "1.15.4"
 junit = "4.13.2"
 kamel = "0.6.1"
 kmpCompose = "1.4.1"
+koin = "3.2.0"
 kotlin = "1.8.20"
 kotlinxCoroutines = "1.7.2"
 kotlinxDatetime = "0.4.0"
@@ -82,6 +83,8 @@ google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kamel = { module = "media.kamel:kamel-image", version.ref = "kamel" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }

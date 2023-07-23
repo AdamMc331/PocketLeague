@@ -13,10 +13,13 @@ import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
-import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
+import com.adammcneilly.pocketleague.data.match.GetPastWeeksMatchesUseCase
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 private const val PLACEHOLDER_LIST_COUNT = 3
@@ -25,6 +28,7 @@ private const val PLACEHOLDER_LIST_COUNT = 3
  * State management container for the [FeedScreen].
  */
 class FeedPresenter(
+    private val getPastWeeksMatchesUseCase: GetPastWeeksMatchesUseCase,
     private val navigator: Navigator,
 ) : Presenter<FeedScreen.State> {
 
@@ -46,14 +50,15 @@ class FeedPresenter(
         }
 
         LaunchedEffect(Unit) {
-            launch {
-                matches = OctaneGGMatchService()
-                    .getPastWeeksMatches()
-                    .getOrNull()
-                    ?.sortedByDescending(Match::dateUTC)
-                    ?.map { it.toDetailDisplayModel() }
-                    .orEmpty()
-            }
+            getPastWeeksMatchesUseCase
+                .getPastWeeksMatches()
+                .map { matchList ->
+                    matchList.map(Match::toDetailDisplayModel)
+                }
+                .onEach { matchList ->
+                    matches = matchList
+                }
+                .launchIn(this)
 
             launch {
                 ongoingEvents = OctaneGGEventService()

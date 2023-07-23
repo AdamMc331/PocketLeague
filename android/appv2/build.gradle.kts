@@ -53,23 +53,27 @@ android {
 }
 
 dependencies {
+    implementation(platform(libs.compose.bom))
 
     implementation(project(":shared:app"))
     implementation(project(":shared:design-system"))
     implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.koin.android)
+    implementation(libs.ui.graphics)
+
     testImplementation(libs.junit)
+
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.test.junit)
-    debugImplementation(libs.compose.ui.tooling)
+
     debugImplementation(libs.compose.ui.test.manifest)
+    debugImplementation(libs.compose.ui.tooling)
 }

@@ -16,12 +16,12 @@ interface RemoteEventService {
     /**
      * Retrieves an [Event] by it's unique [eventId].
      */
-    suspend fun getEvent(eventId: String): Result<Event>
+    suspend fun getEvent(eventId: Event.Id): Result<Event>
 
     /**
      * Observe the list of [Team] entities that participated in the given [eventId].
      */
-    suspend fun getEventParticipants(eventId: String): Result<List<Team>>
+    suspend fun getEventParticipants(eventId: Event.Id): Result<List<Team>>
 
     /**
      * Observe a list of [Event] entities that are happening now.

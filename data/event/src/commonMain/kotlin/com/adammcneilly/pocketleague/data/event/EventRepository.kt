@@ -17,12 +17,12 @@ interface EventRepository {
     /**
      * Retrieves an [Event] by it's unique [eventId].
      */
-    fun getEvent(eventId: String): Flow<Event>
+    fun getEvent(eventId: Event.Id): Flow<Event>
 
     /**
      * Observe the list of [Team] entities that participated in the given [eventId].
      */
-    fun getEventParticipants(eventId: String): Flow<List<Team>>
+    fun getEventParticipants(eventId: Event.Id): Flow<List<Team>>
 
     /**
      * Observe a list of [Event] entities that are happening now.

@@ -41,6 +41,8 @@ import coil.request.SuccessResult
 import com.adammcneilly.pocketleague.android.designsystem.eventstages.EventStageListCard
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
+import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.feature.event.detail.EventDetailViewState
 import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
@@ -57,7 +59,7 @@ private const val EVENT_IMAGE_ASPECT_RATIO = 3.0F
 @Composable
 fun EventDetailContent(
     viewState: EventDetailViewState,
-    onStageClicked: (String, String) -> Unit,
+    onStageClicked: (Event.Id, EventStage.Id) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     // If display model is null, that means we had an error

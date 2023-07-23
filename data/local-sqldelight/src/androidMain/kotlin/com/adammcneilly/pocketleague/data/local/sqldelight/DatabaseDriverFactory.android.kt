@@ -17,7 +17,6 @@ actual class DatabaseDriverFactory(private val context: Context) {
             schema = PocketLeagueDB.Schema,
             context = context,
             name = "pocketleague.db",
-//            factory = RequerySQLiteOpenHelperFactory(),
         )
     }
 }

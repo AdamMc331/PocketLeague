@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.core.models
 
+import kotlin.jvm.JvmInline
+
 /**
  * Defines any Rocket League event that can occur to allow a number of teams or players
  * to compete.
@@ -18,7 +20,7 @@ package com.adammcneilly.pocketleague.core.models
  * @property[prize] The amount of money awarded to the winners of the event.
  */
 data class Event(
-    val id: String,
+    val id: Id,
     val name: String,
     val startDateUTC: String?,
     val endDateUTC: String?,
@@ -29,4 +31,14 @@ data class Event(
     val region: EventRegion,
     val lan: Boolean,
     val prize: Prize?,
-)
+) {
+
+    /**
+     * This value class ensures we can have type safety anywhere we plan to use a
+     * string identifier for an event.
+     */
+    @JvmInline
+    value class Id(
+        val id: String,
+    )
+}

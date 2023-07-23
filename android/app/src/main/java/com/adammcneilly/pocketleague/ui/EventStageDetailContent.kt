@@ -4,6 +4,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.screens.eventstagedetail.EventStageDetailViewState
 import com.adammcneilly.tournament.bracket.displaymodels.BracketDisplayModel
 import com.adammcneilly.tournament.bracket.displaymodels.BracketMatchDisplayModel
@@ -18,7 +19,7 @@ import com.adammcneilly.tournament.bracket.ui.MultiEliminationBracket
 @Composable
 fun EventStageDetailContent(
     viewState: EventStageDetailViewState,
-    onMatchClicked: (String) -> Unit,
+    onMatchClicked: (Match.Id) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val brackets = viewState.getBracket()

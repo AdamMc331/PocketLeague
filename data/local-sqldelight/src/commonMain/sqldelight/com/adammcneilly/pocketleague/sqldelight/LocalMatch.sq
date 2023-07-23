@@ -146,10 +146,10 @@ JOIN localTeam AS blueTeam ON localMatch.blueTeamId = blueTeam.id
 JOIN localTeam AS orangeTeam ON localMatch.orangeTeamId = orangeTeam.id
 JOIN localEventStage ON localMatch.eventId = localEventStage.eventId AND localMatch.stageId = localEventStage.id;
 
-selectPastWeekMatches:
+selectInDateRange:
 SELECT *
 FROM matchWithEventAndTeams
-WHERE localMatchDateUTC <= DATE() AND localMatchDateUTC >= DATE('now', '-7 day')
+WHERE localMatchDateUTC <= :endDateUTC AND localMatchDateUTC >= :startDateUTC
 ORDER BY localMatchDateUTC DESC;
 
 selectMatchesByEventStage:

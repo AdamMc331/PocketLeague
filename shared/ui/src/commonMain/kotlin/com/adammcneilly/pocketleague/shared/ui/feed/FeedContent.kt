@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
 import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
@@ -23,8 +24,7 @@ fun FeedContent(
     recentMatches: List<MatchDetailDisplayModel>,
     ongoingEvents: List<EventGroupDisplayModel>,
     upcomingEvents: List<EventGroupDisplayModel>,
-    onMatchClicked: (String) -> Unit,
-    onEventClicked: (String) -> Unit,
+    onMatchClicked: (Match.Id) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -77,7 +77,7 @@ private fun LazyListScope.happeningNowHeader() {
 
 private fun LazyListScope.recentMatchesCarousel(
     recentMatches: List<MatchDetailDisplayModel>,
-    onMatchClicked: (String) -> Unit,
+    onMatchClicked: (Match.Id) -> Unit,
 ) {
     item {
         MatchCarousel(

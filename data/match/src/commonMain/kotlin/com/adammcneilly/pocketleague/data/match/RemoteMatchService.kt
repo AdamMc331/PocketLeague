@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.data.match
 
+import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 
 /**
@@ -11,7 +13,7 @@ interface RemoteMatchService {
      * Fetches detailed information about a [Match] using the supplied [matchId].
      */
     suspend fun getMatchDetail(
-        matchId: String,
+        matchId: Match.Id,
     ): Result<Match>
 
     /**
@@ -28,7 +30,7 @@ interface RemoteMatchService {
      * Retrieves all matches that occurred in the given [eventId] and [stageId].
      */
     suspend fun getMatchesForEventStage(
-        eventId: String,
-        stageId: String,
+        eventId: Event.Id,
+        stageId: EventStage.Id,
     ): Result<List<Match>>
 }

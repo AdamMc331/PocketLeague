@@ -41,15 +41,15 @@ class SQLDelightEventService(
             .asFlowList(LocalEvent::toEvent)
     }
 
-    override fun getEvent(eventId: String): Flow<Event> {
+    override fun getEvent(eventId: Event.Id): Flow<Event> {
         val eventFlow = database
             .localEventQueries
-            .selectById(eventId)
+            .selectById(eventId.id)
             .asFlowSingle(LocalEvent::toEvent)
 
         val stagesFlow = database
             .localEventStageQueries
-            .selectAllForEvent(eventId)
+            .selectAllForEvent(eventId.id)
             .asFlowList(LocalEventStage::toEventStage)
 
         return eventFlow
@@ -60,10 +60,10 @@ class SQLDelightEventService(
             }
     }
 
-    override fun getEventParticipants(eventId: String): Flow<List<Team>> {
+    override fun getEventParticipants(eventId: Event.Id): Flow<List<Team>> {
         return database
             .localEventParticipantQueries
-            .selectParticipantsForEvent(eventId)
+            .selectParticipantsForEvent(eventId.id)
             .asFlowList(LocalTeam::toTeam)
     }
 
@@ -91,7 +91,7 @@ class SQLDelightEventService(
         }
     }
 
-    override suspend fun insertEventParticipants(teams: List<Team>, eventId: String) {
+    override suspend fun insertEventParticipants(teams: List<Team>, eventId: Event.Id) {
         teams.forEach { team ->
             database
                 .localTeamQueries
@@ -101,7 +101,7 @@ class SQLDelightEventService(
                 .localEventParticipantQueries
                 .insertEventParticipant(
                     LocalEventParticipant(
-                        eventId = eventId,
+                        eventId = eventId.id,
                         teamId = team.id,
                     ),
                 )

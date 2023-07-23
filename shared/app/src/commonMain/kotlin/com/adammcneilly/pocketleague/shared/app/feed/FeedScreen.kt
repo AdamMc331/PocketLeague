@@ -3,6 +3,10 @@ package com.adammcneilly.pocketleague.shared.app.feed
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.data.event.EventRepository
+import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.data.match.GetPastWeeksMatchesUseCase
+import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.adammcneilly.pocketleague.shared.app.CommonParcelize
 import com.adammcneilly.pocketleague.shared.ui.feed.FeedContent
 import com.slack.circuit.runtime.CircuitContext
@@ -13,6 +17,9 @@ import com.slack.circuit.runtime.Screen
 import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
+import kotlinx.datetime.Clock
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 /**
  * Initial screen of the app that shows a feed of recent matches,
@@ -39,14 +46,14 @@ object FeedScreen : Screen {
          * User tapped on an event item.
          */
         data class EventClicked(
-            val eventId: String,
+            val eventId: com.adammcneilly.pocketleague.core.models.Event.Id,
         ) : Event
 
         /**
          * User tapped on a match item.
          */
         data class MatchClicked(
-            val matchId: String,
+            val matchId: Match.Id,
         ) : Event
     }
 
@@ -83,15 +90,21 @@ object FeedScreen : Screen {
     /**
      * Factory to create a [FeedPresenter] for the [FeedScreen].
      */
-    class PresenterFactory(
-        private val eventRepository: EventRepository,
-    ) : Presenter.Factory {
+    object PresenterFactory : Presenter.Factory, KoinComponent {
+        private val matchRepository: MatchRepository by inject()
+        private val clock: Clock by inject()
+        private val getPastWeeksMatchesUseCase = GetPastWeeksMatchesUseCase(
+            matchRepository = matchRepository,
+            clock = clock,
+        )
+
         override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
             return when (screen) {
                 FeedScreen -> FeedPresenter(
+                    getPastWeeksMatchesUseCase = getPastWeeksMatchesUseCase,
                     navigator = navigator,
-                    eventRepository = eventRepository,
                 )
+
                 else -> null
             }
         }

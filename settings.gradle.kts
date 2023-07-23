@@ -8,7 +8,7 @@ pluginManagement {
 
 rootProject.name = "PocketLeague"
 
-include(":android:appv2")
+include(":android:app")
 include(":android:widgets")
 
 include(":core:currency")

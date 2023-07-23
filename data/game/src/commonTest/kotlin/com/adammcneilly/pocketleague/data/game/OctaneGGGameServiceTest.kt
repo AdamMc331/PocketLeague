@@ -12,7 +12,7 @@ class OctaneGGGameServiceTest {
 
     @Test
     fun fetchGamesForMatch() = runTest {
-        val mockDataPath = "${getEnv("POCKETLEAGUE_ROOT")!!}/data/game/src/commonTest/resources/game_list.json".toPath()
+        val mockDataPath = "${getEnv("POCKETLEAGUE_ROOT")!!}/src/commonTest/resources/game_list.json".toPath()
         println("PATH WAS: $mockDataPath")
 
         val mockJson = FileSystem.SYSTEM.read(mockDataPath) {

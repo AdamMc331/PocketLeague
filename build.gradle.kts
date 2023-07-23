@@ -40,21 +40,6 @@ allprojects {
         maven(url = "https://jitpack.io")
         maven(url = "https://packages.jetbrains.team/maven/p/ij/intellij-dependencies")
     }
-
-    // Following this: https://publicobject.com/2023/04/16/read-a-project-file-in-a-kotlin-multiplatform-test/
-    tasks.withType<KotlinJvmTest>().configureEach {
-        environment("POCKETLEAGUE_ROOT", rootDir)
-    }
-
-    tasks.withType<KotlinNativeTest>().configureEach {
-        environment("SIMCTL_CHILD_POCKETLEAGUE_ROOT", rootDir)
-        environment("POCKETLEAGUE_ROOT", rootDir)
-    }
-
-    tasks.withType<KotlinJsTest>().configureEach {
-        environment("POCKETLEAGUE_ROOT", rootDir.toString())
-    }
-
 }
 
 subprojects {
@@ -69,6 +54,20 @@ subprojects {
                 targetCompatibility = "17"
             }
         }
+    }
+
+    // Following this: https://publicobject.com/2023/04/16/read-a-project-file-in-a-kotlin-multiplatform-test/
+    tasks.withType<KotlinJvmTest>().configureEach {
+        environment("POCKETLEAGUE_ROOT", projectDir)
+    }
+
+    tasks.withType<KotlinNativeTest>().configureEach {
+        environment("SIMCTL_CHILD_POCKETLEAGUE_ROOT", projectDir)
+        environment("POCKETLEAGUE_ROOT", projectDir)
+    }
+
+    tasks.withType<KotlinJsTest>().configureEach {
+        environment("POCKETLEAGUE_ROOT", projectDir.toString())
     }
 }
 

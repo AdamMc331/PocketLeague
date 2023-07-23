@@ -10,7 +10,7 @@ private const val STAGE_DATE_FORMAT = "MMM dd, yyyy"
  * Displays summary information about an [EventStage] in a user friendly fashion.
  */
 data class EventStageSummaryDisplayModel(
-    val stageId: String,
+    val stageId: EventStage.Id,
     val name: String,
     val startDate: String,
     val endDate: String,
@@ -21,7 +21,7 @@ data class EventStageSummaryDisplayModel(
 
     companion object {
         val placeholder = EventStageSummaryDisplayModel(
-            stageId = "",
+            stageId = EventStage.Id(""),
             name = "",
             startDate = "",
             endDate = "",

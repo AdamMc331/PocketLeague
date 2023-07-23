@@ -21,7 +21,7 @@ fun MatchWithEventAndTeams.toMatch(): Match {
     val orangeTeamWinner = orangeTeamGameWins > blueTeamGameWins
 
     return Match(
-        id = this.localMatchId,
+        id = Match.Id(this.localMatchId),
         event = mapEvent(),
         dateUTC = this.localMatchDateUTC,
         blueTeam = mapBlueTeamResult(blueTeamGameWins, blueTeamWinner),
@@ -38,7 +38,7 @@ fun MatchWithEventAndTeams.toMatch(): Match {
 }
 
 private fun MatchWithEventAndTeams.mapEvent() = Event(
-    id = this.localEventId,
+    id = Event.Id(this.localEventId),
     name = this.localEventName,
     startDateUTC = this.localEventStartDateUTC,
     endDateUTC = this.localEventEndDateUTC,
@@ -62,7 +62,7 @@ private fun MatchWithEventAndTeams.mapFormat() = Format(
 )
 
 private fun MatchWithEventAndTeams.mapEventStage() = EventStage(
-    id = this.localEventStageId,
+    id = EventStage.Id(this.localEventStageId),
     name = this.localEventStageName,
     region = this.localEventStageRegion,
     startDateUTC = this.localEventStageStartDateUTC,

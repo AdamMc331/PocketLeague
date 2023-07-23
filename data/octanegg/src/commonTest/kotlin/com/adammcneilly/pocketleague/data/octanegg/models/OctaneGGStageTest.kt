@@ -23,7 +23,7 @@ class OctaneGGStageTest {
         )
 
         val expectedStage = EventStage(
-            id = "123",
+            id = EventStage.Id("123"),
             name = "name",
             region = "NA",
             startDateUTC = "startDate",
@@ -49,7 +49,7 @@ class OctaneGGStageTest {
         val octaneStage = OctaneGGStage()
 
         val expectedStage = EventStage(
-            id = "",
+            id = EventStage.Id(""),
             name = "",
             region = "",
             startDateUTC = null,

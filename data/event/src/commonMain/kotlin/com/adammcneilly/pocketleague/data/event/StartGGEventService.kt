@@ -43,9 +43,9 @@ class StartGGEventService(
         }
     }
 
-    override suspend fun getEvent(eventId: String): Result<Event> {
+    override suspend fun getEvent(eventId: Event.Id): Result<Event> {
         val eventQuery = TournamentDetailQuery(
-            id = Optional.present(eventId),
+            id = Optional.present(eventId.id),
         )
 
         val response = apiClient.query(eventQuery).execute()
@@ -59,9 +59,9 @@ class StartGGEventService(
         }
     }
 
-    override suspend fun getEventParticipants(eventId: String): Result<List<Team>> {
+    override suspend fun getEventParticipants(eventId: Event.Id): Result<List<Team>> {
         val eventQuery = TournamentParticipantsQuery(
-            id = Optional.present(eventId),
+            id = Optional.present(eventId.id),
         )
 
         val response = apiClient.query(eventQuery).execute()

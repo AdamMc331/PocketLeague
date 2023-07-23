@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.data.match
 
+import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.startgg.StartGGApolloClient
 import com.adammcneilly.pocketleague.data.startgg.mappers.toMatch
@@ -16,7 +18,7 @@ class OfflineFirstMatchRepository(
     private val remoteDataSource: RemoteMatchService,
 ) : MatchRepository {
 
-    override fun getMatchDetail(matchId: String): Flow<Match> {
+    override fun getMatchDetail(matchId: Match.Id): Flow<Match> {
         return localDataSource
             .getMatchDetail(matchId)
             .onStart {
@@ -24,7 +26,7 @@ class OfflineFirstMatchRepository(
             }
     }
 
-    private suspend fun fetchAndPersistMatchDetail(matchId: String) {
+    private suspend fun fetchAndPersistMatchDetail(matchId: Match.Id) {
         val remoteResponse = remoteDataSource.getMatchDetail(matchId)
 
         remoteResponse.fold(
@@ -91,14 +93,14 @@ class OfflineFirstMatchRepository(
      * For the start API, what we call a "stage", they define as an "event", so it's important
      * that the [stageId] is what is passed into this query.
      */
-    override fun getMatchesForEventStage(eventId: String, stageId: String): Flow<List<Match>> {
+    override fun getMatchesForEventStage(eventId: Event.Id, stageId: EventStage.Id): Flow<List<Match>> {
         return flow {
             // First request the total, then request the sets.
-            val totalResponse = StartGGApolloClient.query(EventSetsCountQuery(stageId)).execute()
+            val totalResponse = StartGGApolloClient.query(EventSetsCountQuery(stageId.id)).execute()
 
             val total = totalResponse.data?.event?.sets?.pageInfo?.total ?: 0
 
-            val response = StartGGApolloClient.query(EventSetsQuery(stageId, total)).execute()
+            val response = StartGGApolloClient.query(EventSetsQuery(stageId.id, total)).execute()
 
             val matches = response.data?.event?.sets?.nodes?.mapNotNull {
                 it?.setFragment?.toMatch()
@@ -114,7 +116,7 @@ class OfflineFirstMatchRepository(
 //            }
     }
 
-    private suspend fun fetchAndPersistMatchesForEventStage(eventId: String, stageId: String) {
+    private suspend fun fetchAndPersistMatchesForEventStage(eventId: Event.Id, stageId: EventStage.Id) {
         val remoteResponse = remoteDataSource.getMatchesForEventStage(eventId, stageId)
 
         remoteResponse.fold(

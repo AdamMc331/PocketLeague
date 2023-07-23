@@ -24,7 +24,7 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
  * @property[location] If available, the city/state/country for this LAN event. ex: Boston, USA.
  */
 data class EventSummaryDisplayModel(
-    val eventId: String,
+    val eventId: Event.Id,
     val imageURL: ThemedImageURL,
     val name: String,
     @Deprecated("Supply date range directly.") val startDate: String = "",
@@ -38,7 +38,7 @@ data class EventSummaryDisplayModel(
 
     companion object {
         val placeholder = EventSummaryDisplayModel(
-            eventId = "",
+            eventId = Event.Id(""),
             imageURL = ThemedImageURL(),
             startDate = "",
             endDate = "",

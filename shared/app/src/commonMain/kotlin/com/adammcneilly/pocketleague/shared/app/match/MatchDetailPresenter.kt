@@ -10,6 +10,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Game
+import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.game.MatchGamesRequest
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
@@ -19,7 +20,7 @@ import com.slack.circuit.runtime.presenter.Presenter
  * State management container for the [MatchDetailScreen].
  */
 class MatchDetailPresenter(
-    private val matchId: String,
+    private val matchId: Match.Id,
 ) : Presenter<MatchDetailScreen.State> {
 
     @Composable

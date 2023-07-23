@@ -49,7 +49,7 @@ fun OctaneGGEvent?.toEvent(): Event {
     val isLan = stages.any(EventStage::lan)
 
     return Event(
-        id = this?.id.orEmpty(),
+        id = Event.Id(this?.id.orEmpty()),
         name = this?.name.orEmpty(),
         startDateUTC = this?.startDateUTC,
         endDateUTC = this?.endDateUTC,

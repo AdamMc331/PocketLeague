@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.data.match.test
 
+import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.matchBlueWinner
@@ -18,7 +20,7 @@ class FakeMatchService : MatchService {
     )
 
     override suspend fun fetchMatchDetail(
-        matchId: String,
+        matchId: Match.Id,
     ): Result<Match> {
         return matchDetailResponse
     }
@@ -32,8 +34,8 @@ class FakeMatchService : MatchService {
     }
 
     override fun getMatchesForEventStage(
-        eventId: String,
-        stageId: String,
+        eventId: Event.Id,
+        stageId: EventStage.Id,
     ): Flow<List<Match>> {
         return flowOf(listOf(TestModel.matchBlueWinner))
     }

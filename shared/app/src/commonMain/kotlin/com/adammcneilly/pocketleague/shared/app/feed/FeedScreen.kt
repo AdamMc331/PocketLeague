@@ -2,6 +2,8 @@ package com.adammcneilly.pocketleague.shared.app.feed
 
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.adammcneilly.pocketleague.shared.app.CommonParcelize
 import com.adammcneilly.pocketleague.shared.ui.feed.FeedContent
@@ -42,14 +44,14 @@ object FeedScreen : Screen {
          * User tapped on an event item.
          */
         data class EventClicked(
-            val eventId: String,
+            val eventId: com.adammcneilly.pocketleague.core.models.Event.Id,
         ) : Event
 
         /**
          * User tapped on a match item.
          */
         data class MatchClicked(
-            val matchId: String,
+            val matchId: Match.Id,
         ) : Event
     }
 

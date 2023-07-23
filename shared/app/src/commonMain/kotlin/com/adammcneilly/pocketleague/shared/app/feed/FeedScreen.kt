@@ -4,6 +4,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.data.match.GetPastWeeksMatchesUseCase
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.adammcneilly.pocketleague.shared.app.CommonParcelize
 import com.adammcneilly.pocketleague.shared.ui.feed.FeedContent
@@ -87,12 +88,15 @@ object FeedScreen : Screen {
     object PresenterFactory : Presenter.Factory, KoinComponent {
         private val matchRepository: MatchRepository by inject()
         private val clock: Clock by inject()
+        private val getPastWeeksMatchesUseCase = GetPastWeeksMatchesUseCase(
+            matchRepository = matchRepository,
+            clock = clock,
+        )
 
         override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
             return when (screen) {
                 FeedScreen -> FeedPresenter(
-                    matchRepository = matchRepository,
-                    clock = clock,
+                    getPastWeeksMatchesUseCase = getPastWeeksMatchesUseCase,
                     navigator = navigator,
                 )
 

@@ -1,0 +1,4074 @@
+{
+  "games": [
+    {
+      "_id": "6391e88df73a2c40baef6e47",
+      "number": 1,
+      "match": {
+        "_id": "638e412df73a2c40baef5e89",
+        "slug": "5e89-karmine-corp-vs-james-cheese",
+        "event": {
+          "_id": "632ef4e7da9d7ca1c7bb467c",
+          "slug": "467c-rlcs-2022-23-fall-major",
+          "name": "RLCS 2022-23 Fall Major",
+          "region": "INT",
+          "mode": 3,
+          "tier": "S",
+          "image": "https://griffon.octane.gg/events/rlcs-2022-23.png",
+          "groups": [
+            "rlcs",
+            "rlcs2223",
+            "rlcs2223fall"
+          ]
+        },
+        "stage": {
+          "_id": 0,
+          "name": "Swiss Stage",
+          "lan": true
+        },
+        "date": "2022-12-08T13:30:00Z",
+        "format": {
+          "type": "best",
+          "length": 5
+        },
+        "blue": {
+          "team": {
+            "team": {
+              "_id": "60fbc5b887f814e9fbffdcbd",
+              "slug": "dcbd-karmine-corp",
+              "name": "Karmine Corp",
+              "region": "EU",
+              "image": "https://griffon.octane.gg/teams/Karmine_Corp.png",
+              "relevant": true
+            }
+          }
+        },
+        "orange": {
+          "team": {
+            "team": {
+              "_id": "6328af8ec437fde7e02dbd34",
+              "slug": "bd34-james-cheese",
+              "name": "James Cheese",
+              "region": "ASIA",
+              "relevant": true
+            }
+          }
+        },
+        "number": 1
+      },
+      "map": {
+        "id": "eurostadium_night_p",
+        "name": "Mannfield (Night)"
+      },
+      "duration": 300,
+      "date": "2022-12-08T13:37:02Z",
+      "blue": {
+        "winner": true,
+        "matchWinner": true,
+        "team": {
+          "team": {
+            "_id": "60fbc5b887f814e9fbffdcbd",
+            "slug": "dcbd-karmine-corp",
+            "name": "Karmine Corp",
+            "region": "EU",
+            "image": "https://griffon.octane.gg/teams/Karmine_Corp.png",
+            "relevant": true
+          },
+          "stats": {
+            "ball": {
+              "possessionTime": 160.34,
+              "timeInSide": 154.48
+            },
+            "core": {
+              "shots": 4,
+              "goals": 1,
+              "saves": 7,
+              "assists": 0,
+              "score": 1034,
+              "shootingPercentage": 25
+            },
+            "boost": {
+              "bpm": 1288,
+              "bcpm": 1304.47225,
+              "avgAmount": 136.67000000000002,
+              "amountCollected": 6840,
+              "amountStolen": 1255,
+              "amountCollectedBig": 4590,
+              "amountStolenBig": 617,
+              "amountCollectedSmall": 2250,
+              "amountStolenSmall": 638,
+              "countCollectedBig": 53,
+              "countStolenBig": 7,
+              "countCollectedSmall": 199,
+              "countStolenSmall": 57,
+              "amountOverfill": 659,
+              "amountOverfillStolen": 90,
+              "amountUsedWhileSupersonic": 1110,
+              "timeZeroBoost": 158.18,
+              "timeFullBoost": 81.45,
+              "timeBoost0To25": 384.49,
+              "timeBoost25To50": 197.61,
+              "timeBoost50To75": 148.4,
+              "timeBoost75To100": 209.82
+            },
+            "movement": {
+              "totalDistance": 1485425,
+              "timeSupersonicSpeed": 196.55,
+              "timeBoostSpeed": 371.28999999999996,
+              "timeSlowSpeed": 387.43999999999994,
+              "timeGround": 481.64,
+              "timeLowAir": 398.71000000000004,
+              "timeHighAir": 74.93,
+              "timePowerslide": 18.71,
+              "countPowerslide": 165
+            },
+            "positioning": {
+              "timeDefensiveThird": 427.13,
+              "timeNeutralThird": 317.73,
+              "timeOffensiveThird": 210.41,
+              "timeDefensiveHalf": 587.06,
+              "timeOffensiveHalf": 368.23,
+              "timeBehindBall": 715.08,
+              "timeInfrontBall": 240.20000000000002
+            },
+            "demo": {
+              "inflicted": 3,
+              "taken": 2
+            }
+          }
+        },
+        "players": [
+          {
+            "player": {
+              "_id": "5f3d8fdd95f40596eae24142",
+              "slug": "4142-exotiik",
+              "tag": "ExoTiiK",
+              "country": "fr"
+            },
+            "stats": {
+              "core": {
+                "shots": 4,
+                "goals": 1,
+                "saves": 3,
+                "assists": 0,
+                "score": 511,
+                "shootingPercentage": 25
+              },
+              "boost": {
+                "bpm": 405,
+                "bcpm": 404.88226,
+                "avgAmount": 41.31,
+                "amountCollected": 2123,
+                "amountStolen": 399,
+                "amountCollectedBig": 1440,
+                "amountStolenBig": 187,
+                "amountCollectedSmall": 683,
+                "amountStolenSmall": 212,
+                "countCollectedBig": 16,
+                "countStolenBig": 2,
+                "countCollectedSmall": 58,
+                "countStolenSmall": 18,
+                "amountOverfill": 169,
+                "amountOverfillStolen": 12,
+                "amountUsedWhileSupersonic": 318,
+                "timeZeroBoost": 59.13,
+                "percentZeroBoost": 18.794699,
+                "timeFullBoost": 22.56,
+                "percentFullBoost": 7.170783,
+                "timeBoost0To25": 132.05,
+                "timeBoost25To50": 88.79,
+                "timeBoost50To75": 37.3,
+                "timeBoost75To100": 50.63,
+                "percentBoost0To25": 42.76646,
+                "percentBoost25To50": 28.756033,
+                "percentBoost50To75": 12.08019,
+                "percentBoost75To100": 16.39732
+              },
+              "movement": {
+                "avgSpeed": 1589,
+                "totalDistance": 492643,
+                "timeSupersonicSpeed": 64.13,
+                "timeBoostSpeed": 124.43,
+                "timeSlowSpeed": 128.85,
+                "timeGround": 165.6,
+                "timeLowAir": 131.28,
+                "timeHighAir": 20.53,
+                "timePowerslide": 5.47,
+                "countPowerslide": 38,
+                "avgPowerslideDuration": 0.14,
+                "avgSpeedPercentage": 69.08696,
+                "percentSlowSpeed": 40.59419,
+                "percentBoostSpeed": 39.201664,
+                "percentSupersonicSpeed": 20.204151,
+                "percentGround": 52.172268,
+                "percentLowAir": 41.359756,
+                "percentHighAir": 6.467975
+              },
+              "positioning": {
+                "avgDistanceToBall": 3109,
+                "avgDistanceToBallPossession": 3000,
+                "avgDistanceToBallNoPossession": 3272,
+                "avgDistanceToMates": 3861,
+                "timeDefensiveThird": 135.14,
+                "timeNeutralThird": 101.19,
+                "timeOffensiveThird": 81.08,
+                "timeDefensiveHalf": 181.28,
+                "timeOffensiveHalf": 136.14,
+                "timeBehindBall": 227.36,
+                "timeInfrontBall": 90.06,
+                "timeMostBack": 103.6,
+                "timeMostForward": 122.2,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 88.7,
+                "timeFarthestFromBall": 111.8,
+                "percentDefensiveThird": 42.575848,
+                "percentOffensiveThird": 25.544249,
+                "percentNeutralThird": 31.879902,
+                "percentDefensiveHalf": 57.110455,
+                "percentOffensiveHalf": 42.88955,
+                "percentBehindBall": 71.6275,
+                "percentInfrontBall": 28.372505,
+                "percentMostBack": 32.92966,
+                "percentMostForward": 38.841743,
+                "percentClosestToBall": 28.193638,
+                "percentFarthestFromBall": 35.53606
+              },
+              "demo": {
+                "inflicted": 2,
+                "taken": 1
+              }
+            },
+            "advanced": {
+              "goalParticipation": 100,
+              "rating": 1.2782490464606986,
+              "mvp": true
+            }
+          },
+          {
+            "player": {
+              "_id": "5f5ae840c6cbf591c568a477",
+              "slug": "a477-itachi",
+              "tag": "itachi",
+              "country": "ma"
+            },
+            "stats": {
+              "core": {
+                "shots": 0,
+                "goals": 0,
+                "saves": 3,
+                "assists": 0,
+                "score": 332,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 408,
+                "bcpm": 406.59866,
+                "avgAmount": 38.92,
+                "amountCollected": 2132,
+                "amountStolen": 178,
+                "amountCollectedBig": 1325,
+                "amountStolenBig": 0,
+                "amountCollectedSmall": 807,
+                "amountStolenSmall": 178,
+                "countCollectedBig": 15,
+                "countStolenBig": 0,
+                "countCollectedSmall": 69,
+                "countStolenSmall": 15,
+                "amountOverfill": 82,
+                "amountOverfillStolen": 0,
+                "amountUsedWhileSupersonic": 332,
+                "timeZeroBoost": 75.79,
+                "percentZeroBoost": 24.090145,
+                "timeFullBoost": 15.36,
+                "percentFullBoost": 4.8822355,
+                "timeBoost0To25": 165.78,
+                "timeBoost25To50": 49.89,
+                "timeBoost50To75": 49.36,
+                "timeBoost75To100": 47,
+                "percentBoost0To25": 53.129505,
+                "percentBoost25To50": 15.988848,
+                "percentBoost50To75": 15.818992,
+                "percentBoost75To100": 15.0626545
+              },
+              "movement": {
+                "avgSpeed": 1471,
+                "totalDistance": 454005,
+                "timeSupersonicSpeed": 43.5,
+                "timeBoostSpeed": 114.22,
+                "timeSlowSpeed": 159.7,
+                "timeGround": 150.04,
+                "timeLowAir": 143.68,
+                "timeHighAir": 23.7,
+                "timePowerslide": 7.17,
+                "countPowerslide": 73,
+                "avgPowerslideDuration": 0.1,
+                "avgSpeedPercentage": 63.95652,
+                "percentSlowSpeed": 50.311893,
+                "percentBoostSpeed": 35.98387,
+                "percentSupersonicSpeed": 13.704241,
+                "percentGround": 47.268604,
+                "percentLowAir": 45.26495,
+                "percentHighAir": 7.466449
+              },
+              "positioning": {
+                "avgDistanceToBall": 2734,
+                "avgDistanceToBallPossession": 2801,
+                "avgDistanceToBallNoPossession": 2674,
+                "avgDistanceToMates": 3694,
+                "timeDefensiveThird": 161.71,
+                "timeNeutralThird": 112.69,
+                "timeOffensiveThird": 43.02,
+                "timeDefensiveHalf": 224.04,
+                "timeOffensiveHalf": 93.38,
+                "timeBehindBall": 261.92,
+                "timeInfrontBall": 55.49,
+                "timeMostBack": 114.9,
+                "timeMostForward": 65.2,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 127.3,
+                "timeFarthestFromBall": 83.3,
+                "percentDefensiveThird": 50.94512,
+                "percentOffensiveThird": 13.5530205,
+                "percentNeutralThird": 35.501858,
+                "percentDefensiveHalf": 70.581566,
+                "percentOffensiveHalf": 29.418438,
+                "percentBehindBall": 82.51788,
+                "percentInfrontBall": 17.48212,
+                "percentMostBack": 36.521408,
+                "percentMostForward": 20.72407,
+                "percentClosestToBall": 40.462795,
+                "percentFarthestFromBall": 26.477226
+              },
+              "demo": {
+                "inflicted": 0,
+                "taken": 1
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.39722513622109495
+            }
+          },
+          {
+            "player": {
+              "_id": "5faeab91e9ce4ed313ea9570",
+              "slug": "9570-vatira",
+              "tag": "Vatira",
+              "country": "fr"
+            },
+            "stats": {
+              "core": {
+                "shots": 0,
+                "goals": 0,
+                "saves": 1,
+                "assists": 0,
+                "score": 191,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 475,
+                "bcpm": 492.99133,
+                "avgAmount": 56.44,
+                "amountCollected": 2585,
+                "amountStolen": 678,
+                "amountCollectedBig": 1825,
+                "amountStolenBig": 430,
+                "amountCollectedSmall": 760,
+                "amountStolenSmall": 248,
+                "countCollectedBig": 22,
+                "countStolenBig": 5,
+                "countCollectedSmall": 72,
+                "countStolenSmall": 24,
+                "amountOverfill": 408,
+                "amountOverfillStolen": 78,
+                "amountUsedWhileSupersonic": 460,
+                "timeZeroBoost": 23.26,
+                "percentZeroBoost": 7.393281,
+                "timeFullBoost": 43.53,
+                "percentFullBoost": 13.836179,
+                "timeBoost0To25": 86.66,
+                "timeBoost25To50": 58.93,
+                "timeBoost50To75": 61.74,
+                "timeBoost75To100": 112.19,
+                "percentBoost0To25": 27.121931,
+                "percentBoost25To50": 18.443289,
+                "percentBoost50To75": 19.322733,
+                "percentBoost75To100": 35.11204
+              },
+              "movement": {
+                "avgSpeed": 1722,
+                "totalDistance": 538777,
+                "timeSupersonicSpeed": 88.92,
+                "timeBoostSpeed": 132.64,
+                "timeSlowSpeed": 98.89,
+                "timeGround": 166,
+                "timeLowAir": 123.75,
+                "timeHighAir": 30.7,
+                "timePowerslide": 6.07,
+                "countPowerslide": 54,
+                "avgPowerslideDuration": 0.11,
+                "avgSpeedPercentage": 74.86957,
+                "percentSlowSpeed": 30.859728,
+                "percentBoostSpeed": 41.391792,
+                "percentSupersonicSpeed": 27.748478,
+                "percentGround": 51.80215,
+                "percentLowAir": 38.61757,
+                "percentHighAir": 9.580277
+              },
+              "positioning": {
+                "avgDistanceToBall": 2980,
+                "avgDistanceToBallPossession": 2537,
+                "avgDistanceToBallNoPossession": 3447,
+                "avgDistanceToMates": 3936,
+                "timeDefensiveThird": 130.28,
+                "timeNeutralThird": 103.85,
+                "timeOffensiveThird": 86.31,
+                "timeDefensiveHalf": 181.74,
+                "timeOffensiveHalf": 138.71,
+                "timeBehindBall": 225.8,
+                "timeInfrontBall": 94.65,
+                "timeMostBack": 97.5,
+                "timeMostForward": 125.7,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 97.1,
+                "timeFarthestFromBall": 120.9,
+                "percentDefensiveThird": 40.656597,
+                "percentOffensiveThird": 26.93484,
+                "percentNeutralThird": 32.40856,
+                "percentDefensiveHalf": 56.713993,
+                "percentOffensiveHalf": 43.286007,
+                "percentBehindBall": 70.46341,
+                "percentInfrontBall": 29.536589,
+                "percentMostBack": 30.990751,
+                "percentMostForward": 39.95423,
+                "percentClosestToBall": 30.863611,
+                "percentFarthestFromBall": 38.42853
+              },
+              "demo": {
+                "inflicted": 1,
+                "taken": 0
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.16343857676028375
+            }
+          }
+        ]
+      },
+      "orange": {
+        "team": {
+          "team": {
+            "_id": "6328af8ec437fde7e02dbd34",
+            "slug": "bd34-james-cheese",
+            "name": "James Cheese",
+            "region": "ASIA",
+            "relevant": true
+          },
+          "stats": {
+            "ball": {
+              "possessionTime": 143.05,
+              "timeInSide": 160.98
+            },
+            "core": {
+              "shots": 8,
+              "goals": 0,
+              "saves": 3,
+              "assists": 0,
+              "score": 706,
+              "shootingPercentage": 0
+            },
+            "boost": {
+              "bpm": 1308,
+              "bcpm": 1283.6845899999998,
+              "avgAmount": 145.95,
+              "amountCollected": 6731,
+              "amountStolen": 1491,
+              "amountCollectedBig": 4475,
+              "amountStolenBig": 725,
+              "amountCollectedSmall": 2256,
+              "amountStolenSmall": 766,
+              "countCollectedBig": 58,
+              "countStolenBig": 11,
+              "countCollectedSmall": 188,
+              "countStolenSmall": 66,
+              "amountOverfill": 1288,
+              "amountOverfillStolen": 298,
+              "amountUsedWhileSupersonic": 1176,
+              "timeZeroBoost": 120.22,
+              "timeFullBoost": 93.61,
+              "timeBoost0To25": 327.38,
+              "timeBoost25To50": 220.57,
+              "timeBoost50To75": 158.64,
+              "timeBoost75To100": 237.92999999999998
+            },
+            "movement": {
+              "totalDistance": 1488712,
+              "timeSupersonicSpeed": 178.06,
+              "timeBoostSpeed": 395.18000000000006,
+              "timeSlowSpeed": 378.97,
+              "timeGround": 539.2900000000001,
+              "timeLowAir": 341.83,
+              "timeHighAir": 71.09,
+              "timePowerslide": 23.64,
+              "countPowerslide": 245
+            },
+            "positioning": {
+              "timeDefensiveThird": 470.72,
+              "timeNeutralThird": 289.3,
+              "timeOffensiveThird": 192.21,
+              "timeDefensiveHalf": 619.44,
+              "timeOffensiveHalf": 332.78,
+              "timeBehindBall": 659.56,
+              "timeInfrontBall": 292.66
+            },
+            "demo": {
+              "inflicted": 2,
+              "taken": 3
+            }
+          }
+        },
+        "players": [
+          {
+            "player": {
+              "_id": "5f3d8fdd95f40596eae23e36",
+              "slug": "3e36-kamii",
+              "tag": "Kamii",
+              "country": "nz"
+            },
+            "stats": {
+              "core": {
+                "shots": 3,
+                "goals": 0,
+                "saves": 3,
+                "assists": 0,
+                "score": 350,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 492,
+                "bcpm": 478.11578,
+                "avgAmount": 48.55,
+                "amountCollected": 2507,
+                "amountStolen": 438,
+                "amountCollectedBig": 1666,
+                "amountStolenBig": 103,
+                "amountCollectedSmall": 841,
+                "amountStolenSmall": 335,
+                "countCollectedBig": 21,
+                "countStolenBig": 2,
+                "countCollectedSmall": 68,
+                "countStolenSmall": 28,
+                "amountOverfill": 448,
+                "amountOverfillStolen": 98,
+                "amountUsedWhileSupersonic": 522,
+                "timeZeroBoost": 30.4,
+                "percentZeroBoost": 9.662758,
+                "timeFullBoost": 40.89,
+                "percentFullBoost": 12.997045,
+                "timeBoost0To25": 97.13,
+                "timeBoost25To50": 85.52,
+                "timeBoost50To75": 59.65,
+                "timeBoost75To100": 70.52,
+                "percentBoost0To25": 31.049807,
+                "percentBoost25To50": 27.338408,
+                "percentBoost50To75": 19.068476,
+                "percentBoost75To100": 22.543316
+              },
+              "movement": {
+                "avgSpeed": 1659,
+                "totalDistance": 509485,
+                "timeSupersonicSpeed": 70.59,
+                "timeBoostSpeed": 133.24,
+                "timeSlowSpeed": 110.45,
+                "timeGround": 185.77,
+                "timeLowAir": 106.88,
+                "timeHighAir": 21.63,
+                "timePowerslide": 8.47,
+                "countPowerslide": 78,
+                "avgPowerslideDuration": 0.11,
+                "avgSpeedPercentage": 72.13043,
+                "percentSlowSpeed": 35.14382,
+                "percentBoostSpeed": 42.39532,
+                "percentSupersonicSpeed": 22.460861,
+                "percentGround": 59.10971,
+                "percentLowAir": 34.007893,
+                "percentHighAir": 6.8823977
+              },
+              "positioning": {
+                "avgDistanceToBall": 3153,
+                "avgDistanceToBallPossession": 2944,
+                "avgDistanceToBallNoPossession": 3362,
+                "avgDistanceToMates": 4053,
+                "timeDefensiveThird": 146.44,
+                "timeNeutralThird": 105.09,
+                "timeOffensiveThird": 62.76,
+                "timeDefensiveHalf": 193.17,
+                "timeOffensiveHalf": 121.11,
+                "timeBehindBall": 215.11,
+                "timeInfrontBall": 99.18,
+                "timeMostBack": 116.4,
+                "timeMostForward": 106.7,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 87.1,
+                "timeFarthestFromBall": 128.4,
+                "percentDefensiveThird": 46.593914,
+                "percentOffensiveThird": 19.96882,
+                "percentNeutralThird": 33.437275,
+                "percentDefensiveHalf": 61.4643,
+                "percentOffensiveHalf": 38.5357,
+                "percentBehindBall": 68.44315,
+                "percentInfrontBall": 31.55684,
+                "percentMostBack": 36.99819,
+                "percentMostForward": 33.91501,
+                "percentClosestToBall": 27.685072,
+                "percentFarthestFromBall": 40.81243
+              },
+              "demo": {
+                "inflicted": 1,
+                "taken": 2
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.5619370853526383
+            }
+          },
+          {
+            "player": {
+              "_id": "5f5ae820c6cbf591c568a3f7",
+              "slug": "a3f7-virtuoso",
+              "tag": "virtuoso",
+              "country": "ie"
+            },
+            "stats": {
+              "core": {
+                "shots": 1,
+                "goals": 0,
+                "saves": 0,
+                "assists": 0,
+                "score": 188,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 437,
+                "bcpm": 430.05627,
+                "avgAmount": 53.27,
+                "amountCollected": 2255,
+                "amountStolen": 785,
+                "amountCollectedBig": 1362,
+                "amountStolenBig": 512,
+                "amountCollectedSmall": 893,
+                "amountStolenSmall": 273,
+                "countCollectedBig": 20,
+                "countStolenBig": 7,
+                "countCollectedSmall": 71,
+                "countStolenSmall": 23,
+                "amountOverfill": 658,
+                "amountOverfillStolen": 190,
+                "amountUsedWhileSupersonic": 509,
+                "timeZeroBoost": 19.73,
+                "percentZeroBoost": 6.271257,
+                "timeFullBoost": 36.09,
+                "percentFullBoost": 11.471346,
+                "timeBoost0To25": 85.14,
+                "timeBoost25To50": 79.39,
+                "timeBoost50To75": 55.96,
+                "timeBoost75To100": 98.19,
+                "percentBoost0To25": 26.716455,
+                "percentBoost25To50": 24.912138,
+                "percentBoost50To75": 17.559935,
+                "percentBoost75To100": 30.811474
+              },
+              "movement": {
+                "avgSpeed": 1645,
+                "totalDistance": 514792,
+                "timeSupersonicSpeed": 68.84,
+                "timeBoostSpeed": 134.35,
+                "timeSlowSpeed": 117.33,
+                "timeGround": 195.44,
+                "timeLowAir": 106.91,
+                "timeHighAir": 18.16,
+                "timePowerslide": 6.17,
+                "countPowerslide": 58,
+                "avgPowerslideDuration": 0.11,
+                "avgSpeedPercentage": 71.521736,
+                "percentSlowSpeed": 36.606136,
+                "percentBoostSpeed": 41.91626,
+                "percentSupersonicSpeed": 21.477596,
+                "percentGround": 60.977814,
+                "percentLowAir": 33.356213,
+                "percentHighAir": 5.66597
+              },
+              "positioning": {
+                "avgDistanceToBall": 2698,
+                "avgDistanceToBallPossession": 2526,
+                "avgDistanceToBallNoPossession": 2860,
+                "avgDistanceToMates": 3935,
+                "timeDefensiveThird": 159.74,
+                "timeNeutralThird": 81.89,
+                "timeOffensiveThird": 78.89,
+                "timeDefensiveHalf": 205.47,
+                "timeOffensiveHalf": 115.05,
+                "timeBehindBall": 209.57,
+                "timeInfrontBall": 110.94,
+                "timeMostBack": 105.6,
+                "timeMostForward": 120.9,
+                "goalsAgainstWhileLastDefender": 1,
+                "timeClosestToBall": 117.9,
+                "timeFarthestFromBall": 95.1,
+                "percentDefensiveThird": 49.837765,
+                "percentOffensiveThird": 24.613127,
+                "percentNeutralThird": 25.549107,
+                "percentDefensiveHalf": 64.1052,
+                "percentOffensiveHalf": 35.894794,
+                "percentBehindBall": 65.38641,
+                "percentInfrontBall": 34.613583,
+                "percentMostBack": 33.56537,
+                "percentMostForward": 38.42853,
+                "percentClosestToBall": 37.47497,
+                "percentFarthestFromBall": 30.227903
+              },
+              "demo": {
+                "inflicted": 1,
+                "taken": 0
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.12520476362009528
+            }
+          },
+          {
+            "player": {
+              "_id": "5f3d8fdd95f40596eae23ef5",
+              "slug": "3ef5-realize",
+              "tag": "ReaLize",
+              "country": "jp"
+            },
+            "stats": {
+              "core": {
+                "shots": 4,
+                "goals": 0,
+                "saves": 0,
+                "assists": 0,
+                "score": 168,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 379,
+                "bcpm": 375.51254,
+                "avgAmount": 44.13,
+                "amountCollected": 1969,
+                "amountStolen": 268,
+                "amountCollectedBig": 1447,
+                "amountStolenBig": 110,
+                "amountCollectedSmall": 522,
+                "amountStolenSmall": 158,
+                "countCollectedBig": 17,
+                "countStolenBig": 2,
+                "countCollectedSmall": 49,
+                "countStolenSmall": 15,
+                "amountOverfill": 182,
+                "amountOverfillStolen": 10,
+                "amountUsedWhileSupersonic": 145,
+                "timeZeroBoost": 70.09,
+                "percentZeroBoost": 22.278376,
+                "timeFullBoost": 16.63,
+                "percentFullBoost": 5.285909,
+                "timeBoost0To25": 145.11,
+                "timeBoost25To50": 55.66,
+                "timeBoost50To75": 43.03,
+                "timeBoost75To100": 69.22,
+                "percentBoost0To25": 46.35806,
+                "percentBoost25To50": 17.78161,
+                "percentBoost50To75": 13.746724,
+                "percentBoost75To100": 22.113602
+              },
+              "movement": {
+                "avgSpeed": 1500,
+                "totalDistance": 464435,
+                "timeSupersonicSpeed": 38.63,
+                "timeBoostSpeed": 127.59,
+                "timeSlowSpeed": 151.19,
+                "timeGround": 158.08,
+                "timeLowAir": 128.04,
+                "timeHighAir": 31.3,
+                "timePowerslide": 9,
+                "countPowerslide": 109,
+                "avgPowerslideDuration": 0.08,
+                "avgSpeedPercentage": 65.21739,
+                "percentSlowSpeed": 47.6324,
+                "percentBoostSpeed": 40.19722,
+                "percentSupersonicSpeed": 12.170379,
+                "percentGround": 49.80153,
+                "percentLowAir": 40.337723,
+                "percentHighAir": 9.860753
+              },
+              "positioning": {
+                "avgDistanceToBall": 2907,
+                "avgDistanceToBallPossession": 2634,
+                "avgDistanceToBallNoPossession": 3180,
+                "avgDistanceToMates": 3862,
+                "timeDefensiveThird": 164.54,
+                "timeNeutralThird": 102.32,
+                "timeOffensiveThird": 50.56,
+                "timeDefensiveHalf": 220.8,
+                "timeOffensiveHalf": 96.62,
+                "timeBehindBall": 234.88,
+                "timeInfrontBall": 82.54,
+                "timeMostBack": 100,
+                "timeMostForward": 85.4,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 108,
+                "timeFarthestFromBall": 98.4,
+                "percentDefensiveThird": 51.836685,
+                "percentOffensiveThird": 15.928424,
+                "percentNeutralThird": 32.234894,
+                "percentDefensiveHalf": 69.56083,
+                "percentOffensiveHalf": 30.439165,
+                "percentBehindBall": 73.9966,
+                "percentInfrontBall": 26.0034,
+                "percentMostBack": 31.785387,
+                "percentMostForward": 27.14472,
+                "percentClosestToBall": 34.328217,
+                "percentFarthestFromBall": 31.276821
+              },
+              "demo": {
+                "inflicted": 0,
+                "taken": 1
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.2752385277961585
+            }
+          }
+        ]
+      },
+      "ballchasing": "4ac97d74-e868-49f8-91c6-a81bdd519b9a"
+    },
+    {
+      "_id": "6391eb04f73a2c40baef703a",
+      "number": 2,
+      "match": {
+        "_id": "638e412df73a2c40baef5e89",
+        "slug": "5e89-karmine-corp-vs-james-cheese",
+        "event": {
+          "_id": "632ef4e7da9d7ca1c7bb467c",
+          "slug": "467c-rlcs-2022-23-fall-major",
+          "name": "RLCS 2022-23 Fall Major",
+          "region": "INT",
+          "mode": 3,
+          "tier": "S",
+          "image": "https://griffon.octane.gg/events/rlcs-2022-23.png",
+          "groups": [
+            "rlcs",
+            "rlcs2223",
+            "rlcs2223fall"
+          ]
+        },
+        "stage": {
+          "_id": 0,
+          "name": "Swiss Stage",
+          "lan": true
+        },
+        "date": "2022-12-08T13:30:00Z",
+        "format": {
+          "type": "best",
+          "length": 5
+        },
+        "blue": {
+          "score": 1,
+          "winner": true,
+          "team": {
+            "team": {
+              "_id": "60fbc5b887f814e9fbffdcbd",
+              "slug": "dcbd-karmine-corp",
+              "name": "Karmine Corp",
+              "region": "EU",
+              "image": "https://griffon.octane.gg/teams/Karmine_Corp.png",
+              "relevant": true
+            },
+            "stats": {
+              "core": {
+                "shots": 4,
+                "goals": 1,
+                "saves": 7,
+                "assists": 0,
+                "score": 1034,
+                "shootingPercentage": 25
+              },
+              "boost": {
+                "bpm": 1288,
+                "bcpm": 1304.47225,
+                "avgAmount": 136.67000000000002,
+                "amountCollected": 6840,
+                "amountStolen": 1255,
+                "amountCollectedBig": 4590,
+                "amountStolenBig": 617,
+                "amountCollectedSmall": 2250,
+                "amountStolenSmall": 638,
+                "countCollectedBig": 53,
+                "countStolenBig": 7,
+                "countCollectedSmall": 199,
+                "countStolenSmall": 57,
+                "amountOverfill": 659,
+                "amountOverfillStolen": 90,
+                "amountUsedWhileSupersonic": 1110,
+                "timeZeroBoost": 158.18,
+                "timeFullBoost": 81.45,
+                "timeBoost0To25": 384.49,
+                "timeBoost25To50": 197.61,
+                "timeBoost50To75": 148.4,
+                "timeBoost75To100": 209.82
+              },
+              "movement": {
+                "totalDistance": 1485425,
+                "timeSupersonicSpeed": 196.55,
+                "timeBoostSpeed": 371.28999999999996,
+                "timeSlowSpeed": 387.43999999999994,
+                "timeGround": 481.64,
+                "timeLowAir": 398.71000000000004,
+                "timeHighAir": 74.93,
+                "timePowerslide": 18.71,
+                "countPowerslide": 165
+              },
+              "positioning": {
+                "timeDefensiveThird": 427.13,
+                "timeNeutralThird": 317.73,
+                "timeOffensiveThird": 210.41,
+                "timeDefensiveHalf": 587.06,
+                "timeOffensiveHalf": 368.23,
+                "timeBehindBall": 715.08,
+                "timeInfrontBall": 240.20000000000002
+              },
+              "demo": {
+                "inflicted": 3,
+                "taken": 2
+              }
+            }
+          },
+          "players": [
+            {
+              "player": {
+                "_id": "5f3d8fdd95f40596eae24142",
+                "slug": "4142-exotiik",
+                "tag": "ExoTiiK",
+                "country": "fr"
+              },
+              "stats": {
+                "core": {
+                  "shots": 4,
+                  "goals": 1,
+                  "saves": 3,
+                  "assists": 0,
+                  "score": 511,
+                  "shootingPercentage": 25
+                },
+                "boost": {
+                  "bpm": 405,
+                  "bcpm": 404.88226,
+                  "avgAmount": 41.31,
+                  "amountCollected": 2123,
+                  "amountStolen": 399,
+                  "amountCollectedBig": 1440,
+                  "amountStolenBig": 187,
+                  "amountCollectedSmall": 683,
+                  "amountStolenSmall": 212,
+                  "countCollectedBig": 16,
+                  "countStolenBig": 2,
+                  "countCollectedSmall": 58,
+                  "countStolenSmall": 18,
+                  "amountOverfill": 169,
+                  "amountOverfillStolen": 12,
+                  "amountUsedWhileSupersonic": 318,
+                  "timeZeroBoost": 59.13,
+                  "percentZeroBoost": 18.794699,
+                  "timeFullBoost": 22.56,
+                  "percentFullBoost": 7.170783,
+                  "timeBoost0To25": 132.05,
+                  "timeBoost25To50": 88.79,
+                  "timeBoost50To75": 37.3,
+                  "timeBoost75To100": 50.63,
+                  "percentBoost0To25": 42.76646,
+                  "percentBoost25To50": 28.756033,
+                  "percentBoost50To75": 12.08019,
+                  "percentBoost75To100": 16.39732
+                },
+                "movement": {
+                  "avgSpeed": 1589,
+                  "totalDistance": 492643,
+                  "timeSupersonicSpeed": 64.13,
+                  "timeBoostSpeed": 124.43,
+                  "timeSlowSpeed": 128.85,
+                  "timeGround": 165.6,
+                  "timeLowAir": 131.28,
+                  "timeHighAir": 20.53,
+                  "timePowerslide": 5.47,
+                  "countPowerslide": 38,
+                  "avgPowerslideDuration": 0.14,
+                  "avgSpeedPercentage": 69.08696,
+                  "percentSlowSpeed": 40.59419,
+                  "percentBoostSpeed": 39.201664,
+                  "percentSupersonicSpeed": 20.204151,
+                  "percentGround": 52.172268,
+                  "percentLowAir": 41.359756,
+                  "percentHighAir": 6.467975
+                },
+                "positioning": {
+                  "avgDistanceToBall": 3109,
+                  "avgDistanceToBallPossession": 3000,
+                  "avgDistanceToBallNoPossession": 3272,
+                  "avgDistanceToMates": 3861,
+                  "timeDefensiveThird": 135.14,
+                  "timeNeutralThird": 101.19,
+                  "timeOffensiveThird": 81.08,
+                  "timeDefensiveHalf": 181.28,
+                  "timeOffensiveHalf": 136.14,
+                  "timeBehindBall": 227.36,
+                  "timeInfrontBall": 90.06,
+                  "timeMostBack": 103.6,
+                  "timeMostForward": 122.2,
+                  "goalsAgainstWhileLastDefender": 0,
+                  "timeClosestToBall": 88.7,
+                  "timeFarthestFromBall": 111.8,
+                  "percentDefensiveThird": 42.575848,
+                  "percentOffensiveThird": 25.544249,
+                  "percentNeutralThird": 31.879902,
+                  "percentDefensiveHalf": 57.110455,
+                  "percentOffensiveHalf": 42.88955,
+                  "percentBehindBall": 71.6275,
+                  "percentInfrontBall": 28.372505,
+                  "percentMostBack": 32.92966,
+                  "percentMostForward": 38.841743,
+                  "percentClosestToBall": 28.193638,
+                  "percentFarthestFromBall": 35.53606
+                },
+                "demo": {
+                  "inflicted": 2,
+                  "taken": 1
+                }
+              },
+              "advanced": {
+                "goalParticipation": 100,
+                "rating": 1.2782490464606986
+              }
+            },
+            {
+              "player": {
+                "_id": "5f5ae840c6cbf591c568a477",
+                "slug": "a477-itachi",
+                "tag": "itachi",
+                "country": "ma"
+              },
+              "stats": {
+                "core": {
+                  "shots": 0,
+                  "goals": 0,
+                  "saves": 3,
+                  "assists": 0,
+                  "score": 332,
+                  "shootingPercentage": 0
+                },
+                "boost": {
+                  "bpm": 408,
+                  "bcpm": 406.59866,
+                  "avgAmount": 38.92,
+                  "amountCollected": 2132,
+                  "amountStolen": 178,
+                  "amountCollectedBig": 1325,
+                  "amountStolenBig": 0,
+                  "amountCollectedSmall": 807,
+                  "amountStolenSmall": 178,
+                  "countCollectedBig": 15,
+                  "countStolenBig": 0,
+                  "countCollectedSmall": 69,
+                  "countStolenSmall": 15,
+                  "amountOverfill": 82,
+                  "amountOverfillStolen": 0,
+                  "amountUsedWhileSupersonic": 332,
+                  "timeZeroBoost": 75.79,
+                  "percentZeroBoost": 24.090145,
+                  "timeFullBoost": 15.36,
+                  "percentFullBoost": 4.8822355,
+                  "timeBoost0To25": 165.78,
+                  "timeBoost25To50": 49.89,
+                  "timeBoost50To75": 49.36,
+                  "timeBoost75To100": 47,
+                  "percentBoost0To25": 53.129505,
+                  "percentBoost25To50": 15.988848,
+                  "percentBoost50To75": 15.818992,
+                  "percentBoost75To100": 15.0626545
+                },
+                "movement": {
+                  "avgSpeed": 1471,
+                  "totalDistance": 454005,
+                  "timeSupersonicSpeed": 43.5,
+                  "timeBoostSpeed": 114.22,
+                  "timeSlowSpeed": 159.7,
+                  "timeGround": 150.04,
+                  "timeLowAir": 143.68,
+                  "timeHighAir": 23.7,
+                  "timePowerslide": 7.17,
+                  "countPowerslide": 73,
+                  "avgPowerslideDuration": 0.1,
+                  "avgSpeedPercentage": 63.95652,
+                  "percentSlowSpeed": 50.311893,
+                  "percentBoostSpeed": 35.98387,
+                  "percentSupersonicSpeed": 13.704241,
+                  "percentGround": 47.268604,
+                  "percentLowAir": 45.26495,
+                  "percentHighAir": 7.466449
+                },
+                "positioning": {
+                  "avgDistanceToBall": 2734,
+                  "avgDistanceToBallPossession": 2801,
+                  "avgDistanceToBallNoPossession": 2674,
+                  "avgDistanceToMates": 3694,
+                  "timeDefensiveThird": 161.71,
+                  "timeNeutralThird": 112.69,
+                  "timeOffensiveThird": 43.02,
+                  "timeDefensiveHalf": 224.04,
+                  "timeOffensiveHalf": 93.38,
+                  "timeBehindBall": 261.92,
+                  "timeInfrontBall": 55.49,
+                  "timeMostBack": 114.9,
+                  "timeMostForward": 65.2,
+                  "goalsAgainstWhileLastDefender": 0,
+                  "timeClosestToBall": 127.3,
+                  "timeFarthestFromBall": 83.3,
+                  "percentDefensiveThird": 50.94512,
+                  "percentOffensiveThird": 13.5530205,
+                  "percentNeutralThird": 35.501858,
+                  "percentDefensiveHalf": 70.581566,
+                  "percentOffensiveHalf": 29.418438,
+                  "percentBehindBall": 82.51788,
+                  "percentInfrontBall": 17.48212,
+                  "percentMostBack": 36.521408,
+                  "percentMostForward": 20.72407,
+                  "percentClosestToBall": 40.462795,
+                  "percentFarthestFromBall": 26.477226
+                },
+                "demo": {
+                  "inflicted": 0,
+                  "taken": 1
+                }
+              },
+              "advanced": {
+                "goalParticipation": 0,
+                "rating": 0.39722513622109495
+              }
+            },
+            {
+              "player": {
+                "_id": "5faeab91e9ce4ed313ea9570",
+                "slug": "9570-vatira",
+                "tag": "vatira.",
+                "country": "fr"
+              },
+              "stats": {
+                "core": {
+                  "shots": 0,
+                  "goals": 0,
+                  "saves": 1,
+                  "assists": 0,
+                  "score": 191,
+                  "shootingPercentage": 0
+                },
+                "boost": {
+                  "bpm": 475,
+                  "bcpm": 492.99133,
+                  "avgAmount": 56.44,
+                  "amountCollected": 2585,
+                  "amountStolen": 678,
+                  "amountCollectedBig": 1825,
+                  "amountStolenBig": 430,
+                  "amountCollectedSmall": 760,
+                  "amountStolenSmall": 248,
+                  "countCollectedBig": 22,
+                  "countStolenBig": 5,
+                  "countCollectedSmall": 72,
+                  "countStolenSmall": 24,
+                  "amountOverfill": 408,
+                  "amountOverfillStolen": 78,
+                  "amountUsedWhileSupersonic": 460,
+                  "timeZeroBoost": 23.26,
+                  "percentZeroBoost": 7.393281,
+                  "timeFullBoost": 43.53,
+                  "percentFullBoost": 13.836179,
+                  "timeBoost0To25": 86.66,
+                  "timeBoost25To50": 58.93,
+                  "timeBoost50To75": 61.74,
+                  "timeBoost75To100": 112.19,
+                  "percentBoost0To25": 27.121931,
+                  "percentBoost25To50": 18.443289,
+                  "percentBoost50To75": 19.322733,
+                  "percentBoost75To100": 35.11204
+                },
+                "movement": {
+                  "avgSpeed": 1722,
+                  "totalDistance": 538777,
+                  "timeSupersonicSpeed": 88.92,
+                  "timeBoostSpeed": 132.64,
+                  "timeSlowSpeed": 98.89,
+                  "timeGround": 166,
+                  "timeLowAir": 123.75,
+                  "timeHighAir": 30.7,
+                  "timePowerslide": 6.07,
+                  "countPowerslide": 54,
+                  "avgPowerslideDuration": 0.11,
+                  "avgSpeedPercentage": 74.86957,
+                  "percentSlowSpeed": 30.859728,
+                  "percentBoostSpeed": 41.391792,
+                  "percentSupersonicSpeed": 27.748478,
+                  "percentGround": 51.80215,
+                  "percentLowAir": 38.61757,
+                  "percentHighAir": 9.580277
+                },
+                "positioning": {
+                  "avgDistanceToBall": 2980,
+                  "avgDistanceToBallPossession": 2537,
+                  "avgDistanceToBallNoPossession": 3447,
+                  "avgDistanceToMates": 3936,
+                  "timeDefensiveThird": 130.28,
+                  "timeNeutralThird": 103.85,
+                  "timeOffensiveThird": 86.31,
+                  "timeDefensiveHalf": 181.74,
+                  "timeOffensiveHalf": 138.71,
+                  "timeBehindBall": 225.8,
+                  "timeInfrontBall": 94.65,
+                  "timeMostBack": 97.5,
+                  "timeMostForward": 125.7,
+                  "goalsAgainstWhileLastDefender": 0,
+                  "timeClosestToBall": 97.1,
+                  "timeFarthestFromBall": 120.9,
+                  "percentDefensiveThird": 40.656597,
+                  "percentOffensiveThird": 26.93484,
+                  "percentNeutralThird": 32.40856,
+                  "percentDefensiveHalf": 56.713993,
+                  "percentOffensiveHalf": 43.286007,
+                  "percentBehindBall": 70.46341,
+                  "percentInfrontBall": 29.536589,
+                  "percentMostBack": 30.990751,
+                  "percentMostForward": 39.95423,
+                  "percentClosestToBall": 30.863611,
+                  "percentFarthestFromBall": 38.42853
+                },
+                "demo": {
+                  "inflicted": 1,
+                  "taken": 0
+                }
+              },
+              "advanced": {
+                "goalParticipation": 0,
+                "rating": 0.16343857676028375
+              }
+            }
+          ]
+        },
+        "orange": {
+          "team": {
+            "team": {
+              "_id": "6328af8ec437fde7e02dbd34",
+              "slug": "bd34-james-cheese",
+              "name": "James Cheese",
+              "region": "ASIA",
+              "relevant": true
+            },
+            "stats": {
+              "core": {
+                "shots": 8,
+                "goals": 0,
+                "saves": 3,
+                "assists": 0,
+                "score": 706,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 1308,
+                "bcpm": 1283.6845899999998,
+                "avgAmount": 145.95,
+                "amountCollected": 6731,
+                "amountStolen": 1491,
+                "amountCollectedBig": 4475,
+                "amountStolenBig": 725,
+                "amountCollectedSmall": 2256,
+                "amountStolenSmall": 766,
+                "countCollectedBig": 58,
+                "countStolenBig": 11,
+                "countCollectedSmall": 188,
+                "countStolenSmall": 66,
+                "amountOverfill": 1288,
+                "amountOverfillStolen": 298,
+                "amountUsedWhileSupersonic": 1176,
+                "timeZeroBoost": 120.22,
+                "timeFullBoost": 93.61,
+                "timeBoost0To25": 327.38,
+                "timeBoost25To50": 220.57,
+                "timeBoost50To75": 158.64,
+                "timeBoost75To100": 237.92999999999998
+              },
+              "movement": {
+                "totalDistance": 1488712,
+                "timeSupersonicSpeed": 178.06,
+                "timeBoostSpeed": 395.18000000000006,
+                "timeSlowSpeed": 378.97,
+                "timeGround": 539.2900000000001,
+                "timeLowAir": 341.83,
+                "timeHighAir": 71.09,
+                "timePowerslide": 23.64,
+                "countPowerslide": 245
+              },
+              "positioning": {
+                "timeDefensiveThird": 470.72,
+                "timeNeutralThird": 289.3,
+                "timeOffensiveThird": 192.21,
+                "timeDefensiveHalf": 619.44,
+                "timeOffensiveHalf": 332.78,
+                "timeBehindBall": 659.56,
+                "timeInfrontBall": 292.66
+              },
+              "demo": {
+                "inflicted": 2,
+                "taken": 3
+              }
+            }
+          },
+          "players": [
+            {
+              "player": {
+                "_id": "5f3d8fdd95f40596eae23e36",
+                "slug": "3e36-kamii",
+                "tag": "Kamii",
+                "country": "nz"
+              },
+              "stats": {
+                "core": {
+                  "shots": 3,
+                  "goals": 0,
+                  "saves": 3,
+                  "assists": 0,
+                  "score": 350,
+                  "shootingPercentage": 0
+                },
+                "boost": {
+                  "bpm": 492,
+                  "bcpm": 478.11578,
+                  "avgAmount": 48.55,
+                  "amountCollected": 2507,
+                  "amountStolen": 438,
+                  "amountCollectedBig": 1666,
+                  "amountStolenBig": 103,
+                  "amountCollectedSmall": 841,
+                  "amountStolenSmall": 335,
+                  "countCollectedBig": 21,
+                  "countStolenBig": 2,
+                  "countCollectedSmall": 68,
+                  "countStolenSmall": 28,
+                  "amountOverfill": 448,
+                  "amountOverfillStolen": 98,
+                  "amountUsedWhileSupersonic": 522,
+                  "timeZeroBoost": 30.4,
+                  "percentZeroBoost": 9.662758,
+                  "timeFullBoost": 40.89,
+                  "percentFullBoost": 12.997045,
+                  "timeBoost0To25": 97.13,
+                  "timeBoost25To50": 85.52,
+                  "timeBoost50To75": 59.65,
+                  "timeBoost75To100": 70.52,
+                  "percentBoost0To25": 31.049807,
+                  "percentBoost25To50": 27.338408,
+                  "percentBoost50To75": 19.068476,
+                  "percentBoost75To100": 22.543316
+                },
+                "movement": {
+                  "avgSpeed": 1659,
+                  "totalDistance": 509485,
+                  "timeSupersonicSpeed": 70.59,
+                  "timeBoostSpeed": 133.24,
+                  "timeSlowSpeed": 110.45,
+                  "timeGround": 185.77,
+                  "timeLowAir": 106.88,
+                  "timeHighAir": 21.63,
+                  "timePowerslide": 8.47,
+                  "countPowerslide": 78,
+                  "avgPowerslideDuration": 0.11,
+                  "avgSpeedPercentage": 72.13043,
+                  "percentSlowSpeed": 35.14382,
+                  "percentBoostSpeed": 42.39532,
+                  "percentSupersonicSpeed": 22.460861,
+                  "percentGround": 59.10971,
+                  "percentLowAir": 34.007893,
+                  "percentHighAir": 6.8823977
+                },
+                "positioning": {
+                  "avgDistanceToBall": 3153,
+                  "avgDistanceToBallPossession": 2944,
+                  "avgDistanceToBallNoPossession": 3362,
+                  "avgDistanceToMates": 4053,
+                  "timeDefensiveThird": 146.44,
+                  "timeNeutralThird": 105.09,
+                  "timeOffensiveThird": 62.76,
+                  "timeDefensiveHalf": 193.17,
+                  "timeOffensiveHalf": 121.11,
+                  "timeBehindBall": 215.11,
+                  "timeInfrontBall": 99.18,
+                  "timeMostBack": 116.4,
+                  "timeMostForward": 106.7,
+                  "goalsAgainstWhileLastDefender": 0,
+                  "timeClosestToBall": 87.1,
+                  "timeFarthestFromBall": 128.4,
+                  "percentDefensiveThird": 46.593914,
+                  "percentOffensiveThird": 19.96882,
+                  "percentNeutralThird": 33.437275,
+                  "percentDefensiveHalf": 61.4643,
+                  "percentOffensiveHalf": 38.5357,
+                  "percentBehindBall": 68.44315,
+                  "percentInfrontBall": 31.55684,
+                  "percentMostBack": 36.99819,
+                  "percentMostForward": 33.91501,
+                  "percentClosestToBall": 27.685072,
+                  "percentFarthestFromBall": 40.81243
+                },
+                "demo": {
+                  "inflicted": 1,
+                  "taken": 2
+                }
+              },
+              "advanced": {
+                "goalParticipation": 0,
+                "rating": 0.5619370853526383
+              }
+            },
+            {
+              "player": {
+                "_id": "5f5ae820c6cbf591c568a3f7",
+                "slug": "a3f7-virtuoso",
+                "tag": "virtuoso",
+                "country": "ie"
+              },
+              "stats": {
+                "core": {
+                  "shots": 1,
+                  "goals": 0,
+                  "saves": 0,
+                  "assists": 0,
+                  "score": 188,
+                  "shootingPercentage": 0
+                },
+                "boost": {
+                  "bpm": 437,
+                  "bcpm": 430.05627,
+                  "avgAmount": 53.27,
+                  "amountCollected": 2255,
+                  "amountStolen": 785,
+                  "amountCollectedBig": 1362,
+                  "amountStolenBig": 512,
+                  "amountCollectedSmall": 893,
+                  "amountStolenSmall": 273,
+                  "countCollectedBig": 20,
+                  "countStolenBig": 7,
+                  "countCollectedSmall": 71,
+                  "countStolenSmall": 23,
+                  "amountOverfill": 658,
+                  "amountOverfillStolen": 190,
+                  "amountUsedWhileSupersonic": 509,
+                  "timeZeroBoost": 19.73,
+                  "percentZeroBoost": 6.271257,
+                  "timeFullBoost": 36.09,
+                  "percentFullBoost": 11.471346,
+                  "timeBoost0To25": 85.14,
+                  "timeBoost25To50": 79.39,
+                  "timeBoost50To75": 55.96,
+                  "timeBoost75To100": 98.19,
+                  "percentBoost0To25": 26.716455,
+                  "percentBoost25To50": 24.912138,
+                  "percentBoost50To75": 17.559935,
+                  "percentBoost75To100": 30.811474
+                },
+                "movement": {
+                  "avgSpeed": 1645,
+                  "totalDistance": 514792,
+                  "timeSupersonicSpeed": 68.84,
+                  "timeBoostSpeed": 134.35,
+                  "timeSlowSpeed": 117.33,
+                  "timeGround": 195.44,
+                  "timeLowAir": 106.91,
+                  "timeHighAir": 18.16,
+                  "timePowerslide": 6.17,
+                  "countPowerslide": 58,
+                  "avgPowerslideDuration": 0.11,
+                  "avgSpeedPercentage": 71.521736,
+                  "percentSlowSpeed": 36.606136,
+                  "percentBoostSpeed": 41.91626,
+                  "percentSupersonicSpeed": 21.477596,
+                  "percentGround": 60.977814,
+                  "percentLowAir": 33.356213,
+                  "percentHighAir": 5.66597
+                },
+                "positioning": {
+                  "avgDistanceToBall": 2698,
+                  "avgDistanceToBallPossession": 2526,
+                  "avgDistanceToBallNoPossession": 2860,
+                  "avgDistanceToMates": 3935,
+                  "timeDefensiveThird": 159.74,
+                  "timeNeutralThird": 81.89,
+                  "timeOffensiveThird": 78.89,
+                  "timeDefensiveHalf": 205.47,
+                  "timeOffensiveHalf": 115.05,
+                  "timeBehindBall": 209.57,
+                  "timeInfrontBall": 110.94,
+                  "timeMostBack": 105.6,
+                  "timeMostForward": 120.9,
+                  "goalsAgainstWhileLastDefender": 1,
+                  "timeClosestToBall": 117.9,
+                  "timeFarthestFromBall": 95.1,
+                  "percentDefensiveThird": 49.837765,
+                  "percentOffensiveThird": 24.613127,
+                  "percentNeutralThird": 25.549107,
+                  "percentDefensiveHalf": 64.1052,
+                  "percentOffensiveHalf": 35.894794,
+                  "percentBehindBall": 65.38641,
+                  "percentInfrontBall": 34.613583,
+                  "percentMostBack": 33.56537,
+                  "percentMostForward": 38.42853,
+                  "percentClosestToBall": 37.47497,
+                  "percentFarthestFromBall": 30.227903
+                },
+                "demo": {
+                  "inflicted": 1,
+                  "taken": 0
+                }
+              },
+              "advanced": {
+                "goalParticipation": 0,
+                "rating": 0.12520476362009528
+              }
+            },
+            {
+              "player": {
+                "_id": "5f3d8fdd95f40596eae23ef5",
+                "slug": "3ef5-realize",
+                "tag": "ReaLize",
+                "country": "jp"
+              },
+              "stats": {
+                "core": {
+                  "shots": 4,
+                  "goals": 0,
+                  "saves": 0,
+                  "assists": 0,
+                  "score": 168,
+                  "shootingPercentage": 0
+                },
+                "boost": {
+                  "bpm": 379,
+                  "bcpm": 375.51254,
+                  "avgAmount": 44.13,
+                  "amountCollected": 1969,
+                  "amountStolen": 268,
+                  "amountCollectedBig": 1447,
+                  "amountStolenBig": 110,
+                  "amountCollectedSmall": 522,
+                  "amountStolenSmall": 158,
+                  "countCollectedBig": 17,
+                  "countStolenBig": 2,
+                  "countCollectedSmall": 49,
+                  "countStolenSmall": 15,
+                  "amountOverfill": 182,
+                  "amountOverfillStolen": 10,
+                  "amountUsedWhileSupersonic": 145,
+                  "timeZeroBoost": 70.09,
+                  "percentZeroBoost": 22.278376,
+                  "timeFullBoost": 16.63,
+                  "percentFullBoost": 5.285909,
+                  "timeBoost0To25": 145.11,
+                  "timeBoost25To50": 55.66,
+                  "timeBoost50To75": 43.03,
+                  "timeBoost75To100": 69.22,
+                  "percentBoost0To25": 46.35806,
+                  "percentBoost25To50": 17.78161,
+                  "percentBoost50To75": 13.746724,
+                  "percentBoost75To100": 22.113602
+                },
+                "movement": {
+                  "avgSpeed": 1500,
+                  "totalDistance": 464435,
+                  "timeSupersonicSpeed": 38.63,
+                  "timeBoostSpeed": 127.59,
+                  "timeSlowSpeed": 151.19,
+                  "timeGround": 158.08,
+                  "timeLowAir": 128.04,
+                  "timeHighAir": 31.3,
+                  "timePowerslide": 9,
+                  "countPowerslide": 109,
+                  "avgPowerslideDuration": 0.08,
+                  "avgSpeedPercentage": 65.21739,
+                  "percentSlowSpeed": 47.6324,
+                  "percentBoostSpeed": 40.19722,
+                  "percentSupersonicSpeed": 12.170379,
+                  "percentGround": 49.80153,
+                  "percentLowAir": 40.337723,
+                  "percentHighAir": 9.860753
+                },
+                "positioning": {
+                  "avgDistanceToBall": 2907,
+                  "avgDistanceToBallPossession": 2634,
+                  "avgDistanceToBallNoPossession": 3180,
+                  "avgDistanceToMates": 3862,
+                  "timeDefensiveThird": 164.54,
+                  "timeNeutralThird": 102.32,
+                  "timeOffensiveThird": 50.56,
+                  "timeDefensiveHalf": 220.8,
+                  "timeOffensiveHalf": 96.62,
+                  "timeBehindBall": 234.88,
+                  "timeInfrontBall": 82.54,
+                  "timeMostBack": 100,
+                  "timeMostForward": 85.4,
+                  "goalsAgainstWhileLastDefender": 0,
+                  "timeClosestToBall": 108,
+                  "timeFarthestFromBall": 98.4,
+                  "percentDefensiveThird": 51.836685,
+                  "percentOffensiveThird": 15.928424,
+                  "percentNeutralThird": 32.234894,
+                  "percentDefensiveHalf": 69.56083,
+                  "percentOffensiveHalf": 30.439165,
+                  "percentBehindBall": 73.9966,
+                  "percentInfrontBall": 26.0034,
+                  "percentMostBack": 31.785387,
+                  "percentMostForward": 27.14472,
+                  "percentClosestToBall": 34.328217,
+                  "percentFarthestFromBall": 31.276821
+                },
+                "demo": {
+                  "inflicted": 0,
+                  "taken": 1
+                }
+              },
+              "advanced": {
+                "goalParticipation": 0,
+                "rating": 0.2752385277961585
+              }
+            }
+          ]
+        },
+        "number": 1,
+        "games": [
+          {
+            "_id": "6391e88df73a2c40baef6e47",
+            "blue": 1,
+            "orange": 0,
+            "duration": 300,
+            "ballchasing": "4ac97d74-e868-49f8-91c6-a81bdd519b9a"
+          }
+        ]
+      },
+      "map": {
+        "id": "underwater_p",
+        "name": "Aquadome"
+      },
+      "duration": 300,
+      "date": "2022-12-08T13:44:53Z",
+      "blue": {
+        "winner": true,
+        "matchWinner": true,
+        "team": {
+          "team": {
+            "_id": "60fbc5b887f814e9fbffdcbd",
+            "slug": "dcbd-karmine-corp",
+            "name": "Karmine Corp",
+            "region": "EU",
+            "image": "https://griffon.octane.gg/teams/Karmine_Corp.png",
+            "relevant": true
+          },
+          "stats": {
+            "ball": {
+              "possessionTime": 166.21,
+              "timeInSide": 139.32
+            },
+            "core": {
+              "shots": 7,
+              "goals": 2,
+              "saves": 5,
+              "assists": 0,
+              "score": 1065,
+              "shootingPercentage": 28.57142857142857
+            },
+            "boost": {
+              "bpm": 1152,
+              "bcpm": 1165.88215,
+              "avgAmount": 133.32999999999998,
+              "amountCollected": 6233,
+              "amountStolen": 1639,
+              "amountCollectedBig": 4192,
+              "amountStolenBig": 1046,
+              "amountCollectedSmall": 2041,
+              "amountStolenSmall": 593,
+              "countCollectedBig": 50,
+              "countStolenBig": 12,
+              "countCollectedSmall": 167,
+              "countStolenSmall": 53,
+              "amountOverfill": 802,
+              "amountOverfillStolen": 161,
+              "amountUsedWhileSupersonic": 616,
+              "timeZeroBoost": 170.59,
+              "timeFullBoost": 81.47999999999999,
+              "timeBoost0To25": 355.96,
+              "timeBoost25To50": 227.60000000000002,
+              "timeBoost50To75": 104.78,
+              "timeBoost75To100": 247.86
+            },
+            "movement": {
+              "totalDistance": 1403501,
+              "timeSupersonicSpeed": 137.3,
+              "timeBoostSpeed": 370.66,
+              "timeSlowSpeed": 459.84999999999997,
+              "timeGround": 473.98999999999995,
+              "timeLowAir": 407.2,
+              "timeHighAir": 86.62,
+              "timePowerslide": 16.77,
+              "countPowerslide": 144
+            },
+            "positioning": {
+              "timeDefensiveThird": 429.75,
+              "timeNeutralThird": 283.18,
+              "timeOffensiveThird": 254.88,
+              "timeDefensiveHalf": 569.72,
+              "timeOffensiveHalf": 398.09,
+              "timeBehindBall": 749.56,
+              "timeInfrontBall": 218.24
+            },
+            "demo": {
+              "inflicted": 6,
+              "taken": 7
+            }
+          }
+        },
+        "players": [
+          {
+            "player": {
+              "_id": "5f3d8fdd95f40596eae24142",
+              "slug": "4142-exotiik",
+              "tag": "ExoTiiK",
+              "country": "fr"
+            },
+            "stats": {
+              "core": {
+                "shots": 2,
+                "goals": 0,
+                "saves": 3,
+                "assists": 0,
+                "score": 405,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 403,
+                "bcpm": 418.24362,
+                "avgAmount": 42.17,
+                "amountCollected": 2236,
+                "amountStolen": 888,
+                "amountCollectedBig": 1676,
+                "amountStolenBig": 663,
+                "amountCollectedSmall": 560,
+                "amountStolenSmall": 225,
+                "countCollectedBig": 19,
+                "countStolenBig": 8,
+                "countCollectedSmall": 53,
+                "countStolenSmall": 21,
+                "amountOverfill": 230,
+                "amountOverfillStolen": 136,
+                "amountUsedWhileSupersonic": 238,
+                "timeZeroBoost": 70.24,
+                "percentZeroBoost": 21.89731,
+                "timeFullBoost": 19.99,
+                "percentFullBoost": 6.2318797,
+                "timeBoost0To25": 128.45,
+                "timeBoost25To50": 66.96,
+                "timeBoost50To75": 37.59,
+                "timeBoost75To100": 72.51,
+                "percentBoost0To25": 42.04445,
+                "percentBoost25To50": 21.917448,
+                "percentBoost50To75": 12.304016,
+                "percentBoost75To100": 23.734083
+              },
+              "movement": {
+                "avgSpeed": 1583,
+                "totalDistance": 489461,
+                "timeSupersonicSpeed": 54.46,
+                "timeBoostSpeed": 140.02,
+                "timeSlowSpeed": 126.12,
+                "timeGround": 149.03,
+                "timeLowAir": 143.94,
+                "timeHighAir": 27.63,
+                "timePowerslide": 3.27,
+                "countPowerslide": 26,
+                "avgPowerslideDuration": 0.13,
+                "avgSpeedPercentage": 68.82609,
+                "percentSlowSpeed": 39.338737,
+                "percentBoostSpeed": 43.67436,
+                "percentSupersonicSpeed": 16.986898,
+                "percentGround": 46.484715,
+                "percentLowAir": 44.897068,
+                "percentHighAir": 8.618216
+              },
+              "positioning": {
+                "avgDistanceToBall": 2731,
+                "avgDistanceToBallPossession": 2524,
+                "avgDistanceToBallNoPossession": 2990,
+                "avgDistanceToMates": 3746,
+                "timeDefensiveThird": 122.75,
+                "timeNeutralThird": 86.83,
+                "timeOffensiveThird": 111.02,
+                "timeDefensiveHalf": 170.03,
+                "timeOffensiveHalf": 150.57,
+                "timeBehindBall": 211.68,
+                "timeInfrontBall": 108.92,
+                "timeMostBack": 74.9,
+                "timeMostForward": 151.8,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 109.2,
+                "timeFarthestFromBall": 112.7,
+                "percentDefensiveThird": 38.28759,
+                "percentOffensiveThird": 34.628822,
+                "percentNeutralThird": 27.083595,
+                "percentDefensiveHalf": 53.034935,
+                "percentOffensiveHalf": 46.96507,
+                "percentBehindBall": 66.02621,
+                "percentInfrontBall": 33.9738,
+                "percentMostBack": 23.350065,
+                "percentMostForward": 47.323627,
+                "percentClosestToBall": 34.043083,
+                "percentFarthestFromBall": 35.13421
+              },
+              "demo": {
+                "inflicted": 4,
+                "taken": 3
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.5305954518425878,
+              "mvp": true
+            }
+          },
+          {
+            "player": {
+              "_id": "5faeab91e9ce4ed313ea9570",
+              "slug": "9570-vatira",
+              "tag": "Vatira",
+              "country": "fr"
+            },
+            "stats": {
+              "core": {
+                "shots": 2,
+                "goals": 1,
+                "saves": 1,
+                "assists": 0,
+                "score": 380,
+                "shootingPercentage": 50
+              },
+              "boost": {
+                "bpm": 381,
+                "bcpm": 392.43073,
+                "avgAmount": 52.12,
+                "amountCollected": 2098,
+                "amountStolen": 377,
+                "amountCollectedBig": 1285,
+                "amountStolenBig": 187,
+                "amountCollectedSmall": 813,
+                "amountStolenSmall": 190,
+                "countCollectedBig": 18,
+                "countStolenBig": 2,
+                "countCollectedSmall": 58,
+                "countStolenSmall": 17,
+                "amountOverfill": 502,
+                "amountOverfillStolen": 22,
+                "amountUsedWhileSupersonic": 186,
+                "timeZeroBoost": 40.29,
+                "percentZeroBoost": 12.560402,
+                "timeFullBoost": 47.56,
+                "percentFullBoost": 14.826823,
+                "timeBoost0To25": 83.02,
+                "timeBoost25To50": 77.28,
+                "timeBoost50To75": 31.53,
+                "timeBoost75To100": 133.09,
+                "percentBoost0To25": 25.550907,
+                "percentBoost25To50": 23.784317,
+                "percentBoost50To75": 9.703928,
+                "percentBoost75To100": 40.960854
+              },
+              "movement": {
+                "avgSpeed": 1518,
+                "totalDistance": 482543,
+                "timeSupersonicSpeed": 46.87,
+                "timeBoostSpeed": 129.45,
+                "timeSlowSpeed": 153.28,
+                "timeGround": 164.01,
+                "timeLowAir": 131.57,
+                "timeHighAir": 34.02,
+                "timePowerslide": 6.27,
+                "countPowerslide": 48,
+                "avgPowerslideDuration": 0.13,
+                "avgSpeedPercentage": 66,
+                "percentSlowSpeed": 46.504856,
+                "percentBoostSpeed": 39.274883,
+                "percentSupersonicSpeed": 14.220268,
+                "percentGround": 49.760315,
+                "percentLowAir": 39.918083,
+                "percentHighAir": 10.321602
+              },
+              "positioning": {
+                "avgDistanceToBall": 2991,
+                "avgDistanceToBallPossession": 2896,
+                "avgDistanceToBallNoPossession": 3127,
+                "avgDistanceToMates": 3701,
+                "timeDefensiveThird": 152.88,
+                "timeNeutralThird": 110.99,
+                "timeOffensiveThird": 65.73,
+                "timeDefensiveHalf": 206.51,
+                "timeOffensiveHalf": 123.09,
+                "timeBehindBall": 267.81,
+                "timeInfrontBall": 61.79,
+                "timeMostBack": 133.3,
+                "timeMostForward": 100,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 98.9,
+                "timeFarthestFromBall": 136.7,
+                "percentDefensiveThird": 46.383495,
+                "percentOffensiveThird": 19.942356,
+                "percentNeutralThird": 33.67415,
+                "percentDefensiveHalf": 62.65474,
+                "percentOffensiveHalf": 37.34527,
+                "percentBehindBall": 81.25303,
+                "percentInfrontBall": 18.746965,
+                "percentMostBack": 41.556255,
+                "percentMostForward": 31.174986,
+                "percentClosestToBall": 30.832062,
+                "percentFarthestFromBall": 42.616207
+              },
+              "demo": {
+                "inflicted": 1,
+                "taken": 0
+              }
+            },
+            "advanced": {
+              "goalParticipation": 50,
+              "rating": 0.970286101982372
+            }
+          },
+          {
+            "player": {
+              "_id": "5f5ae840c6cbf591c568a477",
+              "slug": "a477-itachi",
+              "tag": "itachi",
+              "country": "ma"
+            },
+            "stats": {
+              "core": {
+                "shots": 3,
+                "goals": 1,
+                "saves": 1,
+                "assists": 0,
+                "score": 280,
+                "shootingPercentage": 33.33333333333333
+              },
+              "boost": {
+                "bpm": 368,
+                "bcpm": 355.2078,
+                "avgAmount": 39.04,
+                "amountCollected": 1899,
+                "amountStolen": 374,
+                "amountCollectedBig": 1231,
+                "amountStolenBig": 196,
+                "amountCollectedSmall": 668,
+                "amountStolenSmall": 178,
+                "countCollectedBig": 13,
+                "countStolenBig": 2,
+                "countCollectedSmall": 56,
+                "countStolenSmall": 15,
+                "amountOverfill": 70,
+                "amountOverfillStolen": 3,
+                "amountUsedWhileSupersonic": 192,
+                "timeZeroBoost": 60.06,
+                "percentZeroBoost": 18.723698,
+                "timeFullBoost": 13.93,
+                "percentFullBoost": 4.3426757,
+                "timeBoost0To25": 144.49,
+                "timeBoost25To50": 83.36,
+                "timeBoost50To75": 35.66,
+                "timeBoost75To100": 42.26,
+                "percentBoost0To25": 47.25447,
+                "percentBoost25To50": 27.26232,
+                "percentBoost50To75": 11.66236,
+                "percentBoost75To100": 13.820845
+              },
+              "movement": {
+                "avgSpeed": 1408,
+                "totalDistance": 431497,
+                "timeSupersonicSpeed": 35.97,
+                "timeBoostSpeed": 101.19,
+                "timeSlowSpeed": 180.45,
+                "timeGround": 160.95,
+                "timeLowAir": 131.69,
+                "timeHighAir": 24.97,
+                "timePowerslide": 7.23,
+                "countPowerslide": 70,
+                "avgPowerslideDuration": 0.1,
+                "avgSpeedPercentage": 61.217392,
+                "percentSlowSpeed": 56.81496,
+                "percentBoostSpeed": 31.859827,
+                "percentSupersonicSpeed": 11.32521,
+                "percentGround": 50.675354,
+                "percentLowAir": 41.4628,
+                "percentHighAir": 7.8618426
+              },
+              "positioning": {
+                "avgDistanceToBall": 2404,
+                "avgDistanceToBallPossession": 2345,
+                "avgDistanceToBallNoPossession": 2469,
+                "avgDistanceToMates": 3423,
+                "timeDefensiveThird": 154.12,
+                "timeNeutralThird": 85.36,
+                "timeOffensiveThird": 78.13,
+                "timeDefensiveHalf": 193.18,
+                "timeOffensiveHalf": 124.43,
+                "timeBehindBall": 270.07,
+                "timeInfrontBall": 47.53,
+                "timeMostBack": 125,
+                "timeMostForward": 67,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 110.5,
+                "timeFarthestFromBall": 84.1,
+                "percentDefensiveThird": 48.52492,
+                "percentOffensiveThird": 24.599352,
+                "percentNeutralThird": 26.875729,
+                "percentDefensiveHalf": 60.823025,
+                "percentOffensiveHalf": 39.17698,
+                "percentBehindBall": 85.03463,
+                "percentInfrontBall": 14.965365,
+                "percentMostBack": 38.96873,
+                "percentMostForward": 20.887241,
+                "percentClosestToBall": 34.44836,
+                "percentFarthestFromBall": 26.218163
+              },
+              "demo": {
+                "inflicted": 1,
+                "taken": 4
+              }
+            },
+            "advanced": {
+              "goalParticipation": 50,
+              "rating": 0.8864903914507642
+            }
+          }
+        ]
+      },
+      "orange": {
+        "team": {
+          "team": {
+            "_id": "6328af8ec437fde7e02dbd34",
+            "slug": "bd34-james-cheese",
+            "name": "James Cheese",
+            "region": "ASIA",
+            "relevant": true
+          },
+          "stats": {
+            "ball": {
+              "possessionTime": 134.21,
+              "timeInSide": 180.14
+            },
+            "core": {
+              "shots": 5,
+              "goals": 0,
+              "saves": 4,
+              "assists": 0,
+              "score": 691,
+              "shootingPercentage": 0
+            },
+            "boost": {
+              "bpm": 1258,
+              "bcpm": 1285.96817,
+              "avgAmount": 140.34,
+              "amountCollected": 6875,
+              "amountStolen": 1555,
+              "amountCollectedBig": 4800,
+              "amountStolenBig": 831,
+              "amountCollectedSmall": 2075,
+              "amountStolenSmall": 724,
+              "countCollectedBig": 62,
+              "countStolenBig": 11,
+              "countCollectedSmall": 188,
+              "countStolenSmall": 66,
+              "amountOverfill": 1374,
+              "amountOverfillStolen": 194,
+              "amountUsedWhileSupersonic": 1061,
+              "timeZeroBoost": 115.82,
+              "timeFullBoost": 87.93,
+              "timeBoost0To25": 347.04,
+              "timeBoost25To50": 251.85,
+              "timeBoost50To75": 130.71,
+              "timeBoost75To100": 228.28
+            },
+            "movement": {
+              "totalDistance": 1505608,
+              "timeSupersonicSpeed": 177.56,
+              "timeBoostSpeed": 410.17,
+              "timeSlowSpeed": 382.77,
+              "timeGround": 524.96,
+              "timeLowAir": 378.11,
+              "timeHighAir": 67.44,
+              "timePowerslide": 20.24,
+              "countPowerslide": 230
+            },
+            "positioning": {
+              "timeDefensiveThird": 456.46000000000004,
+              "timeNeutralThird": 311.56,
+              "timeOffensiveThird": 202.47,
+              "timeDefensiveHalf": 622.68,
+              "timeOffensiveHalf": 347.83,
+              "timeBehindBall": 627.08,
+              "timeInfrontBall": 343.42
+            },
+            "demo": {
+              "inflicted": 7,
+              "taken": 6
+            }
+          }
+        },
+        "players": [
+          {
+            "player": {
+              "_id": "5f3d8fdd95f40596eae23e36",
+              "slug": "3e36-kamii",
+              "tag": "Kamii",
+              "country": "nz"
+            },
+            "stats": {
+              "core": {
+                "shots": 2,
+                "goals": 0,
+                "saves": 2,
+                "assists": 0,
+                "score": 258,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 434,
+                "bcpm": 455.84064,
+                "avgAmount": 46.87,
+                "amountCollected": 2437,
+                "amountStolen": 343,
+                "amountCollectedBig": 1702,
+                "amountStolenBig": 189,
+                "amountCollectedSmall": 735,
+                "amountStolenSmall": 154,
+                "countCollectedBig": 22,
+                "countStolenBig": 2,
+                "countCollectedSmall": 68,
+                "countStolenSmall": 14,
+                "amountOverfill": 528,
+                "amountOverfillStolen": 19,
+                "amountUsedWhileSupersonic": 336,
+                "timeZeroBoost": 51.36,
+                "percentZeroBoost": 16.011473,
+                "timeFullBoost": 36.2,
+                "percentFullBoost": 11.285345,
+                "timeBoost0To25": 119.51,
+                "timeBoost25To50": 84.77,
+                "timeBoost50To75": 37.86,
+                "timeBoost75To100": 76.06,
+                "percentBoost0To25": 37.55814,
+                "percentBoost25To50": 26.640476,
+                "percentBoost50To75": 11.898177,
+                "percentBoost75To100": 23.903204
+              },
+              "movement": {
+                "avgSpeed": 1628,
+                "totalDistance": 504868,
+                "timeSupersonicSpeed": 59.25,
+                "timeBoostSpeed": 140.93,
+                "timeSlowSpeed": 120.29,
+                "timeGround": 176.93,
+                "timeLowAir": 119.54,
+                "timeHighAir": 24,
+                "timePowerslide": 8.77,
+                "countPowerslide": 80,
+                "avgPowerslideDuration": 0.11,
+                "avgSpeedPercentage": 70.78261,
+                "percentSlowSpeed": 37.535496,
+                "percentBoostSpeed": 43.976032,
+                "percentSupersonicSpeed": 18.48847,
+                "percentGround": 55.209538,
+                "percentLowAir": 37.301464,
+                "percentHighAir": 7.4890003
+              },
+              "positioning": {
+                "avgDistanceToBall": 3180,
+                "avgDistanceToBallPossession": 3079,
+                "avgDistanceToBallNoPossession": 3241,
+                "avgDistanceToMates": 4164,
+                "timeDefensiveThird": 152.52,
+                "timeNeutralThird": 111.48,
+                "timeOffensiveThird": 56.46,
+                "timeDefensiveHalf": 209.48,
+                "timeOffensiveHalf": 110.99,
+                "timeBehindBall": 207.61,
+                "timeInfrontBall": 112.86,
+                "timeMostBack": 130.6,
+                "timeMostForward": 111.3,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 108.2,
+                "timeFarthestFromBall": 126,
+                "percentDefensiveThird": 47.59408,
+                "percentOffensiveThird": 17.618422,
+                "percentNeutralThird": 34.78749,
+                "percentDefensiveHalf": 65.36649,
+                "percentOffensiveHalf": 34.633507,
+                "percentBehindBall": 64.782974,
+                "percentInfrontBall": 35.217026,
+                "percentMostBack": 40.714535,
+                "percentMostForward": 34.69776,
+                "percentClosestToBall": 33.731335,
+                "percentFarthestFromBall": 39.280483
+              },
+              "demo": {
+                "inflicted": 2,
+                "taken": 3
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.38415266818864957
+            }
+          },
+          {
+            "player": {
+              "_id": "5f5ae820c6cbf591c568a3f7",
+              "slug": "a3f7-virtuoso",
+              "tag": "virtuoso",
+              "country": "ie"
+            },
+            "stats": {
+              "core": {
+                "shots": 1,
+                "goals": 0,
+                "saves": 1,
+                "assists": 0,
+                "score": 228,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 395,
+                "bcpm": 423.8551,
+                "avgAmount": 46.59,
+                "amountCollected": 2266,
+                "amountStolen": 581,
+                "amountCollectedBig": 1488,
+                "amountStolenBig": 194,
+                "amountCollectedSmall": 778,
+                "amountStolenSmall": 387,
+                "countCollectedBig": 22,
+                "countStolenBig": 4,
+                "countCollectedSmall": 69,
+                "countStolenSmall": 35,
+                "amountOverfill": 638,
+                "amountOverfillStolen": 123,
+                "amountUsedWhileSupersonic": 452,
+                "timeZeroBoost": 31.86,
+                "percentZeroBoost": 9.93235,
+                "timeFullBoost": 27.33,
+                "percentFullBoost": 8.5201235,
+                "timeBoost0To25": 118.67,
+                "timeBoost25To50": 62.21,
+                "timeBoost50To75": 53.42,
+                "timeBoost75To100": 84.56,
+                "percentBoost0To25": 37.21696,
+                "percentBoost25To50": 19.51013,
+                "percentBoost50To75": 16.753435,
+                "percentBoost75To100": 26.519476
+              },
+              "movement": {
+                "avgSpeed": 1643,
+                "totalDistance": 512544,
+                "timeSupersonicSpeed": 63.76,
+                "timeBoostSpeed": 135.25,
+                "timeSlowSpeed": 124.55,
+                "timeGround": 187.15,
+                "timeLowAir": 121.72,
+                "timeHighAir": 14.7,
+                "timePowerslide": 4.1,
+                "countPowerslide": 50,
+                "avgPowerslideDuration": 0.08,
+                "avgSpeedPercentage": 71.434784,
+                "percentSlowSpeed": 38.493633,
+                "percentBoostSpeed": 41.800594,
+                "percentSupersonicSpeed": 19.705774,
+                "percentGround": 57.839108,
+                "percentLowAir": 37.617825,
+                "percentHighAir": 4.5430665
+              },
+              "positioning": {
+                "avgDistanceToBall": 2982,
+                "avgDistanceToBallPossession": 2713,
+                "avgDistanceToBallNoPossession": 3200,
+                "avgDistanceToMates": 3911,
+                "timeDefensiveThird": 134.42,
+                "timeNeutralThird": 116.46,
+                "timeOffensiveThird": 72.69,
+                "timeDefensiveHalf": 197.18,
+                "timeOffensiveHalf": 126.39,
+                "timeBehindBall": 201.64,
+                "timeInfrontBall": 121.92,
+                "timeMostBack": 88.6,
+                "timeMostForward": 116.6,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 110.6,
+                "timeFarthestFromBall": 109.4,
+                "percentDefensiveThird": 41.542786,
+                "percentOffensiveThird": 22.465,
+                "percentNeutralThird": 35.99221,
+                "percentDefensiveHalf": 60.9389,
+                "percentOffensiveHalf": 39.0611,
+                "percentBehindBall": 62.3192,
+                "percentInfrontBall": 37.6808,
+                "percentMostBack": 27.621038,
+                "percentMostForward": 36.350033,
+                "percentClosestToBall": 34.479534,
+                "percentFarthestFromBall": 34.105434
+              },
+              "demo": {
+                "inflicted": 3,
+                "taken": 2
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.23031686858360226
+            }
+          },
+          {
+            "player": {
+              "_id": "5f3d8fdd95f40596eae23ef5",
+              "slug": "3ef5-realize",
+              "tag": "ReaLize",
+              "country": "jp"
+            },
+            "stats": {
+              "core": {
+                "shots": 2,
+                "goals": 0,
+                "saves": 1,
+                "assists": 0,
+                "score": 205,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 429,
+                "bcpm": 406.27243,
+                "avgAmount": 46.88,
+                "amountCollected": 2172,
+                "amountStolen": 631,
+                "amountCollectedBig": 1610,
+                "amountStolenBig": 448,
+                "amountCollectedSmall": 562,
+                "amountStolenSmall": 183,
+                "countCollectedBig": 18,
+                "countStolenBig": 5,
+                "countCollectedSmall": 51,
+                "countStolenSmall": 17,
+                "amountOverfill": 208,
+                "amountOverfillStolen": 52,
+                "amountUsedWhileSupersonic": 273,
+                "timeZeroBoost": 32.6,
+                "percentZeroBoost": 10.163045,
+                "timeFullBoost": 24.4,
+                "percentFullBoost": 7.6066966,
+                "timeBoost0To25": 108.86,
+                "timeBoost25To50": 104.87,
+                "timeBoost50To75": 39.43,
+                "timeBoost75To100": 67.66,
+                "percentBoost0To25": 33.9318,
+                "percentBoost25To50": 32.68811,
+                "percentBoost50To75": 12.2903805,
+                "percentBoost75To100": 21.089708
+              },
+              "movement": {
+                "avgSpeed": 1545,
+                "totalDistance": 488196,
+                "timeSupersonicSpeed": 54.55,
+                "timeBoostSpeed": 133.99,
+                "timeSlowSpeed": 137.93,
+                "timeGround": 160.88,
+                "timeLowAir": 136.85,
+                "timeHighAir": 28.74,
+                "timePowerslide": 7.37,
+                "countPowerslide": 100,
+                "avgPowerslideDuration": 0.07,
+                "avgSpeedPercentage": 67.17391,
+                "percentSlowSpeed": 42.248905,
+                "percentBoostSpeed": 41.04206,
+                "percentSupersonicSpeed": 16.70904,
+                "percentGround": 49.27865,
+                "percentLowAir": 41.918095,
+                "percentHighAir": 8.803259
+              },
+              "positioning": {
+                "avgDistanceToBall": 3051,
+                "avgDistanceToBallPossession": 2914,
+                "avgDistanceToBallNoPossession": 3178,
+                "avgDistanceToMates": 3831,
+                "timeDefensiveThird": 169.52,
+                "timeNeutralThird": 83.62,
+                "timeOffensiveThird": 73.32,
+                "timeDefensiveHalf": 216.02,
+                "timeOffensiveHalf": 110.45,
+                "timeBehindBall": 217.83,
+                "timeInfrontBall": 108.64,
+                "timeMostBack": 116.8,
+                "timeMostForward": 90.6,
+                "goalsAgainstWhileLastDefender": 2,
+                "timeClosestToBall": 102.9,
+                "timeFarthestFromBall": 94.6,
+                "percentDefensiveThird": 51.92673,
+                "percentOffensiveThird": 22.459106,
+                "percentNeutralThird": 25.614164,
+                "percentDefensiveHalf": 66.1684,
+                "percentOffensiveHalf": 33.831593,
+                "percentBehindBall": 66.722824,
+                "percentInfrontBall": 33.277176,
+                "percentMostBack": 36.412384,
+                "percentMostForward": 28.244537,
+                "percentClosestToBall": 32.07906,
+                "percentFarthestFromBall": 29.491537
+              },
+              "demo": {
+                "inflicted": 2,
+                "taken": 1
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.2740190788982678
+            }
+          }
+        ]
+      },
+      "ballchasing": "dd6b4b84-427c-4f5b-9a59-c75399c31282"
+    },
+    {
+      "_id": "6391ece3f73a2c40baef7420",
+      "number": 3,
+      "match": {
+        "_id": "638e412df73a2c40baef5e89",
+        "slug": "5e89-karmine-corp-vs-james-cheese",
+        "event": {
+          "_id": "632ef4e7da9d7ca1c7bb467c",
+          "slug": "467c-rlcs-2022-23-fall-major",
+          "name": "RLCS 2022-23 Fall Major",
+          "region": "INT",
+          "mode": 3,
+          "tier": "S",
+          "image": "https://griffon.octane.gg/events/rlcs-2022-23.png",
+          "groups": [
+            "rlcs",
+            "rlcs2223",
+            "rlcs2223fall"
+          ]
+        },
+        "stage": {
+          "_id": 0,
+          "name": "Swiss Stage",
+          "lan": true
+        },
+        "date": "2022-12-08T13:30:00Z",
+        "format": {
+          "type": "best",
+          "length": 5
+        },
+        "blue": {
+          "score": 2,
+          "winner": true,
+          "team": {
+            "team": {
+              "_id": "60fbc5b887f814e9fbffdcbd",
+              "slug": "dcbd-karmine-corp",
+              "name": "Karmine Corp",
+              "region": "EU",
+              "image": "https://griffon.octane.gg/teams/Karmine_Corp.png",
+              "relevant": true
+            },
+            "stats": {
+              "core": {
+                "shots": 11,
+                "goals": 3,
+                "saves": 12,
+                "assists": 0,
+                "score": 2099,
+                "shootingPercentage": 27.27272727272727
+              },
+              "boost": {
+                "bpm": 2440,
+                "bcpm": 2470.3544,
+                "avgAmount": 270,
+                "amountCollected": 13073,
+                "amountStolen": 2894,
+                "amountCollectedBig": 8782,
+                "amountStolenBig": 1663,
+                "amountCollectedSmall": 4291,
+                "amountStolenSmall": 1231,
+                "countCollectedBig": 103,
+                "countStolenBig": 19,
+                "countCollectedSmall": 366,
+                "countStolenSmall": 110,
+                "amountOverfill": 1461,
+                "amountOverfillStolen": 251,
+                "amountUsedWhileSupersonic": 1726,
+                "timeZeroBoost": 328.77000000000004,
+                "timeFullBoost": 162.92999999999998,
+                "timeBoost0To25": 740.45,
+                "timeBoost25To50": 425.21000000000004,
+                "timeBoost50To75": 253.18,
+                "timeBoost75To100": 457.68
+              },
+              "movement": {
+                "totalDistance": 2888926,
+                "timeSupersonicSpeed": 333.85,
+                "timeBoostSpeed": 741.9499999999999,
+                "timeSlowSpeed": 847.29,
+                "timeGround": 955.63,
+                "timeLowAir": 805.91,
+                "timeHighAir": 161.55,
+                "timePowerslide": 35.48,
+                "countPowerslide": 309
+              },
+              "positioning": {
+                "timeDefensiveThird": 856.88,
+                "timeNeutralThird": 600.91,
+                "timeOffensiveThird": 465.28999999999996,
+                "timeDefensiveHalf": 1156.78,
+                "timeOffensiveHalf": 766.3199999999999,
+                "timeBehindBall": 1464.64,
+                "timeInfrontBall": 458.44000000000005
+              },
+              "demo": {
+                "inflicted": 9,
+                "taken": 9
+              }
+            }
+          },
+          "players": [
+            {
+              "player": {
+                "_id": "5faeab91e9ce4ed313ea9570",
+                "slug": "9570-vatira",
+                "tag": "vatira.",
+                "country": "fr"
+              },
+              "stats": {
+                "core": {
+                  "shots": 2,
+                  "goals": 1,
+                  "saves": 2,
+                  "assists": 0,
+                  "score": 571,
+                  "shootingPercentage": 50
+                },
+                "boost": {
+                  "bpm": 856,
+                  "bcpm": 885.42206,
+                  "avgAmount": 108.56,
+                  "amountCollected": 4683,
+                  "amountStolen": 1055,
+                  "amountCollectedBig": 3110,
+                  "amountStolenBig": 617,
+                  "amountCollectedSmall": 1573,
+                  "amountStolenSmall": 438,
+                  "countCollectedBig": 40,
+                  "countStolenBig": 7,
+                  "countCollectedSmall": 130,
+                  "countStolenSmall": 41,
+                  "amountOverfill": 910,
+                  "amountOverfillStolen": 100,
+                  "amountUsedWhileSupersonic": 646,
+                  "timeZeroBoost": 63.55,
+                  "percentZeroBoost": 9.976841499999999,
+                  "timeFullBoost": 91.09,
+                  "percentFullBoost": 14.331501,
+                  "timeBoost0To25": 169.68,
+                  "timeBoost25To50": 136.21,
+                  "timeBoost50To75": 93.27000000000001,
+                  "timeBoost75To100": 245.28,
+                  "percentBoost0To25": 26.336419,
+                  "percentBoost25To50": 21.113803,
+                  "percentBoost50To75": 14.513330499999999,
+                  "percentBoost75To100": 38.036446999999995
+                },
+                "movement": {
+                  "avgSpeed": 3240,
+                  "totalDistance": 1021320,
+                  "timeSupersonicSpeed": 135.79,
+                  "timeBoostSpeed": 262.09,
+                  "timeSlowSpeed": 252.17000000000002,
+                  "timeGround": 330.01,
+                  "timeLowAir": 255.32,
+                  "timeHighAir": 64.72,
+                  "timePowerslide": 12.34,
+                  "countPowerslide": 102,
+                  "avgPowerslideDuration": 0.24,
+                  "avgSpeedPercentage": 70.434785,
+                  "percentSlowSpeed": 38.682292,
+                  "percentBoostSpeed": 40.3333375,
+                  "percentSupersonicSpeed": 20.984372999999998,
+                  "percentGround": 50.7812325,
+                  "percentLowAir": 39.2678265,
+                  "percentHighAir": 9.9509395
+                },
+                "positioning": {
+                  "avgDistanceToBall": 5971,
+                  "avgDistanceToBallPossession": 5433,
+                  "avgDistanceToBallNoPossession": 6574,
+                  "avgDistanceToMates": 7637,
+                  "timeDefensiveThird": 283.15999999999997,
+                  "timeNeutralThird": 214.83999999999997,
+                  "timeOffensiveThird": 152.04000000000002,
+                  "timeDefensiveHalf": 388.25,
+                  "timeOffensiveHalf": 261.8,
+                  "timeBehindBall": 493.61,
+                  "timeInfrontBall": 156.44,
+                  "timeMostBack": 230.8,
+                  "timeMostForward": 225.7,
+                  "goalsAgainstWhileLastDefender": 0,
+                  "timeClosestToBall": 196,
+                  "timeFarthestFromBall": 257.6,
+                  "percentDefensiveThird": 43.520046,
+                  "percentOffensiveThird": 23.438598,
+                  "percentNeutralThird": 33.041354999999996,
+                  "percentDefensiveHalf": 59.684366499999996,
+                  "percentOffensiveHalf": 40.3156385,
+                  "percentBehindBall": 75.85821999999999,
+                  "percentInfrontBall": 24.141776999999998,
+                  "percentMostBack": 36.273503,
+                  "percentMostForward": 35.564608,
+                  "percentClosestToBall": 30.8478365,
+                  "percentFarthestFromBall": 40.5223685
+                },
+                "demo": {
+                  "inflicted": 2,
+                  "taken": 0
+                }
+              },
+              "advanced": {
+                "goalParticipation": 33.33333333333333,
+                "rating": 0.5668623393713279
+              }
+            },
+            {
+              "player": {
+                "_id": "5f3d8fdd95f40596eae24142",
+                "slug": "4142-exotiik",
+                "tag": "ExoTiiK",
+                "country": "fr"
+              },
+              "stats": {
+                "core": {
+                  "shots": 6,
+                  "goals": 1,
+                  "saves": 6,
+                  "assists": 0,
+                  "score": 916,
+                  "shootingPercentage": 16.666666666666664
+                },
+                "boost": {
+                  "bpm": 808,
+                  "bcpm": 823.12588,
+                  "avgAmount": 83.48,
+                  "amountCollected": 4359,
+                  "amountStolen": 1287,
+                  "amountCollectedBig": 3116,
+                  "amountStolenBig": 850,
+                  "amountCollectedSmall": 1243,
+                  "amountStolenSmall": 437,
+                  "countCollectedBig": 35,
+                  "countStolenBig": 10,
+                  "countCollectedSmall": 111,
+                  "countStolenSmall": 39,
+                  "amountOverfill": 399,
+                  "amountOverfillStolen": 148,
+                  "amountUsedWhileSupersonic": 556,
+                  "timeZeroBoost": 129.37,
+                  "percentZeroBoost": 20.3460045,
+                  "timeFullBoost": 42.55,
+                  "percentFullBoost": 6.70133135,
+                  "timeBoost0To25": 260.5,
+                  "timeBoost25To50": 155.75,
+                  "timeBoost50To75": 74.89,
+                  "timeBoost75To100": 123.14000000000001,
+                  "percentBoost0To25": 42.405455,
+                  "percentBoost25To50": 25.336740499999998,
+                  "percentBoost50To75": 12.192103,
+                  "percentBoost75To100": 20.0657015
+                },
+                "movement": {
+                  "avgSpeed": 3172,
+                  "totalDistance": 982104,
+                  "timeSupersonicSpeed": 118.59,
+                  "timeBoostSpeed": 264.45000000000005,
+                  "timeSlowSpeed": 254.97,
+                  "timeGround": 314.63,
+                  "timeLowAir": 275.22,
+                  "timeHighAir": 48.16,
+                  "timePowerslide": 8.74,
+                  "countPowerslide": 64,
+                  "avgPowerslideDuration": 0.27,
+                  "avgSpeedPercentage": 68.956525,
+                  "percentSlowSpeed": 39.9664635,
+                  "percentBoostSpeed": 41.438012,
+                  "percentSupersonicSpeed": 18.5955245,
+                  "percentGround": 49.3284915,
+                  "percentLowAir": 43.128412,
+                  "percentHighAir": 7.5430955
+                },
+                "positioning": {
+                  "avgDistanceToBall": 5840,
+                  "avgDistanceToBallPossession": 5524,
+                  "avgDistanceToBallNoPossession": 6262,
+                  "avgDistanceToMates": 7607,
+                  "timeDefensiveThird": 257.89,
+                  "timeNeutralThird": 188.01999999999998,
+                  "timeOffensiveThird": 192.1,
+                  "timeDefensiveHalf": 351.31,
+                  "timeOffensiveHalf": 286.71,
+                  "timeBehindBall": 439.04,
+                  "timeInfrontBall": 198.98000000000002,
+                  "timeMostBack": 178.5,
+                  "timeMostForward": 274,
+                  "goalsAgainstWhileLastDefender": 0,
+                  "timeClosestToBall": 197.9,
+                  "timeFarthestFromBall": 224.5,
+                  "percentDefensiveThird": 40.431719,
+                  "percentOffensiveThird": 30.0865355,
+                  "percentNeutralThird": 29.481748500000002,
+                  "percentDefensiveHalf": 55.072694999999996,
+                  "percentOffensiveHalf": 44.92731,
+                  "percentBehindBall": 68.826855,
+                  "percentInfrontBall": 31.1731525,
+                  "percentMostBack": 28.1398625,
+                  "percentMostForward": 43.082685,
+                  "percentClosestToBall": 31.1183605,
+                  "percentFarthestFromBall": 35.335135
+                },
+                "demo": {
+                  "inflicted": 6,
+                  "taken": 4
+                }
+              },
+              "advanced": {
+                "goalParticipation": 33.33333333333333,
+                "rating": 0.9044222491516432
+              }
+            },
+            {
+              "player": {
+                "_id": "5f5ae840c6cbf591c568a477",
+                "slug": "a477-itachi",
+                "tag": "itachi",
+                "country": "ma"
+              },
+              "stats": {
+                "core": {
+                  "shots": 3,
+                  "goals": 1,
+                  "saves": 4,
+                  "assists": 0,
+                  "score": 612,
+                  "shootingPercentage": 33.33333333333333
+                },
+                "boost": {
+                  "bpm": 776,
+                  "bcpm": 761.80646,
+                  "avgAmount": 77.96000000000001,
+                  "amountCollected": 4031,
+                  "amountStolen": 552,
+                  "amountCollectedBig": 2556,
+                  "amountStolenBig": 196,
+                  "amountCollectedSmall": 1475,
+                  "amountStolenSmall": 356,
+                  "countCollectedBig": 28,
+                  "countStolenBig": 2,
+                  "countCollectedSmall": 125,
+                  "countStolenSmall": 30,
+                  "amountOverfill": 152,
+                  "amountOverfillStolen": 3,
+                  "amountUsedWhileSupersonic": 524,
+                  "timeZeroBoost": 135.85000000000002,
+                  "percentZeroBoost": 21.4069215,
+                  "timeFullBoost": 29.29,
+                  "percentFullBoost": 4.6124556000000005,
+                  "timeBoost0To25": 310.27,
+                  "timeBoost25To50": 133.25,
+                  "timeBoost50To75": 85.02,
+                  "timeBoost75To100": 89.25999999999999,
+                  "percentBoost0To25": 50.191987499999996,
+                  "percentBoost25To50": 21.625584,
+                  "percentBoost50To75": 13.740676,
+                  "percentBoost75To100": 14.44174975
+                },
+                "movement": {
+                  "avgSpeed": 2879,
+                  "totalDistance": 885502,
+                  "timeSupersonicSpeed": 79.47,
+                  "timeBoostSpeed": 215.41,
+                  "timeSlowSpeed": 340.15,
+                  "timeGround": 310.99,
+                  "timeLowAir": 275.37,
+                  "timeHighAir": 48.67,
+                  "timePowerslide": 14.4,
+                  "countPowerslide": 143,
+                  "avgPowerslideDuration": 0.2,
+                  "avgSpeedPercentage": 62.586956,
+                  "percentSlowSpeed": 53.5634265,
+                  "percentBoostSpeed": 33.9218485,
+                  "percentSupersonicSpeed": 12.5147255,
+                  "percentGround": 48.971979000000005,
+                  "percentLowAir": 43.363875,
+                  "percentHighAir": 7.6641458
+                },
+                "positioning": {
+                  "avgDistanceToBall": 5138,
+                  "avgDistanceToBallPossession": 5146,
+                  "avgDistanceToBallNoPossession": 5143,
+                  "avgDistanceToMates": 7117,
+                  "timeDefensiveThird": 315.83000000000004,
+                  "timeNeutralThird": 198.05,
+                  "timeOffensiveThird": 121.15,
+                  "timeDefensiveHalf": 417.22,
+                  "timeOffensiveHalf": 217.81,
+                  "timeBehindBall": 531.99,
+                  "timeInfrontBall": 103.02000000000001,
+                  "timeMostBack": 239.9,
+                  "timeMostForward": 132.2,
+                  "goalsAgainstWhileLastDefender": 0,
+                  "timeClosestToBall": 237.8,
+                  "timeFarthestFromBall": 167.39999999999998,
+                  "percentDefensiveThird": 49.735020000000006,
+                  "percentOffensiveThird": 19.07618625,
+                  "percentNeutralThird": 31.1887935,
+                  "percentDefensiveHalf": 65.70229549999999,
+                  "percentOffensiveHalf": 34.297709,
+                  "percentBehindBall": 83.776255,
+                  "percentInfrontBall": 16.2237425,
+                  "percentMostBack": 37.745069,
+                  "percentMostForward": 20.8056555,
+                  "percentClosestToBall": 37.455577500000004,
+                  "percentFarthestFromBall": 26.347694500000003
+                },
+                "demo": {
+                  "inflicted": 1,
+                  "taken": 5
+                }
+              },
+              "advanced": {
+                "goalParticipation": 33.33333333333333,
+                "rating": 0.6418577638359296
+              }
+            }
+          ]
+        },
+        "orange": {
+          "team": {
+            "team": {
+              "_id": "6328af8ec437fde7e02dbd34",
+              "slug": "bd34-james-cheese",
+              "name": "James Cheese",
+              "region": "ASIA",
+              "relevant": true
+            },
+            "stats": {
+              "core": {
+                "shots": 13,
+                "goals": 0,
+                "saves": 7,
+                "assists": 0,
+                "score": 1397,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 2566,
+                "bcpm": 2569.65276,
+                "avgAmount": 286.29,
+                "amountCollected": 13606,
+                "amountStolen": 3046,
+                "amountCollectedBig": 9275,
+                "amountStolenBig": 1556,
+                "amountCollectedSmall": 4331,
+                "amountStolenSmall": 1490,
+                "countCollectedBig": 120,
+                "countStolenBig": 22,
+                "countCollectedSmall": 376,
+                "countStolenSmall": 132,
+                "amountOverfill": 2662,
+                "amountOverfillStolen": 492,
+                "amountUsedWhileSupersonic": 2237,
+                "timeZeroBoost": 236.04,
+                "timeFullBoost": 181.54000000000002,
+                "timeBoost0To25": 674.4200000000001,
+                "timeBoost25To50": 472.41999999999996,
+                "timeBoost50To75": 289.35,
+                "timeBoost75To100": 466.21
+              },
+              "movement": {
+                "totalDistance": 2994320,
+                "timeSupersonicSpeed": 355.62,
+                "timeBoostSpeed": 805.35,
+                "timeSlowSpeed": 761.74,
+                "timeGround": 1064.25,
+                "timeLowAir": 719.94,
+                "timeHighAir": 138.52999999999997,
+                "timePowerslide": 43.879999999999995,
+                "countPowerslide": 475
+              },
+              "positioning": {
+                "timeDefensiveThird": 927.18,
+                "timeNeutralThird": 600.86,
+                "timeOffensiveThird": 394.67999999999995,
+                "timeDefensiveHalf": 1242.12,
+                "timeOffensiveHalf": 680.6099999999999,
+                "timeBehindBall": 1286.64,
+                "timeInfrontBall": 636.08
+              },
+              "demo": {
+                "inflicted": 9,
+                "taken": 9
+              }
+            }
+          },
+          "players": [
+            {
+              "player": {
+                "_id": "5f3d8fdd95f40596eae23ef5",
+                "slug": "3ef5-realize",
+                "tag": "ReaLize",
+                "country": "jp"
+              },
+              "stats": {
+                "core": {
+                  "shots": 6,
+                  "goals": 0,
+                  "saves": 1,
+                  "assists": 0,
+                  "score": 373,
+                  "shootingPercentage": 0
+                },
+                "boost": {
+                  "bpm": 808,
+                  "bcpm": 781.7849699999999,
+                  "avgAmount": 91.01,
+                  "amountCollected": 4141,
+                  "amountStolen": 899,
+                  "amountCollectedBig": 3057,
+                  "amountStolenBig": 558,
+                  "amountCollectedSmall": 1084,
+                  "amountStolenSmall": 341,
+                  "countCollectedBig": 35,
+                  "countStolenBig": 7,
+                  "countCollectedSmall": 100,
+                  "countStolenSmall": 32,
+                  "amountOverfill": 390,
+                  "amountOverfillStolen": 62,
+                  "amountUsedWhileSupersonic": 418,
+                  "timeZeroBoost": 102.69,
+                  "percentZeroBoost": 16.220710500000003,
+                  "timeFullBoost": 41.03,
+                  "percentFullBoost": 6.4463028,
+                  "timeBoost0To25": 253.97000000000003,
+                  "timeBoost25To50": 160.53,
+                  "timeBoost50To75": 82.46000000000001,
+                  "timeBoost75To100": 136.88,
+                  "percentBoost0To25": 40.14493,
+                  "percentBoost25To50": 25.23486,
+                  "percentBoost50To75": 13.018552249999999,
+                  "percentBoost75To100": 21.601655
+                },
+                "movement": {
+                  "avgSpeed": 3045,
+                  "totalDistance": 952631,
+                  "timeSupersonicSpeed": 93.18,
+                  "timeBoostSpeed": 261.58000000000004,
+                  "timeSlowSpeed": 289.12,
+                  "timeGround": 318.96000000000004,
+                  "timeLowAir": 264.89,
+                  "timeHighAir": 60.04,
+                  "timePowerslide": 16.37,
+                  "countPowerslide": 209,
+                  "avgPowerslideDuration": 0.15000000000000002,
+                  "avgSpeedPercentage": 66.19565,
+                  "percentSlowSpeed": 44.9406525,
+                  "percentBoostSpeed": 40.619640000000004,
+                  "percentSupersonicSpeed": 14.439709500000001,
+                  "percentGround": 49.54009,
+                  "percentLowAir": 41.127909,
+                  "percentHighAir": 9.332006
+                },
+                "positioning": {
+                  "avgDistanceToBall": 5958,
+                  "avgDistanceToBallPossession": 5548,
+                  "avgDistanceToBallNoPossession": 6358,
+                  "avgDistanceToMates": 7693,
+                  "timeDefensiveThird": 334.06,
+                  "timeNeutralThird": 185.94,
+                  "timeOffensiveThird": 123.88,
+                  "timeDefensiveHalf": 436.82000000000005,
+                  "timeOffensiveHalf": 207.07,
+                  "timeBehindBall": 452.71000000000004,
+                  "timeInfrontBall": 191.18,
+                  "timeMostBack": 216.8,
+                  "timeMostForward": 176,
+                  "goalsAgainstWhileLastDefender": 2,
+                  "timeClosestToBall": 210.9,
+                  "timeFarthestFromBall": 193,
+                  "percentDefensiveThird": 51.881707500000005,
+                  "percentOffensiveThird": 19.193765,
+                  "percentNeutralThird": 28.924529,
+                  "percentDefensiveHalf": 67.864615,
+                  "percentOffensiveHalf": 32.135379,
+                  "percentBehindBall": 70.359712,
+                  "percentInfrontBall": 29.640287999999998,
+                  "percentMostBack": 34.0988855,
+                  "percentMostForward": 27.6946285,
+                  "percentClosestToBall": 33.2036385,
+                  "percentFarthestFromBall": 30.384179000000003
+                },
+                "demo": {
+                  "inflicted": 2,
+                  "taken": 2
+                }
+              },
+              "advanced": {
+                "goalParticipation": 0,
+                "rating": 0.2746288033472132
+              }
+            },
+            {
+              "player": {
+                "_id": "5f3d8fdd95f40596eae23e36",
+                "slug": "3e36-kamii",
+                "tag": "Kamii",
+                "country": "nz"
+              },
+              "stats": {
+                "core": {
+                  "shots": 5,
+                  "goals": 0,
+                  "saves": 5,
+                  "assists": 0,
+                  "score": 608,
+                  "shootingPercentage": 0
+                },
+                "boost": {
+                  "bpm": 926,
+                  "bcpm": 933.95642,
+                  "avgAmount": 95.41999999999999,
+                  "amountCollected": 4944,
+                  "amountStolen": 781,
+                  "amountCollectedBig": 3368,
+                  "amountStolenBig": 292,
+                  "amountCollectedSmall": 1576,
+                  "amountStolenSmall": 489,
+                  "countCollectedBig": 43,
+                  "countStolenBig": 4,
+                  "countCollectedSmall": 136,
+                  "countStolenSmall": 42,
+                  "amountOverfill": 976,
+                  "amountOverfillStolen": 117,
+                  "amountUsedWhileSupersonic": 858,
+                  "timeZeroBoost": 81.75999999999999,
+                  "percentZeroBoost": 12.8371155,
+                  "timeFullBoost": 77.09,
+                  "percentFullBoost": 12.141195,
+                  "timeBoost0To25": 216.64,
+                  "timeBoost25To50": 170.29,
+                  "timeBoost50To75": 97.50999999999999,
+                  "timeBoost75To100": 146.57999999999998,
+                  "percentBoost0To25": 34.3039735,
+                  "percentBoost25To50": 26.989442,
+                  "percentBoost50To75": 15.4833265,
+                  "percentBoost75To100": 23.22326
+                },
+                "movement": {
+                  "avgSpeed": 3287,
+                  "totalDistance": 1014353,
+                  "timeSupersonicSpeed": 129.84,
+                  "timeBoostSpeed": 274.17,
+                  "timeSlowSpeed": 230.74,
+                  "timeGround": 362.70000000000005,
+                  "timeLowAir": 226.42000000000002,
+                  "timeHighAir": 45.629999999999995,
+                  "timePowerslide": 17.240000000000002,
+                  "countPowerslide": 158,
+                  "avgPowerslideDuration": 0.22,
+                  "avgSpeedPercentage": 71.45652000000001,
+                  "percentSlowSpeed": 36.339658,
+                  "percentBoostSpeed": 43.185676,
+                  "percentSupersonicSpeed": 20.4746655,
+                  "percentGround": 57.159624,
+                  "percentLowAir": 35.6546785,
+                  "percentHighAir": 7.185699
+                },
+                "positioning": {
+                  "avgDistanceToBall": 6333,
+                  "avgDistanceToBallPossession": 6023,
+                  "avgDistanceToBallNoPossession": 6603,
+                  "avgDistanceToMates": 8217,
+                  "timeDefensiveThird": 298.96000000000004,
+                  "timeNeutralThird": 216.57,
+                  "timeOffensiveThird": 119.22,
+                  "timeDefensiveHalf": 402.65,
+                  "timeOffensiveHalf": 232.1,
+                  "timeBehindBall": 422.72,
+                  "timeInfrontBall": 212.04000000000002,
+                  "timeMostBack": 247,
+                  "timeMostForward": 218,
+                  "goalsAgainstWhileLastDefender": 0,
+                  "timeClosestToBall": 195.3,
+                  "timeFarthestFromBall": 254.4,
+                  "percentDefensiveThird": 47.093997,
+                  "percentOffensiveThird": 18.793621,
+                  "percentNeutralThird": 34.112382499999995,
+                  "percentDefensiveHalf": 63.415395000000004,
+                  "percentOffensiveHalf": 36.5846035,
+                  "percentBehindBall": 66.613062,
+                  "percentInfrontBall": 33.386933,
+                  "percentMostBack": 38.8563625,
+                  "percentMostForward": 34.306385000000006,
+                  "percentClosestToBall": 30.708203500000003,
+                  "percentFarthestFromBall": 40.0464565
+                },
+                "demo": {
+                  "inflicted": 3,
+                  "taken": 5
+                }
+              },
+              "advanced": {
+                "goalParticipation": 0,
+                "rating": 0.47304487677064394
+              }
+            },
+            {
+              "player": {
+                "_id": "5f5ae820c6cbf591c568a3f7",
+                "slug": "a3f7-virtuoso",
+                "tag": "virtuoso",
+                "country": "ie"
+              },
+              "stats": {
+                "core": {
+                  "shots": 2,
+                  "goals": 0,
+                  "saves": 1,
+                  "assists": 0,
+                  "score": 416,
+                  "shootingPercentage": 0
+                },
+                "boost": {
+                  "bpm": 832,
+                  "bcpm": 853.91137,
+                  "avgAmount": 99.86000000000001,
+                  "amountCollected": 4521,
+                  "amountStolen": 1366,
+                  "amountCollectedBig": 2850,
+                  "amountStolenBig": 706,
+                  "amountCollectedSmall": 1671,
+                  "amountStolenSmall": 660,
+                  "countCollectedBig": 42,
+                  "countStolenBig": 11,
+                  "countCollectedSmall": 140,
+                  "countStolenSmall": 58,
+                  "amountOverfill": 1296,
+                  "amountOverfillStolen": 313,
+                  "amountUsedWhileSupersonic": 961,
+                  "timeZeroBoost": 51.59,
+                  "percentZeroBoost": 8.101803499999999,
+                  "timeFullBoost": 63.42,
+                  "percentFullBoost": 9.99573475,
+                  "timeBoost0To25": 203.81,
+                  "timeBoost25To50": 141.6,
+                  "timeBoost50To75": 109.38,
+                  "timeBoost75To100": 182.75,
+                  "percentBoost0To25": 31.9667075,
+                  "percentBoost25To50": 22.211134,
+                  "percentBoost50To75": 17.156685,
+                  "percentBoost75To100": 28.665475
+                },
+                "movement": {
+                  "avgSpeed": 3288,
+                  "totalDistance": 1027336,
+                  "timeSupersonicSpeed": 132.6,
+                  "timeBoostSpeed": 269.6,
+                  "timeSlowSpeed": 241.88,
+                  "timeGround": 382.59000000000003,
+                  "timeLowAir": 228.63,
+                  "timeHighAir": 32.86,
+                  "timePowerslide": 10.27,
+                  "countPowerslide": 108,
+                  "avgPowerslideDuration": 0.19,
+                  "avgSpeedPercentage": 71.47826,
+                  "percentSlowSpeed": 37.549884500000005,
+                  "percentBoostSpeed": 41.858427,
+                  "percentSupersonicSpeed": 20.591685,
+                  "percentGround": 59.408461,
+                  "percentLowAir": 35.487019000000004,
+                  "percentHighAir": 5.10451825
+                },
+                "positioning": {
+                  "avgDistanceToBall": 5680,
+                  "avgDistanceToBallPossession": 5239,
+                  "avgDistanceToBallNoPossession": 6060,
+                  "avgDistanceToMates": 7846,
+                  "timeDefensiveThird": 294.15999999999997,
+                  "timeNeutralThird": 198.35,
+                  "timeOffensiveThird": 151.57999999999998,
+                  "timeDefensiveHalf": 402.65,
+                  "timeOffensiveHalf": 241.44,
+                  "timeBehindBall": 411.21,
+                  "timeInfrontBall": 232.86,
+                  "timeMostBack": 194.2,
+                  "timeMostForward": 237.5,
+                  "goalsAgainstWhileLastDefender": 1,
+                  "timeClosestToBall": 228.5,
+                  "timeFarthestFromBall": 204.5,
+                  "percentDefensiveThird": 45.6902755,
+                  "percentOffensiveThird": 23.539063499999997,
+                  "percentNeutralThird": 30.7706585,
+                  "percentDefensiveHalf": 62.52204999999999,
+                  "percentOffensiveHalf": 37.477947,
+                  "percentBehindBall": 63.852805000000004,
+                  "percentInfrontBall": 36.1471915,
+                  "percentMostBack": 30.593204,
+                  "percentMostForward": 37.3892815,
+                  "percentClosestToBall": 35.977252,
+                  "percentFarthestFromBall": 32.1666685
+                },
+                "demo": {
+                  "inflicted": 4,
+                  "taken": 2
+                }
+              },
+              "advanced": {
+                "goalParticipation": 0,
+                "rating": 0.17776081610184877
+              }
+            }
+          ]
+        },
+        "number": 1,
+        "games": [
+          {
+            "_id": "6391e88df73a2c40baef6e47",
+            "blue": 1,
+            "orange": 0,
+            "duration": 300,
+            "ballchasing": "4ac97d74-e868-49f8-91c6-a81bdd519b9a"
+          },
+          {
+            "_id": "6391eb04f73a2c40baef703a",
+            "blue": 2,
+            "orange": 0,
+            "duration": 300,
+            "ballchasing": "dd6b4b84-427c-4f5b-9a59-c75399c31282"
+          }
+        ]
+      },
+      "map": {
+        "id": "stadium_p",
+        "name": "DFH Stadium"
+      },
+      "duration": 300,
+      "date": "2022-12-08T13:52:16Z",
+      "blue": {
+        "winner": true,
+        "matchWinner": true,
+        "team": {
+          "team": {
+            "_id": "60fbc5b887f814e9fbffdcbd",
+            "slug": "dcbd-karmine-corp",
+            "name": "Karmine Corp",
+            "region": "EU",
+            "image": "https://griffon.octane.gg/teams/Karmine_Corp.png",
+            "relevant": true
+          },
+          "stats": {
+            "ball": {
+              "possessionTime": 152.68,
+              "timeInSide": 143.18
+            },
+            "core": {
+              "shots": 5,
+              "goals": 2,
+              "saves": 1,
+              "assists": 1,
+              "score": 736,
+              "shootingPercentage": 40
+            },
+            "boost": {
+              "bpm": 1274,
+              "bcpm": 1295.10746,
+              "avgAmount": 158.62,
+              "amountCollected": 6953,
+              "amountStolen": 1722,
+              "amountCollectedBig": 4863,
+              "amountStolenBig": 1065,
+              "amountCollectedSmall": 2090,
+              "amountStolenSmall": 657,
+              "countCollectedBig": 59,
+              "countStolenBig": 12,
+              "countCollectedSmall": 182,
+              "countStolenSmall": 53,
+              "amountOverfill": 1151,
+              "amountOverfillStolen": 158,
+              "amountUsedWhileSupersonic": 818,
+              "timeZeroBoost": 127.75,
+              "timeFullBoost": 127.89999999999999,
+              "timeBoost0To25": 329.07,
+              "timeBoost25To50": 171.76,
+              "timeBoost50To75": 169.75,
+              "timeBoost75To100": 298.49
+            },
+            "movement": {
+              "totalDistance": 1461181,
+              "timeSupersonicSpeed": 177.67000000000002,
+              "timeBoostSpeed": 357.62,
+              "timeSlowSpeed": 453.61,
+              "timeGround": 494.31,
+              "timeLowAir": 419.27,
+              "timeHighAir": 75.32,
+              "timePowerslide": 18.240000000000002,
+              "countPowerslide": 157
+            },
+            "positioning": {
+              "timeDefensiveThird": 390.59000000000003,
+              "timeNeutralThird": 344.58000000000004,
+              "timeOffensiveThird": 253.74,
+              "timeDefensiveHalf": 569.66,
+              "timeOffensiveHalf": 419.24999999999994,
+              "timeBehindBall": 729.76,
+              "timeInfrontBall": 259.15999999999997
+            },
+            "demo": {
+              "inflicted": 1,
+              "taken": 1
+            }
+          }
+        },
+        "players": [
+          {
+            "player": {
+              "_id": "5faeab91e9ce4ed313ea9570",
+              "slug": "9570-vatira",
+              "tag": "Vatira",
+              "country": "fr"
+            },
+            "stats": {
+              "core": {
+                "shots": 1,
+                "goals": 1,
+                "saves": 1,
+                "assists": 0,
+                "score": 276,
+                "shootingPercentage": 100
+              },
+              "boost": {
+                "bpm": 418,
+                "bcpm": 421.7062,
+                "avgAmount": 51.55,
+                "amountCollected": 2264,
+                "amountStolen": 376,
+                "amountCollectedBig": 1523,
+                "amountStolenBig": 200,
+                "amountCollectedSmall": 741,
+                "amountStolenSmall": 176,
+                "countCollectedBig": 17,
+                "countStolenBig": 2,
+                "countCollectedSmall": 70,
+                "countStolenSmall": 16,
+                "amountOverfill": 246,
+                "amountOverfillStolen": 4,
+                "amountUsedWhileSupersonic": 164,
+                "timeZeroBoost": 45.93,
+                "percentZeroBoost": 14.258661,
+                "timeFullBoost": 46.69,
+                "percentFullBoost": 14.494598,
+                "timeBoost0To25": 108.49,
+                "timeBoost25To50": 59.1,
+                "timeBoost50To75": 49.96,
+                "timeBoost75To100": 105.56,
+                "percentBoost0To25": 33.5768,
+                "percentBoost25To50": 18.290985,
+                "percentBoost50To75": 15.462227,
+                "percentBoost75To100": 32.66999
+              },
+              "movement": {
+                "avgSpeed": 1602,
+                "totalDistance": 509375,
+                "timeSupersonicSpeed": 65.93,
+                "timeBoostSpeed": 127.91,
+                "timeSlowSpeed": 137.05,
+                "timeGround": 164.18,
+                "timeLowAir": 137.91,
+                "timeHighAir": 28.8,
+                "timePowerslide": 7.07,
+                "countPowerslide": 57,
+                "avgPowerslideDuration": 0.12,
+                "avgSpeedPercentage": 69.652176,
+                "percentSlowSpeed": 41.4186,
+                "percentBoostSpeed": 38.65635,
+                "percentSupersonicSpeed": 19.925049,
+                "percentGround": 49.6177,
+                "percentLowAir": 41.678505,
+                "percentHighAir": 8.703799
+              },
+              "positioning": {
+                "avgDistanceToBall": 2968,
+                "avgDistanceToBallPossession": 2911,
+                "avgDistanceToBallNoPossession": 3079,
+                "avgDistanceToMates": 3507,
+                "timeDefensiveThird": 128.35,
+                "timeNeutralThird": 125.19,
+                "timeOffensiveThird": 77.35,
+                "timeDefensiveHalf": 197.11,
+                "timeOffensiveHalf": 133.78,
+                "timeBehindBall": 253.34,
+                "timeInfrontBall": 77.56,
+                "timeMostBack": 111.8,
+                "timeMostForward": 100.9,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 100.6,
+                "timeFarthestFromBall": 124,
+                "percentDefensiveThird": 38.789326,
+                "percentOffensiveThird": 23.376348,
+                "percentNeutralThird": 37.834324,
+                "percentDefensiveHalf": 59.56964,
+                "percentOffensiveHalf": 40.43035,
+                "percentBehindBall": 76.5609,
+                "percentInfrontBall": 23.439106,
+                "percentMostBack": 34.70756,
+                "percentMostForward": 31.32373,
+                "percentClosestToBall": 31.230598,
+                "percentFarthestFromBall": 38.494972
+              },
+              "demo": {
+                "inflicted": 1,
+                "taken": 0
+              }
+            },
+            "advanced": {
+              "goalParticipation": 50,
+              "rating": 1.1707937012048968,
+              "mvp": true
+            }
+          },
+          {
+            "player": {
+              "_id": "5f3d8fdd95f40596eae24142",
+              "slug": "4142-exotiik",
+              "tag": "ExoTiiK",
+              "country": "fr"
+            },
+            "stats": {
+              "core": {
+                "shots": 2,
+                "goals": 1,
+                "saves": 0,
+                "assists": 0,
+                "score": 266,
+                "shootingPercentage": 50
+              },
+              "boost": {
+                "bpm": 448,
+                "bcpm": 465.85126,
+                "avgAmount": 56.54,
+                "amountCollected": 2501,
+                "amountStolen": 973,
+                "amountCollectedBig": 1857,
+                "amountStolenBig": 671,
+                "amountCollectedSmall": 644,
+                "amountStolenSmall": 302,
+                "countCollectedBig": 23,
+                "countStolenBig": 8,
+                "countCollectedSmall": 51,
+                "countStolenSmall": 21,
+                "amountOverfill": 468,
+                "amountOverfillStolen": 139,
+                "amountUsedWhileSupersonic": 367,
+                "timeZeroBoost": 44.56,
+                "percentZeroBoost": 13.833354,
+                "timeFullBoost": 48.04,
+                "percentFullBoost": 14.913697,
+                "timeBoost0To25": 105.49,
+                "timeBoost25To50": 52.83,
+                "timeBoost50To75": 56.13,
+                "timeBoost75To100": 108.81,
+                "percentBoost0To25": 32.633175,
+                "percentBoost25To50": 16.342882,
+                "percentBoost50To75": 17.363731,
+                "percentBoost75To100": 33.66021
+              },
+              "movement": {
+                "avgSpeed": 1496,
+                "totalDistance": 476731,
+                "timeSupersonicSpeed": 55.74,
+                "timeBoostSpeed": 115.7,
+                "timeSlowSpeed": 159.52,
+                "timeGround": 163.12,
+                "timeLowAir": 141.64,
+                "timeHighAir": 26.19,
+                "timePowerslide": 3.9,
+                "countPowerslide": 34,
+                "avgPowerslideDuration": 0.11,
+                "avgSpeedPercentage": 65.04348,
+                "percentSlowSpeed": 48.19918,
+                "percentBoostSpeed": 34.958908,
+                "percentSupersonicSpeed": 16.841915,
+                "percentGround": 49.28841,
+                "percentLowAir": 42.798004,
+                "percentHighAir": 7.913582
+              },
+              "positioning": {
+                "avgDistanceToBall": 2566,
+                "avgDistanceToBallPossession": 2263,
+                "avgDistanceToBallNoPossession": 2913,
+                "avgDistanceToMates": 3415,
+                "timeDefensiveThird": 123.39,
+                "timeNeutralThird": 97.36,
+                "timeOffensiveThird": 110.21,
+                "timeDefensiveHalf": 169.95,
+                "timeOffensiveHalf": 161.01,
+                "timeBehindBall": 220.51,
+                "timeInfrontBall": 110.45,
+                "timeMostBack": 81.5,
+                "timeMostForward": 149.8,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 113.5,
+                "timeFarthestFromBall": 101.8,
+                "percentDefensiveThird": 37.282448,
+                "percentOffensiveThird": 33.300095,
+                "percentNeutralThird": 29.41745,
+                "percentDefensiveHalf": 51.350616,
+                "percentOffensiveHalf": 48.649384,
+                "percentBehindBall": 66.62739,
+                "percentInfrontBall": 33.372612,
+                "percentMostBack": 25.30113,
+                "percentMostForward": 46.50441,
+                "percentClosestToBall": 35.235317,
+                "percentFarthestFromBall": 31.60313
+              },
+              "demo": {
+                "inflicted": 0,
+                "taken": 0
+              }
+            },
+            "advanced": {
+              "goalParticipation": 50,
+              "rating": 0.836590163158193
+            }
+          },
+          {
+            "player": {
+              "_id": "5f5ae840c6cbf591c568a477",
+              "slug": "a477-itachi",
+              "tag": "itachi",
+              "country": "ma"
+            },
+            "stats": {
+              "core": {
+                "shots": 2,
+                "goals": 0,
+                "saves": 0,
+                "assists": 1,
+                "score": 194,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 408,
+                "bcpm": 407.55,
+                "avgAmount": 50.53,
+                "amountCollected": 2188,
+                "amountStolen": 373,
+                "amountCollectedBig": 1483,
+                "amountStolenBig": 194,
+                "amountCollectedSmall": 705,
+                "amountStolenSmall": 179,
+                "countCollectedBig": 19,
+                "countStolenBig": 2,
+                "countCollectedSmall": 61,
+                "countStolenSmall": 16,
+                "amountOverfill": 437,
+                "amountOverfillStolen": 15,
+                "amountUsedWhileSupersonic": 287,
+                "timeZeroBoost": 37.26,
+                "percentZeroBoost": 11.567118,
+                "timeFullBoost": 33.17,
+                "percentFullBoost": 10.297404,
+                "timeBoost0To25": 115.09,
+                "timeBoost25To50": 59.83,
+                "timeBoost50To75": 63.66,
+                "timeBoost75To100": 84.12,
+                "percentBoost0To25": 35.664703,
+                "percentBoost25To50": 18.54044,
+                "percentBoost50To75": 19.7273,
+                "percentBoost75To100": 26.067554
+              },
+              "movement": {
+                "avgSpeed": 1502,
+                "totalDistance": 475075,
+                "timeSupersonicSpeed": 56,
+                "timeBoostSpeed": 114.01,
+                "timeSlowSpeed": 157.04,
+                "timeGround": 167.01,
+                "timeLowAir": 139.72,
+                "timeHighAir": 20.33,
+                "timePowerslide": 7.27,
+                "countPowerslide": 66,
+                "avgPowerslideDuration": 0.11,
+                "avgSpeedPercentage": 65.304344,
+                "percentSlowSpeed": 48.01712,
+                "percentBoostSpeed": 34.860115,
+                "percentSupersonicSpeed": 17.122765,
+                "percentGround": 51.06403,
+                "percentLowAir": 42.719994,
+                "percentHighAir": 6.2159853
+              },
+              "positioning": {
+                "avgDistanceToBall": 2571,
+                "avgDistanceToBallPossession": 2680,
+                "avgDistanceToBallNoPossession": 2417,
+                "avgDistanceToMates": 3422,
+                "timeDefensiveThird": 138.85,
+                "timeNeutralThird": 122.03,
+                "timeOffensiveThird": 66.18,
+                "timeDefensiveHalf": 202.6,
+                "timeOffensiveHalf": 124.46,
+                "timeBehindBall": 255.91,
+                "timeInfrontBall": 71.15,
+                "timeMostBack": 130.4,
+                "timeMostForward": 69.2,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 105.8,
+                "timeFarthestFromBall": 97.8,
+                "percentDefensiveThird": 42.453987,
+                "percentOffensiveThird": 20.23482,
+                "percentNeutralThird": 37.311195,
+                "percentDefensiveHalf": 61.94582,
+                "percentOffensiveHalf": 38.05418,
+                "percentBehindBall": 78.24558,
+                "percentInfrontBall": 21.754417,
+                "percentMostBack": 40.481804,
+                "percentMostForward": 21.482676,
+                "percentClosestToBall": 32.844902,
+                "percentFarthestFromBall": 30.361357
+              },
+              "demo": {
+                "inflicted": 0,
+                "taken": 1
+              }
+            },
+            "advanced": {
+              "goalParticipation": 50,
+              "rating": 0.5718038576013119
+            }
+          }
+        ]
+      },
+      "orange": {
+        "team": {
+          "team": {
+            "_id": "6328af8ec437fde7e02dbd34",
+            "slug": "bd34-james-cheese",
+            "name": "James Cheese",
+            "region": "ASIA",
+            "relevant": true
+          },
+          "stats": {
+            "ball": {
+              "possessionTime": 139.85,
+              "timeInSide": 177.65
+            },
+            "core": {
+              "shots": 1,
+              "goals": 0,
+              "saves": 2,
+              "assists": 0,
+              "score": 523,
+              "shootingPercentage": 0
+            },
+            "boost": {
+              "bpm": 1230,
+              "bcpm": 1279.64734,
+              "avgAmount": 143.3,
+              "amountCollected": 6870,
+              "amountStolen": 1718,
+              "amountCollectedBig": 4273,
+              "amountStolenBig": 888,
+              "amountCollectedSmall": 2597,
+              "amountStolenSmall": 830,
+              "countCollectedBig": 52,
+              "countStolenBig": 10,
+              "countCollectedSmall": 234,
+              "countStolenSmall": 75,
+              "amountOverfill": 907,
+              "amountOverfillStolen": 123,
+              "amountUsedWhileSupersonic": 1015,
+              "timeZeroBoost": 105.25,
+              "timeFullBoost": 78.71000000000001,
+              "timeBoost0To25": 324.49,
+              "timeBoost25To50": 274.78999999999996,
+              "timeBoost50To75": 195.38,
+              "timeBoost75To100": 189.72
+            },
+            "movement": {
+              "totalDistance": 1551373,
+              "timeSupersonicSpeed": 198.43,
+              "timeBoostSpeed": 404.78999999999996,
+              "timeSlowSpeed": 386.63,
+              "timeGround": 541.28,
+              "timeLowAir": 384.08,
+              "timeHighAir": 64.49,
+              "timePowerslide": 22.61,
+              "countPowerslide": 242
+            },
+            "positioning": {
+              "timeDefensiveThird": 465.10999999999996,
+              "timeNeutralThird": 346.6,
+              "timeOffensiveThird": 178.15,
+              "timeDefensiveHalf": 658.22,
+              "timeOffensiveHalf": 331.63,
+              "timeBehindBall": 652.0699999999999,
+              "timeInfrontBall": 337.78
+            },
+            "demo": {
+              "inflicted": 1,
+              "taken": 1
+            }
+          }
+        },
+        "players": [
+          {
+            "player": {
+              "_id": "5f5ae820c6cbf591c568a3f7",
+              "slug": "a3f7-virtuoso",
+              "tag": "virtuoso",
+              "country": "ie"
+            },
+            "stats": {
+              "core": {
+                "shots": 1,
+                "goals": 0,
+                "saves": 1,
+                "assists": 0,
+                "score": 273,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 347,
+                "bcpm": 365.08133,
+                "avgAmount": 41.25,
+                "amountCollected": 1960,
+                "amountStolen": 460,
+                "amountCollectedBig": 1164,
+                "amountStolenBig": 200,
+                "amountCollectedSmall": 796,
+                "amountStolenSmall": 260,
+                "countCollectedBig": 13,
+                "countStolenBig": 2,
+                "countCollectedSmall": 72,
+                "countStolenSmall": 25,
+                "amountOverfill": 158,
+                "amountOverfillStolen": 10,
+                "amountUsedWhileSupersonic": 303,
+                "timeZeroBoost": 42.56,
+                "percentZeroBoost": 13.212467,
+                "timeFullBoost": 25.53,
+                "percentFullBoost": 7.9256177,
+                "timeBoost0To25": 136.22,
+                "timeBoost25To50": 97.46,
+                "timeBoost50To75": 60.13,
+                "timeBoost75To100": 36.21,
+                "percentBoost0To25": 41.276287,
+                "percentBoost25To50": 29.531544,
+                "percentBoost50To75": 18.220108,
+                "percentBoost75To100": 10.972063
+              },
+              "movement": {
+                "avgSpeed": 1599,
+                "totalDistance": 511546,
+                "timeSupersonicSpeed": 60.55,
+                "timeBoostSpeed": 133.96,
+                "timeSlowSpeed": 136.52,
+                "timeGround": 185.7,
+                "timeLowAir": 125.83,
+                "timeHighAir": 19.5,
+                "timePowerslide": 6.07,
+                "countPowerslide": 63,
+                "avgPowerslideDuration": 0.1,
+                "avgSpeedPercentage": 69.521736,
+                "percentSlowSpeed": 41.240974,
+                "percentBoostSpeed": 40.467636,
+                "percentSupersonicSpeed": 18.291393,
+                "percentGround": 56.097633,
+                "percentLowAir": 38.01166,
+                "percentHighAir": 5.8907046
+              },
+              "positioning": {
+                "avgDistanceToBall": 2786,
+                "avgDistanceToBallPossession": 2711,
+                "avgDistanceToBallNoPossession": 2861,
+                "avgDistanceToMates": 3697,
+                "timeDefensiveThird": 149.95,
+                "timeNeutralThird": 123.25,
+                "timeOffensiveThird": 57.83,
+                "timeDefensiveHalf": 221.44,
+                "timeOffensiveHalf": 109.59,
+                "timeBehindBall": 209.25,
+                "timeInfrontBall": 121.78,
+                "timeMostBack": 93.4,
+                "timeMostForward": 112.1,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 102.9,
+                "timeFarthestFromBall": 75.1,
+                "percentDefensiveThird": 45.298008,
+                "percentOffensiveThird": 17.469715,
+                "percentNeutralThird": 37.232277,
+                "percentDefensiveHalf": 66.89424,
+                "percentOffensiveHalf": 33.105762,
+                "percentBehindBall": 63.211792,
+                "percentInfrontBall": 36.788208,
+                "percentMostBack": 28.995405,
+                "percentMostForward": 34.800697,
+                "percentClosestToBall": 31.944618,
+                "percentFarthestFromBall": 23.314293
+              },
+              "demo": {
+                "inflicted": 1,
+                "taken": 0
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.24769892971509203
+            }
+          },
+          {
+            "player": {
+              "_id": "5f3d8fdd95f40596eae23ef5",
+              "slug": "3ef5-realize",
+              "tag": "ReaLize",
+              "country": "jp"
+            },
+            "stats": {
+              "core": {
+                "shots": 0,
+                "goals": 0,
+                "saves": 1,
+                "assists": 0,
+                "score": 140,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 397,
+                "bcpm": 421.33368,
+                "avgAmount": 49.16,
+                "amountCollected": 2262,
+                "amountStolen": 526,
+                "amountCollectedBig": 1390,
+                "amountStolenBig": 237,
+                "amountCollectedSmall": 872,
+                "amountStolenSmall": 289,
+                "countCollectedBig": 16,
+                "countStolenBig": 3,
+                "countCollectedSmall": 79,
+                "countStolenSmall": 26,
+                "amountOverfill": 226,
+                "amountOverfillStolen": 65,
+                "amountUsedWhileSupersonic": 247,
+                "timeZeroBoost": 33.5,
+                "percentZeroBoost": 10.399851,
+                "timeFullBoost": 18.57,
+                "percentFullBoost": 5.7649326,
+                "timeBoost0To25": 106.99,
+                "timeBoost25To50": 82,
+                "timeBoost50To75": 67.19,
+                "timeBoost75To100": 74.38,
+                "percentBoost0To25": 32.366287,
+                "percentBoost25To50": 24.806389,
+                "percentBoost50To75": 20.326113,
+                "percentBoost75To100": 22.50121
+              },
+              "movement": {
+                "avgSpeed": 1620,
+                "totalDistance": 518264,
+                "timeSupersonicSpeed": 61.98,
+                "timeBoostSpeed": 141.43,
+                "timeSlowSpeed": 127.45,
+                "timeGround": 182.38,
+                "timeLowAir": 129.55,
+                "timeHighAir": 18.93,
+                "timePowerslide": 6.77,
+                "countPowerslide": 98,
+                "avgPowerslideDuration": 0.07,
+                "avgSpeedPercentage": 70.434784,
+                "percentSlowSpeed": 38.520824,
+                "percentBoostSpeed": 42.74617,
+                "percentSupersonicSpeed": 18.732998,
+                "percentGround": 55.123016,
+                "percentLowAir": 39.155537,
+                "percentHighAir": 5.7214537
+              },
+              "positioning": {
+                "avgDistanceToBall": 3118,
+                "avgDistanceToBallPossession": 3239,
+                "avgDistanceToBallNoPossession": 3039,
+                "avgDistanceToMates": 3920,
+                "timeDefensiveThird": 158.98,
+                "timeNeutralThird": 106.56,
+                "timeOffensiveThird": 65.33,
+                "timeDefensiveHalf": 216.17,
+                "timeOffensiveHalf": 114.69,
+                "timeBehindBall": 224.31,
+                "timeInfrontBall": 106.55,
+                "timeMostBack": 121.4,
+                "timeMostForward": 93.3,
+                "goalsAgainstWhileLastDefender": 2,
+                "timeClosestToBall": 109.5,
+                "timeFarthestFromBall": 127.9,
+                "percentDefensiveThird": 48.049084,
+                "percentOffensiveThird": 19.744915,
+                "percentNeutralThird": 32.206,
+                "percentDefensiveHalf": 65.33579,
+                "percentOffensiveHalf": 34.66421,
+                "percentBehindBall": 67.79605,
+                "percentInfrontBall": 32.203957,
+                "percentMostBack": 37.68782,
+                "percentMostForward": 28.964361,
+                "percentClosestToBall": 33.99354,
+                "percentFarthestFromBall": 39.7057
+              },
+              "demo": {
+                "inflicted": 0,
+                "taken": 0
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.1437389074779287
+            }
+          },
+          {
+            "player": {
+              "_id": "5f3d8fdd95f40596eae23e36",
+              "slug": "3e36-kamii",
+              "tag": "Kamii",
+              "country": "nz"
+            },
+            "stats": {
+              "core": {
+                "shots": 0,
+                "goals": 0,
+                "saves": 0,
+                "assists": 0,
+                "score": 110,
+                "shootingPercentage": 0
+              },
+              "boost": {
+                "bpm": 486,
+                "bcpm": 493.23233,
+                "avgAmount": 52.89,
+                "amountCollected": 2648,
+                "amountStolen": 732,
+                "amountCollectedBig": 1719,
+                "amountStolenBig": 451,
+                "amountCollectedSmall": 929,
+                "amountStolenSmall": 281,
+                "countCollectedBig": 23,
+                "countStolenBig": 5,
+                "countCollectedSmall": 83,
+                "countStolenSmall": 24,
+                "amountOverfill": 523,
+                "amountOverfillStolen": 48,
+                "amountUsedWhileSupersonic": 465,
+                "timeZeroBoost": 29.19,
+                "percentZeroBoost": 9.06184,
+                "timeFullBoost": 34.61,
+                "percentFullBoost": 10.744443,
+                "timeBoost0To25": 81.28,
+                "timeBoost25To50": 95.33,
+                "timeBoost50To75": 68.06,
+                "timeBoost75To100": 79.13,
+                "percentBoost0To25": 25.101915,
+                "percentBoost25To50": 29.441013,
+                "percentBoost50To75": 21.019148,
+                "percentBoost75To100": 24.437923
+              },
+              "movement": {
+                "avgSpeed": 1648,
+                "totalDistance": 521563,
+                "timeSupersonicSpeed": 75.9,
+                "timeBoostSpeed": 129.4,
+                "timeSlowSpeed": 122.66,
+                "timeGround": 173.2,
+                "timeLowAir": 128.7,
+                "timeHighAir": 26.06,
+                "timePowerslide": 9.77,
+                "countPowerslide": 81,
+                "avgPowerslideDuration": 0.12,
+                "avgSpeedPercentage": 71.652176,
+                "percentSlowSpeed": 37.4009,
+                "percentBoostSpeed": 39.456028,
+                "percentSupersonicSpeed": 23.143066,
+                "percentGround": 52.81132,
+                "percentLowAir": 39.24259,
+                "percentHighAir": 7.946091
+              },
+              "positioning": {
+                "avgDistanceToBall": 3077,
+                "avgDistanceToBallPossession": 2855,
+                "avgDistanceToBallNoPossession": 3306,
+                "avgDistanceToMates": 3876,
+                "timeDefensiveThird": 156.18,
+                "timeNeutralThird": 116.79,
+                "timeOffensiveThird": 54.99,
+                "timeDefensiveHalf": 220.61,
+                "timeOffensiveHalf": 107.35,
+                "timeBehindBall": 218.51,
+                "timeInfrontBall": 109.45,
+                "timeMostBack": 107.9,
+                "timeMostForward": 114.5,
+                "goalsAgainstWhileLastDefender": 0,
+                "timeClosestToBall": 107.5,
+                "timeFarthestFromBall": 119.7,
+                "percentDefensiveThird": 47.62166,
+                "percentOffensiveThird": 16.767288,
+                "percentNeutralThird": 35.61105,
+                "percentDefensiveHalf": 67.26735,
+                "percentOffensiveHalf": 32.73265,
+                "percentBehindBall": 66.62703,
+                "percentInfrontBall": 33.372974,
+                "percentMostBack": 33.496834,
+                "percentMostForward": 35.54576,
+                "percentClosestToBall": 33.372658,
+                "percentFarthestFromBall": 37.160065
+              },
+              "demo": {
+                "inflicted": 0,
+                "taken": 1
+              }
+            },
+            "advanced": {
+              "goalParticipation": 0,
+              "rating": 0.04248948276586386
+            }
+          }
+        ]
+      },
+      "ballchasing": "87bebeb4-ba3e-4650-bd8b-2957e8c2433d"
+    }
+  ]
+}

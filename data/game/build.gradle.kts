@@ -16,6 +16,10 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(project(":core:models-test"))
+                implementation(project(":data:remote-test"))
+                implementation(libs.kotlinx.coroutines.test)
+                implementation("com.squareup.okio:okio:3.4.0")
             }
         }
         maybeCreate("iosX64Main")

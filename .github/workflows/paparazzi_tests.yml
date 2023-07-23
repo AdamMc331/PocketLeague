@@ -30,4 +30,4 @@ jobs:
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
       - name: Run Tests
-        run: ./gradlew :android:design-system:verifyPaparazziDebug
+        run: ./gradlew verifyPaparazziDebug

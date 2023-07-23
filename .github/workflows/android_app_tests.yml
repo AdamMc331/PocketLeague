@@ -45,4 +45,4 @@ jobs:
           sdcard-path-or-size: 512M
           target: google_apis
           script: |
-            ./gradlew :android:app:connectedCheck
+            ./gradlew :android:appv2:connectedCheck

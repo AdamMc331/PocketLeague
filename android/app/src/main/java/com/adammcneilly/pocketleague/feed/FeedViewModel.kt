@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import kotlinx.datetime.Clock
 
 /**
  * State management container for the feed screen.
@@ -66,7 +67,11 @@ class FeedViewModel(
 
     private fun observePastWeeksMatches() {
         matchRepository
-            .getMatchesInDateRange()
+            .getMatchesInDateRange(
+                // Deleting this file soon anyways idgaf
+                startDateUTC = Clock.System.now().toString(),
+                endDateUTC = Clock.System.now().toString(),
+            )
             .map { matchList ->
                 matchList.map(Match::toDetailDisplayModel)
             }

@@ -81,6 +81,5 @@ class OctaneGGMatchService(
 
     companion object {
         private const val MATCHES_ENDPOINT = "/matches"
-        private const val NUM_DAYS_RECENT_MATCHES = 7
     }
 }

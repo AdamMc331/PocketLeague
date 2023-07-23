@@ -8,10 +8,7 @@ pluginManagement {
 
 rootProject.name = "PocketLeague"
 
-include(":android:app")
 include(":android:appv2")
-include(":android:baselineprofile")
-include(":android:design-system")
 include(":android:widgets")
 
 include(":core:currency")
@@ -33,15 +30,10 @@ include(":data:match-test")
 include(":data:octanegg")
 include(":data:remote")
 include(":data:remote-test")
+include(":data:startgg")
 include(":data:team")
 include(":data:team-test")
 
-include(":feature:event-detail")
-include(":feature:feed")
-
-include(":shared")
 include(":shared:app")
 include(":shared:design-system")
 include(":shared:ui")
-include(":shared-test")
-include(":data:startgg")

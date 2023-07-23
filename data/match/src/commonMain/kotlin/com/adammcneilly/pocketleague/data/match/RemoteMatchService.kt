@@ -19,7 +19,10 @@ interface RemoteMatchService {
     /**
      * Returns a reactive stream of [Match] entities that have occured within the last week.
      */
-    suspend fun getPastWeeksMatches(): Result<List<Match>>
+    suspend fun getMatchesInDateRange(
+        startDateUTC: String,
+        endDateUTC: String,
+    ): Result<List<Match>>
 
     /**
      * Retrieve a list of match entities that haven't happened yet.

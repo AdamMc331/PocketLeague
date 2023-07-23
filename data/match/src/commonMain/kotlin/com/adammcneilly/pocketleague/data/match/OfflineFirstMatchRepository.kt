@@ -49,12 +49,21 @@ class OfflineFirstMatchRepository(
                 endDateUTC = endDateUTC,
             )
             .onStart {
-                fetchAndPersistPastWeeksMatches()
+                fetchAndPersistMatchesInDateRange(
+                    startDateUTC = startDateUTC,
+                    endDateUTC = endDateUTC,
+                )
             }
     }
 
-    private suspend fun fetchAndPersistPastWeeksMatches() {
-        val remoteResponse = remoteDataSource.getPastWeeksMatches()
+    private suspend fun fetchAndPersistMatchesInDateRange(
+        startDateUTC: String,
+        endDateUTC: String,
+    ) {
+        val remoteResponse = remoteDataSource.getMatchesInDateRange(
+            startDateUTC = startDateUTC,
+            endDateUTC = endDateUTC,
+        )
 
         remoteResponse.fold(
             onSuccess = { matches ->

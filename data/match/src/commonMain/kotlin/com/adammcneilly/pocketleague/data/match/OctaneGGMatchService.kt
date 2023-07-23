@@ -10,7 +10,6 @@ import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatchListRespo
 import com.adammcneilly.pocketleague.data.octanegg.models.toMatch
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import kotlinx.datetime.Clock
-import kotlin.time.Duration.Companion.days
 
 /**
  * An implementation of [RemoteMatchService] that requests
@@ -25,18 +24,21 @@ class OctaneGGMatchService(
 
     override suspend fun getMatchDetail(matchId: Match.Id): Result<Match> {
         return apiClient.getResponse<OctaneGGMatch>(
-            endpoint = "$MATCHES_ENDPOINT/$matchId",
+            endpoint = "$MATCHES_ENDPOINT/${matchId.id}",
         ).map { octaneMatch ->
             octaneMatch.toMatch()
         }
     }
 
-    override suspend fun getPastWeeksMatches(): Result<List<Match>> {
+    override suspend fun getMatchesInDateRange(
+        startDateUTC: String,
+        endDateUTC: String,
+    ): Result<List<Match>> {
         return apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(
-                "before" to clock.now(),
-                "after" to clock.now().minus(NUM_DAYS_RECENT_MATCHES.days),
+                "before" to endDateUTC,
+                "after" to startDateUTC,
                 "group" to "rlcs",
             ),
         ).map { octaneMatchListResponse ->

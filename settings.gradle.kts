@@ -20,6 +20,7 @@ include(":core:feature")
 include(":core:locale")
 include(":core:models")
 include(":core:models-test")
+include(":core:test")
 
 include(":data:event")
 include(":data:event-test")

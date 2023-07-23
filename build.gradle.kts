@@ -58,16 +58,16 @@ subprojects {
 
     // Following this: https://publicobject.com/2023/04/16/read-a-project-file-in-a-kotlin-multiplatform-test/
     tasks.withType<KotlinJvmTest>().configureEach {
-        environment("POCKETLEAGUE_ROOT", projectDir)
+        environment("TEST_DATA_ROOT", "$projectDir/src/commonTest/resources/")
     }
 
     tasks.withType<KotlinNativeTest>().configureEach {
-        environment("SIMCTL_CHILD_POCKETLEAGUE_ROOT", projectDir)
-        environment("POCKETLEAGUE_ROOT", projectDir)
+        environment("SIMCTL_CHILD_TEST_DATA_ROOT", "$projectDir/src/commonTest/resources/")
+        environment("TEST_DATA_ROOT", "$projectDir/src/commonTest/resources/")
     }
 
     tasks.withType<KotlinJsTest>().configureEach {
-        environment("POCKETLEAGUE_ROOT", projectDir.toString())
+        environment("TEST_DATA_ROOT", "$projectDir/src/commonTest/resources/")
     }
 }
 

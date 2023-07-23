@@ -1,10 +1,9 @@
 package com.adammcneilly.pocketleague.data.game
 
 import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.core.test.readTestData
 import com.adammcneilly.pocketleague.data.remote.test.FakeKTORClient
 import kotlinx.coroutines.test.runTest
-import okio.FileSystem
-import okio.Path.Companion.toPath
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -12,14 +11,7 @@ class OctaneGGGameServiceTest {
 
     @Test
     fun fetchGamesForMatch() = runTest {
-        val mockDataPath = "${getEnv("POCKETLEAGUE_ROOT")!!}/src/commonTest/resources/game_list.json".toPath()
-        println("PATH WAS: $mockDataPath")
-
-        val mockJson = FileSystem.SYSTEM.read(mockDataPath) {
-            readUtf8()
-        }
-
-        println("OUTPUT WAS: $mockJson")
+        val mockJson = readTestData("game_list.json")
 
         val client = FakeKTORClient(
             mockResponses = mapOf(

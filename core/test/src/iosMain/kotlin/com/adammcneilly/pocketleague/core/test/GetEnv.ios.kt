@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.data.game
+package com.adammcneilly.pocketleague.core.test
 
 import kotlinx.cinterop.toKString
 import platform.posix.getenv

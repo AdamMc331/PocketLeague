@@ -28,6 +28,7 @@ ktor = "2.3.2"
 lifecycle = "2.6.1"
 material = "1.9.0"
 minSdk = "23"
+okio = "3.4.0"
 palette = "1.0.0"
 paparazzi = "1.2.0"
 sqldelight = "1.5.5"
@@ -102,6 +103,7 @@ ktor-client-testing = { module = "io.ktor:ktor-client-mock", version.ref = "ktor
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 # Using Chris Bane's fork for now to support iOS: Using a fork containing https://github.com/slackhq/circuit/pull/704
 slack-circuit = { module = "dev.chrisbanes.circuit:circuit-foundation", version.ref = "circuit" }
+square-okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 square-sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
 square-sqldelight-coroutines = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
 square-sqldelight-native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight" }

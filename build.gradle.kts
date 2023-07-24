@@ -1,3 +1,7 @@
+import org.jetbrains.kotlin.gradle.targets.js.testing.KotlinJsTest
+import org.jetbrains.kotlin.gradle.targets.jvm.tasks.KotlinJvmTest
+import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeTest
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
 
@@ -50,6 +54,20 @@ subprojects {
                 targetCompatibility = "17"
             }
         }
+    }
+
+    // Following this: https://publicobject.com/2023/04/16/read-a-project-file-in-a-kotlin-multiplatform-test/
+    tasks.withType<KotlinJvmTest>().configureEach {
+        environment("TEST_DATA_ROOT", "$projectDir/src/commonTest/resources/")
+    }
+
+    tasks.withType<KotlinNativeTest>().configureEach {
+        environment("SIMCTL_CHILD_TEST_DATA_ROOT", "$projectDir/src/commonTest/resources/")
+        environment("TEST_DATA_ROOT", "$projectDir/src/commonTest/resources/")
+    }
+
+    tasks.withType<KotlinJsTest>().configureEach {
+        environment("TEST_DATA_ROOT", "$projectDir/src/commonTest/resources/")
     }
 }
 

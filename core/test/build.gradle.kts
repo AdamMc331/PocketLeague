@@ -8,19 +8,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":data:octanegg"))
-                implementation(project(":data:remote"))
+                implementation(libs.square.okio)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:models-test"))
-                implementation(project(":core:test"))
-                implementation(project(":data:remote-test"))
-                implementation(libs.kotlinx.coroutines.test)
-                implementation(libs.square.okio)
             }
         }
         maybeCreate("iosX64Main")

@@ -17,7 +17,7 @@ fun mockEngine(
 ) = MockEngine {
     val url = it.url.encodedPath
     // The encoded path drops the first slash, but all of our defined endpoints we hit include it.
-    val response = responses["/$url"]
+    val response = responses[url]
 
     respond(
         content = ByteReadChannel(response!!),

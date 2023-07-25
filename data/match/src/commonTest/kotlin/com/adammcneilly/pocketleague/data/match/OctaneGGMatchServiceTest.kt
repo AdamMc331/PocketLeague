@@ -16,7 +16,7 @@ class OctaneGGMatchServiceTest {
 
         val client = FakeKTORClient(
             mockResponses = mapOf(
-                "matches/123" to matchJson,
+                "/matches/123" to matchJson,
             ),
         )
 

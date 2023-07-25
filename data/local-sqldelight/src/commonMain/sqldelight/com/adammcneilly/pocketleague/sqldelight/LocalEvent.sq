@@ -17,16 +17,16 @@ SELECT *
 FROM localEvent
 ORDER BY startDateUTC;
 
-selectOngoing:
+selectOnDate:
 SELECT *
 FROM localEvent
-WHERE startDateUTC < DATE() AND endDateUTC > DATE()
+WHERE startDateUTC < :eventDateUTC AND endDateUTC > :eventDateUTC
 ORDER BY startDateUTC;
 
-selectUpcoming:
+selectAfterDate:
 SELECT *
 FROM localEvent
-WHERE startDateUTC > DATE()
+WHERE startDateUTC > :eventDateUTC
 ORDER BY startDateUTC;
 
 selectById:

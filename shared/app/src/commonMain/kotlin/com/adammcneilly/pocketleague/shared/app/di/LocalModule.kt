@@ -22,6 +22,7 @@ val localModule = module {
     single<LocalEventService> {
         SQLDelightEventService(
             database = get(),
+            clock = get(),
         )
     }
 }

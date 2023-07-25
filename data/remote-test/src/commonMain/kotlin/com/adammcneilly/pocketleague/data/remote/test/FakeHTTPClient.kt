@@ -16,13 +16,21 @@ fun mockEngine(
     responses: Map<String, String>,
 ) = MockEngine {
     val url = it.url.encodedPath
-    // The encoded path drops the first slash, but all of our defined endpoints we hit include it.
+
     val response = responses[url]
 
-    println("REQUESTING: $url")
+    if (response == null) {
+        throw IllegalArgumentException(
+            """
+                No mock response found for url: $url
+                Available urls:
+                ${responses.keys.joinToString("\n")}
+            """.trimIndent(),
+        )
+    }
 
     respond(
-        content = ByteReadChannel(response!!),
+        content = ByteReadChannel(response),
         status = HttpStatusCode.OK,
         headers = headersOf(HttpHeaders.ContentType, "application/json"),
     )

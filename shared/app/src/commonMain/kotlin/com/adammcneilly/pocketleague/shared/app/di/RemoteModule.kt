@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.di
 
+import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
+import com.adammcneilly.pocketleague.data.event.RemoteEventService
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
@@ -23,6 +25,13 @@ val remoteModule = module {
     single<GameService> {
         OctaneGGGameService(
             apiClient = get(),
+        )
+    }
+
+    single<RemoteEventService> {
+        OctaneGGEventService(
+            apiClient = get(),
+            clock = get(),
         )
     }
 }

@@ -29,6 +29,7 @@ private const val INLINE_CONTENT_ID = "inlineContent"
  * @param[leadingIcon] If true, the icon will show before the text. If false, the icon
  * appears after.
  * @param[showIcon] If true, we'll actually show the icon. If false, we'll ignore it.
+ * @param[textColor] If supplied, use this color for our text component.
  * @param[iconTint] If supplied, we provide a tint to our [icon] using this color.
  * @param[textAlign] @see [Text]
  * @param[style] @see [Text]
@@ -40,6 +41,7 @@ fun InlineIconText(
     modifier: Modifier = Modifier,
     leadingIcon: Boolean = false,
     showIcon: Boolean = true,
+    textColor: Color = LocalContentColor.current,
     iconTint: Color = LocalContentColor.current,
     textAlign: TextAlign? = null,
     style: TextStyle = LocalTextStyle.current,
@@ -57,6 +59,7 @@ fun InlineIconText(
         modifier = modifier,
         textAlign = textAlign,
         style = style,
+        color = textColor,
     )
 }
 

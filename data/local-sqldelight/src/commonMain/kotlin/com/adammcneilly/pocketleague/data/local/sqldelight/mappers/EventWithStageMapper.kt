@@ -13,67 +13,62 @@ import com.adammcneilly.pocketleague.sqldelight.EventWithStage
  */
 fun List<EventWithStage>.toEvents(): List<Event> {
     return this
-        .groupBy { eventWithStage ->
-            val prize = if (eventWithStage.localEventPrizeAmount != null && eventWithStage.localEventPrizeCurrency != null) {
-                Prize(
-                    amount = eventWithStage.localEventPrizeAmount,
-                    currency = eventWithStage.localEventPrizeCurrency,
-                )
-            } else {
-                null
-            }
-
-            Event(
-                id = Event.Id(eventWithStage.localEventId),
-                name = eventWithStage.localEventName,
-                startDateUTC = eventWithStage.localEventStartDateUTC,
-                endDateUTC = eventWithStage.localEventEndDateUTC,
-                imageURL = eventWithStage.localEventImageURL,
-                stages = emptyList(),
-                tier = EventTier.valueOf(eventWithStage.localEventTier),
-                mode = eventWithStage.localEventMode,
-                region = EventRegion.valueOf(eventWithStage.localEventRegion),
-                lan = eventWithStage.localEventLan,
-                prize = prize,
-            )
-        }
+        .groupBy(EventWithStage::parseEvent)
         .map { (event, stageRows) ->
-            val stages = stageRows.map { eventWithStage ->
-                val location =
-                    if (eventWithStage.localEventStageVenue != null && eventWithStage.localEventStageCity != null && eventWithStage.localEventStageCountryCode != null) {
-                        Location(
-                            eventWithStage.localEventStageVenue,
-                            eventWithStage.localEventStageCity,
-                            eventWithStage.localEventStageCountryCode,
-                        )
-                    } else {
-                        null
-                    }
-
-                EventStage(
-                    id = EventStage.Id(eventWithStage.localEventStageId),
-                    name = eventWithStage.localEventStageName,
-                    region = eventWithStage.localEventStageRegion,
-                    startDateUTC = eventWithStage.localEventStageStartDateUTC,
-                    endDateUTC = eventWithStage.localEventStageEndDateUTC,
-                    liquipedia = eventWithStage.localEventStageLiquipedia,
-                    qualifier = eventWithStage.localEventStageQualifier,
-                    lan = eventWithStage.localEventStageLan,
-                    location = location,
-                )
-            }
-
             event.copy(
-                stages = stages,
+                stages = stageRows.map(EventWithStage::parseStage),
             )
         }
 }
-// fun EventWithStage.toEventStagePair(): Pair<Event, EventStage> {
-//    val event = Event(
-//        id = Event.Id(this.localEventId),
-//        name = this.localEventName,
-//        startDateUTC = this.localEventStartDateUTC,
-//        endDateUTC = this.localEventEndDateUTC,
-//        imageURL = null
-//    )
-// }
+
+private fun EventWithStage.parseStage(): EventStage {
+    return EventStage(
+        id = EventStage.Id(localEventStageId),
+        name = localEventStageName,
+        region = localEventStageRegion,
+        startDateUTC = localEventStageStartDateUTC,
+        endDateUTC = localEventStageEndDateUTC,
+        liquipedia = localEventStageLiquipedia,
+        qualifier = localEventStageQualifier,
+        lan = localEventStageLan,
+        location = parseStageLocation(),
+    )
+}
+
+private fun EventWithStage.parseStageLocation(): Location? {
+    return Location(
+        venue = localEventStageVenue.orEmpty(),
+        city = localEventStageCity.orEmpty(),
+        countryCode = localEventStageCountryCode.orEmpty(),
+    ).takeIf {
+        localEventStageVenue != null &&
+            localEventStageCity != null &&
+            localEventStageCountryCode != null
+    }
+}
+
+private fun EventWithStage.parseEventPrize(): Prize? {
+    return Prize(
+        amount = localEventPrizeAmount ?: 0.0,
+        currency = localEventPrizeCurrency.orEmpty(),
+    ).takeIf {
+        localEventPrizeAmount != null &&
+            localEventPrizeCurrency != null
+    }
+}
+
+private fun EventWithStage.parseEvent(): Event {
+    return Event(
+        id = Event.Id(localEventId),
+        name = localEventName,
+        startDateUTC = localEventStartDateUTC,
+        endDateUTC = localEventEndDateUTC,
+        imageURL = localEventImageURL,
+        stages = emptyList(),
+        tier = EventTier.valueOf(localEventTier),
+        mode = localEventMode,
+        region = EventRegion.valueOf(localEventRegion),
+        lan = localEventLan,
+        prize = parseEventPrize(),
+    )
+}

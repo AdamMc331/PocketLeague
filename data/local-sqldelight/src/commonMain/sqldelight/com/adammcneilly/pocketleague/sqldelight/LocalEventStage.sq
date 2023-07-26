@@ -8,6 +8,9 @@ CREATE TABLE localEventStage(
     liquipedia TEXT NOT NULL,
     qualifier INTEGER AS Boolean NOT NULL DEFAULT 0,
     lan INTEGER AS Boolean NOT NULL DEFAULT 0,
+    venue TEXT,
+    city TEXT,
+    countryCode TEXT,
     PRIMARY KEY (id, eventId),
     FOREIGN KEY (eventId) REFERENCES localEvent(id) ON DELETE CASCADE
 );
@@ -22,7 +25,10 @@ INSERT INTO localEventStage(
     endDateUTC,
     liquipedia,
     qualifier,
-    lan
+    lan,
+    venue,
+    city,
+    countryCode
 )
 VALUES ?
 ON CONFLICT(id, eventId) DO
@@ -33,7 +39,10 @@ UPDATE SET
     endDateUTC = excluded.endDateUTC,
     liquipedia = excluded.liquipedia,
     qualifier = excluded.qualifier,
-    lan = excluded.lan
+    lan = excluded.lan,
+    venue = excluded.venue,
+    city = excluded.city,
+    countryCode = excluded.countryCode
 ;
 
 selectAllForEvent:

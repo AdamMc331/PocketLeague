@@ -1,9 +1,7 @@
 package com.adammcneilly.pocketleague.data.event
 
-import com.adammcneilly.pocketleague.core.datetime.defaultClock
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
-import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventParticipants
@@ -20,8 +18,6 @@ class OctaneGGEventService(
     private val apiClient: BaseKTORClient,
     private val clock: Clock,
 ) : RemoteEventService {
-
-    constructor() : this(OctaneGGAPIClient, defaultClock())
 
     override suspend fun getUpcomingEvents(): Result<List<Event>> {
         return apiClient.getResponse<OctaneGGEventListResponse>(

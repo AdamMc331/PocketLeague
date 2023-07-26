@@ -5,18 +5,23 @@ import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toEvent
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toEventStage
+import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toEvents
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalEvent
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalEventStage
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalTeam
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toTeam
 import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
 import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowSingle
+import com.adammcneilly.pocketleague.sqldelight.EventWithStage
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.adammcneilly.pocketleague.sqldelight.LocalEventParticipant
 import com.adammcneilly.pocketleague.sqldelight.LocalEventStage
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
+import com.squareup.sqldelight.runtime.coroutines.asFlow
+import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
 
 /**
@@ -34,7 +39,9 @@ class SQLDelightEventService(
             .selectAfterDate(
                 eventDateUTC = clock.now().toString(),
             )
-            .asFlowList(LocalEvent::toEvent)
+            .asFlow()
+            .mapToList()
+            .map(List<EventWithStage>::toEvents)
     }
 
     override fun getEvent(eventId: Event.Id): Flow<Event> {
@@ -69,7 +76,9 @@ class SQLDelightEventService(
             .selectOnDate(
                 eventDateUTC = clock.now().toString(),
             )
-            .asFlowList(LocalEvent::toEvent)
+            .asFlow()
+            .mapToList()
+            .map(List<EventWithStage>::toEvents)
     }
 
     override suspend fun insertEvents(events: List<Event>) {

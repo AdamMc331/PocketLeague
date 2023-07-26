@@ -6,6 +6,7 @@ import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.core.models.Prize
 import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 
+@Deprecated("Use EventWithStage instead.")
 fun LocalEvent.toEvent(): Event {
     return Event(
         id = Event.Id(this.id),

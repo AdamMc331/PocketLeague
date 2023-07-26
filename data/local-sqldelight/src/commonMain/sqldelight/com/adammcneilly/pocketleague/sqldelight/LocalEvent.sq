@@ -12,22 +12,44 @@ CREATE TABLE localEvent(
     prizeCurrency TEXT
 );
 
-selectAll:
-SELECT *
+CREATE VIEW eventWithStage AS
+SELECT
+    localEvent.id AS localEventId,
+    localEvent.name AS localEventName,
+    localEvent.startDateUTC AS localEventStartDateUTC,
+    localEvent.endDateUTC AS localEventEndDateUTC,
+    localEvent.imageURL AS localEventImageURL,
+    localEvent.tier AS localEventTier,
+    localEvent.mode AS localEventMode,
+    localEvent.region AS localEventRegion,
+    localEvent.lan AS localEventLan,
+    localEvent.prizeAmount AS localEventPrizeAmount,
+    localEvent.prizeCurrency AS localEventPrizeCurrency,
+    localEventStage.id AS localEventStageId,
+    localEventStage.name AS localEventStageName,
+    localEventStage.region AS localEventStageRegion,
+    localEventStage.startDateUTC AS localEventStageStartDateUTC,
+    localEventStage.endDateUTC AS localEventStageEndDateUTC,
+    localEventStage.liquipedia AS localEventStageLiquipedia,
+    localEventStage.qualifier AS localEventStageQualifier,
+    localEventStage.lan AS localEventStageLan,
+    localEventStage.venue AS localEventStageVenue,
+    localEventStage.city AS localEventStageCity,
+    localEventStage.countryCode AS localEventStageCountryCode
 FROM localEvent
-ORDER BY startDateUTC;
+INNER JOIN localEventStage ON localEventStage.eventId = localEvent.id;
 
 selectOnDate:
 SELECT *
-FROM localEvent
-WHERE startDateUTC < :eventDateUTC AND endDateUTC > :eventDateUTC
-ORDER BY startDateUTC;
+FROM eventWithStage
+WHERE localEventStartDateUTC < :eventDateUTC AND localEventEndDateUTC > :eventDateUTC
+ORDER BY localEventStartDateUTC;
 
 selectAfterDate:
 SELECT *
-FROM localEvent
-WHERE startDateUTC > :eventDateUTC
-ORDER BY startDateUTC;
+FROM eventWithStage
+WHERE localEventStartDateUTC > :eventDateUTC
+ORDER BY localEventStartDateUTC;
 
 selectById:
 SELECT *

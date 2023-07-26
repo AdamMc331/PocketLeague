@@ -87,9 +87,10 @@ internal fun String?.toEventRegion(): EventRegion {
         "EU" -> EventRegion.EU
         "OCE" -> EventRegion.OCE
         "SAM" -> EventRegion.SAM
-        "ASIA" -> EventRegion.ASIA
-        "ME" -> EventRegion.ME
+        "ASIA" -> EventRegion.APAC
+        "ME" -> EventRegion.MENA
         "INT" -> EventRegion.INT
+        "AF" -> EventRegion.SSA
         else -> EventRegion.Unknown
     }
 }

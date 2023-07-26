@@ -92,7 +92,7 @@ fun Event.toSummaryDisplayModel(
     }.orEmpty()
 
     return EventSummaryDisplayModel(
-        name = this.name,
+        name = modifyRegionalName(),
         imageURL = ThemedImageURL(
             lightThemeImageURL = this.imageURL,
         ),
@@ -101,6 +101,28 @@ fun Event.toSummaryDisplayModel(
         location = location,
         dateRange = parseDateRange(formattedStartDate, formattedEndDate),
     )
+}
+
+/**
+ * If this represents a regional event, modify the name to something different.
+ */
+private fun Event.modifyRegionalName(): String {
+    if (!this.name.contains("Regional")) {
+        return this.name
+    }
+
+    val region = this.region.toDisplayModel()
+    val nameWithoutSeason = this.name.removePrefix("RLCS 2022-23 ")
+    val words = nameWithoutSeason.split(" ")
+    val split = words.first()
+    val regionalName = when (words.last()) {
+        "1" -> "Open"
+        "2" -> "Cup"
+        "3" -> "Invitational"
+        else -> "N/A"
+    }
+
+    return "${region.shortName} $split $regionalName"
 }
 
 /**

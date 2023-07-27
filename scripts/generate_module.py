@@ -24,29 +24,10 @@ shutil.copytree(root + "/scripts/module_templates/", module_root)
 
 # Generate source folders
 os.makedirs(module_root + "/src/commonMain/kotlin/com/adammcneilly/pocketleague/" + "/".join(module_package.split(".")))
-os.makedirs(module_root + "/src/androidMain/")
-
-# Generate AndroidManifest
-manifest = open(module_root + "/src/androidMain/AndroidManifest.xml", "w+")
-manifest.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest />")
-manifest.close()
 
 # Add to project
 settings = open("settings.gradle.kts", "a")
 settings.write("\n")
 settings.write("include(\":" + module_type + ":" + module_sub_name + "\")")
-
-# Replace build.gradle
-gradle_file_name = module_root + "/build.gradle.kts"
-with open(gradle_file_name, 'r') as file :
-  file_data = file.read()
-
-  # Replace the target string
-  namespace = "com.adammcneilly.pocketleague." + module_package
-  file_data = file_data.replace('NAMESPACE_PLACEHOLDER', 'ram')
-
-  # Write the file out again
-  with open(gradle_file_name, 'w') as file:
-    file.write(file_data)
 
 print("Done!")

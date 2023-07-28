@@ -10,12 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Card
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -23,8 +21,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
-import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
 import com.adammcneilly.pocketleague.shared.ui.components.InlineIconText
 import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
@@ -105,18 +101,11 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
 @Composable
 private fun MatchTeamResultRow(
     teamResult: MatchTeamResultDisplayModel,
-    teamColor: Color,
 ) {
     val fontWeight: FontWeight? = if (teamResult.winner) {
         FontWeight.Bold
     } else {
         null
-    }
-
-    val contentColor = if (teamResult.winner) {
-        teamColor
-    } else {
-        LocalContentColor.current
     }
 
     Row(
@@ -127,7 +116,6 @@ private fun MatchTeamResultRow(
         Text(
             text = teamResult.score.toString(),
             fontWeight = fontWeight,
-            color = contentColor,
             modifier = Modifier
                 .placeholderMaterial(
                     visible = teamResult.isPlaceholder,
@@ -139,8 +127,7 @@ private fun MatchTeamResultRow(
             text = teamResult.team.name,
             icon = Icons.Default.EmojiEvents,
             showIcon = teamResult.winner,
-            textColor = contentColor,
-            iconTint = contentColor,
+            fontWeight = fontWeight,
             modifier = Modifier
                 .weight(1F)
                 .placeholderMaterial(
@@ -155,7 +142,6 @@ private fun MatchTeamResultRow(
 private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.orangeTeamResult,
-        teamColor = rlcsOrange,
     )
 }
 
@@ -163,6 +149,5 @@ private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
 private fun BlueTeamResult(match: MatchDetailDisplayModel) {
     MatchTeamResultRow(
         teamResult = match.blueTeamResult,
-        teamColor = rlcsBlue,
     )
 }

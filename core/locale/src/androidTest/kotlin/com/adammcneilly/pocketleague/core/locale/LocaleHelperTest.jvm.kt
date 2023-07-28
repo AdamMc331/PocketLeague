@@ -4,7 +4,7 @@ import com.varabyte.truthish.assertThat
 import kotlin.test.Test
 
 class LocaleHelperTest {
-    private val localeHelper = JVMLocaleHelper()
+    private val localeHelper = AndroidLocaleHelper()
 
     @Test
     fun getCountryDisplayName() {

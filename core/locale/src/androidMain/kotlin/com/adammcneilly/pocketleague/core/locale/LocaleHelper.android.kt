@@ -3,9 +3,9 @@ package com.adammcneilly.pocketleague.core.locale
 import java.util.Locale
 
 /**
- * An implementation of [LocaleHelper] for the JVM target.
+ * An implementation of [LocaleHelper] for the Android target.
  */
-class JVMLocaleHelper : LocaleHelper {
+class AndroidLocaleHelper : LocaleHelper {
 
     override fun getCountryDisplayName(countryCode: String): String {
         return Locale("", countryCode).getDisplayName(Locale.getDefault())
@@ -16,5 +16,5 @@ class JVMLocaleHelper : LocaleHelper {
  * See commonMain for docs.
  */
 actual fun provideLocaleHelper(): LocaleHelper {
-    return JVMLocaleHelper()
+    return AndroidLocaleHelper()
 }

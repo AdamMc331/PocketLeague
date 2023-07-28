@@ -20,6 +20,12 @@ kotlin {
                 implementation(libs.varabyte.truthish)
             }
         }
+        val androidMain by getting
+        val androidUnitTest by getting {
+            dependencies {
+                dependsOn(commonTest)
+            }
+        }
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")
@@ -48,7 +54,7 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
     }
 
-    namespace = "com.adammcneilly.pocketleague.data.octanegg"
+    namespace = "com.adammcneilly.pocketleague.core.datetime"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)?.apply {

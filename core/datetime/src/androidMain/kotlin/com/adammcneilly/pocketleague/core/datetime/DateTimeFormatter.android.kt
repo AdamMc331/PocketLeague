@@ -1,10 +1,8 @@
 package com.adammcneilly.pocketleague.core.datetime
 
 /**
- * Creates a [JVMDateTimeFormatter] to be used on the Android platform.
- *
- * This should be moved into a JVM model another time.
+ * Creates an [AndroidDateTimeFormatter] to be used on the Android platform.
  */
 actual fun dateTimeFormatter(): DateTimeFormatter {
-    return JVMDateTimeFormatter()
+    return AndroidDateTimeFormatter()
 }

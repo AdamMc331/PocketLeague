@@ -20,7 +20,7 @@ data class MatchTeamResultDisplayModel(
             team = TeamOverviewDisplayModel.placeholder,
             score = 0,
             winner = false,
-            coreStats = CoreStatsDisplayModel.placeholder,
+            coreStats = null,
             players = emptyList(),
             isPlaceholder = true,
         )

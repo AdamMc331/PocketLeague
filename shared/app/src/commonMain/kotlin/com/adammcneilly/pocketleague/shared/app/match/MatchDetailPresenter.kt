@@ -9,10 +9,8 @@ import androidx.compose.runtime.setValue
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
-import com.adammcneilly.pocketleague.core.models.Game
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.game.GameService
-import com.adammcneilly.pocketleague.data.game.MatchGamesRequest
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.flow.launchIn
@@ -53,15 +51,15 @@ class MatchDetailPresenter(
                 .getMatchDetail(matchId)
                 .map(Match::toDetailDisplayModel)
                 .onEach { displayModel ->
-                    match = displayModel
+//                    match = displayModel
                 }
                 .launchIn(this)
 
-            games = gameService
-                .fetchGamesForMatch(MatchGamesRequest(matchId))
-                .getOrNull()
-                ?.map(Game::toDetailDisplayModel)
-                .orEmpty()
+//            games = gameService
+//                .fetchGamesForMatch(MatchGamesRequest(matchId))
+//                .getOrNull()
+//                ?.map(Game::toDetailDisplayModel)
+//                .orEmpty()
         }
 
         return MatchDetailScreen.State(

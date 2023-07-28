@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.data.octanegg.models
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventTier
+import com.varabyte.truthish.assertThat
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -75,6 +76,54 @@ class OctaneGGEventTest {
     }
 
     @Test
+    fun mapSpringOpenRegionalName() {
+        val springOpen = OctaneGGEvent(
+            name = "RLCS 2022-23 Spring North America Regional 1",
+            region = "NA",
+        )
+
+        val output = springOpen.toEvent()
+
+        assertThat(output.name).isEqualTo("NA Spring Open")
+    }
+
+    @Test
+    fun mapSpringCupRegionalName() {
+        val springOpen = OctaneGGEvent(
+            name = "RLCS 2022-23 Spring North America Regional 2",
+            region = "NA",
+        )
+
+        val output = springOpen.toEvent()
+
+        assertThat(output.name).isEqualTo("NA Spring Cup")
+    }
+
+    @Test
+    fun mapSpringInvitationalRegionalName() {
+        val springOpen = OctaneGGEvent(
+            name = "RLCS 2022-23 Spring North America Regional 3",
+            region = "NA",
+        )
+
+        val output = springOpen.toEvent()
+
+        assertThat(output.name).isEqualTo("NA Spring Invitational")
+    }
+
+    @Test
+    fun mapUnknownRegionalNAme() {
+        val springOpen = OctaneGGEvent(
+            name = "RLCS 2022-23 Spring North America Regional random",
+            region = "NA",
+        )
+
+        val output = springOpen.toEvent()
+
+        assertThat(output.name).isEqualTo("RLCS 2022-23 Spring North America Regional random")
+    }
+
+    @Test
     fun mapEventTiers() {
         assertEquals(
             expected = EventTier.S,
@@ -142,6 +191,11 @@ class OctaneGGEventTest {
         assertEquals(
             expected = EventRegion.MENA,
             actual = "ME".toEventRegion(),
+        )
+
+        assertEquals(
+            expected = EventRegion.SSA,
+            actual = "AF".toEventRegion(),
         )
 
         assertEquals(

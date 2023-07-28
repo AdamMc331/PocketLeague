@@ -1,9 +1,10 @@
 plugins {
     kotlin("multiplatform")
+    id("com.android.library")
 }
 
 kotlin {
-    jvm()
+    android()
 
     sourceSets {
         val commonMain by getting {
@@ -36,6 +37,16 @@ kotlin {
             getAt("iosSimulatorArm64Test").dependsOn(this)
         }
     }
+}
+
+android {
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
+
+    namespace = "com.adammcneilly.pocketleague.core.displaymodels.test"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)?.apply {

@@ -1,9 +1,10 @@
 plugins {
     kotlin("multiplatform")
+    id("com.android.application")
 }
 
 kotlin {
-    jvm()
+    android()
 
     sourceSets {
         val commonMain by getting

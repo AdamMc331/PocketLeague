@@ -46,6 +46,7 @@ data class EventSummaryDisplayModel(
             startDate = "",
             endDate = "",
             name = "",
+            dateRange = "",
             isPlaceholder = true,
         )
     }

@@ -15,6 +15,7 @@ import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 
 private const val INLINE_CONTENT_ID = "inlineContent"
@@ -33,6 +34,7 @@ private const val INLINE_CONTENT_ID = "inlineContent"
  * @param[iconTint] If supplied, we provide a tint to our [icon] using this color.
  * @param[textAlign] @see [Text]
  * @param[style] @see [Text]
+ * @param[fontWeight] @see [Text]
  */
 @Composable
 fun InlineIconText(
@@ -45,6 +47,7 @@ fun InlineIconText(
     iconTint: Color = LocalContentColor.current,
     textAlign: TextAlign? = null,
     style: TextStyle = LocalTextStyle.current,
+    fontWeight: FontWeight? = null,
 ) {
     Text(
         text = text.getAnnotatedString(
@@ -60,6 +63,7 @@ fun InlineIconText(
         textAlign = textAlign,
         style = style,
         color = textColor,
+        fontWeight = fontWeight,
     )
 }
 

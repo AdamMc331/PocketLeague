@@ -135,12 +135,12 @@ class OctaneGGEventTest {
         )
 
         assertEquals(
-            expected = EventRegion.ASIA,
+            expected = EventRegion.APAC,
             actual = "ASIA".toEventRegion(),
         )
 
         assertEquals(
-            expected = EventRegion.ME,
+            expected = EventRegion.MENA,
             actual = "ME".toEventRegion(),
         )
 

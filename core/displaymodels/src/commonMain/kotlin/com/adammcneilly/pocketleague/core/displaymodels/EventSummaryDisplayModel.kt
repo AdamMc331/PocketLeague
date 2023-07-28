@@ -13,7 +13,10 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
  *
  * @property[eventId] A unique identifier for this event.
  * @property[imageURL] The remote image URLs for this event.
- * @property[name] A description of this Rocket League event.
+ * @property[name] A description of this Rocket League event. If we're viewing a regional event for the current season, this should only
+ * include the split, region, and event information. For example: OCE Winter Invitational.
+ * If we're viewing a major or world championship, we can show the full name. Example: RLCS 2022-23 Spring Major,
+ * RLCS 2022-23 World Championship.
  * @property[startDate] A user friendly string representing the date that an event starts.
  * @property[endDate] A user friendly string representing the date that an event ends.
  * @property[dateRange] A user friendly representation of the entire range of this event.

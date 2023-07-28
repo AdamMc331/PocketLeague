@@ -1,3 +1,3 @@
-package com.adammcneilly.pocketleague.shared.app
+package com.adammcneilly.pocketleague.core.feature
 
 actual typealias CommonParcelize = kotlinx.parcelize.Parcelize

@@ -1,7 +1,7 @@
-package com.adammcneilly.pocketleague.shared.app
+package com.adammcneilly.pocketleague.core.feature
 
 /**
- * Implementation of the [CommonParcelize] annotation for the iOS platform.
+ * Implementation of the [CommonParcelize] annotation for the JVM platform.
  *
  * In this case, we do nothing. Unlike Android, which
  * uses parcelize plugin.

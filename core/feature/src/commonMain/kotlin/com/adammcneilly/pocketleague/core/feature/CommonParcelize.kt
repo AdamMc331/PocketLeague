@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app
+package com.adammcneilly.pocketleague.core.feature
 
 /**
  * Common annotation class used so we can use the

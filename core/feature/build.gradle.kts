@@ -1,8 +1,11 @@
 plugins {
     kotlin("multiplatform")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.plugin.parcelize")
 }
 
 kotlin {
+    android()
     jvm()
 
     sourceSets {
@@ -35,6 +38,16 @@ kotlin {
             getAt("iosSimulatorArm64Test").dependsOn(this)
         }
     }
+}
+
+android {
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
+
+    namespace = "com.adammcneilly.pocketleague.core.feature"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

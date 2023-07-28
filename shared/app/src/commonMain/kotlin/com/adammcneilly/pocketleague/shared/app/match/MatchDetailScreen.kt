@@ -2,10 +2,10 @@ package com.adammcneilly.pocketleague.shared.app.match
 
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.feature.CommonParcelize
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.match.MatchRepository
-import com.adammcneilly.pocketleague.shared.app.CommonParcelize
 import com.adammcneilly.pocketleague.shared.ui.match.MatchDetailContent
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.CircuitUiEvent

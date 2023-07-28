@@ -48,19 +48,59 @@ fun OctaneGGEvent?.toEvent(): Event {
 
     val isLan = stages.any(EventStage::lan)
 
+    val eventRegion = this?.region.toEventRegion()
+
     return Event(
         id = Event.Id(this?.id.orEmpty()),
-        name = this?.name.orEmpty(),
+        name = remapEventName(
+            octaneEventName = this?.name.orEmpty(),
+            region = eventRegion,
+        ),
         startDateUTC = this?.startDateUTC,
         endDateUTC = this?.endDateUTC,
         imageURL = this?.imageURL,
         stages = stages,
         tier = this?.tier.toEventTier(),
         mode = this?.mode?.toString().orEmpty(),
-        region = this?.region.toEventRegion(),
+        region = eventRegion,
         lan = isLan,
         prize = this?.prize?.toPrize(),
     )
+}
+
+/**
+ * Given an [octaneEventName], check to see if this is a regional event, and if so, modify the event name to the Pocket League
+ * preferred format of regional event names.
+ *
+ * Octane provides a name in the format: RLCS 2022-23 Winter North America Regional 3
+ * We want to store it as: NA Winter Invitational
+ *
+ * SIDE NOTE: Ideally we still keep track of season info somehow, in case we ever want to fetch events for a specific
+ * season. Removing it from the event name does create a little tech debt there.
+ */
+private fun remapEventName(
+    octaneEventName: String,
+    region: EventRegion,
+): String {
+    if (!octaneEventName.contains("regional", ignoreCase = true)) {
+        return octaneEventName
+    }
+
+    val words = octaneEventName.split(" ")
+
+    val splitName = words[2]
+    val regionalName = when (words.last()) {
+        "1" -> "Open"
+        "2" -> "Cup"
+        "3" -> "Invitational"
+        else -> {
+            println("Unable to properly parse regional: $octaneEventName")
+            return octaneEventName
+        }
+    }
+    val eventRegionAcronym = region.name
+
+    return "$eventRegionAcronym $splitName $regionalName"
 }
 
 /**
@@ -87,9 +127,10 @@ internal fun String?.toEventRegion(): EventRegion {
         "EU" -> EventRegion.EU
         "OCE" -> EventRegion.OCE
         "SAM" -> EventRegion.SAM
-        "ASIA" -> EventRegion.ASIA
-        "ME" -> EventRegion.ME
+        "ASIA" -> EventRegion.APAC
+        "ME" -> EventRegion.MENA
         "INT" -> EventRegion.INT
+        "AF" -> EventRegion.SSA
         else -> EventRegion.Unknown
     }
 }

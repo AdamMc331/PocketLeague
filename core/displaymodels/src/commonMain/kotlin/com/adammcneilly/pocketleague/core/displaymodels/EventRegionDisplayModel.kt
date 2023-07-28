@@ -29,10 +29,10 @@ fun EventRegion.toDisplayModel(): EventRegionDisplayModel {
         EventRegion.SAM -> {
             "This event takes place in South America."
         }
-        EventRegion.ASIA -> {
+        EventRegion.APAC -> {
             "Ths event takes place in Asia."
         }
-        EventRegion.ME -> {
+        EventRegion.MENA -> {
             "This event takes place in the Middle East."
         }
         EventRegion.INT -> {

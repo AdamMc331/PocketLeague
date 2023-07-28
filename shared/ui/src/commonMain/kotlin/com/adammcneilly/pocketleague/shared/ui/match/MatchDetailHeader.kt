@@ -43,17 +43,17 @@ fun MatchDetailHeader(
 
             Column(
                 modifier = Modifier
-                    .padding(PocketLeagueTheme.sizes.cardPadding),
+                    .padding(PocketLeagueTheme.sizes.cardPadding)
+                    .placeholderMaterial(
+                        visible = displayModel.isPlaceholder,
+                        color = PlaceholderDefaults.cardColor(),
+                    ),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
                     text = displayModel.eventName,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .placeholderMaterial(
-                            visible = displayModel.isPlaceholder,
-                            color = PlaceholderDefaults.cardColor(),
-                        ),
+                        .fillMaxWidth(),
                     style = MaterialTheme.typography.headlineSmall,
                     textAlign = TextAlign.Center,
                 )
@@ -61,22 +61,14 @@ fun MatchDetailHeader(
                 Text(
                     text = displayModel.stageName,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .placeholderMaterial(
-                            visible = displayModel.isPlaceholder,
-                            color = PlaceholderDefaults.cardColor(),
-                        ),
+                        .fillMaxWidth(),
                     style = MaterialTheme.typography.titleLarge,
                     textAlign = TextAlign.Center,
                 )
 
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .placeholderMaterial(
-                            visible = displayModel.isPlaceholder,
-                            color = PlaceholderDefaults.cardColor(),
-                        ),
+                        .fillMaxWidth(),
                     text = displayModel.localDate,
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.labelLarge,
@@ -112,26 +104,22 @@ private fun MatchTeamResultCell(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .placeholderMaterial(
+                visible = displayModel.team.isPlaceholder,
+                color = PlaceholderDefaults.cardColor(),
+            ),
     ) {
         CircleTeamLogo(
             displayModel = displayModel.team,
             modifier = Modifier
                 .size(72.dp)
-                .padding(8.dp)
-                .placeholderMaterial(
-                    visible = displayModel.team.isPlaceholder,
-                    color = PlaceholderDefaults.cardColor(),
-                ),
+                .padding(8.dp),
         )
 
         Text(
             text = displayModel.score.toString(),
             style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier
-                .placeholderMaterial(
-                    visible = displayModel.isPlaceholder,
-                    color = PlaceholderDefaults.cardColor(),
-                ),
         )
     }
 }

@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.InlineTextContent
@@ -45,7 +44,11 @@ fun GameListItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(16.dp)
+            .placeholderMaterial(
+                visible = displayModel.isPlaceholder,
+                color = PlaceholderDefaults.cardColor(),
+            ),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         TeamScore(
@@ -53,11 +56,6 @@ fun GameListItem(
             showIconFirst = false,
             textAlign = TextAlign.Start,
             weight = SCORE_TEXT_WEIGHT,
-            modifier = Modifier
-                .placeholderMaterial(
-                    visible = displayModel.isPlaceholder,
-                    color = PlaceholderDefaults.cardColor(),
-                ),
         )
 
         Column(
@@ -68,12 +66,6 @@ fun GameListItem(
             Text(
                 text = displayModel.map,
                 textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .defaultMinSize(minWidth = 100.dp)
-                    .placeholderMaterial(
-                        visible = displayModel.isPlaceholder,
-                        color = PlaceholderDefaults.cardColor(),
-                    ),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
@@ -93,11 +85,6 @@ fun GameListItem(
             showIconFirst = true,
             textAlign = TextAlign.End,
             weight = SCORE_TEXT_WEIGHT,
-            modifier = Modifier
-                .placeholderMaterial(
-                    visible = displayModel.isPlaceholder,
-                    color = PlaceholderDefaults.cardColor(),
-                ),
         )
     }
 }

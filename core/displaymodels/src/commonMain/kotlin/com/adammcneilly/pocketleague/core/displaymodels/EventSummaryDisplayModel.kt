@@ -122,9 +122,18 @@ private fun parseDateRange(
     val isSameMonth = (startMonth == endMonth)
     val isSameYear = (startYear == endYear)
 
-    return if (isSameMonth && isSameYear) {
-        "$startMonth $startDay – $endDay, $startYear"
-    } else {
-        "$formattedStartDate – $formattedEndDate"
+    return when {
+        formattedStartDate == formattedEndDate -> {
+            formattedStartDate
+        }
+        isSameMonth && isSameYear -> {
+            "$startMonth $startDay – $endDay, $startYear"
+        }
+        isSameYear -> {
+            "$startMonth $startDay – $endMonth $endDay, $startYear"
+        }
+        else -> {
+            "$formattedStartDate – $formattedEndDate"
+        }
     }
 }

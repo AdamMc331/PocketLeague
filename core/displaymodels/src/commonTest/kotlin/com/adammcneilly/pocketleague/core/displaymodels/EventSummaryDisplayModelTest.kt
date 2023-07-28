@@ -34,7 +34,7 @@ class EventSummaryDisplayModelTest {
             assertEquals(testEvent.id, eventId)
             assertEquals(testEvent.imageURL, imageURL.lightThemeImageURL)
             assertEquals(testEvent.imageURL, imageURL.darkThemeImageURL)
-            assertEquals("Jul 07 – 07, 2023", dateRange)
+            assertEquals("Jul 07, 2023", dateRange)
             assertEquals(testEvent.name, name)
             assertThat(arenaLocation).isEmpty()
         }
@@ -71,5 +71,53 @@ class EventSummaryDisplayModelTest {
         val displayModel = testEvent.toSummaryDisplayModel(dateTimeFormatter)
 
         assertThat(displayModel.arenaLocation).isEqualTo(expectedLocation)
+    }
+
+    @Test
+    fun parseDateRangeInSameMonthAndYear() {
+        val event = TestModel.event.copy(
+            startDateUTC = "2022-08-03T23:00:00Z",
+            endDateUTC = "2022-08-05T23:00:00Z",
+        )
+
+        val displayModel = event.toSummaryDisplayModel()
+
+        assertThat(displayModel.dateRange).isEqualTo("Aug 03 – 05, 2022")
+    }
+
+    @Test
+    fun parseDateRangeInSameYear() {
+        val event = TestModel.event.copy(
+            startDateUTC = "2022-08-31T23:00:00Z",
+            endDateUTC = "2022-09-02T23:00:00Z",
+        )
+
+        val displayModel = event.toSummaryDisplayModel()
+
+        assertThat(displayModel.dateRange).isEqualTo("Aug 31 – Sep 02, 2022")
+    }
+
+    @Test
+    fun parseDateRangeInDifferentYears() {
+        val event = TestModel.event.copy(
+            startDateUTC = "2022-12-31T23:00:00Z",
+            endDateUTC = "2023-01-05T23:00:00Z",
+        )
+
+        val displayModel = event.toSummaryDisplayModel()
+
+        assertThat(displayModel.dateRange).isEqualTo("Dec 31, 2022 – Jan 05, 2023")
+    }
+
+    @Test
+    fun parseDateRangeOnSameDay() {
+        val event = TestModel.event.copy(
+            startDateUTC = "2022-12-31T13:00:00Z",
+            endDateUTC = "2022-12-31T23:00:00Z",
+        )
+
+        val displayModel = event.toSummaryDisplayModel()
+
+        assertThat(displayModel.dateRange).isEqualTo("Dec 31, 2022")
     }
 }

@@ -5,6 +5,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.app.bars.PLTopAppBar
+import com.adammcneilly.pocketleague.shared.app.eventdetail.EventDetailScreen
 import com.adammcneilly.pocketleague.shared.app.feed.FeedScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
@@ -26,10 +27,20 @@ fun PocketLeagueApp(
         // In the future, we may want to look at some DI framework to make it easy to pass
         // in all of these factories, or even consider the codegen that Circuit offers.
         val circuitConfig = CircuitConfig.Builder()
-            .addUiFactory(FeedScreen.UiFactory)
-            .addPresenterFactory(FeedScreen.PresenterFactory)
-            .addUiFactory(MatchDetailScreen.UiFactory)
-            .addPresenterFactory(MatchDetailScreen.PresenterFactory)
+            .addUiFactories(
+                listOf(
+                    FeedScreen.UiFactory,
+                    MatchDetailScreen.UiFactory,
+                    EventDetailScreen.UiFactory,
+                ),
+            )
+            .addPresenterFactories(
+                listOf(
+                    FeedScreen.PresenterFactory,
+                    MatchDetailScreen.PresenterFactory,
+                    EventDetailScreen.PresenterFactory,
+                ),
+            )
             .build()
 
         CircuitCompositionLocals(circuitConfig) {

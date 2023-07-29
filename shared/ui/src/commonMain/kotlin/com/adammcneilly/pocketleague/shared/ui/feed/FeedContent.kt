@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
@@ -25,6 +26,7 @@ fun FeedContent(
     ongoingEvents: List<EventGroupDisplayModel>,
     upcomingEvents: List<EventGroupDisplayModel>,
     onMatchClicked: (Match.Id) -> Unit,
+    onEventClicked: (Event.Id) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -40,11 +42,11 @@ fun FeedContent(
 
         happeningNowHeader()
 
-        eventGroupList(ongoingEvents)
+        eventGroupList(ongoingEvents, onEventClicked)
 
         upcomingHeader()
 
-        eventGroupList(upcomingEvents)
+        eventGroupList(upcomingEvents, onEventClicked)
     }
 }
 
@@ -56,10 +58,16 @@ private fun LazyListScope.upcomingHeader() {
     }
 }
 
-private fun LazyListScope.eventGroupList(ongoingEvents: List<EventGroupDisplayModel>) {
-    ongoingEvents.forEach { group ->
+private fun LazyListScope.eventGroupList(
+    events: List<EventGroupDisplayModel>,
+    onEventClicked: (Event.Id) -> Unit,
+) {
+    events.forEach { group ->
         item {
-            FeedEventGroup(group)
+            FeedEventGroup(
+                group,
+                onEventClicked,
+            )
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.ui.event
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
+import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.design.system.theme.md_theme_dark_onSurface
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
@@ -33,6 +35,7 @@ import com.adammcneilly.pocketleague.shared.ui.utils.VerticalSpacer
 @Composable
 fun LanEventSummaryCard(
     event: EventSummaryDisplayModel,
+    onEventClicked: (Event.Id) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val rlcsGradientBrush = Brush.horizontalGradient(
@@ -48,7 +51,10 @@ fun LanEventSummaryCard(
                     brush = rlcsGradientBrush,
                     shape = MaterialTheme.shapes.medium,
                 )
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .clickable {
+                    onEventClicked.invoke(event.eventId)
+                },
         ) {
             Column(
                 modifier = Modifier

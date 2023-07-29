@@ -72,6 +72,10 @@ object FeedScreen : Screen {
                                 val event = Event.MatchClicked(matchId)
                                 state.eventSink.invoke(event)
                             },
+                            onEventClicked = { eventId ->
+                                val event = Event.EventClicked(eventId)
+                                state.eventSink.invoke(event)
+                            },
                             modifier = modifier,
                         )
                     }

@@ -30,6 +30,7 @@ class EventSummaryListCardPaparazziTest {
 
             EventSummaryListCard(
                 events = events,
+                onEventClicked = {},
             )
         }
     }
@@ -41,6 +42,7 @@ class EventSummaryListCardPaparazziTest {
 
             EventSummaryListCard(
                 events = events,
+                onEventClicked = {},
             )
         }
     }
@@ -56,6 +58,7 @@ class EventSummaryListCardPaparazziTest {
 
             EventSummaryListCard(
                 events = events,
+                onEventClicked = {},
             )
         }
     }

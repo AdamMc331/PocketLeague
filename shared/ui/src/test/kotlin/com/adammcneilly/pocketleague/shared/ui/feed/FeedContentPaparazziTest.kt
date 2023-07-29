@@ -52,6 +52,7 @@ class FeedContentPaparazziTest {
                 ongoingEvents = ongoingEvents,
                 upcomingEvents = upcomingEvents,
                 onMatchClicked = {},
+                onEventClicked = {},
             )
         }
     }

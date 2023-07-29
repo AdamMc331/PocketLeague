@@ -27,6 +27,7 @@ class LanEventSummaryCardPaparazziTest {
         paparazzi.snapshotScreen(useDarkTheme) {
             LanEventSummaryCard(
                 event = EventSummaryDisplayModel.worldChampionship(),
+                onEventClicked = {},
             )
         }
     }
@@ -38,6 +39,7 @@ class LanEventSummaryCardPaparazziTest {
                 event = EventSummaryDisplayModel.springMajor().copy(
                     winningTeam = TeamOverviewDisplayModel.teamVitality(),
                 ),
+                onEventClicked = {},
             )
         }
     }

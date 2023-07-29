@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.shared.ui.feed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
+import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.shared.ui.event.EventSummaryListCard
 import com.adammcneilly.pocketleague.shared.ui.event.LanEventSummaryCard
 import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
@@ -14,6 +15,7 @@ import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
 @Composable
 fun FeedEventGroup(
     displayModel: EventGroupDisplayModel,
+    onEventClicked: (Event.Id) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val groupModifier = modifier
@@ -23,6 +25,7 @@ fun FeedEventGroup(
         is EventGroupDisplayModel.Regionals -> {
             EventSummaryListCard(
                 events = displayModel.events,
+                onEventClicked = onEventClicked,
                 modifier = groupModifier,
             )
         }
@@ -30,6 +33,7 @@ fun FeedEventGroup(
         is EventGroupDisplayModel.Major -> {
             LanEventSummaryCard(
                 event = displayModel.event,
+                onEventClicked = onEventClicked,
                 modifier = groupModifier,
             )
         }

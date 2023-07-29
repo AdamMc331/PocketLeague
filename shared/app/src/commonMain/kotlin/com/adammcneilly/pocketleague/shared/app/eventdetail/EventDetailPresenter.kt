@@ -10,6 +10,9 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.slack.circuit.runtime.presenter.Presenter
 
+/**
+ * State management container for the event detail screen.
+ */
 class EventDetailPresenter(
     private val eventId: Event.Id,
     private val eventRepository: EventRepository,

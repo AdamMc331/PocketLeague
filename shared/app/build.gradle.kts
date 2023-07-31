@@ -27,6 +27,7 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(libs.kamel)
                 implementation(libs.koin.core)
                 implementation(libs.slack.circuit)
             }

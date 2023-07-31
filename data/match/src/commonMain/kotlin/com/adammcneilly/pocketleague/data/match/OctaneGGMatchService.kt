@@ -72,7 +72,7 @@ class OctaneGGMatchService(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(
                 "event" to eventId.id,
-                "stage" to stageId,
+                "stage" to stageId.id,
             ),
         ).map { octaneGGMatchListResponse ->
             octaneGGMatchListResponse.matches?.map(OctaneGGMatch::toMatch).orEmpty()

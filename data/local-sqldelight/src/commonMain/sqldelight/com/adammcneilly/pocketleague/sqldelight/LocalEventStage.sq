@@ -15,6 +15,23 @@ CREATE TABLE localEventStage(
     FOREIGN KEY (eventId) REFERENCES localEvent(id) ON DELETE CASCADE
 );
 
+insertOrIgnoreEventStage:
+INSERT OR IGNORE INTO localEventStage(
+    id,
+    eventId,
+    name,
+    region,
+    startDateUTC,
+    endDateUTC,
+    liquipedia,
+    qualifier,
+    lan,
+    venue,
+    city,
+    countryCode
+)
+VALUES ?;
+
 insertFullEventStage:
 INSERT INTO localEventStage(
     id,

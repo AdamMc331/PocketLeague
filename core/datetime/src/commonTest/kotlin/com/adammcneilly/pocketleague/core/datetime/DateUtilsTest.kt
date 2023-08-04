@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.core.datetime
 
 import com.varabyte.truthish.assertThat
-import com.varabyte.truthish.assertThrows
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -78,14 +77,12 @@ class DateUtilsTest {
     }
 
     @Test
-    fun `getRelativeTimestamp throws in future`() {
+    fun `getRelativeTimestamp returns null in future`() {
         val futureDate = "2024-07-18T11:55:00Z"
         val now = "2023-07-18T12:00:00Z"
 
         val clock = DebugClock(now)
 
-        assertThrows<IllegalArgumentException> {
-            DateUtils.getRelativeTimestamp(futureDate, clock)
-        }
+        assertThat(DateUtils.getRelativeTimestamp(futureDate, clock)).isNull()
     }
 }

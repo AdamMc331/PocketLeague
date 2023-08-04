@@ -23,7 +23,7 @@ data class EventDetailDisplayModel(
     val region: EventRegionDisplayModel,
     val onlineOrLAN: String,
     val prize: PrizeDisplayModel?,
-    private val stageSummaries: List<EventStageSummaryDisplayModel>,
+    val stageSummaries: List<EventStageSummaryDisplayModel>,
     val darkThemeImageUrl: String? = lightThemeImageUrl,
     val isPlaceholder: Boolean = false,
 ) {
@@ -39,23 +39,13 @@ data class EventDetailDisplayModel(
             region = EventRegion.Unknown.toDisplayModel(),
             onlineOrLAN = "",
             prize = null,
-            stageSummaries = emptyList(),
+            stageSummaries = listOf(
+                EventStageSummaryDisplayModel.placeholder,
+                EventStageSummaryDisplayModel.placeholder,
+                EventStageSummaryDisplayModel.placeholder,
+            ),
             isPlaceholder = true,
         )
-    }
-
-    /**
-     * Returns a list of [EventStageSummaryDisplayModel] entities based on
-     * whether or not this is a placeholder display model.
-     */
-    fun getStageSummaries(): List<EventStageSummaryDisplayModel> {
-        return if (isPlaceholder) {
-            (1..3).map {
-                EventStageSummaryDisplayModel.placeholder
-            }
-        } else {
-            stageSummaries
-        }
     }
 }
 

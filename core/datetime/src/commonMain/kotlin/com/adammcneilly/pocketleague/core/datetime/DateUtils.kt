@@ -27,13 +27,16 @@ object DateUtils {
 
     /**
      * Given a [utcString], convert it to a relative timestamp such as 5m ago, or 5d ago.
+     *
+     * @return Only returns a relative timestamp if this date is in the past,
+     * otherwise null.
      */
     fun getRelativeTimestamp(
         utcString: String,
         clock: Clock = defaultClock(),
-    ): String {
-        require(isBeforeNow(utcString, clock)) {
-            "getRelativeTimestamp only valid for past dates."
+    ): String? {
+        if (!isBeforeNow(utcString, clock)) {
+            return null
         }
 
         val instant = Instant.parse(utcString)

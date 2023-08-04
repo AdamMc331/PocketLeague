@@ -56,6 +56,22 @@ SELECT *
 FROM localEvent
 WHERE id = :eventId;
 
+insertOrIgnoreEventObject:
+INSERT OR IGNORE INTO localEvent(
+    id,
+    name,
+    startDateUTC,
+    endDateUTC,
+    imageURL,
+    tier,
+    mode,
+    region,
+    lan,
+    prizeAmount,
+    prizeCurrency
+)
+VALUES ?;
+
 insertFullEventObject:
 INSERT INTO localEvent(
     id,

@@ -60,10 +60,10 @@ class SQLDelightMatchService(
         database.transaction {
             matches.forEach { match ->
                 database.localEventQueries
-                    .insertFullEventObject(match.event.toLocalEvent())
+                    .insertOrIgnoreEventObject(match.event.toLocalEvent())
 
                 database.localEventStageQueries
-                    .insertFullEventStage(
+                    .insertOrIgnoreEventStage(
                         match.stage.toLocalEventStage(
                             eventId = match.event.id,
                         ),

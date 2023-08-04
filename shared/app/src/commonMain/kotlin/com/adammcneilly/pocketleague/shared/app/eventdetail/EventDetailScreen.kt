@@ -1,10 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.eventdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.feature.CommonParcelize
-import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.slack.circuit.runtime.CircuitContext
@@ -31,8 +28,7 @@ data class EventDetailScreen(
      */
     data class State(
         val event: EventDetailDisplayModel,
-        val selectedStageId: EventStage.Id,
-        val matchesForSelectedStage: List<MatchDetailDisplayModel>,
+        val selectedStageIndex: Int,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
 
@@ -42,11 +38,11 @@ data class EventDetailScreen(
     sealed interface Event : CircuitUiEvent {
 
         /**
-         * Indicates that a stage with a given [stageId] was selected from the
+         * Indicates that a stage with a given [stageIndex] was selected from the
          * event detail screen.
          */
         data class StageSelected(
-            val stageId: EventStage.Id,
+            val stageIndex: Int,
         ) : Event
     }
 
@@ -59,13 +55,7 @@ data class EventDetailScreen(
                 is EventDetailScreen -> {
                     ui<State> { state, modifier ->
                         EventDetailContent(
-                            event = state.event,
-                            selectedStage = state.selectedStageId,
-                            matchesForSelectedStage = state.matchesForSelectedStage,
-                            onStageSelected = { stageId ->
-                                val uiEvent = Event.StageSelected(stageId)
-                                state.eventSink.invoke(uiEvent)
-                            },
+                            state = state,
                             modifier = modifier,
                         )
                     }

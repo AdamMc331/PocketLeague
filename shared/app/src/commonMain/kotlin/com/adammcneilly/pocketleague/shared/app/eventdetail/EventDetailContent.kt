@@ -6,31 +6,22 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
-import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
 /**
- * UI representation of an [event].
+ * UI representation for detailed info about an event.
  */
 @Composable
 fun EventDetailContent(
-    event: EventDetailDisplayModel,
-    selectedStage: EventStage.Id,
-    matchesForSelectedStage: List<MatchDetailDisplayModel>,
-    onStageSelected: (EventStage.Id) -> Unit,
+    state: EventDetailScreen.State,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -45,29 +36,24 @@ fun EventDetailContent(
         // Do we want to pass in the selected stage?
         // Maybe not, since there's no situation where we dynamically link to it,
         // though maybe if we ever wanted to support deep linking.
-        horizontalStageSection(event, onStageSelected)
+        horizontalStageSection(state)
 
-        items(matchesForSelectedStage) { match ->
-            val blueTeamName = match.blueTeamResult.team.name
-            val orangeTeamName = match.orangeTeamResult.team.name
-
-            Text(
-                "$blueTeamName vs $orangeTeamName",
-            )
-        }
+//        items(state.matchesForSelectedStage) { match ->
+//            val blueTeamName = match.blueTeamResult.team.name
+//            val orangeTeamName = match.orangeTeamResult.team.name
+//
+//            Text(
+//                "$blueTeamName vs $orangeTeamName",
+//            )
+//        }
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 private fun LazyListScope.horizontalStageSection(
-    event: EventDetailDisplayModel,
-    onStageSelected: (EventStage.Id) -> Unit,
+    state: EventDetailScreen.State,
 ) {
-    val stages = event.getStageSummaries().filterNot { it.isPlaceholder }
-
-    if (stages.isEmpty()) {
-        return
-    }
+    val stages = state.event.stageSummaries
 
     item {
         val pagerState = rememberPagerState()
@@ -76,11 +62,11 @@ private fun LazyListScope.horizontalStageSection(
         LaunchedEffect(Unit) {
             snapshotFlow {
                 pagerState.currentPage
-            }.map { pageIndex ->
-                val stage = stages[pageIndex]
-                stage.stageId
-            }.onEach { stageId ->
-                onStageSelected.invoke(stageId)
+            }.onEach { pageIndex ->
+                val uiEvent = EventDetailScreen.Event.StageSelected(
+                    stageIndex = pageIndex,
+                )
+                state.eventSink.invoke(uiEvent)
             }.launchIn(this)
         }
 
@@ -93,8 +79,6 @@ private fun LazyListScope.horizontalStageSection(
             state = pagerState,
         ) { pageIndex ->
             val stage = stages[pageIndex]
-
-            // Based on page index, could we modify the card's full width?
 
             EventStageCard(
                 eventStage = stage,

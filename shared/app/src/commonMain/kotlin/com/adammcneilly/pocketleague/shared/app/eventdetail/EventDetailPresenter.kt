@@ -6,16 +6,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.slack.circuit.runtime.presenter.Presenter
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -35,18 +31,8 @@ class EventDetailPresenter(
             mutableStateOf(EventDetailDisplayModel.placeholder)
         }
 
-        var selectedStageId by remember {
-            mutableStateOf(displayModel.getStageSummaries().first().stageId)
-        }
-
-        var matchesForSelectedStage by remember {
-            mutableStateOf(
-                listOf(
-                    MatchDetailDisplayModel.placeholder,
-                    MatchDetailDisplayModel.placeholder,
-                    MatchDetailDisplayModel.placeholder,
-                ),
-            )
+        var selectedStageIndex by remember {
+            mutableStateOf(0)
         }
 
         LaunchedEffect(Unit) {
@@ -57,29 +43,15 @@ class EventDetailPresenter(
                     displayModel = eventDetail
                 }
                 .launchIn(this)
-
-            snapshotFlow {
-                selectedStageId
-            }.flatMapLatest { stageId ->
-                matchRepository.getMatchesForEventStage(
-                    eventId = displayModel.eventId,
-                    stageId = stageId,
-                )
-            }.map { matches ->
-                matches.map(Match::toDetailDisplayModel)
-            }.onEach { matches ->
-                matchesForSelectedStage = matches
-            }.launchIn(this)
         }
 
         return EventDetailScreen.State(
             event = displayModel,
-            selectedStageId = selectedStageId,
-            matchesForSelectedStage = matchesForSelectedStage,
+            selectedStageIndex = selectedStageIndex,
         ) { uiEvent ->
             when (uiEvent) {
                 is EventDetailScreen.Event.StageSelected -> {
-                    selectedStageId = uiEvent.stageId
+                    selectedStageIndex = uiEvent.stageIndex
                 }
             }
         }

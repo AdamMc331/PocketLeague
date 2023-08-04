@@ -14,6 +14,6 @@ fun EventDetailContent(
     modifier: Modifier = Modifier,
 ) {
     Text(
-        text = "Event Detail Screen",
+        text = "Event Detail Screen; Event name: ${event.name}",
     )
 }

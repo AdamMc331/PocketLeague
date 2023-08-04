@@ -1,9 +1,12 @@
 package com.adammcneilly.pocketleague.shared.app.eventdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.feature.CommonParcelize
 import com.adammcneilly.pocketleague.core.models.Event
+import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.data.event.EventRepository
+import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.CircuitUiEvent
 import com.slack.circuit.runtime.CircuitUiState
@@ -28,13 +31,19 @@ data class EventDetailScreen(
      */
     data class State(
         val event: EventDetailDisplayModel,
+        val selectedStageId: EventStage.Id,
+        val matchesForSelectedStage: List<MatchDetailDisplayModel>,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
 
     /**
      * An enumeration of UI events that can happen on the [EventDetailScreen].
      */
-    sealed interface Event : CircuitUiEvent
+    sealed interface Event : CircuitUiEvent {
+        data class StageSelected(
+            val stageId: EventStage.Id,
+        ) : Event
+    }
 
     /**
      * Factory to create the UI for the [EventDetailScreen].
@@ -46,6 +55,12 @@ data class EventDetailScreen(
                     ui<State> { state, modifier ->
                         EventDetailContent(
                             event = state.event,
+                            selectedStage = state.selectedStageId,
+                            matchesForSelectedStage = state.matchesForSelectedStage,
+                            onStageSelected = { stageId ->
+                                val uiEvent = Event.StageSelected(stageId)
+                                state.eventSink.invoke(uiEvent)
+                            },
                             modifier = modifier,
                         )
                     }
@@ -61,6 +76,7 @@ data class EventDetailScreen(
      */
     object PresenterFactory : Presenter.Factory, KoinComponent {
         private val eventRepository: EventRepository by inject()
+        private val matchRepository: MatchRepository by inject()
 
         override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
             return when (screen) {
@@ -68,6 +84,7 @@ data class EventDetailScreen(
                     EventDetailPresenter(
                         eventId = com.adammcneilly.pocketleague.core.models.Event.Id(screen.eventId),
                         eventRepository = eventRepository,
+                        matchRepository = matchRepository,
                     )
                 }
 

@@ -32,7 +32,7 @@ class OctaneGGEventService(
     }
 
     override suspend fun getEvent(eventId: Event.Id): Result<Event> {
-        val endpoint = "$EVENTS_ENDPOINT/$eventId"
+        val endpoint = "$EVENTS_ENDPOINT/${eventId.id}"
 
         return apiClient.getResponse<OctaneGGEvent>(
             endpoint = endpoint,
@@ -42,7 +42,7 @@ class OctaneGGEventService(
     }
 
     override suspend fun getEventParticipants(eventId: Event.Id): Result<List<Team>> {
-        val endpoint = "$EVENTS_ENDPOINT/$eventId/participants"
+        val endpoint = "$EVENTS_ENDPOINT/${eventId.id}/participants"
 
         return apiClient.getResponse<OctaneGGEventParticipants>(
             endpoint = endpoint,

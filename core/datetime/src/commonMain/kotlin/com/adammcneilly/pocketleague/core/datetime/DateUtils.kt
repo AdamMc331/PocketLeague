@@ -32,9 +32,9 @@ object DateUtils {
         utcString: String,
         clock: Clock = defaultClock(),
     ): String {
-        require(isBeforeNow(utcString, clock)) {
-            "getRelativeTimestamp only valid for past dates."
-        }
+//        require(isBeforeNow(utcString, clock)) {
+//            "getRelativeTimestamp only valid for past dates."
+//        }
 
         val instant = Instant.parse(utcString)
 

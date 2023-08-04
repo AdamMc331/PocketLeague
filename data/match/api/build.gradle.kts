@@ -6,7 +6,13 @@ kotlin {
     jvm()
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(project(":core:models"))
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.mobilenativefoundation.store)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))

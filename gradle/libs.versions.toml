@@ -31,6 +31,7 @@ minSdk = "23"
 okio = "3.4.0"
 palette = "1.0.0"
 paparazzi = "1.2.0"
+store = "5.0.0-beta02"
 sqldelight = "1.5.5"
 testParameterInjector = "1.9"
 tournamentBracket = "0.0.1"
@@ -101,6 +102,7 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
 ktor-client-testing = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+mobilenativefoundation-store = { module = "org.mobilenativefoundation.store:store5", version.ref = "store" }
 # Using Chris Bane's fork for now to support iOS: Using a fork containing https://github.com/slackhq/circuit/pull/704
 slack-circuit = { module = "dev.chrisbanes.circuit:circuit-foundation", version.ref = "circuit" }
 square-okio = { module = "com.squareup.okio:okio", version.ref = "okio" }

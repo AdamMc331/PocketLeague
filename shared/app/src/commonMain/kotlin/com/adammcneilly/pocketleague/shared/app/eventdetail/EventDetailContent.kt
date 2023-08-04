@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.snapshotFlow
@@ -38,14 +40,14 @@ fun EventDetailContent(
         // though maybe if we ever wanted to support deep linking.
         horizontalStageSection(state)
 
-//        items(state.matchesForSelectedStage) { match ->
-//            val blueTeamName = match.blueTeamResult.team.name
-//            val orangeTeamName = match.orangeTeamResult.team.name
-//
-//            Text(
-//                "$blueTeamName vs $orangeTeamName",
-//            )
-//        }
+        items(state.matchesForSelectedStage) { match ->
+            val blueTeamName = match.blueTeamResult.team.name
+            val orangeTeamName = match.orangeTeamResult.team.name
+
+            Text(
+                "$blueTeamName vs $orangeTeamName",
+            )
+        }
     }
 }
 

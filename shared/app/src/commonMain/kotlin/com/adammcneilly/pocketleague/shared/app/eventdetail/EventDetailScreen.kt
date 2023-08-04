@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.eventdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.feature.CommonParcelize
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.MatchRepository
@@ -29,6 +30,7 @@ data class EventDetailScreen(
     data class State(
         val event: EventDetailDisplayModel,
         val selectedStageIndex: Int,
+        val matchesForSelectedStage: List<MatchDetailDisplayModel>,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
 

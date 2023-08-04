@@ -148,7 +148,6 @@ ktor-client = [
 ]
 
 [plugins]
-androidx-baselineprofile = { id = "androidx.baselineprofile", version.ref = "androidx-baselineprofile" }
 cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 kotlin-compose = { id = "org.jetbrains.compose", version.ref = "kmpCompose" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app.match
+package com.adammcneilly.pocketleague.feature.matchdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
@@ -63,18 +63,19 @@ data class MatchDetailScreen(
             return when (screen) {
                 is MatchDetailScreen -> {
                     ui<State> { state, modifier ->
-                        MatchDetailContent(
-                            match = state.match,
-                            games = state.games,
-                            selectedGame = state.selectedGame,
-                            onSelectedGameDismissed = {
-                                state.eventSink.invoke(Event.SelectedGameDismissed)
-                            },
-                            onGameClicked = { game ->
-                                state.eventSink.invoke(Event.GameSelected(game))
-                            },
-                            modifier = modifier,
-                        )
+
+//                        MatchDetailContent(
+//                            match = state.match,
+//                            games = state.games,
+//                            selectedGame = state.selectedGame,
+//                            onSelectedGameDismissed = {
+//                                state.eventSink.invoke(Event.SelectedGameDismissed)
+//                            },
+//                            onGameClicked = { game ->
+//                                state.eventSink.invoke(Event.GameSelected(game))
+//                            },
+//                            modifier = modifier,
+//                        )
                     }
                 }
 

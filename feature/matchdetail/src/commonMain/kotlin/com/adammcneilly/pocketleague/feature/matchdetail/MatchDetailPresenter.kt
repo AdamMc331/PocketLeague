@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app.match
+package com.adammcneilly.pocketleague.feature.matchdetail
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -73,6 +73,7 @@ class MatchDetailPresenter(
                 is MatchDetailScreen.Event.GameSelected -> {
                     selectedGame = event.game
                 }
+
                 MatchDetailScreen.Event.SelectedGameDismissed -> {
                     selectedGame = null
                 }

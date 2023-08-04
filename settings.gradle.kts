@@ -38,3 +38,6 @@ include(":data:team-test")
 include(":shared:app")
 include(":shared:design-system")
 include(":shared:ui")
+
+include(":feature:eventdetail")
+include(":feature:matchdetail")

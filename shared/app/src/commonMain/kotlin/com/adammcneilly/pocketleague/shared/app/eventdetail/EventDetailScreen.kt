@@ -40,6 +40,11 @@ data class EventDetailScreen(
      * An enumeration of UI events that can happen on the [EventDetailScreen].
      */
     sealed interface Event : CircuitUiEvent {
+
+        /**
+         * Indicates that a stage with a given [stageId] was selected from the
+         * event detail screen.
+         */
         data class StageSelected(
             val stageId: EventStage.Id,
         ) : Event

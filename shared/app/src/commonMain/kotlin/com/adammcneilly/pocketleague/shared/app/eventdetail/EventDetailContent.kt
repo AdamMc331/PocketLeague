@@ -42,7 +42,9 @@ fun EventDetailContent(
             PocketLeagueTheme.sizes.listItemSpacing,
         ),
     ) {
-        // TODO: Pass in selected stage?
+        // Do we want to pass in the selected stage?
+        // Maybe not, since there's no situation where we dynamically link to it,
+        // though maybe if we ever wanted to support deep linking.
         horizontalStageSection(event, onStageSelected)
 
         items(matchesForSelectedStage) { match ->

@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -19,7 +18,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.shared.ui.components.ListItemDividerCard
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -103,41 +101,4 @@ private fun LazyListScope.horizontalStageSection(
             )
         }
     }
-}
-
-private fun LazyListScope.verticalStagesSection(event: EventDetailDisplayModel) {
-    val stages = event.getStageSummaries()
-
-    if (stages.isEmpty()) {
-        return
-    }
-
-    item {
-        EventDetailSectionHeader("Stages")
-    }
-
-    item {
-        ListItemDividerCard(
-            items = stages,
-            modifier = Modifier
-                .fillMaxWidth(),
-        ) { eventStage ->
-            EventStageListItem(
-                eventStage = eventStage,
-                containerColor = MaterialTheme.colorScheme.surfaceVariant,
-            )
-        }
-    }
-}
-
-@Composable
-private fun EventDetailSectionHeader(
-    text: String,
-    modifier: Modifier = Modifier,
-) {
-    Text(
-        text = text,
-        style = MaterialTheme.typography.headlineSmall,
-        modifier = modifier,
-    )
 }

@@ -5,14 +5,13 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.components.ListItemDividerCard
 
 /**
  * UI representation of an [event].
@@ -47,20 +46,15 @@ private fun LazyListScope.stagesSection(event: EventDetailDisplayModel) {
     }
 
     item {
-        Card(
+        ListItemDividerCard(
+            items = stages,
             modifier = Modifier
                 .fillMaxWidth(),
-        ) {
-            stages.forEachIndexed { index, stageSummaryDisplayModel ->
-                EventStageListItem(
-                    eventStage = stageSummaryDisplayModel,
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                )
-
-                if (index != stages.lastIndex) {
-                    Divider()
-                }
-            }
+        ) { eventStage ->
+            EventStageListItem(
+                eventStage = eventStage,
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            )
         }
     }
 }

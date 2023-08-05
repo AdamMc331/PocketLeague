@@ -33,7 +33,7 @@ fun CircleTeamLogo(
     if (imageUrl != null) {
         RemoteImage(
             imageUrl = imageUrl,
-            contentDescription = "Team Logo",
+            contentDescription = "Team Image",
             modifier = modifier,
         )
     } else {

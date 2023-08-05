@@ -13,10 +13,6 @@ kotlin {
                 implementation(libs.varabyte.truthish)
             }
         }
-        val jvmMain by getting
-        val jvmTest by getting {
-            dependsOn(commonTest)
-        }
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")

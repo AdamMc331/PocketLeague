@@ -14,12 +14,12 @@ buildscript {
 
     dependencies {
         classpath("com.android.tools.build:gradle:8.0.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.21.0")
         classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")
         classpath("com.hiya:jacoco-android:0.2")
         classpath("gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.12.0")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:1.8.20")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:1.9.0")
         classpath("org.jetbrains.kotlinx:kover:0.6.1")
         classpath("com.karumi:shot:5.14.1")
         classpath(libs.square.sqldelight.plugin)

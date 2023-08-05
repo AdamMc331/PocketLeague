@@ -18,7 +18,6 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
-                implementation(libs.kamel)
             }
         }
         val commonTest by getting {
@@ -28,7 +27,11 @@ kotlin {
                 implementation(libs.google.testparameterinjector)
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.coil.compose)
+            }
+        }
         // val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")

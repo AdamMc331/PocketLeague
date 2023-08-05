@@ -20,7 +20,6 @@ gradle = "8.0.2"
 gradleVersionsPlugin = "0.47.0"
 jsoup = "1.16.1"
 junit = "4.13.2"
-kamel = "0.7.1"
 kmpCompose = "1.4.3"
 koin = "3.4.3"
 kotlin = "1.9.0"
@@ -82,7 +81,6 @@ gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 gradle-versions-plugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradleVersionsPlugin" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
-kamel = { module = "media.kamel:kamel-image", version.ref = "kamel" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }

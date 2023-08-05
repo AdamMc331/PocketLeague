@@ -5,6 +5,9 @@ import androidx.compose.ui.Modifier
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 
+/**
+ * Renders an image component from some remote [imageUrl].
+ */
 @Composable
 fun RemoteImage(
     imageUrl: String,

@@ -14,11 +14,11 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:8.0.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
-        classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.21.0")
-        classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:1.9.0")
+        classpath(libs.gradle)
+        classpath(libs.kotlin.gradle.plugin)
+        classpath(libs.detekt.gradle.plugin)
+        classpath(libs.gradle.versions.plugin)
+        classpath(libs.kotlin.serialization)
         classpath(libs.square.sqldelight.plugin)
 
         // NOTE: Do not place your application dependencies here; they belong

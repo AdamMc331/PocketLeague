@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app.eventdetail
+package com.adammcneilly.pocketleague.feature.eventdetail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,7 +18,7 @@ import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueThem
  * an [eventStage].
  */
 @Composable
-fun EventStageCard(
+internal fun EventStageCard(
     eventStage: EventStageSummaryDisplayModel,
     modifier: Modifier = Modifier,
 ) {

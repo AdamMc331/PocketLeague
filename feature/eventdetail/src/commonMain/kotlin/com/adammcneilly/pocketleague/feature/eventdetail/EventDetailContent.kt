@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app.eventdetail
+package com.adammcneilly.pocketleague.feature.eventdetail
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -39,7 +39,7 @@ import kotlinx.coroutines.flow.onEach
  * UI representation for detailed info about an event.
  */
 @Composable
-fun EventDetailContent(
+internal fun EventDetailContent(
     state: EventDetailScreen.State,
     modifier: Modifier = Modifier,
 ) {

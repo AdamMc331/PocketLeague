@@ -13,11 +13,17 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:displaymodels"))
+                implementation(project(":core:feature"))
+                implementation(project(":core:models")) // I still don't think this is necessary
+                implementation(project(":data:event"))
+                implementation(project(":data:match"))
+                implementation(project(":shared:design-system"))
                 implementation(project(":shared:ui"))
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
+                implementation(libs.koin.core)
                 implementation(libs.slack.circuit)
             }
         }

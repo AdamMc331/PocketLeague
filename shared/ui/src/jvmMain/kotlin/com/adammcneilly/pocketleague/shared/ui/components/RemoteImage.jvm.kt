@@ -1,9 +1,8 @@
-package com.adammcneilly.pocketleague.shared.ui
+package com.adammcneilly.pocketleague.shared.ui.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.adammcneilly.pocketleague.shared.ui.components.RemoteImage
 
 /**
  * Implementation of a [RemoteImage] for the JVM platform.

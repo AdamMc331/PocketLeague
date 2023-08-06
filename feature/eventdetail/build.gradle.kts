@@ -30,7 +30,9 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
+                implementation(project(":core:displaymodels-test"))
                 implementation(kotlin("test"))
+                implementation(libs.google.testparameterinjector)
             }
         }
         val androidMain by getting

@@ -13,27 +13,20 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:displaymodels"))
-                implementation(project(":core:models"))
-                implementation(project(":shared:design-system"))
+                implementation(project(":shared:ui"))
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
+                implementation(libs.slack.circuit)
             }
         }
         val commonTest by getting {
             dependencies {
-                implementation(project(":core:displaymodels-test"))
                 implementation(kotlin("test"))
-                implementation(libs.google.testparameterinjector)
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.coil.compose)
-            }
-        }
-        // val androidTest by getting
+        val androidMain by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")
@@ -62,7 +55,7 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
     }
 
-    namespace = "com.adammcneilly.pocketleague.shared.ui"
+    namespace = "com.adammcneilly.pocketleague.feature.eventdetail"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

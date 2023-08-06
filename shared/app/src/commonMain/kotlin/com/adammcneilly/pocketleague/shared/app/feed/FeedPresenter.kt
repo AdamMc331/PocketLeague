@@ -14,7 +14,7 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.GetPastWeeksMatchesUseCase
-import com.adammcneilly.pocketleague.shared.app.eventdetail.EventDetailScreen
+import com.adammcneilly.pocketleague.feature.eventdetail.EventDetailScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
@@ -91,6 +91,8 @@ class FeedPresenter(
         ) { event ->
             when (event) {
                 is FeedScreen.Event.EventClicked -> {
+                    // This will probably need to be fixed when we eventually move feed
+                    // into its own feature module.
                     navigator.goTo(EventDetailScreen(event.eventId.id))
                 }
 

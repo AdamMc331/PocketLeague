@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("org.jetbrains.kotlin.plugin.parcelize")
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.cash.paparazzi)
 }

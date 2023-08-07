@@ -92,23 +92,17 @@ private fun MatchListItem(match: MatchDetailDisplayModel) {
                     },
             )
 
-            Text(
-                text = match.localDate,
-                style = MaterialTheme.typography.labelSmall,
-                textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
-                modifier = Modifier
-                    .weight(1F)
-                    .background(
-                        color = MaterialTheme.colorScheme.primaryContainer,
-                        shape = CutCornerShape(
-                            topStart = 4.dp,
-                            topEnd = 4.dp,
-                            bottomEnd = 0.dp,
-                            bottomStart = 0.dp,
-                        ),
-                    ),
-            )
+//            Text(
+//                text = match.localDate,
+//                style = MaterialTheme.typography.labelSmall,
+//                textAlign = TextAlign.Center,
+//                color = MaterialTheme.colorScheme.onPrimaryContainer,
+//                modifier = Modifier
+//                    .weight(1F)
+//                    .background(
+//                        color = MaterialTheme.colorScheme.primaryContainer,
+//                    ),
+//            )
 
             Box(
                 modifier = Modifier

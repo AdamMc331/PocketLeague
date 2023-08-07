@@ -53,7 +53,7 @@ internal fun MatchListItem(
 }
 
 @Composable
-fun WinnerHighlightRow(
+private fun WinnerHighlightRow(
     match: MatchDetailDisplayModel,
 ) {
     Row {
@@ -74,7 +74,7 @@ fun WinnerHighlightRow(
 }
 
 @Composable
-fun WinnerHighlight(
+private fun WinnerHighlight(
     teamResult: MatchTeamResultDisplayModel,
     color: Color,
     modifier: Modifier = Modifier,

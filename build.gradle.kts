@@ -96,12 +96,3 @@ tasks {
         buildUponDefaultConfig = false
     }
 }
-
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-        freeCompilerArgs += listOf(
-            "-P",
-            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true",
-        )
-    }
-}

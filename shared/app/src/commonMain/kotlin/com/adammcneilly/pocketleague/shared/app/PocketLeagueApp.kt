@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.feature.eventdetail.EventDetailScreen
 import com.adammcneilly.pocketleague.shared.app.bars.PLTopAppBar
-import com.adammcneilly.pocketleague.shared.app.eventdetail.EventDetailScreen
 import com.adammcneilly.pocketleague.shared.app.feed.FeedScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme

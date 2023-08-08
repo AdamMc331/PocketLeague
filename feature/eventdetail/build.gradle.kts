@@ -1,28 +1,41 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("org.jetbrains.kotlin.plugin.parcelize")
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.cash.paparazzi)
 }
 
 kotlin {
-    androidTarget()
+    android()
     jvm()
 
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:displaymodels"))
+                implementation(project(":core:feature"))
+                implementation(project(":core:models")) // I still don't think this is necessary
+                implementation(project(":data:event"))
+                implementation(project(":data:match"))
+                implementation(project(":shared:design-system"))
+                implementation(project(":shared:ui"))
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
-                // Work around for atomicfu compile issue? https://youtrack.jetbrains.com/issue/KT-41821/Kotlin-1.4.10-ios-target-java.lang.IllegalStateException-failed-to-resolve-Kotlin-library-org.jetbrains.kotlinx-atomicfu-common#focus=Comments-27-4388846.0-0
-                implementation("org.jetbrains.kotlinx:atomicfu:0.21.0")
+                implementation(libs.koin.core)
+                implementation(libs.slack.circuit)
             }
         }
         val commonTest by getting {
             dependencies {
+                implementation(project(":core:displaymodels-test"))
                 implementation(kotlin("test"))
+                implementation(libs.google.testparameterinjector)
             }
         }
+        val androidMain by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")
@@ -51,7 +64,7 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
     }
 
-    namespace = "com.adammcneilly.pocketleague.sahred.design.system"
+    namespace = "com.adammcneilly.pocketleague.feature.eventdetail"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

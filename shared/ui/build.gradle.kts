@@ -7,6 +7,7 @@ plugins {
 
 kotlin {
     android()
+    jvm()
 
     sourceSets {
         val commonMain by getting {
@@ -32,7 +33,7 @@ kotlin {
                 implementation(libs.coil.compose)
             }
         }
-        // val androidTest by getting
+        val jvmMain by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")

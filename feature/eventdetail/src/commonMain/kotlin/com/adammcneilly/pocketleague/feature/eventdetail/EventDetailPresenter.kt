@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app.eventdetail
+package com.adammcneilly.pocketleague.feature.eventdetail
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

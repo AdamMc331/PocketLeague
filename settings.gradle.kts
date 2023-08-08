@@ -35,6 +35,8 @@ include(":data:startgg")
 include(":data:team")
 include(":data:team-test")
 
+include(":feature:eventdetail")
+
 include(":shared:app")
 include(":shared:design-system")
 include(":shared:ui")

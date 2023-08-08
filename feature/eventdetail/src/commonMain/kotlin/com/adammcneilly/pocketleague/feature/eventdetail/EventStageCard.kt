@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app.eventdetail
+package com.adammcneilly.pocketleague.feature.eventdetail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,15 +10,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
 /**
  * A minimal [Card] component to highlight information about
  * an [eventStage].
  */
 @Composable
-fun EventStageCard(
+internal fun EventStageCard(
     eventStage: EventStageSummaryDisplayModel,
     modifier: Modifier = Modifier,
 ) {
@@ -35,11 +38,23 @@ fun EventStageCard(
             Text(
                 text = eventStage.name,
                 style = MaterialTheme.typography.headlineLarge,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .placeholderMaterial(
+                        visible = eventStage.isPlaceholder,
+                        color = PlaceholderDefaults.cardColor(),
+                    ),
             )
 
             Text(
                 text = eventStage.dateString,
                 style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier
+                    .placeholderMaterial(
+                        visible = eventStage.isPlaceholder,
+                        color = PlaceholderDefaults.cardColor(),
+                    ),
             )
         }
     }

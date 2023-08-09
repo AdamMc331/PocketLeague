@@ -15,6 +15,8 @@ import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.slack.circuit.runtime.presenter.Presenter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
@@ -54,13 +56,9 @@ class EventDetailPresenter(
         }
 
         LaunchedEffect(Unit) {
-            eventRepository
-                .getEvent(eventId)
-                .map(Event::toDetailDisplayModel)
-                .onEach { eventDetail ->
-                    displayModel = eventDetail
-                }
-                .launchIn(this)
+            observeEvent(this) { eventDetail ->
+                displayModel = eventDetail
+            }
 
             val eventFlow = snapshotFlow {
                 displayModel
@@ -72,26 +70,13 @@ class EventDetailPresenter(
                 selectedStageIndex
             }
 
-            eventFlow
-                .combine(selectedStageIndexFlow) { event, stageIndex ->
-                    val eventId = event.eventId
-                    val stageId = event.stageSummaries[stageIndex].stageId
-                    eventId to stageId
-                }
-                .flatMapLatest { (eventId, stageId) ->
-                    matchRepository
-                        .getMatchesForEventStage(eventId, stageId)
-                        .onStart {
-                            matchesForSelectedStage = placeholderMatches
-                        }
-                }
-                .map { matchList ->
-                    matchList.map(Match::toDetailDisplayModel)
-                }
-                .onEach { matchList ->
-                    matchesForSelectedStage = matchList
-                }
-                .launchIn(this)
+            observeMatchesForSelectedStage(
+                eventFlow = eventFlow,
+                selectedStageIndexFlow = selectedStageIndexFlow,
+                scope = this,
+            ) { matches ->
+                matchesForSelectedStage = matches
+            }
         }
 
         return EventDetailScreen.State(
@@ -108,5 +93,42 @@ class EventDetailPresenter(
                 }
             }
         }
+    }
+
+    private fun observeEvent(
+        scope: CoroutineScope,
+        onEach: (EventDetailDisplayModel) -> Unit,
+    ) {
+        eventRepository
+            .getEvent(eventId)
+            .map(Event::toDetailDisplayModel)
+            .onEach(onEach)
+            .launchIn(scope)
+    }
+
+    private fun observeMatchesForSelectedStage(
+        eventFlow: Flow<EventDetailDisplayModel>,
+        selectedStageIndexFlow: Flow<Int>,
+        scope: CoroutineScope,
+        onEach: (List<MatchDetailDisplayModel>) -> Unit,
+    ) {
+        eventFlow
+            .combine(selectedStageIndexFlow) { event, stageIndex ->
+                val eventId = event.eventId
+                val stageId = event.stageSummaries[stageIndex].stageId
+                eventId to stageId
+            }
+            .flatMapLatest { (eventId, stageId) ->
+                matchRepository
+                    .getMatchesForEventStage(eventId, stageId)
+                    .map { matchList ->
+                        matchList.map(Match::toDetailDisplayModel)
+                    }
+                    .onStart {
+                        emit(placeholderMatches)
+                    }
+            }
+            .onEach(onEach)
+            .launchIn(scope)
     }
 }

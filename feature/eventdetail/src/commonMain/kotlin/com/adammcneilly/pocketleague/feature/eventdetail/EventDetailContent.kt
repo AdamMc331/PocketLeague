@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.feature.eventdetail
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -44,7 +45,11 @@ internal fun EventDetailContent(
             StageMatchListItem(
                 match = match,
                 modifier = Modifier
-                    .screenHorizontalPadding(),
+                    .screenHorizontalPadding()
+                    .clickable {
+                        val event = EventDetailScreen.Event.MatchClicked(match.matchId)
+                        state.eventSink.invoke(event)
+                    },
             )
         }
     }

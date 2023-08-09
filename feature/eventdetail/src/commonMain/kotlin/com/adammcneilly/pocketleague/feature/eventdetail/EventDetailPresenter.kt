@@ -36,6 +36,7 @@ class EventDetailPresenter(
     private val eventId: Event.Id,
     private val eventRepository: EventRepository,
     private val matchRepository: MatchRepository,
+    private val onMatchClicked: (Match.Id) -> Unit,
 ) : Presenter<EventDetailScreen.State> {
 
     @Composable
@@ -101,6 +102,9 @@ class EventDetailPresenter(
             when (uiEvent) {
                 is EventDetailScreen.Event.StageSelected -> {
                     selectedStageIndex = uiEvent.stageIndex
+                }
+                is EventDetailScreen.Event.MatchClicked -> {
+                    onMatchClicked.invoke(uiEvent.matchId)
                 }
             }
         }

@@ -38,7 +38,7 @@ fun PocketLeagueApp(
                 listOf(
                     FeedScreen.PresenterFactory,
                     MatchDetailScreen.PresenterFactory,
-                    EventDetailScreen.PresenterFactory,
+                    PresenterFactory,
                 ),
             )
             .build()

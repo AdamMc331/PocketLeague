@@ -41,7 +41,7 @@ val teamLogoSize = 30.dp
  * event stage.
  */
 @Composable
-internal fun MatchListItem(
+internal fun StageMatchListItem(
     match: MatchDetailDisplayModel,
     modifier: Modifier = Modifier,
 ) {

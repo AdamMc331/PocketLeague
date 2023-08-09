@@ -5,6 +5,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.feature.eventdetail.EventDetailScreen
+import com.adammcneilly.pocketleague.feature.teamdetail.TeamDetailScreen
 import com.adammcneilly.pocketleague.shared.app.bars.PLTopAppBar
 import com.adammcneilly.pocketleague.shared.app.feed.FeedScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
@@ -32,6 +33,7 @@ fun PocketLeagueApp(
                     FeedScreen.UiFactory,
                     MatchDetailScreen.UiFactory,
                     EventDetailScreen.UiFactory,
+                    TeamDetailScreen.UiFactory,
                 ),
             )
             .addPresenterFactories(
@@ -43,6 +45,7 @@ fun PocketLeagueApp(
                             navigator.goTo(MatchDetailScreen(matchId.id))
                         },
                     ),
+                    TeamDetailScreen.PresenterFactory,
                 ),
             )
             .build()

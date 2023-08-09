@@ -24,6 +24,7 @@ class MatchDetailHeaderPaparazziTest {
         paparazzi.snapshotScreen(useDarkTheme) {
             MatchDetailHeader(
                 displayModel = TestDisplayModel.matchDetailBlueWinner,
+                onTeamClicked = {},
             )
         }
     }
@@ -33,6 +34,7 @@ class MatchDetailHeaderPaparazziTest {
         paparazzi.snapshotScreen(useDarkTheme) {
             MatchDetailHeader(
                 displayModel = MatchDetailDisplayModel.placeholder,
+                onTeamClicked = {},
             )
         }
     }

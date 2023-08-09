@@ -23,6 +23,7 @@ kotlin {
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
                 implementation(project(":feature:eventdetail"))
+                implementation(project(":feature:teamdetail"))
                 implementation(project(":shared:design-system"))
                 implementation(project(":shared:ui"))
                 implementation(compose.runtime)

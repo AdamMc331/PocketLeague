@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.ui.match
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,6 +30,7 @@ import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 @Composable
 fun MatchDetailHeader(
     displayModel: MatchDetailDisplayModel,
+    onTeamClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -37,7 +39,10 @@ fun MatchDetailHeader(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            TeamResultsRow(displayModel = displayModel)
+            TeamResultsRow(
+                displayModel = displayModel,
+                onTeamClicked = onTeamClicked,
+            )
 
             Divider()
 
@@ -81,6 +86,7 @@ fun MatchDetailHeader(
 @Composable
 private fun TeamResultsRow(
     displayModel: MatchDetailDisplayModel,
+    onTeamClicked: (String) -> Unit,
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -90,10 +96,12 @@ private fun TeamResultsRow(
     ) {
         MatchTeamResultCell(
             displayModel = displayModel.blueTeamResult,
+            onTeamClicked = onTeamClicked,
         )
 
         MatchTeamResultCell(
             displayModel = displayModel.orangeTeamResult,
+            onTeamClicked = onTeamClicked,
         )
     }
 }
@@ -101,6 +109,7 @@ private fun TeamResultsRow(
 @Composable
 private fun MatchTeamResultCell(
     displayModel: MatchTeamResultDisplayModel,
+    onTeamClicked: (String) -> Unit,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -114,7 +123,10 @@ private fun MatchTeamResultCell(
             displayModel = displayModel.team,
             modifier = Modifier
                 .size(72.dp)
-                .padding(8.dp),
+                .padding(8.dp)
+                .clickable {
+                    onTeamClicked.invoke(displayModel.team.teamId)
+                },
         )
 
         Text(

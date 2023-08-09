@@ -36,6 +36,7 @@ include(":data:team")
 include(":data:team-test")
 
 include(":feature:eventdetail")
+include(":feature:teamdetail")
 
 include(":shared:app")
 include(":shared:design-system")

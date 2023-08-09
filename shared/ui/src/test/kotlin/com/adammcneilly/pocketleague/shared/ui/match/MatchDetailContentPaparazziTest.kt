@@ -34,6 +34,7 @@ class MatchDetailContentPaparazziTest {
                 selectedGame = null,
                 onSelectedGameDismissed = {},
                 onGameClicked = {},
+                onTeamClicked = {},
             )
         }
     }
@@ -50,6 +51,7 @@ class MatchDetailContentPaparazziTest {
                 selectedGame = null,
                 onSelectedGameDismissed = {},
                 onGameClicked = {},
+                onTeamClicked = {},
             )
         }
     }

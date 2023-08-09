@@ -26,6 +26,7 @@ fun MatchDetailContent(
     selectedGame: GameDetailDisplayModel?,
     onSelectedGameDismissed: () -> Unit,
     onGameClicked: (GameDetailDisplayModel) -> Unit,
+    onTeamClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     if (selectedGame != null) {
@@ -41,7 +42,7 @@ fun MatchDetailContent(
         contentPadding = PaddingValues(PocketLeagueTheme.sizes.screenPadding),
         verticalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.listItemSpacing),
     ) {
-        matchDetailHeader(match)
+        matchDetailHeader(match, onTeamClicked)
 
         gamesSection(games, onGameClicked)
 
@@ -98,10 +99,14 @@ private fun LazyListScope.gamesList(
     }
 }
 
-private fun LazyListScope.matchDetailHeader(match: MatchDetailDisplayModel) {
+private fun LazyListScope.matchDetailHeader(
+    match: MatchDetailDisplayModel,
+    onTeamClicked: (String) -> Unit,
+) {
     item {
         MatchDetailHeader(
             displayModel = match,
+            onTeamClicked = onTeamClicked,
         )
     }
 }

@@ -14,6 +14,8 @@ import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.MatchGamesRequest
 import com.adammcneilly.pocketleague.data.match.MatchRepository
+import com.adammcneilly.pocketleague.feature.teamdetail.TeamDetailScreen
+import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
@@ -26,6 +28,7 @@ class MatchDetailPresenter(
     private val matchId: Match.Id,
     private val gameService: GameService,
     private val matchRepository: MatchRepository,
+    private val navigator: Navigator,
 ) : Presenter<MatchDetailScreen.State> {
 
     @Composable
@@ -75,6 +78,9 @@ class MatchDetailPresenter(
                 }
                 MatchDetailScreen.Event.SelectedGameDismissed -> {
                     selectedGame = null
+                }
+                is MatchDetailScreen.Event.TeamClicked -> {
+                    navigator.goTo(TeamDetailScreen(event.teamId))
                 }
             }
         }

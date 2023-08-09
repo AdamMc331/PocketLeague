@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
@@ -105,7 +106,7 @@ private fun TeamResultRow(
         TeamName(
             team = match.blueTeamResult.team,
             modifier = Modifier
-                .weight(1F),
+                .weight(3F),
         )
 
         ScoreLabel(
@@ -117,7 +118,7 @@ private fun TeamResultRow(
         TeamName(
             team = match.orangeTeamResult.team,
             modifier = Modifier
-                .weight(1F),
+                .weight(3F),
         )
 
         TeamLogo(match.orangeTeamResult.team)
@@ -152,6 +153,7 @@ private fun TeamName(
         text = team.name,
         textAlign = TextAlign.Center,
         maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
         style = MaterialTheme.typography.labelMedium,
         modifier = modifier
             .padding(

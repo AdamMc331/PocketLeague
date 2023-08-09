@@ -13,6 +13,8 @@ kotlin {
                 implementation(project(":core:feature"))
                 implementation(project(":core:models"))
                 implementation(project(":data:team"))
+                implementation(project(":shared:design-system"))
+                implementation(project(":shared:ui"))
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)

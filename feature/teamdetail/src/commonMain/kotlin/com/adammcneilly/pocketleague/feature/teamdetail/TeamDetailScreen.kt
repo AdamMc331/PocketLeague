@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.feature.teamdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.feature.CommonParcelize
+import com.adammcneilly.pocketleague.data.team.TeamRepository
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.CircuitUiEvent
 import com.slack.circuit.runtime.CircuitUiState
@@ -11,6 +12,7 @@ import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 /**
  * Screen component for the team detail feature.
@@ -57,12 +59,14 @@ data class TeamDetailScreen(
      * Factory to create a [TeamDetailPresenter].
      */
     object PresenterFactory : Presenter.Factory, KoinComponent {
+        private val teamRepository: TeamRepository by inject()
 
         override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
             return when (screen) {
                 is TeamDetailScreen -> {
                     TeamDetailPresenter(
                         teamId = screen.teamId,
+                        teamRepository = teamRepository,
                     )
                 }
 

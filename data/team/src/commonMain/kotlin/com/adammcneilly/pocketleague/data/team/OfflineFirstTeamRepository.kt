@@ -30,6 +30,18 @@ class OfflineFirstTeamRepository(
             }
     }
 
+    override fun getTeamById(teamId: String): Flow<Team> {
+        return localDataSource
+            .getTeamById(teamId)
+            .onStart {
+                remoteDataSource
+                    .getTeamById(teamId)
+                    .collect { team ->
+                        localDataSource.insertTeams(listOf(team))
+                    }
+            }
+    }
+
     override suspend fun insertTeams(teams: List<Team>) {
         localDataSource.insertTeams(teams)
     }

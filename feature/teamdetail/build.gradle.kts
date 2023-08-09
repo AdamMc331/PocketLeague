@@ -11,6 +11,8 @@ kotlin {
             dependencies {
                 implementation(project(":core:displaymodels"))
                 implementation(project(":core:feature"))
+                implementation(project(":core:models"))
+                implementation(project(":data:team"))
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)

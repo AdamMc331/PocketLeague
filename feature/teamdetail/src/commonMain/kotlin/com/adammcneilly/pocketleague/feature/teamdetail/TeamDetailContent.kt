@@ -13,7 +13,7 @@ internal fun TeamDetailContent(
     modifier: Modifier = Modifier,
 ) {
     Text(
-        text = "Team Detail Screen",
+        text = "Team Detail Screen, Team: ${state.team.name}",
         modifier = modifier,
     )
 }

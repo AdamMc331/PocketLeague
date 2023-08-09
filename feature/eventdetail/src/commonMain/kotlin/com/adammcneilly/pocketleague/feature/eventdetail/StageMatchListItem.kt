@@ -19,9 +19,12 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
 import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
 import com.adammcneilly.pocketleague.shared.ui.components.RemoteImage
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 import com.adammcneilly.pocketleague.shared.ui.utils.conditional
 
 private val cardShape = CutCornerShape(
@@ -126,8 +129,14 @@ private fun ScoreLabel(
     match: MatchDetailDisplayModel,
     modifier: Modifier = Modifier,
 ) {
+    val scoreText = if (match.isPlaceholder) {
+        ""
+    } else {
+        "${match.blueTeamResult.score}-${match.orangeTeamResult.score}"
+    }
+
     Text(
-        text = "${match.blueTeamResult.score}-${match.orangeTeamResult.score}",
+        text = scoreText,
         textAlign = TextAlign.Center,
         maxLines = 1,
         modifier = modifier,
@@ -144,7 +153,14 @@ private fun TeamName(
         textAlign = TextAlign.Center,
         maxLines = 1,
         style = MaterialTheme.typography.labelMedium,
-        modifier = modifier,
+        modifier = modifier
+            .padding(
+                horizontal = PocketLeagueTheme.sizes.textSpacing,
+            )
+            .placeholderMaterial(
+                visible = team.isPlaceholder,
+                color = PlaceholderDefaults.cardColor(),
+            ),
     )
 }
 
@@ -157,6 +173,10 @@ private fun TeamLogo(
         imageUrl = team.imageUrl.lightThemeImageURL.orEmpty(),
         contentDescription = null,
         modifier = modifier
-            .size(teamLogoSize),
+            .size(teamLogoSize)
+            .placeholderMaterial(
+                visible = team.isPlaceholder,
+                color = PlaceholderDefaults.cardColor(),
+            ),
     )
 }

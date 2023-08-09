@@ -16,10 +16,18 @@ import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
+
+private val placeholderMatches = listOf(
+    MatchDetailDisplayModel.placeholder,
+    MatchDetailDisplayModel.placeholder,
+    MatchDetailDisplayModel.placeholder,
+)
 
 /**
  * State management container for the event detail screen.
@@ -41,7 +49,7 @@ class EventDetailPresenter(
         }
 
         var matchesForSelectedStage by remember {
-            mutableStateOf(emptyList<MatchDetailDisplayModel>())
+            mutableStateOf(placeholderMatches)
         }
 
         LaunchedEffect(Unit) {
@@ -49,13 +57,14 @@ class EventDetailPresenter(
                 .getEvent(eventId)
                 .map(Event::toDetailDisplayModel)
                 .onEach { eventDetail ->
-                    println("ADAMLOG - updating displaymodel")
                     displayModel = eventDetail
                 }
                 .launchIn(this)
 
             val eventFlow = snapshotFlow {
                 displayModel
+            }.filter {
+                !it.isPlaceholder
             }
 
             val selectedStageIndexFlow = snapshotFlow {
@@ -69,7 +78,11 @@ class EventDetailPresenter(
                     eventId to stageId
                 }
                 .flatMapLatest { (eventId, stageId) ->
-                    matchRepository.getMatchesForEventStage(eventId, stageId)
+                    matchRepository
+                        .getMatchesForEventStage(eventId, stageId)
+                        .onStart {
+                            matchesForSelectedStage = placeholderMatches
+                        }
                 }
                 .map { matchList ->
                     matchList.map(Match::toDetailDisplayModel)
@@ -80,7 +93,6 @@ class EventDetailPresenter(
                 .launchIn(this)
         }
 
-        println("ADAMLOG - $displayModel, $selectedStageIndex, ${matchesForSelectedStage.size}")
         return EventDetailScreen.State(
             event = displayModel,
             selectedStageIndex = selectedStageIndex,

@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.feature.eventdetail
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.feature.CommonParcelize
+import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.slack.circuit.runtime.CircuitContext
@@ -46,6 +47,13 @@ data class EventDetailScreen(
         data class StageSelected(
             val stageIndex: Int,
         ) : Event
+
+        /**
+         * Triggered when a user taps on a match list item in event detail.
+         */
+        data class MatchClicked(
+            val matchId: Match.Id,
+        ) : Event
     }
 
     /**
@@ -71,7 +79,9 @@ data class EventDetailScreen(
     /**
      * Factory to create an [EventDetailPresenter].
      */
-    object PresenterFactory : Presenter.Factory, KoinComponent {
+    class PresenterFactory(
+        private val navigateToMatch: (Navigator, Match.Id) -> Unit,
+    ) : Presenter.Factory, KoinComponent {
         private val eventRepository: EventRepository by inject()
         private val matchRepository: MatchRepository by inject()
 
@@ -82,6 +92,9 @@ data class EventDetailScreen(
                         eventId = com.adammcneilly.pocketleague.core.models.Event.Id(screen.eventId),
                         eventRepository = eventRepository,
                         matchRepository = matchRepository,
+                        onMatchClicked = { matchId ->
+                            navigateToMatch.invoke(navigator, matchId)
+                        },
                     )
                 }
 

@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.feature.eventdetail
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
@@ -15,6 +15,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -41,7 +42,15 @@ internal fun EventDetailContent(
         horizontalStageSection(state)
 
         items(state.matchesForSelectedStage) { match ->
-            MatchListItem(match)
+            StageMatchListItem(
+                match = match,
+                modifier = Modifier
+                    .screenHorizontalPadding()
+                    .clickable {
+                        val event = EventDetailScreen.Event.MatchClicked(match.matchId)
+                        state.eventSink.invoke(event)
+                    },
+            )
         }
     }
 }

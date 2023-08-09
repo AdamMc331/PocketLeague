@@ -4,12 +4,18 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.feature.CommonParcelize
 import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.data.event.EventRepository
+import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.CircuitUiEvent
 import com.slack.circuit.runtime.CircuitUiState
+import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.Screen
+import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 /**
  * The screen that shows detailed information about the event with the supplied [eventId].
@@ -60,6 +66,33 @@ data class EventDetailScreen(
                             modifier = modifier,
                         )
                     }
+                }
+
+                else -> null
+            }
+        }
+    }
+
+    /**
+     * Factory to create an [EventDetailPresenter].
+     */
+    class PresenterFactory(
+        private val navigateToMatch: (Navigator, Match.Id) -> Unit,
+    ) : Presenter.Factory, KoinComponent {
+        private val eventRepository: EventRepository by inject()
+        private val matchRepository: MatchRepository by inject()
+
+        override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
+            return when (screen) {
+                is EventDetailScreen -> {
+                    EventDetailPresenter(
+                        eventId = com.adammcneilly.pocketleague.core.models.Event.Id(screen.eventId),
+                        eventRepository = eventRepository,
+                        matchRepository = matchRepository,
+                        onMatchClicked = { matchId ->
+                            navigateToMatch.invoke(navigator, matchId)
+                        },
+                    )
                 }
 
                 else -> null

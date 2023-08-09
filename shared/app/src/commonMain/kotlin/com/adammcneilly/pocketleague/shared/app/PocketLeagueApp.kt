@@ -38,7 +38,11 @@ fun PocketLeagueApp(
                 listOf(
                     FeedScreen.PresenterFactory,
                     MatchDetailScreen.PresenterFactory,
-                    PresenterFactory,
+                    EventDetailScreen.PresenterFactory(
+                        navigateToMatch = { navigator, matchId ->
+                            navigator.goTo(MatchDetailScreen(matchId.id))
+                        },
+                    ),
                 ),
             )
             .build()

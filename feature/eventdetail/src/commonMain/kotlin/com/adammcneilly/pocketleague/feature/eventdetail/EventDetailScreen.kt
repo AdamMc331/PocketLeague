@@ -48,6 +48,9 @@ data class EventDetailScreen(
             val stageIndex: Int,
         ) : Event
 
+        /**
+         * Triggered when a user taps on a match list item in event detail.
+         */
         data class MatchClicked(
             val matchId: Match.Id,
         ) : Event

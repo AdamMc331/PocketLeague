@@ -7,47 +7,18 @@ import com.adammcneilly.pocketleague.core.models.EventRegion
  */
 data class EventRegionDisplayModel(
     val name: String,
-    val description: String,
 )
 
 /**
  * Converts a [EventRegion] to a relevant [EventRegionDisplayModel].
  */
 fun EventRegion.toDisplayModel(): EventRegionDisplayModel {
-    val name = "Region: ${this.name}"
-
-    val description = when (this) {
-        EventRegion.NA -> {
-            "This event takes place in North America."
-        }
-        EventRegion.EU -> {
-            "This event takes place in Europe."
-        }
-        EventRegion.OCE -> {
-            "This event takes place in Oceania."
-        }
-        EventRegion.SAM -> {
-            "This event takes place in South America."
-        }
-        EventRegion.APAC -> {
-            "Ths event takes place in Asia."
-        }
-        EventRegion.MENA -> {
-            "This event takes place in the Middle East."
-        }
-        EventRegion.INT -> {
-            "This event takes place internationally."
-        }
-        EventRegion.Unknown -> {
-            "The region of this event is unreported."
-        }
-        EventRegion.SSA -> {
-            "This event takes place in Sub-Saharan Africa."
-        }
-    }
+    // In a perfect world, we would have a when statement here to convert each region
+    // into a localized string, but for now we can just leverage
+    // the fact that the liquipediaRegionKey is a user friendly representation of the region's name.
+    val name = this.liquipediaRegionKey
 
     return EventRegionDisplayModel(
         name = name,
-        description = description,
     )
 }

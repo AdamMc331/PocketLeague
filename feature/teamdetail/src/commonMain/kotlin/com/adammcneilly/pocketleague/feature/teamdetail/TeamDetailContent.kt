@@ -64,7 +64,7 @@ private fun TeamHeader(
             )
 
             Text(
-                text = team.regionName,
+                text = team.region.name,
             )
         }
     }

@@ -31,6 +31,6 @@ fun OctaneGGTeamOverview?.toTeam(): Team {
         id = this?.id.orEmpty(),
         name = this?.name ?: "TBD", // This is sus??
         lightThemeImageURL = this?.image,
-        regionName = this?.region.orEmpty(),
+        region = this?.region.toEventRegion(),
     )
 }

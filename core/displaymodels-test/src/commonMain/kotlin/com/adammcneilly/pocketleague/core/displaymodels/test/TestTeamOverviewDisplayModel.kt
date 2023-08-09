@@ -11,6 +11,6 @@ fun TeamOverviewDisplayModel.Companion.teamVitality(): TeamOverviewDisplayModel 
         teamId = "vitalityId",
         name = "Team Vitality",
         imageUrl = ThemedImageURL(),
-        regionName = "Europe",
+        region = "Europe",
     )
 }

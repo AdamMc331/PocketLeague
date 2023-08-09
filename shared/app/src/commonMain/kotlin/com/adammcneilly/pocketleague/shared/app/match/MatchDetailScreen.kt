@@ -52,7 +52,14 @@ data class MatchDetailScreen(
         /**
          * Triggered whenever the user dismisses the currently selected game dialog.
          */
-        object SelectedGameDismissed : Event
+        data object SelectedGameDismissed : Event
+
+        /**
+         * Triggered whenever the user taps on a team logo from within the match detail UI.
+         */
+        data class TeamClicked(
+            val teamId: String,
+        ) : Event
     }
 
     /**
@@ -72,6 +79,9 @@ data class MatchDetailScreen(
                             },
                             onGameClicked = { game ->
                                 state.eventSink.invoke(Event.GameSelected(game))
+                            },
+                            onTeamClicked = { teamId ->
+                                state.eventSink.invoke(Event.TeamClicked(teamId))
                             },
                             modifier = modifier,
                         )
@@ -96,6 +106,7 @@ data class MatchDetailScreen(
                     matchId = Match.Id(screen.matchId),
                     gameService = gameService,
                     matchRepository = matchRepository,
+                    navigator = navigator,
                 )
 
                 else -> null

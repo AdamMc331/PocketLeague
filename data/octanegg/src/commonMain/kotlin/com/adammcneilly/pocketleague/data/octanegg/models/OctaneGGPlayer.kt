@@ -40,5 +40,8 @@ fun OctaneGGPlayer.toPlayer(): Player {
         slug = this.slug.orEmpty(),
         tag = this.tag.orEmpty(),
         countryCode = this.country.orEmpty(),
+        name = this.name.orEmpty(),
+        currentTeamId = team?.id.orEmpty(),
+        isCoach = this.coach == true,
     )
 }

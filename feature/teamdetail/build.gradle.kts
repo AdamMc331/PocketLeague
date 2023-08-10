@@ -12,6 +12,7 @@ kotlin {
                 implementation(project(":core:displaymodels"))
                 implementation(project(":core:feature"))
                 implementation(project(":core:models"))
+                implementation(project(":data:player"))
                 implementation(project(":data:team"))
                 implementation(project(":shared:design-system"))
                 implementation(project(":shared:ui"))

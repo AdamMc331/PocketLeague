@@ -25,6 +25,11 @@ FROM localTeam
 WHERE isFavorite = 1
 ORDER BY name;
 
+selectById:
+SELECT *
+FROM localTeam
+WHERE id = :teamId;
+
 insertFullTeamObject:
 INSERT INTO localTeam(
     id,

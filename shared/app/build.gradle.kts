@@ -22,6 +22,7 @@ kotlin {
                 implementation(project(":data:match"))
                 implementation(project(":data:octanegg"))
                 implementation(project(":data:remote"))
+                implementation(project(":data:team"))
                 implementation(project(":feature:eventdetail"))
                 implementation(project(":feature:teamdetail"))
                 implementation(project(":shared:design-system"))

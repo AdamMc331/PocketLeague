@@ -9,6 +9,8 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayMo
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
+import com.adammcneilly.pocketleague.core.displaymodels.toDisplayModel
+import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.StageRound
@@ -44,7 +46,7 @@ object TestDisplayModel {
 //            lightThemeImageURL = "https://griffon.octane.gg/teams/pittsburgh-knights.png",
 //        ),
         imageUrl = ThemedImageURL(),
-        regionName = "North America",
+        region = EventRegion.NA.toDisplayModel(),
     )
 
     val g2 = TeamOverviewDisplayModel(
@@ -54,7 +56,7 @@ object TestDisplayModel {
 //            lightThemeImageURL = "https://griffon.octane.gg/teams/g2-esports.png",
 //        ),
         imageUrl = ThemedImageURL(),
-        regionName = "North America",
+        region = EventRegion.NA.toDisplayModel(),
     )
 
     val matchTeamResultWinner = MatchTeamResultDisplayModel(

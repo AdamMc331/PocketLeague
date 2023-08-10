@@ -31,4 +31,11 @@ interface TeamRepository {
         teamId: String,
         isFavorite: Boolean,
     )
+
+    /**
+     * Requests a [Team] entity with the given [teamId].
+     */
+    fun getTeamById(
+        teamId: String,
+    ): Flow<Team>
 }

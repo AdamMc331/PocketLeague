@@ -5,6 +5,7 @@ import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalTeam
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toTeam
 import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
+import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowSingle
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
 import kotlinx.coroutines.flow.Flow
 
@@ -28,6 +29,13 @@ class SQLDelightTeamRepository(
             .localTeamQueries
             .selectActive()
             .asFlowList(LocalTeam::toTeam)
+    }
+
+    override fun getTeamById(teamId: String): Flow<Team> {
+        return database
+            .localTeamQueries
+            .selectById(teamId)
+            .asFlowSingle(LocalTeam::toTeam)
     }
 
     override suspend fun insertTeams(teams: List<Team>) {

@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.data.team
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGTeamDetail
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGTeamListResponse
+import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGTeamOverview
 import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +19,24 @@ class OctaneGGTeamRepository(
 ) : TeamRepository {
     override fun getFavoriteTeams(): Flow<List<Team>> {
         throw UnsupportedOperationException("Fetching favorite teams is not supported by the octane.gg API.")
+    }
+
+    override fun getTeamById(teamId: String): Flow<Team> {
+        return flow {
+            val apiResponse = apiClient.getResponse<OctaneGGTeamOverview>(
+                endpoint = "$TEAMS_ENDPOINT/$teamId",
+            ).map { octaneGGTeamOverview ->
+                octaneGGTeamOverview.toTeam()
+            }
+
+            // If an error occurs, we should log that.
+
+            val team = apiResponse.getOrNull()
+
+            if (team != null) {
+                emit(team)
+            }
+        }
     }
 
     override fun getActiveRLCSTeams(): Flow<List<Team>> {
@@ -54,6 +73,7 @@ class OctaneGGTeamRepository(
     }
 
     companion object {
+        const val TEAMS_ENDPOINT = "/teams"
         const val ACTIVE_TEAMS_ENDPOINT = "/teams/active"
     }
 }

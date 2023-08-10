@@ -21,6 +21,7 @@ kotlin {
                 implementation(project(":data:local-sqldelight"))
                 implementation(project(":data:match"))
                 implementation(project(":data:octanegg"))
+                implementation(project(":data:player"))
                 implementation(project(":data:remote"))
                 implementation(project(":feature:eventdetail"))
                 implementation(project(":feature:teamdetail"))

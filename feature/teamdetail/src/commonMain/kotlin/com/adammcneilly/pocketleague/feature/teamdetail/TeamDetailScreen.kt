@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.feature.teamdetail
 
+import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.feature.CommonParcelize
 import com.adammcneilly.pocketleague.data.team.TeamRepository
@@ -27,6 +28,7 @@ data class TeamDetailScreen(
      */
     data class State(
         val team: TeamOverviewDisplayModel,
+        val roster: List<PlayerDisplayModel>,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
 

@@ -15,7 +15,7 @@ import com.adammcneilly.pocketleague.shared.ui.components.CircleTeamLogo
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TeamHeaderListItem(
+internal fun TeamHeaderListItem(
     team: TeamOverviewDisplayModel,
     modifier: Modifier = Modifier,
 ) {

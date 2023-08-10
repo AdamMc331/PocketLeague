@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.models.Team
@@ -26,6 +27,25 @@ internal class TeamDetailPresenter(
             mutableStateOf(TeamOverviewDisplayModel.placeholder)
         }
 
+        var roster by remember {
+            mutableStateOf(
+                listOf(
+                    PlayerDisplayModel(
+                        id = "Alpha54",
+                        tag = "AdamMc54",
+                    ),
+                    PlayerDisplayModel(
+                        id = "Radosin",
+                        tag = "Radosin",
+                    ),
+                    PlayerDisplayModel(
+                        id = "Zen",
+                        tag = "PleaZENtlyPlump",
+                    ),
+                ),
+            )
+        }
+
         LaunchedEffect(Unit) {
             teamRepository
                 .getTeamById(teamId)
@@ -34,10 +54,13 @@ internal class TeamDetailPresenter(
                     team = displayModel
                 }
                 .launchIn(this)
+
+            // TODO: Fetch roster
         }
 
         return TeamDetailScreen.State(
             team = team,
+            roster = roster,
         ) { event ->
             // Handle UI events
         }

@@ -55,7 +55,7 @@ internal class TeamDetailPresenter(
                 }
                 .launchIn(this)
 
-            // TODO: Fetch roster
+            // Coming soon: fetch roster.
         }
 
         return TeamDetailScreen.State(

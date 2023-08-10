@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.feature.teamdetail
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -31,11 +32,13 @@ internal fun TeamHeaderListItem(
         headlineText = {
             Text(
                 text = team.name,
+                style = MaterialTheme.typography.headlineMedium,
             )
         },
         supportingText = {
             Text(
                 text = team.region.name,
+                style = MaterialTheme.typography.titleMedium,
             )
         },
     )

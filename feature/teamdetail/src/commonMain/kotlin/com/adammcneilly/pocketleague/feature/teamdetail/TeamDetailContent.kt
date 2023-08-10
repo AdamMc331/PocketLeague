@@ -43,7 +43,7 @@ private fun LazyListScope.rosterCardSection(state: TeamDetailScreen.State) {
         // Unify the headers across each screen
         Text(
             text = "Roster",
-            style = MaterialTheme.typography.headlineSmall,
+            style = MaterialTheme.typography.titleLarge,
             modifier = Modifier
                 .screenHorizontalPadding(),
         )

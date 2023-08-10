@@ -11,4 +11,5 @@ data class Player(
     val currentTeamId: String = "",
     val countryCode: String = "",
     val isCoach: Boolean = false,
+    val isSubstitute: Boolean = false,
 )

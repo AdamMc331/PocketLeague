@@ -15,6 +15,7 @@ fun LocalPlayer.toPlayer(): Player {
         isCoach = this.isCoach,
         name = this.name.orEmpty(),
         currentTeamId = this.currentTeamId,
+        isSubstitute = this.isSubstitute,
     )
 }
 
@@ -30,5 +31,6 @@ fun Player.toLocalPlayer(): LocalPlayer {
         isCoach = this.isCoach,
         countryCode = this.countryCode,
         currentTeamId = this.currentTeamId,
+        isSubstitute = this.isSubstitute,
     )
 }

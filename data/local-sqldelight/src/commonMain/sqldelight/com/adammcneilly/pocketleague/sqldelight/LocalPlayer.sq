@@ -4,6 +4,7 @@ CREATE TABLE localPlayer(
     name TEXT,
     tag TEXT NOT NULL,
     isCoach INTEGER AS Boolean NOT NULL DEFAULT 0,
+    isSubstitute INTEGER AS Boolean NOT NULL DEFAULT 0,
     countryCode TEXT,
 --     Ideally we have a separate table to manage players &
 --     current teams, but for simplicity sake we'll just store
@@ -21,6 +22,7 @@ INSERT OR IGNORE INTO localPlayer(
     name,
     tag,
     isCoach,
+    isSubstitute,
     countryCode,
     currentTeamId
 )
@@ -29,4 +31,5 @@ VALUES ?;
 selectByTeam:
 SELECT *
 FROM localPlayer
-WHERE currentTeamId = :teamId;
+WHERE currentTeamId = :teamId
+ORDER BY isSubstitute, isCoach, tag COLLATE NOCASE;

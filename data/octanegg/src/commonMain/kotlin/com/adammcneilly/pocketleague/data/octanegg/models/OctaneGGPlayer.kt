@@ -43,5 +43,6 @@ fun OctaneGGPlayer.toPlayer(): Player {
         name = this.name.orEmpty(),
         currentTeamId = team?.id.orEmpty(),
         isCoach = this.coach == true,
+        isSubstitute = this.substitute == true,
     )
 }

@@ -9,5 +9,8 @@ import kotlinx.coroutines.flow.Flow
  */
 interface PlayerRepository {
 
+    /**
+     * Observe a list of players for the given [teamId].
+     */
     fun getPlayersForTeam(teamId: String): Flow<List<Player>>
 }

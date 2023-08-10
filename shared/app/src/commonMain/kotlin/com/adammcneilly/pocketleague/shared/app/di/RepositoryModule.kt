@@ -33,7 +33,7 @@ val repositoryModule = module {
             remoteDataSource = get(),
         )
     }
-    
+
     single<TeamRepository> {
         OfflineFirstTeamRepository(
             localDataSource = SQLDelightTeamRepository(

@@ -1,0 +1,32 @@
+CREATE TABLE localPlayer(
+    id TEXT NOT NULL PRIMARY KEY,
+    slug TEXT NOT NULL,
+    name TEXT,
+    tag TEXT NOT NULL,
+    isCoach INTEGER AS Boolean NOT NULL DEFAULT 0,
+    countryCode TEXT,
+--     Ideally we have a separate table to manage players &
+--     current teams, but for simplicity sake we'll just store
+--     the current team id to test today
+    currentTeamId TEXT NOT NULL,
+    FOREIGN KEY (currentTeamId) REFERENCES localTeam(id) ON DELETE CASCADE
+);
+
+-- We also may we want to consider an upsert, so that if a player
+-- changes teams or if they switch to coaching, we can capture that?
+insertFullPlayerObject:
+INSERT OR IGNORE INTO localPlayer(
+    id,
+    slug,
+    name,
+    tag,
+    isCoach,
+    countryCode,
+    currentTeamId
+)
+VALUES ?;
+
+selectByTeam:
+SELECT *
+FROM localPlayer
+WHERE currentTeamId = :teamId;

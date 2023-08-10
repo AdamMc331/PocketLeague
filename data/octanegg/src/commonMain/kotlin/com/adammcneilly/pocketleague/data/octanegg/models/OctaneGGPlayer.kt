@@ -39,6 +39,6 @@ fun OctaneGGPlayer.toPlayer(): Player {
         id = this.id.orEmpty(),
         slug = this.slug.orEmpty(),
         tag = this.tag.orEmpty(),
-        country = this.country.orEmpty(),
+        countryCode = this.country.orEmpty(),
     )
 }

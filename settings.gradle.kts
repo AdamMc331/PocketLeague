@@ -41,3 +41,5 @@ include(":feature:teamdetail")
 include(":shared:app")
 include(":shared:design-system")
 include(":shared:ui")
+
+include(":data:player")

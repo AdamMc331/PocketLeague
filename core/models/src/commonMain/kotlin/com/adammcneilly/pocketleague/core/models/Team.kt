@@ -11,5 +11,6 @@ data class Team(
     val darkThemeImageURL: String? = lightThemeImageURL,
     val isFavorite: Boolean = false,
     val isActive: Boolean = false,
-    val regionName: String = "",
+    // We either should rename the EventRegion class, or consider a separate enum for `TeamRegion`.
+    val region: EventRegion = EventRegion.Unknown,
 )

@@ -54,4 +54,8 @@ class FakeTeamRepository : TeamRepository {
     override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
         _updatedFavorites[teamId] = isFavorite
     }
+
+    override fun getTeamById(teamId: String): Flow<Team> {
+        TODO("Not yet implemented")
+    }
 }

@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.Team
 
 /**
@@ -9,7 +10,7 @@ data class TeamOverviewDisplayModel(
     val teamId: String,
     val name: String,
     val imageUrl: ThemedImageURL,
-    val regionName: String,
+    val region: EventRegionDisplayModel,
     val isPlaceholder: Boolean = false,
     val isFavorite: Boolean = false,
 ) {
@@ -20,7 +21,7 @@ data class TeamOverviewDisplayModel(
             name = "",
             imageUrl = ThemedImageURL(),
             isPlaceholder = true,
-            regionName = "",
+            region = EventRegion.Unknown.toDisplayModel(),
         )
     }
 }
@@ -37,6 +38,6 @@ fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
             darkThemeImageURL = this.darkThemeImageURL,
         ),
         isFavorite = this.isFavorite,
-        regionName = this.regionName,
+        region = this.region.toDisplayModel(),
     )
 }

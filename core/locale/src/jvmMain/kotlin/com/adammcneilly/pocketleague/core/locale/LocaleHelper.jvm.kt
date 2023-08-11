@@ -12,6 +12,10 @@ class JVMLocaleHelper : LocaleHelper {
     }
 
     override fun getFlagEmoji(countryCode: String): String {
+        if (countryCode.length != 2) {
+            throw IllegalArgumentException("Country code \"$countryCode\" invalid, expected two characters.")
+        }
+
         val codePoints = countryCode
             .uppercase()
             .map(Char::toCodePoint)

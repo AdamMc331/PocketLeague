@@ -25,6 +25,7 @@ interface LocaleHelper {
  * We can add UTF-16 value for any char to this constant, and get the unicode
  * codepoint for that char.
  */
+@Suppress("MagicNumber")
 fun Char.toCodePoint(): Int {
     val unicodeOffsetStart = 127397
 

@@ -10,6 +10,16 @@ interface LocaleHelper {
      * "us" should return "United States".
      */
     fun getCountryDisplayName(countryCode: String): String
+
+    /**
+     * Given a [countryCode], convert that information to the unicode value
+     * of that country's flag emoji.
+     */
+    fun getFlagEmoji(countryCode: String): String
+
+    companion object {
+        const val UNICODE_CHAR_OFFSET_START = 127397
+    }
 }
 
 /**

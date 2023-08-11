@@ -8,8 +8,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.toDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toOverviewDisplayModel
+import com.adammcneilly.pocketleague.core.models.Player
 import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.data.player.PlayerRepository
 import com.adammcneilly.pocketleague.data.team.TeamRepository
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.flow.launchIn
@@ -19,6 +22,7 @@ import kotlinx.coroutines.flow.onEach
 internal class TeamDetailPresenter(
     private val teamId: String,
     private val teamRepository: TeamRepository,
+    private val playerRepository: PlayerRepository,
 ) : Presenter<TeamDetailScreen.State> {
 
     @Composable
@@ -28,22 +32,7 @@ internal class TeamDetailPresenter(
         }
 
         var roster by remember {
-            mutableStateOf(
-                listOf(
-                    PlayerDisplayModel(
-                        id = "Alpha54",
-                        tag = "AdamMc54",
-                    ),
-                    PlayerDisplayModel(
-                        id = "Radosin",
-                        tag = "Radosin",
-                    ),
-                    PlayerDisplayModel(
-                        id = "Zen",
-                        tag = "PleaZENtlyPlump",
-                    ),
-                ),
-            )
+            mutableStateOf(emptyList<PlayerDisplayModel>())
         }
 
         LaunchedEffect(Unit) {
@@ -55,7 +44,15 @@ internal class TeamDetailPresenter(
                 }
                 .launchIn(this)
 
-            // Coming soon: fetch roster.
+            playerRepository
+                .getPlayersForTeam(teamId)
+                .map { players ->
+                    players.map(Player::toDisplayModel)
+                }
+                .onEach { players ->
+                    roster = players
+                }
+                .launchIn(this)
         }
 
         return TeamDetailScreen.State(

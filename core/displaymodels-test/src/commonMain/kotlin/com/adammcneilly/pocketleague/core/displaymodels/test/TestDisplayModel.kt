@@ -27,16 +27,19 @@ object TestDisplayModel {
     val cheese = PlayerDisplayModel(
         id = "cheeseId",
         tag = "CHEESE",
+        role = null,
     )
 
     val sosa = PlayerDisplayModel(
         id = "sosaId",
         tag = "sosa",
+        role = null,
     )
 
     val zps = PlayerDisplayModel(
         id = "zpsId",
         tag = "ZPS",
+        role = null,
     )
 
     val knights = TeamOverviewDisplayModel(

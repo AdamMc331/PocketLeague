@@ -1,6 +1,5 @@
 plugins {
     kotlin("multiplatform")
-    alias(libs.plugins.kotlin.compose)
 }
 
 kotlin {
@@ -9,19 +8,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:displaymodels"))
-                implementation(project(":core:feature"))
                 implementation(project(":core:models"))
-                implementation(project(":data:player"))
-                implementation(project(":data:team"))
-                implementation(project(":shared:design-system"))
-                implementation(project(":shared:ui"))
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.materialIconsExtended)
-                implementation(compose.runtime)
-                implementation(libs.koin.core)
-                implementation(libs.slack.circuit)
+                implementation(project(":data:local-sqldelight"))
+                implementation(project(":data:octanegg"))
+                implementation(project(":data:remote"))
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.square.sqldelight.coroutines)
             }
         }
         val commonTest by getting {

@@ -6,6 +6,8 @@ import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.match.LocalMatchService
 import com.adammcneilly.pocketleague.data.match.SQLDelightMatchService
+import com.adammcneilly.pocketleague.data.player.LocalPlayerService
+import com.adammcneilly.pocketleague.data.player.SqlDelightPlayerService
 import org.koin.dsl.module
 
 val localModule = module {
@@ -23,6 +25,12 @@ val localModule = module {
         SQLDelightEventService(
             database = get(),
             clock = get(),
+        )
+    }
+
+    single<LocalPlayerService> {
+        SqlDelightPlayerService(
+            database = get(),
         )
     }
 }

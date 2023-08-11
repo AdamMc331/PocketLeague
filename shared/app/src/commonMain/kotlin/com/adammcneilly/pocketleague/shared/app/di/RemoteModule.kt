@@ -7,6 +7,8 @@ import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.adammcneilly.pocketleague.data.match.RemoteMatchService
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
+import com.adammcneilly.pocketleague.data.player.OctaneGGPlayerService
+import com.adammcneilly.pocketleague.data.player.RemotePlayerService
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import org.koin.dsl.module
 
@@ -32,6 +34,12 @@ val remoteModule = module {
         OctaneGGEventService(
             apiClient = get(),
             clock = get(),
+        )
+    }
+
+    single<RemotePlayerService> {
+        OctaneGGPlayerService(
+            apiClient = get(),
         )
     }
 }

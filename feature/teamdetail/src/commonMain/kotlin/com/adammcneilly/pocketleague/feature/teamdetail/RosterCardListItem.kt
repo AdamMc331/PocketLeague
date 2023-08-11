@@ -27,7 +27,7 @@ internal fun RosterCardListItem(
         ),
         headlineText = {
             Text(
-                text = "${player.countryFlagUnicode} $playerText",
+                text = "${player.countryFlagEmojiUnicode} $playerText",
             )
         },
     )

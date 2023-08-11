@@ -16,10 +16,19 @@ interface LocaleHelper {
      * of that country's flag emoji.
      */
     fun getFlagEmoji(countryCode: String): String
+}
 
-    companion object {
-        const val UNICODE_CHAR_OFFSET_START = 127397
-    }
+/**
+ * To understand where this number came from, read this post: https://dev.to/jorik/country-code-to-flag-emoji-a21
+ *
+ * TL;DR -> Unicode codepoint for 'A' - UTF-16 value for 'A'.
+ * We can add UTF-16 value for any char to this constant, and get the unicode
+ * codepoint for that char.
+ */
+fun Char.toCodePoint(): Int {
+    val unicodeOffsetStart = 127397
+
+    return this.code + unicodeOffsetStart
 }
 
 /**

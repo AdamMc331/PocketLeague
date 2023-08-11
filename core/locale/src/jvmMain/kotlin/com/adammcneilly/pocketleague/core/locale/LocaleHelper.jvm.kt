@@ -14,9 +14,7 @@ class JVMLocaleHelper : LocaleHelper {
     override fun getFlagEmoji(countryCode: String): String {
         val codePoints = countryCode
             .uppercase()
-            .map { char ->
-                char.code + LocaleHelper.UNICODE_CHAR_OFFSET_START
-            }
+            .map(Char::toCodePoint)
             .toIntArray()
 
         return String(codePoints, 0, 2)

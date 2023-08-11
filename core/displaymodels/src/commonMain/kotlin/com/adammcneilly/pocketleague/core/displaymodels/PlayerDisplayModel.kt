@@ -11,7 +11,7 @@ data class PlayerDisplayModel(
     val id: String,
     val tag: String,
     val role: String?,
-    val countryFlagUnicode: String,
+    val countryFlagEmojiUnicode: String,
 )
 
 /**
@@ -31,6 +31,6 @@ fun Player.toDisplayModel(
         id = this.id,
         tag = this.tag,
         role = role,
-        countryFlagUnicode = localeHelper.getFlagEmoji(countryCode),
+        countryFlagEmojiUnicode = localeHelper.getFlagEmoji(countryCode),
     )
 }

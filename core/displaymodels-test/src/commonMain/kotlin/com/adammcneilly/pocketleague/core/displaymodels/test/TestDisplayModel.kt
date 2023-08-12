@@ -6,7 +6,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
 import com.adammcneilly.pocketleague.core.displaymodels.toDisplayModel
@@ -22,30 +21,6 @@ object TestDisplayModel {
         assists = 5,
         saves = 3,
         shots = 1,
-    )
-
-    val cheese = PlayerDisplayModel(
-        id = "cheeseId",
-        name = "",
-        tag = "CHEESE",
-        role = null,
-        countryFlagEmojiUnicode = "\uD83C\uDDFA\uD83C\uDDF8",
-    )
-
-    val sosa = PlayerDisplayModel(
-        id = "sosaId",
-        name = "",
-        tag = "sosa",
-        role = null,
-        countryFlagEmojiUnicode = "\uD83C\uDDE8\uD83C\uDDE6",
-    )
-
-    val zps = PlayerDisplayModel(
-        id = "zpsId",
-        name = "",
-        tag = "ZPS",
-        role = null,
-        countryFlagEmojiUnicode = "\uD83C\uDDFA\uD83C\uDDF8",
     )
 
     val knights = TeamOverviewDisplayModel(

@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.shared.ui.components.ListItemDividerCard
 import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
 
 /**
@@ -50,13 +49,11 @@ private fun LazyListScope.rosterCardSection(state: TeamDetailScreen.State) {
     }
 
     item {
-        ListItemDividerCard(
-            items = state.roster,
+        RosterCard(
+            roster = state.roster,
             modifier = Modifier
                 .fillMaxWidth()
                 .screenHorizontalPadding(),
-        ) { player ->
-            RosterCardListItem(player)
-        }
+        )
     }
 }

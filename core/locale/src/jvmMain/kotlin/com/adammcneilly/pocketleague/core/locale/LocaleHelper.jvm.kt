@@ -10,19 +10,6 @@ class JVMLocaleHelper : LocaleHelper {
     override fun getCountryDisplayName(countryCode: String): String {
         return Locale("", countryCode).getDisplayName(Locale.getDefault())
     }
-
-    override fun getFlagEmoji(countryCode: String): String {
-        if (countryCode.length != 2) {
-            throw IllegalArgumentException("Country code \"$countryCode\" invalid, expected two characters.")
-        }
-
-        val codePoints = countryCode
-            .uppercase()
-            .map(Char::toCodePoint)
-            .toIntArray()
-
-        return String(codePoints, 0, 2)
-    }
 }
 
 /**

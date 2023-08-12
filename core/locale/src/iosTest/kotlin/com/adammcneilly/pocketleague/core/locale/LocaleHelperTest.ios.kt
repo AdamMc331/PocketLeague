@@ -12,4 +12,10 @@ class LocaleHelperTest {
         assertThat(localeHelper.getCountryDisplayName("us")).isEqualTo("United States")
         assertThat(localeHelper.getCountryDisplayName("de")).isEqualTo("Germany")
     }
+
+    @Test
+    fun getCountryFlag() {
+        assertThat(localeHelper.getFlagEmoji("US")).isEqualTo("\uD83C\uDDFA\uD83C\uDDF8")
+        assertThat(localeHelper.getFlagEmoji("FR")).isEqualTo("\uD83C\uDDEB\uD83C\uDDF7")
+    }
 }

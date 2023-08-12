@@ -9,6 +9,7 @@ import com.adammcneilly.pocketleague.core.models.Player
  */
 data class PlayerDisplayModel(
     val id: String,
+    val name: String,
     val tag: String,
     val role: String?,
     val countryFlagEmojiUnicode: String,
@@ -29,6 +30,7 @@ fun Player.toDisplayModel(
 
     return PlayerDisplayModel(
         id = this.id,
+        name = this.name,
         tag = this.tag,
         role = role,
         countryFlagEmojiUnicode = localeHelper.getFlagEmoji(countryCode),

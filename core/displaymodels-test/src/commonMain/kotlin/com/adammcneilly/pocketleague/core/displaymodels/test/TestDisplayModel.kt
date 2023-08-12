@@ -26,6 +26,7 @@ object TestDisplayModel {
 
     val cheese = PlayerDisplayModel(
         id = "cheeseId",
+        name = "",
         tag = "CHEESE",
         role = null,
         countryFlagEmojiUnicode = "\uD83C\uDDFA\uD83C\uDDF8",
@@ -33,6 +34,7 @@ object TestDisplayModel {
 
     val sosa = PlayerDisplayModel(
         id = "sosaId",
+        name = "",
         tag = "sosa",
         role = null,
         countryFlagEmojiUnicode = "\uD83C\uDDE8\uD83C\uDDE6",
@@ -40,6 +42,7 @@ object TestDisplayModel {
 
     val zps = PlayerDisplayModel(
         id = "zpsId",
+        name = "",
         tag = "ZPS",
         role = null,
         countryFlagEmojiUnicode = "\uD83C\uDDFA\uD83C\uDDF8",

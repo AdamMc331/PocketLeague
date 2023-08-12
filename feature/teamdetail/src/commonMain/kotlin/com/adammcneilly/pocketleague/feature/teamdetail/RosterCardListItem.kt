@@ -1,16 +1,22 @@
 package com.adammcneilly.pocketleague.feature.teamdetail
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
+import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
 @Composable
 internal fun RosterCardListItem(
@@ -29,44 +35,58 @@ internal fun RosterCardListItem(
         FlagEmoji(player)
 
         Column {
-            PlayerName(player)
             PlayerTag(player)
-            PlayerRole(player)
+            PlayerName(player)
         }
-    }
-}
-
-@Composable
-private fun PlayerRole(player: PlayerDisplayModel) {
-    val role = player.role
-
-    if (role != null) {
-        Text(
-            text = role,
-            style = MaterialTheme.typography.bodyMedium,
-        )
     }
 }
 
 @Composable
 private fun PlayerTag(player: PlayerDisplayModel) {
     Text(
-        text = player.tag,
+        text = listOfNotNull(
+            player.tag,
+            player.role,
+        ).joinToString(" "),
         style = MaterialTheme.typography.bodyLarge,
+        modifier = Modifier
+            .fillMaxWidth()
+            .placeholderMaterial(
+                visible = player.isPlaceholder,
+                color = PlaceholderDefaults.cardColor(),
+            ),
     )
 }
 
 @Composable
+@Suppress("MagicNumber")
 private fun PlayerName(player: PlayerDisplayModel) {
     Text(
         text = player.name,
         style = MaterialTheme.typography.labelSmall,
+        modifier = Modifier
+            .fillMaxWidth(0.5F)
+            .placeholderMaterial(
+                visible = player.isPlaceholder,
+                color = PlaceholderDefaults.cardColor(),
+            ),
     )
 }
 
 @Composable
 private fun FlagEmoji(player: PlayerDisplayModel) {
-    Text(
-        text = player.countryFlagEmojiUnicode,
-    )
+    Box(
+        modifier = Modifier
+            .size(24.dp)
+            .placeholderMaterial(
+                visible = player.isPlaceholder,
+                color = PlaceholderDefaults.cardColor(),
+            ),
+    ) {
+        Text(
+            text = player.countryFlagEmojiUnicode,
+            modifier = Modifier
+                .align(Alignment.Center),
+        )
+    }
 }

@@ -70,7 +70,7 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
     }
 
-    namespace = "com.adammcneilly.shared.pocketleague.app"
+    namespace = "com.adammcneilly.pocketleague.shared.app"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

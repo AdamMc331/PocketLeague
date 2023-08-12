@@ -22,9 +22,9 @@ class LocaleHelperTest {
     @Test
     fun overrideEnglandFlag() {
         assertThat(
-            actual = localeHelper.getFlagEmoji("EN")
+            actual = localeHelper.getFlagEmoji("EN"),
         ).isEqualTo(
-            expected = "\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F"
+            expected = "\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F",
         )
     }
 }

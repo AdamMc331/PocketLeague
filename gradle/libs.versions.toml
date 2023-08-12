@@ -9,6 +9,7 @@ apollo = "3.8.2"
 appCompat = "1.6.1"
 buildkonfig = "0.13.3"
 circuit = "0.9.1-compose-mp"
+codepoints = "0.6.1"
 coil = "2.4.0"
 compileSdk = "33"
 compose = "2023.06.01"
@@ -62,6 +63,7 @@ androidx-window = { module = "androidx.window:window", version.ref = "windowMana
 androidx-workmanager-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workManager" }
 apollo-runtime = { module = "com.apollographql.apollo3:apollo-runtime", version.ref = "apollo" }
 cash-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+cketti-codepoints = { module = "de.cketti.unicode:kotlin-codepoints", version.ref = "codepoints" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
 compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }

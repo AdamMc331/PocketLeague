@@ -22,13 +22,36 @@ interface LocaleHelper {
             throw IllegalArgumentException("Country code \"$countryCode\" invalid, expected two characters.")
         }
 
-        return countryCode
-            .uppercase()
-            .map(Char::toCodePoint)
-            .map(CodePoints::toChars)
-            .joinToString(separator = "") { charArray ->
-                charArray.concatToString()
-            }
+        val upperCountryCode = countryCode.uppercase()
+
+        return overrideEmojis[upperCountryCode] ?: run {
+            upperCountryCode
+                .map(Char::toCodePoint)
+                .map(CodePoints::toChars)
+                .joinToString(separator = "") { charArray ->
+                    charArray.concatToString()
+                }
+        }
+    }
+
+    companion object {
+        /**
+         * Some Rocket League plays have a country code of "EN" for England. However, the England flag emoji
+         * is actually a combination of letters and other emojis.
+         *
+         * In this case, we'll just hardcode it.
+         *
+         * https://emojipedia.org/flag-england
+         */
+        private const val ENGLAND_FLAG_EMOJI = "\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F"
+
+        /**
+         * Most emojis are generated in [getFlagEmoji] from the country code, but if there are any country codes
+         * we want to override, this map will take precedence.
+         */
+        private val overrideEmojis = mapOf(
+            "EN" to ENGLAND_FLAG_EMOJI,
+        )
     }
 }
 

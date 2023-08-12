@@ -10,6 +10,26 @@ interface LocaleHelper {
      * "us" should return "United States".
      */
     fun getCountryDisplayName(countryCode: String): String
+
+    /**
+     * Given a [countryCode], convert that information to the unicode value
+     * of that country's flag emoji.
+     */
+    fun getFlagEmoji(countryCode: String): String
+}
+
+/**
+ * To understand where this number came from, read this post: https://dev.to/jorik/country-code-to-flag-emoji-a21
+ *
+ * TL;DR -> Unicode codepoint for 'A' - UTF-16 value for 'A'.
+ * We can add UTF-16 value for any char to this constant, and get the unicode
+ * codepoint for that char.
+ */
+@Suppress("MagicNumber")
+fun Char.toCodePoint(): Int {
+    val unicodeOffsetStart = 127397
+
+    return this.code + unicodeOffsetStart
 }
 
 /**

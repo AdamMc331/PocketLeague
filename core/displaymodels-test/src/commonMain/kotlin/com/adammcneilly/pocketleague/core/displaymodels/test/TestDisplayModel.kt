@@ -28,18 +28,21 @@ object TestDisplayModel {
         id = "cheeseId",
         tag = "CHEESE",
         role = null,
+        countryFlagEmojiUnicode = "\uD83C\uDDFA\uD83C\uDDF8",
     )
 
     val sosa = PlayerDisplayModel(
         id = "sosaId",
         tag = "sosa",
         role = null,
+        countryFlagEmojiUnicode = "\uD83C\uDDE8\uD83C\uDDE6",
     )
 
     val zps = PlayerDisplayModel(
         id = "zpsId",
         tag = "ZPS",
         role = null,
+        countryFlagEmojiUnicode = "\uD83C\uDDFA\uD83C\uDDF8",
     )
 
     val knights = TeamOverviewDisplayModel(

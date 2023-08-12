@@ -11,6 +11,7 @@ kotlin {
             dependencies {
                 implementation(project(":core:displaymodels"))
                 implementation(project(":core:feature"))
+                implementation(project(":core:locale"))
                 implementation(project(":core:models"))
                 implementation(project(":data:player"))
                 implementation(project(":data:team"))

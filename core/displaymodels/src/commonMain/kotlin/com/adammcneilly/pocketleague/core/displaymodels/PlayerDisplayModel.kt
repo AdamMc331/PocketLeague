@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.locale.LocaleHelper
+import com.adammcneilly.pocketleague.core.locale.provideLocaleHelper
 import com.adammcneilly.pocketleague.core.models.Player
 
 /**
@@ -9,12 +11,15 @@ data class PlayerDisplayModel(
     val id: String,
     val tag: String,
     val role: String?,
+    val countryFlagEmojiUnicode: String,
 )
 
 /**
  * Converts a [Player] to its corresponding [PlayerDisplayModel]
  */
-fun Player.toDisplayModel(): PlayerDisplayModel {
+fun Player.toDisplayModel(
+    localeHelper: LocaleHelper = provideLocaleHelper(),
+): PlayerDisplayModel {
     // Maybe roles can be an enum instead of strings?
     val role = when {
         this.isCoach -> "Coach"
@@ -26,5 +31,6 @@ fun Player.toDisplayModel(): PlayerDisplayModel {
         id = this.id,
         tag = this.tag,
         role = role,
+        countryFlagEmojiUnicode = localeHelper.getFlagEmoji(countryCode),
     )
 }

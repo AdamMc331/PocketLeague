@@ -17,6 +17,7 @@ class GameTeamResultDisplayModelTest {
             GamePlayerResult(
                 player = Player(
                     tag = "AdamMc331",
+                    countryCode = "US",
                 ),
                 stats = Stats(
                     core = CoreStats(
@@ -27,6 +28,7 @@ class GameTeamResultDisplayModelTest {
             GamePlayerResult(
                 player = Player(
                     tag = "PleasantlyPlump",
+                    countryCode = "CA",
                 ),
                 stats = Stats(
                     core = CoreStats(
@@ -37,6 +39,7 @@ class GameTeamResultDisplayModelTest {
             GamePlayerResult(
                 player = Player(
                     tag = "mTeo",
+                    countryCode = "US",
                 ),
                 stats = Stats(
                     core = CoreStats(

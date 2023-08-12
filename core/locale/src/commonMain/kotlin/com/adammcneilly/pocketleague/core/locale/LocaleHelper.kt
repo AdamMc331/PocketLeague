@@ -25,7 +25,6 @@ interface LocaleHelper {
         return countryCode
             .uppercase()
             .map(Char::toCodePoint)
-            .toIntArray()
             .map(CodePoints::toChars)
             .joinToString(separator = "") { charArray ->
                 charArray.concatToString()

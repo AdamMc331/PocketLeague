@@ -59,6 +59,7 @@ private fun PlayerTag(player: PlayerDisplayModel) {
 }
 
 @Composable
+@Suppress("MagicNumber")
 private fun PlayerName(player: PlayerDisplayModel) {
     Text(
         text = player.name,

@@ -1,3 +1,5 @@
+@file:Suppress("MaxLineLength")
+
 package com.adammcneilly.pocketleague.core.displaymodels.test
 
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel

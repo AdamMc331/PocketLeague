@@ -51,7 +51,7 @@ private fun PlayerRole(player: PlayerDisplayModel) {
 @Composable
 private fun PlayerTag(player: PlayerDisplayModel) {
     Text(
-        text = player.name,
+        text = player.tag,
         style = MaterialTheme.typography.bodyLarge,
     )
 }

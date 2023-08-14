@@ -12,7 +12,7 @@ import SwiftUI
 struct pocketLeagueIosApp: App {
     
     init() {
-        // TODO: Initialize Koin
+        KoinInitializer_iosKt.doInitKoinIos()
     }
     
     var body: some Scene {

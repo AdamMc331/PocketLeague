@@ -18,6 +18,8 @@ import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueThem
 import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
+private val FLAG_EMOJI_SIZE = 12.dp
+
 @Composable
 internal fun RosterCardListItem(
     player: PlayerDisplayModel,
@@ -77,7 +79,7 @@ private fun PlayerName(player: PlayerDisplayModel) {
 private fun FlagEmoji(player: PlayerDisplayModel) {
     Box(
         modifier = Modifier
-            .size(24.dp)
+            .size(FLAG_EMOJI_SIZE)
             .placeholderMaterial(
                 visible = player.isPlaceholder,
                 color = PlaceholderDefaults.cardColor(),

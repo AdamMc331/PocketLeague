@@ -14,6 +14,7 @@ import com.slack.circuit.runtime.Screen
 import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
+import kotlinx.datetime.Clock
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -84,6 +85,7 @@ data class EventDetailScreen(
     ) : Presenter.Factory, KoinComponent {
         private val eventRepository: EventRepository by inject()
         private val matchRepository: MatchRepository by inject()
+        private val clock: Clock by inject()
 
         override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
             return when (screen) {
@@ -92,6 +94,7 @@ data class EventDetailScreen(
                         eventId = com.adammcneilly.pocketleague.core.models.Event.Id(screen.eventId),
                         eventRepository = eventRepository,
                         matchRepository = matchRepository,
+                        clock = clock,
                         onMatchClicked = { matchId ->
                             navigateToMatch.invoke(navigator, matchId)
                         },

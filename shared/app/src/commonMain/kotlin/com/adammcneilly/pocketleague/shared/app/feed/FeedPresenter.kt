@@ -11,7 +11,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.GetPastWeeksMatchesUseCase
 import com.adammcneilly.pocketleague.feature.eventdetail.EventDetailScreen
@@ -21,6 +20,7 @@ import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.datetime.Clock
 
 private const val PLACEHOLDER_LIST_COUNT = 3
 
@@ -30,6 +30,7 @@ private const val PLACEHOLDER_LIST_COUNT = 3
 class FeedPresenter(
     private val getPastWeeksMatchesUseCase: GetPastWeeksMatchesUseCase,
     private val eventRepository: EventRepository,
+    private val clock: Clock,
     private val navigator: Navigator,
 ) : Presenter<FeedScreen.State> {
 
@@ -54,7 +55,9 @@ class FeedPresenter(
             getPastWeeksMatchesUseCase
                 .getPastWeeksMatches()
                 .map { matchList ->
-                    matchList.map(Match::toDetailDisplayModel)
+                    matchList.map { match ->
+                        match.toDetailDisplayModel(clock)
+                    }
                 }
                 .onEach { matchList ->
                     matches = matchList

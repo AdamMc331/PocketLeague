@@ -103,6 +103,7 @@ object FeedScreen : Screen {
                 FeedScreen -> FeedPresenter(
                     getPastWeeksMatchesUseCase = getPastWeeksMatchesUseCase,
                     eventRepository = eventRepository,
+                    clock = clock,
                     navigator = navigator,
                 )
 

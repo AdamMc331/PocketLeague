@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
+import kotlinx.datetime.Clock
 
 private val placeholderMatches = listOf(
     MatchDetailDisplayModel.placeholder,
@@ -39,6 +40,7 @@ class EventDetailPresenter(
     private val eventRepository: EventRepository,
     private val matchRepository: MatchRepository,
     private val onMatchClicked: (Match.Id) -> Unit,
+    private val clock: Clock,
 ) : Presenter<EventDetailScreen.State> {
 
     @Composable
@@ -122,7 +124,9 @@ class EventDetailPresenter(
                 matchRepository
                     .getMatchesForEventStage(eventId, stageId)
                     .map { matchList ->
-                        matchList.map(Match::toDetailDisplayModel)
+                        matchList.map { match ->
+                            match.toDetailDisplayModel(clock)
+                        }
                     }
                     .onStart {
                         emit(placeholderMatches)

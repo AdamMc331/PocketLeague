@@ -18,7 +18,7 @@ object DateUtils {
      */
     fun isBeforeNow(
         utcString: String,
-        clock: Clock = defaultClock(),
+        clock: Clock,
     ): Boolean {
         val instant = Instant.parse(utcString)
 
@@ -33,7 +33,7 @@ object DateUtils {
      */
     fun getRelativeTimestamp(
         utcString: String,
-        clock: Clock = defaultClock(),
+        clock: Clock,
     ): String? {
         if (!isBeforeNow(utcString, clock)) {
             return null

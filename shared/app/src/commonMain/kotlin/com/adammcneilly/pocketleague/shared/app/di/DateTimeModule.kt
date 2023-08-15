@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.di
 
 import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
+import com.adammcneilly.pocketleague.core.datetime.DebugClock
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import kotlinx.datetime.Clock
 import org.koin.dsl.module
@@ -10,8 +11,8 @@ import org.koin.dsl.module
  */
 val dateTimeModule = module {
     single<Clock> {
-        Clock.System
-//        DebugClock()
+//        Clock.System
+        DebugClock()
     }
 
     single<DateTimeFormatter> {

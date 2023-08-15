@@ -4,6 +4,7 @@ import com.adammcneilly.pocketleague.core.datetime.DateUtils
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.StageRound
+import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 
 private const val MATCH_DATE_FORMAT = "MMM dd, yyyy"
@@ -46,12 +47,16 @@ data class MatchDetailDisplayModel(
 /**
  * Converts a [Match] to a [MatchDetailDisplayModel].
  */
-fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
+fun Match.toDetailDisplayModel(
+    clock: Clock,
+): MatchDetailDisplayModel {
     val dateTimeFormatter = dateTimeFormatter()
 
     val startDate = this.dateUTC
 
-    val isBeforeToday = startDate?.let(DateUtils::isBeforeNow) ?: false
+    val isBeforeToday = startDate?.let {
+        DateUtils.isBeforeNow(it, clock)
+    } ?: false
 
     val (blueWins, orangeWins) = this.gameOverviews.partition { gameOverview ->
         gameOverview.blueScore > gameOverview.orangeScore
@@ -83,7 +88,7 @@ fun Match.toDetailDisplayModel(): MatchDetailDisplayModel {
         eventName = this.event.name,
         stageName = this.stage.name,
         relativeDateTime = startDate?.let { date ->
-            DateUtils.getRelativeTimestamp(date)
+            DateUtils.getRelativeTimestamp(date, clock)
         }.orEmpty(),
         isLive = isLive,
         round = this.round,

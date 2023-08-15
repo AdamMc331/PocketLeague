@@ -20,6 +20,7 @@ import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.datetime.Clock
 
 /**
  * State management container for the [MatchDetailScreen].
@@ -28,6 +29,7 @@ class MatchDetailPresenter(
     private val matchId: Match.Id,
     private val gameService: GameService,
     private val matchRepository: MatchRepository,
+    private val clock: Clock,
     private val navigator: Navigator,
 ) : Presenter<MatchDetailScreen.State> {
 
@@ -54,7 +56,9 @@ class MatchDetailPresenter(
         LaunchedEffect(Unit) {
             matchRepository
                 .getMatchDetail(matchId)
-                .map(Match::toDetailDisplayModel)
+                .map { match ->
+                    match.toDetailDisplayModel(clock)
+                }
                 .onEach { displayModel ->
                     match = displayModel
                 }

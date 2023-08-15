@@ -8,4 +8,4 @@ import kotlinx.datetime.Clock
  * Utility function makes this easy to swap in a [DebugClock] when we want
  * to test.
  */
-fun defaultClock(): Clock = Clock.System // DebugClock()
+fun defaultClock(): Clock = DebugClock()

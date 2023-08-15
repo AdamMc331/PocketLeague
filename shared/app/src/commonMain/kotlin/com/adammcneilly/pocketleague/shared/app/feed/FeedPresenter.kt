@@ -52,35 +52,19 @@ class FeedPresenter(
         }
 
         LaunchedEffect(Unit) {
-            getPastWeeksMatchesUseCase
-                .getPastWeeksMatches()
-                .map { matchList ->
-                    matchList.map { match ->
-                        match.toDetailDisplayModel(clock)
-                    }
-                }
+            observePastWeeksMatches()
                 .onEach { matchList ->
                     matches = matchList
                 }
                 .launchIn(this)
 
-            eventRepository
-                .getOngoingEvents()
-                .map { eventList ->
-                    eventList.map(Event::toSummaryDisplayModel)
-                }
-                .map(EventGroupDisplayModel.Companion::mapFromEventList)
+            observeOngoingEvents()
                 .onEach { eventList ->
                     ongoingEvents = eventList
                 }
                 .launchIn(this)
 
-            eventRepository
-                .getUpcomingEvents()
-                .map { eventList ->
-                    eventList.map(Event::toSummaryDisplayModel)
-                }
-                .map(EventGroupDisplayModel.Companion::mapFromEventList)
+            observeUpcomingEvents()
                 .onEach { eventList ->
                     upcomingEvents = eventList
                 }
@@ -105,4 +89,26 @@ class FeedPresenter(
             }
         }
     }
+
+    private fun observePastWeeksMatches() = getPastWeeksMatchesUseCase
+        .getPastWeeksMatches()
+        .map { matchList ->
+            matchList.map { match ->
+                match.toDetailDisplayModel(clock)
+            }
+        }
+
+    private fun observeOngoingEvents() = eventRepository
+        .getOngoingEvents()
+        .map { eventList ->
+            eventList.map(Event::toSummaryDisplayModel)
+        }
+        .map(EventGroupDisplayModel.Companion::mapFromEventList)
+
+    private fun observeUpcomingEvents() = eventRepository
+        .getUpcomingEvents()
+        .map { eventList ->
+            eventList.map(Event::toSummaryDisplayModel)
+        }
+        .map(EventGroupDisplayModel.Companion::mapFromEventList)
 }

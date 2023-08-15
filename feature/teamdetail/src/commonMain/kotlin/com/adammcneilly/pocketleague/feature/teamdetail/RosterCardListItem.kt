@@ -18,7 +18,7 @@ import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueThem
 import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
 
-private val FLAG_EMOJI_SIZE = 12.dp
+private val FLAG_EMOJI_SIZE = 24.dp
 
 @Composable
 internal fun RosterCardListItem(

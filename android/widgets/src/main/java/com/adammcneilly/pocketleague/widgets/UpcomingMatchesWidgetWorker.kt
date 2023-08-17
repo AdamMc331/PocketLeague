@@ -11,6 +11,8 @@ import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
 import com.adammcneilly.pocketleague.data.match.OfflineFirstMatchRepository
 import com.adammcneilly.pocketleague.data.match.SQLDelightMatchService
+import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
+import kotlinx.datetime.Clock
 
 /**
  * An implementation of [CoroutineWorker] to request and persist upcoming matches.
@@ -30,7 +32,10 @@ class UpcomingMatchesWidgetWorker(
     private val repository: MatchRepository by lazy {
         OfflineFirstMatchRepository(
             localDataSource = SQLDelightMatchService(PocketLeagueDB(DatabaseDriverFactory(appContext).createDriver())),
-            remoteDataSource = OctaneGGMatchService(),
+            remoteDataSource = OctaneGGMatchService(
+                apiClient = OctaneGGAPIClient,
+                clock = Clock.System,
+            ),
         )
     }
 

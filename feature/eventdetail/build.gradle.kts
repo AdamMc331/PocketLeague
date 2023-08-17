@@ -13,6 +13,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:datetime"))
                 implementation(project(":core:displaymodels"))
                 implementation(project(":core:feature"))
                 implementation(project(":core:models")) // I still don't think this is necessary

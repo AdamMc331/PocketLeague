@@ -40,6 +40,7 @@ android {
 
 dependencies {
 
+    implementation(project(":core:datetime"))
     implementation(project(":core:displaymodels"))
     implementation(project(":core:models"))
     implementation(project(":data:local-sqldelight"))

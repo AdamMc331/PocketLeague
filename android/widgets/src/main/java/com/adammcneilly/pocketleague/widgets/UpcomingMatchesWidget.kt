@@ -36,11 +36,11 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
-import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toMatch
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
+import kotlinx.datetime.Clock
 import java.util.concurrent.TimeUnit
 
 /**
@@ -60,7 +60,9 @@ class UpcomingMatchesWidget : GlanceAppWidget() {
             .selectUpcoming()
             .executeAsList()
             .map(MatchWithEventAndTeams::toMatch)
-            .map(Match::toDetailDisplayModel)
+            .map { match ->
+                match.toDetailDisplayModel(Clock.System)
+            }
 
         println("ARM - Rendering matches: ${matchesToShow.size}")
 

@@ -5,7 +5,9 @@ import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class DateUtilsTest {
+class DateTimeFormatterTest {
+
+    private val dateTimeFormatter = dateTimeFormatter()
 
     @Test
     fun `isBeforeNow returns true for past date`() {
@@ -14,7 +16,7 @@ class DateUtilsTest {
 
         val clock = DebugClock(now)
 
-        assertTrue(DateUtils.isBeforeNow(pastDate, clock))
+        assertTrue(dateTimeFormatter.isBeforeNow(pastDate, clock))
     }
 
     @Test
@@ -24,7 +26,7 @@ class DateUtilsTest {
 
         val clock = DebugClock(now)
 
-        assertFalse(DateUtils.isBeforeNow(futureDate, clock))
+        assertFalse(dateTimeFormatter.isBeforeNow(futureDate, clock))
     }
 
     @Test
@@ -33,7 +35,7 @@ class DateUtilsTest {
 
         val clock = DebugClock(now)
 
-        assertFalse(DateUtils.isBeforeNow(now, clock))
+        assertFalse(dateTimeFormatter.isBeforeNow(now, clock))
     }
 
     @Test
@@ -43,7 +45,7 @@ class DateUtilsTest {
 
         val clock = DebugClock(now)
 
-        assertThat("5m ago").isEqualTo(DateUtils.getRelativeTimestamp(pastDate, clock))
+        assertThat("5m ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, clock))
     }
 
     @Test
@@ -53,7 +55,7 @@ class DateUtilsTest {
 
         val clock = DebugClock(now)
 
-        assertThat("6h ago").isEqualTo(DateUtils.getRelativeTimestamp(pastDate, clock))
+        assertThat("6h ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, clock))
     }
 
     @Test
@@ -63,7 +65,7 @@ class DateUtilsTest {
 
         val clock = DebugClock(now)
 
-        assertThat("6d ago").isEqualTo(DateUtils.getRelativeTimestamp(pastDate, clock))
+        assertThat("6d ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, clock))
     }
 
     @Test
@@ -73,7 +75,7 @@ class DateUtilsTest {
 
         val clock = DebugClock(now)
 
-        assertThat("365d ago").isEqualTo(DateUtils.getRelativeTimestamp(pastDate, clock))
+        assertThat("365d ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, clock))
     }
 
     @Test
@@ -83,6 +85,6 @@ class DateUtilsTest {
 
         val clock = DebugClock(now)
 
-        assertThat(DateUtils.getRelativeTimestamp(futureDate, clock)).isNull()
+        assertThat(dateTimeFormatter.getRelativeTimestamp(futureDate, clock)).isNull()
     }
 }

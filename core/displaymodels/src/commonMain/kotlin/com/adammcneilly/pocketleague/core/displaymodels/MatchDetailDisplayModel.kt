@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.datetime.DateUtils
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.StageRound
@@ -55,7 +54,7 @@ fun Match.toDetailDisplayModel(
     val startDate = this.dateUTC
 
     val isBeforeToday = startDate?.let {
-        DateUtils.isBeforeNow(it, clock)
+        dateTimeFormatter.isBeforeNow(it, clock)
     } ?: false
 
     val (blueWins, orangeWins) = this.gameOverviews.partition { gameOverview ->
@@ -88,7 +87,7 @@ fun Match.toDetailDisplayModel(
         eventName = this.event.name,
         stageName = this.stage.name,
         relativeDateTime = startDate?.let { date ->
-            DateUtils.getRelativeTimestamp(date, clock)
+            dateTimeFormatter.getRelativeTimestamp(date, clock)
         }.orEmpty(),
         isLive = isLive,
         round = this.round,

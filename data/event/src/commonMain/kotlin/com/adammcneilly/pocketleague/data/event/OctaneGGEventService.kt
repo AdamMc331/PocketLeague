@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.event
 
+import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEvent
@@ -8,7 +9,6 @@ import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGEventParticipa
 import com.adammcneilly.pocketleague.data.octanegg.models.toEvent
 import com.adammcneilly.pocketleague.data.octanegg.models.toTeam
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
-import kotlinx.datetime.Clock
 
 /**
  * A concrete implementation of [EventRepository] that requests data
@@ -16,14 +16,14 @@ import kotlinx.datetime.Clock
  */
 class OctaneGGEventService(
     private val apiClient: BaseKTORClient,
-    private val clock: Clock,
+    private val timeProvider: TimeProvider,
 ) : RemoteEventService {
 
     override suspend fun getUpcomingEvents(): Result<List<Event>> {
         return apiClient.getResponse<OctaneGGEventListResponse>(
             endpoint = EVENTS_ENDPOINT,
             params = mapOf(
-                "after" to clock.now().toString(),
+                "after" to timeProvider.now().toString(),
                 "group" to "rlcs",
             ),
         ).map { eventListResponse ->
@@ -57,7 +57,7 @@ class OctaneGGEventService(
         return apiClient.getResponse<OctaneGGEventListResponse>(
             endpoint = EVENTS_ENDPOINT,
             params = mapOf(
-                "date" to clock.now().toString(),
+                "date" to timeProvider.now().toString(),
                 "group" to "rlcs",
             ),
         ).map { eventListResponse ->

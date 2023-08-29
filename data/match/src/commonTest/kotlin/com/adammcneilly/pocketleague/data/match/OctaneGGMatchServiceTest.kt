@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.data.match
 
-import com.adammcneilly.pocketleague.core.datetime.DebugClock
+import com.adammcneilly.pocketleague.core.datetime.DebugTimeProvider
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.test.readTestData
 import com.adammcneilly.pocketleague.data.remote.test.FakeKTORClient
@@ -22,7 +22,7 @@ class OctaneGGMatchServiceTest {
 
         val service = OctaneGGMatchService(
             apiClient = client,
-            clock = DebugClock(),
+            timeProvider = DebugTimeProvider(),
         )
 
         val response = service.getMatchDetail(Match.Id("123")).getOrThrow()

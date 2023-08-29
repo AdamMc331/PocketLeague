@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
@@ -24,7 +25,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
-import kotlinx.datetime.Clock
 
 private val placeholderMatches = listOf(
     MatchDetailDisplayModel.placeholder,
@@ -40,7 +40,7 @@ class EventDetailPresenter(
     private val eventRepository: EventRepository,
     private val matchRepository: MatchRepository,
     private val onMatchClicked: (Match.Id) -> Unit,
-    private val clock: Clock,
+    private val timeProvider: TimeProvider,
 ) : Presenter<EventDetailScreen.State> {
 
     @Composable
@@ -125,7 +125,7 @@ class EventDetailPresenter(
                     .getMatchesForEventStage(eventId, stageId)
                     .map { matchList ->
                         matchList.map { match ->
-                            match.toDetailDisplayModel(clock)
+                            match.toDetailDisplayModel(timeProvider)
                         }
                     }
                     .onStart {

@@ -14,9 +14,9 @@ class DateTimeFormatterTest {
         val pastDate = "2023-07-18T12:00:00Z"
         val now = "2024-07-18T12:00:00Z"
 
-        val clock = DebugClock(now)
+        val timeProvider = DebugTimeProvider(now)
 
-        assertTrue(dateTimeFormatter.isBeforeNow(pastDate, clock))
+        assertTrue(dateTimeFormatter.isBeforeNow(pastDate, timeProvider))
     }
 
     @Test
@@ -24,18 +24,18 @@ class DateTimeFormatterTest {
         val futureDate = "2023-07-18T12:00:00Z"
         val now = "2022-07-18T12:00:00Z"
 
-        val clock = DebugClock(now)
+        val timeProvider = DebugTimeProvider(now)
 
-        assertFalse(dateTimeFormatter.isBeforeNow(futureDate, clock))
+        assertFalse(dateTimeFormatter.isBeforeNow(futureDate, timeProvider))
     }
 
     @Test
     fun `isBeforeNow returns false for same date`() {
         val now = "2022-07-18T12:00:00Z"
 
-        val clock = DebugClock(now)
+        val timeProvider = DebugTimeProvider(now)
 
-        assertFalse(dateTimeFormatter.isBeforeNow(now, clock))
+        assertFalse(dateTimeFormatter.isBeforeNow(now, timeProvider))
     }
 
     @Test
@@ -43,9 +43,9 @@ class DateTimeFormatterTest {
         val pastDate = "2023-07-18T11:55:00Z"
         val now = "2023-07-18T12:00:00Z"
 
-        val clock = DebugClock(now)
+        val timeProvider = DebugTimeProvider(now)
 
-        assertThat("5m ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, clock))
+        assertThat("5m ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
     }
 
     @Test
@@ -53,9 +53,9 @@ class DateTimeFormatterTest {
         val pastDate = "2023-07-18T05:55:00Z"
         val now = "2023-07-18T12:00:00Z"
 
-        val clock = DebugClock(now)
+        val timeProvider = DebugTimeProvider(now)
 
-        assertThat("6h ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, clock))
+        assertThat("6h ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
     }
 
     @Test
@@ -63,9 +63,9 @@ class DateTimeFormatterTest {
         val pastDate = "2023-07-12T11:55:00Z"
         val now = "2023-07-18T12:00:00Z"
 
-        val clock = DebugClock(now)
+        val timeProvider = DebugTimeProvider(now)
 
-        assertThat("6d ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, clock))
+        assertThat("6d ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
     }
 
     @Test
@@ -73,9 +73,9 @@ class DateTimeFormatterTest {
         val pastDate = "2022-07-18T11:55:00Z"
         val now = "2023-07-18T12:00:00Z"
 
-        val clock = DebugClock(now)
+        val timeProvider = DebugTimeProvider(now)
 
-        assertThat("365d ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, clock))
+        assertThat("365d ago").isEqualTo(dateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
     }
 
     @Test
@@ -83,8 +83,8 @@ class DateTimeFormatterTest {
         val futureDate = "2024-07-18T11:55:00Z"
         val now = "2023-07-18T12:00:00Z"
 
-        val clock = DebugClock(now)
+        val timeProvider = DebugTimeProvider(now)
 
-        assertThat(dateTimeFormatter.getRelativeTimestamp(futureDate, clock)).isNull()
+        assertThat(dateTimeFormatter.getRelativeTimestamp(futureDate, timeProvider)).isNull()
     }
 }

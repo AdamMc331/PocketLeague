@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.match
 
+import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.feature.CommonParcelize
@@ -15,7 +16,6 @@ import com.slack.circuit.runtime.Screen
 import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
-import kotlinx.datetime.Clock
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -100,7 +100,7 @@ data class MatchDetailScreen(
     object PresenterFactory : Presenter.Factory, KoinComponent {
         private val gameService: GameService by inject()
         private val matchRepository: MatchRepository by inject()
-        private val clock: Clock by inject()
+        private val timeProvider: TimeProvider by inject()
 
         override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
             return when (screen) {
@@ -108,7 +108,7 @@ data class MatchDetailScreen(
                     matchId = Match.Id(screen.matchId),
                     gameService = gameService,
                     matchRepository = matchRepository,
-                    clock = clock,
+                    timeProvider = timeProvider,
                     navigator = navigator,
                 )
 

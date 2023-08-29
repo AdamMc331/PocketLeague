@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.match
 
+import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
@@ -7,7 +8,6 @@ import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatch
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatchListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.toMatch
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
-import kotlinx.datetime.Clock
 
 /**
  * An implementation of [RemoteMatchService] that requests
@@ -15,7 +15,7 @@ import kotlinx.datetime.Clock
  */
 class OctaneGGMatchService(
     private val apiClient: BaseKTORClient,
-    private val clock: Clock,
+    private val timeProvider: TimeProvider,
 ) : RemoteMatchService {
 
     override suspend fun getMatchDetail(matchId: Match.Id): Result<Match> {
@@ -49,7 +49,7 @@ class OctaneGGMatchService(
         return apiClient.getResponse<OctaneGGMatchListResponse>(
             endpoint = MATCHES_ENDPOINT,
             params = mapOf(
-                "after" to clock.now(),
+                "after" to timeProvider.now(),
                 "group" to "rlcs",
             ),
         ).map { octaneMatchListResponse ->

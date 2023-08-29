@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
@@ -20,7 +21,6 @@ import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import kotlinx.datetime.Clock
 
 /**
  * State management container for the [MatchDetailScreen].
@@ -29,7 +29,7 @@ class MatchDetailPresenter(
     private val matchId: Match.Id,
     private val gameService: GameService,
     private val matchRepository: MatchRepository,
-    private val clock: Clock,
+    private val timeProvider: TimeProvider,
     private val navigator: Navigator,
 ) : Presenter<MatchDetailScreen.State> {
 
@@ -57,7 +57,7 @@ class MatchDetailPresenter(
             matchRepository
                 .getMatchDetail(matchId)
                 .map { match ->
-                    match.toDetailDisplayModel(clock)
+                    match.toDetailDisplayModel(timeProvider)
                 }
                 .onEach { displayModel ->
                     match = displayModel

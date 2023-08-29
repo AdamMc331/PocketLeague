@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.datetime.TimeProvider
+import com.adammcneilly.pocketleague.core.datetime.TimeZone
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.StageRound
-import kotlinx.datetime.Clock
-import kotlinx.datetime.TimeZone
 
 private const val MATCH_DATE_FORMAT = "MMM dd, yyyy"
 private const val MATCH_TIME_FORMAT = "HH:mm"
@@ -47,49 +47,34 @@ data class MatchDetailDisplayModel(
  * Converts a [Match] to a [MatchDetailDisplayModel].
  */
 fun Match.toDetailDisplayModel(
-    clock: Clock,
+    timeProvider: TimeProvider,
 ): MatchDetailDisplayModel {
     val dateTimeFormatter = dateTimeFormatter()
-
-    val startDate = this.dateUTC
-
-    val isBeforeToday = startDate?.let {
-        dateTimeFormatter.isBeforeNow(it, clock)
-    } ?: false
-
-    val (blueWins, orangeWins) = this.gameOverviews.partition { gameOverview ->
-        gameOverview.blueScore > gameOverview.orangeScore
-    }
-
-    val blueTeamWinsMatch = blueWins.size == this.format.numGamesRequiredToWin()
-    val orangeTeamWinsMatch = orangeWins.size == this.format.numGamesRequiredToWin()
-
-    val isLive = isBeforeToday && !blueTeamWinsMatch && !orangeTeamWinsMatch
 
     return MatchDetailDisplayModel(
         matchId = this.id,
         orangeTeamResult = this.orangeTeam.toDisplayModel(),
         blueTeamResult = this.blueTeam.toDisplayModel(),
-        localDate = startDate?.let { date ->
+        localDate = this.dateUTC?.let { date ->
             dateTimeFormatter.formatUTCString(
                 utcString = date,
                 formatPattern = MATCH_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
+                timeZone = TimeZone.SYSTEM_DEFAULT,
             )
         }.orEmpty(),
-        localTime = startDate?.let { date ->
+        localTime = this.dateUTC?.let { date ->
             dateTimeFormatter.formatUTCString(
                 utcString = date,
                 formatPattern = MATCH_TIME_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
+                timeZone = TimeZone.SYSTEM_DEFAULT,
             )
         }.orEmpty(),
         eventName = this.event.name,
         stageName = this.stage.name,
-        relativeDateTime = startDate?.let { date ->
-            dateTimeFormatter.getRelativeTimestamp(date, clock)
+        relativeDateTime = this.dateUTC?.let { date ->
+            dateTimeFormatter.getRelativeTimestamp(date, timeProvider)
         }.orEmpty(),
-        isLive = isLive,
+        isLive = false,
         round = this.round,
     )
 }

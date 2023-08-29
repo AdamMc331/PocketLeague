@@ -1,11 +1,11 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.datetime.TimeZone
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.EventTier
-import kotlinx.datetime.TimeZone
 
 private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
 
@@ -60,14 +60,14 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
             dateTimeFormatter.formatUTCString(
                 utcString = startDate,
                 formatPattern = EVENT_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
+                timeZone = TimeZone.SYSTEM_DEFAULT,
             )
         }.orEmpty(),
         endDate = this.endDateUTC?.let { endDate ->
             dateTimeFormatter.formatUTCString(
                 utcString = endDate,
                 formatPattern = EVENT_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
+                timeZone = TimeZone.SYSTEM_DEFAULT,
             )
         }.orEmpty(),
         name = this.name,

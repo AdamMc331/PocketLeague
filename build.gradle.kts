@@ -79,7 +79,7 @@ afterEvaluate {
 
 plugins {
     id("io.gitlab.arturbosch.detekt").version("1.0.1")
-    id("org.jmailen.kotlinter").version("3.13.0").apply(false)
+    id("org.jmailen.kotlinter").version("3.16.0").apply(false)
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.kotlinAndroid) apply false
     // Needed for Compose 1.5.0? https://github.com/JetBrains/compose-multiplatform/issues/3459#issuecomment-1667668348

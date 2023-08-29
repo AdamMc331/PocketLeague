@@ -64,7 +64,7 @@ fun EventSummaryListItem(
     }
 
     ListItem(
-        headlineText = {
+        headlineContent = {
             Text(
                 text = event.name,
                 modifier = Modifier
@@ -75,8 +75,8 @@ fun EventSummaryListItem(
                     ),
             )
         },
-        overlineText = dateRangeText.takeIf { winningTeam == null },
-        supportingText = winningTeamText.takeIf { winningTeam != null },
+        overlineContent = dateRangeText.takeIf { winningTeam == null },
+        supportingContent = winningTeamText.takeIf { winningTeam != null },
         colors = colorsToUse,
         modifier = modifier,
     )

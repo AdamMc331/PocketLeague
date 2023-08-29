@@ -62,7 +62,13 @@ private fun LazyListScope.horizontalStageSection(
     val stages = state.event.stageSummaries
 
     item {
-        val pagerState = rememberPagerState()
+        val pagerState = rememberPagerState(
+            initialPage = 0,
+            initialPageOffsetFraction = 0f,
+        ) {
+            stages.size
+        }
+
         val pageSpacingDp = PocketLeagueTheme.sizes.listItemSpacing
 
         LaunchedEffect(Unit) {
@@ -77,7 +83,6 @@ private fun LazyListScope.horizontalStageSection(
         }
 
         HorizontalPager(
-            pageCount = stages.size,
             pageSpacing = PocketLeagueTheme.sizes.listItemSpacing,
             contentPadding = PaddingValues(
                 horizontal = pageSpacingDp.times(2),

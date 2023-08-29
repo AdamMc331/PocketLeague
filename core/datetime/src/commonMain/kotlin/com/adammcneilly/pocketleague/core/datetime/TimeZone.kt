@@ -10,7 +10,6 @@ typealias KotlinTimeZone = kotlinx.datetime.TimeZone
 enum class TimeZone {
     UTC,
     SYSTEM_DEFAULT,
-    
     ;
 
     fun toKotlinTimeZone(): KotlinTimeZone {

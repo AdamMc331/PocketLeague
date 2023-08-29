@@ -9,18 +9,3 @@ end
 if git.deletions > git.insertions
     message  "🎉 Code Cleanup!"
 end
-
-# Notify of outdated dependencies
-dependencyUpdatesHeader = "The following dependencies have later milestone versions:"
-dependencyReportsFile = "shared/build/dependencyUpdates/report.txt"
-
-# Due to the formatting of this output file, we first check if there are any dependencies
-# by looking for a `->` arrow, then we check for the relevant headers. We do this to handle a case
-# where there are no app dependencies but there are Gradle dependencies.
-hasDependencyUpdatesHeader = File.readlines(dependencyReportsFile).grep(/#{dependencyUpdatesHeader}/).any?
-
-if hasDependencyUpdatesHeader
-  file = File.open(dependencyReportsFile, "rb").read
-  index = file.index(dependencyUpdatesHeader)
-  message file.slice(index..-1)
-end

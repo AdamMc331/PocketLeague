@@ -8,7 +8,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(libs.kotlinx.datetime)
+                implementation(libs.kotlinx.datetime)
 
                 implementation(kotlin("stdlib"))
             }

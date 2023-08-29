@@ -1,9 +1,8 @@
 package com.adammcneilly.pocketleague.core.datetime
 
-import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
 
 /**
  * Creates an implementation of [DateTimeFormatter] for a specific platform.
@@ -47,11 +46,9 @@ interface DateTimeFormatter {
      */
     fun isBeforeNow(
         utcString: String,
-        clock: Clock,
+        timeProvider: TimeProvider,
     ): Boolean {
-        val instant = Instant.parse(utcString)
-
-        return instant < clock.now()
+        return utcString < timeProvider.now()
     }
 
     /**
@@ -62,15 +59,15 @@ interface DateTimeFormatter {
      */
     fun getRelativeTimestamp(
         utcString: String,
-        clock: Clock,
+        timeProvider: TimeProvider,
     ): String? {
-        if (!isBeforeNow(utcString, clock)) {
+        if (!isBeforeNow(utcString, timeProvider)) {
             return null
         }
 
         val instant = Instant.parse(utcString)
 
-        val now = clock.now()
+        val now = timeProvider.now().toInstant()
 
         val duration = now.minus(instant)
 

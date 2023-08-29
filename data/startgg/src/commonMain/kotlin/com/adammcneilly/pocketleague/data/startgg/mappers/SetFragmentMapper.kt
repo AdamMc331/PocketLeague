@@ -6,14 +6,15 @@ import com.adammcneilly.pocketleague.core.models.MatchTeamResult
 import com.adammcneilly.pocketleague.core.models.StageRound
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.startgg.fragment.SetFragment
-import kotlinx.datetime.Instant
 
 /**
  * Convert a [SetFragment] GQL model into a [Match] entity from the pocket league domain.
  */
 fun SetFragment.toMatch(): Match {
     val startDateUTC = (this.startAt as? Int)?.let { startAt ->
-        Instant.fromEpochSeconds(startAt.toLong()).toString()
+        // TODO: Move this into a shared file
+        // Instant.fromEpochSeconds(startAt.toLong()).toString()
+        null
     }
 
     val orderedSlots = this.slots?.sortedBy { it?.slotIndex }!!

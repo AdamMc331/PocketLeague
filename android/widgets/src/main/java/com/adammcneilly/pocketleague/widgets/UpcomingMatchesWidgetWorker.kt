@@ -34,7 +34,7 @@ class UpcomingMatchesWidgetWorker(
             localDataSource = SQLDelightMatchService(PocketLeagueDB(DatabaseDriverFactory(appContext).createDriver())),
             remoteDataSource = OctaneGGMatchService(
                 apiClient = OctaneGGAPIClient,
-                clock = Clock.System,
+                timeProvider = Clock.System,
             ),
         )
     }

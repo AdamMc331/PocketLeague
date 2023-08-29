@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.core.datetime
 
 import kotlinx.datetime.Instant
-import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toJavaLocalDateTime
 import kotlinx.datetime.toLocalDateTime
 import java.time.format.DateTimeFormatter
@@ -21,7 +20,7 @@ class JVMDateTimeFormatter : com.adammcneilly.pocketleague.core.datetime.DateTim
     ): String? {
         val instant = Instant.parse(utcString)
 
-        val localDateTime = instant.toLocalDateTime(timeZone)
+        val localDateTime = instant.toLocalDateTime(timeZone.toKotlinTimeZone())
 
         val dateTimeFormatter = DateTimeFormatter.ofPattern(formatPattern)
 

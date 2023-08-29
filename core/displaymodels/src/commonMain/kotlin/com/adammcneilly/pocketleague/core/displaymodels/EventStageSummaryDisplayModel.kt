@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.datetime.TimeZone
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.core.models.EventStage
-import kotlinx.datetime.TimeZone
 
 private const val STAGE_DATE_FORMAT = "MMM dd, yyyy"
 
@@ -52,14 +52,14 @@ fun EventStage.toSummaryDisplayModel(): EventStageSummaryDisplayModel {
             dateTimeFormatter.formatUTCString(
                 utcString = startDate,
                 formatPattern = STAGE_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
+                timeZone = TimeZone.SYSTEM_DEFAULT,
             )
         }.orEmpty(),
         endDate = this.endDateUTC?.let { endDate ->
             dateTimeFormatter.formatUTCString(
                 utcString = endDate,
                 formatPattern = STAGE_DATE_FORMAT,
-                timeZone = TimeZone.currentSystemDefault(),
+                timeZone = TimeZone.SYSTEM_DEFAULT,
             )
         }.orEmpty(),
         stageId = this.id,

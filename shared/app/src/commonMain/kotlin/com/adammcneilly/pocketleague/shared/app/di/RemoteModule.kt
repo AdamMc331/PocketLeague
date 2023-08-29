@@ -20,7 +20,7 @@ val remoteModule = module {
     single<RemoteMatchService> {
         OctaneGGMatchService(
             apiClient = get(),
-            clock = get(),
+            timeProvider = get(),
         )
     }
 
@@ -33,7 +33,7 @@ val remoteModule = module {
     single<RemoteEventService> {
         OctaneGGEventService(
             apiClient = get(),
-            clock = get(),
+            timeProvider = get(),
         )
     }
 

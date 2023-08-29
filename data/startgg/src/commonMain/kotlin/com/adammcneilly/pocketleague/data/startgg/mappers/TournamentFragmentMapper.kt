@@ -4,18 +4,21 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventRegion
 import com.adammcneilly.pocketleague.core.models.EventTier
 import com.adammcneilly.pocketleague.data.startgg.fragment.TournamentFragment
-import kotlinx.datetime.Instant
 
 /**
  * Converts a [TournamentFragment] GQL model into an [Event] within the Pocket League domain.
  */
 fun TournamentFragment.toEvent(): Event {
     val startUtc = (this.startAt as? Int)?.let { startAt ->
-        Instant.fromEpochSeconds(startAt.toLong()).toString()
+        // TODO: Move this into shared module
+        // Instant.fromEpochSeconds(startAt.toLong()).toString()
+        null
     }
 
     val endUtc = (this.endAt as? Int)?.let { endAt ->
-        Instant.fromEpochSeconds(endAt.toLong()).toString()
+        // TODO: Move this into a shared module
+        // Instant.fromEpochSeconds(endAt.toLong()).toString()
+        null
     }
 
     return Event(

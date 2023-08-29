@@ -12,6 +12,10 @@ enum class TimeZone {
     SYSTEM_DEFAULT,
     ;
 
+    /**
+     * Converts our own [TimeZone] instance to a [KotlinTimeZone] for some
+     * date management.
+     */
     fun toKotlinTimeZone(): KotlinTimeZone {
         return when (this) {
             UTC -> KotlinTimeZone.UTC

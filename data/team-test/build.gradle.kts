@@ -8,8 +8,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":data:team"))
+                implementation(projects.core.models)
+                implementation(projects.data.team)
                 implementation(libs.kotlinx.coroutines.core)
             }
         }

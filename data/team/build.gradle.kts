@@ -8,10 +8,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":data:local-sqldelight"))
-                implementation(project(":data:octanegg"))
-                implementation(project(":data:remote"))
+                implementation(projects.core.models)
+                implementation(projects.data.localSqldelight)
+                implementation(projects.data.octanegg)
+                implementation(projects.data.remote)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.jsoup)
                 implementation(libs.square.sqldelight.coroutines)
@@ -20,9 +20,9 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:models-test"))
-                implementation(project(":data:remote-test"))
-                implementation(project(":data:team-test"))
+                implementation(projects.core.modelsTest)
+                implementation(projects.data.remoteTest)
+                implementation(projects.data.teamTest)
                 implementation(libs.cash.turbine)
                 implementation(libs.kotlinx.coroutines.test)
             }

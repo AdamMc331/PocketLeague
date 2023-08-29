@@ -55,8 +55,8 @@ android {
 dependencies {
     implementation(platform(libs.compose.bom))
 
-    implementation(project(":shared:app"))
-    implementation(project(":shared:design-system"))
+    implementation(projects.shared.app)
+    implementation(projects.shared.designSystem)
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.activity.compose)
     implementation(libs.androidx.core.ktx)

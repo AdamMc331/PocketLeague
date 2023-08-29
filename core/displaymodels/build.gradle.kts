@@ -8,18 +8,18 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:currency"))
-                implementation(project(":core:datetime"))
-                implementation(project(":core:locale"))
-                implementation(project(":core:models"))
+                implementation(projects.core.currency)
+                implementation(projects.core.datetime)
+                implementation(projects.core.locale)
+                implementation(projects.core.models)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:datetime-test"))
-                implementation(project(":core:displaymodels-test"))
-                implementation(project(":core:models-test"))
+                implementation(projects.core.datetimeTest)
+                implementation(projects.core.displaymodelsTest)
+                implementation(projects.core.modelsTest)
                 implementation(libs.varabyte.truthish)
             }
         }

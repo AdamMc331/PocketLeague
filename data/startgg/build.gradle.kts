@@ -14,8 +14,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:datetime"))
-                implementation(project(":core:models"))
+                implementation(projects.core.datetime)
+                implementation(projects.core.models)
                 implementation(libs.apollo.runtime)
             }
         }

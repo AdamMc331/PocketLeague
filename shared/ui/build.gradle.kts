@@ -12,9 +12,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:displaymodels"))
-                implementation(project(":core:models"))
-                implementation(project(":shared:design-system"))
+                implementation(projects.core.displaymodels)
+                implementation(projects.core.models)
+                implementation(projects.shared.designSystem)
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
@@ -23,7 +23,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(project(":core:displaymodels-test"))
+                implementation(projects.core.displaymodelsTest)
                 implementation(kotlin("test"))
                 implementation(libs.google.testparameterinjector)
             }

@@ -9,8 +9,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":data:remote"))
+                implementation(projects.core.models)
+                implementation(projects.data.remote)
                 implementation(libs.kotlinx.serialization.json)
             }
         }

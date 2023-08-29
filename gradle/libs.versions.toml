@@ -26,6 +26,7 @@ koin = "3.4.3"
 kotlin = "1.9.0"
 kotlinGradlePlugin = "1.9.0"
 kotlinSerialization = "1.9.0"
+kotlinter = "3.16.0"
 kotlinxCoroutines = "1.7.3"
 kotlinxDatetime = "0.4.0"
 kotlinxSerialization = "1.5.1"
@@ -151,7 +152,8 @@ ktor-client = [
 ]
 
 [plugins]
-cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
-kotlin-compose = { id = "org.jetbrains.compose", version.ref = "kmpCompose" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
+cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.compose", version.ref = "kmpCompose" }
+kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }

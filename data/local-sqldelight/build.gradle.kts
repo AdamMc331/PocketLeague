@@ -28,7 +28,6 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.square.sqldelight.android.driver)
-                implementation("com.github.requery:sqlite-android:3.43.0")
             }
         }
         val jvmMain by getting {

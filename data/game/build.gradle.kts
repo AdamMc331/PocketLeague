@@ -8,17 +8,17 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":data:octanegg"))
-                implementation(project(":data:remote"))
+                implementation(projects.core.models)
+                implementation(projects.data.octanegg)
+                implementation(projects.data.remote)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:models-test"))
-                implementation(project(":core:test"))
-                implementation(project(":data:remote-test"))
+                implementation(projects.core.modelsTest)
+                implementation(projects.core.test)
+                implementation(projects.data.remoteTest)
                 implementation(libs.kotlinx.coroutines.test)
                 implementation(libs.square.okio)
             }

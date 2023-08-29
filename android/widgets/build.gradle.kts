@@ -40,13 +40,13 @@ android {
 
 dependencies {
 
-    implementation(project(":core:datetime"))
-    implementation(project(":core:displaymodels"))
-    implementation(project(":core:models"))
-    implementation(project(":data:local-sqldelight"))
-    implementation(project(":data:match"))
-    implementation(project(":data:octanegg"))
-    implementation(project(":data:remote"))
+    implementation(projects.core.datetime)
+    implementation(projects.core.displaymodels)
+    implementation(projects.core.models)
+    implementation(projects.data.localSqldelight)
+    implementation(projects.data.match)
+    implementation(projects.data.octanegg)
+    implementation(projects.data.remote)
     implementation(libs.androidx.workmanager.ktx)
     implementation(libs.bundles.androidx.glance)
     implementation(libs.google.material)

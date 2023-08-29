@@ -13,14 +13,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:datetime"))
-                implementation(project(":core:displaymodels"))
-                implementation(project(":core:feature"))
-                implementation(project(":core:models")) // I still don't think this is necessary
-                implementation(project(":data:event"))
-                implementation(project(":data:match"))
-                implementation(project(":shared:design-system"))
-                implementation(project(":shared:ui"))
+                implementation(projects.core.datetime)
+                implementation(projects.core.displaymodels)
+                implementation(projects.core.feature)
+                implementation(projects.core.models) // I still don't think this is necessary
+                implementation(projects.data.event)
+                implementation(projects.data.match)
+                implementation(projects.shared.designSystem)
+                implementation(projects.shared.ui)
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
@@ -32,7 +32,7 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:displaymodels-test"))
+                implementation(projects.core.displaymodelsTest)
                 implementation(libs.google.testparameterinjector)
             }
         }

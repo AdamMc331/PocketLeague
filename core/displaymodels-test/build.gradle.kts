@@ -8,8 +8,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:displaymodels"))
-                implementation(project(":core:models"))
+                implementation(projects.core.displaymodels)
+                implementation(projects.core.models)
             }
         }
         val commonTest by getting {

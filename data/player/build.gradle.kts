@@ -8,10 +8,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":data:local-sqldelight"))
-                implementation(project(":data:octanegg"))
-                implementation(project(":data:remote"))
+                implementation(projects.core.models)
+                implementation(projects.data.localSqldelight)
+                implementation(projects.data.octanegg)
+                implementation(projects.data.remote)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.square.sqldelight.coroutines)
             }

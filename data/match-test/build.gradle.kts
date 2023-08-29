@@ -8,9 +8,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":core:models-test"))
-                implementation(project(":data:match"))
+                implementation(projects.core.models)
+                implementation(projects.core.modelsTest)
+                implementation(projects.data.match)
                 implementation(libs.kotlinx.coroutines.core)
             }
         }

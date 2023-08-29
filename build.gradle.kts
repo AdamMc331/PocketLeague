@@ -17,7 +17,6 @@ buildscript {
         classpath(libs.gradle)
         classpath(libs.kotlin.gradle.plugin)
         classpath(libs.detekt.gradle.plugin)
-        classpath(libs.gradle.versions.plugin)
         classpath(libs.kotlin.serialization)
         classpath(libs.square.sqldelight.plugin)
 
@@ -40,7 +39,6 @@ allprojects {
 
 subprojects {
     apply(from = "${rootProject.projectDir}/buildscripts/ktlint.gradle")
-    apply(from = "${rootProject.projectDir}/buildscripts/versionsplugin.gradle")
 
     afterEvaluate {
         gradle.projectsEvaluated {
@@ -79,11 +77,11 @@ afterEvaluate {
 
 plugins {
     id("io.gitlab.arturbosch.detekt").version("1.0.1")
-    id("org.jmailen.kotlinter").version("3.13.0").apply(false)
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.kotlinAndroid) apply false
     // Needed for Compose 1.5.0? https://github.com/JetBrains/compose-multiplatform/issues/3459#issuecomment-1667668348
     alias(libs.plugins.kotlin.compose) apply false
+    alias(libs.plugins.kotlinter) apply false
 }
 
 tasks {

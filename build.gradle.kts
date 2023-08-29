@@ -39,7 +39,6 @@ allprojects {
 
 subprojects {
     apply(from = "${rootProject.projectDir}/buildscripts/ktlint.gradle")
-    apply(from = "${rootProject.projectDir}/buildscripts/versionsplugin.gradle")
 
     afterEvaluate {
         gradle.projectsEvaluated {

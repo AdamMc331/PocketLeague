@@ -163,6 +163,7 @@
 				884055322A571F1400123A5C /* Sources */,
 				884055332A571F1400123A5C /* Frameworks */,
 				884055342A571F1400123A5C /* Resources */,
+				3F0749807C2B5889FE38E8E1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -279,6 +280,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3F0749807C2B5889FE38E8E1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pocketLeagueIos/Pods-pocketLeagueIos-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pocketLeagueIos/Pods-pocketLeagueIos-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pocketLeagueIos/Pods-pocketLeagueIos-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6190A6924B54A51A63662C1B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

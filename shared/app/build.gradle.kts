@@ -90,7 +90,6 @@ project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatfor
                     baseName = "shared"
                     isStatic = true
                 }
-                extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
             }
         }
         if (project.findProperty("js") == "true") {

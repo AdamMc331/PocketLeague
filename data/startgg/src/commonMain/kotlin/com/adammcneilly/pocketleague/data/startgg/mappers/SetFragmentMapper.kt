@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.data.startgg.mappers
 
+import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.models.Format
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.MatchTeamResult
@@ -10,11 +11,9 @@ import com.adammcneilly.pocketleague.data.startgg.fragment.SetFragment
 /**
  * Convert a [SetFragment] GQL model into a [Match] entity from the pocket league domain.
  */
-fun SetFragment.toMatch(): Match {
+fun SetFragment.toMatch(timeProvider: TimeProvider): Match {
     val startDateUTC = (this.startAt as? Int)?.let { startAt ->
-        // TODO: Move this into a shared file
-        // Instant.fromEpochSeconds(startAt.toLong()).toString()
-        null
+        timeProvider.fromEpochSeconds(startAt.toLong())
     }
 
     val orderedSlots = this.slots?.sortedBy { it?.slotIndex }!!
@@ -32,7 +31,7 @@ fun SetFragment.toMatch(): Match {
 
     return Match(
         id = Match.Id(this.id.orEmpty()),
-        event = this.event?.tournament?.tournamentFragment?.toEvent()!!,
+        event = this.event?.tournament?.tournamentFragment?.toEvent(timeProvider)!!,
         dateUTC = startDateUTC,
         blueTeam = blueSlot.toMatchTeamResult(
             teamWins = blueTeamWins,
@@ -42,7 +41,7 @@ fun SetFragment.toMatch(): Match {
             teamWins = orangeTeamWins,
             winnerId = this.winnerId,
         ),
-        stage = this.event.eventFragment.toEventStage(),
+        stage = this.event.eventFragment.toEventStage(timeProvider),
         // We should be able to get this information from the API,
         // we just need to add more to this mapping function.
         format = Format(),

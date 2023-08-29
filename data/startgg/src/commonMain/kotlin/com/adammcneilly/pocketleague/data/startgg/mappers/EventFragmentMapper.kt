@@ -1,16 +1,15 @@
 package com.adammcneilly.pocketleague.data.startgg.mappers
 
+import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.data.startgg.fragment.EventFragment
 
 /**
  * Convert an [EventFragment] GQL model into an [EventStage] from the pocket league domain.
  */
-fun EventFragment.toEventStage(): EventStage {
+fun EventFragment.toEventStage(timeProvider: TimeProvider): EventStage {
     val startDateUtc = (this.startAt as? Int)?.let { startAt ->
-        // TODO: Move this into a shared file
-        // Instant.fromEpochSeconds(startAt.toLong()).toString()
-        null
+        timeProvider.fromEpochSeconds(startAt.toLong())
     }
 
     return EventStage(

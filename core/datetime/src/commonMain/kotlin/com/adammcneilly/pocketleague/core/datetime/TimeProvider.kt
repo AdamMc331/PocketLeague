@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.core.datetime
 
+import kotlinx.datetime.Instant
 import kotlinx.datetime.toInstant
 import kotlin.time.Duration.Companion.days
 
@@ -18,5 +19,12 @@ interface TimeProvider {
      */
     fun daysAgo(numDays: Int): String {
         return now().toInstant().minus(numDays.days).toString()
+    }
+
+    /**
+     * Given [epochSeconds], convert it to an ISO format string.
+     */
+    fun fromEpochSeconds(epochSeconds: Long): String {
+        return Instant.fromEpochSeconds(epochSeconds).toString()
     }
 }

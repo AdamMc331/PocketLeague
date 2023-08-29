@@ -1,11 +1,10 @@
 package com.adammcneilly.pocketleague.data.event
 
+import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.startgg.RLCSTournamentFilter
-import com.adammcneilly.pocketleague.data.startgg.StartGGApolloClient
 import com.adammcneilly.pocketleague.data.startgg.TournamentListQuery
-import com.adammcneilly.pocketleague.data.startgg.fragment.TournamentFragment
 import com.adammcneilly.pocketleague.data.startgg.mappers.toEvent
 import com.adammcneilly.pocketleague.data.startgg.mappers.toTeam
 import com.adammcneilly.pocketleague.data.startgg.type.TournamentQuery
@@ -17,9 +16,8 @@ import com.apollographql.apollo3.api.Optional
  */
 class StartGGEventService(
     private val apiClient: ApolloClient,
+    private val timeProvider: TimeProvider,
 ) : RemoteEventService {
-
-    constructor() : this(StartGGApolloClient)
 
     override suspend fun getUpcomingEvents(): Result<List<Event>> {
         val upcomingEventsQuery = TournamentQuery(
@@ -35,7 +33,9 @@ class StartGGEventService(
         return if (response.data != null && !response.hasErrors()) {
             val fragments = response.data?.tournaments?.nodes?.mapNotNull { it?.tournamentFragment }.orEmpty()
 
-            val eventList = fragments.map(TournamentFragment::toEvent)
+            val eventList = fragments.map {
+                it.toEvent(timeProvider)
+            }
 
             Result.success(eventList)
         } else {
@@ -50,7 +50,7 @@ class StartGGEventService(
 
         val response = apiClient.query(eventQuery).execute()
 
-        val event = response.data?.tournament?.tournamentFragment?.toEvent()
+        val event = response.data?.tournament?.tournamentFragment?.toEvent(timeProvider)
 
         return if (event != null) {
             Result.success(event)
@@ -91,7 +91,9 @@ class StartGGEventService(
         return if (response.data != null && !response.hasErrors()) {
             val fragments = response.data?.tournaments?.nodes?.mapNotNull { it?.tournamentFragment }.orEmpty()
 
-            val eventList = fragments.map(TournamentFragment::toEvent)
+            val eventList = fragments.map {
+                it.toEvent(timeProvider)
+            }
 
             Result.success(eventList)
         } else {

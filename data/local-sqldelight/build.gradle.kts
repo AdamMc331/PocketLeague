@@ -11,8 +11,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":core:models-test"))
+                implementation(projects.core.models)
+                implementation(projects.core.modelsTest)
                 implementation(libs.square.sqldelight.coroutines)
                 implementation(libs.square.sqldelight.runtime)
             }
@@ -20,7 +20,7 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:models-test"))
+                implementation(projects.core.modelsTest)
                 implementation(libs.cash.turbine)
                 implementation(libs.varabyte.truthish)
             }

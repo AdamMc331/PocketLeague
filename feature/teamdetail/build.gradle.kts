@@ -13,14 +13,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:displaymodels"))
-                implementation(project(":core:feature"))
-                implementation(project(":core:locale"))
-                implementation(project(":core:models"))
-                implementation(project(":data:player"))
-                implementation(project(":data:team"))
-                implementation(project(":shared:design-system"))
-                implementation(project(":shared:ui"))
+                implementation(projects.core.displaymodels)
+                implementation(projects.core.feature)
+                implementation(projects.core.locale)
+                implementation(projects.core.models)
+                implementation(projects.data.player)
+                implementation(projects.data.team)
+                implementation(projects.shared.designSystem)
+                implementation(projects.shared.ui)
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
@@ -32,7 +32,7 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:displaymodels-test"))
+                implementation(projects.core.displaymodelsTest)
                 implementation(libs.google.testparameterinjector)
             }
         }

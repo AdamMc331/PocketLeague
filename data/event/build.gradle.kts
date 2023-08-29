@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    apolloMetadata(project(":data:startgg"))
+    apolloMetadata(projects.data.startgg)
 }
 
 kotlin {
@@ -13,12 +13,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:datetime"))
-                implementation(project(":core:models"))
-                implementation(project(":data:local-sqldelight"))
-                implementation(project(":data:octanegg"))
-                implementation(project(":data:remote"))
-                implementation(project(":data:startgg"))
+                implementation(projects.core.datetime)
+                implementation(projects.core.models)
+                implementation(projects.data.localSqldelight)
+                implementation(projects.data.octanegg)
+                implementation(projects.data.remote)
+                implementation(projects.data.startgg)
                 implementation(libs.apollo.runtime)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.square.sqldelight.coroutines)
@@ -27,8 +27,8 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(project(":core:models-test"))
-                implementation(project(":data:remote-test"))
+                implementation(projects.core.modelsTest)
+                implementation(projects.data.remoteTest)
                 implementation(libs.cash.turbine)
                 implementation(libs.kotlinx.coroutines.test)
             }

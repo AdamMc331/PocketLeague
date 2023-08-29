@@ -1,9 +1,7 @@
 package com.adammcneilly.pocketleague.core.datetime
 
-import kotlinx.datetime.Clock
-
 /**
- * Custom implementation of a [Clock] to hardcode a specific date.
+ * Custom implementation of a [TimeProvider] to hardcode a specific date.
  *
  * Allows us to test the app at any given point in time.
  */

@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.core.datetime.test
 
 import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
-import kotlinx.datetime.TimeZone
+import com.adammcneilly.pocketleague.core.datetime.TimeZone
 
 class FakeDateTimeFormatter : DateTimeFormatter {
 

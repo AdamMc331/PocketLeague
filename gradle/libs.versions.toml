@@ -8,7 +8,7 @@ androidx-test = "1.1.5"
 apollo = "3.8.2"
 appCompat = "1.6.1"
 buildkonfig = "0.13.3"
-circuit = "0.9.1-compose-mp"
+circuit = "0.13.0-beta01"
 codepoints = "0.6.1"
 coil = "2.4.0"
 compileSdk = "34"
@@ -90,8 +90,7 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
 ktor-client-testing = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-# Using Chris Bane's fork for now to support iOS: Using a fork containing https://github.com/slackhq/circuit/pull/704
-slack-circuit = { module = "dev.chrisbanes.circuit:circuit-foundation", version.ref = "circuit" }
+slack-circuit = { module = "com.slack.circuit:circuit-foundation", version.ref = "circuit" }
 square-okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 square-sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
 square-sqldelight-coroutines = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqldelight" }

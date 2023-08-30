@@ -11,8 +11,8 @@ import com.adammcneilly.pocketleague.shared.app.feed.FeedScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.slack.circuit.backstack.rememberSaveableBackStack
+import com.slack.circuit.foundation.Circuit
 import com.slack.circuit.foundation.CircuitCompositionLocals
-import com.slack.circuit.foundation.CircuitConfig
 import com.slack.circuit.foundation.NavigableCircuitContent
 import com.slack.circuit.foundation.push
 
@@ -27,7 +27,7 @@ fun PocketLeagueApp(
     PocketLeagueTheme {
         // In the future, we may want to look at some DI framework to make it easy to pass
         // in all of these factories, or even consider the codegen that Circuit offers.
-        val circuitConfig = CircuitConfig.Builder()
+        val circuitConfig = Circuit.Builder()
             .addUiFactories(
                 listOf(
                     FeedScreen.UiFactory,

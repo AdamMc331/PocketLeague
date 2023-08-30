@@ -12,7 +12,6 @@ circuit = "0.9.1-compose-mp"
 codepoints = "0.6.1"
 coil = "2.4.0"
 compileSdk = "34"
-compose = "2023.06.01"
 composeCompiler = "1.5.0"
 detektGradlePlugin = "1.23.1"
 espresso = "3.5.1"
@@ -65,16 +64,6 @@ apollo-runtime = { module = "com.apollographql.apollo3:apollo-runtime", version.
 cash-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 cketti-codepoints = { module = "de.cketti.unicode:kotlin-codepoints", version.ref = "codepoints" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-compose-material3-windowsize = { group = "androidx.compose.material3", name = "material3-window-size-class" }
-compose-ui = { group = "androidx.compose.ui", name = "ui" }
-compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
 detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektGradlePlugin" }
 google-material = { module = "com.google.android.material:material", version.ref = "material" }
 google-testparameterinjector = { module = "com.google.testparameterinjector:test-parameter-injector", version.ref = "testParameterInjector" }
@@ -124,20 +113,6 @@ androidx-glance = [
 androidx-test = [
     "androidx-test-espresso-core",
     "androidx-test-junit",
-]
-
-compose-ui = [
-    "compose-material-icons-extended",
-    "compose-material3",
-    "compose-material3-windowsize",
-    "compose-ui",
-    "compose-ui-util",
-    "compose-ui-tooling-preview",
-]
-
-compose-ui-debug = [
-    "compose-ui-tooling",
-    "compose-ui-test-manifest",
 ]
 
 ktor-client = [

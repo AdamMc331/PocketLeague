@@ -46,6 +46,9 @@ class GetPastWeeksMatchesUseCase(
         ),
     ).build()
 
+    /**
+     * @see [GetPastWeeksMatchesUseCase].
+     */
     fun invoke(
         refresh: Boolean = true,
     ): Flow<List<Match>> {

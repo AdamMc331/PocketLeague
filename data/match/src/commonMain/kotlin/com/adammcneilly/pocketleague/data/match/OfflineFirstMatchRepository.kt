@@ -4,6 +4,7 @@ import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 
 /**
@@ -13,63 +14,30 @@ import kotlinx.coroutines.flow.onStart
 class OfflineFirstMatchRepository(
     private val localDataSource: LocalMatchService,
     private val remoteDataSource: RemoteMatchService,
+    private val remoteMatchFetcher: RemoteMatchFetcher,
 ) : MatchRepository {
 
+    private val storeVersion = StoreMatchRepository(
+        remoteMatchFetcher = remoteMatchFetcher,
+        localMatchService = localDataSource,
+    )
+
     override fun getMatchDetail(matchId: Match.Id): Flow<Match> {
-        return localDataSource
-            .getMatchDetail(matchId)
-            .onStart {
-                fetchAndPersistMatchDetail(matchId)
-            }
-    }
+        val request = MatchListRequest.Id(matchId)
 
-    private suspend fun fetchAndPersistMatchDetail(matchId: Match.Id) {
-        val remoteResponse = remoteDataSource.getMatchDetail(matchId)
-
-        remoteResponse.fold(
-            onSuccess = { matches ->
-                localDataSource.insertMatches(listOf(matches))
-            },
-            onFailure = {
-                println("Unable to request remote match: $matchId")
-            },
-        )
+        return storeVersion.stream(request).map(List<Match>::first)
     }
 
     override fun getMatchesInDateRange(
         startDateUTC: String,
         endDateUTC: String,
     ): Flow<List<Match>> {
-        return localDataSource
-            .getMatchesInDateRange(
-                startDateUTC = startDateUTC,
-                endDateUTC = endDateUTC,
-            )
-            .onStart {
-                fetchAndPersistMatchesInDateRange(
-                    startDateUTC = startDateUTC,
-                    endDateUTC = endDateUTC,
-                )
-            }
-    }
-
-    private suspend fun fetchAndPersistMatchesInDateRange(
-        startDateUTC: String,
-        endDateUTC: String,
-    ) {
-        val remoteResponse = remoteDataSource.getMatchesInDateRange(
+        val request = MatchListRequest.DateRange(
             startDateUTC = startDateUTC,
             endDateUTC = endDateUTC,
         )
 
-        remoteResponse.fold(
-            onSuccess = { matches ->
-                localDataSource.insertMatches(matches)
-            },
-            onFailure = { error ->
-                println("Unable to request past week's matches: ${error.message}")
-            },
-        )
+        return storeVersion.stream(request)
     }
 
     override fun getUpcomingMatches(): Flow<List<Match>> {
@@ -100,24 +68,12 @@ class OfflineFirstMatchRepository(
      * that the [stageId] is what is passed into this query.
      */
     override fun getMatchesForEventStage(eventId: Event.Id, stageId: EventStage.Id): Flow<List<Match>> {
-        return localDataSource
-            .getMatchesForEventStage(eventId, stageId)
-            .onStart {
-                fetchAndPersistMatchesForEventStage(eventId, stageId)
-            }
-    }
-
-    private suspend fun fetchAndPersistMatchesForEventStage(eventId: Event.Id, stageId: EventStage.Id) {
-        val remoteResponse = remoteDataSource.getMatchesForEventStage(eventId, stageId)
-
-        remoteResponse.fold(
-            onSuccess = { matches ->
-                localDataSource.insertMatches(matches)
-            },
-            onFailure = { error ->
-                println("Unable to request event stage matches: ${error.message}")
-            },
+        val request = MatchListRequest.EventStage(
+            eventId = eventId,
+            stageId = stageId,
         )
+
+        return storeVersion.stream(request)
     }
 
     override fun getPastWeeksMatchesForTeams(teamIds: List<String>): Flow<List<Match>> {

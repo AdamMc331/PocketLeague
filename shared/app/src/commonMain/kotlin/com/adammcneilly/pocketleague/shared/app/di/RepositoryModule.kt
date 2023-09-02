@@ -3,6 +3,7 @@ package com.adammcneilly.pocketleague.shared.app.di
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.event.OfflineFirstEventRepository
 import com.adammcneilly.pocketleague.data.match.MatchRepository
+import com.adammcneilly.pocketleague.data.match.OctaneGGMatchFetcher
 import com.adammcneilly.pocketleague.data.match.OfflineFirstMatchRepository
 import com.adammcneilly.pocketleague.data.player.OfflineFirstPlayerRepository
 import com.adammcneilly.pocketleague.data.player.PlayerRepository
@@ -17,6 +18,10 @@ val repositoryModule = module {
         OfflineFirstMatchRepository(
             localDataSource = get(),
             remoteDataSource = get(),
+            remoteMatchFetcher = OctaneGGMatchFetcher(
+                apiClient = get(),
+                timeProvider = get(),
+            ),
         )
     }
 

@@ -20,6 +20,13 @@ class StoreMatchRepository(
         },
     ).build()
 
+    /**
+     * Provide a flow response of matches for the given [request].
+     *
+     * All data is provided from our source of truth, and refreshed unless
+     * [refreshCache] is set to false. This is ideal for stale data that is unlikely to
+     * have changed.
+     */
     fun stream(
         request: MatchListRequest,
         refreshCache: Boolean = true,

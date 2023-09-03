@@ -14,6 +14,7 @@ import com.adammcneilly.pocketleague.core.models.Game
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.MatchGamesRequest
+import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.adammcneilly.pocketleague.feature.teamdetail.TeamDetailScreen
 import com.slack.circuit.runtime.Navigator
@@ -54,10 +55,12 @@ class MatchDetailPresenter(
         }
 
         LaunchedEffect(Unit) {
+            val request = MatchListRequest.Id(matchId)
+
             matchRepository
-                .getMatchDetail(matchId)
-                .map { match ->
-                    match.toDetailDisplayModel(timeProvider)
+                .stream(request)
+                .map { matchList ->
+                    matchList.first().toDetailDisplayModel(timeProvider)
                 }
                 .onEach { displayModel ->
                     match = displayModel

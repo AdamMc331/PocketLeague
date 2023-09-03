@@ -11,7 +11,6 @@ pluginManagement {
 rootProject.name = "PocketLeague"
 
 include(":android:app")
-include(":android:widgets")
 
 include(":core:currency")
 include(":core:datetime")
@@ -29,7 +28,6 @@ include(":data:event-test")
 include(":data:game")
 include(":data:local-sqldelight")
 include(":data:match")
-include(":data:match-test")
 include(":data:octanegg")
 include(":data:player")
 include(":data:remote")

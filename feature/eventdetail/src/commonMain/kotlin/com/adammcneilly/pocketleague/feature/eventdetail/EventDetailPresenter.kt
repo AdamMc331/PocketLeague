@@ -14,6 +14,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
+import com.adammcneilly.pocketleague.data.match.MatchListRequest
 import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.CoroutineScope
@@ -121,8 +122,10 @@ class EventDetailPresenter(
                 eventId to stageId
             }
             .flatMapLatest { (eventId, stageId) ->
+                val request = MatchListRequest.EventStage(eventId, stageId)
+
                 matchRepository
-                    .getMatchesForEventStage(eventId, stageId)
+                    .stream(request)
                     .map { matchList ->
                         matchList.map { match ->
                             match.toDetailDisplayModel(timeProvider)

@@ -1,7 +1,5 @@
 package com.adammcneilly.pocketleague.data.match
 
-import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalEvent
@@ -10,51 +8,16 @@ import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalMatch
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalTeam
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toMatch
 import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
-import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowSingle
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
 import kotlinx.coroutines.flow.Flow
 
 /**
- * An implementation of [LocalMatchService] which requests information
+ * An implementation of [MatchSourceOfTruth] that requests and stores information
  * from the supplied [database].
  */
-class SQLDelightMatchService(
+class SQLDelightMatchSourceOfTruth(
     private val database: PocketLeagueDB,
-) : LocalMatchService {
-
-    override fun getMatchDetail(matchId: Match.Id): Flow<Match> {
-        return database
-            .localMatchQueries
-            .selectById(matchId.id)
-            .asFlowSingle(MatchWithEventAndTeams::toMatch)
-    }
-
-    override fun getMatchesInDateRange(
-        startDateUTC: String,
-        endDateUTC: String,
-    ): Flow<List<Match>> {
-        return database
-            .localMatchQueries
-            .selectInDateRange(
-                startDateUTC = startDateUTC,
-                endDateUTC = endDateUTC,
-            )
-            .asFlowList(MatchWithEventAndTeams::toMatch)
-    }
-
-    override fun getUpcomingMatches(): Flow<List<Match>> {
-        return database
-            .localMatchQueries
-            .selectUpcoming()
-            .asFlowList(MatchWithEventAndTeams::toMatch)
-    }
-
-    override fun getMatchesForEventStage(eventId: Event.Id, stageId: EventStage.Id): Flow<List<Match>> {
-        return database
-            .localMatchQueries
-            .selectMatchesByEventStage(eventId.id, stageId.id)
-            .asFlowList(MatchWithEventAndTeams::toMatch)
-    }
+) : MatchSourceOfTruth {
 
     override suspend fun insertMatches(matches: List<Match>) {
         database.transaction {
@@ -81,10 +44,29 @@ class SQLDelightMatchService(
         }
     }
 
-    override fun getPastWeeksMatchesForTeams(teamIds: List<String>): Flow<List<Match>> {
-        return database
-            .localMatchQueries
-            .selectPastWeekForTeams(teamIds)
-            .asFlowList(MatchWithEventAndTeams::toMatch)
+    override fun stream(request: MatchListRequest): Flow<List<Match>> {
+        val matchQueries = database.localMatchQueries
+
+        val selectQuery = when (request) {
+            is MatchListRequest.DateRange -> {
+                matchQueries.selectInDateRange(
+                    startDateUTC = request.startDateUTC,
+                    endDateUTC = request.endDateUTC,
+                )
+            }
+
+            is MatchListRequest.EventStage -> {
+                matchQueries.selectMatchesByEventStage(
+                    eventId = request.eventId.id,
+                    stageId = request.stageId.id,
+                )
+            }
+
+            is MatchListRequest.Id -> {
+                matchQueries.selectById(request.matchId.id)
+            }
+        }
+
+        return selectQuery.asFlowList(MatchWithEventAndTeams::toMatch)
     }
 }

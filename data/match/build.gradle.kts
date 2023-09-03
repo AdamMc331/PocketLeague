@@ -21,6 +21,7 @@ kotlin {
                 implementation(projects.data.remote)
                 implementation(libs.apollo.runtime)
                 implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.mobilenativefoundation.store)
                 implementation(libs.square.sqldelight.coroutines)
             }
         }

@@ -91,7 +91,7 @@ class FeedPresenter(
     }
 
     private fun observePastWeeksMatches() = getPastWeeksMatchesUseCase
-        .getPastWeeksMatches()
+        .invoke()
         .map { matchList ->
             matchList.map { match ->
                 match.toDetailDisplayModel(timeProvider)

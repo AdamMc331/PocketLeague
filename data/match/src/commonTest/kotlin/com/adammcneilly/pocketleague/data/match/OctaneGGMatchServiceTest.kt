@@ -20,12 +20,13 @@ class OctaneGGMatchServiceTest {
             ),
         )
 
-        val service = OctaneGGMatchService(
+        val service = OctaneGGMatchFetcher(
             apiClient = client,
             timeProvider = DebugTimeProvider(),
         )
 
-        val response = service.getMatchDetail(Match.Id("123")).getOrThrow()
+        val request = MatchListRequest.Id(Match.Id("123"))
+        val response = service.fetch(request).getOrThrow().first()
 
         assertThat(response.blueTeam.team.name).isEqualTo("Karmine Corp")
         assertThat(response.orangeTeam.team.name).isEqualTo("James Cheese")

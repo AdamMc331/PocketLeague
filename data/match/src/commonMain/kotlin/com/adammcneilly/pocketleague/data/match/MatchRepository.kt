@@ -1,53 +1,22 @@
 package com.adammcneilly.pocketleague.data.match
 
-import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Data contract for requesting match information from a local data source.
+ * Defines the data layer for any match related requests.
  */
 interface MatchRepository {
 
     /**
-     * Fetches detailed information about a [Match] using the supplied [matchId].
+     * Provide a flow response of matches for the given [request].
+     *
+     * All data is provided from our source of truth, and refreshed unless
+     * [refreshCache] is set to false. This is ideal for stale data that is unlikely to
+     * have changed.
      */
-    fun getMatchDetail(
-        matchId: Match.Id,
-    ): Flow<Match>
-
-    /**
-     * Returns a reactive stream of [Match] entities that have occured within the last week.
-     */
-    fun getMatchesInDateRange(
-        startDateUTC: String,
-        endDateUTC: String,
-    ): Flow<List<Match>>
-
-    /**
-     * Retrieve a list of match entities that haven't happened yet.
-     */
-    fun getUpcomingMatches(): Flow<List<Match>>
-
-    /**
-     * Unlike [getUpcomingMatches], this makes a singular request to fetch upcoming matches.
-     */
-    suspend fun fetchAndPersistUpcomingMatches(): Result<Unit>
-
-    /**
-     * Retrieves all matches that occurred in the given [eventId] and [stageId].
-     */
-    fun getMatchesForEventStage(
-        eventId: Event.Id,
-        stageId: EventStage.Id,
-    ): Flow<List<Match>>
-
-    /**
-     * Retrieve a list of match entities that have happened over
-     * the last week, where one of the participants is in the [teamIds].
-     */
-    fun getPastWeeksMatchesForTeams(
-        teamIds: List<String>,
+    fun stream(
+        request: MatchListRequest,
+        refreshCache: Boolean = true,
     ): Flow<List<Match>>
 }

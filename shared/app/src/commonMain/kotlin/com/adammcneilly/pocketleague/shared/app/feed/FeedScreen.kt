@@ -90,11 +90,11 @@ object FeedScreen : Screen {
      * Factory to create a [FeedPresenter] for the [FeedScreen].
      */
     object PresenterFactory : Presenter.Factory, KoinComponent {
-        private val matchRepository: MatchRepository by inject()
         private val timeProvider: TimeProvider by inject()
+        private val matchRepository: MatchRepository by inject()
         private val getPastWeeksMatchesUseCase = GetPastWeeksMatchesUseCase(
-            matchRepository = matchRepository,
             timeProvider = timeProvider,
+            matchRepository = matchRepository,
         )
         private val eventRepository: EventRepository by inject()
 

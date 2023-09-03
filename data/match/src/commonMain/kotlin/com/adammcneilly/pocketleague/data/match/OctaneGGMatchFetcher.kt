@@ -69,7 +69,7 @@ class OctaneGGMatchFetcher(
         private const val MATCHES_ENDPOINT = "/matches"
 
         private fun matchByIdEndpoint(id: Match.Id): String {
-            return "$MATCHES_ENDPOINT/$id"
+            return "$MATCHES_ENDPOINT/${id.id}"
         }
 
         private const val BEFORE_KEY = "before"

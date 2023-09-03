@@ -11,6 +11,10 @@ import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * An implementation of [MatchSourceOfTruth] that requests and stores information
+ * from the supplied [database].
+ */
 class SQLDelightMatchSourceOfTruth(
     private val database: PocketLeagueDB,
 ) : MatchSourceOfTruth {

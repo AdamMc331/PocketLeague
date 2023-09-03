@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.Flow
  * An implementation of [LocalMatchService] that requests and stores information
  * from the supplied [database].
  */
-class SQLDelightMatchSourceOfTruth(
+class SQLDelightMatchService(
     private val database: PocketLeagueDB,
 ) : LocalMatchService {
 

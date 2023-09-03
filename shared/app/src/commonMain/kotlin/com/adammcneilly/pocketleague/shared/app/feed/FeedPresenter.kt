@@ -13,7 +13,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.data.event.EventRepository
-import com.adammcneilly.pocketleague.data.match.GetPastWeeksMatchesUseCase
 import com.adammcneilly.pocketleague.feature.eventdetail.EventDetailScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.slack.circuit.runtime.Navigator

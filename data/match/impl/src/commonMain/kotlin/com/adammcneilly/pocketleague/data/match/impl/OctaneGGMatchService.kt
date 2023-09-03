@@ -11,7 +11,7 @@ import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
  * An implementation of [RemoteMatchService] that requests
  * data from the supplied [apiClient].
  */
-class OctaneGGMatchFetcher(
+class OctaneGGMatchService(
     private val apiClient: BaseKTORClient,
 ) : RemoteMatchService {
 

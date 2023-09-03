@@ -21,6 +21,10 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(projects.core.test)
+                implementation(projects.data.remoteTest)
+                implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.varabyte.truthish)
             }
         }
         maybeCreate("iosX64Main")

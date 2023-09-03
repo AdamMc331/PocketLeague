@@ -11,7 +11,6 @@ pluginManagement {
 rootProject.name = "PocketLeague"
 
 include(":android:app")
-include(":android:widgets")
 
 include(":core:currency")
 include(":core:datetime")

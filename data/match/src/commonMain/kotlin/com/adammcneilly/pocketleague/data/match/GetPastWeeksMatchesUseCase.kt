@@ -11,7 +11,7 @@ private const val DAYS_PER_WEEK = 7
  */
 class GetPastWeeksMatchesUseCase(
     private val timeProvider: TimeProvider,
-    private val storeMatchRepository: StoreMatchRepository,
+    private val matchRepository: MatchRepository,
 ) {
 
     /**
@@ -23,6 +23,6 @@ class GetPastWeeksMatchesUseCase(
             endDateUTC = timeProvider.now(),
         )
 
-        return storeMatchRepository.stream(request)
+        return matchRepository.stream(request)
     }
 }

@@ -8,10 +8,6 @@ import androidx.work.WorkerParameters
 import com.adammcneilly.pocketleague.core.datetime.SystemTimeProvider
 import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
-import com.adammcneilly.pocketleague.data.match.MatchRepository
-import com.adammcneilly.pocketleague.data.match.OctaneGGMatchService
-import com.adammcneilly.pocketleague.data.match.OfflineFirstMatchRepository
-import com.adammcneilly.pocketleague.data.match.SQLDelightMatchService
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
 
 /**

@@ -3,7 +3,6 @@ package com.adammcneilly.pocketleague.data.match.test
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.data.match.MatchRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

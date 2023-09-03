@@ -5,7 +5,6 @@ import com.adammcneilly.pocketleague.core.models.EventStage
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.core.models.test.TestModel
 import com.adammcneilly.pocketleague.core.models.test.matchBlueWinner
-import com.adammcneilly.pocketleague.data.match.MatchService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

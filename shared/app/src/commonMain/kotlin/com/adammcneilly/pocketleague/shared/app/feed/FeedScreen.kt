@@ -7,10 +7,7 @@ import com.adammcneilly.pocketleague.core.feature.CommonParcelize
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.GetPastWeeksMatchesUseCase
-import com.adammcneilly.pocketleague.data.match.LocalMatchService
-import com.adammcneilly.pocketleague.data.match.OctaneGGMatchFetcher
-import com.adammcneilly.pocketleague.data.match.RemoteMatchService
-import com.adammcneilly.pocketleague.data.match.StoreMatchRepository
+import com.adammcneilly.pocketleague.data.match.MatchRepository
 import com.adammcneilly.pocketleague.shared.ui.feed.FeedContent
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.CircuitUiEvent
@@ -21,7 +18,6 @@ import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.get
 import org.koin.core.component.inject
 
 /**
@@ -94,18 +90,11 @@ object FeedScreen : Screen {
      * Factory to create a [FeedPresenter] for the [FeedScreen].
      */
     object PresenterFactory : Presenter.Factory, KoinComponent {
-        private val remoteMatchService: RemoteMatchService by inject()
-        private val localMatchService: LocalMatchService by inject()
         private val timeProvider: TimeProvider by inject()
+        private val matchRepository: MatchRepository by inject()
         private val getPastWeeksMatchesUseCase = GetPastWeeksMatchesUseCase(
             timeProvider = timeProvider,
-            storeMatchRepository = StoreMatchRepository(
-                matchFetcher = OctaneGGMatchFetcher(
-                    apiClient = get(),
-                    timeProvider = timeProvider,
-                ),
-                localMatchService = localMatchService,
-            ),
+            matchRepository = matchRepository,
         )
         private val eventRepository: EventRepository by inject()
 

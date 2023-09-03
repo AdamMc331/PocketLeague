@@ -2,7 +2,6 @@ package com.adammcneilly.pocketleague.data.match
 
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.onEach
 import org.mobilenativefoundation.store.store5.Fetcher
@@ -14,38 +13,20 @@ import org.mobilenativefoundation.store.store5.StoreReadRequest
  * A repository class for matches that uses the Store library.
  */
 class StoreMatchRepository(
-    private val remoteMatchFetcher: RemoteMatchFetcher,
-    private val localMatchService: LocalMatchService,
+    private val matchFetcher: MatchFetcher,
+    private val matchSourceOfTruth: MatchSourceOfTruth,
 ) {
     private val store = StoreBuilder.from<MatchListRequest, Result<List<Match>>, List<Match>>(
         fetcher = Fetcher.of { request ->
-            remoteMatchFetcher.fetch(request)
+            matchFetcher.fetch(request)
         },
         sourceOfTruth = SourceOfTruth.Companion.of(
-            reader = { req ->
-                when (req) {
-                    is MatchListRequest.DateRange -> {
-                        localMatchService.getMatchesInDateRange(
-                            startDateUTC = req.startDateUTC,
-                            endDateUTC = req.endDateUTC,
-                        )
-                    }
-                    is MatchListRequest.EventStage -> {
-                        localMatchService.getMatchesForEventStage(
-                            eventId = req.eventId,
-                            stageId = req.stageId,
-                        )
-                    }
-                    is MatchListRequest.Id -> {
-                        localMatchService.getMatchDetail(req.matchId).map { match ->
-                            listOf(match)
-                        }
-                    }
-                }
+            reader = { request ->
+                matchSourceOfTruth.stream(request)
             },
-            writer = { req, matchResult ->
+            writer = { _, matchResult ->
                 val matches = matchResult.getOrNull().orEmpty()
-                localMatchService.insertMatches(matches)
+                matchSourceOfTruth.insertMatches(matches)
             },
         ),
     ).build()

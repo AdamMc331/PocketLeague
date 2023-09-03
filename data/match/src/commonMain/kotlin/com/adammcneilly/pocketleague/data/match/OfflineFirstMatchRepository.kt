@@ -14,11 +14,11 @@ import kotlinx.coroutines.flow.onStart
 class OfflineFirstMatchRepository(
     private val localDataSource: LocalMatchService,
     private val remoteDataSource: RemoteMatchService,
-    private val remoteMatchFetcher: RemoteMatchFetcher,
+    private val matchFetcher: MatchFetcher,
 ) : MatchRepository {
 
     private val storeVersion = StoreMatchRepository(
-        remoteMatchFetcher = remoteMatchFetcher,
+        matchFetcher = matchFetcher,
         localMatchService = localDataSource,
     )
 

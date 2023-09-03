@@ -100,7 +100,7 @@ object FeedScreen : Screen {
         private val getPastWeeksMatchesUseCase = GetPastWeeksMatchesUseCase(
             timeProvider = timeProvider,
             storeMatchRepository = StoreMatchRepository(
-                remoteMatchFetcher = OctaneGGMatchFetcher(
+                matchFetcher = OctaneGGMatchFetcher(
                     apiClient = get(),
                     timeProvider = timeProvider,
                 ),

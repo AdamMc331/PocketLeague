@@ -8,13 +8,13 @@ import com.adammcneilly.pocketleague.data.octanegg.models.toMatch
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 
 /**
- * An implementation of [RemoteMatchFetcher] that requests
+ * An implementation of [MatchFetcher] that requests
  * data from the supplied [apiClient].
  */
 class OctaneGGMatchFetcher(
     private val apiClient: BaseKTORClient,
     private val timeProvider: TimeProvider,
-) : RemoteMatchFetcher {
+) : MatchFetcher {
 
     override suspend fun fetch(request: MatchListRequest): Result<List<Match>> {
         return when (request) {

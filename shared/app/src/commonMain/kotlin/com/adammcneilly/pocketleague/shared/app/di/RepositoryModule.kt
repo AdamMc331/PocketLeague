@@ -18,7 +18,7 @@ val repositoryModule = module {
         OfflineFirstMatchRepository(
             localDataSource = get(),
             remoteDataSource = get(),
-            remoteMatchFetcher = OctaneGGMatchFetcher(
+            matchFetcher = OctaneGGMatchFetcher(
                 apiClient = get(),
                 timeProvider = get(),
             ),

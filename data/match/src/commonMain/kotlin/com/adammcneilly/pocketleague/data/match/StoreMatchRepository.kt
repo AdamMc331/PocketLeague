@@ -2,8 +2,11 @@ package com.adammcneilly.pocketleague.data.match
 
 import com.adammcneilly.pocketleague.core.models.Match
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.onEach
 import org.mobilenativefoundation.store.store5.Fetcher
+import org.mobilenativefoundation.store.store5.SourceOfTruth
 import org.mobilenativefoundation.store.store5.StoreBuilder
 import org.mobilenativefoundation.store.store5.StoreReadRequest
 
@@ -14,10 +17,37 @@ class StoreMatchRepository(
     private val remoteMatchFetcher: RemoteMatchFetcher,
     private val localMatchService: LocalMatchService,
 ) {
-    private val store = StoreBuilder.from(
-        fetcher = Fetcher.of<MatchListRequest, Result<List<Match>>> { request ->
+    private val store = StoreBuilder.from<MatchListRequest, Result<List<Match>>, List<Match>>(
+        fetcher = Fetcher.of { request ->
             remoteMatchFetcher.fetch(request)
         },
+        sourceOfTruth = SourceOfTruth.Companion.of(
+            reader = { req ->
+                when (req) {
+                    is MatchListRequest.DateRange -> {
+                        localMatchService.getMatchesInDateRange(
+                            startDateUTC = req.startDateUTC,
+                            endDateUTC = req.endDateUTC,
+                        )
+                    }
+                    is MatchListRequest.EventStage -> {
+                        localMatchService.getMatchesForEventStage(
+                            eventId = req.eventId,
+                            stageId = req.stageId,
+                        )
+                    }
+                    is MatchListRequest.Id -> {
+                        localMatchService.getMatchDetail(req.matchId).map { match ->
+                            listOf(match)
+                        }
+                    }
+                }
+            },
+            writer = { req, matchResult ->
+                val matches = matchResult.getOrNull().orEmpty()
+                localMatchService.insertMatches(matches)
+            },
+        ),
     ).build()
 
     /**
@@ -36,9 +66,11 @@ class StoreMatchRepository(
                 key = request,
                 refresh = refreshCache,
             ),
-        ).mapNotNull { storeResponse ->
+        ).onEach { response ->
+            println("ADAMLOG - Response: $response")
+        }.mapNotNull { storeResponse ->
             // Still need to handle all types?
-            storeResponse.dataOrNull()?.getOrNull()
+            storeResponse.dataOrNull()
         }
     }
 }

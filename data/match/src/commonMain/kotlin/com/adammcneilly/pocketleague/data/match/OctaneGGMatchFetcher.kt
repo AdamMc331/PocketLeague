@@ -74,7 +74,7 @@ class OctaneGGMatchFetcher(
 
         private const val BEFORE_KEY = "before"
         private const val AFTER_KEY = "after"
-        private const val GROUP_KEY = "rlcs"
+        private const val GROUP_KEY = "group"
         private const val EVENT_KEY = "event"
         private const val STAGE_KEY = "stage"
     }

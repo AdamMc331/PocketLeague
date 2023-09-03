@@ -8,7 +8,9 @@ import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.GetPastWeeksMatchesUseCase
 import com.adammcneilly.pocketleague.data.match.LocalMatchService
+import com.adammcneilly.pocketleague.data.match.OctaneGGMatchFetcher
 import com.adammcneilly.pocketleague.data.match.RemoteMatchService
+import com.adammcneilly.pocketleague.data.match.StoreMatchRepository
 import com.adammcneilly.pocketleague.shared.ui.feed.FeedContent
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.CircuitUiEvent
@@ -19,6 +21,7 @@ import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
 import org.koin.core.component.inject
 
 /**
@@ -96,8 +99,13 @@ object FeedScreen : Screen {
         private val timeProvider: TimeProvider by inject()
         private val getPastWeeksMatchesUseCase = GetPastWeeksMatchesUseCase(
             timeProvider = timeProvider,
-            remoteMatchService = remoteMatchService,
-            localMatchService = localMatchService,
+            storeMatchRepository = StoreMatchRepository(
+                remoteMatchFetcher = OctaneGGMatchFetcher(
+                    apiClient = get(),
+                    timeProvider = timeProvider,
+                ),
+                localMatchService = localMatchService,
+            ),
         )
         private val eventRepository: EventRepository by inject()
 

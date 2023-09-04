@@ -14,8 +14,8 @@ import com.adammcneilly.pocketleague.core.models.Game
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.MatchGamesRequest
-import com.adammcneilly.pocketleague.data.match.MatchListRequest
-import com.adammcneilly.pocketleague.data.match.MatchRepository
+import com.adammcneilly.pocketleague.data.match.api.MatchListRequest
+import com.adammcneilly.pocketleague.data.match.api.MatchRepository
 import com.adammcneilly.pocketleague.feature.teamdetail.TeamDetailScreen
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter

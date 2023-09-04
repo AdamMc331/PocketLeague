@@ -14,8 +14,8 @@ import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
-import com.adammcneilly.pocketleague.data.match.MatchListRequest
-import com.adammcneilly.pocketleague.data.match.MatchRepository
+import com.adammcneilly.pocketleague.data.match.api.MatchListRequest
+import com.adammcneilly.pocketleague.data.match.api.MatchRepository
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow

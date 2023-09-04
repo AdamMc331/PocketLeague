@@ -12,10 +12,9 @@ module_name = args.module_name
 
 print("Generating module: " + module_name)
 
-module_type = module_name.split("_")[0]
-module_sub_name = module_name.split("_")[1]
+module_parts = module_name.split("_")
 module_package = module_name.replace(":", ".").replace("_", ".").replace("-", ".")
-module_root = module_type + "/" + module_sub_name
+module_root = "/".join(module_parts)
 
 print("Writing files to folder: " + module_root)
 
@@ -28,6 +27,6 @@ os.makedirs(module_root + "/src/commonMain/kotlin/com/adammcneilly/pocketleague/
 # Add to project
 settings = open("settings.gradle.kts", "a")
 settings.write("\n")
-settings.write("include(\":" + module_type + ":" + module_sub_name + "\")")
+settings.write("include(\":" + ":".join(module_parts) + "\")")
 
 print("Done!")

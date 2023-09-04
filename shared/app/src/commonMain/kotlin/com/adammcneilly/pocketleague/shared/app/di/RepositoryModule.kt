@@ -2,8 +2,8 @@ package com.adammcneilly.pocketleague.shared.app.di
 
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.event.OfflineFirstEventRepository
-import com.adammcneilly.pocketleague.data.match.MatchRepository
-import com.adammcneilly.pocketleague.data.match.StoreMatchRepository
+import com.adammcneilly.pocketleague.data.match.api.MatchRepository
+import com.adammcneilly.pocketleague.data.match.impl.StoreMatchRepository
 import com.adammcneilly.pocketleague.data.player.OfflineFirstPlayerRepository
 import com.adammcneilly.pocketleague.data.player.PlayerRepository
 import com.adammcneilly.pocketleague.data.team.OctaneGGTeamRepository
@@ -15,8 +15,8 @@ import org.koin.dsl.module
 val repositoryModule = module {
     single<MatchRepository> {
         StoreMatchRepository(
-            matchFetcher = get(),
-            matchSourceOfTruth = get(),
+            remoteMatchService = get(),
+            localMatchService = get(),
         )
     }
 

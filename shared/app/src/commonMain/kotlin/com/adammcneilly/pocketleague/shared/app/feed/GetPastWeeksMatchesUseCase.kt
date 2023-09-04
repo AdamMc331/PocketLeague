@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.shared.app.feed
 import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.data.match.MatchListRequest
-import com.adammcneilly.pocketleague.data.match.MatchRepository
+import com.adammcneilly.pocketleague.data.match.api.MatchListRequest
+import com.adammcneilly.pocketleague.data.match.api.MatchRepository
 import kotlinx.coroutines.flow.Flow
 
 private const val DAYS_PER_WEEK = 7

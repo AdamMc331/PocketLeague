@@ -47,7 +47,8 @@ class StoreMatchRepository(
         ).onEach { response ->
             println("ADAMLOG - Response: $response")
         }.mapNotNull { storeResponse ->
-            // Still need to handle all types?
+            // Still need to handle all storeResponse types
+            // and prefer not to return an empty list unless it's actually empty.
             storeResponse.dataOrNull().orEmpty()
         }
     }

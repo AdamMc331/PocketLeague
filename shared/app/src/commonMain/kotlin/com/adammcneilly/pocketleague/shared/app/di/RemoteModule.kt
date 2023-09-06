@@ -4,8 +4,8 @@ import com.adammcneilly.pocketleague.data.event.OctaneGGEventService
 import com.adammcneilly.pocketleague.data.event.RemoteEventService
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.game.OctaneGGGameService
+import com.adammcneilly.pocketleague.data.match.api.RemoteMatchService
 import com.adammcneilly.pocketleague.data.match.impl.OctaneGGMatchService
-import com.adammcneilly.pocketleague.data.match.impl.RemoteMatchService
 import com.adammcneilly.pocketleague.data.octanegg.OctaneGGAPIClient
 import com.adammcneilly.pocketleague.data.player.OctaneGGPlayerService
 import com.adammcneilly.pocketleague.data.player.RemotePlayerService

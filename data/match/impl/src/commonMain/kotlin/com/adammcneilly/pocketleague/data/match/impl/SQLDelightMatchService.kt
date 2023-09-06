@@ -8,6 +8,7 @@ import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalMatch
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalTeam
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toMatch
 import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
+import com.adammcneilly.pocketleague.data.match.api.LocalMatchService
 import com.adammcneilly.pocketleague.data.match.api.MatchListRequest
 import com.adammcneilly.pocketleague.sqldelight.MatchWithEventAndTeams
 import kotlinx.coroutines.flow.Flow

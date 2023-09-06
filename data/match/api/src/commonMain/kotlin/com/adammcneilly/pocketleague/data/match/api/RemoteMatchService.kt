@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.data.match.api
 
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.data.match.api.MatchListRequest
 
 /**
  * Defines a data contract for requesting necessary remote

@@ -38,7 +38,7 @@ class StoreMatchRepositoryTest {
         repository
             .stream(request)
             .test {
-                assertThat(awaitItem()).isEqualTox(listOf(testMatch))
+                assertThat(awaitItem()).isEqualTo(listOf(testMatch))
                 assertThat(awaitItem()).isEqualTo(emptyList<Match>())
                 assertThat(awaitItem()).isEqualTo(listOf(testMatch))
                 val remainingEvents = cancelAndConsumeRemainingEvents()

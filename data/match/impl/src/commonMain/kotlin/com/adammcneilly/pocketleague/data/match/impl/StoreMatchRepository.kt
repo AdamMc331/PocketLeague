@@ -48,7 +48,7 @@ class StoreMatchRepository(
             println("ADAMLOG - Response: $response")
         }.mapNotNull { storeResponse ->
             // Still need to handle all types?
-            storeResponse.dataOrNull()
+            storeResponse.dataOrNull().orEmpty()
         }
     }
 }

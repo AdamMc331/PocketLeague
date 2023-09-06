@@ -5,6 +5,7 @@ import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
+import io.ktor.http.fullPath
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 
@@ -15,7 +16,7 @@ import io.ktor.utils.io.ByteReadChannel
 fun mockEngine(
     responses: Map<String, String>,
 ) = MockEngine {
-    val url = it.url.encodedPath
+    val url = it.url.fullPath
 
     val response = responses[url]
 

@@ -1,8 +1,10 @@
 package com.adammcneilly.pocketleague.data.match.impl
 
 import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.data.match.api.LocalMatchService
 import com.adammcneilly.pocketleague.data.match.api.MatchListRequest
 import com.adammcneilly.pocketleague.data.match.api.MatchRepository
+import com.adammcneilly.pocketleague.data.match.api.RemoteMatchService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.onEach
@@ -46,7 +48,7 @@ class StoreMatchRepository(
             println("ADAMLOG - Response: $response")
         }.mapNotNull { storeResponse ->
             // Still need to handle all types?
-            storeResponse.dataOrNull()
+            storeResponse.dataOrNull().orEmpty()
         }
     }
 }

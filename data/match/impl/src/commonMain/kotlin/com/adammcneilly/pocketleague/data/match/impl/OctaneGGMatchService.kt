@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.data.match.impl
 
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.match.api.MatchListRequest
+import com.adammcneilly.pocketleague.data.match.api.RemoteMatchService
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatch
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatchListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.toMatch

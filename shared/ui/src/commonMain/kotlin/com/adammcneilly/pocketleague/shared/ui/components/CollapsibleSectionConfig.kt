@@ -5,7 +5,7 @@ package com.adammcneilly.pocketleague.shared.ui.components
  * collapsed or expanded.
  */
 data class CollapsibleSectionConfig<T>(
-    val sectionTitle: String,
+    val title: String,
     val items: List<T>,
     val isExpanded: Boolean,
 )

@@ -99,7 +99,7 @@ class EventDetailPresenter(
 
                 is EventDetailScreen.Event.SectionClicked -> {
                     matchesForSelectedStage = matchesForSelectedStage.map { originalSection ->
-                        if (originalSection == uiEvent.section) {
+                        if (originalSection.title == uiEvent.sectionTitle) {
                             originalSection.copy(
                                 isExpanded = !originalSection.isExpanded,
                             )
@@ -154,7 +154,7 @@ class EventDetailPresenter(
                     .groupBy(MatchDetailDisplayModel::localDate)
                     .map { (date, matches) ->
                         CollapsibleSectionConfig(
-                            sectionTitle = date,
+                            title = date,
                             items = matches,
                             isExpanded = true, // This could potentially be buggy?
                         )

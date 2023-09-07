@@ -22,7 +22,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.components.CollapsibleSectionConfig
 import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -49,37 +51,9 @@ internal fun EventDetailContent(
         // though maybe if we ever wanted to support deep linking.
         horizontalStageSection(state)
 
-        // Instead of list of matches for selected stage, we should have a map
-        // of date to matches and show a small header with the match date and
-        // some click functionality to collapse section.
         state.matchesForSelectedStageByDate.forEach { section ->
             item {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .screenHorizontalPadding()
-                        .clickable {
-                            val event = EventDetailScreen.Event.SectionClicked(section)
-                            state.eventSink.invoke(event)
-                        },
-                ) {
-                    Text(
-                        text = section.sectionTitle,
-                        style = MaterialTheme.typography.titleLarge,
-                        modifier = Modifier
-                            .weight(1F),
-                    )
-
-                    Icon(
-                        imageVector = if (section.isExpanded) {
-                            Icons.Default.KeyboardArrowUp
-                        } else {
-                            Icons.Default.KeyboardArrowDown
-                        },
-                        contentDescription = null,
-                    )
-                }
+                MatchSectionHeader(section, state)
             }
 
             if (section.isExpanded) {
@@ -96,6 +70,39 @@ internal fun EventDetailContent(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun MatchSectionHeader(
+    section: CollapsibleSectionConfig<MatchDetailDisplayModel>,
+    state: EventDetailScreen.State,
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .screenHorizontalPadding()
+            .clickable {
+                val event = EventDetailScreen.Event.SectionClicked(section.title)
+                state.eventSink.invoke(event)
+            },
+    ) {
+        Text(
+            text = section.title,
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier
+                .weight(1F),
+        )
+
+        Icon(
+            imageVector = if (section.isExpanded) {
+                Icons.Default.KeyboardArrowUp
+            } else {
+                Icons.Default.KeyboardArrowDown
+            },
+            contentDescription = null,
+        )
     }
 }
 

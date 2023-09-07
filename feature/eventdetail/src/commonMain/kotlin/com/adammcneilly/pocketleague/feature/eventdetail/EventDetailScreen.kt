@@ -57,6 +57,9 @@ data class EventDetailScreen(
             val matchId: Match.Id,
         ) : Event
 
+        /**
+         * Triggered when a user clicks on a section inside the match list.
+         */
         data class SectionClicked(
             val section: CollapsibleSectionConfig<MatchDetailDisplayModel>,
         ) : Event

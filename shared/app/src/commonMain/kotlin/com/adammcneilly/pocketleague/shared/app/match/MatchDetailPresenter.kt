@@ -21,6 +21,7 @@ import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.onEach
 
 /**
@@ -59,8 +60,11 @@ class MatchDetailPresenter(
 
             matchRepository
                 .stream(request)
-                .map { matchList ->
-                    matchList.first().toDetailDisplayModel(timeProvider)
+                .mapNotNull { matchList ->
+                    matchList.firstOrNull()
+                }
+                .map { match ->
+                    match.toDetailDisplayModel(timeProvider)
                 }
                 .onEach { displayModel ->
                     match = displayModel

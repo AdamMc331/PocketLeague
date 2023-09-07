@@ -10,6 +10,8 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.snapshotFlow
@@ -41,16 +43,30 @@ internal fun EventDetailContent(
         // though maybe if we ever wanted to support deep linking.
         horizontalStageSection(state)
 
-        items(state.matchesForSelectedStage) { match ->
-            StageMatchListItem(
-                match = match,
-                modifier = Modifier
-                    .screenHorizontalPadding()
-                    .clickable {
-                        val event = EventDetailScreen.Event.MatchClicked(match.matchId)
-                        state.eventSink.invoke(event)
-                    },
-            )
+        // Instead of list of matches for selected stage, we should have a map
+        // of date to matches and show a small header with the match date and
+        // some click functionality to collapse section.
+        state.matchesForSelectedStageByDate.forEach { (date, matches) ->
+            item {
+                Text(
+                    text = date,
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier
+                        .screenHorizontalPadding(),
+                )
+            }
+
+            items(matches) { match ->
+                StageMatchListItem(
+                    match = match,
+                    modifier = Modifier
+                        .screenHorizontalPadding()
+                        .clickable {
+                            val event = EventDetailScreen.Event.MatchClicked(match.matchId)
+                            state.eventSink.invoke(event)
+                        },
+                )
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ data class EventDetailScreen(
     data class State(
         val event: EventDetailDisplayModel,
         val selectedStageIndex: Int,
-        val matchesForSelectedStage: List<MatchDetailDisplayModel>,
+        val matchesForSelectedStageByDate: Map<String, List<MatchDetailDisplayModel>>,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
 

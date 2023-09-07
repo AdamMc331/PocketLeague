@@ -55,7 +55,7 @@ class EventDetailPresenter(
         }
 
         var matchesForSelectedStage by remember {
-            mutableStateOf(placeholderMatches)
+            mutableStateOf(emptyMap<String, List<MatchDetailDisplayModel>>())
         }
 
         LaunchedEffect(Unit) {
@@ -85,7 +85,7 @@ class EventDetailPresenter(
         return EventDetailScreen.State(
             event = displayModel,
             selectedStageIndex = selectedStageIndex,
-            matchesForSelectedStage = matchesForSelectedStage,
+            matchesForSelectedStageByDate = matchesForSelectedStage,
         ) { uiEvent ->
             when (uiEvent) {
                 is EventDetailScreen.Event.StageSelected -> {
@@ -113,7 +113,7 @@ class EventDetailPresenter(
         eventFlow: Flow<EventDetailDisplayModel>,
         selectedStageIndexFlow: Flow<Int>,
         scope: CoroutineScope,
-        onEach: (List<MatchDetailDisplayModel>) -> Unit,
+        onEach: (Map<String, List<MatchDetailDisplayModel>>) -> Unit,
     ) {
         eventFlow
             .combine(selectedStageIndexFlow) { event, stageIndex ->
@@ -134,6 +134,9 @@ class EventDetailPresenter(
                     .onStart {
                         emit(placeholderMatches)
                     }
+            }
+            .map { matchList ->
+                matchList.groupBy(MatchDetailDisplayModel::localDate)
             }
             .onEach(onEach)
             .launchIn(scope)

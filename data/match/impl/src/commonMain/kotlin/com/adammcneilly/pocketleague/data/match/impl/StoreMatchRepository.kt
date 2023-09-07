@@ -7,14 +7,12 @@ import com.adammcneilly.pocketleague.data.match.api.MatchRepository
 import com.adammcneilly.pocketleague.data.match.api.RemoteMatchService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import org.mobilenativefoundation.store.store5.Fetcher
 import org.mobilenativefoundation.store.store5.SourceOfTruth
 import org.mobilenativefoundation.store.store5.StoreBuilder
 import org.mobilenativefoundation.store.store5.StoreReadRequest
 import org.mobilenativefoundation.store.store5.StoreReadResponse
-import org.mobilenativefoundation.store.store5.StoreReadResponseOrigin
 
 /**
  * A repository class for matches that uses the Store library.
@@ -48,9 +46,6 @@ class StoreMatchRepository(
                 refresh = refreshCache,
             ),
         )
-            .filter { storeResponse ->
-                storeResponse.origin is StoreReadResponseOrigin.SourceOfTruth
-            }
             .distinctUntilChanged()
             .map { storeResponse ->
                 when (storeResponse) {

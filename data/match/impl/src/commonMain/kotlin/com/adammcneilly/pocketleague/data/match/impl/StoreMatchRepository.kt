@@ -53,15 +53,25 @@ class StoreMatchRepository(
                         storeResponse.value
                     }
 
+                    is StoreReadResponse.NoNewData -> {
+                        emptyList()
+                    }
+
                     is StoreReadResponse.Error.Exception,
                     is StoreReadResponse.Error.Message,
-                    is StoreReadResponse.NoNewData,
                     -> {
+                        // If an error happens, should we surface that?
+                        // If an error happens syncing remote data
+                        // we could just show an empty match list, BUT we should log something
+                        // (Firebase, Crashlytics, etc) that this error occurred.
                         emptyList()
                     }
 
                     is StoreReadResponse.Loading -> {
                         // Ideally we return some indicator here that loading happened.
+                        // Loading is more interesting, because we can consider what "loading" means.
+                        // First app open -> we are actually loading the data to show you.
+                        // Next app open -> we have data to show you, but we could be refreshing it.
                         emptyList()
                     }
                 }

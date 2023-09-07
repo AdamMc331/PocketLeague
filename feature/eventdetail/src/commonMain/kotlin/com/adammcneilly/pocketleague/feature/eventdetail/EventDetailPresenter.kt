@@ -96,6 +96,18 @@ class EventDetailPresenter(
                 is EventDetailScreen.Event.MatchClicked -> {
                     onMatchClicked.invoke(uiEvent.matchId)
                 }
+
+                is EventDetailScreen.Event.SectionClicked -> {
+                    matchesForSelectedStage = matchesForSelectedStage.map { originalSection ->
+                        if (originalSection == uiEvent.section) {
+                            originalSection.copy(
+                                isExpanded = !originalSection.isExpanded,
+                            )
+                        } else {
+                            originalSection
+                        }
+                    }
+                }
             }
         }
     }

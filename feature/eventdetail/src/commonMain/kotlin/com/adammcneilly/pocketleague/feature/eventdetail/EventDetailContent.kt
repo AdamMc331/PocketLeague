@@ -4,17 +4,23 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
@@ -46,26 +52,48 @@ internal fun EventDetailContent(
         // Instead of list of matches for selected stage, we should have a map
         // of date to matches and show a small header with the match date and
         // some click functionality to collapse section.
-        state.matchesForSelectedStageByDate.forEach { (date, matches, isExpanded) ->
+        state.matchesForSelectedStageByDate.forEach { section ->
             item {
-                Text(
-                    text = date,
-                    style = MaterialTheme.typography.titleLarge,
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .screenHorizontalPadding(),
-                )
-            }
-
-            items(matches) { match ->
-                StageMatchListItem(
-                    match = match,
-                    modifier = Modifier
+                        .fillMaxWidth()
                         .screenHorizontalPadding()
                         .clickable {
-                            val event = EventDetailScreen.Event.MatchClicked(match.matchId)
+                            val event = EventDetailScreen.Event.SectionClicked(section)
                             state.eventSink.invoke(event)
                         },
-                )
+                ) {
+                    Text(
+                        text = section.sectionTitle,
+                        style = MaterialTheme.typography.titleLarge,
+                        modifier = Modifier
+                            .weight(1F),
+                    )
+
+                    Icon(
+                        imageVector = if (section.isExpanded) {
+                            Icons.Default.KeyboardArrowUp
+                        } else {
+                            Icons.Default.KeyboardArrowDown
+                        },
+                        contentDescription = null,
+                    )
+                }
+            }
+
+            if (section.isExpanded) {
+                items(section.items) { match ->
+                    StageMatchListItem(
+                        match = match,
+                        modifier = Modifier
+                            .screenHorizontalPadding()
+                            .clickable {
+                                val event = EventDetailScreen.Event.MatchClicked(match.matchId)
+                                state.eventSink.invoke(event)
+                            },
+                    )
+                }
             }
         }
     }

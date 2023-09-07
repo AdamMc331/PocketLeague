@@ -56,6 +56,10 @@ data class EventDetailScreen(
         data class MatchClicked(
             val matchId: Match.Id,
         ) : Event
+
+        data class SectionClicked(
+            val section: CollapsibleSectionConfig<MatchDetailDisplayModel>,
+        ) : Event
     }
 
     /**

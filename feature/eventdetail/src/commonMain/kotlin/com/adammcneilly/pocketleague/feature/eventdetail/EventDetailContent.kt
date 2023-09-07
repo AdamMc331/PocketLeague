@@ -46,7 +46,7 @@ internal fun EventDetailContent(
         // Instead of list of matches for selected stage, we should have a map
         // of date to matches and show a small header with the match date and
         // some click functionality to collapse section.
-        state.matchesForSelectedStageByDate.forEach { (date, matches) ->
+        state.matchesForSelectedStageByDate.forEach { (date, matches, isExpanded) ->
             item {
                 Text(
                     text = date,

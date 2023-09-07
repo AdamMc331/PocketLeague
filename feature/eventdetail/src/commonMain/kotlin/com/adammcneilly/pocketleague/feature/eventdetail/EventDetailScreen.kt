@@ -7,6 +7,7 @@ import com.adammcneilly.pocketleague.core.feature.CommonParcelize
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.api.MatchRepository
+import com.adammcneilly.pocketleague.shared.ui.components.CollapsibleSectionConfig
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.CircuitUiEvent
 import com.slack.circuit.runtime.CircuitUiState
@@ -32,7 +33,7 @@ data class EventDetailScreen(
     data class State(
         val event: EventDetailDisplayModel,
         val selectedStageIndex: Int,
-        val matchesForSelectedStageByDate: Map<String, List<MatchDetailDisplayModel>>,
+        val matchesForSelectedStageByDate: List<CollapsibleSectionConfig<MatchDetailDisplayModel>>,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
 

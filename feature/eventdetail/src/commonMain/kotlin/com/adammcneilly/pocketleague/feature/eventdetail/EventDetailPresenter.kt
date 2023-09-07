@@ -16,6 +16,7 @@ import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.EventRepository
 import com.adammcneilly.pocketleague.data.match.api.MatchListRequest
 import com.adammcneilly.pocketleague.data.match.api.MatchRepository
+import com.adammcneilly.pocketleague.shared.ui.components.CollapsibleSectionConfig
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -55,7 +56,7 @@ class EventDetailPresenter(
         }
 
         var matchesForSelectedStage by remember {
-            mutableStateOf(emptyMap<String, List<MatchDetailDisplayModel>>())
+            mutableStateOf(emptyList<CollapsibleSectionConfig<MatchDetailDisplayModel>>())
         }
 
         LaunchedEffect(Unit) {
@@ -91,6 +92,7 @@ class EventDetailPresenter(
                 is EventDetailScreen.Event.StageSelected -> {
                     selectedStageIndex = uiEvent.stageIndex
                 }
+
                 is EventDetailScreen.Event.MatchClicked -> {
                     onMatchClicked.invoke(uiEvent.matchId)
                 }
@@ -113,7 +115,7 @@ class EventDetailPresenter(
         eventFlow: Flow<EventDetailDisplayModel>,
         selectedStageIndexFlow: Flow<Int>,
         scope: CoroutineScope,
-        onEach: (Map<String, List<MatchDetailDisplayModel>>) -> Unit,
+        onEach: (List<CollapsibleSectionConfig<MatchDetailDisplayModel>>) -> Unit,
     ) {
         eventFlow
             .combine(selectedStageIndexFlow) { event, stageIndex ->
@@ -136,7 +138,15 @@ class EventDetailPresenter(
                     }
             }
             .map { matchList ->
-                matchList.groupBy(MatchDetailDisplayModel::localDate)
+                matchList
+                    .groupBy(MatchDetailDisplayModel::localDate)
+                    .map { (date, matches) ->
+                        CollapsibleSectionConfig(
+                            sectionTitle = date,
+                            items = matches,
+                            isExpanded = true, // This could potentially be buggy?
+                        )
+                    }
             }
             .onEach(onEach)
             .launchIn(scope)

@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import com.adammcneilly.pocketleague.shared.app.di.initKoin
 import io.embrace.android.embracesdk.Embrace
-import io.embrace.android.embracesdk.EmbraceSamples
 import org.koin.dsl.module
 
 /**
@@ -16,7 +15,6 @@ class PocketLeagueApp : Application() {
         super.onCreate()
 
         Embrace.getInstance().start(this)
-        EmbraceSamples.verifyIntegration()
 
         initKoin(
             appModule = module {

@@ -14,6 +14,7 @@ coil = "2.4.0"
 compileSdk = "34"
 composeCompiler = "1.5.0"
 detektGradlePlugin = "1.23.1"
+embrace = "5.23.0"
 espresso = "3.5.1"
 glance = "1.0.0"
 gradle = "8.1.1"
@@ -66,6 +67,7 @@ cash-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 cketti-codepoints = { module = "de.cketti.unicode:kotlin-codepoints", version.ref = "codepoints" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektGradlePlugin" }
+embrace-swazzler-plugin = { module = "io.embrace:embrace-swazzler", version.ref = "embrace" }
 google-material = { module = "com.google.android.material:material", version.ref = "material" }
 google-testparameterinjector = { module = "com.google.testparameterinjector:test-parameter-injector", version.ref = "testParameterInjector" }
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
@@ -128,6 +130,7 @@ ktor-client = [
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
+embrace-swazzler = { id = "embrace-swazzler", version.ref = "embrace" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.compose", version.ref = "kmpCompose" }
 kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }

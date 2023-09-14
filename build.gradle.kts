@@ -14,9 +14,10 @@ buildscript {
     }
 
     dependencies {
+        classpath(libs.detekt.gradle.plugin)
+        classpath(libs.embrace.swazzler.plugin)
         classpath(libs.gradle)
         classpath(libs.kotlin.gradle.plugin)
-        classpath(libs.detekt.gradle.plugin)
         classpath(libs.kotlin.serialization)
         classpath(libs.square.sqldelight.plugin)
 

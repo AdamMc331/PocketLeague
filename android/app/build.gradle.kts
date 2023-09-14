@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    id("embrace-swazzler")
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlin.compose)
 }

@@ -13,6 +13,7 @@ rootProject.name = "PocketLeague"
 include(":android:app")
 
 include(":core:currency")
+include(":core:data")
 include(":core:datetime")
 include(":core:datetime-test")
 include(":core:displaymodels")
@@ -44,5 +45,3 @@ include(":feature:teamdetail")
 include(":shared:app")
 include(":shared:design-system")
 include(":shared:ui")
-
-include(":core:data")

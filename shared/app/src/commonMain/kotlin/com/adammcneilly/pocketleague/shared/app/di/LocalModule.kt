@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.di
 
-import com.adammcneilly.pocketleague.data.event.LocalEventService
-import com.adammcneilly.pocketleague.data.event.SQLDelightEventService
+import com.adammcneilly.pocketleague.data.event.api.LocalEventService
+import com.adammcneilly.pocketleague.data.event.impl.SQLDelightEventService
 import com.adammcneilly.pocketleague.data.local.sqldelight.DatabaseDriverFactory
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
 import com.adammcneilly.pocketleague.data.match.api.LocalMatchService
@@ -24,7 +24,6 @@ val localModule = module {
     single<LocalEventService> {
         SQLDelightEventService(
             database = get(),
-            timeProvider = get(),
         )
     }
 

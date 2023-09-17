@@ -40,7 +40,7 @@ class OctaneGGEventService(
     private fun getParamsForRequest(
         request: EventListRequest,
     ): RemoteParams {
-        return when (request) {
+        val initialParams = when (request) {
             is EventListRequest.AfterDate -> {
                 mapOf(
                     AFTER_KEY to request.dateUtc,
@@ -55,6 +55,10 @@ class OctaneGGEventService(
                 emptyMap()
             }
         }
+
+        return initialParams + mapOf(
+            GROUP_KEY to "rlcs",
+        )
     }
 
     companion object {
@@ -66,5 +70,6 @@ class OctaneGGEventService(
 
         private const val AFTER_KEY = "after"
         private const val DATE_KEY = "date"
+        private const val GROUP_KEY = "group"
     }
 }

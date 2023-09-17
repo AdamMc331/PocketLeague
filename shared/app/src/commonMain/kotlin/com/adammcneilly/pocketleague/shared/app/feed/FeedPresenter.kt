@@ -12,11 +12,13 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.data.event.EventRepository
+import com.adammcneilly.pocketleague.data.event.api.EventListRequest
+import com.adammcneilly.pocketleague.data.event.api.EventRepository
 import com.adammcneilly.pocketleague.feature.eventdetail.EventDetailScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -97,17 +99,29 @@ class FeedPresenter(
             }
         }
 
-    private fun observeOngoingEvents() = eventRepository
-        .getOngoingEvents()
-        .map { eventList ->
-            eventList.map(Event::toSummaryDisplayModel)
-        }
-        .map(EventGroupDisplayModel.Companion::mapFromEventList)
+    private fun observeOngoingEvents(): Flow<List<EventGroupDisplayModel>> {
+        val request = EventListRequest.OnDate(
+            dateUtc = timeProvider.now(),
+        )
 
-    private fun observeUpcomingEvents() = eventRepository
-        .getUpcomingEvents()
-        .map { eventList ->
-            eventList.map(Event::toSummaryDisplayModel)
-        }
-        .map(EventGroupDisplayModel.Companion::mapFromEventList)
+        return eventRepository
+            .stream(request)
+            .map { eventList ->
+                eventList.map(Event::toSummaryDisplayModel)
+            }
+            .map(EventGroupDisplayModel.Companion::mapFromEventList)
+    }
+
+    private fun observeUpcomingEvents(): Flow<List<EventGroupDisplayModel>> {
+        val request = EventListRequest.AfterDate(
+            dateUtc = timeProvider.now(),
+        )
+
+        return eventRepository
+            .stream(request)
+            .map { eventList ->
+                eventList.map(Event::toSummaryDisplayModel)
+            }
+            .map(EventGroupDisplayModel.Companion::mapFromEventList)
+    }
 }

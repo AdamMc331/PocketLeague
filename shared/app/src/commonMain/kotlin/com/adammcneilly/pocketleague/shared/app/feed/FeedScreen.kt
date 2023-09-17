@@ -5,7 +5,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.feature.CommonParcelize
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.data.event.EventRepository
+import com.adammcneilly.pocketleague.data.event.api.EventRepository
 import com.adammcneilly.pocketleague.data.match.api.MatchRepository
 import com.adammcneilly.pocketleague.shared.ui.feed.FeedContent
 import com.slack.circuit.runtime.CircuitContext

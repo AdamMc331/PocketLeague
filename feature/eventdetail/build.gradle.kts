@@ -17,7 +17,7 @@ kotlin {
                 implementation(projects.core.displaymodels)
                 implementation(projects.core.feature)
                 implementation(projects.core.models) // I still don't think this is necessary
-                implementation(projects.data.event)
+                implementation(projects.data.event.api)
                 implementation(projects.data.match.api)
                 implementation(projects.shared.designSystem)
                 implementation(projects.shared.ui)

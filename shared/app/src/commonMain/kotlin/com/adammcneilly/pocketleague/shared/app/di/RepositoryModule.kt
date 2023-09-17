@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.di
 
-import com.adammcneilly.pocketleague.data.event.EventRepository
-import com.adammcneilly.pocketleague.data.event.OfflineFirstEventRepository
+import com.adammcneilly.pocketleague.data.event.api.EventRepository
+import com.adammcneilly.pocketleague.data.event.impl.StoreEventRepository
 import com.adammcneilly.pocketleague.data.match.api.MatchRepository
 import com.adammcneilly.pocketleague.data.match.impl.StoreMatchRepository
 import com.adammcneilly.pocketleague.data.player.OfflineFirstPlayerRepository
@@ -21,7 +21,7 @@ val repositoryModule = module {
     }
 
     single<EventRepository> {
-        OfflineFirstEventRepository(
+        StoreEventRepository(
             localEventService = get(),
             remoteEventService = get(),
         )

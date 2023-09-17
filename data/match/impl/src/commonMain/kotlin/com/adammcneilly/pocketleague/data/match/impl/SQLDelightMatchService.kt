@@ -21,9 +21,9 @@ class SQLDelightMatchService(
     private val database: PocketLeagueDB,
 ) : LocalMatchService {
 
-    override suspend fun insertMatches(matches: List<Match>) {
+    override suspend fun insert(data: List<Match>) {
         database.transaction {
-            matches.forEach { match ->
+            data.forEach { match ->
                 database.localEventQueries
                     .insertOrIgnoreEventObject(match.event.toLocalEvent())
 

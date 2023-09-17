@@ -21,9 +21,9 @@ class SQLDelightEventService(
     private val database: PocketLeagueDB,
 ) : LocalEventService {
 
-    override suspend fun insertEvents(events: List<Event>) {
+    override suspend fun insert(data: List<Event>) {
         database.transaction {
-            events.forEach { event ->
+            data.forEach { event ->
                 database
                     .localEventQueries
                     .insertFullEventObject(event.toLocalEvent())

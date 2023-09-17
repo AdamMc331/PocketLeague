@@ -53,8 +53,8 @@ ORDER BY localEventStartDateUTC;
 
 selectById:
 SELECT *
-FROM localEvent
-WHERE id = :eventId;
+FROM eventWithStage
+WHERE localEventId = :eventId;
 
 insertOrIgnoreEventObject:
 INSERT OR IGNORE INTO localEvent(

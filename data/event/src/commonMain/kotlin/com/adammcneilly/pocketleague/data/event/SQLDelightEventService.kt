@@ -4,7 +4,6 @@ import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Team
 import com.adammcneilly.pocketleague.data.local.sqldelight.PocketLeagueDB
-import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toEvent
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toEventStage
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toEvents
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalEvent
@@ -12,9 +11,7 @@ import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalEventS
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toLocalTeam
 import com.adammcneilly.pocketleague.data.local.sqldelight.mappers.toTeam
 import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowList
-import com.adammcneilly.pocketleague.data.local.sqldelight.util.asFlowSingle
 import com.adammcneilly.pocketleague.sqldelight.EventWithStage
-import com.adammcneilly.pocketleague.sqldelight.LocalEvent
 import com.adammcneilly.pocketleague.sqldelight.LocalEventParticipant
 import com.adammcneilly.pocketleague.sqldelight.LocalEventStage
 import com.adammcneilly.pocketleague.sqldelight.LocalTeam
@@ -23,6 +20,7 @@ import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 
 /**
  * An implementation of [EventRepository] that requests all data from
@@ -48,7 +46,10 @@ class SQLDelightEventService(
         val eventFlow = database
             .localEventQueries
             .selectById(eventId.id)
-            .asFlowSingle(LocalEvent::toEvent)
+            .asFlow()
+            .mapToList()
+            .map(List<EventWithStage>::toEvents)
+            .mapNotNull(List<Event>::firstOrNull)
 
         val stagesFlow = database
             .localEventStageQueries

@@ -43,3 +43,7 @@ include(":feature:teamdetail")
 include(":shared:app")
 include(":shared:design-system")
 include(":shared:ui")
+
+include(":data:event:api")
+include(":data:event:impl")
+include(":data:event:test")

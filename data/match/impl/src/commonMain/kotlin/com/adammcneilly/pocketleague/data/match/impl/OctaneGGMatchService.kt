@@ -7,6 +7,7 @@ import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatch
 import com.adammcneilly.pocketleague.data.octanegg.models.OctaneGGMatchListResponse
 import com.adammcneilly.pocketleague.data.octanegg.models.toMatch
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
+import com.adammcneilly.pocketleague.data.remote.RemoteParams
 
 /**
  * An implementation of [RemoteMatchService] that requests
@@ -39,7 +40,7 @@ class OctaneGGMatchService(
 
     private fun getParamsForRequest(
         request: MatchListRequest,
-    ): Map<String, String> {
+    ): RemoteParams {
         val initialParams = when (request) {
             is MatchListRequest.DateRange -> {
                 mapOf(

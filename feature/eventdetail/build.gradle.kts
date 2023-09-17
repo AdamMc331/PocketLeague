@@ -13,7 +13,6 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(projects.core.data)
                 implementation(projects.core.datetime)
                 implementation(projects.core.displaymodels)
                 implementation(projects.core.feature)

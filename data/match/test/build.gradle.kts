@@ -8,7 +8,6 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(projects.core.data)
                 implementation(projects.core.models)
                 implementation(projects.data.match.api)
                 implementation(libs.kotlinx.coroutines.core)

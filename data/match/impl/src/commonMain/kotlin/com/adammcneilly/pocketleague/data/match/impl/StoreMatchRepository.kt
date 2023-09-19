@@ -31,7 +31,7 @@ class StoreMatchRepository(
             },
             writer = { _, matchResult ->
                 val matches = matchResult.getOrNull().orEmpty()
-                localMatchService.insertMatches(matches)
+                localMatchService.insert(matches)
             },
         ),
     ).build()

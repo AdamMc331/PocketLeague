@@ -31,7 +31,7 @@ class StoreEventRepository(
             },
             writer = { _, eventResult ->
                 val events = eventResult.getOrNull().orEmpty()
-                localEventService.insertEvents(events)
+                localEventService.insert(events)
             },
         ),
     ).build()

@@ -19,9 +19,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
-import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.theme.rlcsBlue
+import com.adammcneilly.pocketleague.shared.ui.theme.rlcsOrange
 import com.adammcneilly.pocketleague.shared.ui.utils.whenInView
 import kotlinx.coroutines.launch
 

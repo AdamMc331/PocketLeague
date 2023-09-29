@@ -9,7 +9,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.adammcneilly.pocketleague.shared.app.PocketLeagueApp
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 /**

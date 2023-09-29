@@ -26,9 +26,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 
 private const val SCORE_TEXT_WEIGHT = 1F
 private const val MAP_TEXT_WEIGHT = 4F

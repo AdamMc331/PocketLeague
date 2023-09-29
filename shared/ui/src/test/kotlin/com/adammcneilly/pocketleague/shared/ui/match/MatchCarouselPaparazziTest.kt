@@ -3,8 +3,8 @@ package com.adammcneilly.pocketleague.shared.ui.match
 import androidx.compose.foundation.layout.PaddingValues
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.snapshotScreen
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.design.system.theme
+package com.adammcneilly.pocketleague.shared.ui.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf

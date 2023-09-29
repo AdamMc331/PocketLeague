@@ -19,7 +19,6 @@ kotlin {
                 implementation(projects.core.models)
                 implementation(projects.data.player)
                 implementation(projects.data.team)
-                implementation(projects.shared.designSystem)
                 implementation(projects.shared.ui)
                 implementation(compose.foundation)
                 implementation(compose.material3)

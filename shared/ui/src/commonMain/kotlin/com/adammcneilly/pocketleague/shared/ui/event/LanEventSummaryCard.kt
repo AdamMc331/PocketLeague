@@ -20,11 +20,11 @@ import androidx.compose.ui.text.style.TextAlign
 import com.adammcneilly.pocketleague.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.shared.design.system.theme.md_theme_dark_onSurface
-import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
-import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
 import com.adammcneilly.pocketleague.shared.ui.components.InlineIconText
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.theme.md_theme_dark_onSurface
+import com.adammcneilly.pocketleague.shared.ui.theme.rlcsBlue
+import com.adammcneilly.pocketleague.shared.ui.theme.rlcsOrange
 import com.adammcneilly.pocketleague.shared.ui.utils.VerticalSpacer
 
 /**

@@ -11,10 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.game.GameDetailDialog
 import com.adammcneilly.pocketleague.shared.ui.game.GameListCard
 import com.adammcneilly.pocketleague.shared.ui.stats.CoreStatsComparisonCard
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 
 /**
  * Compose content for the match detail screen.

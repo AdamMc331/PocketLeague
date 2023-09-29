@@ -20,12 +20,12 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
-import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsBlue
-import com.adammcneilly.pocketleague.shared.design.system.theme.rlcsOrange
 import com.adammcneilly.pocketleague.shared.ui.components.RemoteImage
 import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.theme.rlcsBlue
+import com.adammcneilly.pocketleague.shared.ui.theme.rlcsOrange
 import com.adammcneilly.pocketleague.shared.ui.utils.conditional
 
 private val cardShape = CutCornerShape(

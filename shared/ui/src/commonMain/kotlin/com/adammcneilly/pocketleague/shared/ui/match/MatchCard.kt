@@ -18,10 +18,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.components.InlineIconText
 import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.utils.VerticalSpacer
 
 /**

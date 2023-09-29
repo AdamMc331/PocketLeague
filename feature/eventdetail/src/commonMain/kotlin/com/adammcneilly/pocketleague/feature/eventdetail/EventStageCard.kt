@@ -12,9 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.adammcneilly.pocketleague.core.displaymodels.EventStageSummaryDisplayModel
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.ui.placeholder.placeholderMaterial
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 
 /**
  * A minimal [Card] component to highlight information about

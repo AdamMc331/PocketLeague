@@ -2,7 +2,7 @@
 
 accompanist = "0.32.0"
 activity-compose = "1.7.2"
-agp = "8.1.1"
+agp = "8.1.2"
 androidx-core = "1.12.0"
 androidx-test = "1.1.5"
 apollo = "3.8.2"
@@ -16,7 +16,6 @@ composeCompiler = "1.5.0"
 detektGradlePlugin = "1.23.1"
 espresso = "3.5.1"
 glance = "1.0.0"
-gradle = "8.1.1"
 jsoup = "1.16.1"
 junit = "4.13.2"
 kmpCompose = "1.5.2"
@@ -69,7 +68,7 @@ detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plu
 google-material = { module = "com.google.android.material:material", version.ref = "material" }
 google-testparameterinjector = { module = "com.google.testparameterinjector:test-parameter-injector", version.ref = "testParameterInjector" }
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }

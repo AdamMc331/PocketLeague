@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

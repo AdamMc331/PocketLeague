@@ -12,8 +12,8 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
 import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
 
 /**

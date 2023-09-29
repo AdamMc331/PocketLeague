@@ -3,7 +3,7 @@ package com.adammcneilly.pocketleague.shared.ui.utils
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
-import com.adammcneilly.pocketleague.shared.design.system.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 
 /**
  * A custom [Modifier] that applies the screen padding as the horizontal

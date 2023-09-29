@@ -14,7 +14,6 @@ kotlin {
             dependencies {
                 implementation(projects.core.displaymodels)
                 implementation(projects.core.models)
-                implementation(projects.shared.designSystem)
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)

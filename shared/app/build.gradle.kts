@@ -28,7 +28,6 @@ kotlin {
                 implementation(projects.data.team)
                 implementation(projects.feature.eventdetail)
                 implementation(projects.feature.teamdetail)
-                implementation(projects.shared.designSystem)
                 implementation(projects.shared.ui)
                 implementation(compose.runtime)
                 implementation(compose.foundation)

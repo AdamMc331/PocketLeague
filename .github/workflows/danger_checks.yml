@@ -6,24 +6,12 @@ jobs:
   danger:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set Up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: 17
+      - uses: ./.github/setup.yml
 
       - name: Set Up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
-
-      - name: Generate local.properties
-        env:
-          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
-        run: echo $LOCAL_PROPERTIES > ./local.properties
 
       - name: Danger Checks
         run: |

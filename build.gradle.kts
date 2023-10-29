@@ -24,18 +24,20 @@ buildscript {
         // in the individual module build.gradle files
     }
 
+    // Currently overriding the ktlint version to 1.0.1, can remove in the future when kotlinter
+    // is updated: https://github.com/jeremymailen/kotlinter-gradle#custom-ktlint-version
     configurations.classpath {
         resolutionStrategy {
             force(
-                "com.pinterest.ktlint:ktlint-rule-engine:1.0.1",
-                "com.pinterest.ktlint:ktlint-rule-engine-core:1.0.1",
-                "com.pinterest.ktlint:ktlint-cli-reporter-core:1.0.1",
-                "com.pinterest.ktlint:ktlint-cli-reporter-checkstyle:1.0.1",
-                "com.pinterest.ktlint:ktlint-cli-reporter-json:1.0.1",
-                "com.pinterest.ktlint:ktlint-cli-reporter-html:1.0.1",
-                "com.pinterest.ktlint:ktlint-cli-reporter-plain:1.0.1",
-                "com.pinterest.ktlint:ktlint-cli-reporter-sarif:1.0.1",
-                "com.pinterest.ktlint:ktlint-ruleset-standard:1.0.1",
+                "com.pinterest.ktlint:ktlint-rule-engine:${libs.versions.ktlint.get()}",
+                "com.pinterest.ktlint:ktlint-rule-engine-core:${libs.versions.ktlint.get()}",
+                "com.pinterest.ktlint:ktlint-cli-reporter-core:${libs.versions.ktlint.get()}",
+                "com.pinterest.ktlint:ktlint-cli-reporter-checkstyle:${libs.versions.ktlint.get()}",
+                "com.pinterest.ktlint:ktlint-cli-reporter-json:${libs.versions.ktlint.get()}",
+                "com.pinterest.ktlint:ktlint-cli-reporter-html:${libs.versions.ktlint.get()}",
+                "com.pinterest.ktlint:ktlint-cli-reporter-plain:${libs.versions.ktlint.get()}",
+                "com.pinterest.ktlint:ktlint-cli-reporter-sarif:${libs.versions.ktlint.get()}",
+                "com.pinterest.ktlint:ktlint-ruleset-standard:${libs.versions.ktlint.get()}",
             )
         }
     }

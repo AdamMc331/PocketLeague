@@ -13,7 +13,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class StatComparisonPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 

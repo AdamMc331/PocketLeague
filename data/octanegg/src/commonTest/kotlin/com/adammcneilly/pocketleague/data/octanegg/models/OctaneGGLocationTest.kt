@@ -6,7 +6,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class OctaneGGLocationTest {
-
     @Test
     fun convertFromValidLocation() {
         val octaneLocation = OctaneGGLocation(

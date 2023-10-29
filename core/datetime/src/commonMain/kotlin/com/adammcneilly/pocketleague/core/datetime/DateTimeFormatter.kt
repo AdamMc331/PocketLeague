@@ -13,7 +13,6 @@ expect fun dateTimeFormatter(): DateTimeFormatter
  * A shared class between platforms that is used to format a date into a user friendly string.
  */
 interface DateTimeFormatter {
-
     /**
      * Given an [instant], treat it as a [LocalDateTime] and convert it into
      * a user friendly string matching the supplied [formatPattern]. We'll format it using

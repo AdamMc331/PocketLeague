@@ -39,7 +39,6 @@ object FeedScreen : Screen {
      * Any events that can be triggered by the [FeedScreen].
      */
     sealed interface Event : CircuitUiEvent {
-
         /**
          * User tapped on an event item.
          */
@@ -59,7 +58,10 @@ object FeedScreen : Screen {
      * Factory to create the compose UI for the [FeedScreen].
      */
     object UiFactory : Ui.Factory {
-        override fun create(screen: Screen, context: CircuitContext): Ui<*>? {
+        override fun create(
+            screen: Screen,
+            context: CircuitContext,
+        ): Ui<*>? {
             return when (screen) {
                 FeedScreen -> {
                     ui<State> { state, modifier ->
@@ -97,7 +99,11 @@ object FeedScreen : Screen {
         )
         private val eventRepository: EventRepository by inject()
 
-        override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
+        override fun create(
+            screen: Screen,
+            navigator: Navigator,
+            context: CircuitContext,
+        ): Presenter<*>? {
             return when (screen) {
                 FeedScreen -> FeedPresenter(
                     getPastWeeksMatchesUseCase = getPastWeeksMatchesUseCase,

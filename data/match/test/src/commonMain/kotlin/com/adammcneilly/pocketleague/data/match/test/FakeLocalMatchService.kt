@@ -7,15 +7,18 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class FakeLocalMatchService : LocalMatchService {
-
     private val insertedMatchLists: MutableList<List<Match>> = mutableListOf()
     private val mockResponses: MutableMap<MatchListRequest, List<Match>> = mutableMapOf()
 
-    override suspend fun insert(data: List<Match>) {
+    override suspend fun insert(
+        data: List<Match>,
+    ) {
         insertedMatchLists.add(data)
     }
 
-    override fun stream(request: MatchListRequest): Flow<List<Match>> {
+    override fun stream(
+        request: MatchListRequest,
+    ): Flow<List<Match>> {
         return flowOf(mockResponses[request]!!)
     }
 

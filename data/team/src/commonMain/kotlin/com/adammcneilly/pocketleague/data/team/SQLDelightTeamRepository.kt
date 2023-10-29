@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.Flow
 class SQLDelightTeamRepository(
     private val database: PocketLeagueDB,
 ) : TeamRepository {
-
     override fun getFavoriteTeams(): Flow<List<Team>> {
         return database
             .localTeamQueries
@@ -31,14 +30,18 @@ class SQLDelightTeamRepository(
             .asFlowList(LocalTeam::toTeam)
     }
 
-    override fun getTeamById(teamId: String): Flow<Team> {
+    override fun getTeamById(
+        teamId: String,
+    ): Flow<Team> {
         return database
             .localTeamQueries
             .selectById(teamId)
             .asFlowSingle(LocalTeam::toTeam)
     }
 
-    override suspend fun insertTeams(teams: List<Team>) {
+    override suspend fun insertTeams(
+        teams: List<Team>,
+    ) {
         teams.forEach { team ->
             database
                 .localTeamQueries
@@ -46,7 +49,10 @@ class SQLDelightTeamRepository(
         }
     }
 
-    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+    override suspend fun updateIsFavorite(
+        teamId: String,
+        isFavorite: Boolean,
+    ) {
         database
             .localTeamQueries
             .setFavorite(

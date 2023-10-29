@@ -10,7 +10,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class EventSummaryDisplayModelTest {
-
     @Test
     fun convertFromEventWithoutLocation() {
         val mockDateString = "Jul 07, 2023"

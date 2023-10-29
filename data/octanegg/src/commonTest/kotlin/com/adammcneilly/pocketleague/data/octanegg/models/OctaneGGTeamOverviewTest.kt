@@ -5,7 +5,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 class OctaneGGTeamOverviewTest {
-
     @Test
     fun convertDefault() {
         val octaneModel = OctaneGGTeamOverview()

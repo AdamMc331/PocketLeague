@@ -5,7 +5,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class OctaneGGPrizeTest {
-
     @Test
     fun mapFromValidPrize() {
         val octanePrize = OctaneGGPrize(

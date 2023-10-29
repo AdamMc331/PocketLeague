@@ -15,7 +15,6 @@ data class PlayerDisplayModel(
     val countryFlagEmojiUnicode: String,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
         val placeholder = PlayerDisplayModel(
             id = "",

@@ -14,7 +14,6 @@ data class TeamOverviewDisplayModel(
     val isPlaceholder: Boolean = false,
     val isFavorite: Boolean = false,
 ) {
-
     companion object {
         val placeholder = TeamOverviewDisplayModel(
             teamId = "",

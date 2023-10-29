@@ -38,7 +38,6 @@ data class EventSummaryDisplayModel(
     val winningTeam: TeamOverviewDisplayModel? = null,
     private val location: LocationDisplayModel? = null,
 ) {
-
     companion object {
         val placeholder = EventSummaryDisplayModel(
             eventId = Event.Id(""),

@@ -16,8 +16,9 @@ import com.adammcneilly.pocketleague.data.remote.RemoteParams
 class OctaneGGEventService(
     private val apiClient: BaseKTORClient,
 ) : RemoteEventService {
-
-    override suspend fun fetch(request: EventListRequest): Result<List<Event>> {
+    override suspend fun fetch(
+        request: EventListRequest,
+    ): Result<List<Event>> {
         return when (request) {
             is EventListRequest.Id -> {
                 apiClient.getResponse<OctaneGGEvent>(
@@ -64,7 +65,9 @@ class OctaneGGEventService(
     companion object {
         private const val EVENTS_ENDPOINT = "/events"
 
-        private fun eventByIdEndpoint(id: Event.Id): String {
+        private fun eventByIdEndpoint(
+            id: Event.Id,
+        ): String {
             return "$EVENTS_ENDPOINT/${id.id}"
         }
 

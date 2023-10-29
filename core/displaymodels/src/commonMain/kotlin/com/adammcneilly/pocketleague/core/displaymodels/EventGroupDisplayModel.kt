@@ -21,7 +21,6 @@ sealed class EventGroupDisplayModel {
     ) : EventGroupDisplayModel()
 
     companion object {
-
         val placeholder = mapFromEventList(
             List(PLACEHOLDER_LIST_COUNT) {
                 EventSummaryDisplayModel.placeholder

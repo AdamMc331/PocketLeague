@@ -44,7 +44,9 @@ internal fun RosterCardListItem(
 }
 
 @Composable
-private fun PlayerTag(player: PlayerDisplayModel) {
+private fun PlayerTag(
+    player: PlayerDisplayModel,
+) {
     Text(
         text = listOfNotNull(
             player.tag,
@@ -62,7 +64,9 @@ private fun PlayerTag(player: PlayerDisplayModel) {
 
 @Composable
 @Suppress("MagicNumber")
-private fun PlayerName(player: PlayerDisplayModel) {
+private fun PlayerName(
+    player: PlayerDisplayModel,
+) {
     Text(
         text = player.name,
         style = MaterialTheme.typography.labelSmall,
@@ -76,7 +80,9 @@ private fun PlayerName(player: PlayerDisplayModel) {
 }
 
 @Composable
-private fun FlagEmoji(player: PlayerDisplayModel) {
+private fun FlagEmoji(
+    player: PlayerDisplayModel,
+) {
     Box(
         modifier = Modifier
             .size(FLAG_EMOJI_SIZE)

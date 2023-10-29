@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.flowOf
  * are called.
  */
 class FakeTeamRepository : TeamRepository {
-
     var favoriteTeams: List<Team> = emptyList()
     var favoriteTeamsRequestCount: Int = 0
 
@@ -47,15 +46,22 @@ class FakeTeamRepository : TeamRepository {
         return flowOf(this.activeTeams)
     }
 
-    override suspend fun insertTeams(teams: List<Team>) {
+    override suspend fun insertTeams(
+        teams: List<Team>,
+    ) {
         this._insertedTeams.addAll(teams)
     }
 
-    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+    override suspend fun updateIsFavorite(
+        teamId: String,
+        isFavorite: Boolean,
+    ) {
         _updatedFavorites[teamId] = isFavorite
     }
 
-    override fun getTeamById(teamId: String): Flow<Team> {
+    override fun getTeamById(
+        teamId: String,
+    ): Flow<Team> {
         TODO("Not yet implemented")
     }
 }

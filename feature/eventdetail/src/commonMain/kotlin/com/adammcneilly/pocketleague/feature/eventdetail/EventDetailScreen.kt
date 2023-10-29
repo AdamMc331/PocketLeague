@@ -25,7 +25,6 @@ import org.koin.core.component.inject
 data class EventDetailScreen(
     val eventId: String,
 ) : Screen {
-
     /**
      * Representation of the UI state for the [EventDetailScreen].
      */
@@ -40,7 +39,6 @@ data class EventDetailScreen(
      * An enumeration of UI events that can happen on the [EventDetailScreen].
      */
     sealed interface Event : CircuitUiEvent {
-
         /**
          * Indicates that a stage with a given [stageIndex] was selected from the
          * event detail screen.
@@ -61,7 +59,10 @@ data class EventDetailScreen(
      * Factory to create the UI for the [EventDetailScreen].
      */
     object UiFactory : Ui.Factory {
-        override fun create(screen: Screen, context: CircuitContext): Ui<*>? {
+        override fun create(
+            screen: Screen,
+            context: CircuitContext,
+        ): Ui<*>? {
             return when (screen) {
                 is EventDetailScreen -> {
                     ui<State> { state, modifier ->
@@ -87,7 +88,11 @@ data class EventDetailScreen(
         private val matchRepository: MatchRepository by inject()
         private val timeProvider: TimeProvider by inject()
 
-        override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
+        override fun create(
+            screen: Screen,
+            navigator: Navigator,
+            context: CircuitContext,
+        ): Presenter<*>? {
             return when (screen) {
                 is EventDetailScreen -> {
                     EventDetailPresenter(

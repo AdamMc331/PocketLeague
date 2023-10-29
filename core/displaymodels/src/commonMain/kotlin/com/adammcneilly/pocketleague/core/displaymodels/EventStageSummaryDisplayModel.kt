@@ -18,7 +18,6 @@ data class EventStageSummaryDisplayModel(
     val liquipedia: String,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
         val placeholder = EventStageSummaryDisplayModel(
             stageId = EventStage.Id(""),

@@ -13,8 +13,9 @@ import kotlinx.coroutines.flow.Flow
 class SqlDelightPlayerService(
     private val database: PocketLeagueDB,
 ) : LocalPlayerService {
-
-    override fun getPlayersForTeam(teamId: String): Flow<List<Player>> {
+    override fun getPlayersForTeam(
+        teamId: String,
+    ): Flow<List<Player>> {
         return database
             .localPlayerQueries
             .selectByTeam(teamId)
@@ -24,7 +25,9 @@ class SqlDelightPlayerService(
             }
     }
 
-    override suspend fun insertPlayers(players: List<Player>) {
+    override suspend fun insertPlayers(
+        players: List<Player>,
+    ) {
         database.transaction {
             players.forEach { player ->
                 database

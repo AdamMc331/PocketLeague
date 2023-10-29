@@ -8,7 +8,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class OctaneGGEventTest {
-
     @Test
     fun mapFromValidEvent() {
         val octaneEvent = OctaneGGEvent(

@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
  * RLCS.
  */
 interface TeamRepository {
-
     /**
      * Return a list of [Team] entities that are favorited by the user.
      */
@@ -22,7 +21,9 @@ interface TeamRepository {
     /**
      * Persist the supplied [teams] in the data source.
      */
-    suspend fun insertTeams(teams: List<Team>)
+    suspend fun insertTeams(
+        teams: List<Team>,
+    )
 
     /**
      * Update the [teamId] to whether or not it [isFavorite] in our data source.

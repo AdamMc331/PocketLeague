@@ -34,7 +34,6 @@ class MatchDetailPresenter(
     private val timeProvider: TimeProvider,
     private val navigator: Navigator,
 ) : Presenter<MatchDetailScreen.State> {
-
     @Composable
     override fun present(): MatchDetailScreen.State {
         var match by remember {

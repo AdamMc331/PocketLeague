@@ -8,7 +8,6 @@ import com.squareup.sqldelight.db.SqlDriver
  * An implementation of [DatabaseDriverFactory] for the Android platform.
  */
 actual class DatabaseDriverFactory(private val context: Context) {
-
     /**
      * Create the [SqlDriver] using [AndroidSqliteDriver].
      */

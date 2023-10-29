@@ -14,7 +14,6 @@ class GetPastWeeksMatchesUseCase(
     private val timeProvider: TimeProvider,
     private val matchRepository: MatchRepository,
 ) {
-
     /**
      * @see [GetPastWeeksMatchesUseCase].
      */

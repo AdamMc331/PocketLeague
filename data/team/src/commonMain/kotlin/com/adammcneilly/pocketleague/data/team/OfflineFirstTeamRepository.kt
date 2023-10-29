@@ -12,7 +12,6 @@ class OfflineFirstTeamRepository(
     private val localDataSource: TeamRepository,
     private val remoteDataSource: TeamRepository,
 ) : TeamRepository {
-
     override fun getFavoriteTeams(): Flow<List<Team>> {
         return localDataSource
             .getFavoriteTeams()
@@ -30,7 +29,9 @@ class OfflineFirstTeamRepository(
             }
     }
 
-    override fun getTeamById(teamId: String): Flow<Team> {
+    override fun getTeamById(
+        teamId: String,
+    ): Flow<Team> {
         return localDataSource
             .getTeamById(teamId)
             .onStart {
@@ -42,11 +43,16 @@ class OfflineFirstTeamRepository(
             }
     }
 
-    override suspend fun insertTeams(teams: List<Team>) {
+    override suspend fun insertTeams(
+        teams: List<Team>,
+    ) {
         localDataSource.insertTeams(teams)
     }
 
-    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+    override suspend fun updateIsFavorite(
+        teamId: String,
+        isFavorite: Boolean,
+    ) {
         localDataSource.updateIsFavorite(teamId, isFavorite)
     }
 }

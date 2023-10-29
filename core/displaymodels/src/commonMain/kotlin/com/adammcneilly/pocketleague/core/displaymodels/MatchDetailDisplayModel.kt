@@ -25,7 +25,6 @@ data class MatchDetailDisplayModel(
     val isLive: Boolean = false,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
         val placeholder = MatchDetailDisplayModel(
             matchId = Match.Id(""),

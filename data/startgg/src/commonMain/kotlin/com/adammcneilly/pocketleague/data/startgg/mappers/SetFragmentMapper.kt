@@ -11,7 +11,9 @@ import com.adammcneilly.pocketleague.data.startgg.fragment.SetFragment
 /**
  * Convert a [SetFragment] GQL model into a [Match] entity from the pocket league domain.
  */
-fun SetFragment.toMatch(timeProvider: TimeProvider): Match {
+fun SetFragment.toMatch(
+    timeProvider: TimeProvider,
+): Match {
     val startDateUTC = (this.startAt as? Int)?.let { startAt ->
         timeProvider.fromEpochSeconds(startAt.toLong())
     }

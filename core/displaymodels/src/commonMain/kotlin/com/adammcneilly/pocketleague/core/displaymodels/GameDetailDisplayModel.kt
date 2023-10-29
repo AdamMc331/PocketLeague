@@ -14,7 +14,6 @@ data class GameDetailDisplayModel(
     val otLabel: String?,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
         val placeholder = GameDetailDisplayModel(
             orangeTeamResult = GameTeamResultDisplayModel.placeholder,

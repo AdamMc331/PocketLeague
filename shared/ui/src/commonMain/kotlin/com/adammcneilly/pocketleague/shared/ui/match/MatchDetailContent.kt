@@ -50,7 +50,9 @@ fun MatchDetailContent(
     }
 }
 
-private fun LazyListScope.statsSection(match: MatchDetailDisplayModel) {
+private fun LazyListScope.statsSection(
+    match: MatchDetailDisplayModel,
+) {
     val blueTeamCoreStats = match.blueTeamResult.coreStats
     val orangeTeamCoreStats = match.orangeTeamResult.coreStats
 

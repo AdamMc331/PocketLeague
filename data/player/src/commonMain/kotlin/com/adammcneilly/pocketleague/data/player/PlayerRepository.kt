@@ -8,9 +8,10 @@ import kotlinx.coroutines.flow.Flow
  * will combine multiple data sources if necessary.
  */
 interface PlayerRepository {
-
     /**
      * Observe a list of players for the given [teamId].
      */
-    fun getPlayersForTeam(teamId: String): Flow<List<Player>>
+    fun getPlayersForTeam(
+        teamId: String,
+    ): Flow<List<Player>>
 }

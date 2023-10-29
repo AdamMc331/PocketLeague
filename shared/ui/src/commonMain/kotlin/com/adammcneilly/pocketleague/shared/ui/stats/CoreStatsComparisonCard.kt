@@ -96,7 +96,9 @@ private enum class StatType(val displayName: String) {
     Saves("Saves"),
 }
 
-private fun CoreStatsDisplayModel.getStatsForType(statType: StatType): Int {
+private fun CoreStatsDisplayModel.getStatsForType(
+    statType: StatType,
+): Int {
     return when (statType) {
         StatType.Score -> this.score
         StatType.Goals -> this.goals

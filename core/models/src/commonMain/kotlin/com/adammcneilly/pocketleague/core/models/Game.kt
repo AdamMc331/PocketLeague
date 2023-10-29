@@ -11,7 +11,6 @@ data class Game(
     val number: Int = 0,
     val duration: Int = GAME_DEFAULT_DURATION_SECONDS,
 ) {
-
     companion object {
         /**
          * A standard game of Rocket League is 5 minutes, or 300 seconds.

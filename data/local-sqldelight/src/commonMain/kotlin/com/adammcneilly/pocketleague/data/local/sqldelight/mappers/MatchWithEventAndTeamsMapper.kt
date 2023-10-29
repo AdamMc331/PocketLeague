@@ -37,8 +37,8 @@ fun MatchWithEventAndTeams.toMatch(): Match {
     )
 }
 
-private fun MatchWithEventAndTeams.mapEvent() =
-    Event(
+private fun MatchWithEventAndTeams.mapEvent(): Event {
+    return Event(
         id = Event.Id(this.localEventId),
         name = this.localEventName,
         startDateUTC = this.localEventStartDateUTC,
@@ -56,15 +56,17 @@ private fun MatchWithEventAndTeams.mapEvent() =
         // Need to store prize
         prize = null,
     )
+}
 
-private fun MatchWithEventAndTeams.mapFormat() =
-    Format(
+private fun MatchWithEventAndTeams.mapFormat(): Format {
+    return Format(
         type = this.localMatchFormatType,
         length = this.localMatchFormatLength.toInt(),
     )
+}
 
-private fun MatchWithEventAndTeams.mapEventStage() =
-    EventStage(
+private fun MatchWithEventAndTeams.mapEventStage(): EventStage {
+    return EventStage(
         id = EventStage.Id(this.localEventStageId),
         name = this.localEventStageName,
         region = this.localEventStageRegion,
@@ -75,57 +77,62 @@ private fun MatchWithEventAndTeams.mapEventStage() =
         lan = this.localEventStageLan,
         location = null,
     )
+}
 
 private fun MatchWithEventAndTeams.mapBlueTeamResult(
     blueTeamGameWins: Int,
     blueTeamWinner: Boolean,
-) = MatchTeamResult(
-    score = blueTeamGameWins,
-    winner = blueTeamWinner,
-    team = Team(
-        id = this.blueTeamId,
-        name = this.blueTeamName,
-        lightThemeImageURL = this.blueTeamLightImageURL,
-        darkThemeImageURL = this.blueTeamDarkImageURL,
-        isFavorite = this.blueTeamIsFavorite,
-    ),
-    stats = Stats(
-        core = CoreStats(
-            shots = this.localMatchBlueTeamTotalShots.toInt(),
-            goals = this.localMatchBlueTeamTotalGoals.toInt(),
-            saves = this.localMatchBlueTeamTotalSaves.toInt(),
-            assists = this.localMatchBlueTeamTotalAssists.toInt(),
-            score = this.localMatchBlueTeamTotalScore.toInt(),
-            shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat(),
+): MatchTeamResult {
+    return MatchTeamResult(
+        score = blueTeamGameWins,
+        winner = blueTeamWinner,
+        team = Team(
+            id = this.blueTeamId,
+            name = this.blueTeamName,
+            lightThemeImageURL = this.blueTeamLightImageURL,
+            darkThemeImageURL = this.blueTeamDarkImageURL,
+            isFavorite = this.blueTeamIsFavorite,
         ),
-    ),
-    // We should store these
-    players = emptyList(),
-)
+        stats = Stats(
+            core = CoreStats(
+                shots = this.localMatchBlueTeamTotalShots.toInt(),
+                goals = this.localMatchBlueTeamTotalGoals.toInt(),
+                saves = this.localMatchBlueTeamTotalSaves.toInt(),
+                assists = this.localMatchBlueTeamTotalAssists.toInt(),
+                score = this.localMatchBlueTeamTotalScore.toInt(),
+                shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat(),
+            ),
+        ),
+        // We should store these
+        players = emptyList(),
+    )
+}
 
 private fun MatchWithEventAndTeams.mapOrangeTeamResult(
     orangeTeamGameWins: Int,
     orangeTeamWinner: Boolean,
-) = MatchTeamResult(
-    score = orangeTeamGameWins,
-    winner = orangeTeamWinner,
-    team = Team(
-        id = this.orangeTeamId,
-        name = this.orangeTeamName,
-        lightThemeImageURL = this.orangeTeamLightImageURL,
-        darkThemeImageURL = this.orangeTeamDarkImageURL,
-        isFavorite = this.orangeTeamIsFavorite,
-    ),
-    stats = Stats(
-        core = CoreStats(
-            shots = this.localMatchOrangeTeamTotalShots.toInt(),
-            goals = this.localMatchOrangeTeamTotalGoals.toInt(),
-            saves = this.localMatchOrangeTeamTotalSaves.toInt(),
-            assists = this.localMatchOrangeTeamTotalAssists.toInt(),
-            score = this.localMatchOrangeTeamTotalScore.toInt(),
-            shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat(),
+): MatchTeamResult {
+    return MatchTeamResult(
+        score = orangeTeamGameWins,
+        winner = orangeTeamWinner,
+        team = Team(
+            id = this.orangeTeamId,
+            name = this.orangeTeamName,
+            lightThemeImageURL = this.orangeTeamLightImageURL,
+            darkThemeImageURL = this.orangeTeamDarkImageURL,
+            isFavorite = this.orangeTeamIsFavorite,
         ),
-    ),
-    // We should store these
-    players = emptyList(),
-)
+        stats = Stats(
+            core = CoreStats(
+                shots = this.localMatchOrangeTeamTotalShots.toInt(),
+                goals = this.localMatchOrangeTeamTotalGoals.toInt(),
+                saves = this.localMatchOrangeTeamTotalSaves.toInt(),
+                assists = this.localMatchOrangeTeamTotalAssists.toInt(),
+                score = this.localMatchOrangeTeamTotalScore.toInt(),
+                shootingPercentage = this.localMatchOrangeTeamShootingPercentage.toFloat(),
+            ),
+        ),
+        // We should store these
+        players = emptyList(),
+    )
+}

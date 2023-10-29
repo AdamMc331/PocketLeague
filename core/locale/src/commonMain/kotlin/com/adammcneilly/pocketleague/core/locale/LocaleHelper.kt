@@ -6,7 +6,6 @@ import de.cketti.codepoints.CodePoints
  * Platform specific methods related to locales, such as country/device information.
  */
 interface LocaleHelper {
-
     /**
      * Given a [countryCode], convert it to a relevant display name. For example,
      * "us" should return "United States".

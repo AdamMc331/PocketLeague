@@ -13,7 +13,6 @@ expect fun dateTimeFormatter(): DateTimeFormatter
  * A shared class between platforms that is used to format a date into a user friendly string.
  */
 interface DateTimeFormatter {
-
     /**
      * Given an [instant], treat it as a [LocalDateTime] and convert it into
      * a user friendly string matching the supplied [formatPattern]. We'll format it using
@@ -30,9 +29,7 @@ interface DateTimeFormatter {
      * that represents the extra time spent in a game.
      */
     @Suppress("ImplicitDefaultLocale")
-    fun formatExtraTime(
-        extraSeconds: Int,
-    ): String {
+    fun formatExtraTime(extraSeconds: Int): String {
         val minutes = extraSeconds / SECONDS_PER_MINUTE
         val seconds = extraSeconds % SECONDS_PER_MINUTE
         val minutesStr = minutes.toString()

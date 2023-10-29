@@ -34,7 +34,6 @@ class FeedPresenter(
     private val timeProvider: TimeProvider,
     private val navigator: Navigator,
 ) : Presenter<FeedScreen.State> {
-
     @Composable
     override fun present(): FeedScreen.State {
         var matches by rememberSaveable {
@@ -91,13 +90,14 @@ class FeedPresenter(
         }
     }
 
-    private fun observePastWeeksMatches() = getPastWeeksMatchesUseCase
-        .invoke()
-        .map { matchList ->
-            matchList.map { match ->
-                match.toDetailDisplayModel(timeProvider)
+    private fun observePastWeeksMatches() =
+        getPastWeeksMatchesUseCase
+            .invoke()
+            .map { matchList ->
+                matchList.map { match ->
+                    match.toDetailDisplayModel(timeProvider)
+                }
             }
-        }
 
     private fun observeOngoingEvents(): Flow<List<EventGroupDisplayModel>> {
         val request = EventListRequest.OnDate(

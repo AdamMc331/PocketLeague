@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.Flow
 class SqlDelightPlayerService(
     private val database: PocketLeagueDB,
 ) : LocalPlayerService {
-
     override fun getPlayersForTeam(teamId: String): Flow<List<Player>> {
         return database
             .localPlayerQueries

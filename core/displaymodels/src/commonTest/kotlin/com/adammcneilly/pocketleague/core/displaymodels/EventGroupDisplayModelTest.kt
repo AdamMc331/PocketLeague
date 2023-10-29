@@ -6,7 +6,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class EventGroupDisplayModelTest {
-
     @Test
     fun mapFromListWithJustMajor() {
         val worlds = EventSummaryDisplayModel.worldChampionship()

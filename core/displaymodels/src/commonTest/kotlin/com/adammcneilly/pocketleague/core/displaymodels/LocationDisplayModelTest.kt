@@ -5,7 +5,6 @@ import com.varabyte.truthish.assertThat
 import kotlin.test.Test
 
 class LocationDisplayModelTest {
-
     @Test
     fun mapFromLocation() {
         val location = Location(

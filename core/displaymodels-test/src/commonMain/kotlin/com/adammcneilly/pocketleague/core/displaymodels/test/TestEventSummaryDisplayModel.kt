@@ -5,9 +5,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.LocationDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
 import com.adammcneilly.pocketleague.core.models.Event
 
-fun EventSummaryDisplayModel.Companion.springInvitationalForRegion(
-    region: String,
-): EventSummaryDisplayModel {
+fun EventSummaryDisplayModel.Companion.springInvitationalForRegion(region: String): EventSummaryDisplayModel {
     return EventSummaryDisplayModel(
         eventId = Event.Id("spring_invitational"),
         imageURL = ThemedImageURL(),

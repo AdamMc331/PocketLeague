@@ -9,7 +9,6 @@ expect fun currencyFormatter(): CurrencyFormatter
  * Formatting helpers for converting a number to its currency string.
  */
 interface CurrencyFormatter {
-
     /**
      * Consumes currency information and converts them to a string.
      *

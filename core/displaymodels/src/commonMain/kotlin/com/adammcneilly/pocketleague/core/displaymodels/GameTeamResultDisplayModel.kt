@@ -13,7 +13,6 @@ data class GameTeamResultDisplayModel(
     val players: List<GamePlayerResultDisplayModel>,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
         val placeholder = GameTeamResultDisplayModel(
             team = TeamOverviewDisplayModel.placeholder,

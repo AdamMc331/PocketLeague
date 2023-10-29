@@ -14,7 +14,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class EventSummaryListItemPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 

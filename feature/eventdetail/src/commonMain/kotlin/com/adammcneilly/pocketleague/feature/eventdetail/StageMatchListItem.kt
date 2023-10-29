@@ -57,9 +57,7 @@ internal fun StageMatchListItem(
 }
 
 @Composable
-private fun WinnerHighlightRow(
-    match: MatchDetailDisplayModel,
-) {
+private fun WinnerHighlightRow(match: MatchDetailDisplayModel) {
     Row {
         WinnerHighlight(
             teamResult = match.blueTeamResult,
@@ -93,9 +91,7 @@ private fun WinnerHighlight(
 }
 
 @Composable
-private fun TeamResultRow(
-    match: MatchDetailDisplayModel,
-) {
+private fun TeamResultRow(match: MatchDetailDisplayModel) {
     Row(
         modifier = Modifier
             .padding(8.dp),

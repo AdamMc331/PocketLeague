@@ -56,9 +56,7 @@ internal fun EventDetailContent(
 }
 
 @OptIn(ExperimentalFoundationApi::class)
-private fun LazyListScope.horizontalStageSection(
-    state: EventDetailScreen.State,
-) {
+private fun LazyListScope.horizontalStageSection(state: EventDetailScreen.State) {
     val stages = state.event.stageSummaries
 
     item {

@@ -26,7 +26,6 @@ data class EventStage(
     val lan: Boolean,
     val location: Location?,
 ) {
-
     /**
      * Type safety to ensure an Id string is being used for an [EventStage].
      */

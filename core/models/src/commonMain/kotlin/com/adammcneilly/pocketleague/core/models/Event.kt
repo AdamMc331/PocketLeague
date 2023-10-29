@@ -32,7 +32,6 @@ data class Event(
     val lan: Boolean,
     val prize: Prize?,
 ) {
-
     /**
      * This value class ensures we can have type safety anywhere we plan to use a
      * string identifier for an event.

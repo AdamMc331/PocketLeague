@@ -24,7 +24,6 @@ internal class TeamDetailPresenter(
     private val teamRepository: TeamRepository,
     private val playerRepository: PlayerRepository,
 ) : Presenter<TeamDetailScreen.State> {
-
     @Composable
     override fun present(): TeamDetailScreen.State {
         var team by remember {

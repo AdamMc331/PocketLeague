@@ -7,7 +7,6 @@ import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 * An implementation of [DatabaseDriverFactory] for the JVM platform.
 */
 actual class DatabaseDriverFactory {
-
     /**
      * Create the [SqlDriver] using [JdbcSqliteDriver].
      */

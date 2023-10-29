@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
  * Defines the data contract for a local data source of player information.
  */
 interface LocalPlayerService {
-
     /**
      * Observe a list of players for the given [teamId].
      */

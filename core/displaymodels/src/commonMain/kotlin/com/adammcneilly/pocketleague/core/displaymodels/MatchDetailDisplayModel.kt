@@ -25,7 +25,6 @@ data class MatchDetailDisplayModel(
     val isLive: Boolean = false,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
         val placeholder = MatchDetailDisplayModel(
             matchId = Match.Id(""),
@@ -46,9 +45,7 @@ data class MatchDetailDisplayModel(
 /**
  * Converts a [Match] to a [MatchDetailDisplayModel].
  */
-fun Match.toDetailDisplayModel(
-    timeProvider: TimeProvider,
-): MatchDetailDisplayModel {
+fun Match.toDetailDisplayModel(timeProvider: TimeProvider): MatchDetailDisplayModel {
     val dateTimeFormatter = dateTimeFormatter()
 
     return MatchDetailDisplayModel(

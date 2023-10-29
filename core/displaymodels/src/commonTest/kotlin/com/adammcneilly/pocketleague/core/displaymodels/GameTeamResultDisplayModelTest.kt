@@ -10,7 +10,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class GameTeamResultDisplayModelTest {
-
     @Test
     fun mapWithSortedPlayers() {
         val players = listOf(

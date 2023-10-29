@@ -9,7 +9,10 @@ import kotlinx.coroutines.flow.flowOf
 class FakeMatchRepository : MatchRepository {
     private val mockResponses: MutableMap<MatchListRequest, List<Match>> = mutableMapOf()
 
-    override fun stream(request: MatchListRequest, refreshCache: Boolean): Flow<List<Match>> {
+    override fun stream(
+        request: MatchListRequest,
+        refreshCache: Boolean,
+    ): Flow<List<Match>> {
         return flowOf(mockResponses[request]!!)
     }
 

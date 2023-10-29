@@ -8,23 +8,23 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class OctaneGGGameServiceTest {
-
     @Test
-    fun fetchGamesForMatch() = runTest {
-        val mockJson = readTestData("game_list.json")
+    fun fetchGamesForMatch() =
+        runTest {
+            val mockJson = readTestData("game_list.json")
 
-        val client = FakeKTORClient(
-            mockResponses = mapOf(
-                "/matches/123/games" to mockJson,
-            ),
-        )
+            val client = FakeKTORClient(
+                mockResponses = mapOf(
+                    "/matches/123/games" to mockJson,
+                ),
+            )
 
-        val output = OctaneGGGameService(
-            client,
-        )
-            .fetchGamesForMatch(MatchGamesRequest(Match.Id("123")))
-            .getOrThrow()
+            val output = OctaneGGGameService(
+                client,
+            )
+                .fetchGamesForMatch(MatchGamesRequest(Match.Id("123")))
+                .getOrThrow()
 
-        assertEquals(3, output.size)
-    }
+            assertEquals(3, output.size)
+        }
 }

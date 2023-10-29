@@ -37,41 +37,44 @@ fun MatchWithEventAndTeams.toMatch(): Match {
     )
 }
 
-private fun MatchWithEventAndTeams.mapEvent() = Event(
-    id = Event.Id(this.localEventId),
-    name = this.localEventName,
-    startDateUTC = this.localEventStartDateUTC,
-    endDateUTC = this.localEventEndDateUTC,
-    imageURL = this.localEventImageURL,
-    // ADAM NEEDS TO STORE THIS,
-    // Does this actually make sense? In this mapping scenario, all I need is the stage that the
-    // match is taking part of, I don't need all of the stages for the event.
-    // Maybe it's fine to say: emptyList() is okay in this scenario, because I don't care about all the stages.
-    stages = emptyList(),
-    tier = EventTier.valueOf(this.localEventTier),
-    mode = this.localEventMode,
-    region = EventRegion.valueOf(this.localEventRegion),
-    lan = this.localEventLan,
-    // Need to store prize
-    prize = null,
-)
+private fun MatchWithEventAndTeams.mapEvent() =
+    Event(
+        id = Event.Id(this.localEventId),
+        name = this.localEventName,
+        startDateUTC = this.localEventStartDateUTC,
+        endDateUTC = this.localEventEndDateUTC,
+        imageURL = this.localEventImageURL,
+        // ADAM NEEDS TO STORE THIS,
+        // Does this actually make sense? In this mapping scenario, all I need is the stage that the
+        // match is taking part of, I don't need all of the stages for the event.
+        // Maybe it's fine to say: emptyList() is okay in this scenario, because I don't care about all the stages.
+        stages = emptyList(),
+        tier = EventTier.valueOf(this.localEventTier),
+        mode = this.localEventMode,
+        region = EventRegion.valueOf(this.localEventRegion),
+        lan = this.localEventLan,
+        // Need to store prize
+        prize = null,
+    )
 
-private fun MatchWithEventAndTeams.mapFormat() = Format(
-    type = this.localMatchFormatType,
-    length = this.localMatchFormatLength.toInt(),
-)
+private fun MatchWithEventAndTeams.mapFormat() =
+    Format(
+        type = this.localMatchFormatType,
+        length = this.localMatchFormatLength.toInt(),
+    )
 
-private fun MatchWithEventAndTeams.mapEventStage() = EventStage(
-    id = EventStage.Id(this.localEventStageId),
-    name = this.localEventStageName,
-    region = this.localEventStageRegion,
-    startDateUTC = this.localEventStageStartDateUTC,
-    endDateUTC = this.localEventStageEndDateUTC,
-    liquipedia = this.localEventStageLiquipedia,
-    qualifier = this.localEventStageQualifier,
-    lan = this.localEventStageLan,
-    location = null,
-)
+private fun MatchWithEventAndTeams.mapEventStage() =
+    EventStage(
+        id = EventStage.Id(this.localEventStageId),
+        name = this.localEventStageName,
+        region = this.localEventStageRegion,
+        startDateUTC = this.localEventStageStartDateUTC,
+        endDateUTC = this.localEventStageEndDateUTC,
+        liquipedia = this.localEventStageLiquipedia,
+        qualifier = this.localEventStageQualifier,
+        lan = this.localEventStageLan,
+        location = null,
+    )
 
 private fun MatchWithEventAndTeams.mapBlueTeamResult(
     blueTeamGameWins: Int,

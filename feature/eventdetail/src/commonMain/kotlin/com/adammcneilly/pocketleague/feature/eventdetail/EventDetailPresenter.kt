@@ -45,7 +45,6 @@ class EventDetailPresenter(
     private val onMatchClicked: (Match.Id) -> Unit,
     private val timeProvider: TimeProvider,
 ) : Presenter<EventDetailScreen.State> {
-
     @Composable
     override fun present(): EventDetailScreen.State {
         var displayModel by remember {

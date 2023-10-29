@@ -20,9 +20,7 @@ import com.slack.circuit.foundation.NavigableCircuitContent
  * the pocket league app.
  */
 @Composable
-fun PocketLeagueApp(
-    modifier: Modifier = Modifier,
-) {
+fun PocketLeagueApp(modifier: Modifier = Modifier) {
     PocketLeagueTheme {
         // In the future, we may want to look at some DI framework to make it easy to pass
         // in all of these factories, or even consider the codegen that Circuit offers.

@@ -12,7 +12,6 @@ import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 class OctaneGGPlayerService(
     private val apiClient: BaseKTORClient,
 ) : RemotePlayerService {
-
     override suspend fun fetchPlayersForTeam(teamId: String): Result<List<Player>> {
         return apiClient.getResponse<OctaneGGPlayerListResponse>(
             endpoint = "/players",

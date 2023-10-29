@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class FakeLocalMatchService : LocalMatchService {
-
     private val insertedMatchLists: MutableList<List<Match>> = mutableListOf()
     private val mockResponses: MutableMap<MatchListRequest, List<Match>> = mutableMapOf()
 

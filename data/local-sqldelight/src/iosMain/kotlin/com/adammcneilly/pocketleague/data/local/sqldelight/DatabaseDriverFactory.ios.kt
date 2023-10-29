@@ -7,7 +7,6 @@ import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
  * An implementation of [DatabaseDriverFactory] for the iOS platform.
  */
 actual class DatabaseDriverFactory {
-
     /**
      * Create the [SqlDriver] using [NativeSqliteDriver].
      */

@@ -12,7 +12,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class GameListItemPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 

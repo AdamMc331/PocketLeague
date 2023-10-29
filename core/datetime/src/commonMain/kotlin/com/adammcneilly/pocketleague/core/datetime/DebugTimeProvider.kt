@@ -8,7 +8,6 @@ package com.adammcneilly.pocketleague.core.datetime
 class DebugTimeProvider(
     private val dateString: String = "2023-03-02T16:00:00Z",
 ) : TimeProvider {
-
     override fun now(): String {
         return dateString
     }

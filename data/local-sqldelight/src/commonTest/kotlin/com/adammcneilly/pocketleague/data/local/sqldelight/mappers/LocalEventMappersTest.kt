@@ -10,7 +10,6 @@ import com.varabyte.truthish.assertThat
 import kotlin.test.Test
 
 class LocalEventMappersTest {
-
     @Test
     fun convertFromLocalEventWithPrize() {
         val localEvent = LocalEvent(

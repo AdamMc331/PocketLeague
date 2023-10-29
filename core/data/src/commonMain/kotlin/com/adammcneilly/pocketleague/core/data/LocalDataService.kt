@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
  * from a local data source.
  */
 interface LocalDataService<Request, Data> {
-
     /**
      * Insert the supplied [data] to our local data source.
      */

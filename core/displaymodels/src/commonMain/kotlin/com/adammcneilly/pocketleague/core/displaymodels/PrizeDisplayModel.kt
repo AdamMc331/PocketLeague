@@ -13,7 +13,6 @@ data class PrizeDisplayModel(
     val prizeAmount: String,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
         val placeholder = PrizeDisplayModel(
             prizeAmount = "",

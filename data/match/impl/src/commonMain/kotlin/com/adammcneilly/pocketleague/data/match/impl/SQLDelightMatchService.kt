@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.Flow
 class SQLDelightMatchService(
     private val database: PocketLeagueDB,
 ) : LocalMatchService {
-
     override suspend fun insert(data: List<Match>) {
         database.transaction {
             data.forEach { match ->

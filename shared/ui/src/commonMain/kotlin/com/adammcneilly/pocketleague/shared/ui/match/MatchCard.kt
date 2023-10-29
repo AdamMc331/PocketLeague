@@ -97,9 +97,7 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
  * this StackOverflow answer. https://stackoverflow.com/a/67611627/3131147
  */
 @Composable
-private fun MatchTeamResultRow(
-    teamResult: MatchTeamResultDisplayModel,
-) {
+private fun MatchTeamResultRow(teamResult: MatchTeamResultDisplayModel) {
     val fontWeight: FontWeight? = if (teamResult.winner) {
         FontWeight.Bold
     } else {

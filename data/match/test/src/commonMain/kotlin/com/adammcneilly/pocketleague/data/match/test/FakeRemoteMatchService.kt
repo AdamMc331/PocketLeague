@@ -7,7 +7,9 @@ import com.adammcneilly.pocketleague.data.match.api.RemoteMatchService
 class FakeRemoteMatchService : RemoteMatchService {
     private val mockResponses: MutableMap<MatchListRequest, Result<List<Match>>> = mutableMapOf()
 
-    override suspend fun fetch(request: MatchListRequest): Result<List<Match>> {
+    override suspend fun fetch(
+        request: MatchListRequest,
+    ): Result<List<Match>> {
         return mockResponses[request]!!
     }
 

@@ -31,7 +31,9 @@ sealed class EventGroupDisplayModel {
          * Given a collection of [events], convert them to a list of [EventGroupDisplayModel]
          * entities based on the event type.
          */
-        fun mapFromEventList(events: List<EventSummaryDisplayModel>): List<EventGroupDisplayModel> {
+        fun mapFromEventList(
+            events: List<EventSummaryDisplayModel>,
+        ): List<EventGroupDisplayModel> {
             /**
              * An accumulation of event groups so we can perform a single iteration over
              * the supplied events using the fold function.

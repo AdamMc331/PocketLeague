@@ -36,7 +36,9 @@ interface PlaceholderHighlight {
      *
      * @param progress the current animated progress in the range of 0f..1f.
      */
-    fun alpha(progress: Float): Float
+    fun alpha(
+        progress: Float,
+    ): Float
 
     companion object
 }
@@ -90,7 +92,9 @@ private data class Fade(
         size: Size,
     ): Brush = brush
 
-    override fun alpha(progress: Float): Float = progress
+    override fun alpha(
+        progress: Float,
+    ): Float = progress
 }
 
 private data class Shimmer(
@@ -112,7 +116,9 @@ private data class Shimmer(
             radius = (max(size.width, size.height) * progress * 2).coerceAtLeast(0.01f),
         )
 
-    override fun alpha(progress: Float): Float =
+    override fun alpha(
+        progress: Float,
+    ): Float =
         when {
             // From 0f...ProgressForOpaqueAlpha we animate from 0..1
             progress <= progressForMaxAlpha -> {

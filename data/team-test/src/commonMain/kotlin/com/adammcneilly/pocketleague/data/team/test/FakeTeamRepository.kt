@@ -27,7 +27,9 @@ class FakeTeamRepository : TeamRepository {
         require(_updatedFavorites[teamId] == expectedIsFavorite)
     }
 
-    fun verifyFavoriteStatusNotUpdated(teamId: String) {
+    fun verifyFavoriteStatusNotUpdated(
+        teamId: String,
+    ) {
         require(_updatedFavorites[teamId] == null)
     }
 
@@ -44,7 +46,9 @@ class FakeTeamRepository : TeamRepository {
         return flowOf(this.activeTeams)
     }
 
-    override suspend fun insertTeams(teams: List<Team>) {
+    override suspend fun insertTeams(
+        teams: List<Team>,
+    ) {
         this._insertedTeams.addAll(teams)
     }
 
@@ -55,7 +59,9 @@ class FakeTeamRepository : TeamRepository {
         _updatedFavorites[teamId] = isFavorite
     }
 
-    override fun getTeamById(teamId: String): Flow<Team> {
+    override fun getTeamById(
+        teamId: String,
+    ): Flow<Team> {
         TODO("Not yet implemented")
     }
 }

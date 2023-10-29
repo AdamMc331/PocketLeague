@@ -12,7 +12,9 @@ class OfflineFirstPlayerRepository(
     private val localDataSource: LocalPlayerService,
     private val remoteDataSource: RemotePlayerService,
 ) : PlayerRepository {
-    override fun getPlayersForTeam(teamId: String): Flow<List<Player>> {
+    override fun getPlayersForTeam(
+        teamId: String,
+    ): Flow<List<Player>> {
         return localDataSource
             .getPlayersForTeam(teamId)
             .onStart {

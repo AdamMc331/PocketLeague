@@ -11,7 +11,9 @@ import androidx.compose.ui.unit.Dp
  * for a fixed [width].
  */
 @Composable
-fun HorizontalSpacer(width: Dp) {
+fun HorizontalSpacer(
+    width: Dp,
+) {
     Spacer(
         modifier = Modifier
             .width(width),

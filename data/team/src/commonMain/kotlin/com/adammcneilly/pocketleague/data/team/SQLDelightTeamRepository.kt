@@ -30,14 +30,18 @@ class SQLDelightTeamRepository(
             .asFlowList(LocalTeam::toTeam)
     }
 
-    override fun getTeamById(teamId: String): Flow<Team> {
+    override fun getTeamById(
+        teamId: String,
+    ): Flow<Team> {
         return database
             .localTeamQueries
             .selectById(teamId)
             .asFlowSingle(LocalTeam::toTeam)
     }
 
-    override suspend fun insertTeams(teams: List<Team>) {
+    override suspend fun insertTeams(
+        teams: List<Team>,
+    ) {
         teams.forEach { team ->
             database
                 .localTeamQueries

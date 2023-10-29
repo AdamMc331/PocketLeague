@@ -21,7 +21,9 @@ class OctaneGGTeamRepository(
         throw UnsupportedOperationException("Fetching favorite teams is not supported by the octane.gg API.")
     }
 
-    override fun getTeamById(teamId: String): Flow<Team> {
+    override fun getTeamById(
+        teamId: String,
+    ): Flow<Team> {
         return flow {
             val apiResponse = apiClient.getResponse<OctaneGGTeamOverview>(
                 endpoint = "$TEAMS_ENDPOINT/$teamId",
@@ -64,7 +66,9 @@ class OctaneGGTeamRepository(
         }
     }
 
-    override suspend fun insertTeams(teams: List<Team>) {
+    override suspend fun insertTeams(
+        teams: List<Team>,
+    ) {
         throw UnsupportedOperationException("Inserting teams is not supported by the octane.gg API.")
     }
 

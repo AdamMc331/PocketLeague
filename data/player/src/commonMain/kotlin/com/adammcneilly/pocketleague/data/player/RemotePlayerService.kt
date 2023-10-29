@@ -10,5 +10,7 @@ interface RemotePlayerService {
      * Make a single request for a list of players for the given [teamId]. Surface any errors requesting that data
      * if they occur.
      */
-    suspend fun fetchPlayersForTeam(teamId: String): Result<List<Player>>
+    suspend fun fetchPlayersForTeam(
+        teamId: String,
+    ): Result<List<Player>>
 }

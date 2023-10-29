@@ -14,7 +14,9 @@ import androidx.compose.ui.layout.onGloballyPositioned
  * composable has been rendered on the screen, and once it has
  * it will execute the given [callback].
  */
-fun Modifier.whenInView(callback: () -> Unit): Modifier =
+fun Modifier.whenInView(
+    callback: () -> Unit,
+): Modifier =
     composed {
         var hasBeenShown by remember { mutableStateOf(false) }
 

@@ -10,13 +10,17 @@ interface LocaleHelper {
      * Given a [countryCode], convert it to a relevant display name. For example,
      * "us" should return "United States".
      */
-    fun getCountryDisplayName(countryCode: String): String
+    fun getCountryDisplayName(
+        countryCode: String,
+    ): String
 
     /**
      * Given a [countryCode], convert that information to the unicode value
      * of that country's flag emoji.
      */
-    fun getFlagEmoji(countryCode: String): String {
+    fun getFlagEmoji(
+        countryCode: String,
+    ): String {
         if (countryCode.length != 2) {
             throw IllegalArgumentException("Country code \"$countryCode\" invalid, expected two characters.")
         }

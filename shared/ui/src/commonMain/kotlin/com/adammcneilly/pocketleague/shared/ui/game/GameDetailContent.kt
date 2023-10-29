@@ -63,7 +63,9 @@ fun GameDetailContent(
 }
 
 @Composable
-private fun GameNumberHeader(displayModel: GameDetailDisplayModel) {
+private fun GameNumberHeader(
+    displayModel: GameDetailDisplayModel,
+) {
     Text(
         text = "Game ${displayModel.gameNumber}",
         modifier = Modifier

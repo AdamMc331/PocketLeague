@@ -17,14 +17,18 @@ interface TimeProvider {
     /**
      * Return a string representation of [now] minus [numDays].
      */
-    fun daysAgo(numDays: Int): String {
+    fun daysAgo(
+        numDays: Int,
+    ): String {
         return now().toInstant().minus(numDays.days).toString()
     }
 
     /**
      * Given [epochSeconds], convert it to an ISO format string.
      */
-    fun fromEpochSeconds(epochSeconds: Long): String {
+    fun fromEpochSeconds(
+        epochSeconds: Long,
+    ): String {
         return Instant.fromEpochSeconds(epochSeconds).toString()
     }
 }

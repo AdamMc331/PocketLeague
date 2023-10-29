@@ -11,7 +11,9 @@ import androidx.compose.ui.unit.Dp
  * for a fixed [height].
  */
 @Composable
-fun VerticalSpacer(height: Dp) {
+fun VerticalSpacer(
+    height: Dp,
+) {
     Spacer(
         modifier = Modifier
             .height(height),

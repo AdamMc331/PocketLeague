@@ -9,5 +9,7 @@ interface GameService {
     /**
      * Requests a list of [Game] entities for the given [request].
      */
-    suspend fun fetchGamesForMatch(request: MatchGamesRequest): Result<List<Game>>
+    suspend fun fetchGamesForMatch(
+        request: MatchGamesRequest,
+    ): Result<List<Game>>
 }

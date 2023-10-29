@@ -69,7 +69,9 @@ fun MatchCard(
 }
 
 @Composable
-private fun EventName(match: MatchDetailDisplayModel) {
+private fun EventName(
+    match: MatchDetailDisplayModel,
+) {
     Text(
         text = match.eventName,
         fontWeight = FontWeight.Bold,
@@ -85,7 +87,9 @@ private fun EventName(match: MatchDetailDisplayModel) {
 }
 
 @Composable
-private fun RelativeTime(match: MatchDetailDisplayModel) {
+private fun RelativeTime(
+    match: MatchDetailDisplayModel,
+) {
     Text(
         text = match.relativeDateTime,
         style = MaterialTheme.typography.labelSmall,
@@ -97,7 +101,9 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
  * this StackOverflow answer. https://stackoverflow.com/a/67611627/3131147
  */
 @Composable
-private fun MatchTeamResultRow(teamResult: MatchTeamResultDisplayModel) {
+private fun MatchTeamResultRow(
+    teamResult: MatchTeamResultDisplayModel,
+) {
     val fontWeight: FontWeight? = if (teamResult.winner) {
         FontWeight.Bold
     } else {
@@ -126,14 +132,18 @@ private fun MatchTeamResultRow(teamResult: MatchTeamResultDisplayModel) {
 }
 
 @Composable
-private fun OrangeTeamResult(match: MatchDetailDisplayModel) {
+private fun OrangeTeamResult(
+    match: MatchDetailDisplayModel,
+) {
     MatchTeamResultRow(
         teamResult = match.orangeTeamResult,
     )
 }
 
 @Composable
-private fun BlueTeamResult(match: MatchDetailDisplayModel) {
+private fun BlueTeamResult(
+    match: MatchDetailDisplayModel,
+) {
     MatchTeamResultRow(
         teamResult = match.blueTeamResult,
     )

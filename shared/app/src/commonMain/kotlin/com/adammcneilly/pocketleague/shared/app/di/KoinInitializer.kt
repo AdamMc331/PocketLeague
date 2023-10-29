@@ -16,7 +16,9 @@ private fun allModules(): List<Module> {
 /**
  * Initialize all of our Koin DI modules.
  */
-fun initKoin(appModule: Module) {
+fun initKoin(
+    appModule: Module,
+) {
     startKoin {
         modules(appModule)
         modules(allModules())

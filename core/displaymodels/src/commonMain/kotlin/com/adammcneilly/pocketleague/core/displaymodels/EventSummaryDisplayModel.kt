@@ -68,7 +68,9 @@ fun Event.toSummaryDisplayModel(): EventSummaryDisplayModel {
 /**
  * Converts an [Event] entity to the user friendly [EventSummaryDisplayModel].
  */
-fun Event.toSummaryDisplayModel(dateTimeFormatter: DateTimeFormatter): EventSummaryDisplayModel {
+fun Event.toSummaryDisplayModel(
+    dateTimeFormatter: DateTimeFormatter,
+): EventSummaryDisplayModel {
     // It's unlikely that an event had more than one location, but we'll default to the
     // last one because it's most likely the main stage if so.
     val location = this.stages

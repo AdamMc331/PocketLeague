@@ -21,7 +21,9 @@ interface TeamRepository {
     /**
      * Persist the supplied [teams] in the data source.
      */
-    suspend fun insertTeams(teams: List<Team>)
+    suspend fun insertTeams(
+        teams: List<Team>,
+    )
 
     /**
      * Update the [teamId] to whether or not it [isFavorite] in our data source.
@@ -34,5 +36,7 @@ interface TeamRepository {
     /**
      * Requests a [Team] entity with the given [teamId].
      */
-    fun getTeamById(teamId: String): Flow<Team>
+    fun getTeamById(
+        teamId: String,
+    ): Flow<Team>
 }

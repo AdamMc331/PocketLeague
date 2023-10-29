@@ -45,7 +45,9 @@ data class MatchDetailDisplayModel(
 /**
  * Converts a [Match] to a [MatchDetailDisplayModel].
  */
-fun Match.toDetailDisplayModel(timeProvider: TimeProvider): MatchDetailDisplayModel {
+fun Match.toDetailDisplayModel(
+    timeProvider: TimeProvider,
+): MatchDetailDisplayModel {
     val dateTimeFormatter = dateTimeFormatter()
 
     return MatchDetailDisplayModel(

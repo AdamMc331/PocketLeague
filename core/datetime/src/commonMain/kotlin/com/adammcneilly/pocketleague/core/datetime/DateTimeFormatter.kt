@@ -29,7 +29,9 @@ interface DateTimeFormatter {
      * that represents the extra time spent in a game.
      */
     @Suppress("ImplicitDefaultLocale")
-    fun formatExtraTime(extraSeconds: Int): String {
+    fun formatExtraTime(
+        extraSeconds: Int,
+    ): String {
         val minutes = extraSeconds / SECONDS_PER_MINUTE
         val seconds = extraSeconds % SECONDS_PER_MINUTE
         val minutesStr = minutes.toString()

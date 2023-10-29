@@ -30,7 +30,9 @@ data class PlayerDisplayModel(
 /**
  * Converts a [Player] to its corresponding [PlayerDisplayModel]
  */
-fun Player.toDisplayModel(localeHelper: LocaleHelper = provideLocaleHelper()): PlayerDisplayModel {
+fun Player.toDisplayModel(
+    localeHelper: LocaleHelper = provideLocaleHelper(),
+): PlayerDisplayModel {
     // Maybe roles can be an enum instead of strings?
     val role = when {
         this.isCoach -> "(C)"

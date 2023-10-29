@@ -9,7 +9,9 @@ import com.adammcneilly.pocketleague.data.startgg.fragment.TournamentFragment
 /**
  * Converts a [TournamentFragment] GQL model into an [Event] within the Pocket League domain.
  */
-fun TournamentFragment.toEvent(timeProvider: TimeProvider): Event {
+fun TournamentFragment.toEvent(
+    timeProvider: TimeProvider,
+): Event {
     val startUtc = (this.startAt as? Int)?.let { startAt ->
         timeProvider.fromEpochSeconds(startAt.toLong())
     }

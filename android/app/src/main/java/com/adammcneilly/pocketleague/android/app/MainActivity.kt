@@ -16,7 +16,9 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
  * The main entry point into the application from the Android side.
  */
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(
+        savedInstanceState: Bundle?,
+    ) {
         super.onCreate(savedInstanceState)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)

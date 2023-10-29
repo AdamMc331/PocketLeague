@@ -82,7 +82,9 @@ fun LanEventSummaryCard(
 }
 
 @Composable
-private fun EventWinner(winningTeam: TeamOverviewDisplayModel) {
+private fun EventWinner(
+    winningTeam: TeamOverviewDisplayModel,
+) {
     InlineIconText(
         text = winningTeam.name,
         icon = Icons.Default.EmojiEvents,
@@ -95,7 +97,9 @@ private fun EventWinner(winningTeam: TeamOverviewDisplayModel) {
 }
 
 @Composable
-private fun EventLocation(location: String) {
+private fun EventLocation(
+    location: String,
+) {
     Text(
         text = location,
         style = MaterialTheme.typography.labelMedium,
@@ -106,7 +110,9 @@ private fun EventLocation(location: String) {
 }
 
 @Composable
-private fun EventDates(dateRange: String) {
+private fun EventDates(
+    dateRange: String,
+) {
     Text(
         text = dateRange,
         style = MaterialTheme.typography.labelMedium,
@@ -117,7 +123,9 @@ private fun EventDates(dateRange: String) {
 }
 
 @Composable
-private fun EventName(name: String) {
+private fun EventName(
+    name: String,
+) {
     Text(
         text = name,
         style = MaterialTheme.typography.titleLarge,

@@ -16,7 +16,9 @@ import com.adammcneilly.pocketleague.data.remote.RemoteParams
 class OctaneGGMatchService(
     private val apiClient: BaseKTORClient,
 ) : RemoteMatchService {
-    override suspend fun fetch(request: MatchListRequest): Result<List<Match>> {
+    override suspend fun fetch(
+        request: MatchListRequest,
+    ): Result<List<Match>> {
         return when (request) {
             is MatchListRequest.Id -> {
                 apiClient.getResponse<OctaneGGMatch>(
@@ -37,7 +39,9 @@ class OctaneGGMatchService(
         }
     }
 
-    private fun getParamsForRequest(request: MatchListRequest): RemoteParams {
+    private fun getParamsForRequest(
+        request: MatchListRequest,
+    ): RemoteParams {
         val initialParams = when (request) {
             is MatchListRequest.DateRange -> {
                 mapOf(
@@ -66,7 +70,9 @@ class OctaneGGMatchService(
     companion object {
         private const val MATCHES_ENDPOINT = "/matches"
 
-        private fun matchByIdEndpoint(id: Match.Id): String {
+        private fun matchByIdEndpoint(
+            id: Match.Id,
+        ): String {
             return "$MATCHES_ENDPOINT/${id.id}"
         }
 

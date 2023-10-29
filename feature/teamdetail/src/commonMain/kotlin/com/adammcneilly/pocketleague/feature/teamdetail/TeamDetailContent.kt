@@ -37,7 +37,9 @@ internal fun TeamDetailContent(
     }
 }
 
-private fun LazyListScope.rosterCardSection(state: TeamDetailScreen.State) {
+private fun LazyListScope.rosterCardSection(
+    state: TeamDetailScreen.State,
+) {
     item {
         // Unify the headers across each screen
         Text(

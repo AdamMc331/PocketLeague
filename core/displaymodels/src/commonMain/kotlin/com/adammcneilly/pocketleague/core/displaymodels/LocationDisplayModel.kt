@@ -22,7 +22,9 @@ fun Location.toDisplayModel(): LocationDisplayModel {
 /**
  * Converts a [Location] to a more user friendly [LocationDisplayModel].
  */
-fun Location.toDisplayModel(localeHelper: LocaleHelper): LocationDisplayModel {
+fun Location.toDisplayModel(
+    localeHelper: LocaleHelper,
+): LocationDisplayModel {
     val countryName = localeHelper.getCountryDisplayName(this.countryCode)
 
     return LocationDisplayModel(

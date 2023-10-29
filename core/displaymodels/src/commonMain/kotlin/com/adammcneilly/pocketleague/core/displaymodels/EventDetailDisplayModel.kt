@@ -28,24 +28,26 @@ data class EventDetailDisplayModel(
     val isPlaceholder: Boolean = false,
 ) {
     companion object {
-        val placeholder = EventDetailDisplayModel(
-            eventId = Event.Id(""),
-            name = "",
-            startDate = "",
-            endDate = "",
-            lightThemeImageUrl = null,
-            tier = EventTier.Unknown.toDisplayModel(),
-            mode = "",
-            region = EventRegion.Unknown.toDisplayModel(),
-            onlineOrLAN = "",
-            prize = null,
-            stageSummaries = listOf(
-                EventStageSummaryDisplayModel.placeholder,
-                EventStageSummaryDisplayModel.placeholder,
-                EventStageSummaryDisplayModel.placeholder,
-            ),
-            isPlaceholder = true,
-        )
+        val placeholder =
+            EventDetailDisplayModel(
+                eventId = Event.Id(""),
+                name = "",
+                startDate = "",
+                endDate = "",
+                lightThemeImageUrl = null,
+                tier = EventTier.Unknown.toDisplayModel(),
+                mode = "",
+                region = EventRegion.Unknown.toDisplayModel(),
+                onlineOrLAN = "",
+                prize = null,
+                stageSummaries =
+                    listOf(
+                        EventStageSummaryDisplayModel.placeholder,
+                        EventStageSummaryDisplayModel.placeholder,
+                        EventStageSummaryDisplayModel.placeholder,
+                    ),
+                isPlaceholder = true,
+            )
     }
 }
 
@@ -56,39 +58,44 @@ fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
     val dateTimeFormatter = dateTimeFormatter()
 
     return EventDetailDisplayModel(
-        startDate = this.startDateUTC?.let { startDate ->
-            dateTimeFormatter.formatUTCString(
-                utcString = startDate,
-                formatPattern = EVENT_DATE_FORMAT,
-                timeZone = TimeZone.SYSTEM_DEFAULT,
-            )
-        }.orEmpty(),
-        endDate = this.endDateUTC?.let { endDate ->
-            dateTimeFormatter.formatUTCString(
-                utcString = endDate,
-                formatPattern = EVENT_DATE_FORMAT,
-                timeZone = TimeZone.SYSTEM_DEFAULT,
-            )
-        }.orEmpty(),
+        startDate =
+            this.startDateUTC?.let { startDate ->
+                dateTimeFormatter.formatUTCString(
+                    utcString = startDate,
+                    formatPattern = EVENT_DATE_FORMAT,
+                    timeZone = TimeZone.SYSTEM_DEFAULT,
+                )
+            }.orEmpty(),
+        endDate =
+            this.endDateUTC?.let { endDate ->
+                dateTimeFormatter.formatUTCString(
+                    utcString = endDate,
+                    formatPattern = EVENT_DATE_FORMAT,
+                    timeZone = TimeZone.SYSTEM_DEFAULT,
+                )
+            }.orEmpty(),
         name = this.name,
         eventId = this.id,
-        stageSummaries = this.stages.sortedBy {
-            it.startDateUTC
-        }.map(EventStage::toSummaryDisplayModel),
+        stageSummaries =
+            this.stages.sortedBy {
+                it.startDateUTC
+            }.map(EventStage::toSummaryDisplayModel),
         lightThemeImageUrl = this.imageURL,
         tier = this.tier.toDisplayModel(),
         region = this.region.toDisplayModel(),
-        mode = when (this.mode) {
-            "1" -> "1v1"
-            "2" -> "2v2"
-            "3" -> "3v3"
-            else -> this.mode
-        },
-        onlineOrLAN = if (this.lan) {
-            "LAN"
-        } else {
-            "ONLINE"
-        },
+        mode =
+            when (this.mode) {
+                "1" -> "1v1"
+                "2" -> "2v2"
+                "3" -> "3v3"
+                else -> this.mode
+            },
+        onlineOrLAN =
+            if (this.lan) {
+                "LAN"
+            } else {
+                "ONLINE"
+            },
         prize = this.prize?.toDisplayModel(),
     )
 }

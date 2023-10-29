@@ -42,7 +42,6 @@ data class MatchDetailScreen(
      * Any events that can be triggered by the [MatchDetailScreen].
      */
     sealed interface Event : CircuitUiEvent {
-
         /**
          * Triggered when a user clicks on a specific game from the list.
          */
@@ -67,7 +66,10 @@ data class MatchDetailScreen(
      * Factory to create the compose UI for the [MatchDetailScreen].
      */
     object UiFactory : Ui.Factory {
-        override fun create(screen: Screen, context: CircuitContext): Ui<*>? {
+        override fun create(
+            screen: Screen,
+            context: CircuitContext,
+        ): Ui<*>? {
             return when (screen) {
                 is MatchDetailScreen -> {
                     ui<State> { state, modifier ->
@@ -102,15 +104,20 @@ data class MatchDetailScreen(
         private val matchRepository: MatchRepository by inject()
         private val timeProvider: TimeProvider by inject()
 
-        override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
+        override fun create(
+            screen: Screen,
+            navigator: Navigator,
+            context: CircuitContext,
+        ): Presenter<*>? {
             return when (screen) {
-                is MatchDetailScreen -> MatchDetailPresenter(
-                    matchId = Match.Id(screen.matchId),
-                    gameService = gameService,
-                    matchRepository = matchRepository,
-                    timeProvider = timeProvider,
-                    navigator = navigator,
-                )
+                is MatchDetailScreen ->
+                    MatchDetailPresenter(
+                        matchId = Match.Id(screen.matchId),
+                        gameService = gameService,
+                        matchRepository = matchRepository,
+                        timeProvider = timeProvider,
+                        navigator = navigator,
+                    )
 
                 else -> null
             }

@@ -6,7 +6,6 @@ import com.adammcneilly.pocketleague.core.models.Game
  * Defines the data contract for all requests within the game space.
  */
 interface GameService {
-
     /**
      * Requests a list of [Game] entities for the given [request].
      */

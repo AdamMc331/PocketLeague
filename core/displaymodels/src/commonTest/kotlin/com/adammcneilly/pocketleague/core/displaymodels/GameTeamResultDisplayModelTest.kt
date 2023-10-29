@@ -10,50 +10,60 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class GameTeamResultDisplayModelTest {
-
     @Test
     fun mapWithSortedPlayers() {
-        val players = listOf(
-            GamePlayerResult(
-                player = Player(
-                    tag = "AdamMc331",
-                    countryCode = "US",
+        val players =
+            listOf(
+                GamePlayerResult(
+                    player =
+                        Player(
+                            tag = "AdamMc331",
+                            countryCode = "US",
+                        ),
+                    stats =
+                        Stats(
+                            core =
+                                CoreStats(
+                                    score = 123,
+                                ),
+                        ),
                 ),
-                stats = Stats(
-                    core = CoreStats(
-                        score = 123,
-                    ),
+                GamePlayerResult(
+                    player =
+                        Player(
+                            tag = "PleasantlyPlump",
+                            countryCode = "CA",
+                        ),
+                    stats =
+                        Stats(
+                            core =
+                                CoreStats(
+                                    score = 1234,
+                                ),
+                        ),
                 ),
-            ),
-            GamePlayerResult(
-                player = Player(
-                    tag = "PleasantlyPlump",
-                    countryCode = "CA",
+                GamePlayerResult(
+                    player =
+                        Player(
+                            tag = "mTeo",
+                            countryCode = "US",
+                        ),
+                    stats =
+                        Stats(
+                            core =
+                                CoreStats(
+                                    score = 500,
+                                ),
+                        ),
                 ),
-                stats = Stats(
-                    core = CoreStats(
-                        score = 1234,
-                    ),
-                ),
-            ),
-            GamePlayerResult(
-                player = Player(
-                    tag = "mTeo",
-                    countryCode = "US",
-                ),
-                stats = Stats(
-                    core = CoreStats(
-                        score = 500,
-                    ),
-                ),
-            ),
-        )
+            )
 
-        val gameTeamResult = GameTeamResult(
-            players = players,
-            goals = 4,
-            winner = true,
-        )
+        val gameTeamResult =
+            GameTeamResult(
+                players = players,
+                goals = 4,
+                winner = true,
+            )
 
         val mappedModel = gameTeamResult.toDisplayModel()
 

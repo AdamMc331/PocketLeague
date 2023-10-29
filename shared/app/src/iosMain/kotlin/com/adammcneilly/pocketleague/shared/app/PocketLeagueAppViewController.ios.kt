@@ -7,6 +7,7 @@ import androidx.compose.ui.window.ComposeUIViewController
  * to render composable content. This is just an entry point
  * into our [PocketLeagueApp].
  */
-fun pocketLeagueAppViewController() = ComposeUIViewController {
-    PocketLeagueApp()
-}
+fun pocketLeagueAppViewController() =
+    ComposeUIViewController {
+        PocketLeagueApp()
+    }

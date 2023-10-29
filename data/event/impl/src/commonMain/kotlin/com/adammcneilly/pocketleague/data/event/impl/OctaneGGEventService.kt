@@ -16,7 +16,6 @@ import com.adammcneilly.pocketleague.data.remote.RemoteParams
 class OctaneGGEventService(
     private val apiClient: BaseKTORClient,
 ) : RemoteEventService {
-
     override suspend fun fetch(request: EventListRequest): Result<List<Event>> {
         return when (request) {
             is EventListRequest.Id -> {
@@ -37,28 +36,28 @@ class OctaneGGEventService(
         }
     }
 
-    private fun getParamsForRequest(
-        request: EventListRequest,
-    ): RemoteParams {
-        val initialParams = when (request) {
-            is EventListRequest.AfterDate -> {
-                mapOf(
-                    AFTER_KEY to request.dateUtc,
-                )
+    private fun getParamsForRequest(request: EventListRequest): RemoteParams {
+        val initialParams =
+            when (request) {
+                is EventListRequest.AfterDate -> {
+                    mapOf(
+                        AFTER_KEY to request.dateUtc,
+                    )
+                }
+                is EventListRequest.OnDate -> {
+                    mapOf(
+                        DATE_KEY to request.dateUtc,
+                    )
+                }
+                is EventListRequest.Id -> {
+                    emptyMap()
+                }
             }
-            is EventListRequest.OnDate -> {
-                mapOf(
-                    DATE_KEY to request.dateUtc,
-                )
-            }
-            is EventListRequest.Id -> {
-                emptyMap()
-            }
-        }
 
-        return initialParams + mapOf(
-            GROUP_KEY to "rlcs",
-        )
+        return initialParams +
+            mapOf(
+                GROUP_KEY to "rlcs",
+            )
     }
 
     companion object {

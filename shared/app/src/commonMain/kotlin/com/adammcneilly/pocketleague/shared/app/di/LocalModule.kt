@@ -10,26 +10,27 @@ import com.adammcneilly.pocketleague.data.player.LocalPlayerService
 import com.adammcneilly.pocketleague.data.player.SqlDelightPlayerService
 import org.koin.dsl.module
 
-val localModule = module {
-    single {
-        PocketLeagueDB(get<DatabaseDriverFactory>().createDriver())
-    }
+val localModule =
+    module {
+        single {
+            PocketLeagueDB(get<DatabaseDriverFactory>().createDriver())
+        }
 
-    single<LocalMatchService> {
-        SQLDelightMatchService(
-            database = get(),
-        )
-    }
+        single<LocalMatchService> {
+            SQLDelightMatchService(
+                database = get(),
+            )
+        }
 
-    single<LocalEventService> {
-        SQLDelightEventService(
-            database = get(),
-        )
-    }
+        single<LocalEventService> {
+            SQLDelightEventService(
+                database = get(),
+            )
+        }
 
-    single<LocalPlayerService> {
-        SqlDelightPlayerService(
-            database = get(),
-        )
+        single<LocalPlayerService> {
+            SqlDelightPlayerService(
+                database = get(),
+            )
+        }
     }
-}

@@ -21,20 +21,18 @@ sealed class EventGroupDisplayModel {
     ) : EventGroupDisplayModel()
 
     companion object {
-
-        val placeholder = mapFromEventList(
-            List(PLACEHOLDER_LIST_COUNT) {
-                EventSummaryDisplayModel.placeholder
-            },
-        )
+        val placeholder =
+            mapFromEventList(
+                List(PLACEHOLDER_LIST_COUNT) {
+                    EventSummaryDisplayModel.placeholder
+                },
+            )
 
         /**
          * Given a collection of [events], convert them to a list of [EventGroupDisplayModel]
          * entities based on the event type.
          */
-        fun mapFromEventList(
-            events: List<EventSummaryDisplayModel>,
-        ): List<EventGroupDisplayModel> {
+        fun mapFromEventList(events: List<EventSummaryDisplayModel>): List<EventGroupDisplayModel> {
             /**
              * An accumulation of event groups so we can perform a single iteration over
              * the supplied events using the fold function.
@@ -50,34 +48,37 @@ sealed class EventGroupDisplayModel {
                 val currentRegionalList: List<EventSummaryDisplayModel>,
             )
 
-            val outputAccumulator = events.fold(Accumulator(emptyList(), emptyList())) { accumulator, event ->
-                if (event.isMajor) {
-                    val updatedAllGroups = buildList {
-                        addAll(accumulator.allGroups)
-                        if (accumulator.currentRegionalList.isNotEmpty()) {
-                            add(Regionals(accumulator.currentRegionalList))
-                        }
-                        add(Major(event))
+            val outputAccumulator =
+                events.fold(Accumulator(emptyList(), emptyList())) { accumulator, event ->
+                    if (event.isMajor) {
+                        val updatedAllGroups =
+                            buildList {
+                                addAll(accumulator.allGroups)
+                                if (accumulator.currentRegionalList.isNotEmpty()) {
+                                    add(Regionals(accumulator.currentRegionalList))
+                                }
+                                add(Major(event))
+                            }
+
+                        accumulator.copy(
+                            allGroups = updatedAllGroups,
+                            currentRegionalList = emptyList(),
+                        )
+                    } else {
+                        accumulator.copy(
+                            currentRegionalList = accumulator.currentRegionalList + event,
+                        )
                     }
-
-                    accumulator.copy(
-                        allGroups = updatedAllGroups,
-                        currentRegionalList = emptyList(),
-                    )
-                } else {
-                    accumulator.copy(
-                        currentRegionalList = accumulator.currentRegionalList + event,
-                    )
                 }
-            }
 
-            val finalGroups = buildList {
-                addAll(outputAccumulator.allGroups)
+            val finalGroups =
+                buildList {
+                    addAll(outputAccumulator.allGroups)
 
-                if (outputAccumulator.currentRegionalList.isNotEmpty()) {
-                    add(Regionals(outputAccumulator.currentRegionalList))
+                    if (outputAccumulator.currentRegionalList.isNotEmpty()) {
+                        add(Regionals(outputAccumulator.currentRegionalList))
+                    }
                 }
-            }
 
             return finalGroups
         }

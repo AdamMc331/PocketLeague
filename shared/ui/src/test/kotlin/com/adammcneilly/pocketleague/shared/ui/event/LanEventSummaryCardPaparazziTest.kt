@@ -15,7 +15,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class LanEventSummaryCardPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 
@@ -36,9 +35,10 @@ class LanEventSummaryCardPaparazziTest {
     fun renderWithWinner() {
         paparazzi.snapshotScreen(useDarkTheme) {
             LanEventSummaryCard(
-                event = EventSummaryDisplayModel.springMajor().copy(
-                    winningTeam = TeamOverviewDisplayModel.teamVitality(),
-                ),
+                event =
+                    EventSummaryDisplayModel.springMajor().copy(
+                        winningTeam = TeamOverviewDisplayModel.teamVitality(),
+                    ),
                 onEventClicked = {},
             )
         }

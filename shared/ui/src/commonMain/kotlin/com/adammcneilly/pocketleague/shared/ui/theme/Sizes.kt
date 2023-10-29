@@ -23,11 +23,12 @@ data class Sizes(
     val textSpacing: Dp,
 )
 
-val LocalPocketLeagueSizes = staticCompositionLocalOf {
-    Sizes(
-        screenPadding = 0.dp,
-        listItemSpacing = 0.dp,
-        cardPadding = 0.dp,
-        textSpacing = 0.dp,
-    )
-}
+val LocalPocketLeagueSizes =
+    staticCompositionLocalOf {
+        Sizes(
+            screenPadding = 0.dp,
+            listItemSpacing = 0.dp,
+            cardPadding = 0.dp,
+            textSpacing = 0.dp,
+        )
+    }

@@ -18,8 +18,9 @@ fun FeedEventGroup(
     onEventClicked: (Event.Id) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val groupModifier = modifier
-        .screenHorizontalPadding()
+    val groupModifier =
+        modifier
+            .screenHorizontalPadding()
 
     when (displayModel) {
         is EventGroupDisplayModel.Regionals -> {

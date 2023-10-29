@@ -14,15 +14,15 @@ data class TeamOverviewDisplayModel(
     val isPlaceholder: Boolean = false,
     val isFavorite: Boolean = false,
 ) {
-
     companion object {
-        val placeholder = TeamOverviewDisplayModel(
-            teamId = "",
-            name = "",
-            imageUrl = ThemedImageURL(),
-            isPlaceholder = true,
-            region = EventRegion.Unknown.toDisplayModel(),
-        )
+        val placeholder =
+            TeamOverviewDisplayModel(
+                teamId = "",
+                name = "",
+                imageUrl = ThemedImageURL(),
+                isPlaceholder = true,
+                region = EventRegion.Unknown.toDisplayModel(),
+            )
     }
 }
 
@@ -33,10 +33,11 @@ fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
     return TeamOverviewDisplayModel(
         teamId = this.id,
         name = this.name,
-        imageUrl = ThemedImageURL(
-            lightThemeImageURL = this.lightThemeImageURL,
-            darkThemeImageURL = this.darkThemeImageURL,
-        ),
+        imageUrl =
+            ThemedImageURL(
+                lightThemeImageURL = this.lightThemeImageURL,
+                darkThemeImageURL = this.darkThemeImageURL,
+            ),
         isFavorite = this.isFavorite,
         region = this.region.toDisplayModel(),
     )

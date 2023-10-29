@@ -18,27 +18,28 @@ data class EventStageSummaryDisplayModel(
     val liquipedia: String,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
-        val placeholder = EventStageSummaryDisplayModel(
-            stageId = EventStage.Id(""),
-            name = "",
-            startDate = "",
-            endDate = "",
-            lan = false,
-            liquipedia = "",
-            isPlaceholder = true,
-        )
+        val placeholder =
+            EventStageSummaryDisplayModel(
+                stageId = EventStage.Id(""),
+                name = "",
+                startDate = "",
+                endDate = "",
+                lan = false,
+                liquipedia = "",
+                isPlaceholder = true,
+            )
     }
 
     val dateString: String
-        get() = if (endDate.isNotEmpty()) {
-            "$startDate – $endDate"
-        } else if (startDate.isNotEmpty()) {
-            startDate
-        } else {
-            "Date Unavailable"
-        }
+        get() =
+            if (endDate.isNotEmpty()) {
+                "$startDate – $endDate"
+            } else if (startDate.isNotEmpty()) {
+                startDate
+            } else {
+                "Date Unavailable"
+            }
 }
 
 /**
@@ -48,20 +49,22 @@ fun EventStage.toSummaryDisplayModel(): EventStageSummaryDisplayModel {
     val dateTimeFormatter = dateTimeFormatter()
 
     return EventStageSummaryDisplayModel(
-        startDate = this.startDateUTC?.let { startDate ->
-            dateTimeFormatter.formatUTCString(
-                utcString = startDate,
-                formatPattern = STAGE_DATE_FORMAT,
-                timeZone = TimeZone.SYSTEM_DEFAULT,
-            )
-        }.orEmpty(),
-        endDate = this.endDateUTC?.let { endDate ->
-            dateTimeFormatter.formatUTCString(
-                utcString = endDate,
-                formatPattern = STAGE_DATE_FORMAT,
-                timeZone = TimeZone.SYSTEM_DEFAULT,
-            )
-        }.orEmpty(),
+        startDate =
+            this.startDateUTC?.let { startDate ->
+                dateTimeFormatter.formatUTCString(
+                    utcString = startDate,
+                    formatPattern = STAGE_DATE_FORMAT,
+                    timeZone = TimeZone.SYSTEM_DEFAULT,
+                )
+            }.orEmpty(),
+        endDate =
+            this.endDateUTC?.let { endDate ->
+                dateTimeFormatter.formatUTCString(
+                    utcString = endDate,
+                    formatPattern = STAGE_DATE_FORMAT,
+                    timeZone = TimeZone.SYSTEM_DEFAULT,
+                )
+            }.orEmpty(),
         stageId = this.id,
         name = this.name,
         lan = this.lan,

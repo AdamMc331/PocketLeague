@@ -13,12 +13,12 @@ data class PrizeDisplayModel(
     val prizeAmount: String,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
-        val placeholder = PrizeDisplayModel(
-            prizeAmount = "",
-            isPlaceholder = true,
-        )
+        val placeholder =
+            PrizeDisplayModel(
+                prizeAmount = "",
+                isPlaceholder = true,
+            )
     }
 }
 
@@ -30,9 +30,10 @@ fun Prize.toDisplayModel(
     currencyFormatter: CurrencyFormatter = com.adammcneilly.pocketleague.core.currency.currencyFormatter(),
 ): PrizeDisplayModel {
     return PrizeDisplayModel(
-        prizeAmount = currencyFormatter.formatCurrency(
-            amount = this.amount,
-            currency = this.currency,
-        ).orEmpty(),
+        prizeAmount =
+            currencyFormatter.formatCurrency(
+                amount = this.amount,
+                currency = this.currency,
+            ).orEmpty(),
     )
 }

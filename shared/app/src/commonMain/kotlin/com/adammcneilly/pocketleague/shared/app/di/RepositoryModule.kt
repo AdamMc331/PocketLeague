@@ -12,36 +12,39 @@ import com.adammcneilly.pocketleague.data.team.SQLDelightTeamRepository
 import com.adammcneilly.pocketleague.data.team.TeamRepository
 import org.koin.dsl.module
 
-val repositoryModule = module {
-    single<MatchRepository> {
-        StoreMatchRepository(
-            remoteMatchService = get(),
-            localMatchService = get(),
-        )
-    }
+val repositoryModule =
+    module {
+        single<MatchRepository> {
+            StoreMatchRepository(
+                remoteMatchService = get(),
+                localMatchService = get(),
+            )
+        }
 
-    single<EventRepository> {
-        StoreEventRepository(
-            localEventService = get(),
-            remoteEventService = get(),
-        )
-    }
+        single<EventRepository> {
+            StoreEventRepository(
+                localEventService = get(),
+                remoteEventService = get(),
+            )
+        }
 
-    single<PlayerRepository> {
-        OfflineFirstPlayerRepository(
-            localDataSource = get(),
-            remoteDataSource = get(),
-        )
-    }
+        single<PlayerRepository> {
+            OfflineFirstPlayerRepository(
+                localDataSource = get(),
+                remoteDataSource = get(),
+            )
+        }
 
-    single<TeamRepository> {
-        OfflineFirstTeamRepository(
-            localDataSource = SQLDelightTeamRepository(
-                database = get(),
-            ),
-            remoteDataSource = OctaneGGTeamRepository(
-                apiClient = get(),
-            ),
-        )
+        single<TeamRepository> {
+            OfflineFirstTeamRepository(
+                localDataSource =
+                    SQLDelightTeamRepository(
+                        database = get(),
+                    ),
+                remoteDataSource =
+                    OctaneGGTeamRepository(
+                        apiClient = get(),
+                    ),
+            )
+        }
     }
-}

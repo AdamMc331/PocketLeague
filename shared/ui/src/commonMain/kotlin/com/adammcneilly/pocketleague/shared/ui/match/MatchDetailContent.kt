@@ -37,8 +37,9 @@ fun MatchDetailContent(
     }
 
     LazyColumn(
-        modifier = modifier
-            .fillMaxSize(),
+        modifier =
+            modifier
+                .fillMaxSize(),
         contentPadding = PaddingValues(PocketLeagueTheme.sizes.screenPadding),
         verticalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.listItemSpacing),
     ) {

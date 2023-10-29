@@ -7,9 +7,10 @@ import com.adammcneilly.pocketleague.core.models.Location
  * easily add extension properties to for various test models.
  */
 object TestModel {
-    val agganisArenaLocation = Location(
-        venue = "Agganis Arena",
-        city = "Boston",
-        countryCode = "us",
-    )
+    val agganisArenaLocation =
+        Location(
+            venue = "Agganis Arena",
+            city = "Boston",
+            countryCode = "us",
+        )
 }

@@ -9,9 +9,7 @@ import kotlinx.coroutines.flow.map
 /**
  * Converts a query for some [LocalType] to a flow of a single [DomainType] entity.
  */
-fun <LocalType : Any, DomainType> Query<LocalType>.asFlowSingle(
-    transform: (LocalType) -> DomainType,
-): Flow<DomainType> {
+fun <LocalType : Any, DomainType> Query<LocalType>.asFlowSingle(transform: (LocalType) -> DomainType): Flow<DomainType> {
     return this
         .asFlow()
         .mapToOne()

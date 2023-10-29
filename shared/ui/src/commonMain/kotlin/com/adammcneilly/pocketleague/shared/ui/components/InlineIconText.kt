@@ -50,15 +50,17 @@ fun InlineIconText(
     fontWeight: FontWeight? = null,
 ) {
     Text(
-        text = text.getAnnotatedString(
-            leadingIcon = leadingIcon,
-            showIcon = showIcon,
-        ),
-        inlineContent = getInlineContent(
-            icon = icon,
-            showIcon = showIcon,
-            iconTint = iconTint,
-        ),
+        text =
+            text.getAnnotatedString(
+                leadingIcon = leadingIcon,
+                showIcon = showIcon,
+            ),
+        inlineContent =
+            getInlineContent(
+                icon = icon,
+                showIcon = showIcon,
+                iconTint = iconTint,
+            ),
         modifier = modifier,
         textAlign = textAlign,
         style = style,

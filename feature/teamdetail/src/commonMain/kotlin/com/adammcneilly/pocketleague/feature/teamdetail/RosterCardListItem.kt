@@ -26,11 +26,12 @@ internal fun RosterCardListItem(
     modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier
-            .padding(
-                horizontal = PocketLeagueTheme.sizes.cardPadding,
-                vertical = PocketLeagueTheme.sizes.cardPadding.div(2),
-            ),
+        modifier =
+            modifier
+                .padding(
+                    horizontal = PocketLeagueTheme.sizes.cardPadding,
+                    vertical = PocketLeagueTheme.sizes.cardPadding.div(2),
+                ),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.cardPadding),
     ) {
@@ -46,17 +47,19 @@ internal fun RosterCardListItem(
 @Composable
 private fun PlayerTag(player: PlayerDisplayModel) {
     Text(
-        text = listOfNotNull(
-            player.tag,
-            player.role,
-        ).joinToString(" "),
+        text =
+            listOfNotNull(
+                player.tag,
+                player.role,
+            ).joinToString(" "),
         style = MaterialTheme.typography.bodyLarge,
-        modifier = Modifier
-            .fillMaxWidth()
-            .placeholderMaterial(
-                visible = player.isPlaceholder,
-                color = PlaceholderDefaults.cardColor(),
-            ),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .placeholderMaterial(
+                    visible = player.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
     )
 }
 
@@ -66,29 +69,32 @@ private fun PlayerName(player: PlayerDisplayModel) {
     Text(
         text = player.name,
         style = MaterialTheme.typography.labelSmall,
-        modifier = Modifier
-            .fillMaxWidth(0.5F)
-            .placeholderMaterial(
-                visible = player.isPlaceholder,
-                color = PlaceholderDefaults.cardColor(),
-            ),
+        modifier =
+            Modifier
+                .fillMaxWidth(0.5F)
+                .placeholderMaterial(
+                    visible = player.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
     )
 }
 
 @Composable
 private fun FlagEmoji(player: PlayerDisplayModel) {
     Box(
-        modifier = Modifier
-            .size(FLAG_EMOJI_SIZE)
-            .placeholderMaterial(
-                visible = player.isPlaceholder,
-                color = PlaceholderDefaults.cardColor(),
-            ),
+        modifier =
+            Modifier
+                .size(FLAG_EMOJI_SIZE)
+                .placeholderMaterial(
+                    visible = player.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
     ) {
         Text(
             text = player.countryFlagEmojiUnicode,
-            modifier = Modifier
-                .align(Alignment.Center),
+            modifier =
+                Modifier
+                    .align(Alignment.Center),
         )
     }
 }

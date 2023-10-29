@@ -21,10 +21,11 @@ fun GameListCard(
     ) { game ->
         GameListItem(
             displayModel = game,
-            modifier = Modifier
-                .clickable {
-                    onGameClicked.invoke(game)
-                },
+            modifier =
+                Modifier
+                    .clickable {
+                        onGameClicked.invoke(game)
+                    },
         )
     }
 }

@@ -14,16 +14,16 @@ data class GameDetailDisplayModel(
     val otLabel: String?,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
-        val placeholder = GameDetailDisplayModel(
-            orangeTeamResult = GameTeamResultDisplayModel.placeholder,
-            blueTeamResult = GameTeamResultDisplayModel.placeholder,
-            map = "",
-            gameNumber = "",
-            otLabel = null,
-            isPlaceholder = true,
-        )
+        val placeholder =
+            GameDetailDisplayModel(
+                orangeTeamResult = GameTeamResultDisplayModel.placeholder,
+                blueTeamResult = GameTeamResultDisplayModel.placeholder,
+                map = "",
+                gameNumber = "",
+                otLabel = null,
+                isPlaceholder = true,
+            )
     }
 }
 
@@ -40,8 +40,9 @@ fun Game.toDetailDisplayModel(): GameDetailDisplayModel {
         blueTeamResult = this.blue.toDisplayModel(),
         map = this.map,
         gameNumber = this.number.toString(),
-        otLabel = otLabel.takeIf {
-            extraTime != 0
-        },
+        otLabel =
+            otLabel.takeIf {
+                extraTime != 0
+            },
     )
 }

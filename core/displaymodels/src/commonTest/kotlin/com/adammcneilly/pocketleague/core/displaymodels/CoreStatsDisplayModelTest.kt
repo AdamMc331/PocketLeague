@@ -5,16 +5,16 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class CoreStatsDisplayModelTest {
-
     @Test
     fun mapFromCoreStats() {
-        val coreStats = CoreStats(
-            score = 0,
-            goals = 1,
-            assists = 2,
-            saves = 3,
-            shots = 4,
-        )
+        val coreStats =
+            CoreStats(
+                score = 0,
+                goals = 1,
+                assists = 2,
+                saves = 3,
+                shots = 4,
+            )
 
         val displayModel = coreStats.toDisplayModel()
 

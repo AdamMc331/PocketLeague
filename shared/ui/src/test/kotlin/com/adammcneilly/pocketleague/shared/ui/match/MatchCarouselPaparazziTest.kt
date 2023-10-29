@@ -13,7 +13,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class MatchCarouselPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 
@@ -37,11 +36,12 @@ class MatchCarouselPaparazziTest {
 
     @Test
     fun renderMultiItemCarousel() {
-        val matchList = listOf(
-            TestDisplayModel.matchDetailBlueWinner,
-            TestDisplayModel.matchDetailBlueWinner,
-            TestDisplayModel.matchDetailBlueWinner,
-        )
+        val matchList =
+            listOf(
+                TestDisplayModel.matchDetailBlueWinner,
+                TestDisplayModel.matchDetailBlueWinner,
+                TestDisplayModel.matchDetailBlueWinner,
+            )
 
         paparazzi.snapshotScreen(
             useDarkTheme = useDarkTheme,

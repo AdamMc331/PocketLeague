@@ -4,13 +4,14 @@ package com.adammcneilly.pocketleague.core.displaymodels.test
 
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 
-private val defaultPlayer = PlayerDisplayModel(
-    id = "",
-    name = "",
-    tag = "",
-    role = null,
-    countryFlagEmojiUnicode = "",
-)
+private val defaultPlayer =
+    PlayerDisplayModel(
+        id = "",
+        name = "",
+        tag = "",
+        role = null,
+        countryFlagEmojiUnicode = "",
+    )
 
 private fun PlayerDisplayModel.Companion.joyo(): PlayerDisplayModel {
     return defaultPlayer.copy(

@@ -21,30 +21,34 @@ class StoreMatchRepository(
     private val remoteMatchService: RemoteMatchService,
     private val localMatchService: LocalMatchService,
 ) : MatchRepository {
-    private val store = StoreBuilder.from<MatchListRequest, Result<List<Match>>, List<Match>>(
-        fetcher = Fetcher.of { request ->
-            remoteMatchService.fetch(request)
-        },
-        sourceOfTruth = SourceOfTruth.Companion.of(
-            reader = { request ->
-                localMatchService.stream(request)
-            },
-            writer = { _, matchResult ->
-                val matches = matchResult.getOrNull().orEmpty()
-                localMatchService.insert(matches)
-            },
-        ),
-    ).build()
+    private val store =
+        StoreBuilder.from<MatchListRequest, Result<List<Match>>, List<Match>>(
+            fetcher =
+                Fetcher.of { request ->
+                    remoteMatchService.fetch(request)
+                },
+            sourceOfTruth =
+                SourceOfTruth.Companion.of(
+                    reader = { request ->
+                        localMatchService.stream(request)
+                    },
+                    writer = { _, matchResult ->
+                        val matches = matchResult.getOrNull().orEmpty()
+                        localMatchService.insert(matches)
+                    },
+                ),
+        ).build()
 
     override fun stream(
         request: MatchListRequest,
         refreshCache: Boolean,
     ): Flow<List<Match>> {
         return store.stream(
-            request = StoreReadRequest.cached(
-                key = request,
-                refresh = refreshCache,
-            ),
+            request =
+                StoreReadRequest.cached(
+                    key = request,
+                    refresh = refreshCache,
+                ),
         )
             .distinctUntilChanged()
             .map { storeResponse ->

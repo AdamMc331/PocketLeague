@@ -11,7 +11,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class EventStageCardPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 
@@ -29,14 +28,15 @@ class EventStageCardPaparazziTest {
 
     @Test
     fun renderDefault() {
-        val displayModel = EventStageSummaryDisplayModel(
-            stageId = EventStage.Id(""),
-            name = "Playoffs",
-            startDate = "Apr 8",
-            endDate = "Apr 9, 2023",
-            lan = true,
-            liquipedia = "",
-        )
+        val displayModel =
+            EventStageSummaryDisplayModel(
+                stageId = EventStage.Id(""),
+                name = "Playoffs",
+                startDate = "Apr 8",
+                endDate = "Apr 9, 2023",
+                lan = true,
+                liquipedia = "",
+            )
 
         paparazzi.snapshotScreen(useDarkTheme) {
             EventStageCard(displayModel)

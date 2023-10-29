@@ -25,55 +25,56 @@ data class MatchDetailDisplayModel(
     val isLive: Boolean = false,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
-        val placeholder = MatchDetailDisplayModel(
-            matchId = Match.Id(""),
-            localDate = "",
-            localTime = "",
-            eventName = "",
-            stageName = "",
-            relativeDateTime = "",
-            isLive = false,
-            orangeTeamResult = MatchTeamResultDisplayModel.placeholder,
-            blueTeamResult = MatchTeamResultDisplayModel.placeholder,
-            round = StageRound(0, ""),
-            isPlaceholder = true,
-        )
+        val placeholder =
+            MatchDetailDisplayModel(
+                matchId = Match.Id(""),
+                localDate = "",
+                localTime = "",
+                eventName = "",
+                stageName = "",
+                relativeDateTime = "",
+                isLive = false,
+                orangeTeamResult = MatchTeamResultDisplayModel.placeholder,
+                blueTeamResult = MatchTeamResultDisplayModel.placeholder,
+                round = StageRound(0, ""),
+                isPlaceholder = true,
+            )
     }
 }
 
 /**
  * Converts a [Match] to a [MatchDetailDisplayModel].
  */
-fun Match.toDetailDisplayModel(
-    timeProvider: TimeProvider,
-): MatchDetailDisplayModel {
+fun Match.toDetailDisplayModel(timeProvider: TimeProvider): MatchDetailDisplayModel {
     val dateTimeFormatter = dateTimeFormatter()
 
     return MatchDetailDisplayModel(
         matchId = this.id,
         orangeTeamResult = this.orangeTeam.toDisplayModel(),
         blueTeamResult = this.blueTeam.toDisplayModel(),
-        localDate = this.dateUTC?.let { date ->
-            dateTimeFormatter.formatUTCString(
-                utcString = date,
-                formatPattern = MATCH_DATE_FORMAT,
-                timeZone = TimeZone.SYSTEM_DEFAULT,
-            )
-        }.orEmpty(),
-        localTime = this.dateUTC?.let { date ->
-            dateTimeFormatter.formatUTCString(
-                utcString = date,
-                formatPattern = MATCH_TIME_FORMAT,
-                timeZone = TimeZone.SYSTEM_DEFAULT,
-            )
-        }.orEmpty(),
+        localDate =
+            this.dateUTC?.let { date ->
+                dateTimeFormatter.formatUTCString(
+                    utcString = date,
+                    formatPattern = MATCH_DATE_FORMAT,
+                    timeZone = TimeZone.SYSTEM_DEFAULT,
+                )
+            }.orEmpty(),
+        localTime =
+            this.dateUTC?.let { date ->
+                dateTimeFormatter.formatUTCString(
+                    utcString = date,
+                    formatPattern = MATCH_TIME_FORMAT,
+                    timeZone = TimeZone.SYSTEM_DEFAULT,
+                )
+            }.orEmpty(),
         eventName = this.event.name,
         stageName = this.stage.name,
-        relativeDateTime = this.dateUTC?.let { date ->
-            dateTimeFormatter.getRelativeTimestamp(date, timeProvider)
-        }.orEmpty(),
+        relativeDateTime =
+            this.dateUTC?.let { date ->
+                dateTimeFormatter.getRelativeTimestamp(date, timeProvider)
+            }.orEmpty(),
         isLive = false,
         round = this.round,
     )

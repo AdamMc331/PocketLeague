@@ -12,32 +12,33 @@ import com.adammcneilly.pocketleague.data.player.RemotePlayerService
 import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 import org.koin.dsl.module
 
-val remoteModule = module {
-    single<BaseKTORClient> {
-        OctaneGGAPIClient
-    }
+val remoteModule =
+    module {
+        single<BaseKTORClient> {
+            OctaneGGAPIClient
+        }
 
-    single<RemoteMatchService> {
-        OctaneGGMatchService(
-            apiClient = get(),
-        )
-    }
+        single<RemoteMatchService> {
+            OctaneGGMatchService(
+                apiClient = get(),
+            )
+        }
 
-    single<GameService> {
-        OctaneGGGameService(
-            apiClient = get(),
-        )
-    }
+        single<GameService> {
+            OctaneGGGameService(
+                apiClient = get(),
+            )
+        }
 
-    single<RemoteEventService> {
-        OctaneGGEventService(
-            apiClient = get(),
-        )
-    }
+        single<RemoteEventService> {
+            OctaneGGEventService(
+                apiClient = get(),
+            )
+        }
 
-    single<RemotePlayerService> {
-        OctaneGGPlayerService(
-            apiClient = get(),
-        )
+        single<RemotePlayerService> {
+            OctaneGGPlayerService(
+                apiClient = get(),
+            )
+        }
     }
-}

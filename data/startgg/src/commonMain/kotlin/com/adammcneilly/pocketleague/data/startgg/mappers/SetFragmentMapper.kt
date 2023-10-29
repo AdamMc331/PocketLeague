@@ -12,9 +12,10 @@ import com.adammcneilly.pocketleague.data.startgg.fragment.SetFragment
  * Convert a [SetFragment] GQL model into a [Match] entity from the pocket league domain.
  */
 fun SetFragment.toMatch(timeProvider: TimeProvider): Match {
-    val startDateUTC = (this.startAt as? Int)?.let { startAt ->
-        timeProvider.fromEpochSeconds(startAt.toLong())
-    }
+    val startDateUTC =
+        (this.startAt as? Int)?.let { startAt ->
+            timeProvider.fromEpochSeconds(startAt.toLong())
+        }
 
     val orderedSlots = this.slots?.sortedBy { it?.slotIndex }!!
     val orangeSlot = orderedSlots[0]!!
@@ -24,32 +25,36 @@ fun SetFragment.toMatch(timeProvider: TimeProvider): Match {
     // check based on winnerID.
     // First we calculate the number of games won by the orange team, then we subtract that from the total
     // number of games to calculate how many games were won by the blue team.
-    val orangeTeamWins = this.games?.count {
-        it?.winnerId?.toString() == orangeSlot.entrant?.team?.teamFragment?.id
-    } ?: 0
+    val orangeTeamWins =
+        this.games?.count {
+            it?.winnerId?.toString() == orangeSlot.entrant?.team?.teamFragment?.id
+        } ?: 0
     val blueTeamWins = this.games?.size?.minus(orangeTeamWins) ?: 0
 
     return Match(
         id = Match.Id(this.id.orEmpty()),
         event = this.event?.tournament?.tournamentFragment?.toEvent(timeProvider)!!,
         dateUTC = startDateUTC,
-        blueTeam = blueSlot.toMatchTeamResult(
-            teamWins = blueTeamWins,
-            winnerId = this.winnerId,
-        ),
-        orangeTeam = orangeSlot.toMatchTeamResult(
-            teamWins = orangeTeamWins,
-            winnerId = this.winnerId,
-        ),
+        blueTeam =
+            blueSlot.toMatchTeamResult(
+                teamWins = blueTeamWins,
+                winnerId = this.winnerId,
+            ),
+        orangeTeam =
+            orangeSlot.toMatchTeamResult(
+                teamWins = orangeTeamWins,
+                winnerId = this.winnerId,
+            ),
         stage = this.event.eventFragment.toEventStage(timeProvider),
         // We should be able to get this information from the API,
         // we just need to add more to this mapping function.
         format = Format(),
         gameOverviews = emptyList(),
-        round = StageRound(
-            number = this.round ?: 0,
-            name = this.fullRoundText.orEmpty(),
-        ),
+        round =
+            StageRound(
+                number = this.round ?: 0,
+                name = this.fullRoundText.orEmpty(),
+            ),
     )
 }
 

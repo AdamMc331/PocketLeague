@@ -15,7 +15,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class MatchDetailContentPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 

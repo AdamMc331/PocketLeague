@@ -13,7 +13,6 @@ import com.adammcneilly.pocketleague.data.remote.BaseKTORClient
 class OctaneGGGameService(
     private val apiClient: BaseKTORClient,
 ) : GameService {
-
     override suspend fun fetchGamesForMatch(request: MatchGamesRequest): Result<List<Game>> {
         val matchId = request.matchId
 

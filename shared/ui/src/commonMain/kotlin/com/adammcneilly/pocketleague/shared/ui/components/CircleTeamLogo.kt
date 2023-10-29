@@ -55,21 +55,23 @@ private fun TeamLetterLogo(
     contentColor: Color,
 ) {
     BoxWithConstraints(
-        modifier = modifier
-            .background(
-                color = backgroundColor,
-                shape = CircleShape,
-            )
-            .border(
-                width = 1.dp,
-                color = contentColor,
-                shape = CircleShape,
-            ),
+        modifier =
+            modifier
+                .background(
+                    color = backgroundColor,
+                    shape = CircleShape,
+                )
+                .border(
+                    width = 1.dp,
+                    color = contentColor,
+                    shape = CircleShape,
+                ),
     ) {
-        val textSizeSp = with(LocalDensity.current) {
-            val sizeInPx = (maxHeight * 0.50F).toPx()
-            sizeInPx.toSp()
-        }
+        val textSizeSp =
+            with(LocalDensity.current) {
+                val sizeInPx = (maxHeight * 0.50F).toPx()
+                sizeInPx.toSp()
+            }
 
         // Shout out Lemanja on YouTube for the text style idea:
         // https://www.youtube.com/watch?v=NBRNa1rtRSA&lc=UgxKzB3IGAXjIdH6VP54AaABAg
@@ -78,8 +80,9 @@ private fun TeamLetterLogo(
             color = contentColor,
             fontSize = textSizeSp,
             lineHeight = textSizeSp,
-            modifier = Modifier
-                .align(Alignment.Center),
+            modifier =
+                Modifier
+                    .align(Alignment.Center),
             // Need to find kmm version?
 //            style = LocalTextStyle.current.merge(
 //                TextStyle(

@@ -13,7 +13,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class StatComparisonPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 
@@ -27,8 +26,9 @@ class StatComparisonPaparazziTest {
                 blueTeamValue = 3,
                 orangeTeamValue = 1,
                 percentageToRender = 1F,
-                modifier = Modifier
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .padding(16.dp),
             )
         }
     }
@@ -40,8 +40,9 @@ class StatComparisonPaparazziTest {
                 blueTeamValue = 1,
                 orangeTeamValue = 3,
                 percentageToRender = 1F,
-                modifier = Modifier
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .padding(16.dp),
             )
         }
     }
@@ -53,8 +54,9 @@ class StatComparisonPaparazziTest {
                 blueTeamValue = 1,
                 orangeTeamValue = 1,
                 percentageToRender = 1F,
-                modifier = Modifier
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .padding(16.dp),
             )
         }
     }
@@ -66,8 +68,9 @@ class StatComparisonPaparazziTest {
                 blueTeamValue = 1,
                 orangeTeamValue = 1,
                 percentageToRender = 0.5F,
-                modifier = Modifier
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .padding(16.dp),
             )
         }
     }
@@ -79,8 +82,9 @@ class StatComparisonPaparazziTest {
                 blueTeamValue = 1,
                 orangeTeamValue = 1,
                 percentageToRender = 0.25F,
-                modifier = Modifier
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .padding(16.dp),
             )
         }
     }

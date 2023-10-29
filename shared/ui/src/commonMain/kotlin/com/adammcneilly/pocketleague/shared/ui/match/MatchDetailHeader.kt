@@ -47,33 +47,37 @@ fun MatchDetailHeader(
             Divider()
 
             Column(
-                modifier = Modifier
-                    .padding(PocketLeagueTheme.sizes.cardPadding)
-                    .placeholderMaterial(
-                        visible = displayModel.isPlaceholder,
-                        color = PlaceholderDefaults.cardColor(),
-                    ),
+                modifier =
+                    Modifier
+                        .padding(PocketLeagueTheme.sizes.cardPadding)
+                        .placeholderMaterial(
+                            visible = displayModel.isPlaceholder,
+                            color = PlaceholderDefaults.cardColor(),
+                        ),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
                     text = displayModel.eventName,
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth(),
                     style = MaterialTheme.typography.headlineSmall,
                     textAlign = TextAlign.Center,
                 )
 
                 Text(
                     text = displayModel.stageName,
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth(),
                     style = MaterialTheme.typography.titleLarge,
                     textAlign = TextAlign.Center,
                 )
 
                 Text(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth(),
                     text = displayModel.localDate,
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.labelLarge,
@@ -90,9 +94,10 @@ private fun TeamResultsRow(
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(24.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(24.dp),
     ) {
         MatchTeamResultCell(
             displayModel = displayModel.blueTeamResult,
@@ -113,20 +118,22 @@ private fun MatchTeamResultCell(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .placeholderMaterial(
-                visible = displayModel.team.isPlaceholder,
-                color = PlaceholderDefaults.cardColor(),
-            ),
+        modifier =
+            Modifier
+                .placeholderMaterial(
+                    visible = displayModel.team.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
     ) {
         CircleTeamLogo(
             displayModel = displayModel.team,
-            modifier = Modifier
-                .size(72.dp)
-                .padding(8.dp)
-                .clickable {
-                    onTeamClicked.invoke(displayModel.team.teamId)
-                },
+            modifier =
+                Modifier
+                    .size(72.dp)
+                    .padding(8.dp)
+                    .clickable {
+                        onTeamClicked.invoke(displayModel.team.teamId)
+                    },
         )
 
         Text(

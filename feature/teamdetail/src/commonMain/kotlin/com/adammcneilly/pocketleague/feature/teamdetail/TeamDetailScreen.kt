@@ -23,7 +23,6 @@ import org.koin.core.component.inject
 data class TeamDetailScreen(
     val teamId: String,
 ) : Screen {
-
     /**
      * Representation of the UI state for the [TeamDetailScreen].
      */
@@ -42,7 +41,10 @@ data class TeamDetailScreen(
      * Factory to create the UI for the [TeamDetailScreen].
      */
     object UiFactory : Ui.Factory {
-        override fun create(screen: Screen, context: CircuitContext): Ui<*>? {
+        override fun create(
+            screen: Screen,
+            context: CircuitContext,
+        ): Ui<*>? {
             return when (screen) {
                 is TeamDetailScreen -> {
                     ui<State> { state, modifier ->
@@ -65,7 +67,11 @@ data class TeamDetailScreen(
         private val teamRepository: TeamRepository by inject()
         private val playerRepository: PlayerRepository by inject()
 
-        override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
+        override fun create(
+            screen: Screen,
+            navigator: Navigator,
+            context: CircuitContext,
+        ): Presenter<*>? {
             return when (screen) {
                 is TeamDetailScreen -> {
                     TeamDetailPresenter(

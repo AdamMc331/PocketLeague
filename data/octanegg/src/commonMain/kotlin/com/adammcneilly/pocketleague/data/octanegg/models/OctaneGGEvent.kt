@@ -52,10 +52,11 @@ fun OctaneGGEvent?.toEvent(): Event {
 
     return Event(
         id = Event.Id(this?.id.orEmpty()),
-        name = remapEventName(
-            octaneEventName = this?.name.orEmpty(),
-            region = eventRegion,
-        ),
+        name =
+            remapEventName(
+                octaneEventName = this?.name.orEmpty(),
+                region = eventRegion,
+            ),
         startDateUTC = this?.startDateUTC,
         endDateUTC = this?.endDateUTC,
         imageURL = this?.imageURL,
@@ -89,15 +90,16 @@ private fun remapEventName(
     val words = octaneEventName.split(" ")
 
     val splitName = words[2]
-    val regionalName = when (words.last()) {
-        "1" -> "Open"
-        "2" -> "Cup"
-        "3" -> "Invitational"
-        else -> {
-            println("Unable to properly parse regional: $octaneEventName")
-            return octaneEventName
+    val regionalName =
+        when (words.last()) {
+            "1" -> "Open"
+            "2" -> "Cup"
+            "3" -> "Invitational"
+            else -> {
+                println("Unable to properly parse regional: $octaneEventName")
+                return octaneEventName
+            }
         }
-    }
     val eventRegionAcronym = region.name
 
     return "$eventRegionAcronym $splitName $regionalName"

@@ -13,16 +13,16 @@ data class CoreStatsDisplayModel(
     val shots: Int,
     val placeholder: Boolean = false,
 ) {
-
     companion object {
-        val placeholder = CoreStatsDisplayModel(
-            score = 0,
-            goals = 0,
-            assists = 0,
-            saves = 0,
-            shots = 0,
-            placeholder = true,
-        )
+        val placeholder =
+            CoreStatsDisplayModel(
+                score = 0,
+                goals = 0,
+                assists = 0,
+                saves = 0,
+                shots = 0,
+                placeholder = true,
+            )
     }
 }
 

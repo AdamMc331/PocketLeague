@@ -22,9 +22,10 @@ internal fun TeamDetailContent(
 ) {
     LazyColumn(
         modifier = modifier,
-        contentPadding = PaddingValues(
-            vertical = PocketLeagueTheme.sizes.screenPadding,
-        ),
+        contentPadding =
+            PaddingValues(
+                vertical = PocketLeagueTheme.sizes.screenPadding,
+            ),
         verticalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.listItemSpacing),
     ) {
         item {
@@ -43,17 +44,19 @@ private fun LazyListScope.rosterCardSection(state: TeamDetailScreen.State) {
         Text(
             text = "Roster",
             style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier
-                .screenHorizontalPadding(),
+            modifier =
+                Modifier
+                    .screenHorizontalPadding(),
         )
     }
 
     item {
         RosterCard(
             roster = state.roster,
-            modifier = Modifier
-                .fillMaxWidth()
-                .screenHorizontalPadding(),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .screenHorizontalPadding(),
         )
     }
 }

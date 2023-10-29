@@ -14,22 +14,21 @@ import androidx.compose.ui.layout.onGloballyPositioned
  * composable has been rendered on the screen, and once it has
  * it will execute the given [callback].
  */
-fun Modifier.whenInView(
-    callback: () -> Unit,
-): Modifier = composed {
-    var hasBeenShown by remember { mutableStateOf(false) }
+fun Modifier.whenInView(callback: () -> Unit): Modifier =
+    composed {
+        var hasBeenShown by remember { mutableStateOf(false) }
 
-    if (hasBeenShown) {
-        Modifier
-    } else {
-        Modifier.onGloballyPositioned {
-            val root = it.findRootCoordinates()
-            val visible = !root.localBoundingBoxOf(it, clipBounds = true).isEmpty
+        if (hasBeenShown) {
+            Modifier
+        } else {
+            Modifier.onGloballyPositioned {
+                val root = it.findRootCoordinates()
+                val visible = !root.localBoundingBoxOf(it, clipBounds = true).isEmpty
 
-            if (visible) {
-                hasBeenShown = true
-                callback.invoke()
+                if (visible) {
+                    hasBeenShown = true
+                    callback.invoke()
+                }
             }
         }
     }
-}

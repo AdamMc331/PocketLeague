@@ -24,13 +24,15 @@ fun Paparazzi.snapshotScreen(
             useDarkTheme = useDarkTheme,
         ) {
             Surface(
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier =
+                    Modifier
+                        .fillMaxSize(),
             ) {
                 Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(screenPaddingDp.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .padding(screenPaddingDp.dp),
                 ) {
                     content()
                 }

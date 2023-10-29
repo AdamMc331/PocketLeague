@@ -33,17 +33,19 @@ fun CoreStatsComparisonCard(
     }
 
     Card(
-        modifier = modifier
-            .clickable {
-                showValues = !showValues
-            }
-            .fillMaxWidth(),
+        modifier =
+            modifier
+                .clickable {
+                    showValues = !showValues
+                }
+                .fillMaxWidth(),
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
         ) {
             StatType.values().forEach { statType ->
                 StatLine(

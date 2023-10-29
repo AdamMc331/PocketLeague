@@ -17,7 +17,6 @@ data class Match(
     val gameOverviews: List<GameOverview>,
     val round: StageRound,
 ) {
-
     /**
      * This value class ensures we can have type safety anywhere we plan to use a
      * string identifier for a match.

@@ -18,13 +18,14 @@ fun PlayerStatsTable(
     Column {
         StatTableRow(
             title = "Player",
-            cells = listOf(
-                "Score",
-                "Goals",
-                "Assists",
-                "Saves",
-                "Shots",
-            ),
+            cells =
+                listOf(
+                    "Score",
+                    "Goals",
+                    "Assists",
+                    "Saves",
+                    "Shots",
+                ),
             boldCells = true,
             textStyle = MaterialTheme.typography.bodyMedium,
         )
@@ -34,13 +35,14 @@ fun PlayerStatsTable(
         displayModels.forEachIndexed { index, displayModel ->
             StatTableRow(
                 title = displayModel.player.tag,
-                cells = listOf(
-                    displayModel.coreStats.score.toString(),
-                    displayModel.coreStats.goals.toString(),
-                    displayModel.coreStats.assists.toString(),
-                    displayModel.coreStats.saves.toString(),
-                    displayModel.coreStats.shots.toString(),
-                ),
+                cells =
+                    listOf(
+                        displayModel.coreStats.score.toString(),
+                        displayModel.coreStats.goals.toString(),
+                        displayModel.coreStats.assists.toString(),
+                        displayModel.coreStats.saves.toString(),
+                        displayModel.coreStats.shots.toString(),
+                    ),
             )
 
             if (index != displayModels.lastIndex || showFinalDivider) {

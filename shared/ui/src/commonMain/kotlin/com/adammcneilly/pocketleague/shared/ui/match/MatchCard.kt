@@ -35,17 +35,19 @@ fun MatchCard(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = modifier
-            .clickable(
-                enabled = !match.isPlaceholder,
-                onClick = {
-                    onClick.invoke(match.matchId)
-                },
-            ),
+        modifier =
+            modifier
+                .clickable(
+                    enabled = !match.isPlaceholder,
+                    onClick = {
+                        onClick.invoke(match.matchId)
+                    },
+                ),
     ) {
         Column(
-            modifier = Modifier
-                .padding(PocketLeagueTheme.sizes.cardPadding),
+            modifier =
+                Modifier
+                    .padding(PocketLeagueTheme.sizes.cardPadding),
         ) {
             EventName(match)
 
@@ -54,11 +56,12 @@ fun MatchCard(
             VerticalSpacer(PocketLeagueTheme.sizes.cardPadding)
 
             Column(
-                modifier = Modifier
-                    .placeholderMaterial(
-                        visible = match.isPlaceholder,
-                        color = PlaceholderDefaults.cardColor(),
-                    ),
+                modifier =
+                    Modifier
+                        .placeholderMaterial(
+                            visible = match.isPlaceholder,
+                            color = PlaceholderDefaults.cardColor(),
+                        ),
             ) {
                 BlueTeamResult(match)
 
@@ -75,12 +78,13 @@ private fun EventName(match: MatchDetailDisplayModel) {
         fontWeight = FontWeight.Bold,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
-        modifier = Modifier
-            .fillMaxWidth()
-            .placeholderMaterial(
-                visible = match.isPlaceholder,
-                color = PlaceholderDefaults.cardColor(),
-            ),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .placeholderMaterial(
+                    visible = match.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
     )
 }
 
@@ -97,19 +101,19 @@ private fun RelativeTime(match: MatchDetailDisplayModel) {
  * this StackOverflow answer. https://stackoverflow.com/a/67611627/3131147
  */
 @Composable
-private fun MatchTeamResultRow(
-    teamResult: MatchTeamResultDisplayModel,
-) {
-    val fontWeight: FontWeight? = if (teamResult.winner) {
-        FontWeight.Bold
-    } else {
-        null
-    }
+private fun MatchTeamResultRow(teamResult: MatchTeamResultDisplayModel) {
+    val fontWeight: FontWeight? =
+        if (teamResult.winner) {
+            FontWeight.Bold
+        } else {
+            null
+        }
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.cardPadding),
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier =
+            Modifier
+                .fillMaxWidth(),
     ) {
         Text(
             text = teamResult.score.toString(),
@@ -121,8 +125,9 @@ private fun MatchTeamResultRow(
             icon = Icons.Default.EmojiEvents,
             showIcon = teamResult.winner,
             fontWeight = fontWeight,
-            modifier = Modifier
-                .weight(1F),
+            modifier =
+                Modifier
+                    .weight(1F),
         )
     }
 }

@@ -38,10 +38,11 @@ data class OctaneGGGame(
 fun OctaneGGGame.toGame(): Game {
     // Currently the octane.gg api does not include a map name for
     // this map ID, so let's override it ourselves.
-    val mapName = when (this.map?.id) {
-        "outlaw_oasis_p" -> "Deadeye Canyon (Oasis)"
-        else -> this.map?.name.orEmpty()
-    }
+    val mapName =
+        when (this.map?.id) {
+            "outlaw_oasis_p" -> "Deadeye Canyon (Oasis)"
+            else -> this.map?.name.orEmpty()
+        }
 
     return Game(
         id = this.id.orEmpty(),

@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.map
 class SQLDelightEventService(
     private val database: PocketLeagueDB,
 ) : LocalEventService {
-
     override suspend fun insert(data: List<Event>) {
         database.transaction {
             data.forEach { event ->
@@ -40,17 +39,18 @@ class SQLDelightEventService(
     override fun stream(request: EventListRequest): Flow<List<Event>> {
         val eventQueries = database.localEventQueries
 
-        val selectQuery = when (request) {
-            is EventListRequest.AfterDate -> {
-                eventQueries.selectAfterDate(request.dateUtc)
+        val selectQuery =
+            when (request) {
+                is EventListRequest.AfterDate -> {
+                    eventQueries.selectAfterDate(request.dateUtc)
+                }
+                is EventListRequest.Id -> {
+                    eventQueries.selectById(request.eventId.id)
+                }
+                is EventListRequest.OnDate -> {
+                    eventQueries.selectOnDate(request.dateUtc)
+                }
             }
-            is EventListRequest.Id -> {
-                eventQueries.selectById(request.eventId.id)
-            }
-            is EventListRequest.OnDate -> {
-                eventQueries.selectOnDate(request.dateUtc)
-            }
-        }
 
         return selectQuery
             .asFlow()

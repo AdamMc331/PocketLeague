@@ -10,23 +10,23 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class EventSummaryDisplayModelTest {
-
     @Test
     fun convertFromEventWithoutLocation() {
         val mockDateString = "Jul 07, 2023"
         val testEvent = TestModel.event
 
-        val dateTimeFormatter = FakeDateTimeFormatter().apply {
-            mockResponseForUTCString(
-                utcString = testEvent.startDateUTC.orEmpty(),
-                response = mockDateString,
-            )
+        val dateTimeFormatter =
+            FakeDateTimeFormatter().apply {
+                mockResponseForUTCString(
+                    utcString = testEvent.startDateUTC.orEmpty(),
+                    response = mockDateString,
+                )
 
-            mockResponseForUTCString(
-                utcString = testEvent.endDateUTC.orEmpty(),
-                response = mockDateString,
-            )
-        }
+                mockResponseForUTCString(
+                    utcString = testEvent.endDateUTC.orEmpty(),
+                    response = mockDateString,
+                )
+            }
 
         val displayModel = testEvent.toSummaryDisplayModel(dateTimeFormatter)
 
@@ -44,25 +44,28 @@ class EventSummaryDisplayModelTest {
     fun convertFromEventWithLocation() {
         val mockDateString = "Jul 07, 2023"
         val testLocation = TestModel.agganisArenaLocation
-        val testEvent = TestModel.event.copy(
-            stages = listOf(
-                TestModel.eventStage.copy(
-                    location = testLocation,
-                ),
-            ),
-        )
-
-        val dateTimeFormatter = FakeDateTimeFormatter().apply {
-            mockResponseForUTCString(
-                utcString = testEvent.startDateUTC.orEmpty(),
-                response = mockDateString,
+        val testEvent =
+            TestModel.event.copy(
+                stages =
+                    listOf(
+                        TestModel.eventStage.copy(
+                            location = testLocation,
+                        ),
+                    ),
             )
 
-            mockResponseForUTCString(
-                utcString = testEvent.endDateUTC.orEmpty(),
-                response = mockDateString,
-            )
-        }
+        val dateTimeFormatter =
+            FakeDateTimeFormatter().apply {
+                mockResponseForUTCString(
+                    utcString = testEvent.startDateUTC.orEmpty(),
+                    response = mockDateString,
+                )
+
+                mockResponseForUTCString(
+                    utcString = testEvent.endDateUTC.orEmpty(),
+                    response = mockDateString,
+                )
+            }
 
         // Need to create FakeLocaleHelper still
         val countryName = provideLocaleHelper().getCountryDisplayName(testLocation.countryCode)
@@ -75,10 +78,11 @@ class EventSummaryDisplayModelTest {
 
     @Test
     fun parseDateRangeInSameMonthAndYear() {
-        val event = TestModel.event.copy(
-            startDateUTC = "2022-08-03T23:00:00Z",
-            endDateUTC = "2022-08-05T23:00:00Z",
-        )
+        val event =
+            TestModel.event.copy(
+                startDateUTC = "2022-08-03T23:00:00Z",
+                endDateUTC = "2022-08-05T23:00:00Z",
+            )
 
         val displayModel = event.toSummaryDisplayModel()
 
@@ -87,10 +91,11 @@ class EventSummaryDisplayModelTest {
 
     @Test
     fun parseDateRangeInSameYear() {
-        val event = TestModel.event.copy(
-            startDateUTC = "2022-08-31T23:00:00Z",
-            endDateUTC = "2022-09-02T23:00:00Z",
-        )
+        val event =
+            TestModel.event.copy(
+                startDateUTC = "2022-08-31T23:00:00Z",
+                endDateUTC = "2022-09-02T23:00:00Z",
+            )
 
         val displayModel = event.toSummaryDisplayModel()
 
@@ -99,10 +104,11 @@ class EventSummaryDisplayModelTest {
 
     @Test
     fun parseDateRangeInDifferentYears() {
-        val event = TestModel.event.copy(
-            startDateUTC = "2022-12-31T23:00:00Z",
-            endDateUTC = "2023-01-05T23:00:00Z",
-        )
+        val event =
+            TestModel.event.copy(
+                startDateUTC = "2022-12-31T23:00:00Z",
+                endDateUTC = "2023-01-05T23:00:00Z",
+            )
 
         val displayModel = event.toSummaryDisplayModel()
 
@@ -111,10 +117,11 @@ class EventSummaryDisplayModelTest {
 
     @Test
     fun parseDateRangeOnSameDay() {
-        val event = TestModel.event.copy(
-            startDateUTC = "2022-12-31T13:00:00Z",
-            endDateUTC = "2022-12-31T23:00:00Z",
-        )
+        val event =
+            TestModel.event.copy(
+                startDateUTC = "2022-12-31T13:00:00Z",
+                endDateUTC = "2022-12-31T23:00:00Z",
+            )
 
         val displayModel = event.toSummaryDisplayModel()
 

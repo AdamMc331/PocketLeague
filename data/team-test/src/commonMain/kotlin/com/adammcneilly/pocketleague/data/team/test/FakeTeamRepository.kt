@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.flowOf
  * are called.
  */
 class FakeTeamRepository : TeamRepository {
-
     var favoriteTeams: List<Team> = emptyList()
     var favoriteTeamsRequestCount: Int = 0
 
@@ -28,9 +27,7 @@ class FakeTeamRepository : TeamRepository {
         require(_updatedFavorites[teamId] == expectedIsFavorite)
     }
 
-    fun verifyFavoriteStatusNotUpdated(
-        teamId: String,
-    ) {
+    fun verifyFavoriteStatusNotUpdated(teamId: String) {
         require(_updatedFavorites[teamId] == null)
     }
 
@@ -51,7 +48,10 @@ class FakeTeamRepository : TeamRepository {
         this._insertedTeams.addAll(teams)
     }
 
-    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+    override suspend fun updateIsFavorite(
+        teamId: String,
+        isFavorite: Boolean,
+    ) {
         _updatedFavorites[teamId] = isFavorite
     }
 

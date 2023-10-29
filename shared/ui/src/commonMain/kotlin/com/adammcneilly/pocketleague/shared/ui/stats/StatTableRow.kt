@@ -32,19 +32,21 @@ fun StatTableRow(
     boldCells: Boolean = false,
     textStyle: TextStyle = LocalTextStyle.current,
 ) {
-    val fontWeight: FontWeight? = if (boldCells) {
-        FontWeight.Bold
-    } else {
-        null
-    }
+    val fontWeight: FontWeight? =
+        if (boldCells) {
+            FontWeight.Bold
+        } else {
+            null
+        }
 
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                horizontal = 8.dp,
-                vertical = 4.dp,
-            ),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(
+                    horizontal = 8.dp,
+                    vertical = 4.dp,
+                ),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         TitleCell(
@@ -74,8 +76,9 @@ private fun RowScope.TitleCell(
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         fontWeight = fontWeight,
-        modifier = Modifier.Companion
-            .weight(2F),
+        modifier =
+            Modifier.Companion
+                .weight(2F),
         style = textStyle,
     )
 }
@@ -92,8 +95,9 @@ private fun RowScope.StatCell(
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         fontWeight = fontWeight,
-        modifier = Modifier
-            .weight(1F),
+        modifier =
+            Modifier
+                .weight(1F),
         style = textStyle,
     )
 }

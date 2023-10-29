@@ -14,7 +14,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class EventSummaryListItemPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 
@@ -58,9 +57,10 @@ class EventSummaryListItemPaparazziTest {
             val event = EventSummaryDisplayModel.springInvitationalForRegion("NA")
 
             EventSummaryListItem(
-                event = event.copy(
-                    winningTeam = TeamOverviewDisplayModel.teamVitality(),
-                ),
+                event =
+                    event.copy(
+                        winningTeam = TeamOverviewDisplayModel.teamVitality(),
+                    ),
             )
         }
     }

@@ -5,9 +5,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.LocationDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
 import com.adammcneilly.pocketleague.core.models.Event
 
-fun EventSummaryDisplayModel.Companion.springInvitationalForRegion(
-    region: String,
-): EventSummaryDisplayModel {
+fun EventSummaryDisplayModel.Companion.springInvitationalForRegion(region: String): EventSummaryDisplayModel {
     return EventSummaryDisplayModel(
         eventId = Event.Id("spring_invitational"),
         imageURL = ThemedImageURL(),
@@ -35,10 +33,11 @@ fun EventSummaryDisplayModel.Companion.worldChampionship(): EventSummaryDisplayM
         imageURL = ThemedImageURL(),
         dateRange = "August 03 - 13, 2023",
         name = "RLCS 2022-23 World Championship",
-        location = LocationDisplayModel(
-            venue = "PSD Bank Arena",
-            cityCountry = "Düsseldorf, Germany",
-        ),
+        location =
+            LocationDisplayModel(
+                venue = "PSD Bank Arena",
+                cityCountry = "Düsseldorf, Germany",
+            ),
         isMajor = true,
     )
 }
@@ -49,10 +48,11 @@ fun EventSummaryDisplayModel.Companion.springMajor(): EventSummaryDisplayModel {
         imageURL = ThemedImageURL(),
         dateRange = "July 06 - 09, 2023",
         name = "RLCS 2022-23 Spring Major",
-        location = LocationDisplayModel(
-            venue = "Agganis Arena",
-            cityCountry = "Boston, USA",
-        ),
+        location =
+            LocationDisplayModel(
+                venue = "Agganis Arena",
+                cityCountry = "Boston, USA",
+            ),
         isMajor = true,
     )
 }

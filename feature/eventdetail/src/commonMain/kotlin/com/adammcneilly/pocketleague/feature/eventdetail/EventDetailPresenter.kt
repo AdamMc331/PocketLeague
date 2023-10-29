@@ -29,11 +29,12 @@ import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 
-private val placeholderMatches = listOf(
-    MatchDetailDisplayModel.placeholder,
-    MatchDetailDisplayModel.placeholder,
-    MatchDetailDisplayModel.placeholder,
-)
+private val placeholderMatches =
+    listOf(
+        MatchDetailDisplayModel.placeholder,
+        MatchDetailDisplayModel.placeholder,
+        MatchDetailDisplayModel.placeholder,
+    )
 
 /**
  * State management container for the event detail screen.
@@ -45,7 +46,6 @@ class EventDetailPresenter(
     private val onMatchClicked: (Match.Id) -> Unit,
     private val timeProvider: TimeProvider,
 ) : Presenter<EventDetailScreen.State> {
-
     @Composable
     override fun present(): EventDetailScreen.State {
         var displayModel by remember {
@@ -65,15 +65,17 @@ class EventDetailPresenter(
                 displayModel = eventDetail
             }
 
-            val eventFlow = snapshotFlow {
-                displayModel
-            }.filter {
-                !it.isPlaceholder
-            }
+            val eventFlow =
+                snapshotFlow {
+                    displayModel
+                }.filter {
+                    !it.isPlaceholder
+                }
 
-            val selectedStageIndexFlow = snapshotFlow {
-                selectedStageIndex
-            }
+            val selectedStageIndexFlow =
+                snapshotFlow {
+                    selectedStageIndex
+                }
 
             observeMatchesForSelectedStage(
                 eventFlow = eventFlow,

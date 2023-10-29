@@ -8,38 +8,39 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class OctaneGGEventTest {
-
     @Test
     fun mapFromValidEvent() {
-        val octaneEvent = OctaneGGEvent(
-            id = "eventId",
-            endDateUTC = "endDate",
-            imageURL = "image",
-            mode = 1,
-            name = "name",
-            prize = OctaneGGPrize(),
-            region = "NA",
-            slug = "slug",
-            stages = listOf(OctaneGGStage()),
-            startDateUTC = "startDate",
-            tier = "S",
-            groups = listOf("testGroup"),
-            lan = false,
-        )
+        val octaneEvent =
+            OctaneGGEvent(
+                id = "eventId",
+                endDateUTC = "endDate",
+                imageURL = "image",
+                mode = 1,
+                name = "name",
+                prize = OctaneGGPrize(),
+                region = "NA",
+                slug = "slug",
+                stages = listOf(OctaneGGStage()),
+                startDateUTC = "startDate",
+                tier = "S",
+                groups = listOf("testGroup"),
+                lan = false,
+            )
 
-        val expectedEvent = Event(
-            id = Event.Id("eventId"),
-            endDateUTC = "endDate",
-            imageURL = "image",
-            mode = "1",
-            name = "name",
-            prize = OctaneGGPrize().toPrize(),
-            region = EventRegion.NA,
-            stages = listOf(OctaneGGStage().toEventStage()),
-            startDateUTC = "startDate",
-            tier = EventTier.S,
-            lan = false,
-        )
+        val expectedEvent =
+            Event(
+                id = Event.Id("eventId"),
+                endDateUTC = "endDate",
+                imageURL = "image",
+                mode = "1",
+                name = "name",
+                prize = OctaneGGPrize().toPrize(),
+                region = EventRegion.NA,
+                stages = listOf(OctaneGGStage().toEventStage()),
+                startDateUTC = "startDate",
+                tier = EventTier.S,
+                lan = false,
+            )
 
         val domainEvent = octaneEvent.toEvent()
 
@@ -53,19 +54,20 @@ class OctaneGGEventTest {
     fun mapFromDefaultEvent() {
         val octaneEvent = OctaneGGEvent()
 
-        val expectedEvent = Event(
-            id = Event.Id(""),
-            name = "",
-            startDateUTC = null,
-            endDateUTC = null,
-            imageURL = null,
-            stages = emptyList(),
-            tier = EventTier.Unknown,
-            mode = "",
-            region = EventRegion.Unknown,
-            lan = false,
-            prize = null,
-        )
+        val expectedEvent =
+            Event(
+                id = Event.Id(""),
+                name = "",
+                startDateUTC = null,
+                endDateUTC = null,
+                imageURL = null,
+                stages = emptyList(),
+                tier = EventTier.Unknown,
+                mode = "",
+                region = EventRegion.Unknown,
+                lan = false,
+                prize = null,
+            )
 
         val domainEvent = octaneEvent.toEvent()
 
@@ -77,10 +79,11 @@ class OctaneGGEventTest {
 
     @Test
     fun mapSpringOpenRegionalName() {
-        val springOpen = OctaneGGEvent(
-            name = "RLCS 2022-23 Spring North America Regional 1",
-            region = "NA",
-        )
+        val springOpen =
+            OctaneGGEvent(
+                name = "RLCS 2022-23 Spring North America Regional 1",
+                region = "NA",
+            )
 
         val output = springOpen.toEvent()
 
@@ -89,10 +92,11 @@ class OctaneGGEventTest {
 
     @Test
     fun mapSpringCupRegionalName() {
-        val springOpen = OctaneGGEvent(
-            name = "RLCS 2022-23 Spring North America Regional 2",
-            region = "NA",
-        )
+        val springOpen =
+            OctaneGGEvent(
+                name = "RLCS 2022-23 Spring North America Regional 2",
+                region = "NA",
+            )
 
         val output = springOpen.toEvent()
 
@@ -101,10 +105,11 @@ class OctaneGGEventTest {
 
     @Test
     fun mapSpringInvitationalRegionalName() {
-        val springOpen = OctaneGGEvent(
-            name = "RLCS 2022-23 Spring North America Regional 3",
-            region = "NA",
-        )
+        val springOpen =
+            OctaneGGEvent(
+                name = "RLCS 2022-23 Spring North America Regional 3",
+                region = "NA",
+            )
 
         val output = springOpen.toEvent()
 
@@ -113,10 +118,11 @@ class OctaneGGEventTest {
 
     @Test
     fun mapUnknownRegionalNAme() {
-        val springOpen = OctaneGGEvent(
-            name = "RLCS 2022-23 Spring North America Regional random",
-            region = "NA",
-        )
+        val springOpen =
+            OctaneGGEvent(
+                name = "RLCS 2022-23 Spring North America Regional random",
+                region = "NA",
+            )
 
         val output = springOpen.toEvent()
 

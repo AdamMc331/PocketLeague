@@ -8,7 +8,6 @@ import platform.Foundation.NSDateFormatter
  * Formats dates for the iOS platform.
  */
 class IOSDateTimeFormatter : DateTimeFormatter {
-
     /**
      * Inspiration: https://github.com/Kotlin/kotlinx-datetime/issues/211#issuecomment-1285745207
      *

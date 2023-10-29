@@ -31,30 +31,33 @@ internal fun EventStageCard(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.textSpacing),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(PocketLeagueTheme.sizes.cardPadding),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(PocketLeagueTheme.sizes.cardPadding),
         ) {
             Text(
                 text = eventStage.name,
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .placeholderMaterial(
-                        visible = eventStage.isPlaceholder,
-                        color = PlaceholderDefaults.cardColor(),
-                    ),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .placeholderMaterial(
+                            visible = eventStage.isPlaceholder,
+                            color = PlaceholderDefaults.cardColor(),
+                        ),
             )
 
             Text(
                 text = eventStage.dateString,
                 style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier
-                    .placeholderMaterial(
-                        visible = eventStage.isPlaceholder,
-                        color = PlaceholderDefaults.cardColor(),
-                    ),
+                modifier =
+                    Modifier
+                        .placeholderMaterial(
+                            visible = eventStage.isPlaceholder,
+                            color = PlaceholderDefaults.cardColor(),
+                        ),
             )
         }
     }

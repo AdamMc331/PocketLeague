@@ -38,27 +38,30 @@ fun LanEventSummaryCard(
     onEventClicked: (Event.Id) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val rlcsGradientBrush = Brush.horizontalGradient(
-        colors = listOf(rlcsBlue, rlcsOrange),
-    )
+    val rlcsGradientBrush =
+        Brush.horizontalGradient(
+            colors = listOf(rlcsBlue, rlcsOrange),
+        )
 
     CompositionLocalProvider(
         LocalContentColor provides md_theme_dark_onSurface,
     ) {
         Box(
-            modifier = modifier
-                .background(
-                    brush = rlcsGradientBrush,
-                    shape = MaterialTheme.shapes.medium,
-                )
-                .fillMaxWidth()
-                .clickable {
-                    onEventClicked.invoke(event.eventId)
-                },
+            modifier =
+                modifier
+                    .background(
+                        brush = rlcsGradientBrush,
+                        shape = MaterialTheme.shapes.medium,
+                    )
+                    .fillMaxWidth()
+                    .clickable {
+                        onEventClicked.invoke(event.eventId)
+                    },
         ) {
             Column(
-                modifier = Modifier
-                    .padding(PocketLeagueTheme.sizes.cardPadding),
+                modifier =
+                    Modifier
+                        .padding(PocketLeagueTheme.sizes.cardPadding),
             ) {
                 EventName(event.name)
 
@@ -82,56 +85,52 @@ fun LanEventSummaryCard(
 }
 
 @Composable
-private fun EventWinner(
-    winningTeam: TeamOverviewDisplayModel,
-) {
+private fun EventWinner(winningTeam: TeamOverviewDisplayModel) {
     InlineIconText(
         text = winningTeam.name,
         icon = Icons.Default.EmojiEvents,
         leadingIcon = true,
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier =
+            Modifier
+                .fillMaxWidth(),
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.headlineSmall,
     )
 }
 
 @Composable
-private fun EventLocation(
-    location: String,
-) {
+private fun EventLocation(location: String) {
     Text(
         text = location,
         style = MaterialTheme.typography.labelMedium,
         textAlign = TextAlign.Center,
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier =
+            Modifier
+                .fillMaxWidth(),
     )
 }
 
 @Composable
-private fun EventDates(
-    dateRange: String,
-) {
+private fun EventDates(dateRange: String) {
     Text(
         text = dateRange,
         style = MaterialTheme.typography.labelMedium,
         textAlign = TextAlign.Center,
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier =
+            Modifier
+                .fillMaxWidth(),
     )
 }
 
 @Composable
-private fun EventName(
-    name: String,
-) {
+private fun EventName(name: String) {
     Text(
         text = name,
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         textAlign = TextAlign.Center,
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier =
+            Modifier
+                .fillMaxWidth(),
     )
 }

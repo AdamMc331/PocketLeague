@@ -14,7 +14,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class EventSummaryListCardPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 
@@ -24,9 +23,10 @@ class EventSummaryListCardPaparazziTest {
     @Test
     fun renderPlaceholder() {
         paparazzi.snapshotScreen(useDarkTheme) {
-            val events = (1..5).map {
-                EventSummaryDisplayModel.placeholder
-            }
+            val events =
+                (1..5).map {
+                    EventSummaryDisplayModel.placeholder
+                }
 
             EventSummaryListCard(
                 events = events,
@@ -50,11 +50,12 @@ class EventSummaryListCardPaparazziTest {
     @Test
     fun renderEventSummaryListCardWithWinners() {
         paparazzi.snapshotScreen(useDarkTheme) {
-            val events = EventSummaryDisplayModel.springInvitationalForAllRegions().map { event ->
-                event.copy(
-                    winningTeam = TeamOverviewDisplayModel.teamVitality(),
-                )
-            }
+            val events =
+                EventSummaryDisplayModel.springInvitationalForAllRegions().map { event ->
+                    event.copy(
+                        winningTeam = TeamOverviewDisplayModel.teamVitality(),
+                    )
+                }
 
             EventSummaryListCard(
                 events = events,

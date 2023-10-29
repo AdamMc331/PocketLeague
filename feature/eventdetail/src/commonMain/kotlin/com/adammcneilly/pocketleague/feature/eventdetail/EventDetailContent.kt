@@ -29,12 +29,14 @@ internal fun EventDetailContent(
 ) {
     LazyColumn(
         modifier = modifier,
-        contentPadding = PaddingValues(
-            vertical = PocketLeagueTheme.sizes.screenPadding,
-        ),
-        verticalArrangement = Arrangement.spacedBy(
-            PocketLeagueTheme.sizes.listItemSpacing,
-        ),
+        contentPadding =
+            PaddingValues(
+                vertical = PocketLeagueTheme.sizes.screenPadding,
+            ),
+        verticalArrangement =
+            Arrangement.spacedBy(
+                PocketLeagueTheme.sizes.listItemSpacing,
+            ),
     ) {
         // Do we want to pass in the selected stage?
         // Maybe not, since there's no situation where we dynamically link to it,
@@ -44,30 +46,30 @@ internal fun EventDetailContent(
         items(state.matchesForSelectedStage) { match ->
             StageMatchListItem(
                 match = match,
-                modifier = Modifier
-                    .screenHorizontalPadding()
-                    .clickable {
-                        val event = EventDetailScreen.Event.MatchClicked(match.matchId)
-                        state.eventSink.invoke(event)
-                    },
+                modifier =
+                    Modifier
+                        .screenHorizontalPadding()
+                        .clickable {
+                            val event = EventDetailScreen.Event.MatchClicked(match.matchId)
+                            state.eventSink.invoke(event)
+                        },
             )
         }
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
-private fun LazyListScope.horizontalStageSection(
-    state: EventDetailScreen.State,
-) {
+private fun LazyListScope.horizontalStageSection(state: EventDetailScreen.State) {
     val stages = state.event.stageSummaries
 
     item {
-        val pagerState = rememberPagerState(
-            initialPage = 0,
-            initialPageOffsetFraction = 0f,
-        ) {
-            stages.size
-        }
+        val pagerState =
+            rememberPagerState(
+                initialPage = 0,
+                initialPageOffsetFraction = 0f,
+            ) {
+                stages.size
+            }
 
         val pageSpacingDp = PocketLeagueTheme.sizes.listItemSpacing
 
@@ -75,26 +77,29 @@ private fun LazyListScope.horizontalStageSection(
             snapshotFlow {
                 pagerState.currentPage
             }.onEach { pageIndex ->
-                val uiEvent = EventDetailScreen.Event.StageSelected(
-                    stageIndex = pageIndex,
-                )
+                val uiEvent =
+                    EventDetailScreen.Event.StageSelected(
+                        stageIndex = pageIndex,
+                    )
                 state.eventSink.invoke(uiEvent)
             }.launchIn(this)
         }
 
         HorizontalPager(
             pageSpacing = PocketLeagueTheme.sizes.listItemSpacing,
-            contentPadding = PaddingValues(
-                horizontal = pageSpacingDp.times(2),
-            ),
+            contentPadding =
+                PaddingValues(
+                    horizontal = pageSpacingDp.times(2),
+                ),
             state = pagerState,
         ) { pageIndex ->
             val stage = stages[pageIndex]
 
             EventStageCard(
                 eventStage = stage,
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth(),
             )
         }
     }

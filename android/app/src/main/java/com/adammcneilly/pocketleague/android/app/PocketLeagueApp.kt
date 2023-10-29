@@ -9,14 +9,14 @@ import org.koin.dsl.module
  * The [Application] instance for Pocket League.
  */
 class PocketLeagueApp : Application() {
-
     override fun onCreate() {
         super.onCreate()
 
         initKoin(
-            appModule = module {
-                single<Context> { this@PocketLeagueApp }
-            },
+            appModule =
+                module {
+                    single<Context> { this@PocketLeagueApp }
+                },
         )
     }
 }

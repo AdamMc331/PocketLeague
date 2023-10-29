@@ -38,17 +38,17 @@ data class EventSummaryDisplayModel(
     val winningTeam: TeamOverviewDisplayModel? = null,
     private val location: LocationDisplayModel? = null,
 ) {
-
     companion object {
-        val placeholder = EventSummaryDisplayModel(
-            eventId = Event.Id(""),
-            imageURL = ThemedImageURL(),
-            startDate = "",
-            endDate = "",
-            name = "",
-            dateRange = "",
-            isPlaceholder = true,
-        )
+        val placeholder =
+            EventSummaryDisplayModel(
+                eventId = Event.Id(""),
+                imageURL = ThemedImageURL(),
+                startDate = "",
+                endDate = "",
+                name = "",
+                dateRange = "",
+                isPlaceholder = true,
+            )
     }
 
     @Deprecated("Deprecated in favor of new dateRange property.", ReplaceWith("\"\$dateRange\""))
@@ -69,37 +69,39 @@ fun Event.toSummaryDisplayModel(): EventSummaryDisplayModel {
 /**
  * Converts an [Event] entity to the user friendly [EventSummaryDisplayModel].
  */
-fun Event.toSummaryDisplayModel(
-    dateTimeFormatter: DateTimeFormatter,
-): EventSummaryDisplayModel {
+fun Event.toSummaryDisplayModel(dateTimeFormatter: DateTimeFormatter): EventSummaryDisplayModel {
     // It's unlikely that an event had more than one location, but we'll default to the
     // last one because it's most likely the main stage if so.
-    val location = this.stages
-        .mapNotNull(EventStage::location)
-        .lastOrNull()
-        ?.toDisplayModel()
+    val location =
+        this.stages
+            .mapNotNull(EventStage::location)
+            .lastOrNull()
+            ?.toDisplayModel()
 
-    val formattedStartDate = this.startDateUTC?.let { startDate ->
-        dateTimeFormatter.formatUTCString(
-            utcString = startDate,
-            formatPattern = EVENT_DATE_FORMAT,
-            timeZone = TimeZone.SYSTEM_DEFAULT,
-        )
-    }.orEmpty()
+    val formattedStartDate =
+        this.startDateUTC?.let { startDate ->
+            dateTimeFormatter.formatUTCString(
+                utcString = startDate,
+                formatPattern = EVENT_DATE_FORMAT,
+                timeZone = TimeZone.SYSTEM_DEFAULT,
+            )
+        }.orEmpty()
 
-    val formattedEndDate = this.endDateUTC?.let { endDate ->
-        dateTimeFormatter.formatUTCString(
-            utcString = endDate,
-            formatPattern = EVENT_DATE_FORMAT,
-            timeZone = TimeZone.SYSTEM_DEFAULT,
-        )
-    }.orEmpty()
+    val formattedEndDate =
+        this.endDateUTC?.let { endDate ->
+            dateTimeFormatter.formatUTCString(
+                utcString = endDate,
+                formatPattern = EVENT_DATE_FORMAT,
+                timeZone = TimeZone.SYSTEM_DEFAULT,
+            )
+        }.orEmpty()
 
     return EventSummaryDisplayModel(
         name = this.name,
-        imageURL = ThemedImageURL(
-            lightThemeImageURL = this.imageURL,
-        ),
+        imageURL =
+            ThemedImageURL(
+                lightThemeImageURL = this.imageURL,
+            ),
         eventId = this.id,
         isMajor = this.lan,
         location = location,

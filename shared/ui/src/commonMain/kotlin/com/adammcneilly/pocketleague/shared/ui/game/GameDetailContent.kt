@@ -31,11 +31,13 @@ fun GameDetailContent(
     val blueTeamSelected = remember { mutableStateOf(true) }
 
     Card(
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.secondaryContainer,
-        ),
-        modifier = modifier
-            .fillMaxWidth(),
+        colors =
+            CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+            ),
+        modifier =
+            modifier
+                .fillMaxWidth(),
     ) {
         GameNumberHeader(displayModel)
 
@@ -50,11 +52,12 @@ fun GameDetailContent(
             },
         )
 
-        val playerStats = if (blueTeamSelected.value) {
-            displayModel.blueTeamResult.players
-        } else {
-            displayModel.orangeTeamResult.players
-        }
+        val playerStats =
+            if (blueTeamSelected.value) {
+                displayModel.blueTeamResult.players
+            } else {
+                displayModel.orangeTeamResult.players
+            }
 
         PlayerStatsTable(
             displayModels = playerStats,
@@ -66,9 +69,10 @@ fun GameDetailContent(
 private fun GameNumberHeader(displayModel: GameDetailDisplayModel) {
     Text(
         text = "Game ${displayModel.gameNumber}",
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.headlineSmall,
     )
@@ -81,11 +85,12 @@ private fun TeamTabs(
     onBlueTeamSelected: () -> Unit,
     onOrangeTeamSelected: () -> Unit,
 ) {
-    val selectedIndex = if (blueTeamSelected) {
-        0
-    } else {
-        1
-    }
+    val selectedIndex =
+        if (blueTeamSelected) {
+            0
+        } else {
+            1
+        }
 
     TabRow(selectedTabIndex = selectedIndex) {
         Tab(

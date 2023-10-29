@@ -14,15 +14,15 @@ class GetPastWeeksMatchesUseCase(
     private val timeProvider: TimeProvider,
     private val matchRepository: MatchRepository,
 ) {
-
     /**
      * @see [GetPastWeeksMatchesUseCase].
      */
     fun invoke(): Flow<List<Match>> {
-        val request = MatchListRequest.DateRange(
-            startDateUTC = timeProvider.daysAgo(DAYS_PER_WEEK),
-            endDateUTC = timeProvider.now(),
-        )
+        val request =
+            MatchListRequest.DateRange(
+                startDateUTC = timeProvider.daysAgo(DAYS_PER_WEEK),
+                endDateUTC = timeProvider.now(),
+            )
 
         return matchRepository.stream(request)
     }

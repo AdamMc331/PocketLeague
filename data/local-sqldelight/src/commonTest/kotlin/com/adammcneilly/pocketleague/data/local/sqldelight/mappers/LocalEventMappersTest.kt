@@ -10,22 +10,22 @@ import com.varabyte.truthish.assertThat
 import kotlin.test.Test
 
 class LocalEventMappersTest {
-
     @Test
     fun convertFromLocalEventWithPrize() {
-        val localEvent = LocalEvent(
-            id = "1234",
-            name = "name",
-            startDateUTC = "startDateUTC",
-            endDateUTC = "endDateUTC",
-            imageURL = "imageURL",
-            tier = "S",
-            mode = "3",
-            region = "NA",
-            lan = false,
-            prizeAmount = 10.0,
-            prizeCurrency = "USD",
-        )
+        val localEvent =
+            LocalEvent(
+                id = "1234",
+                name = "name",
+                startDateUTC = "startDateUTC",
+                endDateUTC = "endDateUTC",
+                imageURL = "imageURL",
+                tier = "S",
+                mode = "3",
+                region = "NA",
+                lan = false,
+                prizeAmount = 10.0,
+                prizeCurrency = "USD",
+            )
 
         val domainEvent = localEvent.toEvent()
 
@@ -46,19 +46,20 @@ class LocalEventMappersTest {
 
     @Test
     fun convertFromLocalEventWithoutPrize() {
-        val localEvent = LocalEvent(
-            id = "1234",
-            name = "name",
-            startDateUTC = "startDateUTC",
-            endDateUTC = "endDateUTC",
-            imageURL = "imageURL",
-            tier = "S",
-            mode = "3",
-            region = "NA",
-            lan = false,
-            prizeAmount = null,
-            prizeCurrency = null,
-        )
+        val localEvent =
+            LocalEvent(
+                id = "1234",
+                name = "name",
+                startDateUTC = "startDateUTC",
+                endDateUTC = "endDateUTC",
+                imageURL = "imageURL",
+                tier = "S",
+                mode = "3",
+                region = "NA",
+                lan = false,
+                prizeAmount = null,
+                prizeCurrency = null,
+            )
 
         val domainEvent = localEvent.toEvent()
 

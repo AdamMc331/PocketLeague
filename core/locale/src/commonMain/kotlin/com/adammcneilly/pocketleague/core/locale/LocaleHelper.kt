@@ -6,7 +6,6 @@ import de.cketti.codepoints.CodePoints
  * Platform specific methods related to locales, such as country/device information.
  */
 interface LocaleHelper {
-
     /**
      * Given a [countryCode], convert it to a relevant display name. For example,
      * "us" should return "United States".
@@ -50,9 +49,10 @@ interface LocaleHelper {
          * Most emojis are generated in [getFlagEmoji] from the country code, but if there are any country codes
          * we want to override, this map will take precedence.
          */
-        private val overrideEmojis = mapOf(
-            "EN" to ENGLAND_FLAG_EMOJI,
-        )
+        private val overrideEmojis =
+            mapOf(
+                "EN" to ENGLAND_FLAG_EMOJI,
+            )
     }
 }
 

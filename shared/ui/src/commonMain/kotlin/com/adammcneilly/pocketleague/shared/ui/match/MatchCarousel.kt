@@ -30,8 +30,9 @@ fun MatchCarousel(
             MatchCard(
                 match = match,
                 onClick = onMatchClicked,
-                modifier = Modifier
-                    .fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO),
+                modifier =
+                    Modifier
+                        .fillParentMaxWidth(MATCH_CARD_WIDTH_RATIO),
             )
         }
     }

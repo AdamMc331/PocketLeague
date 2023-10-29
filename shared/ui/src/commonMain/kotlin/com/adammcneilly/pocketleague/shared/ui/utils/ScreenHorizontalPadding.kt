@@ -13,8 +13,9 @@ import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
  * in a lazy list, and we don't want to apply horizontal padding to the list itself
  * since that will cut off any carousels on the screen.
  */
-fun Modifier.screenHorizontalPadding() = composed {
-    this.padding(
-        horizontal = PocketLeagueTheme.sizes.screenPadding,
-    )
-}
+fun Modifier.screenHorizontalPadding() =
+    composed {
+        this.padding(
+            horizontal = PocketLeagueTheme.sizes.screenPadding,
+        )
+    }

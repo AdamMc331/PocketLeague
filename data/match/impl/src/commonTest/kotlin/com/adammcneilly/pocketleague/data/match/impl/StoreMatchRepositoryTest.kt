@@ -15,34 +15,36 @@ class StoreMatchRepositoryTest {
     private val remoteMatchService = FakeRemoteMatchService()
     private val localMatchService = FakeLocalMatchService()
 
-    private val repository = StoreMatchRepository(
-        remoteMatchService = remoteMatchService,
-        localMatchService = localMatchService,
-    )
+    private val repository =
+        StoreMatchRepository(
+            remoteMatchService = remoteMatchService,
+            localMatchService = localMatchService,
+        )
 
     @Test
-    fun processSuccessRequest() = runTest {
-        val request = MatchListRequest.Id(Match.Id("123"))
-        val testMatch = TestModel.matchBlueWinner
+    fun processSuccessRequest() =
+        runTest {
+            val request = MatchListRequest.Id(Match.Id("123"))
+            val testMatch = TestModel.matchBlueWinner
 
-        remoteMatchService.mockResponse(
-            request = request,
-            response = Result.success(listOf(testMatch)),
-        )
+            remoteMatchService.mockResponse(
+                request = request,
+                response = Result.success(listOf(testMatch)),
+            )
 
-        localMatchService.mockResponse(
-            request = request,
-            response = listOf(testMatch),
-        )
+            localMatchService.mockResponse(
+                request = request,
+                response = listOf(testMatch),
+            )
 
-        repository
-            .stream(request)
-            .test {
-                assertThat(awaitItem()).isEqualTo(listOf(testMatch))
-                assertThat(awaitItem()).isEqualTo(emptyList<Match>())
-                assertThat(awaitItem()).isEqualTo(listOf(testMatch))
-                val remainingEvents = cancelAndConsumeRemainingEvents()
-                assertThat(remainingEvents).isEmpty()
-            }
-    }
+            repository
+                .stream(request)
+                .test {
+                    assertThat(awaitItem()).isEqualTo(listOf(testMatch))
+                    assertThat(awaitItem()).isEqualTo(emptyList<Match>())
+                    assertThat(awaitItem()).isEqualTo(listOf(testMatch))
+                    val remainingEvents = cancelAndConsumeRemainingEvents()
+                    assertThat(remainingEvents).isEmpty()
+                }
+        }
 }

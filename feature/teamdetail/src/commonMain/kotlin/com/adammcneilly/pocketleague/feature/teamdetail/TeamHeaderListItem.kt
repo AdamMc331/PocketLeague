@@ -23,8 +23,9 @@ internal fun TeamHeaderListItem(
         leadingContent = {
             CircleTeamLogo(
                 displayModel = team,
-                modifier = Modifier
-                    .size(48.dp),
+                modifier =
+                    Modifier
+                        .size(48.dp),
             )
         },
         headlineContent = {

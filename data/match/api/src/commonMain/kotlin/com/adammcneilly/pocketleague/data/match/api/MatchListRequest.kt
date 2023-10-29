@@ -8,7 +8,6 @@ import com.adammcneilly.pocketleague.core.models.Match
  * in the PocketLeague app.
  */
 sealed interface MatchListRequest {
-
     /**
      * Requests matches (should only be one) with the given [matchId].
      */

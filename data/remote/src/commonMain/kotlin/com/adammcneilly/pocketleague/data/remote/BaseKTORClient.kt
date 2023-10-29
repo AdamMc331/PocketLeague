@@ -25,9 +25,10 @@ open class BaseKTORClient(
         val url = "$baseURL$endpoint"
 
         return try {
-            val apiResult: T = httpClient.get(url) {
-                addParams(params)
-            }.body()
+            val apiResult: T =
+                httpClient.get(url) {
+                    addParams(params)
+                }.body()
             Result.success(apiResult)
         } catch (e: Exception) {
             Result.failure(e)

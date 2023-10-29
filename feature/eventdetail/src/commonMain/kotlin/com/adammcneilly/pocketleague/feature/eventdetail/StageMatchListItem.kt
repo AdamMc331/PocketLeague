@@ -28,12 +28,13 @@ import com.adammcneilly.pocketleague.shared.ui.theme.rlcsBlue
 import com.adammcneilly.pocketleague.shared.ui.theme.rlcsOrange
 import com.adammcneilly.pocketleague.shared.ui.utils.conditional
 
-private val cardShape = CutCornerShape(
-    topStart = 0.dp,
-    topEnd = 0.dp,
-    bottomEnd = 8.dp,
-    bottomStart = 8.dp,
-)
+private val cardShape =
+    CutCornerShape(
+        topStart = 0.dp,
+        topEnd = 0.dp,
+        bottomEnd = 8.dp,
+        bottomStart = 8.dp,
+    )
 
 val teamLogoSize = 30.dp
 
@@ -57,22 +58,22 @@ internal fun StageMatchListItem(
 }
 
 @Composable
-private fun WinnerHighlightRow(
-    match: MatchDetailDisplayModel,
-) {
+private fun WinnerHighlightRow(match: MatchDetailDisplayModel) {
     Row {
         WinnerHighlight(
             teamResult = match.blueTeamResult,
             color = rlcsBlue,
-            modifier = Modifier
-                .weight(1F),
+            modifier =
+                Modifier
+                    .weight(1F),
         )
 
         WinnerHighlight(
             teamResult = match.orangeTeamResult,
             color = rlcsOrange,
-            modifier = Modifier
-                .weight(1F),
+            modifier =
+                Modifier
+                    .weight(1F),
         )
     }
 }
@@ -84,41 +85,44 @@ private fun WinnerHighlight(
     modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = modifier
-            .height(4.dp)
-            .conditional(teamResult.winner) {
-                background(color = color)
-            },
+        modifier =
+            modifier
+                .height(4.dp)
+                .conditional(teamResult.winner) {
+                    background(color = color)
+                },
     )
 }
 
 @Composable
-private fun TeamResultRow(
-    match: MatchDetailDisplayModel,
-) {
+private fun TeamResultRow(match: MatchDetailDisplayModel) {
     Row(
-        modifier = Modifier
-            .padding(8.dp),
+        modifier =
+            Modifier
+                .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         TeamLogo(match.blueTeamResult.team)
 
         TeamName(
             team = match.blueTeamResult.team,
-            modifier = Modifier
-                .weight(3F),
+            modifier =
+                Modifier
+                    .weight(3F),
         )
 
         ScoreLabel(
             match = match,
-            modifier = Modifier
-                .weight(1F),
+            modifier =
+                Modifier
+                    .weight(1F),
         )
 
         TeamName(
             team = match.orangeTeamResult.team,
-            modifier = Modifier
-                .weight(3F),
+            modifier =
+                Modifier
+                    .weight(3F),
         )
 
         TeamLogo(match.orangeTeamResult.team)
@@ -130,11 +134,12 @@ private fun ScoreLabel(
     match: MatchDetailDisplayModel,
     modifier: Modifier = Modifier,
 ) {
-    val scoreText = if (match.isPlaceholder) {
-        ""
-    } else {
-        "${match.blueTeamResult.score}-${match.orangeTeamResult.score}"
-    }
+    val scoreText =
+        if (match.isPlaceholder) {
+            ""
+        } else {
+            "${match.blueTeamResult.score}-${match.orangeTeamResult.score}"
+        }
 
     Text(
         text = scoreText,
@@ -155,14 +160,15 @@ private fun TeamName(
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         style = MaterialTheme.typography.labelMedium,
-        modifier = modifier
-            .padding(
-                horizontal = PocketLeagueTheme.sizes.textSpacing,
-            )
-            .placeholderMaterial(
-                visible = team.isPlaceholder,
-                color = PlaceholderDefaults.cardColor(),
-            ),
+        modifier =
+            modifier
+                .padding(
+                    horizontal = PocketLeagueTheme.sizes.textSpacing,
+                )
+                .placeholderMaterial(
+                    visible = team.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
     )
 }
 
@@ -174,11 +180,12 @@ private fun TeamLogo(
     RemoteImage(
         imageUrl = team.imageUrl.lightThemeImageURL.orEmpty(),
         contentDescription = null,
-        modifier = modifier
-            .size(teamLogoSize)
-            .placeholderMaterial(
-                visible = team.isPlaceholder,
-                color = PlaceholderDefaults.cardColor(),
-            ),
+        modifier =
+            modifier
+                .size(teamLogoSize)
+                .placeholderMaterial(
+                    visible = team.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
     )
 }

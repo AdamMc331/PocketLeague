@@ -20,45 +20,46 @@ import com.slack.circuit.foundation.NavigableCircuitContent
  * the pocket league app.
  */
 @Composable
-fun PocketLeagueApp(
-    modifier: Modifier = Modifier,
-) {
+fun PocketLeagueApp(modifier: Modifier = Modifier) {
     PocketLeagueTheme {
         // In the future, we may want to look at some DI framework to make it easy to pass
         // in all of these factories, or even consider the codegen that Circuit offers.
-        val circuitConfig = Circuit.Builder()
-            .addUiFactories(
-                listOf(
-                    FeedScreen.UiFactory,
-                    MatchDetailScreen.UiFactory,
-                    EventDetailScreen.UiFactory,
-                    TeamDetailScreen.UiFactory,
-                ),
-            )
-            .addPresenterFactories(
-                listOf(
-                    FeedScreen.PresenterFactory,
-                    MatchDetailScreen.PresenterFactory,
-                    EventDetailScreen.PresenterFactory(
-                        navigateToMatch = { navigator, matchId ->
-                            navigator.goTo(MatchDetailScreen(matchId.id))
-                        },
+        val circuitConfig =
+            Circuit.Builder()
+                .addUiFactories(
+                    listOf(
+                        FeedScreen.UiFactory,
+                        MatchDetailScreen.UiFactory,
+                        EventDetailScreen.UiFactory,
+                        TeamDetailScreen.UiFactory,
                     ),
-                    TeamDetailScreen.PresenterFactory,
-                ),
-            )
-            .build()
+                )
+                .addPresenterFactories(
+                    listOf(
+                        FeedScreen.PresenterFactory,
+                        MatchDetailScreen.PresenterFactory,
+                        EventDetailScreen.PresenterFactory(
+                            navigateToMatch = { navigator, matchId ->
+                                navigator.goTo(MatchDetailScreen(matchId.id))
+                            },
+                        ),
+                        TeamDetailScreen.PresenterFactory,
+                    ),
+                )
+                .build()
 
         CircuitCompositionLocals(circuitConfig) {
-            val backstack = rememberSaveableBackStack {
-                push(FeedScreen)
-            }
+            val backstack =
+                rememberSaveableBackStack {
+                    push(FeedScreen)
+                }
 
-            val navigator = provideCircuitNavigator(backstack) {
-                println("Is this being called?")
-                // In the future, we need to handle a back press when we are at the root
-                // screen (probably just close the app?)
-            }
+            val navigator =
+                provideCircuitNavigator(backstack) {
+                    println("Is this being called?")
+                    // In the future, we need to handle a back press when we are at the root
+                    // screen (probably just close the app?)
+                }
 
             Surface(
                 modifier = modifier,
@@ -75,8 +76,9 @@ fun PocketLeagueApp(
                     NavigableCircuitContent(
                         navigator = navigator,
                         backstack = backstack,
-                        modifier = Modifier
-                            .weight(1F),
+                        modifier =
+                            Modifier
+                                .weight(1F),
                     )
                 }
             }

@@ -10,13 +10,15 @@ import com.adammcneilly.pocketleague.data.startgg.fragment.TournamentFragment
  * Converts a [TournamentFragment] GQL model into an [Event] within the Pocket League domain.
  */
 fun TournamentFragment.toEvent(timeProvider: TimeProvider): Event {
-    val startUtc = (this.startAt as? Int)?.let { startAt ->
-        timeProvider.fromEpochSeconds(startAt.toLong())
-    }
+    val startUtc =
+        (this.startAt as? Int)?.let { startAt ->
+            timeProvider.fromEpochSeconds(startAt.toLong())
+        }
 
-    val endUtc = (this.endAt as? Int)?.let { endAt ->
-        timeProvider.fromEpochSeconds(endAt.toLong())
-    }
+    val endUtc =
+        (this.endAt as? Int)?.let { endAt ->
+            timeProvider.fromEpochSeconds(endAt.toLong())
+        }
 
     return Event(
         id = Event.Id(this.id.orEmpty()),
@@ -24,9 +26,10 @@ fun TournamentFragment.toEvent(timeProvider: TimeProvider): Event {
         startDateUTC = startUtc,
         endDateUTC = endUtc,
         imageURL = this.images?.firstOrNull()?.url,
-        stages = this.events?.mapNotNull {
-            it?.eventFragment?.toEventStage(timeProvider)
-        }.orEmpty(),
+        stages =
+            this.events?.mapNotNull {
+                it?.eventFragment?.toEventStage(timeProvider)
+            }.orEmpty(),
         lan = this.hasOfflineEvents == true,
         // Start API doesn't have this information, so can we remove it, or make it null, or something else?
         tier = EventTier.Unknown,

@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.Flow
 class SQLDelightMatchService(
     private val database: PocketLeagueDB,
 ) : LocalMatchService {
-
     override suspend fun insert(data: List<Match>) {
         database.transaction {
             data.forEach { match ->
@@ -49,25 +48,26 @@ class SQLDelightMatchService(
     override fun stream(request: MatchListRequest): Flow<List<Match>> {
         val matchQueries = database.localMatchQueries
 
-        val selectQuery = when (request) {
-            is MatchListRequest.DateRange -> {
-                matchQueries.selectInDateRange(
-                    startDateUTC = request.startDateUTC,
-                    endDateUTC = request.endDateUTC,
-                )
-            }
+        val selectQuery =
+            when (request) {
+                is MatchListRequest.DateRange -> {
+                    matchQueries.selectInDateRange(
+                        startDateUTC = request.startDateUTC,
+                        endDateUTC = request.endDateUTC,
+                    )
+                }
 
-            is MatchListRequest.EventStage -> {
-                matchQueries.selectMatchesByEventStage(
-                    eventId = request.eventId.id,
-                    stageId = request.stageId.id,
-                )
-            }
+                is MatchListRequest.EventStage -> {
+                    matchQueries.selectMatchesByEventStage(
+                        eventId = request.eventId.id,
+                        stageId = request.stageId.id,
+                    )
+                }
 
-            is MatchListRequest.Id -> {
-                matchQueries.selectById(request.matchId.id)
+                is MatchListRequest.Id -> {
+                    matchQueries.selectById(request.matchId.id)
+                }
             }
-        }
 
         return selectQuery.asFlowList(MatchWithEventAndTeams::toMatch)
     }

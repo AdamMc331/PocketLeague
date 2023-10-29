@@ -21,14 +21,15 @@ fun LocalEvent.toEvent(): Event {
         mode = this.mode,
         region = EventRegion.valueOf(this.region),
         lan = this.lan,
-        prize = if (this.prizeAmount != null && this.prizeCurrency != null) {
-            Prize(
-                amount = this.prizeAmount,
-                currency = prizeCurrency,
-            )
-        } else {
-            null
-        },
+        prize =
+            if (this.prizeAmount != null && this.prizeCurrency != null) {
+                Prize(
+                    amount = this.prizeAmount,
+                    currency = prizeCurrency,
+                )
+            } else {
+                null
+            },
     )
 }
 

@@ -31,9 +31,10 @@ fun FeedContent(
 ) {
     LazyColumn(
         modifier = modifier,
-        contentPadding = PaddingValues(
-            vertical = PocketLeagueTheme.sizes.screenPadding,
-        ),
+        contentPadding =
+            PaddingValues(
+                vertical = PocketLeagueTheme.sizes.screenPadding,
+            ),
         verticalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.listItemSpacing),
     ) {
         recentMatchesHeader()
@@ -87,9 +88,10 @@ private fun LazyListScope.recentMatchesCarousel(
     item {
         MatchCarousel(
             matches = recentMatches,
-            contentPadding = PaddingValues(
-                horizontal = PocketLeagueTheme.sizes.screenPadding,
-            ),
+            contentPadding =
+                PaddingValues(
+                    horizontal = PocketLeagueTheme.sizes.screenPadding,
+                ),
             onMatchClicked = onMatchClicked,
         )
     }
@@ -111,7 +113,8 @@ private fun FeedSectionHeader(
     Text(
         text = text,
         style = MaterialTheme.typography.headlineSmall,
-        modifier = modifier
-            .screenHorizontalPadding(),
+        modifier =
+            modifier
+                .screenHorizontalPadding(),
     )
 }

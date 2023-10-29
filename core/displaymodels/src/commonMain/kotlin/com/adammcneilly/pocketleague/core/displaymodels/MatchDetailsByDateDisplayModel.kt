@@ -9,13 +9,13 @@ data class MatchDetailsByDateDisplayModel(
     val matchesByDate: Map<String, List<MatchDetailDisplayModel>> = emptyMap(),
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
         val placeholder: MatchDetailsByDateDisplayModel
             get() {
-                val matchesByDate = (1..3).map {
-                    MatchDetailDisplayModel.placeholder
-                }.groupBy(MatchDetailDisplayModel::localDate)
+                val matchesByDate =
+                    (1..3).map {
+                        MatchDetailDisplayModel.placeholder
+                    }.groupBy(MatchDetailDisplayModel::localDate)
 
                 return MatchDetailsByDateDisplayModel(
                     matchesByDate = matchesByDate,

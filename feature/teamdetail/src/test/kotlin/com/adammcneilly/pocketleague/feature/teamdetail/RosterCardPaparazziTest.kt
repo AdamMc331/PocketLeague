@@ -11,7 +11,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class RosterCardPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 
@@ -20,11 +19,12 @@ class RosterCardPaparazziTest {
 
     @Test
     fun placeholders() {
-        val roster = listOf(
-            PlayerDisplayModel.placeholder,
-            PlayerDisplayModel.placeholder,
-            PlayerDisplayModel.placeholder,
-        )
+        val roster =
+            listOf(
+                PlayerDisplayModel.placeholder,
+                PlayerDisplayModel.placeholder,
+                PlayerDisplayModel.placeholder,
+            )
 
         paparazzi.snapshotScreen(useDarkTheme) {
             RosterCard(roster)

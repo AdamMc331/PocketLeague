@@ -8,9 +8,10 @@ import com.adammcneilly.pocketleague.data.startgg.fragment.EventFragment
  * Convert an [EventFragment] GQL model into an [EventStage] from the pocket league domain.
  */
 fun EventFragment.toEventStage(timeProvider: TimeProvider): EventStage {
-    val startDateUtc = (this.startAt as? Int)?.let { startAt ->
-        timeProvider.fromEpochSeconds(startAt.toLong())
-    }
+    val startDateUtc =
+        (this.startAt as? Int)?.let { startAt ->
+            timeProvider.fromEpochSeconds(startAt.toLong())
+        }
 
     return EventStage(
         id = EventStage.Id(this.id.orEmpty()),

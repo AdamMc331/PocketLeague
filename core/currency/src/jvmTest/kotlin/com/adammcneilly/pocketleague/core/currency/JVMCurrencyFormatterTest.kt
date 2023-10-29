@@ -10,10 +10,11 @@ class JVMCurrencyFormatterTest {
     fun formatUSD() {
         assertEquals(
             expected = "$10.00",
-            actual = currencyFormatter.formatCurrency(
-                amount = 10.0,
-                currency = "USD",
-            ),
+            actual =
+                currencyFormatter.formatCurrency(
+                    amount = 10.0,
+                    currency = "USD",
+                ),
         )
     }
 
@@ -21,10 +22,11 @@ class JVMCurrencyFormatterTest {
     fun formatEUR() {
         assertEquals(
             expected = "€10.00",
-            actual = currencyFormatter.formatCurrency(
-                amount = 10.0,
-                currency = "EUR",
-            ),
+            actual =
+                currencyFormatter.formatCurrency(
+                    amount = 10.0,
+                    currency = "EUR",
+                ),
         )
     }
 }

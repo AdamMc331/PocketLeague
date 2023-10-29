@@ -6,14 +6,14 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class EventGroupDisplayModelTest {
-
     @Test
     fun mapFromListWithJustMajor() {
         val worlds = EventSummaryDisplayModel.worldChampionship()
 
-        val expectedGroups = listOf(
-            EventGroupDisplayModel.Major(worlds),
-        )
+        val expectedGroups =
+            listOf(
+                EventGroupDisplayModel.Major(worlds),
+            )
 
         val output = EventGroupDisplayModel.mapFromEventList(listOf(worlds))
 
@@ -24,9 +24,10 @@ class EventGroupDisplayModelTest {
     fun mapFromListWithJustRegionals() {
         val regionals = EventSummaryDisplayModel.springInvitationalForAllRegions()
 
-        val expectedGroups = listOf(
-            EventGroupDisplayModel.Regionals(regionals),
-        )
+        val expectedGroups =
+            listOf(
+                EventGroupDisplayModel.Regionals(regionals),
+            )
 
         val output = EventGroupDisplayModel.mapFromEventList(regionals)
 
@@ -38,10 +39,11 @@ class EventGroupDisplayModelTest {
         val worlds = EventSummaryDisplayModel.worldChampionship()
         val regionals = EventSummaryDisplayModel.springInvitationalForAllRegions()
 
-        val expectedGroups = listOf(
-            EventGroupDisplayModel.Major(worlds),
-            EventGroupDisplayModel.Regionals(regionals),
-        )
+        val expectedGroups =
+            listOf(
+                EventGroupDisplayModel.Major(worlds),
+                EventGroupDisplayModel.Regionals(regionals),
+            )
 
         val output = EventGroupDisplayModel.mapFromEventList(listOf(worlds) + regionals)
 
@@ -53,10 +55,11 @@ class EventGroupDisplayModelTest {
         val worlds = EventSummaryDisplayModel.worldChampionship()
         val regionals = EventSummaryDisplayModel.springInvitationalForAllRegions()
 
-        val expectedGroups = listOf(
-            EventGroupDisplayModel.Regionals(regionals),
-            EventGroupDisplayModel.Major(worlds),
-        )
+        val expectedGroups =
+            listOf(
+                EventGroupDisplayModel.Regionals(regionals),
+                EventGroupDisplayModel.Major(worlds),
+            )
 
         val output = EventGroupDisplayModel.mapFromEventList(regionals + worlds)
 

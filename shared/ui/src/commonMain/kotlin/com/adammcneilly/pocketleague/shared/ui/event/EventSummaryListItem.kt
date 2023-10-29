@@ -31,21 +31,23 @@ fun EventSummaryListItem(
     modifier: Modifier = Modifier,
     containerColor: Color = Color.Unspecified,
 ) {
-    val colorsToUse = if (containerColor != Color.Unspecified) {
-        ListItemDefaults.colors(
-            containerColor = containerColor,
-        )
-    } else {
-        ListItemDefaults.colors()
-    }
+    val colorsToUse =
+        if (containerColor != Color.Unspecified) {
+            ListItemDefaults.colors(
+                containerColor = containerColor,
+            )
+        } else {
+            ListItemDefaults.colors()
+        }
 
-    val placeholderColor = if (containerColor != Color.Unspecified) {
-        PlaceholderDefaults.color(
-            backgroundColor = containerColor,
-        )
-    } else {
-        PlaceholderDefaults.color()
-    }
+    val placeholderColor =
+        if (containerColor != Color.Unspecified) {
+            PlaceholderDefaults.color(
+                backgroundColor = containerColor,
+            )
+        } else {
+            PlaceholderDefaults.color()
+        }
 
     val winningTeam = event.winningTeam
 
@@ -67,12 +69,13 @@ fun EventSummaryListItem(
         headlineContent = {
             Text(
                 text = event.name,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .placeholderMaterial(
-                        visible = event.isPlaceholder,
-                        color = placeholderColor,
-                    ),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .placeholderMaterial(
+                            visible = event.isPlaceholder,
+                            color = placeholderColor,
+                        ),
             )
         },
         overlineContent = dateRangeText.takeIf { winningTeam == null },

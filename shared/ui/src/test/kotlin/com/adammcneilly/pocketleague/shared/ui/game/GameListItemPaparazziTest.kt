@@ -12,7 +12,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class GameListItemPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 
@@ -44,9 +43,10 @@ class GameListItemPaparazziTest {
     fun renderWithOT() {
         paparazzi.snapshotScreen(useDarkTheme) {
             GameListItem(
-                displayModel = TestDisplayModel.gameDetailBlueWinner.copy(
-                    otLabel = "OT +1:23",
-                ),
+                displayModel =
+                    TestDisplayModel.gameDetailBlueWinner.copy(
+                        otLabel = "OT +1:23",
+                    ),
             )
         }
     }
@@ -55,9 +55,10 @@ class GameListItemPaparazziTest {
     fun renderWithLongMapName() {
         paparazzi.snapshotScreen(useDarkTheme) {
             GameListItem(
-                displayModel = TestDisplayModel.gameDetailBlueWinner.copy(
-                    map = "Utopia Coliseum (Standard, Night)",
-                ),
+                displayModel =
+                    TestDisplayModel.gameDetailBlueWinner.copy(
+                        map = "Utopia Coliseum (Standard, Night)",
+                    ),
             )
         }
     }

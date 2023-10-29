@@ -16,7 +16,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class FeedContentPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 
@@ -33,19 +32,22 @@ class FeedContentPaparazziTest {
             val springMajor = EventSummaryDisplayModel.springMajor()
             val worlds = EventSummaryDisplayModel.worldChampionship()
 
-            val ongoingEvents = EventGroupDisplayModel.mapFromEventList(
-                events = regionals + springMajor,
-            )
+            val ongoingEvents =
+                EventGroupDisplayModel.mapFromEventList(
+                    events = regionals + springMajor,
+                )
 
-            val upcomingEvents = EventGroupDisplayModel.mapFromEventList(
-                events = listOf(worlds),
-            )
+            val upcomingEvents =
+                EventGroupDisplayModel.mapFromEventList(
+                    events = listOf(worlds),
+                )
 
-            val matchList = listOf(
-                TestDisplayModel.matchDetailBlueWinner,
-                TestDisplayModel.matchDetailBlueWinner,
-                TestDisplayModel.matchDetailBlueWinner,
-            )
+            val matchList =
+                listOf(
+                    TestDisplayModel.matchDetailBlueWinner,
+                    TestDisplayModel.matchDetailBlueWinner,
+                    TestDisplayModel.matchDetailBlueWinner,
+                )
 
             FeedContent(
                 recentMatches = matchList,

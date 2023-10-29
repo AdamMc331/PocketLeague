@@ -11,7 +11,6 @@ import kotlin.test.Test
 
 @RunWith(TestParameterInjector::class)
 class StageMatchListItemPaparazziTest {
-
     @get:Rule
     val paparazzi = Paparazzi()
 

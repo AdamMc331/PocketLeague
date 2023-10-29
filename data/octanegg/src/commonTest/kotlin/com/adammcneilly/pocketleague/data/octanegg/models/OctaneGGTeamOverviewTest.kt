@@ -5,7 +5,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 class OctaneGGTeamOverviewTest {
-
     @Test
     fun convertDefault() {
         val octaneModel = OctaneGGTeamOverview()
@@ -21,11 +20,12 @@ class OctaneGGTeamOverviewTest {
 
     @Test
     fun convertValidModel() {
-        val octaneModel = OctaneGGTeamOverview(
-            id = "someRandomId",
-            name = "someRandomName",
-            image = "someRandomImageUrl",
-        )
+        val octaneModel =
+            OctaneGGTeamOverview(
+                id = "someRandomId",
+                name = "someRandomName",
+                image = "someRandomImageUrl",
+            )
 
         val domainModel = octaneModel.toTeam()
 

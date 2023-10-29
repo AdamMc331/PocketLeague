@@ -23,11 +23,12 @@ class OctaneGGTeamRepository(
 
     override fun getTeamById(teamId: String): Flow<Team> {
         return flow {
-            val apiResponse = apiClient.getResponse<OctaneGGTeamOverview>(
-                endpoint = "$TEAMS_ENDPOINT/$teamId",
-            ).map { octaneGGTeamOverview ->
-                octaneGGTeamOverview.toTeam()
-            }
+            val apiResponse =
+                apiClient.getResponse<OctaneGGTeamOverview>(
+                    endpoint = "$TEAMS_ENDPOINT/$teamId",
+                ).map { octaneGGTeamOverview ->
+                    octaneGGTeamOverview.toTeam()
+                }
 
             // If an error occurs, we should log that.
 
@@ -41,24 +42,26 @@ class OctaneGGTeamRepository(
 
     override fun getActiveRLCSTeams(): Flow<List<Team>> {
         return flow {
-            val apiResponse = apiClient.getResponse<OctaneGGTeamListResponse>(
-                endpoint = ACTIVE_TEAMS_ENDPOINT,
-            ).map { octaneGGTeamListResponse ->
-                octaneGGTeamListResponse.teams
-                    ?.map(OctaneGGTeamDetail::toTeam)
-                    .orEmpty()
-            }
+            val apiResponse =
+                apiClient.getResponse<OctaneGGTeamListResponse>(
+                    endpoint = ACTIVE_TEAMS_ENDPOINT,
+                ).map { octaneGGTeamListResponse ->
+                    octaneGGTeamListResponse.teams
+                        ?.map(OctaneGGTeamDetail::toTeam)
+                        .orEmpty()
+                }
 
             // If an error occurs, we should log that.
 
-            val teamList = apiResponse
-                .getOrNull()
-                ?.map {
-                    // For any team that is requested via this API call, we want to store it
-                    // as an active team in our local data source further up this data flow.
-                    it.copy(isActive = true)
-                }
-                .orEmpty()
+            val teamList =
+                apiResponse
+                    .getOrNull()
+                    ?.map {
+                        // For any team that is requested via this API call, we want to store it
+                        // as an active team in our local data source further up this data flow.
+                        it.copy(isActive = true)
+                    }
+                    .orEmpty()
 
             emit(teamList)
         }
@@ -68,7 +71,10 @@ class OctaneGGTeamRepository(
         throw UnsupportedOperationException("Inserting teams is not supported by the octane.gg API.")
     }
 
-    override suspend fun updateIsFavorite(teamId: String, isFavorite: Boolean) {
+    override suspend fun updateIsFavorite(
+        teamId: String,
+        isFavorite: Boolean,
+    ) {
         throw UnsupportedOperationException("Favoriting teams is not supported by the octane.gg API.")
     }
 

@@ -6,20 +6,21 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class OctaneGGLocationTest {
-
     @Test
     fun convertFromValidLocation() {
-        val octaneLocation = OctaneGGLocation(
-            venue = "Agganis Arena",
-            city = "Boston",
-            countryCode = "us",
-        )
+        val octaneLocation =
+            OctaneGGLocation(
+                venue = "Agganis Arena",
+                city = "Boston",
+                countryCode = "us",
+            )
 
-        val expectedLocation = Location(
-            venue = "Agganis Arena",
-            city = "Boston",
-            countryCode = "us",
-        )
+        val expectedLocation =
+            Location(
+                venue = "Agganis Arena",
+                city = "Boston",
+                countryCode = "us",
+            )
 
         assertEquals(expectedLocation, octaneLocation.toLocation())
     }
@@ -28,11 +29,12 @@ class OctaneGGLocationTest {
     fun convertFromDefaultLocation() {
         val octaneLocation = OctaneGGLocation()
 
-        val expectedLocation = Location(
-            venue = "",
-            city = "",
-            countryCode = "",
-        )
+        val expectedLocation =
+            Location(
+                venue = "",
+                city = "",
+                countryCode = "",
+            )
 
         assertThat(octaneLocation.toLocation()).isEqualTo(expectedLocation)
     }

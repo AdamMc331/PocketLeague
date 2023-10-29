@@ -42,9 +42,10 @@ fun AnimatableStatComparison(
     initialAnimationPercentage: Float = 0F,
     showValues: Boolean = false,
 ) {
-    val animationPercentage = remember {
-        AnimationState(initialAnimationPercentage)
-    }
+    val animationPercentage =
+        remember {
+            AnimationState(initialAnimationPercentage)
+        }
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -53,17 +54,19 @@ fun AnimatableStatComparison(
         orangeTeamValue = orangeTeamValue,
         percentageToRender = animationPercentage.value,
         showValues = showValues,
-        modifier = modifier
-            .whenInView {
-                coroutineScope.launch {
-                    animationPercentage.animateTo(
-                        targetValue = 1F,
-                        animationSpec = tween(
-                            durationMillis = 1000,
-                        ),
-                    )
-                }
-            },
+        modifier =
+            modifier
+                .whenInView {
+                    coroutineScope.launch {
+                        animationPercentage.animateTo(
+                            targetValue = 1F,
+                            animationSpec =
+                                tween(
+                                    durationMillis = 1000,
+                                ),
+                        )
+                    }
+                },
     )
 }
 
@@ -83,8 +86,9 @@ fun StatComparison(
     showValues: Boolean = false,
 ) {
     Row(
-        modifier = modifier
-            .height(48.dp),
+        modifier =
+            modifier
+                .height(48.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AnimatedVisibility(
@@ -92,8 +96,9 @@ fun StatComparison(
         ) {
             Text(
                 text = blueTeamValue.toString(),
-                modifier = Modifier
-                    .padding(end = PocketLeagueTheme.sizes.cardPadding),
+                modifier =
+                    Modifier
+                        .padding(end = PocketLeagueTheme.sizes.cardPadding),
             )
         }
 
@@ -101,8 +106,9 @@ fun StatComparison(
             blueTeamValue = blueTeamValue,
             orangeTeamValue = orangeTeamValue,
             percentageToRender = percentageToRender,
-            modifier = Modifier
-                .weight(1F),
+            modifier =
+                Modifier
+                    .weight(1F),
         )
 
         AnimatedVisibility(
@@ -110,8 +116,9 @@ fun StatComparison(
         ) {
             Text(
                 text = orangeTeamValue.toString(),
-                modifier = Modifier
-                    .padding(start = PocketLeagueTheme.sizes.cardPadding),
+                modifier =
+                    Modifier
+                        .padding(start = PocketLeagueTheme.sizes.cardPadding),
             )
         }
     }
@@ -136,17 +143,19 @@ private fun StatComparisonLines(
         val lineWidth = 4.dp.toPx()
         val leadingLineWidth = lineWidth * LEADING_TEAM_STAT_WIDTH_SCALE
 
-        val blueLineWidth = if (blueTeamValue > orangeTeamValue) {
-            leadingLineWidth
-        } else {
-            lineWidth
-        }
+        val blueLineWidth =
+            if (blueTeamValue > orangeTeamValue) {
+                leadingLineWidth
+            } else {
+                lineWidth
+            }
 
-        val orangeLineWidth = if (orangeTeamValue > blueTeamValue) {
-            leadingLineWidth
-        } else {
-            lineWidth
-        }
+        val orangeLineWidth =
+            if (orangeTeamValue > blueTeamValue) {
+                leadingLineWidth
+            } else {
+                lineWidth
+            }
 
         drawBlueLine(midHeight, dividingPoint, blueLineWidth, percentageToRender)
         drawOrangeLine(dividingPoint, midHeight, orangeLineWidth, percentageToRender)
@@ -166,14 +175,16 @@ private fun DrawScope.drawDivider(
 
     drawLine(
         color = dividerColor,
-        start = Offset(
-            x = dividingPoint,
-            y = midHeight.minus(dividerOffset),
-        ),
-        end = Offset(
-            x = dividingPoint,
-            y = midHeight.plus(dividerOffset),
-        ),
+        start =
+            Offset(
+                x = dividingPoint,
+                y = midHeight.minus(dividerOffset),
+            ),
+        end =
+            Offset(
+                x = dividingPoint,
+                y = midHeight.plus(dividerOffset),
+            ),
         strokeWidth = lineWidth,
     )
 }
@@ -190,14 +201,16 @@ private fun DrawScope.drawOrangeLine(
 
     drawLine(
         color = rlcsOrange,
-        start = Offset(
-            x = dividingPoint,
-            y = midHeight,
-        ),
-        end = Offset(
-            x = endingX,
-            y = midHeight,
-        ),
+        start =
+            Offset(
+                x = dividingPoint,
+                y = midHeight,
+            ),
+        end =
+            Offset(
+                x = endingX,
+                y = midHeight,
+            ),
         strokeWidth = lineWidth,
     )
 }
@@ -213,14 +226,16 @@ private fun DrawScope.drawBlueLine(
 
     drawLine(
         color = rlcsBlue,
-        start = Offset(
-            x = startingX,
-            y = midHeight,
-        ),
-        end = Offset(
-            x = dividingPoint,
-            y = midHeight,
-        ),
+        start =
+            Offset(
+                x = startingX,
+                y = midHeight,
+            ),
+        end =
+            Offset(
+                x = dividingPoint,
+                y = midHeight,
+            ),
         strokeWidth = lineWidth,
     )
 }

@@ -7,9 +7,10 @@ import org.koin.dsl.module
  * A wrapper around [initKoin] that will initialize for the iOS platform.
  */
 fun initKoinIos() {
-    val appModule = module {
-        // Nothing yet
-    }
+    val appModule =
+        module {
+            // Nothing yet
+        }
 
     initKoin(appModule)
 }

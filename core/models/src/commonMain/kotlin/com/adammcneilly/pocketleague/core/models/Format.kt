@@ -8,7 +8,6 @@ data class Format(
     val type: String = "",
     val length: Int = 0,
 ) {
-
     /**
      * Depending on the [type] of format, return the number of games
      * required to win a matchup in this format.

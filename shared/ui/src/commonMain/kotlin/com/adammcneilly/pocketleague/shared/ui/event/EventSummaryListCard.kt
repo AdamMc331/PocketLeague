@@ -24,10 +24,11 @@ fun EventSummaryListCard(
         EventSummaryListItem(
             event = event,
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
-            modifier = Modifier
-                .clickable {
-                    onEventClicked.invoke(event.eventId)
-                },
+            modifier =
+                Modifier
+                    .clickable {
+                        onEventClicked.invoke(event.eventId)
+                    },
         )
     }
 }

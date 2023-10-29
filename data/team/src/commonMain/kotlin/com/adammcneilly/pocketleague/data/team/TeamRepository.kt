@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
  * RLCS.
  */
 interface TeamRepository {
-
     /**
      * Return a list of [Team] entities that are favorited by the user.
      */
@@ -35,7 +34,5 @@ interface TeamRepository {
     /**
      * Requests a [Team] entity with the given [teamId].
      */
-    fun getTeamById(
-        teamId: String,
-    ): Flow<Team>
+    fun getTeamById(teamId: String): Flow<Team>
 }

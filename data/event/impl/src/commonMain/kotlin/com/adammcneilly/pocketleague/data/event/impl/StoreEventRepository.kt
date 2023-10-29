@@ -21,30 +21,34 @@ class StoreEventRepository(
     private val remoteEventService: RemoteEventService,
     private val localEventService: LocalEventService,
 ) : EventRepository {
-    private val store = StoreBuilder.from<EventListRequest, Result<List<Event>>, List<Event>>(
-        fetcher = Fetcher.of { request ->
-            remoteEventService.fetch(request)
-        },
-        sourceOfTruth = SourceOfTruth.Companion.of(
-            reader = { request ->
-                localEventService.stream(request)
-            },
-            writer = { _, eventResult ->
-                val events = eventResult.getOrNull().orEmpty()
-                localEventService.insert(events)
-            },
-        ),
-    ).build()
+    private val store =
+        StoreBuilder.from<EventListRequest, Result<List<Event>>, List<Event>>(
+            fetcher =
+                Fetcher.of { request ->
+                    remoteEventService.fetch(request)
+                },
+            sourceOfTruth =
+                SourceOfTruth.Companion.of(
+                    reader = { request ->
+                        localEventService.stream(request)
+                    },
+                    writer = { _, eventResult ->
+                        val events = eventResult.getOrNull().orEmpty()
+                        localEventService.insert(events)
+                    },
+                ),
+        ).build()
 
     override fun stream(
         request: EventListRequest,
         refreshCache: Boolean,
     ): Flow<List<Event>> {
         return store.stream(
-            request = StoreReadRequest.cached(
-                key = request,
-                refresh = refreshCache,
-            ),
+            request =
+                StoreReadRequest.cached(
+                    key = request,
+                    refresh = refreshCache,
+                ),
         )
             .distinctUntilChanged()
             .map { storeResponse ->

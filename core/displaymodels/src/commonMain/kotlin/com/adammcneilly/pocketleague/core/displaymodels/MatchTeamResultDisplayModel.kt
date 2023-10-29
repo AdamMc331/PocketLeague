@@ -14,16 +14,16 @@ data class MatchTeamResultDisplayModel(
     val players: List<GamePlayerResultDisplayModel>,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
-        val placeholder = MatchTeamResultDisplayModel(
-            team = TeamOverviewDisplayModel.placeholder,
-            score = 0,
-            winner = false,
-            coreStats = null,
-            players = emptyList(),
-            isPlaceholder = true,
-        )
+        val placeholder =
+            MatchTeamResultDisplayModel(
+                team = TeamOverviewDisplayModel.placeholder,
+                score = 0,
+                winner = false,
+                coreStats = null,
+                players = emptyList(),
+                isPlaceholder = true,
+            )
     }
 }
 

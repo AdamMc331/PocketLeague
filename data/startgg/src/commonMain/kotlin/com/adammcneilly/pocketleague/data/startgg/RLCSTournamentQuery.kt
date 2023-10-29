@@ -10,7 +10,8 @@ private const val ROCKET_LEAGUE_VIDEO_GAME_ID = "14"
  * Since Apollo generates data classes for their types, we can just call the copy method on this to provide
  * any additional filtering.
  */
-val RLCSTournamentFilter = TournamentPageFilter(
-    name = Optional.present("RLCS"),
-    videogameIds = Optional.present(listOf(ROCKET_LEAGUE_VIDEO_GAME_ID)),
-)
+val RLCSTournamentFilter =
+    TournamentPageFilter(
+        name = Optional.present("RLCS"),
+        videogameIds = Optional.present(listOf(ROCKET_LEAGUE_VIDEO_GAME_ID)),
+    )

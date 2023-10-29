@@ -43,13 +43,14 @@ fun GameListItem(
     modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(PocketLeagueTheme.sizes.cardPadding)
-            .placeholderMaterial(
-                visible = displayModel.isPlaceholder,
-                color = PlaceholderDefaults.cardColor(),
-            ),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(PocketLeagueTheme.sizes.cardPadding)
+                .placeholderMaterial(
+                    visible = displayModel.isPlaceholder,
+                    color = PlaceholderDefaults.cardColor(),
+                ),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         TeamScore(
@@ -60,8 +61,9 @@ fun GameListItem(
         )
 
         Column(
-            modifier = Modifier
-                .weight(MAP_TEXT_WEIGHT),
+            modifier =
+                Modifier
+                    .weight(MAP_TEXT_WEIGHT),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
@@ -107,58 +109,62 @@ private fun RowScope.TeamScore(
 ) {
     val isWinner = displayModel.winner
 
-    val fontWeight: FontWeight? = if (isWinner) {
-        FontWeight.Bold
-    } else {
-        null
-    }
+    val fontWeight: FontWeight? =
+        if (isWinner) {
+            FontWeight.Bold
+        } else {
+            null
+        }
 
     val inlineContentId = "inlineContent"
 
-    val scoreText = buildAnnotatedString {
-        if (isWinner && showIconFirst) {
-            appendInlineContent(inlineContentId, "[trophy]")
+    val scoreText =
+        buildAnnotatedString {
+            if (isWinner && showIconFirst) {
+                appendInlineContent(inlineContentId, "[trophy]")
 
-            append(" ")
+                append(" ")
+            }
+
+            append(displayModel.goals.toString())
+
+            if (isWinner && !showIconFirst) {
+                append(" ")
+
+                appendInlineContent(inlineContentId, "[trophy]")
+            }
         }
 
-        append(displayModel.goals.toString())
-
-        if (isWinner && !showIconFirst) {
-            append(" ")
-
-            appendInlineContent(inlineContentId, "[trophy]")
+    val inlineContent: Map<String, InlineTextContent> =
+        if (isWinner) {
+            mapOf(
+                Pair(
+                    inlineContentId,
+                    InlineTextContent(
+                        Placeholder(
+                            width = LocalTextStyle.current.fontSize,
+                            height = LocalTextStyle.current.fontSize,
+                            placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                        ),
+                    ) {
+                        Icon(
+                            Icons.Default.EmojiEvents,
+                            contentDescription = null,
+                        )
+                    },
+                ),
+            )
+        } else {
+            mapOf()
         }
-    }
-
-    val inlineContent: Map<String, InlineTextContent> = if (isWinner) {
-        mapOf(
-            Pair(
-                inlineContentId,
-                InlineTextContent(
-                    Placeholder(
-                        width = LocalTextStyle.current.fontSize,
-                        height = LocalTextStyle.current.fontSize,
-                        placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
-                    ),
-                ) {
-                    Icon(
-                        Icons.Default.EmojiEvents,
-                        contentDescription = null,
-                    )
-                },
-            ),
-        )
-    } else {
-        mapOf()
-    }
 
     Text(
         text = scoreText,
         fontWeight = fontWeight,
         inlineContent = inlineContent,
         textAlign = textAlign,
-        modifier = modifier
-            .weight(weight),
+        modifier =
+            modifier
+                .weight(weight),
     )
 }

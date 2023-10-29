@@ -15,31 +15,30 @@ data class PlayerDisplayModel(
     val countryFlagEmojiUnicode: String,
     val isPlaceholder: Boolean = false,
 ) {
-
     companion object {
-        val placeholder = PlayerDisplayModel(
-            id = "",
-            name = "",
-            tag = "",
-            role = null,
-            countryFlagEmojiUnicode = "",
-            isPlaceholder = true,
-        )
+        val placeholder =
+            PlayerDisplayModel(
+                id = "",
+                name = "",
+                tag = "",
+                role = null,
+                countryFlagEmojiUnicode = "",
+                isPlaceholder = true,
+            )
     }
 }
 
 /**
  * Converts a [Player] to its corresponding [PlayerDisplayModel]
  */
-fun Player.toDisplayModel(
-    localeHelper: LocaleHelper = provideLocaleHelper(),
-): PlayerDisplayModel {
+fun Player.toDisplayModel(localeHelper: LocaleHelper = provideLocaleHelper()): PlayerDisplayModel {
     // Maybe roles can be an enum instead of strings?
-    val role = when {
-        this.isCoach -> "(C)"
-        this.isSubstitute -> "(S)"
-        else -> null
-    }
+    val role =
+        when {
+            this.isCoach -> "(C)"
+            this.isSubstitute -> "(S)"
+            else -> null
+        }
 
     return PlayerDisplayModel(
         id = this.id,

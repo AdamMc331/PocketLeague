@@ -9,13 +9,14 @@ import org.koin.dsl.module
 /**
  * Defines any dependencies related to date and time management.
  */
-val dateTimeModule = module {
-    single<TimeProvider> {
-        // SystemTimeProvider
-        DebugTimeProvider()
-    }
+val dateTimeModule =
+    module {
+        single<TimeProvider> {
+            // SystemTimeProvider
+            DebugTimeProvider()
+        }
 
-    single<DateTimeFormatter> {
-        dateTimeFormatter()
+        single<DateTimeFormatter> {
+            dateTimeFormatter()
+        }
     }
-}

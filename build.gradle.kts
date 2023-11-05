@@ -94,7 +94,7 @@ afterEvaluate {
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt").version(libs.versions.detekt.get())
+    id("io.gitlab.arturbosch.detekt").version(libs.versions.detektGradlePlugin.get())
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.kotlinAndroid) apply false
     // Needed for Compose 1.5.0? https://github.com/JetBrains/compose-multiplatform/issues/3459#issuecomment-1667668348

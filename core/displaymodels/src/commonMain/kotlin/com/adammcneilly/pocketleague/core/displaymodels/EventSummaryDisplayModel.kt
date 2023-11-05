@@ -24,7 +24,7 @@ private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
  * @property[isPlaceholder] If true, we render this display model in a placeholder format
  * @property[winningTeam] If this event is over, we can pass in the [TeamOverviewDisplayModel] of the team that won
  * and highlight appropriately.
- * @property[location] If available, the city/state/country for this LAN event. ex: Boston, USA.
+ * @param[location] If available, the city/state/country for this LAN event. ex: Boston, USA.
  */
 data class EventSummaryDisplayModel(
     val eventId: Event.Id,

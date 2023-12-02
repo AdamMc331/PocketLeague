@@ -39,7 +39,7 @@ testParameterInjector = "1.14"
 truth = "1.1.5"
 truthish = "0.6.5"
 turbine = "1.0.0"
-windowManager = "1.1.0"
+windowManager = "1.2.0"
 workManager = "2.8.1"
 
 [libraries]

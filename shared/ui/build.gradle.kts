@@ -18,6 +18,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
+                implementation(libs.coil.compose)
             }
         }
         val commonTest by getting {
@@ -25,11 +26,6 @@ kotlin {
                 implementation(projects.core.displaymodelsTest)
                 implementation(kotlin("test"))
                 implementation(libs.google.testparameterinjector)
-            }
-        }
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.coil.compose)
             }
         }
         val jvmMain by getting

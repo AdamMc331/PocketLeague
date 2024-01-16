@@ -57,6 +57,7 @@ allprojects {
 
 subprojects {
     apply(from = "${rootProject.projectDir}/buildscripts/ktlint.gradle")
+    apply(from = "${rootProject.projectDir}/buildscripts/guava-fix.gradle")
 
     afterEvaluate {
         gradle.projectsEvaluated {

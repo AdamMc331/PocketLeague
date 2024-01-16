@@ -40,6 +40,7 @@ class SwissTeamResultListCardPaparazziTest {
     }
 }
 
+@Suppress("LongMethod")
 private fun testDisplayModels() =
     listOf(
         makeResult(

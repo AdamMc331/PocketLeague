@@ -7,6 +7,9 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.SwissTeamResultDisplayModel
 import com.adammcneilly.pocketleague.shared.ui.components.ListItemDividerCard
 
+/**
+ * [ListItemDividerCard] implementation for a set of [teamResults].
+ */
 @Composable
 fun SwissTeamResultListCard(
     teamResults: List<SwissTeamResultDisplayModel>,

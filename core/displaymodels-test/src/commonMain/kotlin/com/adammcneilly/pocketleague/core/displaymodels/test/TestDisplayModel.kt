@@ -6,6 +6,7 @@ import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.GameTeamResultDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchTeamResultDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.SwissTeamResultDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
 import com.adammcneilly.pocketleague.core.displaymodels.toDisplayModel
@@ -115,5 +116,23 @@ object TestDisplayModel {
         endDate = "Jan 02, 2000",
         lan = false,
         liquipedia = "liquipediaURL",
+    )
+
+    val qualifiedSwiss = SwissTeamResultDisplayModel(
+        team = g2,
+        overline = "Qualified",
+        subtitle = "3-0 | 9-1 | +8",
+    )
+
+    val inProgressSwiss = SwissTeamResultDisplayModel(
+        team = g2,
+        overline = "",
+        subtitle = "1-0 | 3-0 | +3",
+    )
+
+    val eliminatedSwiss = SwissTeamResultDisplayModel(
+        team = g2,
+        overline = "Eliminated",
+        subtitle = "0-3 | 1-9 | -8",
     )
 }

@@ -9,6 +9,9 @@ import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.SwissTeamResultDisplayModel
 import com.adammcneilly.pocketleague.shared.ui.components.CircleTeamLogo
 
+/**
+ * User friendly representation of a [SwissTeamResultDisplayModel].
+ */
 @Composable
 fun SwissTeamResultListItem(
     displayModel: SwissTeamResultDisplayModel,

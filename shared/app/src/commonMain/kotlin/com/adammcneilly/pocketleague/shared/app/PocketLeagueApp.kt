@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,6 +20,7 @@ import com.slack.circuit.foundation.NavigableCircuitContent
  * Main composable entrypoint to the shared multiplatform version of
  * the pocket league app.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PocketLeagueApp(
     modifier: Modifier = Modifier,
@@ -69,6 +71,9 @@ fun PocketLeagueApp(
                         showBack = (backstack.size > 1),
                         onBackClicked = {
                             navigator.pop()
+                        },
+                        onDebugMenuClicked = {
+                            // Handle
                         },
                     )
 

@@ -2,7 +2,7 @@
 
 accompanist = "0.32.0"
 activity-compose = "1.8.2"
-agp = "8.2.1"
+agp = "8.2.2"
 androidx-core = "1.12.0"
 androidx-test = "1.1.5"
 apollo = "3.8.2"

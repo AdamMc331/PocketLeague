@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.feature.debugmenu.DebugMenuScreen
 import com.adammcneilly.pocketleague.feature.eventdetail.EventDetailScreen
 import com.adammcneilly.pocketleague.feature.teamdetail.TeamDetailScreen
 import com.adammcneilly.pocketleague.shared.app.bars.PLTopAppBar
@@ -33,6 +34,7 @@ fun PocketLeagueApp(
                     MatchDetailScreen.UiFactory,
                     EventDetailScreen.UiFactory,
                     TeamDetailScreen.UiFactory,
+                    DebugMenuScreen.UiFactory,
                 ),
             )
             .addPresenterFactories(
@@ -45,6 +47,7 @@ fun PocketLeagueApp(
                         },
                     ),
                     TeamDetailScreen.PresenterFactory,
+                    DebugMenuScreen.PresenterFactory,
                 ),
             )
             .build()
@@ -69,6 +72,9 @@ fun PocketLeagueApp(
                         showBack = (backstack.size > 1),
                         onBackClicked = {
                             navigator.pop()
+                        },
+                        onDebugMenuClicked = {
+                            navigator.goTo(DebugMenuScreen)
                         },
                     )
 

@@ -39,6 +39,8 @@ include(":data:remote-test")
 include(":data:startgg")
 include(":data:team")
 include(":data:team-test")
+
+include(":feature:debugmenu")
 include(":feature:eventdetail")
 include(":feature:teamdetail")
 

@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.shared.app.bars
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -19,6 +20,7 @@ fun PLTopAppBar(
     text: String,
     showBack: Boolean,
     onBackClicked: () -> Unit,
+    onDebugMenuClicked: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     CenterAlignedTopAppBar(
@@ -37,6 +39,16 @@ fun PLTopAppBar(
                         contentDescription = "Back",
                     )
                 }
+            }
+        },
+        actions = {
+            IconButton(
+                onClick = onDebugMenuClicked,
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Build,
+                    contentDescription = "Debug Menu",
+                )
             }
         },
         modifier = modifier,

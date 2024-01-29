@@ -1,38 +1,24 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.kotlin.plugin.parcelize")
+    alias(libs.plugins.cash.paparazzi)
     alias(libs.plugins.kotlin.compose)
 }
 
 kotlin {
     androidTarget()
+    jvm()
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(projects.core.datetime)
-                implementation(projects.core.displaymodels)
                 implementation(projects.core.feature)
-                implementation(projects.core.models)
-                implementation(projects.data.event.api)
-                implementation(projects.data.event.impl)
-                implementation(projects.data.game)
-                implementation(projects.data.localSqldelight)
-                implementation(projects.data.match.api)
-                implementation(projects.data.match.impl)
-                implementation(projects.data.octanegg)
-                implementation(projects.data.player)
-                implementation(projects.data.remote)
-                implementation(projects.data.team)
-                implementation(projects.feature.debugmenu)
-                implementation(projects.feature.eventdetail)
-                implementation(projects.feature.teamdetail)
                 implementation(projects.shared.ui)
-                implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
+                implementation(compose.runtime)
                 implementation(libs.koin.core)
                 implementation(libs.slack.circuit)
             }
@@ -40,10 +26,10 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(projects.core.displaymodelsTest)
+                implementation(libs.google.testparameterinjector)
             }
         }
-        val androidMain by getting
-        // val androidTest by getting
         maybeCreate("iosX64Main")
         maybeCreate("iosArm64Main")
         maybeCreate("iosSimulatorArm64Main")
@@ -72,25 +58,19 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
     }
 
-    namespace = "com.adammcneilly.pocketleague.shared.app"
+    namespace = "com.adammcneilly.pocketleague.feature.debugmenu"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)
     ?.apply {
         if (project.findProperty("ios") == "true") {
-            iosX64()
-            iosArm64()
-            iosSimulatorArm64()
-
-            cocoapods {
-                version = "1.0.0"
-                summary = "Some description for the Shared Module"
-                homepage = "Link to the Shared Module homepage"
-                ios.deploymentTarget = "14.1"
-                podfile = project.file("../../pocketLeagueIos/Podfile")
-                framework {
-                    baseName = "shared"
-                    isStatic = true
+            listOf(
+                iosX64(),
+                iosArm64(),
+                iosSimulatorArm64()
+            ).forEach {
+                it.binaries.framework {
+                    baseName = project.name
                 }
             }
         }

@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.di
 
 import com.adammcneilly.pocketleague.core.datetime.DateTimeFormatter
-import com.adammcneilly.pocketleague.core.datetime.DebugTimeProvider
+import com.adammcneilly.pocketleague.core.datetime.SystemTimeProvider
 import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
 import org.koin.dsl.module
@@ -11,8 +11,8 @@ import org.koin.dsl.module
  */
 val dateTimeModule = module {
     single<TimeProvider> {
-        // SystemTimeProvider
-        DebugTimeProvider()
+        SystemTimeProvider
+//        DebugTimeProvider()
     }
 
     single<DateTimeFormatter> {

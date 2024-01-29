@@ -26,6 +26,7 @@ kotlin {
                 implementation(projects.data.player)
                 implementation(projects.data.remote)
                 implementation(projects.data.team)
+                implementation(projects.feature.debugmenu)
                 implementation(projects.feature.eventdetail)
                 implementation(projects.feature.teamdetail)
                 implementation(projects.shared.ui)

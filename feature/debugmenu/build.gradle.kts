@@ -1,15 +1,33 @@
 plugins {
     kotlin("multiplatform")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.plugin.parcelize")
+    alias(libs.plugins.cash.paparazzi)
+    alias(libs.plugins.kotlin.compose)
 }
 
 kotlin {
+    androidTarget()
     jvm()
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(projects.core.feature)
+                implementation(projects.shared.ui)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
+                implementation(compose.runtime)
+                implementation(libs.koin.core)
+                implementation(libs.slack.circuit)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(projects.core.displaymodelsTest)
+                implementation(libs.google.testparameterinjector)
             }
         }
         maybeCreate("iosX64Main")
@@ -31,6 +49,16 @@ kotlin {
             getAt("iosSimulatorArm64Test").dependsOn(this)
         }
     }
+}
+
+android {
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
+
+    namespace = "com.adammcneilly.pocketleague.feature.debugmenu"
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

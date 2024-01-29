@@ -4,8 +4,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
+/**
+ * Renders the debug menu.
+ */
 @Composable
-fun DebugMenuContent(
+internal fun DebugMenuContent(
     modifier: Modifier = Modifier,
 ) {
     Text(

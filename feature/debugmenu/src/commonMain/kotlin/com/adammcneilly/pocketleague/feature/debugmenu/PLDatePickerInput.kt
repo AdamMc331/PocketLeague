@@ -50,6 +50,12 @@ fun PLDatePickerInput(
         initialSelectedDateMillis = value.toEpochMilliseconds(),
     )
 
+    val contentColor = if (enabled) {
+        MaterialTheme.colorScheme.onSurface
+    } else {
+        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38F)
+    }
+
     if (showDatePicker) {
         DatePickerDialog(
             onDismissRequest = {
@@ -85,18 +91,20 @@ fun PLDatePickerInput(
             modifier = Modifier
                 .border(
                     width = 1.dp,
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = contentColor,
                     shape = pickerShape,
                 )
                 .clip(pickerShape)
-                .clickable {
+                .clickable(
+                    enabled = enabled,
+                ) {
                     showDatePicker = true
                 },
         ) {
             DateAndIcon(
                 value = value,
-                textColor = MaterialTheme.colorScheme.onBackground,
-                iconColorToUse = MaterialTheme.colorScheme.onSurface,
+                textColor = contentColor,
+                iconColorToUse = contentColor,
             )
         }
     }

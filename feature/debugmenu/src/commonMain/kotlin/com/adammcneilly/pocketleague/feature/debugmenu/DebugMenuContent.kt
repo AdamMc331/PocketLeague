@@ -9,7 +9,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -23,20 +22,22 @@ import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 /**
  * Renders the debug menu.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DebugMenuContent(
+    state: DebugMenuScreen.State,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier
             .padding(PocketLeagueTheme.sizes.screenPadding),
     ) {
-        timeProviderSection()
+        timeProviderSection(state)
     }
 }
 
-private fun LazyListScope.timeProviderSection() {
+private fun LazyListScope.timeProviderSection(
+    state: DebugMenuScreen.State,
+) {
     item {
         Text(
             text = "TimeProvider",
@@ -50,8 +51,15 @@ private fun LazyListScope.timeProviderSection() {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Checkbox(
-                checked = true,
-                onCheckedChange = {},
+                checked = state.useSystemTimeProvider,
+                onCheckedChange = { isChecked ->
+                    if (isChecked) {
+                        val event = DebugMenuScreen.Event.UseSystemTimeProviderChanged(
+                            useSystemTimeProvider = true,
+                        )
+                        state.eventSink.invoke(event)
+                    }
+                },
             )
 
             Text(
@@ -66,20 +74,29 @@ private fun LazyListScope.timeProviderSection() {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Checkbox(
-                checked = false,
-                onCheckedChange = {},
+                checked = !state.useSystemTimeProvider,
+                onCheckedChange = { isChecked ->
+                    if (isChecked) {
+                        val event = DebugMenuScreen.Event.UseSystemTimeProviderChanged(
+                            useSystemTimeProvider = false,
+                        )
+                        state.eventSink.invoke(event)
+                    }
+                },
             )
 
             Text(
-                text = "Use Custom Time",
+                text = "Use Debug Time",
             )
         }
     }
 
     item {
         OutlinedTextField(
-            value = "2023-03-02T16:00:00Z",
-            onValueChange = {},
+            value = state.debugTimeProviderDate,
+            onValueChange = {
+                // Will revisit
+            },
             trailingIcon = {
                 Icon(
                     Icons.Default.CalendarToday,

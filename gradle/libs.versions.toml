@@ -91,7 +91,7 @@ ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", vers
 ktor-client-testing = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 mobilenativefoundation-store = { module = "org.mobilenativefoundation.store:store5", version.ref = "store" }
-multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "kmpSettings" }
+multiplatform-settings = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "kmpSettings" }
 slack-circuit = { module = "com.slack.circuit:circuit-foundation", version.ref = "circuit" }
 square-okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 square-sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }

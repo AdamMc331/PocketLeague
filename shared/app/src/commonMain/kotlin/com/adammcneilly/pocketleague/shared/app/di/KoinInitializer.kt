@@ -6,6 +6,7 @@ import org.koin.core.module.Module
 private fun allModules(): List<Module> {
     return listOf(
         dateTimeModule,
+        debugModule,
         localModule,
         platformModule,
         remoteModule,

@@ -9,6 +9,8 @@ import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.screen.Screen
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 /**
  * UI screen for debug menu options such as setting the date to use in the application.
@@ -18,12 +20,24 @@ object DebugMenuScreen : Screen {
     /**
      * UI state for the [DebugMenuScreen].
      */
-    object State : CircuitUiState
+    data class State(
+        val useSystemTimeProvider: Boolean,
+        val debugTimeProviderDate: String,
+        val eventSink: (Event) -> Unit,
+    ) : CircuitUiState
 
     /**
      * UI events triggered by user interactions on the [DebugMenuScreen].
      */
-    sealed interface Event : CircuitUiEvent
+    sealed interface Event : CircuitUiEvent {
+        data class UseSystemTimeProviderChanged(
+            val useSystemTimeProvider: Boolean,
+        ) : Event
+
+        data class DebugTimeProviderDateChanged(
+            val date: String,
+        ) : Event
+    }
 
     /**
      * Factory to create [DebugMenuContent] based on a [State].
@@ -36,9 +50,10 @@ object DebugMenuScreen : Screen {
             return when (screen) {
                 DebugMenuScreen -> {
                     ui<State> { state, modifier ->
-                        DebugMenuContent(modifier)
+                        DebugMenuContent(state, modifier)
                     }
                 }
+
                 else -> null
             }
         }
@@ -47,7 +62,9 @@ object DebugMenuScreen : Screen {
     /**
      * Factory to create a [DebugMenuPresenter].
      */
-    object PresenterFactory : Presenter.Factory {
+    object PresenterFactory : Presenter.Factory, KoinComponent {
+        private val debugPreferences: DebugPreferences by inject()
+
         override fun create(
             screen: Screen,
             navigator: Navigator,
@@ -55,8 +72,9 @@ object DebugMenuScreen : Screen {
         ): Presenter<*>? {
             return when (screen) {
                 DebugMenuScreen -> {
-                    DebugMenuPresenter()
+                    DebugMenuPresenter(debugPreferences = debugPreferences)
                 }
+
                 else -> null
             }
         }

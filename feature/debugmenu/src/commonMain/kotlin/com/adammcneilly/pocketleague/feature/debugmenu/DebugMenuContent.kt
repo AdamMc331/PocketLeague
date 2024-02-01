@@ -35,6 +35,7 @@ internal fun DebugMenuContent(
     }
 }
 
+@Suppress("LongMethod")
 private fun LazyListScope.timeProviderSection(
     state: DebugMenuScreen.State,
 ) {

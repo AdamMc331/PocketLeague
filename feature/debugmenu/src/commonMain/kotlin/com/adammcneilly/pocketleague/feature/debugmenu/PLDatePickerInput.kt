@@ -28,6 +28,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import kotlinx.datetime.Instant
 
+private const val PICKER_CORNER_RADIUS_PERCENT = 50
+
 /**
  * A custom text field looking composable that displays a date. Clicking on it, will allow the user
  * to select a new date by launching a [DatePickerDialog].
@@ -74,6 +76,8 @@ fun PLDatePickerInput(
         }
     }
 
+    val pickerShape = RoundedCornerShape(PICKER_CORNER_RADIUS_PERCENT)
+
     Column(
         modifier = modifier,
     ) {
@@ -82,9 +86,9 @@ fun PLDatePickerInput(
                 .border(
                     width = 1.dp,
                     color = MaterialTheme.colorScheme.onSurface,
-                    shape = RoundedCornerShape(50),
+                    shape = pickerShape,
                 )
-                .clip(RoundedCornerShape(50))
+                .clip(pickerShape)
                 .clickable {
                     showDatePicker = true
                 },

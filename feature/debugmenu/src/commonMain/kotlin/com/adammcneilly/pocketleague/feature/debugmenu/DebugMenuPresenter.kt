@@ -27,14 +27,15 @@ internal class DebugMenuPresenter(
             useSystemTimeProvider = useSystemTimeProvider,
             debugTimeProviderDate = debugTimeProviderDate,
         ) { event ->
+            // I don't like using two different lines here, one for local state and one
+            // for preference store. Let's look and see if multiplatform settings
+            // has some observable logic we can use.
             when (event) {
                 is DebugMenuScreen.Event.DebugTimeProviderDateChanged -> {
-                    // Revisit this
+                    debugTimeProviderDate = event.date
+                    debugPreferences.debugTimeProviderDate = event.date
                 }
                 is DebugMenuScreen.Event.UseSystemTimeProviderChanged -> {
-                    // I don't like using two different lines here, one for local state and one
-                    // for preference store. Let's look and see if multiplatform settings
-                    // has some observable logic we can use.
                     useSystemTimeProvider = event.useSystemTimeProvider
                     debugPreferences.useSystemTimeProvider = event.useSystemTimeProvider
                 }

@@ -20,6 +20,7 @@ kotlin {
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
                 implementation(libs.koin.core)
+                implementation(libs.multiplatform.settings)
                 implementation(libs.slack.circuit)
             }
         }

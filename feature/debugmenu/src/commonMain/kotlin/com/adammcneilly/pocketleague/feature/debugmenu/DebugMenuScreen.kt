@@ -30,10 +30,18 @@ object DebugMenuScreen : Screen {
      * UI events triggered by user interactions on the [DebugMenuScreen].
      */
     sealed interface Event : CircuitUiEvent {
+        /**
+         * If true, use the system time provider throughout the app.
+         * If false, use a debug time provider.
+         */
         data class UseSystemTimeProviderChanged(
             val useSystemTimeProvider: Boolean,
         ) : Event
 
+        /**
+         * Stores the [date] that should be supplied to a debug time provider
+         * instance.
+         */
         data class DebugTimeProviderDateChanged(
             val date: String,
         ) : Event

@@ -3,6 +3,9 @@ package com.adammcneilly.pocketleague.feature.debugmenu
 import com.russhwolf.settings.Settings
 import kotlinx.datetime.Clock
 
+/**
+ * Implementation of [DebugPreferences] that uses multiplatform [Settings].
+ */
 class SharedDebugPreferences(
     private val settings: Settings,
 ) : DebugPreferences {

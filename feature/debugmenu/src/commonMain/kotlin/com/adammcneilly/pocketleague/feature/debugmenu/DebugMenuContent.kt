@@ -99,6 +99,7 @@ private fun LazyListScope.timeProviderSection(
                 .padding(
                     start = 56.dp,
                 ),
+            enabled = !state.useSystemTimeProvider,
         )
     }
 }

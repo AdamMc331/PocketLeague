@@ -14,7 +14,7 @@ actual fun provideCircuitNavigator(
     onRootPop: () -> Unit,
 ): Navigator {
     return rememberCircuitNavigator(
-        backstack = backStack,
+        backStack = backStack,
         enableBackHandler = true,
     )
 }

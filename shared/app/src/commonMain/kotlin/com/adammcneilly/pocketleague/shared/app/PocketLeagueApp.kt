@@ -53,9 +53,9 @@ fun PocketLeagueApp(
             .build()
 
         CircuitCompositionLocals(circuitConfig) {
-            val backstack = rememberSaveableBackStack {
-                push(FeedScreen)
-            }
+            val backstack = rememberSaveableBackStack(
+                initialScreens = listOf(FeedScreen),
+            )
 
             val navigator = provideCircuitNavigator(backstack) {
                 println("Is this being called?")
@@ -80,7 +80,7 @@ fun PocketLeagueApp(
 
                     NavigableCircuitContent(
                         navigator = navigator,
-                        backstack = backstack,
+                        backStack = backstack,
                         modifier = Modifier
                             .weight(1F),
                     )

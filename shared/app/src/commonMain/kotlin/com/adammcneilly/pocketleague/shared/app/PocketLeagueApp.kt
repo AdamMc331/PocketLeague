@@ -10,6 +10,7 @@ import com.adammcneilly.pocketleague.feature.teamdetail.TeamDetailScreen
 import com.adammcneilly.pocketleague.shared.app.bars.PLTopAppBar
 import com.adammcneilly.pocketleague.shared.app.feed.FeedScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
+import com.adammcneilly.pocketleague.shared.app.swiss.SwissOverviewScreen
 import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 import com.slack.circuit.backstack.rememberSaveableBackStack
 import com.slack.circuit.foundation.Circuit
@@ -35,6 +36,7 @@ fun PocketLeagueApp(
                     EventDetailScreen.UiFactory,
                     TeamDetailScreen.UiFactory,
                     DebugMenuScreen.UiFactory,
+                    SwissOverviewScreen.UiFactory,
                 ),
             )
             .addPresenterFactories(
@@ -48,13 +50,14 @@ fun PocketLeagueApp(
                     ),
                     TeamDetailScreen.PresenterFactory,
                     DebugMenuScreen.PresenterFactory,
+                    SwissOverviewScreen.PresenterFactory(),
                 ),
             )
             .build()
 
         CircuitCompositionLocals(circuitConfig) {
             val backstack = rememberSaveableBackStack(
-                initialScreens = listOf(FeedScreen),
+                initialScreens = listOf(SwissOverviewScreen("2337947")),
             )
 
             val navigator = provideCircuitNavigator(backstack) {

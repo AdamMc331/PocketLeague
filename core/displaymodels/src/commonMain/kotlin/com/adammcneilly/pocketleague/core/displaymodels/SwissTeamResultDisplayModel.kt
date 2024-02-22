@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.core.displaymodels
 
+import com.adammcneilly.pocketleague.core.models.SwissTeamResult
+
 /**
  * User friendly explanation of how a [team] preformed in a Swiss stage.
  *
@@ -13,3 +15,11 @@ data class SwissTeamResultDisplayModel(
     val overline: String,
     val subtitle: String,
 )
+
+fun SwissTeamResult.toDisplayModel(): SwissTeamResultDisplayModel {
+    return SwissTeamResultDisplayModel(
+        team = this.team.toOverviewDisplayModel(),
+        overline = "TODO",
+        subtitle = "TODO",
+    )
+}

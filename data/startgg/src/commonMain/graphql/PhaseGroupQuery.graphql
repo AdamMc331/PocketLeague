@@ -14,5 +14,28 @@ query PhaseGroupQuery($id: ID) {
                 placement
             }
         }
+        sets(
+            page: 1,
+            perPage: 100,
+            sortType: NONE,
+            filters: {}
+        ) {
+            nodes {
+                displayScore
+                winnerId
+                games {
+                    entrant1Score
+                    entrant2Score
+                }
+                slots {
+                    entrant {
+                        id
+                        team {
+                            ...TeamFragment
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -17,9 +17,20 @@ data class SwissTeamResultDisplayModel(
 )
 
 fun SwissTeamResult.toDisplayModel(): SwissTeamResultDisplayModel {
+    val gameRecord = "${this.gameWins} - ${this.gameLosses}"
+
+    val gameDifferential = this.gameWins - this.gameLosses
+    val gameDifferentialString = if (gameDifferential > 0) {
+        "+$gameDifferential"
+    } else {
+        gameDifferential.toString()
+    }
+
+    val matchDifferential = "${this.matchWins} - ${this.matchLosses}"
+
     return SwissTeamResultDisplayModel(
         team = this.team.toOverviewDisplayModel(),
         overline = "TODO",
-        subtitle = "TODO",
+        subtitle = "$matchDifferential | $gameRecord | $gameDifferentialString",
     )
 }

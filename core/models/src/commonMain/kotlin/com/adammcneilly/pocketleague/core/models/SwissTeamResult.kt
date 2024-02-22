@@ -8,4 +8,6 @@ data class SwissTeamResult(
     val team: Team,
     val matchWins: Int,
     val matchLosses: Int,
+    val gameWins: Int,
+    val gameLosses: Int,
 )

@@ -25,6 +25,7 @@ kotlin {
                 implementation(projects.data.octanegg)
                 implementation(projects.data.player)
                 implementation(projects.data.remote)
+                implementation(projects.data.startgg)
                 implementation(projects.data.team)
                 implementation(projects.feature.debugmenu)
                 implementation(projects.feature.eventdetail)
@@ -33,6 +34,7 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(libs.apollo.runtime)
                 implementation(libs.koin.core)
                 implementation(libs.slack.circuit)
             }

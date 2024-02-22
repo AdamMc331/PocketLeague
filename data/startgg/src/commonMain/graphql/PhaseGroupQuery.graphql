@@ -1,0 +1,18 @@
+query PhaseGroupQuery($id: ID) {
+    phaseGroup(id: $id) {
+        id
+        standings(query: {
+            perPage: 16
+        }) {
+            nodes {
+                id
+                entrant {
+                    team {
+                        ...TeamFragment
+                    }
+                }
+                placement
+            }
+        }
+    }
+}

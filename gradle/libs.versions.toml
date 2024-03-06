@@ -39,7 +39,7 @@ sqldelight = "1.5.5"
 testParameterInjector = "1.15"
 truth = "1.4.2"
 truthish = "0.6.5"
-turbine = "1.0.0"
+turbine = "1.1.0"
 windowManager = "1.2.0"
 workManager = "2.9.0"
 

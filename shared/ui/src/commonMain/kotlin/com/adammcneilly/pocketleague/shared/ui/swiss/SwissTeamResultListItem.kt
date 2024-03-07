@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.SwissTeamResultDisplayModel
 import com.adammcneilly.pocketleague.shared.ui.components.CircleTeamLogo
@@ -25,23 +25,10 @@ fun SwissTeamResultListItem(
     displayModel: SwissTeamResultDisplayModel,
     modifier: Modifier = Modifier,
 ) {
-    val colorToUse = if (displayModel.overline == "Qualified") {
-        Color.Green
-    } else {
-        Color.Red
-    }
-
     Row(
         modifier = Modifier
             .height(IntrinsicSize.Min),
     ) {
-//        Box(
-//            modifier = Modifier
-//                .background(color = colorToUse)
-//                .width(4.dp)
-//                .fillMaxHeight(),
-//        )
-
         Row(
             modifier = modifier,
             horizontalArrangement = Arrangement.spacedBy(PocketLeagueTheme.sizes.listItemSpacing),
@@ -57,12 +44,6 @@ fun SwissTeamResultListItem(
                 modifier = Modifier
                     .weight(1F),
             ) {
-//            Text(
-//                text = displayModel.overline,
-//                style = MaterialTheme.typography.labelSmall,
-//                fontWeight = FontWeight.Bold,
-//            )
-
                 Text(
                     text = displayModel.team.name,
                     style = MaterialTheme.typography.bodyLarge,
@@ -73,6 +54,18 @@ fun SwissTeamResultListItem(
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
+
+            val fontWeight = if (displayModel.overline == "Qualified") {
+                FontWeight.Bold
+            } else {
+                null
+            }
+
+            Text(
+                text = displayModel.overline,
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = fontWeight,
+            )
         }
     }
 }

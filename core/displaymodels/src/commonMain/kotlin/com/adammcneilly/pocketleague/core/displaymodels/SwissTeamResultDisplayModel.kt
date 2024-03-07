@@ -28,9 +28,15 @@ fun SwissTeamResult.toDisplayModel(): SwissTeamResultDisplayModel {
 
     val matchDifferential = "${this.matchWins} - ${this.matchLosses}"
 
+    val overline = if (this.matchWins == 3) {
+        "Qualified"
+    } else {
+        "Eliminated"
+    }
+
     return SwissTeamResultDisplayModel(
         team = this.team.toOverviewDisplayModel(),
-        overline = "TODO",
+        overline = overline,
         subtitle = "$matchDifferential | $gameRecord | $gameDifferentialString",
     )
 }

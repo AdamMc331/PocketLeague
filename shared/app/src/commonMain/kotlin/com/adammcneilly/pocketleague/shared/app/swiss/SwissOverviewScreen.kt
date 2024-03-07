@@ -32,10 +32,11 @@ data class SwissOverviewScreen(
             return when (screen) {
                 is SwissOverviewScreen -> {
                     ui<State> { state, modifier ->
-                        SwissOverviewContent(
-                            state = state,
-                            modifier = modifier,
-                        )
+//                        SwissOverviewContent(
+//                            state = state,
+//                            modifier = modifier,
+//                        )
+                        SwissDetailContent(modifier)
                     }
                 }
 

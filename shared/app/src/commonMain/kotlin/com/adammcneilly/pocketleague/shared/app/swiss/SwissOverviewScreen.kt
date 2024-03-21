@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.swiss
 
 import com.adammcneilly.pocketleague.core.displaymodels.SwissTeamResultDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
 import com.adammcneilly.pocketleague.core.feature.CommonParcelize
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.CircuitUiEvent
@@ -36,7 +37,42 @@ data class SwissOverviewScreen(
 //                            state = state,
 //                            modifier = modifier,
 //                        )
-                        SwissDetailContent(modifier)
+                        SwissDetailContent(
+                            state = SwissDetailScreen.State(
+                                teamResult = TestDisplayModel.qualifiedSwiss,
+                                matches = listOf(
+                                    SwissMatchDisplayModel(
+                                        roundName = "Round One",
+                                        match = TestDisplayModel.matchDetailBlueWinner,
+                                        games = listOf(
+                                            TestDisplayModel.gameDetailBlueWinner,
+                                            TestDisplayModel.gameDetailBlueWinner,
+                                            TestDisplayModel.gameDetailBlueWinner,
+                                        ),
+                                    ),
+                                    SwissMatchDisplayModel(
+                                        roundName = "Round Two",
+                                        match = TestDisplayModel.matchDetailOrangeWinner,
+                                        games = listOf(
+                                            TestDisplayModel.gameDetailBlueWinner,
+                                            TestDisplayModel.gameDetailOrangeWinner,
+                                            TestDisplayModel.gameDetailOrangeWinner,
+                                            TestDisplayModel.gameDetailOrangeWinner,
+                                        ),
+                                    ),
+                                    SwissMatchDisplayModel(
+                                        roundName = "Round Three",
+                                        match = TestDisplayModel.matchDetailBlueWinner,
+                                        games = listOf(
+                                            TestDisplayModel.gameDetailBlueWinner,
+                                            TestDisplayModel.gameDetailBlueWinner,
+                                            TestDisplayModel.gameDetailBlueWinner,
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            modifier = modifier,
+                        )
                     }
                 }
 

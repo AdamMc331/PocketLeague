@@ -2,13 +2,12 @@ package com.adammcneilly.pocketleague.shared.app.swiss
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -16,17 +15,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
-import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
+import com.adammcneilly.pocketleague.core.displaymodels.SwissTeamResultDisplayModel
 import com.adammcneilly.pocketleague.shared.ui.components.CircleTeamLogo
 import com.adammcneilly.pocketleague.shared.ui.game.GameListItem
+import com.adammcneilly.pocketleague.shared.ui.swiss.SwissTeamResultListCard
 import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
+import com.adammcneilly.pocketleague.shared.ui.utils.VerticalSpacer
 
 @Composable
 fun SwissDetailContent(
+    state: SwissDetailScreen.State,
     modifier: Modifier,
 ) {
     LazyColumn(
@@ -37,124 +36,78 @@ fun SwissDetailContent(
         modifier = modifier,
     ) {
         item {
-            TeamOverviewCard()
+            TeamOverviewCard(state.teamResult)
         }
 
-        item {
+        items(state.matches) { match ->
             Text(
-                text = "Round One",
+                text = match.roundName,
                 style = MaterialTheme.typography.headlineSmall,
             )
-        }
 
-        item {
-            Card {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .align(Alignment.CenterHorizontally),
-                ) {
-                    CircleTeamLogo(
-                        displayModel = TestDisplayModel.g2,
-                        modifier = Modifier
-                            .size(48.dp),
-                    )
+            VerticalSpacer(16.dp)
 
-                    Text(
-                        text = "3 - 0",
-                        style = MaterialTheme.typography.headlineSmall,
-                    )
-
-                    CircleTeamLogo(
-                        displayModel = TestDisplayModel.knights,
-                        modifier = Modifier
-                            .size(48.dp),
-                    )
-                }
-
-                HorizontalDivider()
-
-                val games = listOf(
-                    TestDisplayModel.gameDetailBlueWinner,
-                    TestDisplayModel.gameDetailBlueWinner,
-                    TestDisplayModel.gameDetailBlueWinner,
-                )
-
-                games.forEachIndexed { index, game ->
-                    GameListItem(
-                        displayModel = game,
-                        modifier = Modifier
-                            .clickable {
-                                // Handle game clicked?
-                            },
-                    )
-
-                    if (index != games.lastIndex) {
-                        HorizontalDivider()
-                    }
-                }
-            }
-        }
-
-        item {
-            Text(
-                text = "Round Two",
-                style = MaterialTheme.typography.headlineSmall,
-            )
-        }
-
-        item {
-            Text(
-                text = "Round Three",
-                style = MaterialTheme.typography.headlineSmall,
+            RoundCard(
+                swissMatch = match,
             )
         }
     }
 }
 
 @Composable
-private fun TeamOverviewCard() {
+private fun RoundCard(
+    swissMatch: SwissMatchDisplayModel,
+) {
     Card(
         modifier = Modifier
-            .fillMaxWidth(),
+            .clickable {
+                // Navigate to Match detail
+            },
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier
-                .padding(16.dp),
+                .padding(8.dp)
+                .align(Alignment.CenterHorizontally),
         ) {
             CircleTeamLogo(
-                TeamOverviewDisplayModel.placeholder.copy(
-                    imageUrl = ThemedImageURL(
-                        "https://www.bing.com/th?pid=Sgg&qlt=100&u=https%3A%2F%2Fimages.start.gg%2Fimages%2Fteam%2F2218929%2Fimage-80964c6540ce4e270b39fa9e85ed991d-optimized.png&ehk=cwh1IIBL1XJtwDFfeWhJTm3xSEGdTTjJzG5kr6sYnXc%3D&w=160&h=160&r=0&c=3",
-                    ),
-                ),
+                displayModel = swissMatch.match.blueTeamResult.team,
                 modifier = Modifier
                     .size(48.dp),
             )
 
-            Column(
-                modifier = Modifier
-                    .weight(1F),
-            ) {
-                Text(
-                    text = "G2 Stride",
-                    style = MaterialTheme.typography.titleLarge,
-                )
-
-                Text(
-                    text = "3 - 0 | 9 - 2 | +7",
-                )
-            }
-
             Text(
-                text = "Qualified",
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.labelLarge,
+                text = "${swissMatch.match.blueTeamResult.score} - ${swissMatch.match.orangeTeamResult.score}",
+                style = MaterialTheme.typography.headlineSmall,
+            )
+
+            CircleTeamLogo(
+                displayModel = swissMatch.match.orangeTeamResult.team,
+                modifier = Modifier
+                    .size(48.dp),
             )
         }
+
+        HorizontalDivider()
+
+        swissMatch.games.forEachIndexed { index, game ->
+            GameListItem(
+                displayModel = game,
+            )
+
+            if (index != swissMatch.games.lastIndex) {
+                HorizontalDivider()
+            }
+        }
     }
+}
+
+@Composable
+private fun TeamOverviewCard(
+    displayModel: SwissTeamResultDisplayModel,
+) {
+    SwissTeamResultListCard(
+        teamResults = listOf(displayModel),
+    )
 }

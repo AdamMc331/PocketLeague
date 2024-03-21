@@ -1,6 +1,0 @@
-fragment EventFragment on Event {
-    id
-    name
-    startAt
-    isOnline
-}

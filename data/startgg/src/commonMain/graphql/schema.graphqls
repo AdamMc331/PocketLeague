@@ -1,1724 +1,3493 @@
-# This file was generated. Do not edit manually.
+type Query {
+  """
+  Returns the authenticated user
+  """
+  currentUser: User
 
-schema {
-    query: Query
-    mutation: Mutation
+  """
+  Returns an entrant given its id
+  """
+  entrant(id: ID!): Entrant
+
+  """
+  Returns an event given its id or slug
+  """
+  event(id: ID, slug: String): Event
+
+  """
+  Returns a league given its id or slug
+  """
+  league(id: ID, slug: String): League
+
+  """
+  Paginated, filterable list of leagues
+  """
+  leagues(query: LeagueQuery!): LeagueConnection
+
+  """
+  Returns a participant given its id
+  """
+  participant(id: ID!, isAdmin: Boolean): Participant
+
+  """
+  Returns a phase given its id
+  """
+  phase(id: ID): Phase
+
+  """
+  Returns a phase group given its id
+  """
+  phaseGroup(id: ID): PhaseGroup
+
+  """
+  Returns a player given an id
+  """
+  player(id: ID!): Player
+
+  """
+  Returns a phase seed given its id
+  """
+  seed(id: ID): Seed
+
+  """
+  Returns a set given its id
+  """
+  set(id: ID!): Set
+
+  """
+  A shop entity
+  """
+  shop(id: ID, slug: String): Shop
+
+  """
+  Returns an stream given its id
+  """
+  stream(id: ID!): Streams
+
+  """
+  Returns all the stream queues for a given tournament
+  """
+  streamQueue(tournamentId: ID!, includePlayerStreams: Boolean): [StreamQueue]
+
+  """
+  Returns a team given its id
+  """
+  team(id: ID, slug: String, inviteCode: String): Team
+
+  """
+  Returns a tournament given its id or slug
+  """
+  tournament(id: ID, slug: String): Tournament
+
+  """
+  Paginated, filterable list of tournaments
+  """
+  tournaments(query: TournamentQuery!): TournamentConnection
+
+  """
+  Returns a user given a user slug of the form user/abc123, or id
+  """
+  user(id: ID, slug: String): User
+
+  """
+  Returns a videogame given its id
+  """
+  videogame(id: ID, slug: String): Videogame
+
+  """
+  Returns paginated list of videogames matching the search criteria.
+  """
+  videogames(query: VideogameQuery!): VideogameConnection
 }
 
 """
+A user
+"""
+type User {
+  """
+  Authorizations to external services (i.e. Twitch, Twitter)
+  """
+  authorizations(types: [SocialConnectionType]): [ProfileAuthorization]
 
+  id: ID
+
+  bio: String
+
+  """
+  Public facing user birthday that respects user publishing settings
+  """
+  birthday: String
+
+  """
+  Uniquely identifying token for user. Same as the hashed part of the slug
+  """
+  discriminator: String
+
+  email: String
+
+  """
+  Events this user has competed in
+  """
+  events(query: UserEventsPaginationQuery): EventConnection
+
+  genderPronoun: String
+
+  images(type: String): [Image]
+
+  """
+  Leagues this user has competed in
+  """
+  leagues(query: UserLeaguesPaginationQuery): LeagueConnection
+
+  """
+  Public location info for this user
+  """
+  location: Address
+
+  """
+  Public facing user name that respects user publishing settings
+  """
+  name: String
+
+  """
+  player for user
+  """
+  player: Player
+
+  slug: String
+
+  """
+  Tournaments this user is organizing or competing in
+  """
+  tournaments(query: UserTournamentsPaginationQuery): TournamentConnection
+}
+
+"""
+Represents the name of the third-party social service (e.g Twitter) for OAuth
+"""
+enum SocialConnectionType {
+  TWITTER
+
+  TWITCH
+
+  DISCORD
+
+  MIXER
+
+  XBOX
+}
+
+"""
+An OAuth ProfileAuthorization object
+"""
+type ProfileAuthorization {
+  id: ID
+
+  """
+  The id given by the external service
+  """
+  externalId: String
+
+  """
+  The username given by the external service (including discriminator if discord)
+  """
+  externalUsername: String
+
+  stream: Stream
+
+  """
+  The name of the external service providing this auth i.e. "twitch"
+  """
+  type: AuthorizationType
+
+  url: String
+}
+
+"""
+The `ID` scalar type represents a unique identifier, often used to
+refetch an object or as key for a cache. When expected as an input type, any string (such as `"4"`) or integer
+(such as `4`) input value will be accepted as an ID.
+"""
+scalar ID
+
+"""
+The `String` scalar type represents textual data, represented as UTF-8
+character sequences. The String type is most often used by GraphQL to
+represent free-form human-readable text.
+"""
+scalar String
+
+"""
+A Stream object
+"""
+type Stream {
+  id: ID
+
+  """
+  Whether the stream is currently live. May be slightly delayed.
+  """
+  isOnline: Boolean
+
+  """
+  The name of the stream
+  """
+  name: String
+
+  """
+  The name of the external service providing this auth i.e. "twitch"
+  """
+  type: StreamType
+}
+
+"""
+The `Boolean` scalar type represents `true` or `false`.
+"""
+scalar Boolean
+
+"""
+Represents the type of stream service
+"""
+enum StreamType {
+  TWITCH
+
+  MIXER
+
+  YOUTUBE
+}
+
+"""
+Represents the name of the third-party service (e.g Twitter) for OAuth
+"""
+enum AuthorizationType {
+  TWITTER
+
+  TWITCH
+
+  STEAM
+
+  DISCORD
+
+  XBOX
+
+  EPIC
+
+  BATTLENET
+
+  MIXER
+}
+
+input UserEventsPaginationQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: UserEventsPaginationFilter
+}
+
+"""
+The `Int` scalar type represents non-fractional signed whole numeric
+values. Int can represent values between -(2^31) and 2^31 - 1. 
+"""
+scalar Int
+
+input UserEventsPaginationFilter {
+  videogameId: [ID]
+
+  eventType: Int
+
+  minEntrantCount: Int
+
+  maxEntrantCount: Int
+
+  location: LocationFilterType
+
+  search: PaginationSearchType
+}
+
+input LocationFilterType {
+  countryCode: String
+
+  state: String
+
+  city: String
+}
+
+input PaginationSearchType {
+  fieldsToSearch: [String]
+
+  searchString: String
+}
+
+type EventConnection {
+  pageInfo: PageInfo
+
+  nodes: [Event]
+}
+
+type PageInfo {
+  total: Int
+
+  totalPages: Int
+
+  page: Int
+
+  perPage: Int
+
+  sortBy: String
+
+  filter: JSON
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by
+		[ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+An event in a tournament
+"""
+type Event {
+  id: ID
+
+  """
+  How long before the event start will the check-in end (in seconds)
+  """
+  checkInBuffer: Int
+
+  """
+  How long the event check-in will last (in seconds)
+  """
+  checkInDuration: Int
+
+  """
+  Whether check-in is enabled for this event
+  """
+  checkInEnabled: Boolean
+
+  """
+  Rough categorization of event tier, denoting relative importance in the competitive scene
+  """
+  competitionTier: Int
+
+  """
+  When the event was created (unix timestamp)
+  """
+  createdAt: Timestamp
+
+  """
+  Last date attendees are able to create teams for team events
+  """
+  deckSubmissionDeadline: Timestamp
+
+  """
+  Maximum number of participants each Entrant can have
+  """
+  entrantSizeMax: Int @deprecated(reason: "Migrate to teamRosterSize")
+
+  """
+  Minimum number of participants each Entrant can have
+  """
+  entrantSizeMin: Int @deprecated(reason: "Migrate to teamRosterSize")
+
+  """
+  The entrants that belong to an event, paginated by filter criteria
+  """
+  entrants(query: EventEntrantPageQuery): EntrantConnection
+
+  """
+  Whether the event has decks
+  """
+  hasDecks: Boolean
+
+  """
+  Are player tasks enabled for this event
+  """
+  hasTasks: Boolean
+
+  images(type: String): [Image]
+
+  """
+  Whether the event is an online event or not
+  """
+  isOnline: Boolean
+
+  league: League
+
+  """
+  Markdown field for match rules/instructions
+  """
+  matchRulesMarkdown: String
+
+  """
+  Title of event set by organizer
+  """
+  name: String
+
+  """
+  Gets the number of entrants in this event
+  """
+  numEntrants: Int
+
+  """
+  The phase groups that belong to an event.
+  """
+  phaseGroups: [PhaseGroup]
+
+  """
+  The phases that belong to an event.
+  """
+  phases("Filter phases by state. If not specified will default to all phases" state: ActivityState, "Optionally only return results for this phase" phaseId: ID): [Phase]
+
+  """
+  TO settings for prizing
+  """
+  prizingInfo: JSON
+
+  publishing: JSON
+
+  """
+  Markdown field for event rules/instructions
+  """
+  rulesMarkdown: String
+
+  """
+  Id of the event ruleset
+  """
+  rulesetId: Int
+
+  """
+  Settings pulled from the event ruleset, if one exists
+  """
+  rulesetSettings: JSON @deprecated(reason: "Use ruleset")
+
+  """
+  Paginated sets for this Event
+  """
+  sets(page: Int, perPage: Int, "How to sort these sets" sortType: SetSortType, "Supported filter options to filter down set results." filters: SetFilters): SetConnection
+
+  slug: String
+
+  """
+  Paginated list of standings
+  """
+  standings(query: StandingPaginationQuery!): StandingConnection
+
+  """
+  When does this event start?
+  """
+  startAt: Timestamp
+
+  """
+  The state of the Event.
+  """
+  state: ActivityState
+
+  """
+  Paginated stations on this event
+  """
+  stations(query: StationFilter): StationsConnection
+
+  """
+  Last date attendees are able to create teams for team events
+  """
+  teamManagementDeadline: Timestamp
+
+  """
+  If this is a teams event, returns whether or not teams can set custom names
+  """
+  teamNameAllowed: Boolean
+
+  """
+  Team roster size requirements
+  """
+  teamRosterSize: TeamRosterSize
+
+  tournament: Tournament
+
+  """
+  The type of the event, whether an entrant will have one participant or multiple
+  """
+  type: Int
+
+  """
+  When the event was last modified (unix timestamp)
+  """
+  updatedAt: Timestamp
+
+  """
+  Whether the event uses the new EventSeeds for seeding
+  """
+  useEventSeeds: Boolean
+
+  """
+  The entrant (if applicable) for a given user in this event
+  """
+  userEntrant("User to get entrant for. Defaults to currently logged in user." userId: ID): Entrant
+
+  videogame: Videogame
+
+  """
+  The waves being used by the event
+  """
+  waves("Waves filtered by phaseId, returns all if not set." phaseId: ID): [Wave]
+}
+
+"""
+Represents a Unix Timestamp. Supports up to 53 bit int values,
+		as that is JavaScript's internal memory allocation for integer values.
+"""
+scalar Timestamp
+
+input EventEntrantPageQuery {
+  page: Int
+
+  perPage: Int
+
+  sortBy: String
+
+  filter: EventEntrantPageQueryFilter
+}
+
+input EventEntrantPageQueryFilter {
+  name: String
+}
+
+type EntrantConnection {
+  pageInfo: PageInfo
+
+  nodes: [Entrant]
+}
+
+"""
+An entrant in an event
+"""
+type Entrant {
+  id: ID
+
+  event: Event
+
+  """
+  Entrant's seed number in the first phase of the event.
+  """
+  initialSeedNum: Int
+
+  isDisqualified: Boolean
+
+  """
+  The entrant name as it appears in bracket: gamerTag of the participant or team name
+  """
+  name: String
+
+  """
+  Paginated sets for this entrant
+  """
+  paginatedSets(page: Int, perPage: Int, "How to sort these sets" sortType: SetSortType, "Supported filter options to filter down set results." filters: SetFilters): SetConnection
+
+  participants: [Participant]
+
+  seeds: [Seed]
+
+  skill: Int
+
+  """
+  Standing for this entrant given an event. All entrants queried must be in the same event (for now).
+  """
+  standing: Standing
+
+  stream: Streams @deprecated(reason: "DEPRECATED. Use streams instead, which supports multiple stream types and teams.")
+
+  streams: [Streams]
+
+  """
+  Team linked to this entrant, if one exists
+  """
+  team: Team
+}
+
+"""
+Different sort type configurations used when displaying multiple sets
+"""
+enum SetSortType {
+  """
+  Sets will not be sorted.
+  """
+  NONE
+
+  """
+  Sets are sorted in the suggested order that they be called to be played. The order of completed sets is reversed.
+  """
+  CALL_ORDER
+
+  """
+  Sets are sorted by relevancy dependent on the state and progress of the event.
+  """
+  MAGIC
+
+  """
+  Sets are sorted in the order that they were started.
+  """
+  RECENT
+
+  """
+  Deprecated. This is equivalent to CALL_ORDER
+  """
+  STANDARD
+
+  """
+  Sets sorted by round and identifier
+  """
+  ROUND
+}
+
+input SetFilters {
+  """
+  Only return Sets for these Entrants
+  """
+  entrantIds: [ID]
+
+  """
+  Only return Sets for this Entrant size. For example, to fetch 1v1 Sets only, filter by an entrantSize of 1
+  """
+  entrantSize: [Int]
+
+  """
+  Only return Sets that have an attached VOD
+  """
+  hasVod: Boolean
+
+  """
+  Do not return empty Sets. For example, set this to true to filter out sets that are waiting for progressions.
+  """
+  hideEmpty: Boolean
+
+  """
+  Return sets that contain a bye
+  """
+  showByes: Boolean
+
+  """
+  Only return Sets that are in an Online event. If omitted, Sets for both online and offline Events are returned
+  """
+  isEventOnline: Boolean
+
+  """
+  Only return Sets in certain geographical areas.
+  """
+  location: SetFilterLocation
+
+  """
+  Only return Sets for these Participants
+  """
+  participantIds: [ID]
+
+  """
+  Only return Sets in these PhaseGroups
+  """
+  phaseGroupIds: [ID]
+
+  """
+  Only return Sets in these Phases
+  """
+  phaseIds: [ID]
+
+  """
+  Only return Sets in these Events
+  """
+  eventIds: [ID]
+
+  """
+  Only return Sets in these Tournaments
+  """
+  tournamentIds: [ID]
+
+  """
+  Only return Sets for these Players
+  """
+  playerIds: [ID]
+
+  """
+  Only return Sets for these Rounds
+  """
+  roundNumber: Int
+
+  """
+  Only returns Sets that are in these states
+  """
+  state: [Int]
+
+  """
+  Only return Sets that are assigned to these Station IDs
+  """
+  stationIds: [ID]
+
+  """
+  Only return Sets that are assigned to these Station numbers
+  """
+  stationNumbers: [Int]
+
+  """
+  Only return sets created or updated since this timestamp
+  """
+  updatedAfter: Timestamp
+}
+
+"""
+Filter Sets by geographical constraints.
+"""
+input SetFilterLocation {
+  """
+  Only return Sets in this state. Only applicable to US states
+  """
+  state: String
+
+  """
+  Only return Sets in this country. Expects a valid two-letter country code
+  """
+  country: String
+
+  distanceFrom: SetFilterLocationDistanceFrom
+}
+
+"""
+Only return Sets that are a certain distance away from a specified point
+"""
+input SetFilterLocationDistanceFrom {
+  """
+  Point at which to perform distance calculation
+  """
+  point: SetFilterLocationDistanceFromPoint
+
+  """
+  Distance from the point to include results in
+  """
+  radius: String
+}
+
+input SetFilterLocationDistanceFromPoint {
+  lat: Float
+
+  lon: Float
+}
+
+"""
+The `Float` scalar type represents signed double-precision fractional
+values as specified by
+[IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). 
+"""
+scalar Float
+
+type SetConnection {
+  pageInfo: PageInfo
+
+  nodes: [Set]
+}
+
+"""
+A set
+"""
+type Set {
+  id: ID
+
+  """
+  The time this set was marked as completed
+  """
+  completedAt: Timestamp
+
+  """
+  The time this set was created
+  """
+  createdAt: Timestamp
+
+  displayScore(mainEntrantId: ID): String
+
+  """
+  Event that this set belongs to.
+  """
+  event: Event
+
+  """
+  Full round text of this set.
+  """
+  fullRoundText: String
+
+  game(orderNum: Int!): Game
+
+  games: [Game]
+
+  """
+  Whether this set contains a placeholder entrant
+  """
+  hasPlaceholder: Boolean
+
+  """
+  The letters that describe a unique identifier within the pool. Eg. F, AT
+  """
+  identifier: String
+
+  images(type: String): [Image]
+
+  lPlacement: Int
+
+  """
+  Phase group that this Set belongs to.
+  """
+  phaseGroup: PhaseGroup
+
+  """
+  The sets that are affected from resetting this set
+  """
+  resetAffectedData: ResetAffectedData
+
+  """
+  The round number of the set. Negative numbers are losers bracket
+  """
+  round: Int
+
+  """
+  Indicates whether the set is in best of or total games mode. This instructs
+  which field is used to figure out how many games are in this set.
+  """
+  setGamesType: Int
+
+  """
+  A possible spot in a set. Use this to get all entrants in a set. Use this for all bracket types (FFA, elimination, etc)
+  """
+  slots(includeByes: Boolean = false): [SetSlot]
+
+  """
+  The start time of the Set. If there is no startAt time on the Set, will pull it from phaseGroup rounds configuration.
+  """
+  startAt: Timestamp
+
+  startedAt: Timestamp
+
+  state: Int
+
+  """
+  Tournament event station for a set
+  """
+  station: Stations
+
+  """
+  Tournament event stream for a set
+  """
+  stream: Streams
+
+  """
+  If setGamesType is in total games mode, this defined the number of games in the set.
+  """
+  totalGames: Int
+
+  """
+  Url of a VOD for this set
+  """
+  vodUrl: String
+
+  wPlacement: Int
+
+  winnerId: Int
+}
+
+"""
+A game represents a single game within a set.
+"""
+type Game {
+  id: ID
+
+  """
+  Score of entrant 1. For smash, this is equivalent to stocks remaining.
+  """
+  entrant1Score: Int
+
+  """
+  Score of entrant 2. For smash, this is equivalent to stocks remaining.
+  """
+  entrant2Score: Int
+
+  images(type: String): [Image]
+
+  orderNum: Int
+
+  """
+  Selections for this game such as character, etc.
+  """
+  selections: [GameSelection]
+
+  """
+  The stage that this game was played on (if applicable)
+  """
+  stage: Stage
+
+  state: Int
+
+  winnerId: Int
+}
+
+"""
+An image
+"""
+type Image {
+  id: ID
+
+  height: Float
+
+  ratio: Float
+
+  type: String
+
+  url: String
+
+  width: Float
+}
+
+"""
+A selection for this game. i.e. character/stage selection, etc
+"""
+type GameSelection {
+  """
+  If this is a character selection, returns the selected character.
+  """
+  character: Character
+
+  id: ID
+
+  """
+  The entrant who this selection is for
+  """
+  entrant: Entrant
+
+  orderNum: Int
+
+  """
+  The participant who this selection is for. This is only populated if there are
+  selections for multiple participants of a single entrant
+  """
+  participant: Participant
+
+  selectionType: GameSelectionType
+
+  selectionValue: Int
+}
+
+"""
+A character in a videogame
+"""
+type Character {
+  id: ID
+
+  images(type: String): [Image]
+
+  """
+  Name of Character
+  """
+  name: String
+}
+
+"""
+A participant of a tournament; either a spectator or competitor
+"""
+type Participant {
+  id: ID
+
+  """
+  If this participant was checked-in by admin
+  """
+  checkedIn: Boolean
+
+  """
+  The time this participant was checked-in by admin
+  """
+  checkedInAt: Timestamp
+
+  """
+  Info for connected accounts to external services.
+  """
+  connectedAccounts: JSON
+
+  """
+  Contact Info selected during registration. Falls back to User.location and/or
+  User.name if necessary. These fields are for admin use only. If you are not a
+  tournament admin or the participant being queried, these fields will be null.
+  Do not display this information publicly.
+  """
+  contactInfo: ContactInfo
+
+  """
+  Email of the user, only available to admins within 18 months of tournament completion for tournament administrators.
+  """
+  email: String
+
+  """
+  Entrants associated with this Participant, if applicable
+  """
+  entrants: [Entrant]
+
+  """
+  The events this participant registered for within a Tournament.
+  """
+  events: [Event]
+
+  """
+  The tag that was used when the participant registered, e.g. Mang0
+  """
+  gamerTag: String
+
+  images(type: String): [Image]
+
+  player: Player
+
+  """
+  The prefix that the user set for this Tournament, e.g. C9
+  """
+  prefix: String
+
+  """
+  Tournament Admin viewable field. Shows details for required social connections
+  """
+  requiredConnections: [ProfileAuthorization]
+
+  """
+  The user this participant is associated to.
+  """
+  user: User
+
+  """
+  If this participant is verified as actually being in the tournament
+  """
+  verified: Boolean
+}
+
+"""
+Name, address, etc
+"""
+type ContactInfo {
+  id: ID
+
+  """
+  Participant City Name
+  """
+  city: String
+
+  """
+  Participant Country Name
+  """
+  country: String
+
+  """
+  Participant Country (region) id
+  """
+  countryId: Int
+
+  name: String
+
+  """
+  First Name
+  """
+  nameFirst: String
+
+  """
+  Last Name
+  """
+  nameLast: String
+
+  """
+  Participant State Name
+  """
+  state: String
+
+  """
+  Participant State (region) id
+  """
+  stateId: Int
+
+  """
+  Zip or Postal Code
+  """
+  zipcode: String
+}
+
+"""
+A player
+"""
+type Player {
+  id: ID
+
+  gamerTag: String
+
+  prefix: String
+
+  """
+  Most recent active & published rankings
+  """
+  rankings(limit: Int, videogameId: ID): [PlayerRank]
+
+  """
+  Recent sets for this player.
+  """
+  recentSets("Use this to get H2H history between two players" opponentId: ID): [Set] @deprecated(reason: "Use the sets field instead.")
+
+  """
+  Recent standings
+  """
+  recentStandings(videogameId: ID, "Number of recent standings to fetch. Default value is 3. Maximum value is 20." limit: Int): [Standing]
+
+  """
+  Set history for this player.
+  """
+  sets(page: Int, perPage: Int, "Supported filter options to filter down set results." filters: SetFilters): SetConnection
+
+  user: User
+}
+
+"""
+A player's ranks
+"""
+type PlayerRank {
+  id: ID
+
+  """
+  The player's placement on the ranking
+  """
+  rank: Int
+
+  title: String
+}
+
+"""
+A standing indicates the placement of something within a container.
+"""
+type Standing {
+  id: ID
+
+  """
+  The containing entity that contextualizes this standing. Event standings, for
+  example, represent an entrant's standing in the entire event vs. Set standings
+  which is an entrant's standing in only a single set within an event.
+  """
+  container: StandingContainer
+
+  """
+  If the entity this standing is assigned to can be resolved into an entrant, this will provide the entrant.
+  """
+  entrant: Entrant
+
+  isFinal: Boolean
+
+  """
+  Metadata that goes along with this standing. Can take on different forms based on standing group type and settings.
+  """
+  metadata: JSON
+
+  placement: Int
+
+  """
+  The player(s) tied to this standing's entity
+  """
+  player: Player
+
+  standing: Int @deprecated(reason: "The \"placement\" field is identical and will eventually replace \"standing\"")
+
+  stats: StandingStats
+
+  totalPoints: Float
+}
+
+union StandingContainer = Tournament|Event|PhaseGroup|Set
+
+"""
+A tournament
+"""
+type Tournament {
+  id: ID
+
+  addrState: String
+
+  """
+  Admin-only view of admins for this tournament
+  """
+  admins("Which roles to show" roles: [String]): [User]
+
+  city: String
+
+  countryCode: String
+
+  """
+  When the tournament was created (unix timestamp)
+  """
+  createdAt: Timestamp
+
+  currency: String
+
+  """
+  When the tournament ends
+  """
+  endAt: Timestamp
+
+  """
+  When does event registration close
+  """
+  eventRegistrationClosesAt: Timestamp
+
+  events(limit: Int, filter: EventFilter): [Event]
+
+  """
+  True if tournament has at least one offline event
+  """
+  hasOfflineEvents: Boolean
+
+  hasOnlineEvents: Boolean
+
+  hashtag: String
+
+  images(type: String): [Image]
+
+  """
+  True if tournament has at least one online event
+  """
+  isOnline: Boolean
+
+  """
+  Is tournament registration open
+  """
+  isRegistrationOpen: Boolean
+
+  lat: Float
+
+  links: TournamentLinks
+
+  lng: Float
+
+  mapsPlaceId: String
+
+  """
+  The tournament name
+  """
+  name: String
+
+  """
+  Number of attendees including spectators, if public
+  """
+  numAttendees: Int
+
+  """
+  The user who created the tournament
+  """
+  owner: User
+
+  """
+  Paginated, queryable list of participants
+  """
+  participants(query: ParticipantPaginationQuery!, isAdmin: Boolean): ParticipantConnection
+
+  postalCode: String
+
+  primaryContact: String
+
+  primaryContactType: String
+
+  """
+  Publishing settings for this tournament
+  """
+  publishing: JSON
+
+  """
+  When does registration for the tournament end
+  """
+  registrationClosesAt: Timestamp
+
+  rules: String
+
+  """
+  The short slug used to form the url
+  """
+  shortSlug: String
+
+  """
+  The slug used to form the url
+  """
+  slug: String
+
+  """
+  When the tournament Starts
+  """
+  startAt: Timestamp
+
+  """
+  State of the tournament, can be ActivityState::CREATED, ActivityState::ACTIVE, or ActivityState::COMPLETED
+  """
+  state: Int
+
+  stations(page: Int, perPage: Int): StationsConnection
+
+  streamQueue: [StreamQueue]
+
+  streams: [Streams]
+
+  """
+  When is the team creation deadline
+  """
+  teamCreationClosesAt: Timestamp
+
+  """
+  Paginated, queryable list of teams
+  """
+  teams(query: TeamPaginationQuery!): TeamConnection
+
+  """
+  The timezone of the tournament
+  """
+  timezone: String
+
+  """
+  The type of tournament from TournamentType
+  """
+  tournamentType: Int
+
+  """
+  When the tournament was last modified (unix timestamp)
+  """
+  updatedAt: Timestamp
+
+  """
+  Build Tournament URL
+  """
+  url("Tournament tab to add to URL" tab: String, "Generate a relative URL. Defaults to true. Setting to false will generate an absolute URL" relative: Boolean = true): String
+
+  venueAddress: String
+
+  venueName: String
+
+  """
+  List of all waves in this tournament
+  """
+  waves: [Wave]
+}
+
+input EventFilter {
+  videogameId: [ID]
+
+  type: [Int]
+
+  published: Boolean
+
+  id: ID
+
+  ids: [ID]
+
+  slug: String
+
+  fantasyEventId: ID
+
+  fantasyRosterHash: String
+}
+
+type TournamentLinks {
+  facebook: String
+
+  discord: String
+}
+
+input ParticipantPaginationQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: ParticipantPageFilter
+}
+
+input ParticipantPageFilter {
+  id: ID
+
+  ids: [ID]
+
+  eventIds: [ID]
+
+  search: PaginationSearchType
+
+  gamerTag: String
+
+  unpaid: Boolean
+
+  incompleteTeam: Boolean
+
+  missingDeck: Boolean
+
+  checkedIn: Boolean
+
+  notCheckedIn: Boolean
+}
+
+type ParticipantConnection {
+  pageInfo: PageInfo
+
+  nodes: [Participant]
+}
+
+type StationsConnection {
+  pageInfo: PageInfo
+
+  nodes: [Stations]
+}
+
+"""
+Stations, such as a stream setup, at an event
+"""
+type Stations {
+  id: ID
+
+  canAutoAssign: Boolean
+
+  clusterNumber: String
+
+  clusterPrefix: Int
+
+  enabled: Boolean
+
+  identifier: Int
+
+  numSetups: Int
+
+  number: Int
+
+  prefix: String
+
+  queue: JSON
+
+  queueDepth: Int
+
+  state: Int
+
+  updatedAt: Timestamp
+}
+
+"""
+A Stream queue object
+"""
+type StreamQueue {
+  id: String
+
+  """
+  The sets on the stream
+  """
+  sets: [Set]
+
+  """
+  The stream on the queue
+  """
+  stream: Streams
+}
+
+"""
+Tournament Stream
+"""
+type Streams {
+  id: ID
+
+  enabled: Boolean
+
+  followerCount: Int
+
+  isOnline: Boolean
+
+  numSetups: Int
+
+  parentStreamId: Int
+
+  streamGame: String
+
+  streamId: String
+
+  streamLogo: String
+
+  streamName: String
+
+  streamSource: StreamSource
+
+  streamStatus: String
+
+  streamType: Int
+
+  streamTypeId: Int
+}
+
+"""
+Represents the source of a stream
+"""
+enum StreamSource {
+  """
+  Stream is on twitch.tv channel
+  """
+  TWITCH
+
+  """
+  Stream is on smashcast.tv channel
+  """
+  HITBOX
+
+  """
+  Stream is on a stream.me channel
+  """
+  STREAMME
+
+  """
+  Stream is on a mixer.com channel
+  """
+  MIXER
+
+  """
+  Stream is on a youtube.com channel
+  """
+  YOUTUBE
+}
+
+input TeamPaginationQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: TeamPaginationFilter
+}
+
+input TeamPaginationFilter {
+  globalTeamId: ID
+
+  eventState: ActivityState
+
+  eventId: ID
+
+  eventIds: [ID]
+
+  minEntrantCount: Int
+
+  maxEntrantCount: Int
+
+  search: PaginationSearchType
+
+  type: Int
+
+  tournamentId: ID
+
+  memberStatus: [TeamMemberStatus]
+
+  videogameId: [ID]
+
+  isLeague: Boolean
+
+  upcoming: Boolean
+
+  past: Boolean
+
+  rosterComplete: Boolean
+
+  rosterIncomplete: Boolean
+}
+
+"""
+Represents the state of an activity
+"""
+enum ActivityState {
+  """
+  Activity is created
+  """
+  CREATED
+
+  """
+  Activity is active or in progress
+  """
+  ACTIVE
+
+  """
+  Activity is done
+  """
+  COMPLETED
+
+  """
+  Activity is ready to be started
+  """
+  READY
+
+  """
+  Activity is invalid
+  """
+  INVALID
+
+  """
+  Activity, like a set, has been called to start
+  """
+  CALLED
+
+  """
+  Activity is queued to run
+  """
+  QUEUED
+}
+
+"""
+Membership status of a team member
+"""
+enum TeamMemberStatus {
+  UNKNOWN
+
+  ACCEPTED
+
+  INVITED
+
+  REQUEST
+
+  ALUM
+
+  HIATUS
+
+  OPEN_SPOT
+}
+
+type TeamConnection {
+  pageInfo: PageInfo
+
+  nodes: [Team]
+}
+
+"""
+A team, either at the global level or within the context of an event
+"""
+interface Team {
+  id: ID
+
+  """
+  Uniquely identifying token for team. Same as the hashed part of the slug
+  """
+  discriminator: String
+
+  entrant: Entrant @deprecated(reason: "Use the entrant field off the EventTeam type")
+
+  event: Event @deprecated(reason: "Use the event field off the EventTeam type")
+
+  images(type: String): [Image]
+
+  members(status: [TeamMemberStatus]): [TeamMember]
+
+  name: String
+}
+
+"""
+A member of a team
+"""
+type TeamMember {
+  id: ID
+
+  isAlternate: Boolean
+
+  isCaptain: Boolean
+
+  """
+  The type of the team member
+  """
+  memberType: TeamMemberType
+
+  participant: Participant
+
+  player: Player
+
+  """
+  The status of the team member
+  """
+  status: TeamMemberStatus
+}
+
+"""
+Membership type of a team member
+"""
+enum TeamMemberType {
+  PLAYER
+
+  STAFF
+}
+
+"""
+A wave in a tournament
+"""
+type Wave {
+  id: ID
+
+  """
+  The Wave Identifier
+  """
+  identifier: String
+
+  """
+  Unix time the wave is scheduled to start.
+  """
+  startAt: Timestamp
+}
+
+"""
+A group within a phase
+"""
+type PhaseGroup {
+  id: ID
+
+  """
+  The bracket type of this group's phase.
+  """
+  bracketType: BracketType
+
+  """
+  URL for this phase groups's bracket.
+  """
+  bracketUrl: String
+
+  """
+  Unique identifier for this group within the context of its phase
+  """
+  displayIdentifier: String
+
+  """
+  For the given phase group, this is the start time of the first round that occurs in the group.
+  """
+  firstRoundTime: Timestamp
+
+  numRounds: Int
+
+  paginatedSeeds(query: SeedPaginationQuery!, eventId: ID): SeedConnection @deprecated(reason: "Please use 'seeds', which is now paginated")
+
+  """
+  Paginated sets on this phaseGroup
+  """
+  paginatedSets(page: Int, perPage: Int, "How to sort these sets" sortType: SetSortType, "Supported filter options to filter down set results." filters: SetFilters): SetConnection @deprecated(reason: "Please use 'sets', which is now paginated")
+
+  """
+  The phase associated with this phase group
+  """
+  phase: Phase
+
+  """
+  The progressions out of this phase group
+  """
+  progressionsOut: [Progression]
+
+  rounds: [Round]
+
+  seedMap: JSON
+
+  """
+  Paginated seeds for this phase group
+  """
+  seeds(query: SeedPaginationQuery!, eventId: ID): SeedConnection
+
+  """
+  Paginated sets on this phaseGroup
+  """
+  sets(page: Int, perPage: Int, "How to sort these sets" sortType: SetSortType, "Supported filter options to filter down set results." filters: SetFilters): SetConnection
+
+  """
+  Paginated list of standings
+  """
+  standings(query: StandingGroupStandingPageFilter): StandingConnection
+
+  """
+  Unix time the group is scheduled to start. This info could also be on the wave instead.
+  """
+  startAt: Timestamp
+
+  state: Int
+
+  tiebreakOrder: JSON
+
+  wave: Wave
+}
+
+"""
+The type of Bracket format that a Phase is configured with.
+"""
+enum BracketType {
+  SINGLE_ELIMINATION
+
+  DOUBLE_ELIMINATION
+
+  ROUND_ROBIN
+
+  SWISS
+
+  EXHIBITION
+
+  CUSTOM_SCHEDULE
+
+  MATCHMAKING
+
+  ELIMINATION_ROUNDS
+
+  RACE
+
+  CIRCUIT
+}
+
+input SeedPaginationQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: SeedPageFilter
+}
+
+input SeedPageFilter {
+  id: ID
+
+  entrantName: String
+
+  checkInState: [Int]
+
+  phaseGroupId: [ID]
+
+  eventCheckInGroupId: ID
+
+  phaseId: [ID]
+
+  eventId: ID
+
+  search: PaginationSearchType
+}
+
+type SeedConnection {
+  pageInfo: PageInfo
+
+  nodes: [Seed]
+}
+
+"""
+A seed for an entrant
+"""
+type Seed {
+  id: ID
+
+  """
+  Map of Participant ID to checked in boolean
+  """
+  checkedInParticipants: JSON
+
+  entrant: Entrant
+
+  groupSeedNum: Int
+
+  isBye: Boolean
+
+  phase: Phase
+
+  phaseGroup: PhaseGroup
+
+  placeholderName: String
+
+  placement: Int
+
+  """
+  The player(s) associated with this seed's entrant
+  """
+  players: [Player]
+
+  progressionSeedId: Int
+
+  """
+  Source progression information
+  """
+  progressionSource: Progression
+
+  seedNum: Int
+
+  """
+  Entrant's win/loss record for this standing. Scores do not include byes.
+  """
+  setRecordWithoutByes(phaseGroupId: ID!): JSON
+
+  standings("The container of the standing groups to get standings for. If null, will return all standings." containerType: String): [Standing]
+}
+
+"""
+A phase in an event
+"""
+type Phase {
+  id: ID
+
+  """
+  The bracket type of this phase.
+  """
+  bracketType: BracketType
+
+  """
+  The Event that this phase belongs to
+  """
+  event: Event
+
+  """
+  Number of phase groups in this phase
+  """
+  groupCount: Int
+
+  """
+  Is the phase an exhibition or not.
+  """
+  isExhibition: Boolean
+
+  """
+  Name of phase e.g. Round 1 Pools
+  """
+  name: String
+
+  """
+  The number of seeds this phase contains.
+  """
+  numSeeds: Int
+
+  paginatedSeeds(query: SeedPaginationQuery!, eventId: ID): SeedConnection @deprecated(reason: "Please use 'seeds' instead")
+
+  """
+  Phase groups under this phase, paginated
+  """
+  phaseGroups(query: PhaseGroupPageQuery): PhaseGroupConnection
+
+  """
+  The relative order of this phase within an event
+  """
+  phaseOrder: Int
+
+  """
+  Paginated seeds for this phase
+  """
+  seeds(query: SeedPaginationQuery!, eventId: ID): SeedConnection
+
+  """
+  Paginated sets for this Phase
+  """
+  sets(page: Int, perPage: Int, "How to sort these sets" sortType: SetSortType, "Supported filter options to filter down set results." filters: SetFilters): SetConnection
+
+  """
+  State of the phase
+  """
+  state: ActivityState
+
+  waves: [Wave]
+}
+
+input PhaseGroupPageQuery {
+  page: Int
+
+  perPage: Int
+
+  sortBy: String
+
+  entrantIds: [ID]
+
+  filter: PhaseGroupPageQueryFilter
+}
+
+input PhaseGroupPageQueryFilter {
+  id: [ID]
+
+  waveId: ID
+}
+
+type PhaseGroupConnection {
+  pageInfo: PageInfo
+
+  nodes: [PhaseGroup]
+}
+
+"""
+A connection between a placement in an origin phase group to a destination seed.
+"""
+type Progression {
+  id: ID
+
+  originOrder: Int
+
+  originPhase: Phase
+
+  originPhaseGroup: PhaseGroup
+
+  originPlacement: Int
+}
+
+"""
+A round within a phase group
+"""
+type Round {
+  id: ID
+
+  """
+  If applicable, bestOf is the number of games
+  									one must win a majority out of to win a set in this round
+  """
+  bestOf: Int
+
+  """
+  Indicates this round's order in the phase group
+  """
+  number: Int
+
+  """
+  The time that this round is scheduled to start at
+  """
+  startAt: Timestamp
+}
+
+input StandingGroupStandingPageFilter {
+  page: Int
+
+  perPage: Int
+
+  sortBy: String
+}
+
+type StandingConnection {
+  pageInfo: PageInfo
+
+  nodes: [Standing]
+}
+
+"""
+Any stats related to this standing. This type is experimental and very likely to change in the future.
+"""
+type StandingStats {
+  score: Score
+}
+
+"""
+The score that led to this standing being awarded. The meaning of this field can
+vary by standing type and is not used for some standing types.
+"""
+type Score {
+  """
+  The name of this score. e.g. "Kills" or "Stocks"
+  """
+  label: String
+
+  """
+  The raw score value
+  """
+  value: Float
+
+  """
+  Like value, but formatted for race format events. Formatted according to the race config for the front end to use.
+  """
+  displayValue: String
+}
+
+"""
+The type of selection i.e. is it for a character or something else
+"""
+enum GameSelectionType {
+  """
+  Character selection
+  """
+  CHARACTER
+}
+
+"""
+Video Stage
+"""
+type Stage {
+  id: ID
+
+  """
+  Stage name
+  """
+  name: String
+}
+
+type ResetAffectedData {
+  affectedSetCount: Int
+
+  affectedSets: [Set]
+
+  affectedPhaseGroupCount: Int
+}
+
+"""
+A slot in a set where a seed currently or will eventually exist in order to participate in the set.
+"""
+type SetSlot {
+  id: ID
+
+  entrant: Entrant
+
+  """
+  Pairs with prereqType, is the ID of the prereq.
+  """
+  prereqId: String
+
+  """
+  Given a set prereq type, defines the placement required in the origin set to end up in this slot.
+  """
+  prereqPlacement: Int
+
+  """
+  Describes where the entity in this slot comes from.
+  """
+  prereqType: String
+
+  seed: Seed
+
+  """
+  The index of the slot. Unique per set.
+  """
+  slotIndex: Int
+
+  """
+  The standing within this set for the seed currently assigned to this slot.
+  """
+  standing: Standing
+}
+
+"""
+A league
+"""
+type League {
+  id: ID
+
+  addrState: String
+
+  city: String
+
+  countryCode: String
+
+  """
+  When the tournament was created (unix timestamp)
+  """
+  createdAt: Timestamp
+
+  currency: String
+
+  """
+  When the tournament ends
+  """
+  endAt: Timestamp
+
+  entrantCount: Int
+
+  eventOwners(query: EventOwnersQuery): EventOwnerConnection
+
+  """
+  When does event registration close
+  """
+  eventRegistrationClosesAt: Timestamp
+
+  """
+  Paginated list of events in a league
+  """
+  events(query: LeagueEventsQuery): EventConnection
+
+  """
+  Hacked "progression" into this final event
+  """
+  finalEventId: Int @deprecated(reason: "No longer used")
+
+  """
+  True if tournament has at least one offline event
+  """
+  hasOfflineEvents: Boolean
+
+  hasOnlineEvents: Boolean
+
+  hashtag: String
+
+  images(type: String): [Image]
+
+  """
+  True if tournament has at least one online event
+  """
+  isOnline: Boolean
+
+  lat: Float
+
+  links: TournamentLinks
+
+  lng: Float
+
+  mapsPlaceId: String
+
+  """
+  The tournament name
+  """
+  name: String
+
+  """
+  Top X number of people in the standings who progress to final event
+  """
+  numProgressingToFinalEvent: Int @deprecated(reason: "No longer used")
+
+  numUniquePlayers: Int
+
+  postalCode: String
+
+  primaryContact: String
+
+  primaryContactType: String
+
+  """
+  Publishing settings for this tournament
+  """
+  publishing: JSON
+
+  """
+  When does registration for the tournament end
+  """
+  registrationClosesAt: Timestamp
+
+  rules: String
+
+  """
+  The short slug used to form the url
+  """
+  shortSlug: String
+
+  """
+  Whether standings for this league should be visible
+  """
+  showStandings: Boolean
+
+  slug: String
+
+  """
+  Paginated list of standings
+  """
+  standings(query: StandingGroupStandingPageFilter): StandingConnection
+
+  """
+  When the tournament Starts
+  """
+  startAt: Timestamp
+
+  """
+  State of the tournament, can be ActivityState::CREATED, ActivityState::ACTIVE, or ActivityState::COMPLETED
+  """
+  state: Int
+
+  """
+  When is the team creation deadline
+  """
+  teamCreationClosesAt: Timestamp
+
+  tiers: [EventTier]
+
+  """
+  The timezone of the tournament
+  """
+  timezone: String
+
+  """
+  The type of tournament from TournamentType
+  """
+  tournamentType: Int
+
+  """
+  When the tournament was last modified (unix timestamp)
+  """
+  updatedAt: Timestamp
+
+  """
+  Build Tournament URL
+  """
+  url("Tournament tab to add to URL" tab: String, "Generate a relative URL. Defaults to true. Setting to false will generate an absolute URL" relative: Boolean = true): String
+
+  venueAddress: String
+
+  venueName: String
+
+  videogames: [Videogame]
+}
+
+input EventOwnersQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+}
+
+type EventOwnerConnection {
+  pageInfo: PageInfo
+
+  nodes: [EventOwner]
+}
+
+"""
+Name and Gamertag of the owner of an event in a league
+"""
+type EventOwner {
+  eventId: ID
+
+  email: String
+
+  gamerTag: String
+
+  fullName: String
+}
+
+input LeagueEventsQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: LeagueEventsFilter
+}
+
+input LeagueEventsFilter {
+  search: PaginationSearchType
+
+  pointMappingGroupIds: [ID]
+
+  tierIds: [ID]
+
+  userId: ID
+
+  upcoming: Boolean
+
+  leagueEntrantId: ID
+}
+
+"""
+Used for league application tiers
+"""
+type EventTier {
+  id: ID
+
+  """
+  Name of this tier
+  """
+  name: String
+}
+
+"""
+A videogame
+"""
+type Videogame {
+  id: ID
+
+  """
+  All characters for this videogame
+  """
+  characters: [Character]
+
+  displayName: String
+
+  images(type: String): [Image]
+
+  name: String
+
+  slug: String
+
+  """
+  All stages for this videogame
+  """
+  stages: [Stage]
+}
+
+input StandingPaginationQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: StandingPageFilter
+}
+
+input StandingPageFilter {
+  id: ID
+
+  ids: [ID]
+
+  search: PaginationSearchType
+}
+
+input StationFilter {
+  page: Int
+
+  perPage: Int
+}
+
+"""
+Team roster size requirements
+"""
+type TeamRosterSize {
+  maxAlternates: Int
+
+  maxPlayers: Int
+
+  minAlternates: Int
+
+  minPlayers: Int
+}
+
+input UserLeaguesPaginationQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: UserLeaguesPaginationFilter
+}
+
+input UserLeaguesPaginationFilter {
+  videogameId: [ID]
+
+  upcoming: Boolean
+
+  past: Boolean
+
+  search: PaginationSearchType
+}
+
+type LeagueConnection {
+  pageInfo: PageInfo
+
+  nodes: [League]
+}
+
+"""
+A user's address
+"""
+type Address {
+  id: ID
+
+  city: String
+
+  country: String
+
+  countryId: Int
+
+  state: String
+
+  stateId: Int
+}
+
+input UserTournamentsPaginationQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: UserTournamentsPaginationFilter
+}
+
+input UserTournamentsPaginationFilter {
+  past: Boolean
+
+  upcoming: Boolean
+
+  search: PaginationSearchType
+
+  videogameId: [ID]
+
+  tournamentView: String
+
+  excludeId: [ID]
+}
+
+type TournamentConnection {
+  pageInfo: PageInfo
+
+  nodes: [Tournament]
+}
+
+input LeagueQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: LeaguePageFilter
+
+  sort: TournamentPaginationSort
+}
+
+input LeaguePageFilter {
+  id: ID
+
+  ids: [ID]
+
+  """
+  ID of the user that owns this league.
+  """
+  ownerId: ID
+
+  afterDate: Timestamp
+
+  beforeDate: Timestamp
+
+  computedUpdatedAt: Timestamp
+
+  name: String
+
+  isFeatured: Boolean
+
+  hasBannerImages: Boolean
+
+  activeShops: Boolean
+
+  past: Boolean
+
+  published: Boolean
+
+  publiclySearchable: Boolean
+
+  upcoming: Boolean
+
+  videogameIds: [ID]
+}
+
+enum TournamentPaginationSort {
+  startAt
+
+  endAt
+
+  eventRegistrationClosesAt
+
+  computedUpdatedAt
+}
+
+"""
+A shop
+"""
+type Shop {
+  id: ID
+
+  levels(query: ShopLevelsQuery): ShopLevelConnection
+
+  messages(query: ShopOrderMessagesQuery): ShopOrderMessageConnection
+
+  name: String
+
+  slug: String
+
+  url: String
+}
+
+input ShopLevelsQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+}
+
+type ShopLevelConnection {
+  pageInfo: PageInfo
+
+  nodes: [ShopLevel]
+}
+
+"""
+A shop level
+"""
+type ShopLevel {
+  id: ID
+
+  currAmount: Float
+
+  description: String
+
+  goalAmount: Float
+
+  images(type: String): [Image]
+
+  name: String
+}
+
+input ShopOrderMessagesQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+}
+
+type ShopOrderMessageConnection {
+  pageInfo: PageInfo
+
+  nodes: [ShopOrderMessage]
+}
+
+"""
+The message and player info for a shop order
+"""
+type ShopOrderMessage {
+  id: ID
+
+  """
+  The player's gamertag. Returns null if anonymous message type
+  """
+  gamertag: String
+
+  """
+  The order message
+  """
+  message: String
+
+  """
+  The player's name. Returns null unless name & tag display is selected
+  """
+  name: String
+
+  """
+  The player who left the comment
+  """
+  player: Player
+
+  """
+  The total order amount
+  """
+  total: Float
+}
+
+input TournamentQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: TournamentPageFilter
+
+  sort: TournamentPaginationSort
+}
+
+input TournamentPageFilter {
+  id: ID
+
+  ids: [ID]
+
+  """
+  ID of the user that owns this tournament.
+  """
+  ownerId: ID
+
+  """
+  If true, filter to only tournaments the currently authed user is an admin of
+  """
+  isCurrentUserAdmin: Boolean
+
+  countryCode: String
+
+  addrState: String
+
+  location: TournamentLocationFilter
+
+  afterDate: Timestamp
+
+  beforeDate: Timestamp
+
+  computedUpdatedAt: Timestamp
+
+  name: String
+
+  venueName: String
+
+  isFeatured: Boolean
+
+  isLeague: Boolean
+
+  hasBannerImages: Boolean
+
+  activeShops: Boolean
+
+  regOpen: Boolean
+
+  past: Boolean
+
+  published: Boolean
+
+  publiclySearchable: Boolean
+
+  staffPicks: Boolean
+
+  hasOnlineEvents: Boolean
+
+  topGames: TopGameFilter
+
+  upcoming: Boolean
+
+  videogameIds: [ID]
+
+  sortByScore: Boolean
+}
+
+input TournamentLocationFilter {
+  """
+  Latitude, Longitude
+  """
+  distanceFrom: String
+
+  """
+  e.g. 50mi
+  """
+  distance: String
+}
+
+input TopGameFilter {
+  """
+  Array of which # top game you want to filter on.e.g. [2, 3] will filter on the 2nd and 3rd top games
+  """
+  gameNums: [Int]
+}
+
+input VideogameQuery {
+  page: Int = 1
+
+  """
+  How many nodes to return for the page. Maximum value of 500
+  """
+  perPage: Int = 25
+
+  sortBy: String
+
+  filter: VideogamePageFilter
+}
+
+input VideogamePageFilter {
+  id: [ID]
+
+  name: String
+
+  forUser: ID
+}
+
+type VideogameConnection {
+  pageInfo: PageInfo
+
+  nodes: [Videogame]
+}
+
+type Mutation {
+  """
+  Delete a phase by id
+  """
+  deletePhase(phaseId: ID!): Boolean
+
+  """
+  Delete a station by id
+  """
+  deleteStation(stationId: ID!): Boolean
+
+  """
+  Delete a wave by id
+  """
+  deleteWave(waveId: ID!): Boolean
+
+  """
+  Generate tournament registration Token on behalf of user
+  """
+  generateRegistrationToken(registration: TournamentRegistrationInput!, userId: ID!): String
+
+  """
+  Update a set to called state
+  """
+  markSetCalled(setId: ID!): Set
+
+  """
+  Update a set to called state
+  """
+  markSetInProgress(setId: ID!): Set
+
+  """
+  Register for tournament
+  """
+  registerForTournament(registration: TournamentRegistrationInput, registrationToken: String): Participant
+
+  """
+  Report set winner or game stats for a H2H bracket set. If winnerId is
+  supplied, mark set as complete. gameData parameter will overwrite any existing
+  reported game data.
+  """
+  reportBracketSet(setId: ID!, winnerId: ID, isDQ: Boolean, gameData: [BracketSetGameDataInput]): [Set]
+
+  """
+  Resets set to initial state, can affect other sets and phase groups
+  """
+  resetSet(setId: ID!, resetDependentSets: Boolean): Set
+
+  """
+  Automatically attempt to resolve all schedule conflicts. Returns a list of changed seeds
+  """
+  resolveScheduleConflicts(tournamentId: ID!, options: ResolveConflictsOptions): [Seed]
+
+  """
+  Swap two seed ids in a phase
+  """
+  swapSeeds(phaseId: ID!, seed1Id: ID!, seed2Id: ID!): [Seed]
+
+  """
+  Update game stats for a H2H bracket set. Set winner cannot be changed with
+  this function, use the resetSet mutation instead.
+  """
+  updateBracketSet(setId: ID!, winnerId: ID, isDQ: Boolean, gameData: [BracketSetGameDataInput]): Set
+
+  """
+  Update set of phase groups in a phase
+  """
+  updatePhaseGroups(groupConfigs: [PhaseGroupUpdateInput]!): [PhaseGroup]
+
+  """
+  Update the seeding for a phase
+  """
+  updatePhaseSeeding(phaseId: ID!, seedMapping: [UpdatePhaseSeedInfo]!, options: UpdatePhaseSeedingOptions): Phase
+
+  """
+  Create or update a Phase
+  """
+  upsertPhase(phaseId: ID, eventId: ID, payload: PhaseUpsertInput!): Phase
+
+  """
+  Add or update a station by id
+  """
+  upsertStation(stationId: ID, tournamentId: ID, fields: StationUpsertInput!): Stations
+
+  """
+  Add or update a wave by id
+  """
+  upsertWave(waveId: ID, tournamentId: ID, fields: WaveUpsertInput!): Wave
+}
+
+input TournamentRegistrationInput {
+  eventIds: [ID]
+}
+
+"""
+Game specific H2H set data such as character, stage, and stock info
+"""
+input BracketSetGameDataInput {
+  """
+  Entrant ID of game winner
+  """
+  winnerId: ID
+
+  """
+  Game number
+  """
+  gameNum: Int!
+
+  """
+  Score for entrant 1 (if applicable). For smash, this is stocks remaining.
+  """
+  entrant1Score: Int
+
+  """
+  Score for entrant 2 (if applicable). For smash, this is stocks remaining.
+  """
+  entrant2Score: Int
+
+  """
+  ID of the stage that was played for this game (if applicable)
+  """
+  stageId: ID
+
+  """
+  List of selections for the game, typically character selections.
+  """
+  selections: [BracketSetGameSelectionInput]
+}
+
+"""
+Game specific H2H selections made by the entrants, such as character info
+"""
+input BracketSetGameSelectionInput {
+  """
+  Entrant ID that made selection
+  """
+  entrantId: ID!
+
+  """
+  Character selected by this entrant for this game.
+  """
+  characterId: Int
+}
+
+input ResolveConflictsOptions {
+  lockedSeeds: [ResolveConflictsLockedSeedConfig]
+}
+
+input ResolveConflictsLockedSeedConfig {
+  eventId: ID!
+
+  numSeeds: Int!
+}
+
+input PhaseGroupUpdateInput {
+  phaseGroupId: ID!
+
+  stationId: ID
+
+  waveId: ID
+}
+
+input UpdatePhaseSeedInfo {
+  seedId: ID!
+
+  seedNum: ID!
+
+  phaseGroupId: ID
+}
+
+input UpdatePhaseSeedingOptions {
+  """
+  Validate that seedMapping exactly accounts for all entrants in the phase
+  """
+  strictMode: Boolean
+}
+
+input PhaseUpsertInput {
+  """
+  The name of the Phase. For example, "Top 8" or "Pools"
+  """
+  name: String
+
+  """
+  The number of pools to configure for the Phase. Only applies to brackets that support pools
+  """
+  groupCount: Int
+
+  bracketType: BracketType
+}
+
+input StationUpsertInput {
+  number: Int!
+
+  clusterId: ID
+}
+
+input WaveUpsertInput {
+  identifier: String!
+
+  startAt: Timestamp!
+
+  endAt: Timestamp!
+}
+
+"""
+A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.
+"""
+type __Schema {
+  """
+  A list of all types supported by this server.
+  """
+  types: [__Type!]!
+
+  """
+  The type that query operations will be rooted at.
+  """
+  queryType: __Type!
+
+  """
+  If this server supports mutation, the type that mutation operations will be rooted at.
+  """
+  mutationType: __Type
+
+  """
+  If this server support subscription, the type that subscription operations will be rooted at.
+  """
+  subscriptionType: __Type
+
+  """
+  A list of all directives supported by this server.
+  """
+  directives: [__Directive!]!
+}
+
+"""
+The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+
+Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name and description, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+"""
+type __Type {
+  kind: __TypeKind!
+
+  name: String
+
+  description: String
+
+  fields(includeDeprecated: Boolean = false): [__Field!]
+
+  interfaces: [__Type!]
+
+  possibleTypes: [__Type!]
+
+  enumValues(includeDeprecated: Boolean = false): [__EnumValue!]
+
+  inputFields: [__InputValue!]
+
+  ofType: __Type
+}
+
+"""
+An enum describing what kind of type a given `__Type` is.
+"""
+enum __TypeKind {
+  """
+  Indicates this type is a scalar.
+  """
+  SCALAR
+
+  """
+  Indicates this type is an object. `fields` and `interfaces` are valid fields.
+  """
+  OBJECT
+
+  """
+  Indicates this type is an interface. `fields` and `possibleTypes` are valid fields.
+  """
+  INTERFACE
+
+  """
+  Indicates this type is a union. `possibleTypes` is a valid field.
+  """
+  UNION
+
+  """
+  Indicates this type is an enum. `enumValues` is a valid field.
+  """
+  ENUM
+
+  """
+  Indicates this type is an input object. `inputFields` is a valid field.
+  """
+  INPUT_OBJECT
+
+  """
+  Indicates this type is a list. `ofType` is a valid field.
+  """
+  LIST
+
+  """
+  Indicates this type is a non-null. `ofType` is a valid field.
+  """
+  NON_NULL
+}
+
+"""
+Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.
+"""
+type __Field {
+  name: String!
+
+  description: String
+
+  args: [__InputValue!]!
+
+  type: __Type!
+
+  isDeprecated: Boolean!
+
+  deprecationReason: String
+}
+
+"""
+Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.
+"""
+type __InputValue {
+  name: String!
+
+  description: String
+
+  type: __Type!
+
+  """
+  A GraphQL-formatted string representing the default value for this input value.
+  """
+  defaultValue: String
+}
+
+"""
+One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.
+"""
+type __EnumValue {
+  name: String!
+
+  description: String
+
+  isDeprecated: Boolean!
+
+  deprecationReason: String
+}
+
+"""
+A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.
+
+In some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.
+"""
+type __Directive {
+  name: String!
+
+  description: String
+
+  locations: [__DirectiveLocation!]!
+
+  args: [__InputValue!]!
+
+  onOperation: Boolean! @deprecated(reason: "Use `locations`.")
+
+  onFragment: Boolean! @deprecated(reason: "Use `locations`.")
+
+  onField: Boolean! @deprecated(reason: "Use `locations`.")
+}
+
+"""
+A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.
+"""
+enum __DirectiveLocation {
+  """
+  Location adjacent to a query operation.
+  """
+  QUERY
+
+  """
+  Location adjacent to a mutation operation.
+  """
+  MUTATION
+
+  """
+  Location adjacent to a subscription operation.
+  """
+  SUBSCRIPTION
+
+  """
+  Location adjacent to a field.
+  """
+  FIELD
+
+  """
+  Location adjacent to a fragment definition.
+  """
+  FRAGMENT_DEFINITION
+
+  """
+  Location adjacent to a fragment spread.
+  """
+  FRAGMENT_SPREAD
+
+  """
+  Location adjacent to an inline fragment.
+  """
+  INLINE_FRAGMENT
+
+  """
+  Location adjacent to a schema definition.
+  """
+  SCHEMA
+
+  """
+  Location adjacent to a scalar definition.
+  """
+  SCALAR
+
+  """
+  Location adjacent to an object type definition.
+  """
+  OBJECT
+
+  """
+  Location adjacent to a field definition.
+  """
+  FIELD_DEFINITION
+
+  """
+  Location adjacent to an argument definition.
+  """
+  ARGUMENT_DEFINITION
+
+  """
+  Location adjacent to an interface definition.
+  """
+  INTERFACE
+
+  """
+  Location adjacent to a union definition.
+  """
+  UNION
+
+  """
+  Location adjacent to an enum definition.
+  """
+  ENUM
+
+  """
+  Location adjacent to an enum value definition.
+  """
+  ENUM_VALUE
+
+  """
+  Location adjacent to an input object type definition.
+  """
+  INPUT_OBJECT
+
+  """
+  Location adjacent to an input object field definition.
+  """
+  INPUT_FIELD_DEFINITION
+}
+
+"""
+A set of actions available for an entity to take
+"""
+interface ActionSet {
+  id: ID
+}
+
+"""
+Bracket-specific configuration
+"""
+interface BracketConfig {
+  id: ID
+
+  bracketType: BracketType
+}
+
+"""
+Comparison operator
+"""
+enum Comparator {
+  GREATER_THAN
+
+  GREATER_THAN_OR_EQUAL
+
+  EQUAL
+
+  LESS_THAN_OR_EQUAL
+
+  LESS_THAN
+}
+
+"""
+An event-level Team, in the context of some competition
+"""
+type EventTeam implements Team {
+  id: ID
+
+  """
+  Uniquely identifying token for team. Same as the hashed part of the slug
+  """
+  discriminator: String
+
+  entrant: Entrant @deprecated(reason: "Use the entrant field off the EventTeam type")
+
+  event: Event @deprecated(reason: "Use the event field off the EventTeam type")
+
+  globalTeam: GlobalTeam
+
+  images(type: String): [Image]
+
+  members(status: [TeamMemberStatus]): [TeamMember]
+
+  name: String
+}
+
+"""
+Global Team
+"""
+type GlobalTeam implements Team {
+  id: ID
+
+  """
+  Uniquely identifying token for team. Same as the hashed part of the slug
+  """
+  discriminator: String
+
+  entrant: Entrant @deprecated(reason: "Use the entrant field off the EventTeam type")
+
+  event: Event @deprecated(reason: "Use the event field off the EventTeam type")
+
+  eventTeams(query: TeamPaginationQuery): EventTeamConnection
+
+  images(type: String): [Image]
+
+  """
+  Leagues-level teams for leagues this team is competing in
+  """
+  leagueTeams(query: TeamPaginationQuery): EventTeamConnection
+
+  members(status: [TeamMemberStatus]): [TeamMember]
+
+  name: String
+}
+
+type EventTeamConnection {
+  pageInfo: PageInfo
+
+  nodes: [EventTeam]
+}
+
+"""
+Match-level configuration
+"""
+interface MatchConfig {
+  id: ID
+
+  bracketType: BracketType
+}
+
+"""
+Different options available for verifying player-reported match results
+"""
+enum MatchConfigVerificationMethod {
+  TWITCH
+
+  STREAM_ME
+
+  ANY
+
+  MIXER
+
+  YOUTUBE
+}
+
+"""
+Race specific bracket configuration
+"""
+type RaceBracketConfig implements BracketConfig {
+  automaticEndTime: Timestamp
+
+  id: ID
+
+  automaticStartTime: Timestamp
+
+  bracketType: BracketType
+
+  goalTargetComparator: Comparator
+
+  goalTargetValue: String
+
+  limitMode: RaceLimitMode
+
+  limitValue: Int
+
+  raceType: RaceType
+}
+
+"""
+Enforces limits on the amount of allowable Race submissions
+"""
+enum RaceLimitMode {
+  BEST_ALL
+
+  FIRST_ALL
+
+  PLAYTIME
+}
+
+"""
+Race type
+"""
+enum RaceType {
+  GOALS
+
+  TIMED
+}
+
+"""
+Race specific match configuration
+"""
+type RaceMatchConfig implements MatchConfig {
+  id: ID
+
+  bracketType: BracketType
+
+  """
+  Can players report results?
+  """
+  playerReportingEnabled: Boolean
+
+  """
+  Accepted methods of verification that players can use
+  """
+  verificationMethods: [MatchConfigVerificationMethod]
+
+  """
+  Are players required to submit verification of their reported results?
+  """
+  verificationRequired: Boolean
+}
+
+"""
+A set of actions available for a team to take
+"""
+type TeamActionSet implements ActionSet {
+  id: ID
+}
+
+"""
 [DEPRECATED - Has no effect on public API queries] Specify a query to be read
 from gql-public. Will use the configured cacheAge on the query resolve
 configuration, or the override value passed through the directive as
 publicCache(cacheAge: INT) argument.
 """
-directive @publicCache(
-    "Optional override for the query-level cacheAge value, in seconds."
-    cacheAge: Int
-) on FIELD
-
-"A set of actions available for an entity to take"
-interface ActionSet {
-    id: ID
-}
-
-"Bracket-specific configuration"
-interface BracketConfig {
-    bracketType: BracketType
-    id: ID
-}
-
-"Match-level configuration"
-interface MatchConfig {
-    bracketType: BracketType
-    id: ID
-}
-
-"A team, either at the global level or within the context of an event"
-interface Team {
-    "Uniquely identifying token for team. Same as the hashed part of the slug"
-    discriminator: String
-    entrant: Entrant @deprecated(reason: "Use the entrant field off the EventTeam type")
-    event: Event @deprecated(reason: "Use the event field off the EventTeam type")
-    id: ID
-    images(type: String): [Image]
-    members(status: [TeamMemberStatus]): [TeamMember]
-    name: String
-}
-
-"The containing entity that this standing is for"
-union StandingContainer = Event | PhaseGroup | Set | Tournament
-
-"A user's address"
-type Address {
-    city: String
-    country: String
-    countryId: Int
-    id: ID
-    state: String
-    stateId: Int
-}
-
-"A character in a videogame"
-type Character {
-    id: ID
-    images(type: String): [Image]
-    "Name of Character"
-    name: String
-}
-
-"Name, address, etc"
-type ContactInfo {
-    "Participant City Name"
-    city: String
-    "Participant Country Name"
-    country: String
-    "Participant Country (region) id"
-    countryId: Int
-    id: ID
-    name: String
-    "First Name"
-    nameFirst: String
-    "Last Name"
-    nameLast: String
-    "Participant State Name"
-    state: String
-    "Participant State (region) id"
-    stateId: Int
-    "Zip or Postal Code"
-    zipcode: String
-}
-
-"An entrant in an event"
-type Entrant {
-    event: Event
-    id: ID
-    "Entrant's seed number in the first phase of the event."
-    initialSeedNum: Int
-    isDisqualified: Boolean
-    "The entrant name as it appears in bracket: gamerTag of the participant or team name"
-    name: String
-    "Paginated sets for this entrant"
-    paginatedSets(
-        "Supported filter options to filter down set results."
-        filters: SetFilters,
-        page: Int,
-        perPage: Int,
-        "How to sort these sets"
-        sortType: SetSortType
-    ): SetConnection
-    participants: [Participant]
-    seeds: [Seed]
-    skill: Int
-    "Standing for this entrant given an event. All entrants queried must be in the same event (for now)."
-    standing: Standing
-    stream: Streams @deprecated(reason: "DEPRECATED. Use streams instead, which supports multiple stream types and teams.")
-    streams: [Streams]
-    "Team linked to this entrant, if one exists"
-    team: Team
-}
-
-type EntrantConnection {
-    nodes: [Entrant]
-    pageInfo: PageInfo
-}
-
-"An event in a tournament"
-type Event {
-    "How long before the event start will the check-in end (in seconds)"
-    checkInBuffer: Int
-    "How long the event check-in will last (in seconds)"
-    checkInDuration: Int
-    "Whether check-in is enabled for this event"
-    checkInEnabled: Boolean
-    "Rough categorization of event tier, denoting relative importance in the competitive scene"
-    competitionTier: Int
-    "When the event was created (unix timestamp)"
-    createdAt: Timestamp
-    "Last date attendees are able to create teams for team events"
-    deckSubmissionDeadline: Timestamp
-    "Maximum number of participants each Entrant can have"
-    entrantSizeMax: Int @deprecated(reason: "Migrate to teamRosterSize")
-    "Minimum number of participants each Entrant can have"
-    entrantSizeMin: Int @deprecated(reason: "Migrate to teamRosterSize")
-    "The entrants that belong to an event, paginated by filter criteria"
-    entrants(query: EventEntrantPageQuery): EntrantConnection
-    "Whether the event has decks"
-    hasDecks: Boolean
-    "Are player tasks enabled for this event"
-    hasTasks: Boolean
-    id: ID
-    images(type: String): [Image]
-    "Whether the event is an online event or not"
-    isOnline: Boolean
-    league: League
-    "Markdown field for match rules/instructions"
-    matchRulesMarkdown: String
-    "Title of event set by organizer"
-    name: String
-    "Gets the number of entrants in this event"
-    numEntrants: Int
-    "The phase groups that belong to an event."
-    phaseGroups: [PhaseGroup]
-    "The phases that belong to an event."
-    phases(
-        "Optionally only return results for this phase"
-        phaseId: ID,
-        "Filter phases by state. If not specified will default to all phases"
-        state: ActivityState
-    ): [Phase]
-    "TO settings for prizing"
-    prizingInfo: JSON
-    publishing: JSON
-    "Markdown field for event rules/instructions"
-    rulesMarkdown: String
-    "Id of the event ruleset"
-    rulesetId: Int
-    "Settings pulled from the event ruleset, if one exists"
-    rulesetSettings: JSON @deprecated(reason: "Use ruleset")
-    "Paginated sets for this Event"
-    sets(
-        "Supported filter options to filter down set results."
-        filters: SetFilters,
-        page: Int,
-        perPage: Int,
-        "How to sort these sets"
-        sortType: SetSortType
-    ): SetConnection
-    slug: String
-    "Paginated list of standings"
-    standings(query: StandingPaginationQuery!): StandingConnection
-    "When does this event start?"
-    startAt: Timestamp
-    "The state of the Event."
-    state: ActivityState
-    "Paginated stations on this event"
-    stations(query: StationFilter): StationsConnection
-    "Last date attendees are able to create teams for team events"
-    teamManagementDeadline: Timestamp
-    "If this is a teams event, returns whether or not teams can set custom names"
-    teamNameAllowed: Boolean
-    "Team roster size requirements"
-    teamRosterSize: TeamRosterSize
-    tournament: Tournament
-    "The type of the event, whether an entrant will have one participant or multiple"
-    type: Int
-    "When the event was last modified (unix timestamp)"
-    updatedAt: Timestamp
-    "Whether the event uses the new EventSeeds for seeding"
-    useEventSeeds: Boolean
-    "The entrant (if applicable) for a given user in this event"
-    userEntrant(
-        "User to get entrant for. Defaults to currently logged in user."
-        userId: ID
-    ): Entrant
-    videogame: Videogame
-    "The waves being used by the event"
-    waves(
-        "Waves filtered by phaseId, returns all if not set."
-        phaseId: ID
-    ): [Wave]
-}
-
-type EventConnection {
-    nodes: [Event]
-    pageInfo: PageInfo
-}
-
-"Name and Gamertag of the owner of an event in a league"
-type EventOwner {
-    email: String
-    eventId: ID
-    fullName: String
-    gamerTag: String
-}
-
-type EventOwnerConnection {
-    nodes: [EventOwner]
-    pageInfo: PageInfo
-}
-
-"An event-level Team, in the context of some competition"
-type EventTeam implements Team {
-    "Uniquely identifying token for team. Same as the hashed part of the slug"
-    discriminator: String
-    entrant: Entrant @deprecated(reason: "Use the entrant field off the EventTeam type")
-    event: Event @deprecated(reason: "Use the event field off the EventTeam type")
-    globalTeam: GlobalTeam
-    id: ID
-    images(type: String): [Image]
-    members(status: [TeamMemberStatus]): [TeamMember]
-    name: String
-}
-
-type EventTeamConnection {
-    nodes: [EventTeam]
-    pageInfo: PageInfo
-}
-
-"Used for league application tiers"
-type EventTier {
-    id: ID
-    "Name of this tier"
-    name: String
-}
-
-"A game represents a single game within a set."
-type Game {
-    id: ID
-    images(type: String): [Image]
-    orderNum: Int
-    "Selections for this game such as character, etc."
-    selections: [GameSelection]
-    "The stage that this game was played on (if applicable)"
-    stage: Stage
-    state: Int
-    winnerId: Int
-}
-
-"A selection for this game. i.e. character/stage selection, etc"
-type GameSelection {
-    "The entrant who this selection is for"
-    entrant: Entrant
-    id: ID
-    orderNum: Int
-    """
-
-    The participant who this selection is for. This is only populated if there are
-    selections for multiple participants of a single entrant
-    """
-    participant: Participant
-    selectionType: GameSelectionType
-    selectionValue: Int
-}
-
-"Global Team"
-type GlobalTeam implements Team {
-    "Uniquely identifying token for team. Same as the hashed part of the slug"
-    discriminator: String
-    entrant: Entrant @deprecated(reason: "Use the entrant field off the EventTeam type")
-    event: Event @deprecated(reason: "Use the event field off the EventTeam type")
-    eventTeams(query: TeamPaginationQuery): EventTeamConnection
-    id: ID
-    images(type: String): [Image]
-    "Leagues-level teams for leagues this team is competing in"
-    leagueTeams(query: TeamPaginationQuery): EventTeamConnection
-    members(status: [TeamMemberStatus]): [TeamMember]
-    name: String
-}
-
-"An image"
-type Image {
-    height: Float
-    id: ID
-    ratio: Float
-    type: String
-    url: String
-    width: Float
-}
-
-"A league"
-type League {
-    addrState: String
-    city: String
-    countryCode: String
-    "When the tournament was created (unix timestamp)"
-    createdAt: Timestamp
-    currency: String
-    "When the tournament ends"
-    endAt: Timestamp
-    entrantCount: Int
-    eventOwners(query: EventOwnersQuery): EventOwnerConnection
-    "When does event registration close"
-    eventRegistrationClosesAt: Timestamp
-    "Paginated list of events in a league"
-    events(query: LeagueEventsQuery): EventConnection
-    "Hacked \"progression\" into this final event"
-    finalEventId: Int @deprecated(reason: "No longer used")
-    "True if tournament has at least one offline event"
-    hasOfflineEvents: Boolean
-    hasOnlineEvents: Boolean
-    hashtag: String
-    id: ID
-    images(type: String): [Image]
-    "True if tournament has at least one online event"
-    isOnline: Boolean
-    lat: Float
-    links: TournamentLinks
-    lng: Float
-    mapsPlaceId: String
-    "The tournament name"
-    name: String
-    "Top X number of people in the standings who progress to final event"
-    numProgressingToFinalEvent: Int @deprecated(reason: "No longer used")
-    numUniquePlayers: Int
-    postalCode: String
-    primaryContact: String
-    primaryContactType: String
-    "Publishing settings for this tournament"
-    publishing: JSON
-    "When does registration for the tournament end"
-    registrationClosesAt: Timestamp
-    rules: String
-    "The short slug used to form the url"
-    shortSlug: String
-    "Whether standings for this league should be visible"
-    showStandings: Boolean
-    slug: String
-    "Paginated list of standings"
-    standings(query: StandingGroupStandingPageFilter): StandingConnection
-    "When the tournament Starts"
-    startAt: Timestamp
-    "State of the tournament, can be ActivityState::CREATED, ActivityState::ACTIVE, or ActivityState::COMPLETED"
-    state: Int
-    "When is the team creation deadline"
-    teamCreationClosesAt: Timestamp
-    tiers: [EventTier]
-    "The timezone of the tournament"
-    timezone: String
-    "The type of tournament from TournamentType"
-    tournamentType: Int
-    "When the tournament was last modified (unix timestamp)"
-    updatedAt: Timestamp
-    "Build Tournament URL"
-    url(
-        "Generate a relative URL. Defaults to true. Setting to false will generate an absolute URL"
-        relative: Boolean = true,
-        "Tournament tab to add to URL"
-        tab: String
-    ): String
-    venueAddress: String
-    venueName: String
-    videogames: [Videogame]
-}
-
-type LeagueConnection {
-    nodes: [League]
-    pageInfo: PageInfo
-}
-
-type Mutation {
-    "Delete a phase by id"
-    deletePhase(phaseId: ID!): Boolean
-    "Delete a station by id"
-    deleteStation(stationId: ID!): Boolean
-    "Delete a wave by id"
-    deleteWave(waveId: ID!): Boolean
-    "Automatically attempt to resolve all schedule conflicts. Returns a list of changed seeds"
-    resolveScheduleConflicts(options: ResolveConflictsOptions, tournamentId: ID!): [Seed]
-    "Swap two seed ids in a phase"
-    swapSeeds(phaseId: ID!, seed1Id: ID!, seed2Id: ID!): [Seed]
-    "Update set of phase groups in a phase"
-    updatePhaseGroups(groupConfigs: [PhaseGroupUpdateInput]!): [PhaseGroup]
-    "Update the seeding for a phase"
-    updatePhaseSeeding(options: UpdatePhaseSeedingOptions, phaseId: ID!, seedMapping: [UpdatePhaseSeedInfo]!): Phase
-    "Create or update a Phase"
-    upsertPhase(eventId: ID, payload: PhaseUpsertInput!, phaseId: ID): Phase
-    "Add or update a station by id"
-    upsertStation(fields: StationUpsertInput!, stationId: ID, tournamentId: ID): Stations
-    "Add or update a wave by id"
-    upsertWave(fields: WaveUpsertInput!, tournamentId: ID, waveId: ID): Wave
-}
-
-type PageInfo {
-    filter: JSON
-    page: Int
-    perPage: Int
-    sortBy: String
-    total: Int
-    totalPages: Int
-}
-
-"A participant of a tournament; either a spectator or competitor"
-type Participant {
-    "If this participant was checked-in by admin"
-    checkedIn: Boolean
-    "The time this participant was checked-in by admin"
-    checkedInAt: Timestamp
-    "Info for connected accounts to external services."
-    connectedAccounts: JSON
-    """
-
-    Contact Info selected during registration. Falls back to User.location and/or
-    User.name if necessary. These fields are for admin use only. If you are not a
-    tournament admin or the participant being queried, these fields will be null.
-    Do not display this information publicly.
-    """
-    contactInfo: ContactInfo
-    "Email of the user, only available to admins within 18 months of tournament completion for tournament administrators."
-    email: String
-    "Entrants associated with this Participant, if applicable"
-    entrants: [Entrant]
-    "The events this participant registered for within a Tournament."
-    events: [Event]
-    "The tag that was used when the participant registered, e.g. Mang0"
-    gamerTag: String
-    id: ID
-    images(type: String): [Image]
-    player: Player
-    "The prefix that the user set for this Tournament, e.g. C9"
-    prefix: String
-    "Tournament Admin viewable field. Shows details for required social connections"
-    requiredConnections: [ProfileAuthorization]
-    "The user this participant is associated to."
-    user: User
-    "If this participant is verified as actually being in the tournament"
-    verified: Boolean
-}
-
-type ParticipantConnection {
-    nodes: [Participant]
-    pageInfo: PageInfo
-}
-
-"A phase in an event"
-type Phase {
-    "The bracket type of this phase."
-    bracketType: BracketType
-    "The Event that this phase belongs to"
-    event: Event
-    "Number of phase groups in this phase"
-    groupCount: Int
-    id: ID
-    "Is the phase an exhibition or not."
-    isExhibition: Boolean
-    "Name of phase e.g. Round 1 Pools"
-    name: String
-    "The number of seeds this phase contains."
-    numSeeds: Int
-    paginatedSeeds(eventId: ID, query: SeedPaginationQuery!): SeedConnection @deprecated(reason: "Please use 'seeds' instead")
-    "Phase groups under this phase, paginated"
-    phaseGroups(query: PhaseGroupPageQuery): PhaseGroupConnection
-    "The relative order of this phase within an event"
-    phaseOrder: Int
-    "Paginated seeds for this phase"
-    seeds(eventId: ID, query: SeedPaginationQuery!): SeedConnection
-    "Paginated sets for this Phase"
-    sets(
-        "Supported filter options to filter down set results."
-        filters: SetFilters,
-        page: Int,
-        perPage: Int,
-        "How to sort these sets"
-        sortType: SetSortType
-    ): SetConnection
-    "State of the phase"
-    state: ActivityState
-    waves: [Wave]
-}
-
-"A group within a phase"
-type PhaseGroup {
-    "The bracket type of this group's phase."
-    bracketType: BracketType
-    "URL for this phase groups's bracket."
-    bracketUrl: String
-    "Unique identifier for this group within the context of its phase"
-    displayIdentifier: String
-    "For the given phase group, this is the start time of the first round that occurs in the group."
-    firstRoundTime: Timestamp
-    id: ID
-    numRounds: Int
-    paginatedSeeds(eventId: ID, query: SeedPaginationQuery!): SeedConnection @deprecated(reason: "Please use 'seeds', which is now paginated")
-    "Paginated sets on this phaseGroup"
-    paginatedSets(
-        "Supported filter options to filter down set results."
-        filters: SetFilters,
-        page: Int,
-        perPage: Int,
-        "How to sort these sets"
-        sortType: SetSortType
-    ): SetConnection @deprecated(reason: "Please use 'sets', which is now paginated")
-    "The phase associated with this phase group"
-    phase: Phase
-    "The progressions out of this phase group"
-    progressionsOut: [Progression]
-    rounds: [Round]
-    seedMap: JSON
-    "Paginated seeds for this phase group"
-    seeds(eventId: ID, query: SeedPaginationQuery!): SeedConnection
-    "Paginated sets on this phaseGroup"
-    sets(
-        "Supported filter options to filter down set results."
-        filters: SetFilters,
-        page: Int,
-        perPage: Int,
-        "How to sort these sets"
-        sortType: SetSortType
-    ): SetConnection
-    "Paginated list of standings"
-    standings(query: StandingGroupStandingPageFilter): StandingConnection
-    "Unix time the group is scheduled to start. This info could also be on the wave instead."
-    startAt: Timestamp
-    state: Int
-    tiebreakOrder: JSON
-    wave: Wave
-}
-
-type PhaseGroupConnection {
-    nodes: [PhaseGroup]
-    pageInfo: PageInfo
-}
-
-"A player"
-type Player {
-    gamerTag: String
-    id: ID
-    prefix: String
-    "Most recent active & published rankings"
-    rankings(limit: Int, videogameId: ID): [PlayerRank]
-    "Recent sets for this player."
-    recentSets(
-        "Use this to get H2H history between two players"
-        opponentId: ID
-    ): [Set] @deprecated(reason: "Use the sets field instead.")
-    "Recent standings"
-    recentStandings(
-        "Number of recent standings to fetch. Default value is 3. Maximum value is 20."
-        limit: Int,
-        videogameId: ID
-    ): [Standing]
-    "Set history for this player."
-    sets(
-        "Supported filter options to filter down set results."
-        filters: SetFilters,
-        page: Int,
-        perPage: Int
-    ): SetConnection
-    user: User
-}
-
-"A player's ranks"
-type PlayerRank {
-    id: ID
-    "The player's placement on the ranking"
-    rank: Int
-    title: String
-}
-
-"An OAuth ProfileAuthorization object"
-type ProfileAuthorization {
-    "The id given by the external service"
-    externalId: String
-    "The username given by the external service (including discriminator if discord)"
-    externalUsername: String
-    id: ID
-    stream: Stream
-    "The name of the external service providing this auth i.e. \"twitch\""
-    type: AuthorizationType
-    url: String
-}
-
-"A connection between a placement in an origin phase group to a destination seed."
-type Progression {
-    id: ID
-    originOrder: Int
-    originPhase: Phase
-    originPhaseGroup: PhaseGroup
-    originPlacement: Int
-}
-
-type Query {
-    "Returns the authenticated user"
-    currentUser: User
-    "Returns an entrant given its id"
-    entrant(id: ID!): Entrant
-    "Returns an event given its id or slug"
-    event(id: ID, slug: String): Event
-    "Returns a league given its id or slug"
-    league(id: ID, slug: String): League
-    "Paginated, filterable list of leagues"
-    leagues(query: LeagueQuery!): LeagueConnection
-    "Returns a participant given its id"
-    participant(id: ID!, isAdmin: Boolean): Participant
-    "Returns a phase given its id"
-    phase(id: ID): Phase
-    "Returns a phase group given its id"
-    phaseGroup(id: ID): PhaseGroup
-    "Returns a player given an id"
-    player(id: ID!): Player
-    "Returns a phase seed given its id"
-    seed(id: ID): Seed
-    "Returns a set given its id"
-    set(id: ID!): Set
-    "A shop entity"
-    shop(id: ID, slug: String): Shop
-    "Returns an stream given its id"
-    stream(id: ID!): Streams
-    "Returns all the stream queues for a given tournament"
-    streamQueue(includePlayerStreams: Boolean, tournamentId: ID!): [StreamQueue]
-    "Returns a team given its id"
-    team(id: ID, inviteCode: String, slug: String): Team
-    "Returns a tournament given its id or slug"
-    tournament(id: ID, slug: String): Tournament
-    "Paginated, filterable list of tournaments"
-    tournaments(query: TournamentQuery!): TournamentConnection
-    "Returns a user given a user slug of the form user/abc123, or id"
-    user(id: ID, slug: String): User
-    "Returns a videogame given its id"
-    videogame(id: ID, slug: String): Videogame
-    "Returns paginated list of videogames matching the search criteria."
-    videogames(query: VideogameQuery!): VideogameConnection
-}
-
-"Race specific bracket configuration"
-type RaceBracketConfig implements BracketConfig {
-    automaticEndTime: Timestamp
-    automaticStartTime: Timestamp
-    bracketType: BracketType
-    goalTargetComparator: Comparator
-    goalTargetValue: String
-    id: ID
-    limitMode: RaceLimitMode
-    limitValue: Int
-    raceType: RaceType
-}
-
-"Race specific match configuration"
-type RaceMatchConfig implements MatchConfig {
-    bracketType: BracketType
-    id: ID
-    "Can players report results?"
-    playerReportingEnabled: Boolean
-    "Accepted methods of verification that players can use"
-    verificationMethods: [MatchConfigVerificationMethod]
-    "Are players required to submit verification of their reported results?"
-    verificationRequired: Boolean
-}
-
-"A round within a phase group"
-type Round {
-    """
-
-    If applicable, bestOf is the number of games
-    one must win a majority out of to win a set in this round
-    """
-    bestOf: Int
-    id: ID
-    "Indicates this round's order in the phase group"
-    number: Int
-    "The time that this round is scheduled to start at"
-    startAt: Timestamp
-}
+directive @publicCache ("Optional override for the query-level cacheAge value, in seconds." cacheAge: Int) on FIELD
 
 """
-
-The score that led to this standing being awarded. The meaning of this field can
-vary by standing type and is not used for some standing types.
+Directs the executor to skip this field or fragment when the `if` argument is true.
 """
-type Score {
-    "Like value, but formatted for race format events. Formatted according to the race config for the front end to use."
-    displayValue: String
-    "The name of this score. e.g. \"Kills\" or \"Stocks\""
-    label: String
-    "The raw score value"
-    value: Float
-}
-
-"A seed for an entrant"
-type Seed {
-    "Map of Participant ID to checked in boolean"
-    checkedInParticipants: JSON
-    entrant: Entrant
-    groupSeedNum: Int
-    id: ID
-    isBye: Boolean
-    phase: Phase
-    phaseGroup: PhaseGroup
-    placeholderName: String
-    placement: Int
-    "The player(s) associated with this seed's entrant"
-    players: [Player]
-    progressionSeedId: Int
-    "Source progression information"
-    progressionSource: Progression
-    seedNum: Int
-    "Entrant's win/loss record for this standing. Scores do not include byes."
-    setRecordWithoutByes(phaseGroupId: ID!): JSON
-    standings(
-        "The container of the standing groups to get standings for. If null, will return all standings."
-        containerType: String
-    ): [Standing]
-}
-
-type SeedConnection {
-    nodes: [Seed]
-    pageInfo: PageInfo
-}
-
-"A set"
-type Set {
-    "The time this set was marked as completed"
-    completedAt: Timestamp
-    "The time this set was created"
-    createdAt: Timestamp
-    displayScore(mainEntrantId: ID): String
-    "Event that this set belongs to."
-    event: Event
-    "Full round text of this set."
-    fullRoundText: String
-    game(orderNum: Int!): Game
-    games: [Game]
-    "Whether this set contains a placeholder entrant"
-    hasPlaceholder: Boolean
-    id: ID
-    "The letters that describe a unique identifier within the pool. Eg. F, AT"
-    identifier: String
-    images(type: String): [Image]
-    lPlacement: Int
-    "Phase group that this Set belongs to."
-    phaseGroup: PhaseGroup
-    "The round number of the set. Negative numbers are losers bracket"
-    round: Int
-    """
-
-    Indicates whether the set is in best of or total games mode. This instructs
-    which field is used to figure out how many games are in this set.
-    """
-    setGamesType: Int
-    "A possible spot in a set. Use this to get all entrants in a set. Use this for all bracket types (FFA, elimination, etc)"
-    slots(includeByes: Boolean = false): [SetSlot]
-    "The start time of the Set. If there is no startAt time on the Set, will pull it from phaseGroup rounds configuration."
-    startAt: Timestamp
-    startedAt: Timestamp
-    state: Int
-    "Tournament event station for a set"
-    station: Stations
-    "Tournament event stream for a set"
-    stream: Streams
-    "If setGamesType is in total games mode, this defined the number of games in the set."
-    totalGames: Int
-    "Url of a VOD for this set"
-    vodUrl: String
-    wPlacement: Int
-    winnerId: Int
-}
-
-type SetConnection {
-    nodes: [Set]
-    pageInfo: PageInfo
-}
-
-"A slot in a set where a seed currently or will eventually exist in order to participate in the set."
-type SetSlot {
-    entrant: Entrant
-    id: ID
-    "Pairs with prereqType, is the ID of the prereq."
-    prereqId: String
-    "Given a set prereq type, defines the placement required in the origin set to end up in this slot."
-    prereqPlacement: Int
-    "Describes where the entity in this slot comes from."
-    prereqType: String
-    seed: Seed
-    "The index of the slot. Unique per set."
-    slotIndex: Int
-    "The standing within this set for the seed currently assigned to this slot."
-    standing: Standing
-}
-
-"A shop"
-type Shop {
-    id: ID
-    levels(query: ShopLevelsQuery): ShopLevelConnection
-    messages(query: ShopOrderMessagesQuery): ShopOrderMessageConnection
-    name: String
-    slug: String
-    url: String
-}
-
-"A shop level"
-type ShopLevel {
-    currAmount: Float
-    description: String
-    goalAmount: Float
-    id: ID
-    images(type: String): [Image]
-    name: String
-}
-
-type ShopLevelConnection {
-    nodes: [ShopLevel]
-    pageInfo: PageInfo
-}
-
-"The message and player info for a shop order"
-type ShopOrderMessage {
-    "The player's gamertag. Returns null if anonymous message type"
-    gamertag: String
-    id: ID
-    "The order message"
-    message: String
-    "The player's name. Returns null unless name & tag display is selected"
-    name: String
-    "The player who left the comment"
-    player: Player
-    "The total order amount"
-    total: Float
-}
-
-type ShopOrderMessageConnection {
-    nodes: [ShopOrderMessage]
-    pageInfo: PageInfo
-}
-
-"Video Stage"
-type Stage {
-    id: ID
-    "Stage name"
-    name: String
-}
-
-"A standing indicates the placement of something within a container."
-type Standing {
-    """
-
-    The containing entity that contextualizes this standing. Event standings, for
-    example, represent an entrant's standing in the entire event vs. Set standings
-    which is an entrant's standing in only a single set within an event.
-    """
-    container: StandingContainer
-    "If the entity this standing is assigned to can be resolved into an entrant, this will provide the entrant."
-    entrant: Entrant
-    id: ID
-    isFinal: Boolean
-    "Metadata that goes along with this standing. Can take on different forms based on standing group type and settings."
-    metadata: JSON
-    placement: Int
-    "The player(s) tied to this standing's entity"
-    player: Player
-    standing: Int @deprecated(reason: "The \"placement\" field is identical and will eventually replace \"standing\"")
-    stats: StandingStats
-    totalPoints: Float
-}
-
-type StandingConnection {
-    nodes: [Standing]
-    pageInfo: PageInfo
-}
-
-"Any stats related to this standing. This type is experimental and very likely to change in the future."
-type StandingStats {
-    score: Score
-}
-
-"Stations, such as a stream setup, at an event"
-type Stations {
-    canAutoAssign: Boolean
-    clusterNumber: String
-    clusterPrefix: Int
-    enabled: Boolean
-    id: ID
-    identifier: Int
-    numSetups: Int
-    number: Int
-    prefix: String
-    queue: JSON
-    queueDepth: Int
-    state: Int
-    updatedAt: Timestamp
-}
-
-type StationsConnection {
-    nodes: [Stations]
-    pageInfo: PageInfo
-}
-
-"A Stream object"
-type Stream {
-    id: ID
-    "Whether the stream is currently live. May be slightly delayed."
-    isOnline: Boolean
-    "The name of the stream"
-    name: String
-    "The name of the external service providing this auth i.e. \"twitch\""
-    type: StreamType
-}
-
-"A Stream queue object"
-type StreamQueue {
-    id: String
-    "The sets on the stream"
-    sets: [Set]
-    "The stream on the queue"
-    stream: Streams
-}
-
-"Tournament Stream"
-type Streams {
-    enabled: Boolean
-    followerCount: Int
-    id: ID
-    isOnline: Boolean
-    numSetups: Int
-    parentStreamId: Int
-    streamGame: String
-    streamId: String
-    streamLogo: String
-    streamName: String
-    streamSource: StreamSource
-    streamStatus: String
-    streamType: Int
-    streamTypeId: Int
-}
-
-"A set of actions available for a team to take"
-type TeamActionSet implements ActionSet {
-    id: ID
-}
-
-type TeamConnection {
-    nodes: [Team]
-    pageInfo: PageInfo
-}
-
-"A member of a team"
-type TeamMember {
-    id: ID
-    isAlternate: Boolean
-    isCaptain: Boolean
-    "The type of the team member"
-    memberType: TeamMemberType
-    participant: Participant
-    player: Player
-    "The status of the team member"
-    status: TeamMemberStatus
-}
-
-"Team roster size requirements"
-type TeamRosterSize {
-    maxAlternates: Int
-    maxPlayers: Int
-    minAlternates: Int
-    minPlayers: Int
-}
-
-"A tournament"
-type Tournament {
-    addrState: String
-    "Admin-only view of admins for this tournament"
-    admins(
-        "Which roles to show"
-        roles: [String]
-    ): [User]
-    city: String
-    countryCode: String
-    "When the tournament was created (unix timestamp)"
-    createdAt: Timestamp
-    currency: String
-    "When the tournament ends"
-    endAt: Timestamp
-    "When does event registration close"
-    eventRegistrationClosesAt: Timestamp
-    events(filter: EventFilter, limit: Int): [Event]
-    "True if tournament has at least one offline event"
-    hasOfflineEvents: Boolean
-    hasOnlineEvents: Boolean
-    hashtag: String
-    id: ID
-    images(type: String): [Image]
-    "True if tournament has at least one online event"
-    isOnline: Boolean
-    "Is tournament registration open"
-    isRegistrationOpen: Boolean
-    lat: Float
-    links: TournamentLinks
-    lng: Float
-    mapsPlaceId: String
-    "The tournament name"
-    name: String
-    "Number of attendees including spectators, if public"
-    numAttendees: Int
-    "The user who created the tournament"
-    owner: User
-    "Paginated, queryable list of participants"
-    participants(isAdmin: Boolean, query: ParticipantPaginationQuery!): ParticipantConnection
-    postalCode: String
-    primaryContact: String
-    primaryContactType: String
-    "Publishing settings for this tournament"
-    publishing: JSON
-    "When does registration for the tournament end"
-    registrationClosesAt: Timestamp
-    rules: String
-    "The short slug used to form the url"
-    shortSlug: String
-    "The slug used to form the url"
-    slug: String
-    "When the tournament Starts"
-    startAt: Timestamp
-    "State of the tournament, can be ActivityState::CREATED, ActivityState::ACTIVE, or ActivityState::COMPLETED"
-    state: Int
-    stations(page: Int, perPage: Int): StationsConnection
-    streamQueue: [StreamQueue]
-    streams: [Streams]
-    "When is the team creation deadline"
-    teamCreationClosesAt: Timestamp
-    "Paginated, queryable list of teams"
-    teams(query: TeamPaginationQuery!): TeamConnection
-    "The timezone of the tournament"
-    timezone: String
-    "The type of tournament from TournamentType"
-    tournamentType: Int
-    "When the tournament was last modified (unix timestamp)"
-    updatedAt: Timestamp
-    "Build Tournament URL"
-    url(
-        "Generate a relative URL. Defaults to true. Setting to false will generate an absolute URL"
-        relative: Boolean = true,
-        "Tournament tab to add to URL"
-        tab: String
-    ): String
-    venueAddress: String
-    venueName: String
-    "List of all waves in this tournament"
-    waves: [Wave]
-}
-
-type TournamentConnection {
-    nodes: [Tournament]
-    pageInfo: PageInfo
-}
-
-type TournamentLinks {
-    discord: String
-    facebook: String
-}
-
-"A user"
-type User {
-    "Authorizations to external services (i.e. Twitch, Twitter)"
-    authorizations(types: [SocialConnectionType]): [ProfileAuthorization]
-    bio: String
-    "Public facing user birthday that respects user publishing settings"
-    birthday: String
-    "Uniquely identifying token for user. Same as the hashed part of the slug"
-    discriminator: String
-    email: String
-    "Events this user has competed in"
-    events(query: UserEventsPaginationQuery): EventConnection
-    genderPronoun: String
-    id: ID
-    images(type: String): [Image]
-    "Leagues this user has competed in"
-    leagues(query: UserLeaguesPaginationQuery): LeagueConnection
-    "Public location info for this user"
-    location: Address
-    "Public facing user name that respects user publishing settings"
-    name: String
-    "player for user"
-    player: Player
-    slug: String
-    "Tournaments this user is organizing or competing in"
-    tournaments(query: UserTournamentsPaginationQuery): TournamentConnection
-}
-
-"A videogame"
-type Videogame {
-    "All characters for this videogame"
-    characters: [Character]
-    displayName: String
-    id: ID
-    images(type: String): [Image]
-    name: String
-    slug: String
-}
-
-type VideogameConnection {
-    nodes: [Videogame]
-    pageInfo: PageInfo
-}
-
-"A wave in a tournament"
-type Wave {
-    id: ID
-    "The Wave Identifier"
-    identifier: String
-    "Unix time the wave is scheduled to start."
-    startAt: Timestamp
-}
-
-"Represents the state of an activity"
-enum ActivityState {
-    "Activity is active or in progress"
-    ACTIVE
-    "Activity, like a set, has been called to start"
-    CALLED
-    "Activity is done"
-    COMPLETED
-    "Activity is created"
-    CREATED
-    "Activity is invalid"
-    INVALID
-    "Activity is queued to run"
-    QUEUED
-    "Activity is ready to be started"
-    READY
-}
-
-"Represents the name of the third-party service (e.g Twitter) for OAuth"
-enum AuthorizationType {
-    DISCORD
-    EPIC
-    MIXER
-    STEAM
-    TWITCH
-    TWITTER
-    XBOX
-}
-
-"The type of Bracket format that a Phase is configured with."
-enum BracketType {
-    CIRCUIT
-    CUSTOM_SCHEDULE
-    DOUBLE_ELIMINATION
-    ELIMINATION_ROUNDS
-    EXHIBITION
-    MATCHMAKING
-    RACE
-    ROUND_ROBIN
-    SINGLE_ELIMINATION
-    SWISS
-}
-
-"Comparison operator"
-enum Comparator {
-    EQUAL
-    GREATER_THAN
-    GREATER_THAN_OR_EQUAL
-    LESS_THAN
-    LESS_THAN_OR_EQUAL
-}
-
-"The type of selection i.e. is it for a character or something else"
-enum GameSelectionType {
-    "Character selection"
-    CHARACTER
-}
-
-"Different options available for verifying player-reported match results"
-enum MatchConfigVerificationMethod {
-    ANY
-    MIXER
-    STREAM_ME
-    TWITCH
-    YOUTUBE
-}
-
-"Enforces limits on the amount of allowable Race submissions"
-enum RaceLimitMode {
-    BEST_ALL
-    FIRST_ALL
-    PLAYTIME
-}
-
-"Race type"
-enum RaceType {
-    GOALS
-    TIMED
-}
-
-"Different sort type configurations used when displaying multiple sets"
-enum SetSortType {
-    "Sets are sorted in the suggested order that they be called to be played. The order of completed sets is reversed."
-    CALL_ORDER
-    "Sets are sorted by relevancy dependent on the state and progress of the event."
-    MAGIC
-    "Sets will not be sorted."
-    NONE
-    "Sets are sorted in the order that they were started."
-    RECENT
-    "Sets sorted by round and identifier"
-    ROUND
-    "Deprecated. This is equivalent to CALL_ORDER"
-    STANDARD
-}
-
-"Represents the name of the third-party social service (e.g Twitter) for OAuth"
-enum SocialConnectionType {
-    DISCORD
-    MIXER
-    TWITCH
-    TWITTER
-    XBOX
-}
-
-"Represents the source of a stream"
-enum StreamSource {
-    "Stream is on smashcast.tv channel"
-    HITBOX
-    "Stream is on a mixer.com channel"
-    MIXER
-    "Stream is on a stream.me channel"
-    STREAMME
-    "Stream is on twitch.tv channel"
-    TWITCH
-}
-
-"Represents the type of stream service"
-enum StreamType {
-    MIXER
-    TWITCH
-}
-
-"Membership status of a team member"
-enum TeamMemberStatus {
-    ACCEPTED
-    ALUM
-    HIATUS
-    INVITED
-    OPEN_SPOT
-    REQUEST
-    UNKNOWN
-}
-
-"Membership type of a team member"
-enum TeamMemberType {
-    PLAYER
-    STAFF
-}
-
-enum TournamentPaginationSort {
-    computedUpdatedAt
-    endAt
-    eventRegistrationClosesAt
-    startAt
-}
+directive @skip ("Skipped when true." if: Boolean!) on FIELD|FRAGMENT_SPREAD|INLINE_FRAGMENT
 
 """
-
-The `JSON` scalar type represents JSON values as specified by
-[ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+Directs the executor to include this field or fragment only when the `if` argument is true.
 """
-scalar JSON
+directive @include ("Included when true." if: Boolean!) on FIELD|FRAGMENT_SPREAD|INLINE_FRAGMENT
 
 """
-
-Represents a Unix Timestamp. Supports up to 53 bit int values,
-as that is JavaScript's internal memory allocation for integer values.
+Marks an element of a GraphQL schema as no longer supported.
 """
-scalar Timestamp
+directive @deprecated ("Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted in [Markdown](https:\/\/daringfireball.net\/projects\/markdown\/)." reason: String = "No longer supported") on FIELD_DEFINITION|ENUM_VALUE
 
-input EventEntrantPageQuery {
-    filter: EventEntrantPageQueryFilter
-    page: Int
-    perPage: Int
-    sortBy: String
-}
-
-input EventEntrantPageQueryFilter {
-    name: String
-}
-
-input EventFilter {
-    fantasyEventId: ID
-    fantasyRosterHash: String
-    id: ID
-    ids: [ID]
-    published: Boolean
-    slug: String
-    type: [Int]
-    videogameId: [ID]
-}
-
-input EventOwnersQuery {
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input LeagueEventsFilter {
-    leagueEntrantId: ID
-    pointMappingGroupIds: [ID]
-    search: PaginationSearchType
-    tierIds: [ID]
-    upcoming: Boolean
-    userId: ID
-}
-
-input LeagueEventsQuery {
-    filter: LeagueEventsFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input LeaguePageFilter {
-    activeShops: Boolean
-    afterDate: Timestamp
-    beforeDate: Timestamp
-    computedUpdatedAt: Timestamp
-    hasBannerImages: Boolean
-    id: ID
-    ids: [ID]
-    isFeatured: Boolean
-    name: String
-    "ID of the user that owns this league."
-    ownerId: ID
-    past: Boolean
-    publiclySearchable: Boolean
-    published: Boolean
-    upcoming: Boolean
-    videogameIds: [ID]
-}
-
-input LeagueQuery {
-    filter: LeaguePageFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sort: TournamentPaginationSort
-    sortBy: String
-}
-
-input LocationFilterType {
-    city: String
-    countryCode: String
-    state: String
-}
-
-input PaginationSearchType {
-    fieldsToSearch: [String]
-    searchString: String
-}
-
-input ParticipantPageFilter {
-    checkedIn: Boolean
-    eventIds: [ID]
-    gamerTag: String
-    id: ID
-    ids: [ID]
-    incompleteTeam: Boolean
-    missingDeck: Boolean
-    notCheckedIn: Boolean
-    search: PaginationSearchType
-    unpaid: Boolean
-}
-
-input ParticipantPaginationQuery {
-    filter: ParticipantPageFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input PhaseGroupPageQuery {
-    entrantIds: [ID]
-    filter: PhaseGroupPageQueryFilter
-    page: Int
-    perPage: Int
-    sortBy: String
-}
-
-input PhaseGroupPageQueryFilter {
-    id: [ID]
-    waveId: ID
-}
-
-input PhaseGroupUpdateInput {
-    phaseGroupId: ID!
-    stationId: ID
-    waveId: ID
-}
-
-input PhaseUpsertInput {
-    bracketType: BracketType
-    "The number of pools to configure for the Phase. Only applies to brackets that support pools"
-    groupCount: Int
-    "The name of the Phase. For example, \"Top 8\" or \"Pools\""
-    name: String
-}
-
-input ResolveConflictsLockedSeedConfig {
-    eventId: ID!
-    numSeeds: Int!
-}
-
-input ResolveConflictsOptions {
-    lockedSeeds: [ResolveConflictsLockedSeedConfig]
-}
-
-input SeedPageFilter {
-    checkInState: [Int]
-    entrantName: String
-    eventCheckInGroupId: ID
-    eventId: ID
-    id: ID
-    phaseGroupId: [ID]
-    phaseId: [ID]
-    search: PaginationSearchType
-}
-
-input SeedPaginationQuery {
-    filter: SeedPageFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-"Filter Sets by geographical constraints."
-input SetFilterLocation {
-    "Only return Sets in this country. Expects a valid two-letter country code"
-    country: String
-    distanceFrom: SetFilterLocationDistanceFrom
-    "Only return Sets in this state. Only applicable to US states"
-    state: String
-}
-
-"Only return Sets that are a certain distance away from a specified point"
-input SetFilterLocationDistanceFrom {
-    "Point at which to perform distance calculation"
-    point: SetFilterLocationDistanceFromPoint
-    "Distance from the point to include results in"
-    radius: String
-}
-
-input SetFilterLocationDistanceFromPoint {
-    lat: Float
-    lon: Float
-}
-
-input SetFilters {
-    "Only return Sets for these Entrants"
-    entrantIds: [ID]
-    "Only return Sets for this Entrant size. For example, to fetch 1v1 Sets only, filter by an entrantSize of 1"
-    entrantSize: [Int]
-    "Only return Sets in these Events"
-    eventIds: [ID]
-    "Only return Sets that have an attached VOD"
-    hasVod: Boolean
-    "Do not return empty Sets. For example, set this to true to filter out sets that are waiting for progressions."
-    hideEmpty: Boolean
-    "Only return Sets that are in an Online event. If omitted, Sets for both online and offline Events are returned"
-    isEventOnline: Boolean
-    "Only return Sets in certain geographical areas."
-    location: SetFilterLocation
-    "Only return Sets for these Participants"
-    participantIds: [ID]
-    "Only return Sets in these PhaseGroups"
-    phaseGroupIds: [ID]
-    "Only return Sets in these Phases"
-    phaseIds: [ID]
-    "Only return Sets for these Players"
-    playerIds: [ID]
-    "Only return Sets for these Rounds"
-    roundNumber: Int
-    "Return sets that contain a bye"
-    showByes: Boolean
-    "Only returns Sets that are in these states"
-    state: [Int]
-    "Only return Sets that are assigned to these Station IDs"
-    stationIds: [ID]
-    "Only return Sets that are assigned to these Station numbers"
-    stationNumbers: [Int]
-    "Only return Sets in these Tournaments"
-    tournamentIds: [ID]
-    "Only return sets created or updated since this timestamp"
-    updatedAfter: Timestamp
-}
-
-input ShopLevelsQuery {
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input ShopOrderMessagesQuery {
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input StandingGroupStandingPageFilter {
-    page: Int
-    perPage: Int
-    sortBy: String
-}
-
-input StandingPageFilter {
-    id: ID
-    ids: [ID]
-    search: PaginationSearchType
-}
-
-input StandingPaginationQuery {
-    filter: StandingPageFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input StationFilter {
-    page: Int
-    perPage: Int
-}
-
-input StationUpsertInput {
-    clusterId: ID
-    number: Int!
-}
-
-input TeamPaginationFilter {
-    eventId: ID
-    eventIds: [ID]
-    eventState: ActivityState
-    globalTeamId: ID
-    isLeague: Boolean
-    maxEntrantCount: Int
-    memberStatus: [TeamMemberStatus]
-    minEntrantCount: Int
-    past: Boolean
-    rosterComplete: Boolean
-    rosterIncomplete: Boolean
-    search: PaginationSearchType
-    tournamentId: ID
-    type: Int
-    upcoming: Boolean
-    videogameId: [ID]
-}
-
-input TeamPaginationQuery {
-    filter: TeamPaginationFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input TopGameFilter {
-    "Array of which # top game you want to filter on.e.g. [2, 3] will filter on the 2nd and 3rd top games"
-    gameNums: [Int]
-}
-
-input TournamentLocationFilter {
-    "e.g. 50mi"
-    distance: String
-    "Latitude, Longitude"
-    distanceFrom: String
-}
-
-input TournamentPageFilter {
-    activeShops: Boolean
-    addrState: String
-    afterDate: Timestamp
-    beforeDate: Timestamp
-    computedUpdatedAt: Timestamp
-    countryCode: String
-    hasBannerImages: Boolean
-    hasOnlineEvents: Boolean
-    id: ID
-    ids: [ID]
-    "If true, filter to only tournaments the currently authed user is an admin of"
-    isCurrentUserAdmin: Boolean
-    isFeatured: Boolean
-    isLeague: Boolean
-    location: TournamentLocationFilter
-    name: String
-    "ID of the user that owns this tournament."
-    ownerId: ID
-    past: Boolean
-    publiclySearchable: Boolean
-    published: Boolean
-    regOpen: Boolean
-    sortByScore: Boolean
-    staffPicks: Boolean
-    topGames: TopGameFilter
-    upcoming: Boolean
-    venueName: String
-    videogameIds: [ID]
-}
-
-input TournamentQuery {
-    filter: TournamentPageFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sort: TournamentPaginationSort
-    sortBy: String
-}
-
-input UpdatePhaseSeedInfo {
-    phaseGroupId: ID
-    seedId: ID!
-    seedNum: ID!
-}
-
-input UpdatePhaseSeedingOptions {
-    "Validate that seedMapping exactly accounts for all entrants in the phase"
-    strictMode: Boolean
-}
-
-input UserEventsPaginationFilter {
-    eventType: Int
-    location: LocationFilterType
-    maxEntrantCount: Int
-    minEntrantCount: Int
-    search: PaginationSearchType
-    videogameId: [ID]
-}
-
-input UserEventsPaginationQuery {
-    filter: UserEventsPaginationFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input UserLeaguesPaginationFilter {
-    past: Boolean
-    search: PaginationSearchType
-    upcoming: Boolean
-    videogameId: [ID]
-}
-
-input UserLeaguesPaginationQuery {
-    filter: UserLeaguesPaginationFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input UserTournamentsPaginationFilter {
-    excludeId: [ID]
-    past: Boolean
-    search: PaginationSearchType
-    tournamentView: String
-    upcoming: Boolean
-    videogameId: [ID]
-}
-
-input UserTournamentsPaginationQuery {
-    filter: UserTournamentsPaginationFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input VideogamePageFilter {
-    forUser: ID
-    id: [ID]
-    name: String
-}
-
-input VideogameQuery {
-    filter: VideogamePageFilter
-    page: Int = 1
-    "How many nodes to return for the page. Maximum value of 500"
-    perPage: Int = 25
-    sortBy: String
-}
-
-input WaveUpsertInput {
-    endAt: Timestamp!
-    identifier: String!
-    startAt: Timestamp!
+schema {
+  query: Query
+  mutation: Mutation
 }

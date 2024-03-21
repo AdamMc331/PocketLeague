@@ -1,0 +1,41 @@
+query PhaseGroupQuery($id: ID) {
+    phaseGroup(id: $id) {
+        id
+        standings(query: {
+            perPage: 16
+        }) {
+            nodes {
+                id
+                entrant {
+                    team {
+                        ...TeamFragment
+                    }
+                }
+                placement
+            }
+        }
+        sets(
+            page: 1,
+            perPage: 100,
+            sortType: NONE,
+            filters: {}
+        ) {
+            nodes {
+                displayScore
+                winnerId
+                games {
+                    entrant1Score
+                    entrant2Score
+                }
+                slots {
+                    entrant {
+                        id
+                        team {
+                            ...TeamFragment
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

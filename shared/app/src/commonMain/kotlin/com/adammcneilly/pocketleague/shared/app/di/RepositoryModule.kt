@@ -10,6 +10,8 @@ import com.adammcneilly.pocketleague.data.team.OctaneGGTeamRepository
 import com.adammcneilly.pocketleague.data.team.OfflineFirstTeamRepository
 import com.adammcneilly.pocketleague.data.team.SQLDelightTeamRepository
 import com.adammcneilly.pocketleague.data.team.TeamRepository
+import com.adammcneilly.pocketleague.shared.app.swiss.StartGGSwissStageRepository
+import com.adammcneilly.pocketleague.shared.app.swiss.SwissStageRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
@@ -43,5 +45,9 @@ val repositoryModule = module {
                 apiClient = get(),
             ),
         )
+    }
+
+    single<SwissStageRepository> {
+        StartGGSwissStageRepository()
     }
 }

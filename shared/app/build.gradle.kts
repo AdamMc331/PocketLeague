@@ -37,6 +37,7 @@ kotlin {
                 implementation(libs.apollo.runtime)
                 implementation(libs.koin.core)
                 implementation(libs.slack.circuit)
+                implementation(projects.core.displaymodelsTest)
             }
         }
         val commonTest by getting {

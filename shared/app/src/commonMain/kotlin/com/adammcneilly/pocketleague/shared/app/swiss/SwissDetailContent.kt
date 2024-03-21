@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.swiss
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,7 +20,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.ThemedImageURL
+import com.adammcneilly.pocketleague.core.displaymodels.test.TestDisplayModel
 import com.adammcneilly.pocketleague.shared.ui.components.CircleTeamLogo
+import com.adammcneilly.pocketleague.shared.ui.game.GameListItem
 import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 
 @Composable
@@ -41,6 +45,57 @@ fun SwissDetailContent(
                 text = "Round One",
                 style = MaterialTheme.typography.headlineSmall,
             )
+        }
+
+        item {
+            Card {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .align(Alignment.CenterHorizontally),
+                ) {
+                    CircleTeamLogo(
+                        displayModel = TestDisplayModel.g2,
+                        modifier = Modifier
+                            .size(48.dp),
+                    )
+
+                    Text(
+                        text = "3 - 0",
+                        style = MaterialTheme.typography.headlineSmall,
+                    )
+
+                    CircleTeamLogo(
+                        displayModel = TestDisplayModel.knights,
+                        modifier = Modifier
+                            .size(48.dp),
+                    )
+                }
+
+                HorizontalDivider()
+
+                val games = listOf(
+                    TestDisplayModel.gameDetailBlueWinner,
+                    TestDisplayModel.gameDetailBlueWinner,
+                    TestDisplayModel.gameDetailBlueWinner,
+                )
+
+                games.forEachIndexed { index, game ->
+                    GameListItem(
+                        displayModel = game,
+                        modifier = Modifier
+                            .clickable {
+                                // Handle game clicked?
+                            },
+                    )
+
+                    if (index != games.lastIndex) {
+                        HorizontalDivider()
+                    }
+                }
+            }
         }
 
         item {

@@ -57,6 +57,7 @@ fun PocketLeagueApp(
 
         CircuitCompositionLocals(circuitConfig) {
             val backstack = rememberSaveableBackStack(
+//                initialScreens = listOf(FeedScreen),
                 initialScreens = listOf(SwissOverviewScreen("2337947")),
             )
 

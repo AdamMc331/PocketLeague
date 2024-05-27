@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.kotlin.plugin.parcelize")
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.compose)
 }
 

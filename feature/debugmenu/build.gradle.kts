@@ -3,6 +3,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.plugin.parcelize")
     alias(libs.plugins.cash.paparazzi)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.compose)
 }
 

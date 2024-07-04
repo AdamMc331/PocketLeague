@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.feature.teamdetail
 
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
-import com.adammcneilly.pocketleague.core.feature.CommonParcelize
+import com.adammcneilly.pocketleague.core.feature.Parcelize
 import com.adammcneilly.pocketleague.data.player.PlayerRepository
 import com.adammcneilly.pocketleague.data.team.TeamRepository
 import com.slack.circuit.runtime.CircuitContext
@@ -19,7 +19,7 @@ import org.koin.core.component.inject
 /**
  * Screen component for the team detail feature.
  */
-@CommonParcelize
+@Parcelize
 data class TeamDetailScreen(
     val teamId: String,
 ) : Screen {

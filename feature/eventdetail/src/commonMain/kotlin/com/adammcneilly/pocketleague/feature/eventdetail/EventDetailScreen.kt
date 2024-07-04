@@ -3,7 +3,7 @@ package com.adammcneilly.pocketleague.feature.eventdetail
 import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.displaymodels.EventDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.core.feature.CommonParcelize
+import com.adammcneilly.pocketleague.core.feature.Parcelize
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.api.EventRepository
 import com.adammcneilly.pocketleague.data.match.api.MatchRepository
@@ -21,7 +21,7 @@ import org.koin.core.component.inject
 /**
  * The screen that shows detailed information about the event with the supplied [eventId].
  */
-@CommonParcelize
+@Parcelize
 data class EventDetailScreen(
     val eventId: String,
 ) : Screen {

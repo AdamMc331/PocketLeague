@@ -3,7 +3,7 @@ package com.adammcneilly.pocketleague.shared.app.match
 import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.displaymodels.GameDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.core.feature.CommonParcelize
+import com.adammcneilly.pocketleague.core.feature.Parcelize
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.game.GameService
 import com.adammcneilly.pocketleague.data.match.api.MatchRepository
@@ -24,7 +24,7 @@ import org.koin.core.component.inject
  *
  * Need to use a string until we can upgrade Kotlin: https://stackoverflow.com/a/75857372/3131147
  */
-@CommonParcelize
+@Parcelize
 data class MatchDetailScreen(
     val matchId: String,
 ) : Screen {

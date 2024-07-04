@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.feature.debugmenu
 
-import com.adammcneilly.pocketleague.core.feature.CommonParcelize
+import com.adammcneilly.pocketleague.core.feature.Parcelize
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.CircuitUiEvent
 import com.slack.circuit.runtime.CircuitUiState
@@ -15,7 +15,7 @@ import org.koin.core.component.inject
 /**
  * UI screen for debug menu options such as setting the date to use in the application.
  */
-@CommonParcelize
+@Parcelize
 object DebugMenuScreen : Screen {
     /**
      * UI state for the [DebugMenuScreen].

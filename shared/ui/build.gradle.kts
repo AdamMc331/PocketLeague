@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.cash.paparazzi)
 }

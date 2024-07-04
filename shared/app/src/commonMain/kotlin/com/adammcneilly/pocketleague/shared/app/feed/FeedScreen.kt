@@ -3,7 +3,7 @@ package com.adammcneilly.pocketleague.shared.app.feed
 import com.adammcneilly.pocketleague.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
-import com.adammcneilly.pocketleague.core.feature.CommonParcelize
+import com.adammcneilly.pocketleague.core.feature.Parcelize
 import com.adammcneilly.pocketleague.core.models.Match
 import com.adammcneilly.pocketleague.data.event.api.EventRepository
 import com.adammcneilly.pocketleague.data.match.api.MatchRepository
@@ -23,7 +23,7 @@ import org.koin.core.component.inject
  * Initial screen of the app that shows a feed of recent matches,
  * upcoming events, etc.
  */
-@CommonParcelize
+@Parcelize
 object FeedScreen : Screen {
     /**
      * UI state for the [FeedScreen].

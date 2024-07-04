@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
@@ -54,6 +56,22 @@ kotlin {
             getAt("iosX64Test").dependsOn(this)
             getAt("iosArm64Test").dependsOn(this)
             getAt("iosSimulatorArm64Test").dependsOn(this)
+        }
+    }
+
+    targets.configureEach {
+        val isAndroidTarget = platformType == KotlinPlatformType.androidJvm
+        compilations.configureEach {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    if (isAndroidTarget) {
+                        freeCompilerArgs.addAll(
+                            "-P",
+                            "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.adammcneilly.pocketleague.core.feature.Parcelize",
+                        )
+                    }
+                }
+            }
         }
     }
 }

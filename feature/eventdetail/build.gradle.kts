@@ -67,7 +67,8 @@ kotlin {
                     if (isAndroidTarget) {
                         freeCompilerArgs.addAll(
                             "-P",
-                            "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.adammcneilly.pocketleague.core.feature.Parcelize",
+                            "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation" +
+                                "=com.adammcneilly.pocketleague.core.feature.Parcelize",
                         )
                     }
                 }

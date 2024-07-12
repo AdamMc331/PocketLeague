@@ -87,9 +87,6 @@ android {
 
     namespace = "com.adammcneilly.pocketleague.feature.teamdetail"
 }
-dependencies {
-    implementation(project(":core:datetime"))
-}
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)
     ?.apply {

@@ -47,4 +47,20 @@ class MatchCardPaparazziTest {
             )
         }
     }
+
+    @Test
+    fun renderLongTeamName() {
+        paparazzi.snapshotScreen(useDarkTheme) {
+            MatchCard(
+                match = TestDisplayModel.matchDetailOrangeWinner.copy(
+                    orangeTeamResult = TestDisplayModel.matchTeamResultWinner.copy(
+                        team = TestDisplayModel.g2.copy(
+                            name = "SUPER DUPER LONG TEAM NAME THAT SHOULD OVERFLOW",
+                        ),
+                    ),
+                ),
+                onClick = {},
+            )
+        }
+    }
 }

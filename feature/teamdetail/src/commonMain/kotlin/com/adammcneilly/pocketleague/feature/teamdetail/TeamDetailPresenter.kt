@@ -24,6 +24,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
+private const val DAYS_PER_WEEK = 7
+
 internal class TeamDetailPresenter(
     private val teamId: String,
     private val teamRepository: TeamRepository,
@@ -66,7 +68,7 @@ internal class TeamDetailPresenter(
 
             // Come back and put in real dates PLUS team ID.
             val matchRequest = MatchListRequest.DateRangeForTeam(
-                startDateUTC = timeProvider.daysAgo(7),
+                startDateUTC = timeProvider.daysAgo(DAYS_PER_WEEK),
                 endDateUTC = timeProvider.now(),
                 teamId = teamId,
             )

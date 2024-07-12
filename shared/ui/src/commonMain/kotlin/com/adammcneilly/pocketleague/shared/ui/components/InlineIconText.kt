@@ -36,6 +36,7 @@ private const val INLINE_CONTENT_ID = "inlineContent"
  * @param[textAlign] @see [Text]
  * @param[style] @see [Text]
  * @param[fontWeight] @see [Text]
+ * @param[maxLines] @see [Text]
  */
 @Composable
 fun InlineIconText(

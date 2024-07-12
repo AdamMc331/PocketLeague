@@ -157,34 +157,6 @@ WHERE (:matchId IS NULL OR localMatchId = :matchId)
   AND (:stageId IS NULL OR localMatchStageId = :stageId)
 ORDER BY localMatchDateUTC DESC;
 
-selectInDateRange:
-SELECT *
-FROM matchWithEventAndTeams
-WHERE localMatchDateUTC <= :endDateUTC
-  AND localMatchDateUTC >= :startDateUTC
-  AND (:teamId IS NULL OR blueTeamId = :teamId OR orangeTeamId = :teamId)
-ORDER BY localMatchDateUTC DESC;
-
-selectInDateRangeForTeam:
-SELECT *
-FROM matchWithEventAndTeams
-WHERE localMatchDateUTC <= :endDateUTC
-  AND localMatchDateUTC >= :startDateUTC
-  AND (blueTeamId = :teamId OR orangeTeamId = :teamId)
-
-ORDER BY localMatchDateUTC DESC;
-
-selectMatchesByEventStage:
-SELECT *
-FROM matchWithEventAndTeams
-WHERE localEventId = :eventId AND localMatchStageId = :stageId;
-
-selectUpcoming:
-SELECT *
-FROM matchWithEventAndTeams
-WHERE localMatchDateUTC >= DATE()
-ORDER BY localMatchDateUTC ASC;
-
 selectById:
 SELECT *
 FROM matchWithEventAndTeams

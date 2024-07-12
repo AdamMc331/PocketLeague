@@ -17,6 +17,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 
 private const val INLINE_CONTENT_ID = "inlineContent"
 
@@ -35,6 +36,7 @@ private const val INLINE_CONTENT_ID = "inlineContent"
  * @param[textAlign] @see [Text]
  * @param[style] @see [Text]
  * @param[fontWeight] @see [Text]
+ * @param[maxLines] @see [Text]
  */
 @Composable
 fun InlineIconText(
@@ -48,6 +50,7 @@ fun InlineIconText(
     textAlign: TextAlign? = null,
     style: TextStyle = LocalTextStyle.current,
     fontWeight: FontWeight? = null,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text = text.getAnnotatedString(
@@ -64,6 +67,8 @@ fun InlineIconText(
         style = style,
         color = textColor,
         fontWeight = fontWeight,
+        maxLines = maxLines,
+        overflow = TextOverflow.Ellipsis,
     )
 }
 

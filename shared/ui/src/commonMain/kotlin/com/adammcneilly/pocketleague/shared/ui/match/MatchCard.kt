@@ -125,6 +125,7 @@ private fun MatchTeamResultRow(
             icon = Icons.Default.EmojiEvents,
             showIcon = teamResult.winner,
             fontWeight = fontWeight,
+            maxLines = 1,
             modifier = Modifier
                 .weight(1F),
         )

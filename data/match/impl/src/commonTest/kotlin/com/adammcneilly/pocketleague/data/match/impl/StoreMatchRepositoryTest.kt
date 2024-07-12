@@ -23,7 +23,9 @@ class StoreMatchRepositoryTest {
     @Test
     fun processSuccessRequest() =
         runTest {
-            val request = MatchListRequest.Id(Match.Id("123"))
+            val request = MatchListRequest(
+                matchId = Match.Id("123"),
+            )
             val testMatch = TestModel.matchBlueWinner
 
             remoteMatchService.mockResponse(

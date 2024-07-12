@@ -22,7 +22,8 @@ interface LocaleHelper {
         countryCode: String,
     ): String {
         if (countryCode.length != 2) {
-            throw IllegalArgumentException("Country code \"$countryCode\" invalid, expected two characters.")
+            println("Country code \"$countryCode\" invalid, expected two characters.")
+            return ""
         }
 
         val upperCountryCode = countryCode.uppercase()

@@ -149,7 +149,16 @@ JOIN localEventStage ON localMatch.eventId = localEventStage.eventId AND localMa
 selectInDateRange:
 SELECT *
 FROM matchWithEventAndTeams
-WHERE localMatchDateUTC <= :endDateUTC AND localMatchDateUTC >= :startDateUTC
+WHERE localMatchDateUTC <= :endDateUTC
+  AND localMatchDateUTC >= :startDateUTC
+ORDER BY localMatchDateUTC DESC;
+
+selectInDateRangeForTeam:
+SELECT *
+FROM matchWithEventAndTeams
+WHERE localMatchDateUTC <= :endDateUTC
+  AND localMatchDateUTC >= :startDateUTC
+  AND (blueTeamId = :teamId OR orangeTeamId = :teamId)
 ORDER BY localMatchDateUTC DESC;
 
 selectMatchesByEventStage:

@@ -9,6 +9,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.core.models.Match
+import com.adammcneilly.pocketleague.shared.ui.match.MatchCarousel
 import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.ui.utils.screenHorizontalPadding
 
@@ -34,6 +37,15 @@ internal fun TeamDetailContent(
         }
 
         rosterCardSection(state)
+
+        recentMatchesHeader()
+
+        recentMatchesCarousel(
+            recentMatches = state.recentMatches,
+            onMatchClicked = {
+                // Handle click
+            },
+        )
     }
 }
 
@@ -55,6 +67,32 @@ private fun LazyListScope.rosterCardSection(
             roster = state.roster,
             modifier = Modifier
                 .fillMaxWidth()
+                .screenHorizontalPadding(),
+        )
+    }
+}
+
+private fun LazyListScope.recentMatchesCarousel(
+    recentMatches: List<MatchDetailDisplayModel>,
+    onMatchClicked: (Match.Id) -> Unit,
+) {
+    item {
+        MatchCarousel(
+            matches = recentMatches,
+            contentPadding = PaddingValues(
+                horizontal = PocketLeagueTheme.sizes.screenPadding,
+            ),
+            onMatchClicked = onMatchClicked,
+        )
+    }
+}
+
+private fun LazyListScope.recentMatchesHeader() {
+    item {
+        Text(
+            text = "Recent Matches",
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier
                 .screenHorizontalPadding(),
         )
     }

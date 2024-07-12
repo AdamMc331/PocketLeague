@@ -50,6 +50,14 @@ class OctaneGGMatchService(
                 )
             }
 
+            is MatchListRequest.DateRangeForTeam -> {
+                mapOf(
+                    AFTER_KEY to request.startDateUTC,
+                    BEFORE_KEY to request.endDateUTC,
+                    TEAM_KEY to request.teamId,
+                )
+            }
+
             is MatchListRequest.EventStage -> {
                 mapOf(
                     EVENT_KEY to request.eventId.id,
@@ -81,5 +89,6 @@ class OctaneGGMatchService(
         private const val GROUP_KEY = "group"
         private const val EVENT_KEY = "event"
         private const val STAGE_KEY = "stage"
+        private const val TEAM_KEY = "team"
     }
 }

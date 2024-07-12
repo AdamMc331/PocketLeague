@@ -20,7 +20,9 @@ kotlin {
                 implementation(projects.core.feature)
                 implementation(projects.core.locale)
                 implementation(projects.core.models)
+                implementation(projects.core.datetime)
                 implementation(projects.data.player)
+                implementation(projects.data.match.api)
                 implementation(projects.data.team)
                 implementation(projects.shared.ui)
                 implementation(compose.foundation)
@@ -84,6 +86,9 @@ android {
     }
 
     namespace = "com.adammcneilly.pocketleague.feature.teamdetail"
+}
+dependencies {
+    implementation(project(":core:datetime"))
 }
 
 project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class.java)

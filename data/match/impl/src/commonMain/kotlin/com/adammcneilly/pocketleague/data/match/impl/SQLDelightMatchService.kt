@@ -60,6 +60,14 @@ class SQLDelightMatchService(
                 )
             }
 
+            is MatchListRequest.DateRangeForTeam -> {
+                matchQueries.selectInDateRangeForTeam(
+                    startDateUTC = request.startDateUTC,
+                    endDateUTC = request.endDateUTC,
+                    teamId = request.teamId,
+                )
+            }
+
             is MatchListRequest.EventStage -> {
                 matchQueries.selectMatchesByEventStage(
                     eventId = request.eventId.id,

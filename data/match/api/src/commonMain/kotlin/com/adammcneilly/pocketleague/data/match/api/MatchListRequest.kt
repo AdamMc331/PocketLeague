@@ -24,6 +24,16 @@ sealed interface MatchListRequest {
     ) : MatchListRequest
 
     /**
+     * Request a list of matches within a given date range
+     * and a specific team.
+     */
+    data class DateRangeForTeam(
+        val startDateUTC: String,
+        val endDateUTC: String,
+        val teamId: String,
+    ) : MatchListRequest
+
+    /**
      * Finds a list of matches with a given [eventId] and [stageId] combination.
      */
     data class EventStage(

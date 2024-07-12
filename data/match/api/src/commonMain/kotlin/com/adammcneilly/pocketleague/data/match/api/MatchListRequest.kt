@@ -7,38 +7,11 @@ import com.adammcneilly.pocketleague.core.models.Match
  * Defines an enumeration of the ways we can request a list of matches
  * in the PocketLeague app.
  */
-sealed interface MatchListRequest {
-    /**
-     * Requests matches (should only be one) with the given [matchId].
-     */
-    data class Id(
-        val matchId: Match.Id,
-    ) : MatchListRequest
-
-    /**
-     * Request a list of matches within a given date range.
-     */
-    data class DateRange(
-        val startDateUTC: String,
-        val endDateUTC: String,
-        val teamId: String?,
-    ) : MatchListRequest
-
-    /**
-     * Request a list of matches within a given date range
-     * and a specific team.
-     */
-    data class DateRangeForTeam(
-        val startDateUTC: String,
-        val endDateUTC: String,
-        val teamId: String,
-    ) : MatchListRequest
-
-    /**
-     * Finds a list of matches with a given [eventId] and [stageId] combination.
-     */
-    data class EventStage(
-        val eventId: Event.Id,
-        val stageId: com.adammcneilly.pocketleague.core.models.EventStage.Id,
-    ) : MatchListRequest
-}
+data class MatchListRequest(
+    val matchId: Match.Id? = null,
+    val startDateUTC: String? = null,
+    val endDateUTC: String? = null,
+    val teamId: String? = null,
+    val eventId: Event.Id? = null,
+    val stageId: com.adammcneilly.pocketleague.core.models.EventStage.Id? = null,
+)

@@ -50,37 +50,16 @@ class SQLDelightMatchService(
     override fun stream(
         request: MatchListRequest,
     ): Flow<List<Match>> {
-        val matchQueries = database.localMatchQueries
-
-        val selectQuery = when (request) {
-            is MatchListRequest.DateRange -> {
-                matchQueries.selectInDateRange(
-                    startDateUTC = request.startDateUTC,
-                    endDateUTC = request.endDateUTC,
-                    teamId = request.teamId,
-                )
-            }
-
-            is MatchListRequest.DateRangeForTeam -> {
-                matchQueries.selectInDateRangeForTeam(
-                    startDateUTC = request.startDateUTC,
-                    endDateUTC = request.endDateUTC,
-                    teamId = request.teamId,
-                )
-            }
-
-            is MatchListRequest.EventStage -> {
-                matchQueries.selectMatchesByEventStage(
-                    eventId = request.eventId.id,
-                    stageId = request.stageId.id,
-                )
-            }
-
-            is MatchListRequest.Id -> {
-                matchQueries.selectById(request.matchId.id)
-            }
-        }
-
-        return selectQuery.asFlowList(MatchWithEventAndTeams::toMatch)
+        return database
+            .localMatchQueries
+            .selectMatchList(
+                matchId = request.matchId?.id,
+                teamId = request.teamId,
+                eventId = request.eventId?.id,
+                stageId = request.stageId?.id,
+                startDateUTC = request.startDateUTC,
+                endDateUTC = request.endDateUTC,
+            )
+            .asFlowList(MatchWithEventAndTeams::toMatch)
     }
 }

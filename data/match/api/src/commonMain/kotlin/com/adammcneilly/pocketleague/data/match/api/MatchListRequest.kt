@@ -21,6 +21,7 @@ sealed interface MatchListRequest {
     data class DateRange(
         val startDateUTC: String,
         val endDateUTC: String,
+        val teamId: String?,
     ) : MatchListRequest
 
     /**

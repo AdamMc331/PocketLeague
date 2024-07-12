@@ -21,6 +21,7 @@ class GetPastWeeksMatchesUseCase(
         val request = MatchListRequest.DateRange(
             startDateUTC = timeProvider.daysAgo(DAYS_PER_WEEK),
             endDateUTC = timeProvider.now(),
+            teamId = null,
         )
 
         return matchRepository.stream(request)

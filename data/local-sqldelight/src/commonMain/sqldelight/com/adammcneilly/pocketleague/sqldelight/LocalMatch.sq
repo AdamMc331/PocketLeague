@@ -151,6 +151,7 @@ SELECT *
 FROM matchWithEventAndTeams
 WHERE localMatchDateUTC <= :endDateUTC
   AND localMatchDateUTC >= :startDateUTC
+  AND (:teamId IS NULL OR blueTeamId = :teamId OR orangeTeamId = :teamId)
 ORDER BY localMatchDateUTC DESC;
 
 selectInDateRangeForTeam:

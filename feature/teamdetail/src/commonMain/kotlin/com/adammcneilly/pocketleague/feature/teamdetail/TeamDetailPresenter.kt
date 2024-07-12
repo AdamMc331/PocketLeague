@@ -67,7 +67,7 @@ internal class TeamDetailPresenter(
                 .launchIn(this)
 
             // Come back and put in real dates PLUS team ID.
-            val matchRequest = MatchListRequest.DateRangeForTeam(
+            val matchRequest = MatchListRequest.DateRange(
                 startDateUTC = timeProvider.daysAgo(DAYS_PER_WEEK),
                 endDateUTC = timeProvider.now(),
                 teamId = teamId,

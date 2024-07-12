@@ -57,6 +57,7 @@ class SQLDelightMatchService(
                 matchQueries.selectInDateRange(
                     startDateUTC = request.startDateUTC,
                     endDateUTC = request.endDateUTC,
+                    teamId = request.teamId,
                 )
             }
 

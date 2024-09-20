@@ -41,7 +41,7 @@ truth = "1.4.3"
 truthish = "1.0.1"
 turbine = "1.1.0"
 windowManager = "1.3.0"
-workManager = "2.9.0"
+workManager = "2.9.1"
 
 [libraries]
 

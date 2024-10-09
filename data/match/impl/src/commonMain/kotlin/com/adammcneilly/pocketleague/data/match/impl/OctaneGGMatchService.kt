@@ -19,50 +19,45 @@ class OctaneGGMatchService(
     override suspend fun fetch(
         request: MatchListRequest,
     ): Result<List<Match>> {
-        return when (request) {
-            is MatchListRequest.Id -> {
-                apiClient.getResponse<OctaneGGMatch>(
-                    endpoint = matchByIdEndpoint(request.matchId),
-                ).map { octaneMatch ->
-                    listOf(octaneMatch.toMatch())
-                }
-            }
+        val matchId = request.matchId
 
-            else -> {
-                apiClient.getResponse<OctaneGGMatchListResponse>(
-                    endpoint = MATCHES_ENDPOINT,
-                    params = getParamsForRequest(request),
-                ).map { octaneMatchList ->
-                    octaneMatchList.matches?.map(OctaneGGMatch::toMatch).orEmpty()
-                }
-            }
+        return if (matchId != null) {
+            requestSingleMatch(matchId)
+        } else {
+            requestMatchList(request)
+        }
+    }
+
+    private suspend fun requestMatchList(
+        request: MatchListRequest,
+    ): Result<List<Match>> {
+        return apiClient.getResponse<OctaneGGMatchListResponse>(
+            endpoint = MATCHES_ENDPOINT,
+            params = getParamsForRequest(request),
+        ).map { octaneMatches ->
+            octaneMatches.matches?.map(OctaneGGMatch::toMatch).orEmpty()
+        }
+    }
+
+    private suspend fun requestSingleMatch(
+        matchId: Match.Id,
+    ): Result<List<Match>> {
+        return apiClient.getResponse<OctaneGGMatch>(
+            endpoint = matchByIdEndpoint(matchId),
+        ).map { octaneMatch ->
+            listOf(octaneMatch.toMatch())
         }
     }
 
     private fun getParamsForRequest(
         request: MatchListRequest,
     ): RemoteParams {
-        val initialParams = when (request) {
-            is MatchListRequest.DateRange -> {
-                mapOf(
-                    AFTER_KEY to request.startDateUTC,
-                    BEFORE_KEY to request.endDateUTC,
-                )
-            }
-
-            is MatchListRequest.EventStage -> {
-                mapOf(
-                    EVENT_KEY to request.eventId.id,
-                    STAGE_KEY to request.stageId.id,
-                )
-            }
-
-            is MatchListRequest.Id -> {
-                emptyMap()
-            }
-        }
-
-        return initialParams + mapOf(
+        return mapOf(
+            AFTER_KEY to request.startDateUTC,
+            BEFORE_KEY to request.endDateUTC,
+            TEAM_KEY to request.teamId,
+            EVENT_KEY to request.eventId?.id,
+            STAGE_KEY to request.stageId?.id,
             GROUP_KEY to "rlcs",
         )
     }
@@ -81,5 +76,6 @@ class OctaneGGMatchService(
         private const val GROUP_KEY = "group"
         private const val EVENT_KEY = "event"
         private const val STAGE_KEY = "stage"
+        private const val TEAM_KEY = "team"
     }
 }

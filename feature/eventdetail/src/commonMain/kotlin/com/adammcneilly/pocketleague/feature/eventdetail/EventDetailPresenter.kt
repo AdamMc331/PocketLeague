@@ -126,7 +126,10 @@ class EventDetailPresenter(
                 eventId to stageId
             }
             .flatMapLatest { (eventId, stageId) ->
-                val request = MatchListRequest.EventStage(eventId, stageId)
+                val request = MatchListRequest(
+                    eventId = eventId,
+                    stageId = stageId,
+                )
 
                 matchRepository
                     .stream(request)

@@ -55,7 +55,9 @@ class MatchDetailPresenter(
         }
 
         LaunchedEffect(Unit) {
-            val request = MatchListRequest.Id(matchId)
+            val request = MatchListRequest(
+                matchId = matchId,
+            )
 
             matchRepository
                 .stream(request)
@@ -86,9 +88,11 @@ class MatchDetailPresenter(
                 is MatchDetailScreen.Event.GameSelected -> {
                     selectedGame = event.game
                 }
+
                 MatchDetailScreen.Event.SelectedGameDismissed -> {
                     selectedGame = null
                 }
+
                 is MatchDetailScreen.Event.TeamClicked -> {
                     navigator.goTo(TeamDetailScreen(event.teamId))
                 }

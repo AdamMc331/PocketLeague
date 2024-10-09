@@ -146,22 +146,16 @@ JOIN localTeam AS blueTeam ON localMatch.blueTeamId = blueTeam.id
 JOIN localTeam AS orangeTeam ON localMatch.orangeTeamId = orangeTeam.id
 JOIN localEventStage ON localMatch.eventId = localEventStage.eventId AND localMatch.stageId = localEventStage.id;
 
-selectInDateRange:
+selectMatchList:
 SELECT *
 FROM matchWithEventAndTeams
-WHERE localMatchDateUTC <= :endDateUTC AND localMatchDateUTC >= :startDateUTC
+WHERE (:matchId IS NULL OR localMatchId = :matchId)
+  AND (:teamId IS NULL OR blueTeamId = :teamId OR orangeTeamId = :teamId)
+  AND (:endDateUTC IS NULL OR localMatchDateUTC <= :endDateUTC)
+  AND (:startDateUTC IS NULL OR localMatchDateUTC >= :startDateUTC)
+  AND (:eventId IS NULL OR localEventId = :eventId)
+  AND (:stageId IS NULL OR localMatchStageId = :stageId)
 ORDER BY localMatchDateUTC DESC;
-
-selectMatchesByEventStage:
-SELECT *
-FROM matchWithEventAndTeams
-WHERE localEventId = :eventId AND localMatchStageId = :stageId;
-
-selectUpcoming:
-SELECT *
-FROM matchWithEventAndTeams
-WHERE localMatchDateUTC >= DATE()
-ORDER BY localMatchDateUTC ASC;
 
 selectById:
 SELECT *

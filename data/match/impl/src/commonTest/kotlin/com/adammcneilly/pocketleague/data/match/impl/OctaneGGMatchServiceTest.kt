@@ -26,7 +26,9 @@ class OctaneGGMatchServiceTest {
                 apiClient = client,
             )
 
-            val request = MatchListRequest.Id(Match.Id("123"))
+            val request = MatchListRequest(
+                matchId = Match.Id("123"),
+            )
             val response = service.fetch(request).getOrThrow().first()
 
             assertThat(response.blueTeam.team.name).isEqualTo("Karmine Corp")
@@ -49,7 +51,7 @@ class OctaneGGMatchServiceTest {
                 apiClient = client,
             )
 
-            val request = MatchListRequest.DateRange(
+            val request = MatchListRequest(
                 startDateUTC = "startDateUTC",
                 endDateUTC = "endDateUTC",
             )
@@ -76,7 +78,7 @@ class OctaneGGMatchServiceTest {
                 apiClient = client,
             )
 
-            val request = MatchListRequest.EventStage(
+            val request = MatchListRequest(
                 eventId = Event.Id("eventId"),
                 stageId = EventStage.Id("stageId"),
             )

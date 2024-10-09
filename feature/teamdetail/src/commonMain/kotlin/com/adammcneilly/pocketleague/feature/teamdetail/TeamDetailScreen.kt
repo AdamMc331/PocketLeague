@@ -1,8 +1,11 @@
 package com.adammcneilly.pocketleague.feature.teamdetail
 
+import com.adammcneilly.pocketleague.core.datetime.TimeProvider
+import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.PlayerDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.TeamOverviewDisplayModel
 import com.adammcneilly.pocketleague.core.feature.Parcelize
+import com.adammcneilly.pocketleague.data.match.api.MatchRepository
 import com.adammcneilly.pocketleague.data.player.PlayerRepository
 import com.adammcneilly.pocketleague.data.team.TeamRepository
 import com.slack.circuit.runtime.CircuitContext
@@ -29,6 +32,7 @@ data class TeamDetailScreen(
     data class State(
         val team: TeamOverviewDisplayModel,
         val roster: List<PlayerDisplayModel>,
+        val recentMatches: List<MatchDetailDisplayModel>,
         val eventSink: (Event) -> Unit,
     ) : CircuitUiState
 
@@ -66,6 +70,8 @@ data class TeamDetailScreen(
     object PresenterFactory : Presenter.Factory, KoinComponent {
         private val teamRepository: TeamRepository by inject()
         private val playerRepository: PlayerRepository by inject()
+        private val matchRepository: MatchRepository by inject()
+        private val timeProvider: TimeProvider by inject()
 
         override fun create(
             screen: Screen,
@@ -78,6 +84,8 @@ data class TeamDetailScreen(
                         teamId = screen.teamId,
                         teamRepository = teamRepository,
                         playerRepository = playerRepository,
+                        matchRepository = matchRepository,
+                        timeProvider = timeProvider,
                     )
                 }
 

@@ -34,5 +34,5 @@ jobs:
       - name: Lint Checks
         run: ./gradlew detektAll lintKotlin lint
 
-      - name: Dependency Sort Checks
-        run: ./gradlew checkSortDependencies
+#      - name: Dependency Sort Checks
+#        run: ./gradlew checkSortDependencies

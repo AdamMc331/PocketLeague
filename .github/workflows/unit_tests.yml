@@ -26,5 +26,10 @@ jobs:
           # Only write to the cache for builds on the 'development' branch
           cache-read-only: ${{ github.ref != 'refs/heads/development' }}
 
+      - name: Generate local.properties
+        env:
+          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+        run: echo $LOCAL_PROPERTIES > ./local.properties
+
       - name: Run Tests
         run: ./gradlew test

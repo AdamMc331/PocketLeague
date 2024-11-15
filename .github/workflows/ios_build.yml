@@ -20,6 +20,11 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
+      - name: Generate local.properties
+        env:
+          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+        run: echo $LOCAL_PROPERTIES > ./local.properties
+
       - name: Run tests
         run: ./gradlew :shared:iosX64Test
 

@@ -1,4 +1,4 @@
-name: Paparazzi Tests
+name: Android Build
 
 # This will cancel any in progress workflows for the same PR, if
 # multiple pushes happen in quick succession.
@@ -9,7 +9,7 @@ concurrency:
 on: pull_request
 
 jobs:
-  paparazzi-tests:
+  android-build:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
@@ -28,8 +28,10 @@ jobs:
 
       - name: Generate local.properties
         env:
-          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+           LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
-      - name: Run Tests
-        run: ./gradlew verifyPaparazziDebug
+      # assembleDebug is used to improve build times by only building
+      # the debug Android artifacts. https://touchlab.co/touchlab-build-only-what-you-need
+      - name: Build Project
+        run: ./gradlew assembleDebug

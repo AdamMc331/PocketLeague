@@ -1,4 +1,4 @@
-name: Paparazzi Tests
+name: iOS Build
 
 # This will cancel any in progress workflows for the same PR, if
 # multiple pushes happen in quick succession.
@@ -9,7 +9,7 @@ concurrency:
 on: pull_request
 
 jobs:
-  paparazzi-tests:
+  ios-build:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
@@ -20,16 +20,22 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
-        with:
-          # Only write to the cache for builds on the 'development' branch
-          cache-read-only: ${{ github.ref != 'refs/heads/development' }}
-
       - name: Generate local.properties
         env:
           LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
-      - name: Run Tests
-        run: ./gradlew verifyPaparazziDebug
+      - name: Run tests
+        run: ./gradlew :shared:iosX64Test
+
+      - name: Build
+        uses: sersoft-gmbh/xcodebuild-action@v3
+        with:
+          project: iosApp/templateIOS.xcodeproj
+          scheme: templateIOS
+          destination: name=iPhone 8
+          sdk: iphoneos
+          configuration: Debug
+          action: build
+          use-xcpretty: false
+          build-settings: CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO

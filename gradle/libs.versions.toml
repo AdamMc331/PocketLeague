@@ -16,6 +16,7 @@ composeCompiler = "1.5.0"
 detektGradlePlugin = "1.23.6"
 espresso = "3.6.1"
 glance = "1.1.0"
+gradleVersionsPlugin = "0.51.0"
 jsoup = "1.18.1"
 junit = "4.13.2"
 kmpCompose = "1.6.11"
@@ -127,6 +128,7 @@ ktor-client = [
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
+benmanes-versions = { id = "com.github.ben-manes.versions", version.ref = "gradleVersionsPlugin" }
 cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

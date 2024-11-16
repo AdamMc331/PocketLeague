@@ -1,14 +1,16 @@
 name: Unit Tests
 
-on:
-  push:
-    branches:
-      - development
-  pull_request:
+# This will cancel any in progress workflows for the same PR, if
+# multiple pushes happen in quick succession.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on: pull_request
 
 jobs:
   unit-tests:
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
 
@@ -29,7 +31,5 @@ jobs:
           LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
-      - name: Build Project
-        run: |
-          ./gradlew allTests
-          ./gradlew android:app:test
+      - name: Run Tests
+        run: ./gradlew test

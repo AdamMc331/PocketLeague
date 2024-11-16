@@ -44,6 +44,7 @@ buildscript {
 }
 
 apply(from = "buildscripts/githooks.gradle")
+apply(from = "buildscripts/versionsplugin.gradle")
 
 allprojects {
     repositories {
@@ -97,6 +98,7 @@ afterEvaluate {
 plugins {
     id("io.gitlab.arturbosch.detekt").version(libs.versions.detektGradlePlugin.get())
     alias(libs.plugins.androidApplication) apply false
+    alias(libs.plugins.benmanes.versions).apply(false)
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.kotlinAndroid) apply false
     alias(libs.plugins.kotlin.compose) apply false

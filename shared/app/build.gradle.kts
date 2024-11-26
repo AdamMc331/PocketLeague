@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.kotlin.plugin.parcelize")
     alias(libs.plugins.compose.compiler)
@@ -20,6 +19,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "shared"
             isStatic = false
+            linkerOpts.add("-lsqlite3")
         }
     }
 

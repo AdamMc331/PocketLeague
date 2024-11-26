@@ -26,13 +26,13 @@ jobs:
         run: echo $LOCAL_PROPERTIES > ./local.properties
 
       - name: Run tests
-        run: ./gradlew :shared:iosX64Test
+        run: ./gradlew :shared:app:iosX64Test
 
       - name: Build
         uses: sersoft-gmbh/xcodebuild-action@v3
         with:
-          project: iosApp/templateIOS.xcodeproj
-          scheme: templateIOS
+          project: iosApp/PocketLeagueIOS.xcodeproj
+          scheme: PocketLeagueIOS
           destination: name=iPhone 8
           sdk: iphoneos
           configuration: Debug

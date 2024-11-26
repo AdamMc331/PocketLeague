@@ -1,13 +1,13 @@
 //
-//  pocketLeagueIosUITestsLaunchTests.swift
-//  pocketLeagueIosUITests
+//  PocketLeagueIOSUITestsLaunchTests.swift
+//  PocketLeagueIOSUITests
 //
-//  Created by Adam McNeilly on 7/6/23.
+//  Created by Adam McNeilly on 9/24/24.
 //
 
 import XCTest
 
-final class pocketLeagueIosUITestsLaunchTests: XCTestCase {
+final class PocketLeagueIOSUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

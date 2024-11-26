@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  pocketLeagueIos
+//  PocketLeagueIOS
 //
-//  Created by Adam McNeilly on 7/6/23.
+//  Created by Adam McNeilly on 9/24/24.
 //
 
 import shared
@@ -19,12 +19,10 @@ struct ComposeView: UIViewControllerRepresentable {
 struct ContentView: View {
     var body: some View {
         ComposeView()
-                .ignoresSafeArea(.all, edges: .bottom) // Compose has own keyboard handler
+                .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }

@@ -1,13 +1,13 @@
 //
-//  pocketLeagueIosUITests.swift
-//  pocketLeagueIosUITests
+//  PocketLeagueIOSUITests.swift
+//  PocketLeagueIOSUITests
 //
-//  Created by Adam McNeilly on 7/6/23.
+//  Created by Adam McNeilly on 9/24/24.
 //
 
 import XCTest
 
-final class pocketLeagueIosUITests: XCTestCase {
+final class PocketLeagueIOSUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

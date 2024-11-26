@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import com.slack.circuit.backstack.SaveableBackStack
 import com.slack.circuit.foundation.rememberCircuitNavigator
 import com.slack.circuit.runtime.Navigator
+import com.slack.circuit.runtime.screen.PopResult
 
 /**
  * Provide an implementation of [Navigator] for the Android platform.
@@ -11,7 +12,7 @@ import com.slack.circuit.runtime.Navigator
 @Composable
 actual fun provideCircuitNavigator(
     backStack: SaveableBackStack,
-    onRootPop: () -> Unit,
+    onRootPop: (PopResult?) -> Unit,
 ): Navigator {
     return rememberCircuitNavigator(
         backStack = backStack,

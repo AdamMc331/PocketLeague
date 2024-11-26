@@ -1,16 +1,15 @@
 //
-//  pocketLeagueIosApp.swift
-//  pocketLeagueIos
+//  PocketLeagueIOSApp.swift
+//  PocketLeagueIOS
 //
-//  Created by Adam McNeilly on 7/6/23.
+//  Created by Adam McNeilly on 9/24/24.
 //
 
 import shared
 import SwiftUI
 
 @main
-struct pocketLeagueIosApp: App {
-    
+struct PocketLeagueIOSApp: App {
     init() {
         KoinInitializer_iosKt.doInitKoinIos()
     }

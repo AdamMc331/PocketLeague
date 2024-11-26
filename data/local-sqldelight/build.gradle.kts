@@ -8,6 +8,12 @@ kotlin {
     androidTarget()
     jvm()
 
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+    )
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -34,6 +40,9 @@ kotlin {
             dependencies {
                 implementation(libs.square.sqldelight.sqlite.driver)
             }
+        }
+        iosMain.dependencies {
+            implementation(libs.square.sqldelight.native.driver)
         }
     }
 }

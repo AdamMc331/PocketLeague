@@ -12,8 +12,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.MatchDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.data.event.api.EventListRequest
-import com.adammcneilly.pocketleague.data.event.api.EventRepository
 import com.adammcneilly.pocketleague.feature.eventdetail.EventDetailScreen
 import com.adammcneilly.pocketleague.shared.app.match.MatchDetailScreen
 import com.slack.circuit.runtime.Navigator
@@ -30,7 +28,8 @@ private const val PLACEHOLDER_LIST_COUNT = 3
  */
 class FeedPresenter(
     private val getPastWeeksMatchesUseCase: GetPastWeeksMatchesUseCase,
-    private val eventRepository: EventRepository,
+    private val getOngoingEventsUseCase: GetOngoingEventsUseCase,
+    private val getUpcomingEventsUseCase: GetUpcomingEventsUseCase,
     private val timeProvider: TimeProvider,
     private val navigator: Navigator,
 ) : Presenter<FeedScreen.State> {
@@ -100,12 +99,8 @@ class FeedPresenter(
             }
 
     private fun observeOngoingEvents(): Flow<List<EventGroupDisplayModel>> {
-        val request = EventListRequest.OnDate(
-            dateUtc = timeProvider.now(),
-        )
-
-        return eventRepository
-            .stream(request)
+        return getOngoingEventsUseCase
+            .invoke()
             .map { eventList ->
                 eventList.map(Event::toSummaryDisplayModel)
             }
@@ -113,12 +108,8 @@ class FeedPresenter(
     }
 
     private fun observeUpcomingEvents(): Flow<List<EventGroupDisplayModel>> {
-        val request = EventListRequest.AfterDate(
-            dateUtc = timeProvider.now(),
-        )
-
-        return eventRepository
-            .stream(request)
+        return getUpcomingEventsUseCase
+            .invoke()
             .map { eventList ->
                 eventList.map(Event::toSummaryDisplayModel)
             }

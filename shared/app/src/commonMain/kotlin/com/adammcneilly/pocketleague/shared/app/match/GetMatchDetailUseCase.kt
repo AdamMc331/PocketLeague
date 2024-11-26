@@ -17,6 +17,9 @@ class GetMatchDetailUseCase(
     private val matchRepository: MatchRepository,
     private val timeProvider: TimeProvider,
 ) {
+    /**
+     * @see [GetMatchDetailUseCase]
+     */
     fun invoke(
         matchId: String,
     ): Flow<MatchDetailDisplayModel> {

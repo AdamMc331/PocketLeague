@@ -16,25 +16,25 @@ class FakeTeamRepository : TeamRepository {
     var activeTeams: List<Team> = emptyList()
     var activeTeamsRequestCount: Int = 0
 
-    private val _insertedTeams: MutableList<Team> = mutableListOf()
+    private val mutableInsertedTeams: MutableList<Team> = mutableListOf()
 
-    private val _updatedFavorites: MutableMap<String, Boolean> = mutableMapOf()
+    private val mutableUpdatedFavorites: MutableMap<String, Boolean> = mutableMapOf()
 
     fun verifyFavoriteStatus(
         teamId: String,
         expectedIsFavorite: Boolean,
     ) {
-        require(_updatedFavorites[teamId] == expectedIsFavorite)
+        require(mutableUpdatedFavorites[teamId] == expectedIsFavorite)
     }
 
     fun verifyFavoriteStatusNotUpdated(
         teamId: String,
     ) {
-        require(_updatedFavorites[teamId] == null)
+        require(mutableUpdatedFavorites[teamId] == null)
     }
 
     val insertedTeams: List<Team>
-        get() = _insertedTeams.toList()
+        get() = mutableInsertedTeams.toList()
 
     override fun getFavoriteTeams(): Flow<List<Team>> {
         favoriteTeamsRequestCount++
@@ -49,14 +49,14 @@ class FakeTeamRepository : TeamRepository {
     override suspend fun insertTeams(
         teams: List<Team>,
     ) {
-        this._insertedTeams.addAll(teams)
+        this.mutableInsertedTeams.addAll(teams)
     }
 
     override suspend fun updateIsFavorite(
         teamId: String,
         isFavorite: Boolean,
     ) {
-        _updatedFavorites[teamId] = isFavorite
+        mutableUpdatedFavorites[teamId] = isFavorite
     }
 
     override fun getTeamById(

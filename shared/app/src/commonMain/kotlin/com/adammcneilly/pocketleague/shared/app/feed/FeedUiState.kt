@@ -11,6 +11,10 @@ data class FeedUiState(
     companion object {
         private const val PLACEHOLDER_LIST_COUNT = 3
 
+        /**
+         * Returns a default instance of [FeedUiState] where all display models are set
+         * to placeholders to display during a default loading state.
+         */
         fun placeholderState(): FeedUiState {
             val recentMatches = List(PLACEHOLDER_LIST_COUNT) {
                 MatchDetailDisplayModel.placeholder

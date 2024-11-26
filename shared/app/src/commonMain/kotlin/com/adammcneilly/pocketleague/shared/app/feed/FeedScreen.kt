@@ -93,11 +93,19 @@ object FeedScreen : Screen {
     object PresenterFactory : Presenter.Factory, KoinComponent {
         private val timeProvider: TimeProvider by inject()
         private val matchRepository: MatchRepository by inject()
+        private val eventRepository: EventRepository by inject()
         private val getPastWeeksMatchesUseCase = GetPastWeeksMatchesUseCase(
             timeProvider = timeProvider,
             matchRepository = matchRepository,
         )
-        private val eventRepository: EventRepository by inject()
+        private val getOngoingEventsUseCase = GetOngoingEventsUseCase(
+            eventRepository = eventRepository,
+            timeProvider = timeProvider,
+        )
+        private val getUpcomingEventsUseCase = GetUpcomingEventsUseCase(
+            eventRepository = eventRepository,
+            timeProvider = timeProvider,
+        )
 
         override fun create(
             screen: Screen,
@@ -107,7 +115,8 @@ object FeedScreen : Screen {
             return when (screen) {
                 FeedScreen -> FeedPresenter(
                     getPastWeeksMatchesUseCase = getPastWeeksMatchesUseCase,
-                    eventRepository = eventRepository,
+                    getOngoingEventsUseCase = getOngoingEventsUseCase,
+                    getUpcomingEventsUseCase = getUpcomingEventsUseCase,
                     timeProvider = timeProvider,
                     navigator = navigator,
                 )

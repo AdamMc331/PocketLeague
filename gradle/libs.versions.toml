@@ -28,7 +28,7 @@ kotlinxDatetime = "0.6.1"
 kotlinxSerialization = "1.7.3"
 ktlint = "1.0.1"
 ktor = "3.0.1"
-lifecycle = "2.8.7"
+lifecycle = "2.8.4"
 material = "1.12.0"
 minSdk = "23"
 okio = "3.9.1"
@@ -54,8 +54,7 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-glance = { module = "androidx.glance:glance", version.ref = "glance" }
 androidx-glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glance" }
-androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycle" }
-androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
 androidx-palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "palette" }
 androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 androidx-test-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test" }

@@ -31,8 +31,8 @@ jobs:
       - name: Build
         uses: sersoft-gmbh/xcodebuild-action@v3
         with:
-          project: iosApp/pocketLeagueIos.xcodeproj
-          scheme: pocketLeagueIos
+          project: iosApp/PocketLeagueIOS.xcodeproj
+          scheme: PocketLeagueIos
           destination: name=iPhone 8
           sdk: iphoneos
           configuration: Debug

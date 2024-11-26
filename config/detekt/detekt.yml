@@ -62,8 +62,10 @@ comments:
   EndOfSentenceFormat:
     active: false
     endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
+  # Currently this fails on Companion objects, but should be fixed in a future version:
+  # https://github.com/detekt/detekt/issues/7217
   UndocumentedPublicClass:
-    active: true
+    active: false
     searchInNestedClass: true
     searchInInnerClass: true
     searchInInnerObject: true

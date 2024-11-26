@@ -90,7 +90,7 @@ class FeedPresenter(
         }
     }
 
-    private fun observePastWeeksMatches() =
+    private fun observePastWeeksMatches(): Flow<List<MatchDetailDisplayModel>> =
         getPastWeeksMatchesUseCase
             .invoke()
             .map { matchList ->

@@ -7,9 +7,6 @@ import com.adammcneilly.pocketleague.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toDetailDisplayModel
 import com.adammcneilly.pocketleague.core.displaymodels.toSummaryDisplayModel
 import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.data.event.api.EventListRequest
-import com.adammcneilly.pocketleague.data.event.api.EventRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
@@ -18,7 +15,8 @@ import kotlinx.coroutines.launch
 
 class FeedViewModel(
     private val getPastWeeksMatchesUseCase: GetPastWeeksMatchesUseCase,
-    private val eventRepository: EventRepository,
+    private val getOngoingEventsUseCase: GetOngoingEventsUseCase,
+    private val getUpcomingEventsUseCase: GetUpcomingEventsUseCase,
     private val timeProvider: TimeProvider,
 ) : ViewModel() {
     private val mutableState = MutableStateFlow(FeedUiState.placeholderState())
@@ -51,11 +49,12 @@ class FeedViewModel(
     }
 
     private fun observeOngoingEvents() {
-        val request = EventListRequest.OnDate(
-            dateUtc = timeProvider.now(),
-        )
-
-        val eventFlow = eventListRequestFlow(request)
+        val eventFlow = getOngoingEventsUseCase
+            .invoke()
+            .map { eventList ->
+                eventList.map(Event::toSummaryDisplayModel)
+            }
+            .map(EventGroupDisplayModel.Companion::mapFromEventList)
 
         viewModelScope.launch {
             eventFlow.collect { eventList ->
@@ -69,11 +68,12 @@ class FeedViewModel(
     }
 
     private fun observeUpcomingEvents() {
-        val request = EventListRequest.AfterDate(
-            dateUtc = timeProvider.now(),
-        )
-
-        val eventFlow = eventListRequestFlow(request)
+        val eventFlow = getUpcomingEventsUseCase
+            .invoke()
+            .map { eventList ->
+                eventList.map(Event::toSummaryDisplayModel)
+            }
+            .map(EventGroupDisplayModel.Companion::mapFromEventList)
 
         viewModelScope.launch {
             eventFlow.collect { eventList ->
@@ -84,16 +84,5 @@ class FeedViewModel(
                 }
             }
         }
-    }
-
-    private fun eventListRequestFlow(
-        request: EventListRequest,
-    ): Flow<List<EventGroupDisplayModel>> {
-        return eventRepository
-            .stream(request)
-            .map { eventList ->
-                eventList.map(Event::toSummaryDisplayModel)
-            }
-            .map(EventGroupDisplayModel.Companion::mapFromEventList)
     }
 }

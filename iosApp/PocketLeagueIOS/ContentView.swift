@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ComposeView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        MainViewControllerKt.MainViewController()
+        PocketLeagueAppViewController_iosKt.pocketLeagueAppViewController()
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}

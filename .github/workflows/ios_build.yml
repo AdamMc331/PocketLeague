@@ -32,7 +32,7 @@ jobs:
         uses: sersoft-gmbh/xcodebuild-action@v3
         with:
           project: iosApp/PocketLeagueIOS.xcodeproj
-          scheme: PocketLeagueIos
+          scheme: PocketLeagueIOS
           destination: name=iPhone 8
           sdk: iphoneos
           configuration: Debug

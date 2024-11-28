@@ -44,6 +44,7 @@ include(":feature:debugmenu")
 include(":feature:eventdetail")
 include(":feature:teamdetail")
 
+include(":shared:app")
 include(":shared:app-legacy")
 include(":shared:design-system")
 include(":shared:ui")

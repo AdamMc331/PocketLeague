@@ -1,30 +1,28 @@
 package com.adammcneilly.pocketleague.shared.app.core.currency
 
+import com.varabyte.truthish.assertThat
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class CurrencyFormatterTest {
     private val currencyFormatter = currencyFormatter()
 
     @Test
     fun formatUSD() {
-        assertEquals(
-            expected = "$10.00",
-            actual = currencyFormatter.formatCurrency(
-                amount = 10.0,
-                currency = "USD",
-            ),
+        val formatted = currencyFormatter.formatCurrency(
+            amount = 10.0,
+            currency = "USD",
         )
+
+        assertThat(formatted).isEqualTo("$10.00")
     }
 
     @Test
     fun formatEUR() {
-        assertEquals(
-            expected = "€10.00",
-            actual = currencyFormatter.formatCurrency(
-                amount = 10.0,
-                currency = "EUR",
-            ),
+        val formatted = currencyFormatter.formatCurrency(
+            amount = 10.0,
+            currency = "EUR",
         )
+
+        assertThat(formatted).isEqualTo("€10.00")
     }
 }

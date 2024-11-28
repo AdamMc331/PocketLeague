@@ -72,7 +72,12 @@ comments:
     searchInInnerInterface: true
   UndocumentedPublicFunction:
     active: true
-    excludes: ['**/com/adammcneilly/pocketleague/data/local/sqldelight/mappers/**','**/com/adammcneilly/pocketleague/baselineprofile**']
+    excludes: [
+      '**/com/adammcneilly/pocketleague/data/local/sqldelight/mappers/**',
+      '**/com/adammcneilly/pocketleague/baselineprofile**',
+      '**/test/**',
+      '**/androidUnitTest/**'
+    ]
   UndocumentedPublicProperty:
     active: false
   OutdatedDocumentation:

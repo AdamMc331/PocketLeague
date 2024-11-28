@@ -3,8 +3,8 @@ package com.adammcneilly.pocketleague.shared.app.currency
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class AndroidCurrencyFormatterTest {
-    private val currencyFormatter = AndroidCurrencyFormatter()
+class CurrencyFormatterTest {
+    private val currencyFormatter = currencyFormatter()
 
     @Test
     fun formatUSD() {

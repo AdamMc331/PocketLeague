@@ -13,7 +13,7 @@ actual fun currencyFormatter(): CurrencyFormatter {
 /**
  * A concrete implementation of [CurrencyFormatter] to use on Android platforms.
  */
-class AndroidCurrencyFormatter : CurrencyFormatter {
+private class AndroidCurrencyFormatter : CurrencyFormatter {
     override fun formatCurrency(
         amount: Double,
         currency: String,

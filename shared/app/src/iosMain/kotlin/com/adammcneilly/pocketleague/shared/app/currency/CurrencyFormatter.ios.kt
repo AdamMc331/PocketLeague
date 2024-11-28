@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.shared.app.currency
 
 import platform.Foundation.NSNumber
 import platform.Foundation.NSNumberFormatter
+import platform.Foundation.NSNumberFormatterCurrencyStyle
 
 /**
  * Returns the [CurrencyFormatter] instance for this target.
@@ -19,8 +20,8 @@ private class IOSCurrencyFormatter : CurrencyFormatter {
         currency: String,
     ): String? {
         val formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterCurrencyStyle
         formatter.currencyCode = currency
-        formatter.currencySymbol = "$"
         return formatter.stringFromNumber(NSNumber(amount))
     }
 }

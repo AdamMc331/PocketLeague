@@ -29,10 +29,12 @@ kotlin {
             implementation(compose.material3)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.koin.core)
+            implementation(libs.kotlinx.datetime)
         }
 
         commonTest.dependencies {
             implementation(kotlin("test"))
+            implementation(libs.varabyte.truthish)
         }
     }
 }

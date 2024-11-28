@@ -1,5 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.core.datetime
 
+import kotlinx.datetime.Instant
+
 /**
  * Creates an implementation of [DateTimeFormatter] for a specific platform.
  */
@@ -10,9 +12,9 @@ expect fun dateTimeFormatter(): DateTimeFormatter
  */
 interface DateTimeFormatter {
     /**
-     * Given an [instant], treat it as a [LocalDateTime] and convert it into
-     * a user friendly string matching the supplied [formatPattern]. We'll format it using
-     * the supplied [timeZone] as well.
+     * Given a [utcString], treat it as a date and convert it into
+     * a user friendly string matching the supplied [formatPattern].
+     * We'll format it using the supplied [timeZone] as well.
      */
     fun formatUTCString(
         utcString: String,
@@ -24,7 +26,6 @@ interface DateTimeFormatter {
      * Given a number of [extraSeconds] that occurred in a game, convert it to a string
      * that represents the extra time spent in a game.
      */
-    @Suppress("ImplicitDefaultLocale")
     fun formatExtraTime(
         extraSeconds: Int,
     ): String {
@@ -62,7 +63,7 @@ interface DateTimeFormatter {
 
         val instant = Instant.parse(utcString)
 
-        val now = timeProvider.now().toInstant()
+        val now = Instant.parse(timeProvider.now())
 
         val duration = now.minus(instant)
 

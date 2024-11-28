@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.core.currency
+package com.adammcneilly.pocketleague.shared.app.currency
 
 /**
  * Create a platform specific implementation of a [CurrencyFormatter].
@@ -8,7 +8,6 @@ expect fun currencyFormatter(): CurrencyFormatter
 /**
  * Formatting helpers for converting a number to its currency string.
  */
-@Deprecated("We are moving off a multi-module structure. Use the new shared:app module.")
 interface CurrencyFormatter {
     /**
      * Consumes currency information and converts them to a string.

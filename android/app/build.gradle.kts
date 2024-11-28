@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.shared.app)
+    implementation(projects.shared.appLegacy)
     implementation(projects.shared.ui)
     implementation(compose.foundation)
     implementation(compose.material3)

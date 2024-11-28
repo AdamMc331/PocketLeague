@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app.currency
+package com.adammcneilly.pocketleague.shared.app.core.currency
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -26,6 +26,7 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.cketti.codepoints)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.datetime)
         }

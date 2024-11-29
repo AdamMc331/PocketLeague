@@ -1,9 +1,9 @@
 package com.adammcneilly.pocketleague.shared.app.core.models
 
 /**
- * Represents a region that a team resides in.
+ * Represents a region that an event takes place in, or that a team resides in.
  */
-enum class TeamRegion(
+enum class Region(
     val liquipediaRegionKey: String,
 ) {
     NA(liquipediaRegionKey = "North America"),

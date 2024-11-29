@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.models.EventRegion
-import com.adammcneilly.pocketleague.core.models.Team
+import com.adammcneilly.pocketleague.shared.app.core.models.Region
+import com.adammcneilly.pocketleague.shared.app.core.models.Team
 
 /**
  * Displays overview information about a team in a user friendly fashion.
@@ -10,33 +10,32 @@ data class TeamOverviewDisplayModel(
     val teamId: String,
     val name: String,
     val imageUrl: ThemedImageURL,
-    val region: EventRegionDisplayModel,
+    val region: RegionDisplayModel,
     val isPlaceholder: Boolean = false,
     val isFavorite: Boolean = false,
 ) {
+    constructor(team: Team) : this(
+        teamId = team.id,
+        name = team.name,
+        imageUrl = team.themedImageUrl(),
+        isFavorite = team.isFavorite,
+        region = RegionDisplayModel(team.region),
+    )
+
     companion object {
         val placeholder = TeamOverviewDisplayModel(
             teamId = "",
             name = "",
             imageUrl = ThemedImageURL(),
             isPlaceholder = true,
-            region = EventRegion.Unknown.toDisplayModel(),
+            region = RegionDisplayModel(Region.Unknown),
         )
     }
 }
 
-/**
- * Converts a [Team] to a [TeamOverviewDisplayModel].
- */
-fun Team.toOverviewDisplayModel(): TeamOverviewDisplayModel {
-    return TeamOverviewDisplayModel(
-        teamId = this.id,
-        name = this.name,
-        imageUrl = ThemedImageURL(
-            lightThemeImageURL = this.lightThemeImageURL,
-            darkThemeImageURL = this.darkThemeImageURL,
-        ),
-        isFavorite = this.isFavorite,
-        region = this.region.toDisplayModel(),
+private fun Team.themedImageUrl(): ThemedImageURL {
+    return ThemedImageURL(
+        lightThemeImageURL = this.lightThemeImageURL,
+        darkThemeImageURL = this.darkThemeImageURL,
     )
 }

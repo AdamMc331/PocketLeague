@@ -1,10 +1,10 @@
 package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.datetime.TimeProvider
-import com.adammcneilly.pocketleague.core.datetime.TimeZone
-import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
-import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.core.models.StageRound
+import com.adammcneilly.pocketleague.shared.app.core.datetime.DateTimeFormatter
+import com.adammcneilly.pocketleague.shared.app.core.datetime.TimeProvider
+import com.adammcneilly.pocketleague.shared.app.core.datetime.TimeZone
+import com.adammcneilly.pocketleague.shared.app.core.models.Match
+import com.adammcneilly.pocketleague.shared.app.core.models.StageRound
 
 private const val MATCH_DATE_FORMAT = "MMM dd, yyyy"
 private const val MATCH_TIME_FORMAT = "HH:mm"
@@ -13,7 +13,7 @@ private const val MATCH_TIME_FORMAT = "HH:mm"
  * User friendly presentation of detailed info about a match between two teams.
  */
 data class MatchDetailDisplayModel(
-    val matchId: Match.Id,
+    val matchId: String,
     val localDate: String,
     val localTime: String,
     val eventName: String,
@@ -25,9 +25,26 @@ data class MatchDetailDisplayModel(
     val isLive: Boolean = false,
     val isPlaceholder: Boolean = false,
 ) {
+    constructor(
+        match: Match,
+        dateTimeFormatter: DateTimeFormatter,
+        timeProvider: TimeProvider,
+    ) : this(
+        matchId = match.id,
+        orangeTeamResult = MatchTeamResultDisplayModel(match.orangeTeam),
+        blueTeamResult = MatchTeamResultDisplayModel(match.blueTeam),
+        localDate = match.dateUTC?.toMatchString(dateTimeFormatter).orEmpty(),
+        localTime = match.dateUTC?.toMatchString(dateTimeFormatter).orEmpty(),
+        eventName = match.event.name,
+        stageName = match.stage.name,
+        relativeDateTime = match.dateUTC?.toRelativeTimestamp(dateTimeFormatter, timeProvider).orEmpty(),
+        isLive = false,
+        round = match.round,
+    )
+
     companion object {
         val placeholder = MatchDetailDisplayModel(
-            matchId = Match.Id(""),
+            matchId = "",
             localDate = "",
             localTime = "",
             eventName = "",
@@ -42,38 +59,22 @@ data class MatchDetailDisplayModel(
     }
 }
 
-/**
- * Converts a [Match] to a [MatchDetailDisplayModel].
- */
-fun Match.toDetailDisplayModel(
-    timeProvider: TimeProvider,
-): MatchDetailDisplayModel {
-    val dateTimeFormatter = dateTimeFormatter()
+private fun String.toMatchString(
+    dateTimeFormatter: DateTimeFormatter,
+): String? {
+    return dateTimeFormatter.formatUTCString(
+        utcString = this,
+        formatPattern = MATCH_DATE_FORMAT,
+        timeZone = TimeZone.SYSTEM_DEFAULT,
+    )
+}
 
-    return MatchDetailDisplayModel(
-        matchId = this.id,
-        orangeTeamResult = this.orangeTeam.toDisplayModel(),
-        blueTeamResult = this.blueTeam.toDisplayModel(),
-        localDate = this.dateUTC?.let { date ->
-            dateTimeFormatter.formatUTCString(
-                utcString = date,
-                formatPattern = MATCH_DATE_FORMAT,
-                timeZone = TimeZone.SYSTEM_DEFAULT,
-            )
-        }.orEmpty(),
-        localTime = this.dateUTC?.let { date ->
-            dateTimeFormatter.formatUTCString(
-                utcString = date,
-                formatPattern = MATCH_TIME_FORMAT,
-                timeZone = TimeZone.SYSTEM_DEFAULT,
-            )
-        }.orEmpty(),
-        eventName = this.event.name,
-        stageName = this.stage.name,
-        relativeDateTime = this.dateUTC?.let { date ->
-            dateTimeFormatter.getRelativeTimestamp(date, timeProvider)
-        }.orEmpty(),
-        isLive = false,
-        round = this.round,
+private fun String.toRelativeTimestamp(
+    dateTimeFormatter: DateTimeFormatter,
+    timeProvider: TimeProvider,
+): String? {
+    return dateTimeFormatter.getRelativeTimestamp(
+        utcString = this,
+        timeProvider = timeProvider,
     )
 }

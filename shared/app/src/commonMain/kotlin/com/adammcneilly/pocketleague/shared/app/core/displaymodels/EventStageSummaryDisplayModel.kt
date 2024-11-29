@@ -1,8 +1,8 @@
 package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.datetime.TimeZone
-import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
-import com.adammcneilly.pocketleague.core.models.EventStage
+import com.adammcneilly.pocketleague.shared.app.core.datetime.DateTimeFormatter
+import com.adammcneilly.pocketleague.shared.app.core.datetime.TimeZone
+import com.adammcneilly.pocketleague.shared.app.core.models.EventStage
 
 private const val STAGE_DATE_FORMAT = "MMM dd, yyyy"
 
@@ -10,7 +10,7 @@ private const val STAGE_DATE_FORMAT = "MMM dd, yyyy"
  * Displays summary information about an [EventStage] in a user friendly fashion.
  */
 data class EventStageSummaryDisplayModel(
-    val stageId: EventStage.Id,
+    val stageId: String,
     val name: String,
     val startDate: String,
     val endDate: String,
@@ -18,9 +18,21 @@ data class EventStageSummaryDisplayModel(
     val liquipedia: String,
     val isPlaceholder: Boolean = false,
 ) {
+    constructor(
+        stage: EventStage,
+        dateTimeFormatter: DateTimeFormatter,
+    ) : this(
+        startDate = stage.startDateUTC?.toStageDate(dateTimeFormatter).orEmpty(),
+        endDate = stage.endDateUTC?.toStageDate(dateTimeFormatter).orEmpty(),
+        stageId = stage.id,
+        name = stage.name,
+        lan = stage.lan,
+        liquipedia = stage.liquipedia,
+    )
+
     companion object {
         val placeholder = EventStageSummaryDisplayModel(
-            stageId = EventStage.Id(""),
+            stageId = "",
             name = "",
             startDate = "",
             endDate = "",
@@ -40,32 +52,12 @@ data class EventStageSummaryDisplayModel(
         }
 }
 
-private fun String.
-
-/**
- * Converts an [EventStage] into an [EventStageSummaryDisplayModel].
- */
-fun EventStage.toSummaryDisplayModel(): EventStageSummaryDisplayModel {
-    val dateTimeFormatter = dateTimeFormatter()
-
-    return EventStageSummaryDisplayModel(
-        startDate = this.startDateUTC?.let { startDate ->
-            dateTimeFormatter.formatUTCString(
-                utcString = startDate,
-                formatPattern = STAGE_DATE_FORMAT,
-                timeZone = TimeZone.SYSTEM_DEFAULT,
-            )
-        }.orEmpty(),
-        endDate = this.endDateUTC?.let { endDate ->
-            dateTimeFormatter.formatUTCString(
-                utcString = endDate,
-                formatPattern = STAGE_DATE_FORMAT,
-                timeZone = TimeZone.SYSTEM_DEFAULT,
-            )
-        }.orEmpty(),
-        stageId = this.id,
-        name = this.name,
-        lan = this.lan,
-        liquipedia = this.liquipedia,
+private fun String.toStageDate(
+    dateTimeFormatter: DateTimeFormatter,
+): String? {
+    return dateTimeFormatter.formatUTCString(
+        utcString = this,
+        formatPattern = STAGE_DATE_FORMAT,
+        timeZone = TimeZone.SYSTEM_DEFAULT,
     )
 }

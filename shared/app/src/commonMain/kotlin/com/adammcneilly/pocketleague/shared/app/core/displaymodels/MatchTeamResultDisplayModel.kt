@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.models.GamePlayerResult
-import com.adammcneilly.pocketleague.core.models.MatchTeamResult
+import com.adammcneilly.pocketleague.shared.app.core.models.MatchTeamResult
 
 /**
  * User friendly explanation for how a team played during a match.
@@ -14,6 +13,14 @@ data class MatchTeamResultDisplayModel(
     val players: List<GamePlayerResultDisplayModel>,
     val isPlaceholder: Boolean = false,
 ) {
+    constructor(result: MatchTeamResult) : this(
+        team = TeamOverviewDisplayModel(result.team),
+        score = result.score,
+        winner = result.winner,
+        players = result.players.map(::GamePlayerResultDisplayModel),
+        coreStats = result.stats?.core?.let(::CoreStatsDisplayModel),
+    )
+
     companion object {
         val placeholder = MatchTeamResultDisplayModel(
             team = TeamOverviewDisplayModel.placeholder,
@@ -24,17 +31,4 @@ data class MatchTeamResultDisplayModel(
             isPlaceholder = true,
         )
     }
-}
-
-/**
- * Converts a [MatchTeamResult] to a [MatchTeamResultDisplayModel].
- */
-fun MatchTeamResult.toDisplayModel(): MatchTeamResultDisplayModel {
-    return MatchTeamResultDisplayModel(
-        team = this.team.toOverviewDisplayModel(),
-        score = this.score,
-        winner = this.winner,
-        players = this.players.map(GamePlayerResult::toDisplayModel),
-        coreStats = this.stats?.core?.toDisplayModel(),
-    )
 }

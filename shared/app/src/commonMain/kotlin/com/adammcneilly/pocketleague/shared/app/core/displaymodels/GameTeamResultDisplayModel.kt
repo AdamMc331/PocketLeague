@@ -2,6 +2,8 @@ package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
 import com.adammcneilly.pocketleague.core.models.GamePlayerResult
 import com.adammcneilly.pocketleague.core.models.GameTeamResult
+import com.adammcneilly.pocketleague.shared.app.core.models.GamePlayerResult
+import com.adammcneilly.pocketleague.shared.app.core.models.GameTeamResult
 
 /**
  * User friendly explanation of a team's performance within a game.
@@ -13,6 +15,17 @@ data class GameTeamResultDisplayModel(
     val players: List<GamePlayerResultDisplayModel>,
     val isPlaceholder: Boolean = false,
 ) {
+    constructor(result: GameTeamResult) : this(
+        team = result.team.toOverviewDisplayModel(),
+        goals = result.goals,
+        winner = result.winner,
+        players = result.players
+            .sortedByDescending { it.stats.core.score }
+            .map {
+                GamePlayerResultDisplayModel(it)
+            },
+    )
+
     companion object {
         val placeholder = GameTeamResultDisplayModel(
             team = TeamOverviewDisplayModel.placeholder,

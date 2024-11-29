@@ -1,8 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.locale.LocaleHelper
-import com.adammcneilly.pocketleague.core.locale.provideLocaleHelper
-import com.adammcneilly.pocketleague.core.models.Player
+import com.adammcneilly.pocketleague.shared.app.core.models.Player
 
 /**
  * User friendly representation of a player.
@@ -15,6 +13,14 @@ data class PlayerDisplayModel(
     val countryFlagEmojiUnicode: String,
     val isPlaceholder: Boolean = false,
 ) {
+    constructor(player: Player) : this(
+        id = player.id,
+        name = player.name,
+        tag = player.tag,
+        role = player.roleString(),
+        countryFlagEmojiUnicode = "TODO: Get Locale Helper",
+    )
+
     companion object {
         val placeholder = PlayerDisplayModel(
             id = "",
@@ -27,24 +33,10 @@ data class PlayerDisplayModel(
     }
 }
 
-/**
- * Converts a [Player] to its corresponding [PlayerDisplayModel]
- */
-fun Player.toDisplayModel(
-    localeHelper: LocaleHelper = provideLocaleHelper(),
-): PlayerDisplayModel {
-    // Maybe roles can be an enum instead of strings?
-    val role = when {
+private fun Player.roleString(): String? {
+    return when {
         this.isCoach -> "(C)"
         this.isSubstitute -> "(S)"
         else -> null
     }
-
-    return PlayerDisplayModel(
-        id = this.id,
-        name = this.name,
-        tag = this.tag,
-        role = role,
-        countryFlagEmojiUnicode = localeHelper.getFlagEmoji(countryCode),
-    )
 }

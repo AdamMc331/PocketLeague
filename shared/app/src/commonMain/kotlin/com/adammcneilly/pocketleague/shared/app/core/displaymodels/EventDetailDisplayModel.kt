@@ -1,18 +1,12 @@
 package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.datetime.TimeZone
-import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
-import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.EventRegion
-import com.adammcneilly.pocketleague.core.models.EventStage
-import com.adammcneilly.pocketleague.core.models.EventTier
+import com.adammcneilly.pocketleague.shared.app.core.currency.CurrencyFormatter
 import com.adammcneilly.pocketleague.shared.app.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.shared.app.core.datetime.TimeZone
 import com.adammcneilly.pocketleague.shared.app.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.shared.app.core.models.Event
-import com.adammcneilly.pocketleague.shared.app.core.models.EventRegion
-import com.adammcneilly.pocketleague.shared.app.core.models.EventStage
 import com.adammcneilly.pocketleague.shared.app.core.models.EventTier
+import com.adammcneilly.pocketleague.shared.app.core.models.Region
 
 private const val EVENT_DATE_FORMAT = "MMM dd, yyyy"
 
@@ -27,13 +21,39 @@ data class EventDetailDisplayModel(
     val lightThemeImageUrl: String?,
     val tier: EventTierDisplayModel,
     val mode: String,
-    val region: EventRegionDisplayModel,
+    val region: RegionDisplayModel,
     val onlineOrLAN: String,
     val prize: PrizeDisplayModel?,
     val stageSummaries: List<EventStageSummaryDisplayModel>,
     val darkThemeImageUrl: String? = lightThemeImageUrl,
     val isPlaceholder: Boolean = false,
 ) {
+    constructor(
+        event: Event,
+        dateTimeFormatter: DateTimeFormatter,
+        currencyFormatter: CurrencyFormatter,
+    ) : this(
+        startDate = event.startDateUTC?.toEventDate(dateTimeFormatter).orEmpty(),
+        endDate = event.endDateUTC?.toEventDate(dateTimeFormatter).orEmpty(),
+        name = event.name,
+        eventId = event.id,
+        stageSummaries = event.stages
+            .sortedBy { stage ->
+                stage.startDateUTC
+            }
+            .map { stage ->
+                EventStageSummaryDisplayModel(stage, dateTimeFormatter)
+            },
+        lightThemeImageUrl = event.imageURL,
+        tier = EventTierDisplayModel(event.tier),
+        region = RegionDisplayModel(event.region),
+        mode = event.mode.toEventMode(),
+        onlineOrLAN = event.lan.toLanOrOnline(),
+        prize = event.prize?.let { prize ->
+            PrizeDisplayModel(prize, currencyFormatter)
+        },
+    )
+
     companion object {
         val placeholder = EventDetailDisplayModel(
             eventId = "",
@@ -41,9 +61,9 @@ data class EventDetailDisplayModel(
             startDate = "",
             endDate = "",
             lightThemeImageUrl = null,
-            tier = EventTier.Unknown.toDisplayModel(),
+            tier = EventTierDisplayModel(EventTier.Unknown),
             mode = "",
-            region = EventRegion.Unknown.toDisplayModel(),
+            region = RegionDisplayModel(Region.Unknown),
             onlineOrLAN = "",
             prize = null,
             stageSummaries = listOf(
@@ -81,27 +101,4 @@ private fun Boolean.toLanOrOnline(): String {
     } else {
         "ONLINE"
     }
-}
-
-/**
- * Converts an [Event] into an [EventDetailDisplayModel].
- */
-fun Event.toDetailDisplayModel(): EventDetailDisplayModel {
-    val dateTimeFormatter = dateTimeFormatter()
-
-    return EventDetailDisplayModel(
-        startDate = this.startDateUTC.toEventDate(dateTimeFormatter),
-        endDate = this.endDateUTC.toEventDate(dateTimeFormatter),
-        name = this.name,
-        eventId = this.id,
-        stageSummaries = this.stages.sortedBy {
-            it.startDateUTC
-        }.map(EventStage::toSummaryDisplayModel),
-        lightThemeImageUrl = this.imageURL,
-        tier = this.tier.toDisplayModel(),
-        region = this.region.toDisplayModel(),
-        mode = this.mode.toEventMode(),
-        onlineOrLAN = this.lan.toLanOrOnline(),
-        prize = this.prize?.toDisplayModel(),
-    )
 }

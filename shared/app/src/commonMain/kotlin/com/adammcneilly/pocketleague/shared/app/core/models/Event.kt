@@ -26,7 +26,7 @@ data class Event(
     val stages: List<EventStage>,
     val tier: EventTier,
     val mode: String,
-    val region: EventRegion,
+    val region: Region,
     val lan: Boolean,
     val prize: Prize?,
 )

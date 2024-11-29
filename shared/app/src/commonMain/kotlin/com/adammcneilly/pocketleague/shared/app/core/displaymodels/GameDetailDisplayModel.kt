@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.datetime.dateTimeFormatter
-import com.adammcneilly.pocketleague.core.models.Game
+import com.adammcneilly.pocketleague.shared.app.core.datetime.DateTimeFormatter
+import com.adammcneilly.pocketleague.shared.app.core.models.Game
 
 /**
  * User friendly presentation for detailed information about a game.
@@ -14,6 +14,17 @@ data class GameDetailDisplayModel(
     val otLabel: String?,
     val isPlaceholder: Boolean = false,
 ) {
+    constructor(
+        game: Game,
+        dateTimeFormatter: DateTimeFormatter,
+    ) : this(
+        orangeTeamResult = GameTeamResultDisplayModel(game.orange),
+        blueTeamResult = GameTeamResultDisplayModel(game.blue),
+        map = game.map,
+        gameNumber = game.number.toString(),
+        otLabel = game.getOtLabel(dateTimeFormatter),
+    )
+
     companion object {
         val placeholder = GameDetailDisplayModel(
             orangeTeamResult = GameTeamResultDisplayModel.placeholder,
@@ -26,21 +37,11 @@ data class GameDetailDisplayModel(
     }
 }
 
-/**
- * Converts a [Game] to a [GameDetailDisplayModel].
- */
-fun Game.toDetailDisplayModel(): GameDetailDisplayModel {
-    val dateTimeFormatter = dateTimeFormatter()
+private fun Game.getOtLabel(
+    dateTimeFormatter: DateTimeFormatter,
+): String? {
     val extraTime = this.duration - Game.GAME_DEFAULT_DURATION_SECONDS
     val otLabel = "OT +${dateTimeFormatter.formatExtraTime(extraTime)}"
 
-    return GameDetailDisplayModel(
-        orangeTeamResult = this.orange.toDisplayModel(),
-        blueTeamResult = this.blue.toDisplayModel(),
-        map = this.map,
-        gameNumber = this.number.toString(),
-        otLabel = otLabel.takeIf {
-            extraTime != 0
-        },
-    )
+    return otLabel.takeIf { extraTime != 0 }
 }

@@ -33,11 +33,11 @@ data class MatchDetailDisplayModel(
         matchId = match.id,
         orangeTeamResult = MatchTeamResultDisplayModel(match.orangeTeam),
         blueTeamResult = MatchTeamResultDisplayModel(match.blueTeam),
-        localDate = match.dateUTC?.toMatchString(dateTimeFormatter).orEmpty(),
-        localTime = match.dateUTC?.toMatchString(dateTimeFormatter).orEmpty(),
+        localDate = match.dateUTC?.toMatchDateString(dateTimeFormatter).orEmpty(),
+        localTime = match.dateUTC?.toMatchTimeString(dateTimeFormatter).orEmpty(),
         eventName = match.event.name,
         stageName = match.stage.name,
-        relativeDateTime = match.dateUTC?.toRelativeTimestamp(dateTimeFormatter, timeProvider).orEmpty(),
+        relativeDateTime = match.dateUTC?.toRelativeTimestamp(timeProvider).orEmpty(),
         isLive = false,
         round = match.round,
     )
@@ -59,7 +59,7 @@ data class MatchDetailDisplayModel(
     }
 }
 
-private fun String.toMatchString(
+private fun String.toMatchDateString(
     dateTimeFormatter: DateTimeFormatter,
 ): String? {
     return dateTimeFormatter.formatUTCString(
@@ -69,11 +69,20 @@ private fun String.toMatchString(
     )
 }
 
-private fun String.toRelativeTimestamp(
+private fun String.toMatchTimeString(
     dateTimeFormatter: DateTimeFormatter,
+): String? {
+    return dateTimeFormatter.formatUTCString(
+        utcString = this,
+        formatPattern = MATCH_TIME_FORMAT,
+        timeZone = TimeZone.SYSTEM_DEFAULT,
+    )
+}
+
+private fun String.toRelativeTimestamp(
     timeProvider: TimeProvider,
 ): String? {
-    return dateTimeFormatter.getRelativeTimestamp(
+    return DateTimeFormatter.getRelativeTimestamp(
         utcString = this,
         timeProvider = timeProvider,
     )

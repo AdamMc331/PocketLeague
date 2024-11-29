@@ -1,8 +1,5 @@
 package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
-import com.adammcneilly.pocketleague.core.models.GamePlayerResult
-import com.adammcneilly.pocketleague.core.models.GameTeamResult
-import com.adammcneilly.pocketleague.shared.app.core.models.GamePlayerResult
 import com.adammcneilly.pocketleague.shared.app.core.models.GameTeamResult
 
 /**
@@ -16,14 +13,10 @@ data class GameTeamResultDisplayModel(
     val isPlaceholder: Boolean = false,
 ) {
     constructor(result: GameTeamResult) : this(
-        team = result.team.toOverviewDisplayModel(),
+        team = TeamOverviewDisplayModel(result.team),
         goals = result.goals,
         winner = result.winner,
-        players = result.players
-            .sortedByDescending { it.stats.core.score }
-            .map {
-                GamePlayerResultDisplayModel(it)
-            },
+        players = result.playerResults(),
     )
 
     companion object {
@@ -37,16 +30,10 @@ data class GameTeamResultDisplayModel(
     }
 }
 
-/**
- * Converts a [GameTeamResult] to a [GameTeamResultDisplayModel].
- */
-fun GameTeamResult.toDisplayModel(): GameTeamResultDisplayModel {
-    return GameTeamResultDisplayModel(
-        team = this.team.toOverviewDisplayModel(),
-        goals = this.goals,
-        winner = this.winner,
-        players = this.players
-            .sortedByDescending { it.stats.core.score }
-            .map(GamePlayerResult::toDisplayModel),
-    )
+private fun GameTeamResult.playerResults(): List<GamePlayerResultDisplayModel> {
+    return this.players
+        .sortedByDescending { player ->
+            player.stats.core.score
+        }
+        .map(::GamePlayerResultDisplayModel)
 }

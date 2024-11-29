@@ -17,10 +17,7 @@ data class PrizeDisplayModel(
         prize: Prize,
         currencyFormatter: CurrencyFormatter,
     ) : this(
-        prizeAmount = currencyFormatter.formatCurrency(
-            amount = prize.amount,
-            currency = prize.currency,
-        ).orEmpty(),
+        prizeAmount = prize.formattedCurrency(currencyFormatter).orEmpty(),
     )
 
     companion object {
@@ -29,4 +26,13 @@ data class PrizeDisplayModel(
             isPlaceholder = true,
         )
     }
+}
+
+private fun Prize.formattedCurrency(
+    currencyFormatter: CurrencyFormatter,
+): String? {
+    return currencyFormatter.formatCurrency(
+        amount = this.amount,
+        currency = this.currency,
+    )
 }

@@ -3,7 +3,6 @@ package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 import com.adammcneilly.pocketleague.shared.app.core.currency.CurrencyFormatter
 import com.adammcneilly.pocketleague.shared.app.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.shared.app.core.datetime.TimeZone
-import com.adammcneilly.pocketleague.shared.app.core.datetime.dateTimeFormatter
 import com.adammcneilly.pocketleague.shared.app.core.models.Event
 import com.adammcneilly.pocketleague.shared.app.core.models.EventTier
 import com.adammcneilly.pocketleague.shared.app.core.models.Region
@@ -37,21 +36,13 @@ data class EventDetailDisplayModel(
         endDate = event.endDateUTC?.toEventDate(dateTimeFormatter).orEmpty(),
         name = event.name,
         eventId = event.id,
-        stageSummaries = event.stages
-            .sortedBy { stage ->
-                stage.startDateUTC
-            }
-            .map { stage ->
-                EventStageSummaryDisplayModel(stage, dateTimeFormatter)
-            },
+        stageSummaries = event.stageSummaries(dateTimeFormatter),
         lightThemeImageUrl = event.imageURL,
         tier = EventTierDisplayModel(event.tier),
         region = RegionDisplayModel(event.region),
         mode = event.mode.toEventMode(),
         onlineOrLAN = event.lan.toLanOrOnline(),
-        prize = event.prize?.let { prize ->
-            PrizeDisplayModel(prize, currencyFormatter)
-        },
+        prize = event.prizeDisplayModel(currencyFormatter),
     )
 
     companion object {
@@ -100,5 +91,25 @@ private fun Boolean.toLanOrOnline(): String {
         "LAN"
     } else {
         "ONLINE"
+    }
+}
+
+private fun Event.stageSummaries(
+    dateTimeFormatter: DateTimeFormatter,
+): List<EventStageSummaryDisplayModel> {
+    return this.stages
+        .sortedBy { stage ->
+            stage.startDateUTC
+        }
+        .map { stage ->
+            EventStageSummaryDisplayModel(stage, dateTimeFormatter)
+        }
+}
+
+private fun Event.prizeDisplayModel(
+    currencyFormatter: CurrencyFormatter,
+): PrizeDisplayModel? {
+    return this.prize?.let { prize ->
+        PrizeDisplayModel(prize, currencyFormatter)
     }
 }

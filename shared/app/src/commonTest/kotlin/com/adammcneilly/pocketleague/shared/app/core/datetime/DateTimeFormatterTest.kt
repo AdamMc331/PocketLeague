@@ -7,13 +7,22 @@ class DateTimeFormatterTest {
     private val dateTimeFormatter = dateTimeFormatter()
 
     @Test
+    fun `format utc string with date and time`() {
+        val now = "2024-07-18T12:00:00Z"
+        val format = "MMM dd, yyyy HH:mm"
+
+        assertThat(dateTimeFormatter.formatUTCString(now, format, TimeZone.UTC))
+            .isEqualTo("Jul 18, 2024 12:00")
+    }
+
+    @Test
     fun `isBeforeNow returns true for past date`() {
         val pastDate = "2023-07-18T12:00:00Z"
         val now = "2024-07-18T12:00:00Z"
 
         val timeProvider = DebugTimeProvider(now)
 
-        assertThat(dateTimeFormatter.isBeforeNow(pastDate, timeProvider))
+        assertThat(DateTimeFormatter.isBeforeNow(pastDate, timeProvider))
             .isTrue()
     }
 
@@ -24,7 +33,7 @@ class DateTimeFormatterTest {
 
         val timeProvider = DebugTimeProvider(now)
 
-        assertThat(dateTimeFormatter.isBeforeNow(futureDate, timeProvider))
+        assertThat(DateTimeFormatter.isBeforeNow(futureDate, timeProvider))
             .isFalse()
     }
 
@@ -34,7 +43,7 @@ class DateTimeFormatterTest {
 
         val timeProvider = DebugTimeProvider(now)
 
-        assertThat(dateTimeFormatter.isBeforeNow(now, timeProvider))
+        assertThat(DateTimeFormatter.isBeforeNow(now, timeProvider))
             .isFalse()
     }
 
@@ -45,7 +54,7 @@ class DateTimeFormatterTest {
 
         val timeProvider = DebugTimeProvider(now)
 
-        assertThat(dateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
+        assertThat(DateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
             .isEqualTo("5m ago")
     }
 
@@ -56,7 +65,7 @@ class DateTimeFormatterTest {
 
         val timeProvider = DebugTimeProvider(now)
 
-        assertThat(dateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
+        assertThat(DateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
             .isEqualTo("6h ago")
     }
 
@@ -67,7 +76,7 @@ class DateTimeFormatterTest {
 
         val timeProvider = DebugTimeProvider(now)
 
-        assertThat(dateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
+        assertThat(DateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
             .isEqualTo("6d ago")
     }
 
@@ -78,7 +87,7 @@ class DateTimeFormatterTest {
 
         val timeProvider = DebugTimeProvider(now)
 
-        assertThat(dateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
+        assertThat(DateTimeFormatter.getRelativeTimestamp(pastDate, timeProvider))
             .isEqualTo("365d ago")
     }
 
@@ -89,7 +98,7 @@ class DateTimeFormatterTest {
 
         val timeProvider = DebugTimeProvider(now)
 
-        assertThat(dateTimeFormatter.getRelativeTimestamp(futureDate, timeProvider))
+        assertThat(DateTimeFormatter.getRelativeTimestamp(futureDate, timeProvider))
             .isNull()
     }
 }

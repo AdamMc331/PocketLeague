@@ -16,13 +16,12 @@ data class GameDetailDisplayModel(
 ) {
     constructor(
         game: Game,
-        dateTimeFormatter: DateTimeFormatter,
     ) : this(
         orangeTeamResult = GameTeamResultDisplayModel(game.orange),
         blueTeamResult = GameTeamResultDisplayModel(game.blue),
         map = game.map,
         gameNumber = game.number.toString(),
-        otLabel = game.getOtLabel(dateTimeFormatter),
+        otLabel = game.getOtLabel(),
     )
 
     companion object {
@@ -37,11 +36,9 @@ data class GameDetailDisplayModel(
     }
 }
 
-private fun Game.getOtLabel(
-    dateTimeFormatter: DateTimeFormatter,
-): String? {
+private fun Game.getOtLabel(): String? {
     val extraTime = this.duration - Game.GAME_DEFAULT_DURATION_SECONDS
-    val otLabel = "OT +${dateTimeFormatter.formatExtraTime(extraTime)}"
+    val otLabel = "OT +${DateTimeFormatter.formatExtraTime(extraTime)}"
 
     return otLabel.takeIf { extraTime != 0 }
 }

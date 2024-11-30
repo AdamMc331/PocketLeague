@@ -2,6 +2,7 @@ package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
 import com.adammcneilly.pocketleague.shared.app.core.datetime.DateTimeFormatter
 import com.adammcneilly.pocketleague.shared.app.core.datetime.TimeZone
+import com.adammcneilly.pocketleague.shared.app.core.locale.LocaleHelper
 import com.adammcneilly.pocketleague.shared.app.core.models.Event
 import com.adammcneilly.pocketleague.shared.app.core.models.EventStage
 
@@ -33,14 +34,18 @@ data class EventSummaryDisplayModel(
     val winningTeam: TeamOverviewDisplayModel? = null,
     private val location: LocationDisplayModel? = null,
 ) {
-    constructor(event: Event, dateTimeFormatter: DateTimeFormatter) : this(
+    constructor(
+        event: Event,
+        dateTimeFormatter: DateTimeFormatter,
+        localeHelper: LocaleHelper,
+    ) : this(
         name = event.name,
         imageURL = ThemedImageURL(
             lightThemeImageURL = event.imageURL,
         ),
         eventId = event.id,
         isMajor = event.lan,
-        location = event.location(),
+        location = event.location(localeHelper),
         dateRange = parseDateRange(
             formattedStartDate = event.startDateUTC?.toEventDate(dateTimeFormatter).orEmpty(),
             formattedEndDate = event.endDateUTC?.toEventDate(dateTimeFormatter).orEmpty(),
@@ -65,12 +70,16 @@ data class EventSummaryDisplayModel(
  * It's unlikely that an event had more than one location, but we'll default to the
  * last one because it's most likely the main stage if so.
  */
-private fun Event.location(): LocationDisplayModel? {
+private fun Event.location(
+    localeHelper: LocaleHelper,
+): LocationDisplayModel? {
     val lastLocation = this.stages
         .mapNotNull(EventStage::location)
         .lastOrNull()
 
-    return lastLocation?.let(::LocationDisplayModel)
+    return lastLocation?.let { location ->
+        LocationDisplayModel(location, localeHelper)
+    }
 }
 
 private fun String.toEventDate(

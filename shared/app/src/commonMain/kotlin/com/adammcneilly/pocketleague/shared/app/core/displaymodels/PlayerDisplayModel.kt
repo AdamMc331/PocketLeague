@@ -1,5 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.core.displaymodels
 
+import com.adammcneilly.pocketleague.shared.app.core.locale.LocaleHelper
 import com.adammcneilly.pocketleague.shared.app.core.models.Player
 
 /**
@@ -18,7 +19,7 @@ data class PlayerDisplayModel(
         name = player.name,
         tag = player.tag,
         role = player.roleString(),
-        countryFlagEmojiUnicode = "TODO: Get Locale Helper",
+        countryFlagEmojiUnicode = LocaleHelper.getFlagEmoji(player.countryCode),
     )
 
     companion object {

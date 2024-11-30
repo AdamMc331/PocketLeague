@@ -1,9 +1,10 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.core.models.Event
-import com.adammcneilly.pocketleague.core.models.EventRegion
-import com.adammcneilly.pocketleague.core.models.EventStage
-import com.adammcneilly.pocketleague.core.models.EventTier
+import com.adammcneilly.pocketleague.shared.app.core.models.Event
+import com.adammcneilly.pocketleague.shared.app.core.models.EventStage
+import com.adammcneilly.pocketleague.shared.app.core.models.Region
+import com.adammcneilly.pocketleague.shared.app.data.octanegg.OctaneGGEventTierMapper
+import com.adammcneilly.pocketleague.shared.app.data.octanegg.OctaneGGRegionMapper
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -38,34 +39,34 @@ data class OctaneGGEvent(
     val groups: List<String>? = null,
     @SerialName("lan")
     val lan: Boolean? = null,
-)
+) {
+    /**
+     * Convert an [OctaneGGEvent] to an [Event] in our domain.
+     */
+    fun toEvent(): Event {
+        val stages = this.stages?.map(OctaneGGStage::toEventStage).orEmpty()
 
-/**
- * Convert an [OctaneGGEvent] to an [Event] in our domain.
- */
-fun OctaneGGEvent?.toEvent(): Event {
-    val stages = this?.stages?.map(OctaneGGStage::toEventStage).orEmpty()
+        val isLan = stages.any(EventStage::lan)
 
-    val isLan = stages.any(EventStage::lan)
+        val eventRegion = OctaneGGRegionMapper.fromString(this.region.orEmpty())
 
-    val eventRegion = this?.region.toEventRegion()
-
-    return Event(
-        id = Event.Id(this?.id.orEmpty()),
-        name = remapEventName(
-            octaneEventName = this?.name.orEmpty(),
+        return Event(
+            id = this.id.orEmpty(),
+            name = remapEventName(
+                octaneEventName = this.name.orEmpty(),
+                region = eventRegion,
+            ),
+            startDateUTC = this.startDateUTC,
+            endDateUTC = this.endDateUTC,
+            imageURL = this.imageURL,
+            stages = stages,
+            tier = OctaneGGEventTierMapper.fromString(this.tier.orEmpty()),
+            mode = this.mode?.toString().orEmpty(),
             region = eventRegion,
-        ),
-        startDateUTC = this?.startDateUTC,
-        endDateUTC = this?.endDateUTC,
-        imageURL = this?.imageURL,
-        stages = stages,
-        tier = this?.tier.toEventTier(),
-        mode = this?.mode?.toString().orEmpty(),
-        region = eventRegion,
-        lan = isLan,
-        prize = this?.prize?.toPrize(),
-    )
+            lan = isLan,
+            prize = this.prize?.toPrize(),
+        )
+    }
 }
 
 /**
@@ -80,7 +81,7 @@ fun OctaneGGEvent?.toEvent(): Event {
  */
 private fun remapEventName(
     octaneEventName: String,
-    region: EventRegion,
+    region: Region,
 ): String {
     if (!octaneEventName.contains("regional", ignoreCase = true)) {
         return octaneEventName
@@ -101,36 +102,4 @@ private fun remapEventName(
     val eventRegionAcronym = region.name
 
     return "$eventRegionAcronym $splitName $regionalName"
-}
-
-/**
- * Attempts to convert the supplied String to an event tier, with a fallback
- * if necessary.
- */
-internal fun String?.toEventTier(): EventTier {
-    return when (this) {
-        "S" -> EventTier.S
-        "A" -> EventTier.A
-        "B" -> EventTier.B
-        "C" -> EventTier.C
-        "D" -> EventTier.D
-        else -> EventTier.Unknown
-    }
-}
-
-/**
- * Attempts to convert the supplied String to an event region, with a fallback if necessary.
- */
-internal fun String?.toEventRegion(): EventRegion {
-    return when (this) {
-        "NA" -> EventRegion.NA
-        "EU" -> EventRegion.EU
-        "OCE" -> EventRegion.OCE
-        "SAM" -> EventRegion.SAM
-        "ASIA" -> EventRegion.APAC
-        "ME" -> EventRegion.MENA
-        "INT" -> EventRegion.INT
-        "AF" -> EventRegion.SSA
-        else -> EventRegion.Unknown
-    }
 }

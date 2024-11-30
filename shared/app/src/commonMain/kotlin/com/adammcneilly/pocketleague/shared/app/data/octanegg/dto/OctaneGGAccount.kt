@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * Represents a [PlayerDTO] account within the octane.gg API.
+ * Represents a player account within the octane.gg API.
  */
 @Serializable
 data class OctaneGGAccount(

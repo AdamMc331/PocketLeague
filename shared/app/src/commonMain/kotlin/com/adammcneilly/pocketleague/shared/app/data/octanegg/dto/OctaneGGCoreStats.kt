@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.core.models.CoreStats
+import com.adammcneilly.pocketleague.shared.app.core.models.CoreStats
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -21,18 +21,18 @@ data class OctaneGGCoreStats(
     val score: Int? = null,
     @SerialName("shootingPercentage")
     val shootingPercentage: Float? = null,
-)
-
-/**
- * Converts an [OctaneGGCoreStats] entity to a [CoreStats] entity.
- */
-fun OctaneGGCoreStats.toCoreStats(): CoreStats {
-    return CoreStats(
-        shots = this.shots ?: 0,
-        goals = this.goals ?: 0,
-        saves = this.saves ?: 0,
-        assists = this.assists ?: 0,
-        score = this.score ?: 0,
-        shootingPercentage = this.shootingPercentage ?: 0F,
-    )
+) {
+    /**
+     * Converts an [OctaneGGCoreStats] entity to a [CoreStats] entity.
+     */
+    fun toCoreStats(): CoreStats {
+        return CoreStats(
+            shots = this.shots ?: 0,
+            goals = this.goals ?: 0,
+            saves = this.saves ?: 0,
+            assists = this.assists ?: 0,
+            score = this.score ?: 0,
+            shootingPercentage = this.shootingPercentage ?: 0F,
+        )
+    }
 }

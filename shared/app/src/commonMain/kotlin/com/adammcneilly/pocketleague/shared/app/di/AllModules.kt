@@ -2,7 +2,7 @@ package com.adammcneilly.pocketleague.shared.app.di
 
 val allModules = listOf(
     debugModule,
-    remoteModule,
+    octaneGGModule,
     repositoryModule,
     useCaseModule,
     utilModule,

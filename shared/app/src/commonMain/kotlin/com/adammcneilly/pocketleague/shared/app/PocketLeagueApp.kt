@@ -1,8 +1,16 @@
 package com.adammcneilly.pocketleague.shared.app
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.adammcneilly.pocketleague.shared.app.di.allModules
+import com.adammcneilly.pocketleague.shared.app.feature.feed.FeedScreen
+import com.adammcneilly.pocketleague.shared.app.ui.theme.PocketLeagueTheme
+import org.koin.compose.KoinApplication
 
 /**
  * Main composable entrypoint to the shared multiplatform version of
@@ -12,8 +20,28 @@ import androidx.compose.ui.Modifier
 fun PocketLeagueApp(
     modifier: Modifier = Modifier,
 ) {
-    Text(
-        text = "Entry Point",
-        modifier = modifier,
-    )
+    KoinApplication(
+        application = {
+            modules(allModules)
+        },
+    ) {
+        PocketLeagueTheme {
+            Scaffold {
+                val navController = rememberNavController()
+
+                NavHost(
+                    navController = navController,
+                    startDestination = "feed",
+                    modifier = modifier,
+                ) {
+                    composable("feed") {
+                        FeedScreen(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                        )
+                    }
+                }
+            }
+        }
+    }
 }

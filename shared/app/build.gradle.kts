@@ -28,6 +28,7 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
             implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.androidx.navigation.compose)
             implementation(libs.cketti.codepoints)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)

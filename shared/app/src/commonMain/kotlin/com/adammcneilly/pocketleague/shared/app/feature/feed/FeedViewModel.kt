@@ -59,7 +59,7 @@ class FeedViewModel(
                 .collect { eventList ->
                     mutableState.update { currentState ->
                         currentState.copy(
-                            ongoingEvents = eventList,
+                            upcomingEvents = eventList,
                         )
                     }
                 }

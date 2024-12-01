@@ -11,10 +11,10 @@ package com.adammcneilly.pocketleague.shared.app.core.models
  * @property[players] The players for this [team] and how they performed in this game.
  */
 data class GameTeamResult(
-    val goals: Int = -1,
-    val winner: Boolean = false,
-    val matchWinner: Boolean = false,
-    val team: Team = Team(),
-    val teamStats: Stats = Stats(),
-    val players: List<GamePlayerResult> = emptyList(),
+    val goals: Int,
+    val winner: Boolean,
+    val matchWinner: Boolean,
+    val team: Team,
+    val teamStats: Stats,
+    val players: List<GamePlayerResult>,
 )

@@ -5,8 +5,8 @@ package com.adammcneilly.pocketleague.shared.app.core.models
  * For a best of 7, we would have something like (type: best, length: 7)
  */
 data class Format(
-    val type: String = "",
-    val length: Int = 0,
+    val type: String,
+    val length: Int,
 ) {
     /**
      * Depending on the [type] of format, return the number of games

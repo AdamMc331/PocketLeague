@@ -5,11 +5,11 @@ package com.adammcneilly.pocketleague.shared.app.core.models
  * League event.
  */
 data class Team(
-    val id: String = "",
-    val name: String = "TBD",
-    val lightThemeImageURL: String? = null,
+    val id: String,
+    val name: String,
+    val isFavorite: Boolean,
+    val isActive: Boolean,
+    val region: Region,
+    val lightThemeImageURL: String?,
     val darkThemeImageURL: String? = lightThemeImageURL,
-    val isFavorite: Boolean = false,
-    val isActive: Boolean = false,
-    val region: Region = Region.Unknown,
 )

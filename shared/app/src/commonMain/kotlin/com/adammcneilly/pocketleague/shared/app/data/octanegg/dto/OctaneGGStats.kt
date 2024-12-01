@@ -1,6 +1,5 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.shared.app.core.models.CoreStats
 import com.adammcneilly.pocketleague.shared.app.core.models.Stats
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -25,8 +24,12 @@ data class OctaneGGStats(
      * Converts an [OctaneGGStats] entity to a [Stats] entity.
      */
     fun toStats(): Stats {
+        requireNotNull(this.core) {
+            "Cannot parse OctaneGGStats without core entity."
+        }
+
         return Stats(
-            core = this.core?.toCoreStats() ?: CoreStats(),
+            core = this.core.toCoreStats(),
         )
     }
 }

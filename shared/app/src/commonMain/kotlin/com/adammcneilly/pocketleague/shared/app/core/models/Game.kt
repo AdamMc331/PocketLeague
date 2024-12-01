@@ -4,12 +4,12 @@ package com.adammcneilly.pocketleague.shared.app.core.models
  * Information about a single [Game] inside a [Match] between two teams.
  */
 data class Game(
-    val id: String = "",
-    val blue: GameTeamResult = GameTeamResult(),
-    val orange: GameTeamResult = GameTeamResult(),
-    val map: String = "",
-    val number: Int = 0,
-    val duration: Int = GAME_DEFAULT_DURATION_SECONDS,
+    val id: String,
+    val blue: GameTeamResult,
+    val orange: GameTeamResult,
+    val map: String,
+    val number: Int,
+    val duration: Int,
 ) {
     companion object {
         /**

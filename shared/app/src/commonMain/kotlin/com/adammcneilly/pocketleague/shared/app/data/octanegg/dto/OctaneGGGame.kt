@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
 import com.adammcneilly.pocketleague.shared.app.core.models.Game
-import com.adammcneilly.pocketleague.shared.app.core.models.GameTeamResult
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -35,6 +34,14 @@ data class OctaneGGGame(
      * Converts an [OctaneGGGame] to a [Game] in our domain.
      */
     fun toGame(): Game {
+        requireNotNull(this.blue) {
+            "Cannot parse OctaneGGGame without blue team entity."
+        }
+
+        requireNotNull(this.orange) {
+            "Cannot parse OctaneGGGame without orange team entity."
+        }
+
         // Currently the octane.gg api does not include a map name for
         // this map ID, so let's override it ourselves.
         val mapName = when (this.map?.id) {
@@ -44,8 +51,8 @@ data class OctaneGGGame(
 
         return Game(
             id = this.id.orEmpty(),
-            blue = this.blue?.toGameTeamResult() ?: GameTeamResult(),
-            orange = this.orange?.toGameTeamResult() ?: GameTeamResult(),
+            blue = this.blue.toGameTeamResult(),
+            orange = this.orange.toGameTeamResult(),
             map = mapName,
             number = this.number ?: 0,
             duration = this.duration ?: Game.GAME_DEFAULT_DURATION_SECONDS,

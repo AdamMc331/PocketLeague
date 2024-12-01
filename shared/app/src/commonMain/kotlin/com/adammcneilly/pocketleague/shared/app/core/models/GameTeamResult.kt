@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.core.models
 
 /**
- * Defines information about the reuslt of a [team] within a game.
+ * Defines information about the result of a [team] within a game.
  *
  * @property[goals] The number of goals scored by this team during the game.
  * @property[winner] True if this team won the specific game.
@@ -11,10 +11,10 @@ package com.adammcneilly.pocketleague.shared.app.core.models
  * @property[players] The players for this [team] and how they performed in this game.
  */
 data class GameTeamResult(
-    val goals: Int = -1,
-    val winner: Boolean = false,
-    val matchWinner: Boolean = false,
-    val team: Team = Team(),
-    val teamStats: Stats = Stats(),
-    val players: List<GamePlayerResult> = emptyList(),
+    val goals: Int,
+    val winner: Boolean,
+    val matchWinner: Boolean,
+    val team: Team,
+    val teamStats: Stats,
+    val players: List<GamePlayerResult>,
 )

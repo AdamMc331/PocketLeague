@@ -36,7 +36,9 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.testing)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.square.okio)
         }
 
         commonTest.dependencies {

@@ -50,14 +50,12 @@ android {
 }
 
 dependencies {
-    implementation(projects.shared.appLegacy)
-    implementation(projects.shared.ui)
+    implementation(projects.shared.app)
     implementation(compose.foundation)
     implementation(compose.material3)
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.activity.compose)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.koin.android)
     implementation(libs.ui.graphics)
 
     testImplementation(libs.junit)

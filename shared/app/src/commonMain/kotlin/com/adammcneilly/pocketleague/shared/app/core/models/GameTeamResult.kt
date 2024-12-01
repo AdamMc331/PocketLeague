@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.core.models
 
 /**
- * Defines information about the reuslt of a [team] within a game.
+ * Defines information about the result of a [team] within a game.
  *
  * @property[goals] The number of goals scored by this team during the game.
  * @property[winner] True if this team won the specific game.

@@ -18,6 +18,10 @@ data class OctaneGGTeamDetail(
      * Converts an [OctaneGGTeamDetail] entity to a [Team] in our domain.
      */
     fun toTeam(): Team {
-        return this.team?.toTeam() ?: Team()
+        requireNotNull(team) {
+            "Cannot parse OctaneGGTeamDetail without team entity."
+        }
+
+        return this.team.toTeam()
     }
 }

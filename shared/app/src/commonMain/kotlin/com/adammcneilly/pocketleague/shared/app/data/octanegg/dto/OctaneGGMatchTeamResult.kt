@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
 import com.adammcneilly.pocketleague.shared.app.core.models.MatchTeamResult
-import com.adammcneilly.pocketleague.shared.app.core.models.Team
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -28,11 +27,19 @@ data class OctaneGGMatchTeamResult(
      * Converts an [OctaneGGMatchTeamResult] to a [MatchTeamResult] in our domain.
      */
     fun toMatchTeamResult(): MatchTeamResult {
+        requireNotNull(this.team) {
+            "Cannot parse OctaneGGMatchTeamResult without team entity."
+        }
+
+        requireNotNull(this.team.team) {
+            "Cannot parse OctaneGGMatchTeamResult without inner team entity."
+        }
+
         return MatchTeamResult(
             score = this.score ?: 0,
             winner = this.winner ?: false,
-            team = this.team?.team?.toTeam() ?: Team(),
-            stats = this.team?.stats?.toStats(),
+            team = this.team.team.toTeam(),
+            stats = this.team.stats?.toStats(),
             players = this.players?.map(OctaneGGPlayerStats::toGamePlayerResult).orEmpty(),
         )
     }

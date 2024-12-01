@@ -33,6 +33,8 @@ data class OctaneGGTeamOverview(
             name = this.name ?: "TBD",
             lightThemeImageURL = this.image,
             region = OctaneGGRegionMapper.fromString(this.region.orEmpty()),
+            isFavorite = false,
+            isActive = false,
         )
     }
 }

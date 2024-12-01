@@ -15,7 +15,8 @@ import io.ktor.utils.io.ByteReadChannel
 fun debugHttpClientEngine(
     responses: Map<String, String>,
 ) = MockEngine {
-    val url = it.url.fullPath
+    // In a debug situation, we don't need params.
+    val url = it.url.fullPath.substringBefore("?")
 
     val response = responses[url]
 

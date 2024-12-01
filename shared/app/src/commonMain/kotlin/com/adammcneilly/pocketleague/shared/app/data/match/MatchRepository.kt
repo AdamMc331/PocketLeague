@@ -7,6 +7,9 @@ import kotlinx.coroutines.flow.Flow
  * Defines the data layer for any match related requests.
  */
 interface MatchRepository {
+    /**
+     * Stream a list of [Match] entities that apply to the supplied [request].
+     */
     fun getMatches(
         request: MatchListRequest,
     ): Flow<List<Match>>

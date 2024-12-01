@@ -3,6 +3,9 @@ package com.adammcneilly.pocketleague.shared.app.data.octanegg
 import com.adammcneilly.pocketleague.shared.app.core.models.Region
 
 object OctaneGGRegionMapper {
+    /**
+     * Converts a region string from the Octane.gg api to a [Region] enum entry.
+     */
     fun fromString(
         region: String,
     ): Region {

@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.flow
  * An implementation of [EventRepository] that requests
  * data from the supplied [apiClient], assuming it's an octane.gg client.
  */
-class OctaneGGEventService(
+class OctaneGGEventRepository(
     private val apiClient: BaseKtorClient,
 ) : EventRepository {
     override fun getEvents(

@@ -10,7 +10,7 @@ import io.ktor.utils.io.ByteReadChannel
 
 /**
  * Create a custom [MockEngine] that will determine the response to return based on the supplied
- * mock [responses].
+ * mock [responses], which is a key value pair of url to response file names.
  */
 fun debugHttpClientEngine(
     responses: Map<String, String>,
@@ -18,9 +18,9 @@ fun debugHttpClientEngine(
     // In a debug situation, we don't need params.
     val url = it.url.fullPath.substringBefore("?")
 
-    val response = responses[url]
+    val responseFile = responses[url]
 
-    if (response == null) {
+    if (responseFile == null) {
         throw IllegalArgumentException(
             """
                 No mock response found for url: $url
@@ -30,8 +30,10 @@ fun debugHttpClientEngine(
         )
     }
 
+    val responseText = readFile(responseFile)
+
     respond(
-        content = ByteReadChannel(response),
+        content = ByteReadChannel(responseText),
         status = HttpStatusCode.OK,
         headers = headersOf(HttpHeaders.ContentType, "application/json"),
     )

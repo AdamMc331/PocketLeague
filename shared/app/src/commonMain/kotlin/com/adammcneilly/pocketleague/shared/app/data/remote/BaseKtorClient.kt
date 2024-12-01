@@ -21,7 +21,7 @@ typealias RemoteParams = Map<String, Any?>
  */
 open class BaseKtorClient(
     val baseURL: String,
-    val httpClient: HttpClient = defaultHttpClient(),
+    val httpClient: HttpClient,
 ) {
     /**
      * A helper function to build the [baseURL] and [endpoint] operation and performs a get request.

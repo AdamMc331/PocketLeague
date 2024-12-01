@@ -15,19 +15,21 @@ import kotlinx.serialization.json.Json
  * A default implementation of an [HttpClient] that will use an engine defined
  * by the platform it's being used on. This allows us to override for tests.
  */
-fun defaultHttpClient(
-    engine: HttpClientEngine = httpClientEngine(),
-) = HttpClient(engine) {
-    install(ContentNegotiation) {
-        val converter = KotlinxSerializationConverter(
-            Json {
-                ignoreUnknownKeys = true
-            },
-        )
-        register(ContentType.Any, converter)
-    }
-    install(Logging) {
-        logger = Logger.SIMPLE
-        level = LogLevel.ALL
+fun baseHttpClient(
+    engine: HttpClientEngine,
+): HttpClient {
+    return HttpClient(engine) {
+        install(ContentNegotiation) {
+            val converter = KotlinxSerializationConverter(
+                Json {
+                    ignoreUnknownKeys = true
+                },
+            )
+            register(ContentType.Any, converter)
+        }
+        install(Logging) {
+            logger = Logger.SIMPLE
+            level = LogLevel.ALL
+        }
     }
 }

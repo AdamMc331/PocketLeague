@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app.ui.components
+package com.adammcneilly.pocketleague.shared.app.ui.event
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.adammcneilly.pocketleague.shared.app.core.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.shared.app.ui.components.InlineIconText
 import com.adammcneilly.pocketleague.shared.app.ui.placeholder.PlaceholderDefaults
 import com.adammcneilly.pocketleague.shared.app.ui.placeholder.placeholderMaterial
 

@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app.ui.components
+package com.adammcneilly.pocketleague.shared.app.ui.match
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

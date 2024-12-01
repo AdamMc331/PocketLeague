@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.shared.app.ui.components
+package com.adammcneilly.pocketleague.shared.app.ui.event
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,6 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.adammcneilly.pocketleague.shared.app.core.displaymodels.EventSummaryDisplayModel
 import com.adammcneilly.pocketleague.shared.app.core.displaymodels.TeamOverviewDisplayModel
+import com.adammcneilly.pocketleague.shared.app.ui.components.InlineIconText
+import com.adammcneilly.pocketleague.shared.app.ui.components.VerticalSpacer
 import com.adammcneilly.pocketleague.shared.app.ui.theme.PocketLeagueTheme
 import com.adammcneilly.pocketleague.shared.app.ui.theme.md_theme_dark_onSurface
 import com.adammcneilly.pocketleague.shared.app.ui.theme.rlcsBlue

@@ -1,10 +1,11 @@
-package com.adammcneilly.pocketleague.shared.app.ui.components
+package com.adammcneilly.pocketleague.shared.app.ui.event
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.app.core.displaymodels.EventSummaryDisplayModel
+import com.adammcneilly.pocketleague.shared.app.ui.components.ListItemDividerCard
 
 /**
  * A card component that shows a list of event summaries.

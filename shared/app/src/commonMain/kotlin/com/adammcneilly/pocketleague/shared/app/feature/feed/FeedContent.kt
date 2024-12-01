@@ -10,6 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.adammcneilly.pocketleague.shared.app.core.displaymodels.EventGroupDisplayModel
 import com.adammcneilly.pocketleague.shared.app.core.displaymodels.MatchDetailDisplayModel
+import com.adammcneilly.pocketleague.shared.app.ui.components.EventSummaryListCard
+import com.adammcneilly.pocketleague.shared.app.ui.components.LanEventSummaryCard
+import com.adammcneilly.pocketleague.shared.app.ui.components.MatchCarousel
+import com.adammcneilly.pocketleague.shared.app.ui.modifiers.screenHorizontalPadding
+import com.adammcneilly.pocketleague.shared.app.ui.theme.PocketLeagueTheme
 
 /**
  * The main list of events and matches to show within the feed screen
@@ -77,7 +82,7 @@ private fun LazyListScope.happeningNowHeader() {
 
 private fun LazyListScope.recentMatchesCarousel(
     recentMatches: List<MatchDetailDisplayModel>,
-    onMatchClicked: (Match.Id) -> Unit,
+    onMatchClicked: (String) -> Unit,
 ) {
     item {
         MatchCarousel(

@@ -2,7 +2,8 @@ package com.adammcneilly.pocketleague.shared.app.domain.usecases
 
 import com.adammcneilly.pocketleague.shared.app.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.shared.app.core.models.Match
-import com.adammcneilly.pocketleague.shared.app.feature.feed.usecases.DAYS_PER_WEEK
+import com.adammcneilly.pocketleague.shared.app.data.match.MatchListRequest
+import com.adammcneilly.pocketleague.shared.app.data.match.MatchRepository
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -21,7 +22,7 @@ class GetPastWeeksMatchesUseCase(
             endDateUTC = timeProvider.now(),
         )
 
-        return matchRepository.stream(request)
+        return matchRepository.getMatches(request)
     }
 
     companion object {

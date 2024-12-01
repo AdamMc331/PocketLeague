@@ -2,6 +2,8 @@ package com.adammcneilly.pocketleague.shared.app.domain.usecases
 
 import com.adammcneilly.pocketleague.shared.app.core.datetime.TimeProvider
 import com.adammcneilly.pocketleague.shared.app.core.models.Event
+import com.adammcneilly.pocketleague.shared.app.data.event.EventListRequest
+import com.adammcneilly.pocketleague.shared.app.data.event.EventRepository
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -19,6 +21,6 @@ class GetOngoingEventsUseCase(
             dateUtc = timeProvider.now(),
         )
 
-        return eventRepository.stream(request)
+        return eventRepository.getEvents(request)
     }
 }

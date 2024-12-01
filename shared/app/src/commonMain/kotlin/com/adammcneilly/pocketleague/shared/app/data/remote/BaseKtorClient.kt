@@ -18,7 +18,7 @@ import kotlinx.serialization.json.Json
  * Whenever we want to add params to a request, we just return a map of param
  * keys and values. The [BaseKtorClient] can map this to the request builder.
  */
-private typealias RemoteParams = Map<String, Any?>
+typealias RemoteParams = Map<String, Any?>
 
 /**
  * Creates a default [httpClient] that can make requests to the supplied [baseURL].

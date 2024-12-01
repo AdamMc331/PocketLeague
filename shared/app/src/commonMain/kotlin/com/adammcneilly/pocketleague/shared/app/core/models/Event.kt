@@ -18,15 +18,15 @@ package com.adammcneilly.pocketleague.shared.app.core.models
  * @property[prize] The amount of money awarded to the winners of the event.
  */
 data class Event(
-    val id: String,
-    val name: String,
-    val startDateUTC: String?,
-    val endDateUTC: String?,
-    val imageURL: String?,
-    val stages: List<EventStage>,
-    val tier: EventTier,
-    val mode: String,
-    val region: Region,
-    val lan: Boolean,
-    val prize: Prize?,
+    val id: String = "",
+    val name: String = "",
+    val startDateUTC: String? = null,
+    val endDateUTC: String? = null,
+    val imageURL: String? = null,
+    val stages: List<EventStage> = emptyList(),
+    val tier: EventTier = EventTier.Unknown,
+    val mode: String = "",
+    val region: Region = Region.Unknown,
+    val lan: Boolean = false,
+    val prize: Prize? = null,
 )

@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.core.models.GameOverview
+import com.adammcneilly.pocketleague.shared.app.core.models.GameOverview
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -18,16 +18,16 @@ data class OctaneGGGameOverview(
     val orangeScore: Int? = null,
     @SerialName("duration")
     val durationSeconds: Int? = null,
-)
-
-/**
- * Convert a game overview from octane domain to ours.
- */
-fun OctaneGGGameOverview.toGameOverview(): GameOverview {
-    return GameOverview(
-        id = this.id.orEmpty(),
-        blueScore = this.blueScore ?: 0,
-        orangeScore = this.orangeScore ?: 0,
-        durationSeconds = this.durationSeconds ?: 0,
-    )
+) {
+    /**
+     * Convert a game overview from octane domain to ours.
+     */
+    fun toGameOverview(): GameOverview {
+        return GameOverview(
+            id = this.id.orEmpty(),
+            blueScore = this.blueScore ?: 0,
+            orangeScore = this.orangeScore ?: 0,
+            durationSeconds = this.durationSeconds ?: 0,
+        )
+    }
 }

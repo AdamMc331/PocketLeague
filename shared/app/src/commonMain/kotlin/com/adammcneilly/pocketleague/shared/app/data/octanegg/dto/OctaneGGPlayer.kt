@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.core.models.Player
+import com.adammcneilly.pocketleague.shared.app.core.models.Player
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -29,20 +29,20 @@ data class OctaneGGPlayer(
     val tag: String? = null,
     @SerialName("team")
     val team: OctaneGGTeamOverview? = null,
-)
-
-/**
- * Converts an [OctaneGGPlayer] to a [Player].
- */
-fun OctaneGGPlayer.toPlayer(): Player {
-    return Player(
-        id = this.id.orEmpty(),
-        slug = this.slug.orEmpty(),
-        tag = this.tag.orEmpty(),
-        countryCode = this.country.orEmpty(),
-        name = this.name.orEmpty(),
-        currentTeamId = team?.id.orEmpty(),
-        isCoach = this.coach == true,
-        isSubstitute = this.substitute == true,
-    )
+) {
+    /**
+     * Converts an [OctaneGGPlayer] to a [Player].
+     */
+    fun toPlayer(): Player {
+        return Player(
+            id = this.id.orEmpty(),
+            slug = this.slug.orEmpty(),
+            tag = this.tag.orEmpty(),
+            countryCode = this.country.orEmpty(),
+            name = this.name.orEmpty(),
+            currentTeamId = team?.id.orEmpty(),
+            isCoach = this.coach == true,
+            isSubstitute = this.substitute == true,
+        )
+    }
 }

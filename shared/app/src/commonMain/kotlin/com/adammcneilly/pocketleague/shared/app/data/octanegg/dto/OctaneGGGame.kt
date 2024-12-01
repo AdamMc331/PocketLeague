@@ -1,7 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.core.models.Game
-import com.adammcneilly.pocketleague.core.models.GameTeamResult
+import com.adammcneilly.pocketleague.shared.app.core.models.Game
+import com.adammcneilly.pocketleague.shared.app.core.models.GameTeamResult
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -30,25 +30,25 @@ data class OctaneGGGame(
     val octaneId: String? = null,
     @SerialName("orange")
     val orange: OctaneGGGameTeamResult? = null,
-)
+) {
+    /**
+     * Converts an [OctaneGGGame] to a [Game] in our domain.
+     */
+    fun toGame(): Game {
+        // Currently the octane.gg api does not include a map name for
+        // this map ID, so let's override it ourselves.
+        val mapName = when (this.map?.id) {
+            "outlaw_oasis_p" -> "Deadeye Canyon (Oasis)"
+            else -> this.map?.name.orEmpty()
+        }
 
-/**
- * Converts an [OctaneGGGame] to a [Game] in our domain.
- */
-fun OctaneGGGame.toGame(): Game {
-    // Currently the octane.gg api does not include a map name for
-    // this map ID, so let's override it ourselves.
-    val mapName = when (this.map?.id) {
-        "outlaw_oasis_p" -> "Deadeye Canyon (Oasis)"
-        else -> this.map?.name.orEmpty()
+        return Game(
+            id = this.id.orEmpty(),
+            blue = this.blue?.toGameTeamResult() ?: GameTeamResult(),
+            orange = this.orange?.toGameTeamResult() ?: GameTeamResult(),
+            map = mapName,
+            number = this.number ?: 0,
+            duration = this.duration ?: Game.GAME_DEFAULT_DURATION_SECONDS,
+        )
     }
-
-    return Game(
-        id = this.id.orEmpty(),
-        blue = this.blue?.toGameTeamResult() ?: GameTeamResult(),
-        orange = this.orange?.toGameTeamResult() ?: GameTeamResult(),
-        map = mapName,
-        number = this.number ?: 0,
-        duration = this.duration ?: Game.GAME_DEFAULT_DURATION_SECONDS,
-    )
 }

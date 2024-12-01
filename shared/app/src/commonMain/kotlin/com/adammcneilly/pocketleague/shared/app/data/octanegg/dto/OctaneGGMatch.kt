@@ -1,7 +1,11 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.core.models.Match
-import com.adammcneilly.pocketleague.core.models.StageRound
+import com.adammcneilly.pocketleague.shared.app.core.models.Event
+import com.adammcneilly.pocketleague.shared.app.core.models.EventStage
+import com.adammcneilly.pocketleague.shared.app.core.models.Format
+import com.adammcneilly.pocketleague.shared.app.core.models.Match
+import com.adammcneilly.pocketleague.shared.app.core.models.MatchTeamResult
+import com.adammcneilly.pocketleague.shared.app.core.models.StageRound
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -28,22 +32,22 @@ data class OctaneGGMatch(
     val format: OctaneGGFormat? = null,
     @SerialName("games")
     val games: List<OctaneGGGameOverview>? = null,
-)
-
-/**
- * Converts an [OctaneGGMatch] to a [Match] in our domain.
- */
-fun OctaneGGMatch.toMatch(): Match {
-    return Match(
-        id = Match.Id(this.id.orEmpty()),
-        event = this.event.toEvent(),
-        dateUTC = this.dateUTC,
-        blueTeam = this.blue.toMatchTeamResult(),
-        orangeTeam = this.orange.toMatchTeamResult(),
-        stage = this.stage.toEventStage(),
-        format = this.format.toFormat(),
-        gameOverviews = this.games?.map(OctaneGGGameOverview::toGameOverview).orEmpty(),
-        // Octane.GG API has no concept of a stage round, so we'll just return a default here.
-        round = StageRound(0, ""),
-    )
+) {
+    /**
+     * Converts an [OctaneGGMatch] to a [Match] in our domain.
+     */
+    fun toMatch(): Match {
+        return Match(
+            id = this.id.orEmpty(),
+            event = this.event?.toEvent() ?: Event(),
+            dateUTC = this.dateUTC,
+            blueTeam = this.blue?.toMatchTeamResult() ?: MatchTeamResult(),
+            orangeTeam = this.orange?.toMatchTeamResult() ?: MatchTeamResult(),
+            stage = this.stage?.toEventStage() ?: EventStage(),
+            format = this.format?.toFormat() ?: Format(),
+            gameOverviews = this.games?.map(OctaneGGGameOverview::toGameOverview).orEmpty(),
+            // Octane.GG API has no concept of a stage round, so we'll just return a default here.
+            round = StageRound(0, ""),
+        )
+    }
 }

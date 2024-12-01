@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.core.models.EventStage
+import com.adammcneilly.pocketleague.shared.app.core.models.EventStage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -29,21 +29,21 @@ data class OctaneGGStage(
     val region: String? = null,
     @SerialName("qualifier")
     val qualifier: Boolean? = null,
-)
-
-/**
- * Converts an [OctaneGGStage] to an [EventStage] in our domain.
- */
-fun OctaneGGStage?.toEventStage(): EventStage {
-    return EventStage(
-        id = EventStage.Id(this?.id?.toString().orEmpty()),
-        name = this?.name.orEmpty(),
-        region = this?.region.orEmpty(),
-        startDateUTC = this?.startDateUTC,
-        endDateUTC = this?.endDateUTC,
-        liquipedia = this?.liquipedia.orEmpty(),
-        qualifier = this?.qualifier ?: false,
-        lan = this?.lan ?: false,
-        location = this?.location?.toLocation(),
-    )
+) {
+    /**
+     * Converts an [OctaneGGStage] to an [EventStage] in our domain.
+     */
+    fun toEventStage(): EventStage {
+        return EventStage(
+            id = this.id?.toString().orEmpty(),
+            name = this.name.orEmpty(),
+            region = this.region.orEmpty(),
+            startDateUTC = this.startDateUTC,
+            endDateUTC = this.endDateUTC,
+            liquipedia = this.liquipedia.orEmpty(),
+            qualifier = this.qualifier ?: false,
+            lan = this.lan ?: false,
+            location = this.location?.toLocation(),
+        )
+    }
 }

@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.core.models.Location
+import com.adammcneilly.pocketleague.shared.app.core.models.Location
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -15,15 +15,15 @@ data class OctaneGGLocation(
     val countryCode: String? = null,
     @SerialName("venue")
     val venue: String? = null,
-)
-
-/**
- * Converts a location from the octane.gg domain to ours.
- */
-fun OctaneGGLocation.toLocation(): Location {
-    return Location(
-        venue = this.venue.orEmpty(),
-        city = this.city.orEmpty(),
-        countryCode = this.countryCode.orEmpty(),
-    )
+) {
+    /**
+     * Converts a location from the octane.gg domain to ours.
+     */
+    fun toLocation(): Location {
+        return Location(
+            venue = this.venue.orEmpty(),
+            city = this.city.orEmpty(),
+            countryCode = this.countryCode.orEmpty(),
+        )
+    }
 }

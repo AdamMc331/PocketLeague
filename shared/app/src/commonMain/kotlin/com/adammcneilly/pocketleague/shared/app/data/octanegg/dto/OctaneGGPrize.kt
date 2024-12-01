@@ -1,6 +1,6 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.core.models.Prize
+import com.adammcneilly.pocketleague.shared.app.core.models.Prize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -13,14 +13,14 @@ data class OctaneGGPrize(
     val amount: Double? = null,
     @SerialName("currency")
     val currency: String? = null,
-)
-
-/**
- * Converts an [OctaneGGPrize] to a [Prize] in our domain.
- */
-fun OctaneGGPrize.toPrize(): Prize {
-    return Prize(
-        amount = this.amount ?: 0.0,
-        currency = this.currency.orEmpty(),
-    )
+) {
+    /**
+     * Converts an [OctaneGGPrize] to a [Prize] in our domain.
+     */
+    fun toPrize(): Prize {
+        return Prize(
+            amount = this.amount ?: 0.0,
+            currency = this.currency.orEmpty(),
+        )
+    }
 }

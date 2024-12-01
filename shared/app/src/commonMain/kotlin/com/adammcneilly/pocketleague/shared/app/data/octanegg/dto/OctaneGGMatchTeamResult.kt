@@ -1,6 +1,7 @@
 package com.adammcneilly.pocketleague.shared.app.data.octanegg.dto
 
-import com.adammcneilly.pocketleague.core.models.MatchTeamResult
+import com.adammcneilly.pocketleague.shared.app.core.models.MatchTeamResult
+import com.adammcneilly.pocketleague.shared.app.core.models.Team
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,17 +23,17 @@ data class OctaneGGMatchTeamResult(
     val team: OctaneGGTeamStats? = null,
     @SerialName("players")
     val players: List<OctaneGGPlayerStats>? = null,
-)
-
-/**
- * Converts an [OctaneGGMatchTeamResult] to a [MatchTeamResult] in our domain.
- */
-fun OctaneGGMatchTeamResult?.toMatchTeamResult(): MatchTeamResult {
-    return MatchTeamResult(
-        score = this?.score ?: 0,
-        winner = this?.winner ?: false,
-        team = this?.team?.team.toTeam(),
-        stats = this?.team?.stats?.toStats(),
-        players = this?.players?.map(OctaneGGPlayerStats::toGamePlayerResult).orEmpty(),
-    )
+) {
+    /**
+     * Converts an [OctaneGGMatchTeamResult] to a [MatchTeamResult] in our domain.
+     */
+    fun toMatchTeamResult(): MatchTeamResult {
+        return MatchTeamResult(
+            score = this.score ?: 0,
+            winner = this.winner ?: false,
+            team = this.team?.team?.toTeam() ?: Team(),
+            stats = this.team?.stats?.toStats(),
+            players = this.players?.map(OctaneGGPlayerStats::toGamePlayerResult).orEmpty(),
+        )
+    }
 }

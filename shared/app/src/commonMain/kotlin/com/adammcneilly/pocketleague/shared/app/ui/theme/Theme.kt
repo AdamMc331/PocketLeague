@@ -68,6 +68,13 @@ private val DarkColorScheme = darkColorScheme(
     outlineVariant = md_theme_dark_outline,
 )
 
+val PocketLeagueSizes = Sizes(
+    screenPadding = 16.dp,
+    listItemSpacing = 16.dp,
+    cardPadding = 16.dp,
+    textSpacing = 4.dp,
+)
+
 /**
  * Creates our custom [MaterialTheme] for the pocket league application.
  */
@@ -76,21 +83,14 @@ fun PocketLeagueTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
-    val colorScheme = if (!useDarkTheme) {
-        LightColorScheme
-    } else {
+    val colorScheme = if (useDarkTheme) {
         DarkColorScheme
+    } else {
+        LightColorScheme
     }
 
-    val sizes = Sizes(
-        screenPadding = 16.dp,
-        listItemSpacing = 16.dp,
-        cardPadding = 16.dp,
-        textSpacing = 4.dp,
-    )
-
     CompositionLocalProvider(
-        LocalPocketLeagueSizes provides sizes,
+        LocalPocketLeagueSizes provides PocketLeagueSizes,
     ) {
         MaterialTheme(
             colorScheme = colorScheme,

@@ -14,13 +14,13 @@ package com.adammcneilly.pocketleague.shared.app.core.models
  * @property[location] The location of this stage if it is a [lan].
  */
 data class EventStage(
-    val id: String,
-    val name: String,
-    val region: String,
-    val startDateUTC: String?,
-    val endDateUTC: String?,
-    val liquipedia: String,
-    val qualifier: Boolean,
-    val lan: Boolean,
-    val location: Location?,
+    val id: String = "",
+    val name: String = "",
+    val region: String = "",
+    val startDateUTC: String? = null,
+    val endDateUTC: String? = null,
+    val liquipedia: String = "",
+    val qualifier: Boolean = false,
+    val lan: Boolean = false,
+    val location: Location? = null,
 )

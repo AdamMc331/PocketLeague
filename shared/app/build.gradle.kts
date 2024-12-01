@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization")
     id("com.android.library")
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.compose)
@@ -29,11 +30,23 @@ kotlin {
             implementation(libs.cketti.codepoints)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.serialization.kotlinx.json)
         }
 
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(libs.varabyte.truthish)
+        }
+
+        androidMain.dependencies {
+            implementation(libs.ktor.client.android)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.ios)
         }
     }
 }

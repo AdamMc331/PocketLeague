@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.adammcneilly.pocketleague.shared.app.di.allModules
+import com.adammcneilly.pocketleague.shared.app.di.appModule
 import com.adammcneilly.pocketleague.shared.app.feature.feed.FeedScreen
 import com.adammcneilly.pocketleague.shared.app.ui.theme.PocketLeagueTheme
 import org.koin.compose.KoinApplication
@@ -22,7 +22,7 @@ fun PocketLeagueApp(
 ) {
     KoinApplication(
         application = {
-            modules(allModules)
+            modules(appModule)
         },
     ) {
         PocketLeagueTheme {

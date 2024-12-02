@@ -1,3 +1,6 @@
+import org.jmailen.gradle.kotlinter.tasks.FormatTask
+import org.jmailen.gradle.kotlinter.tasks.LintTask
+
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
@@ -66,5 +69,13 @@ android {
     }
 
     namespace = "com.adammcneilly.pocketleague.shared.app"
+}
+
+tasks.withType<FormatTask> {
+    exclude { it.file.path.contains("build/")}
+}
+
+tasks.withType<LintTask> {
+    exclude { it.file.path.contains("build/")}
 }
 

@@ -1,9 +1,10 @@
 package com.adammcneilly.pocketleague.shared.app.di
 
 val allModules = listOf(
-    utilModule,
-    remoteModule,
+    debugModule,
+    octaneGGModule,
     repositoryModule,
     useCaseModule,
+    utilModule,
     viewModelModule,
 )

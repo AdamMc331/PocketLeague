@@ -2,17 +2,9 @@ package com.adammcneilly.pocketleague.shared.app.data.remote
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
-import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
-import io.ktor.http.ContentType
-import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
-import kotlinx.serialization.json.Json
 
 /**
  * Whenever we want to add params to a request, we just return a map of param
@@ -29,23 +21,8 @@ typealias RemoteParams = Map<String, Any?>
  */
 open class BaseKtorClient(
     val baseURL: String,
+    val httpClient: HttpClient,
 ) {
-    val httpClient = HttpClient {
-        install(ContentNegotiation) {
-            val converter = KotlinxSerializationConverter(
-                Json {
-                    ignoreUnknownKeys = true
-                },
-            )
-            register(ContentType.Any, converter)
-        }
-
-        install(Logging) {
-            logger = Logger.SIMPLE
-            level = LogLevel.ALL
-        }
-    }
-
     /**
      * A helper function to build the [baseURL] and [endpoint] operation and performs a get request.
      * Will also pass in the supplied [params] as necessary.

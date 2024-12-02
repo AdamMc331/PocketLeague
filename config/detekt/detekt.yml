@@ -71,7 +71,7 @@ comments:
     searchInInnerObject: true
     searchInInnerInterface: true
   UndocumentedPublicFunction:
-    active: true
+    active: false
     excludes: [
       '**/com/adammcneilly/pocketleague/data/local/sqldelight/mappers/**',
       '**/com/adammcneilly/pocketleague/baselineprofile**',

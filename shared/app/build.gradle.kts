@@ -1,3 +1,6 @@
+import org.jmailen.gradle.kotlinter.tasks.FormatTask
+import org.jmailen.gradle.kotlinter.tasks.LintTask
+
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
@@ -23,10 +26,11 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
+            implementation(compose.components.resources)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
+            implementation(compose.runtime)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.navigation.compose)
             implementation(libs.cketti.codepoints)
@@ -37,7 +41,9 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.testing)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.square.okio)
         }
 
         commonTest.dependencies {
@@ -63,5 +69,13 @@ android {
     }
 
     namespace = "com.adammcneilly.pocketleague.shared.app"
+}
+
+tasks.withType<FormatTask> {
+    exclude { it.file.path.contains("build/")}
+}
+
+tasks.withType<LintTask> {
+    exclude { it.file.path.contains("build/")}
 }
 

@@ -10,13 +10,13 @@ import org.koin.dsl.module
 val repositoryModule = module {
     single<EventRepository> {
         OctaneGGEventRepository(
-            apiClient = get(named(OCTANEGG_CLIENT)),
+            apiClient = get(named(OCTANE_GG_CLIENT)),
         )
     }
 
     single<MatchRepository> {
         OctaneGGMatchRepository(
-            apiClient = get(named(OCTANEGG_CLIENT)),
+            apiClient = get(named(OCTANE_GG_CLIENT)),
         )
     }
 }

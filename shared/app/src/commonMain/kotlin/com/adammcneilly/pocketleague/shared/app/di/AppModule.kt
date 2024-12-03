@@ -4,10 +4,11 @@ import org.koin.dsl.module
 
 val appModule = module {
     includes(
-        utilModule,
-        remoteModule,
+        debugModule,
+        octaneGGModule,
         repositoryModule,
         useCaseModule,
+        utilModule,
         viewModelModule,
     )
 }

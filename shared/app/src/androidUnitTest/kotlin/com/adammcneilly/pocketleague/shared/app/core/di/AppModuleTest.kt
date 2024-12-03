@@ -9,9 +9,9 @@ import kotlin.test.Test
  * This is currently JVM only, so it must exist here inside the androidUnitTest
  * source set.
  */
+@OptIn(KoinExperimentalAPI::class)
 class AppModuleTest {
     @Test
-    @OptIn(KoinExperimentalAPI::class)
     fun verifyKoinModule() {
         appModule.verify()
     }

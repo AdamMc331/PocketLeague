@@ -19,4 +19,5 @@ jobs:
         uses: ./.github/actions/workflow_setup
 
       - name: Run Tests
-        run: ./gradlew test -x :test:paparazzi:test
+        run: ./gradlew test
+#        run: ./gradlew test -x :test:paparazzi:test

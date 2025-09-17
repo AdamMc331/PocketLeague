@@ -5,6 +5,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -12,7 +13,17 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "PocketLeague"
+
+plugins {
+    id("org.jetbrains.kotlinx.kover.aggregation").version("0.9.1")
+}
+
+kover {
+    enableCoverage()
+}
+
 include(":androidApp")
 include(":desktopApp")
 include(":shared")

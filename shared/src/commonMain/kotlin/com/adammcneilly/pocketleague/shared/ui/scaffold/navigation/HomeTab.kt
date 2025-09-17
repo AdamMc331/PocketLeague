@@ -1,6 +1,8 @@
 package com.adammcneilly.pocketleague.shared.ui.scaffold.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.Newspaper
 import androidx.compose.material.icons.filled.RocketLaunch
@@ -15,9 +17,9 @@ enum class HomeTab(
     val icon: ImageVector,
     val supportsTwoPane: Boolean,
 ) {
-    News(
-        label = "News",
-        icon = Icons.Default.Newspaper,
+    Events(
+        label = "Events",
+        icon = Icons.Default.Event,
         supportsTwoPane = false,
     ),
     Launches(

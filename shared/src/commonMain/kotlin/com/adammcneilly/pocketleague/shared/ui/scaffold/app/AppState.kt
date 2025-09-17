@@ -29,7 +29,7 @@ data class AppStateData(
     val navItems: List<NavItem>,
 ) : Parcelable {
     constructor(
-        selectedTab: HomeTab = HomeTab.News,
+        selectedTab: HomeTab = HomeTab.Events,
     ) : this(
         navItems = HomeTab.entries.map { tab ->
             NavItem(

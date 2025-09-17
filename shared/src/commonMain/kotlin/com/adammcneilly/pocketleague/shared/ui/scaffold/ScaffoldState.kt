@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import com.adammcneilly.pocketleague.shared.ui.currentWindowWidthSizeClass
 
 /**
  * Do not create an instance of this scaffold state directly. Please use

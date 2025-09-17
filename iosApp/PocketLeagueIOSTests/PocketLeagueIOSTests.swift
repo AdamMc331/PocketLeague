@@ -2,8 +2,6 @@
 //  PocketLeagueIOSTests.swift
 //  PocketLeagueIOSTests
 //
-//  Created by Adam McNeilly on 9/24/24.
-//
 
 import XCTest
 @testable import PocketLeagueIOS

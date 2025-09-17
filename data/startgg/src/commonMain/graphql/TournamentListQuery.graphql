@@ -1,7 +1,0 @@
-query TournamentListQuery($query: TournamentQuery!) {
-    tournaments(query: $query) {
-        nodes {
-            ...TournamentFragment
-        }
-    }
-}

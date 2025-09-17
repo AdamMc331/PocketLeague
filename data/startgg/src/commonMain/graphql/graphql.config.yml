@@ -1,6 +1,0 @@
-schema: schema.graphqls
-documents: '**/*.graphql'
-extensions:
-  endpoints:
-    StartGG:
-      url: https://api.start.gg/gql/alpha

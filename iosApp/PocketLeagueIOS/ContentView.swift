@@ -2,15 +2,13 @@
 //  ContentView.swift
 //  PocketLeagueIOS
 //
-//  Created by Adam McNeilly on 9/24/24.
-//
 
 import shared
 import SwiftUI
 
 struct ComposeView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        PocketLeagueAppViewController_iosKt.pocketLeagueAppViewController()
+        MainViewControllerKt.MainViewController()
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}

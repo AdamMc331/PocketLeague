@@ -13,7 +13,7 @@
 <details>
 
 <summary>Screenshot Name</summary>
-    
+
 <!-- file here -->
 
 </details>

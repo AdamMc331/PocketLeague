@@ -6,30 +6,21 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-on: pull_request
+on:
+  push:
+    branches:
+      - development
+  pull_request:
 
 jobs:
   android-build:
     runs-on: macos-14
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v5
 
-      - name: Set Up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: 17
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
-        with:
-          # Only write to the cache for builds on the 'development' branch
-          cache-read-only: ${{ github.ref != 'refs/heads/development' }}
-
-      - name: Generate local.properties
-        env:
-           LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
-        run: echo $LOCAL_PROPERTIES > ./local.properties
+      - name: Setup
+        uses: ./.github/actions/workflow_setup
 
       # assembleDebug is used to improve build times by only building
       # the debug Android artifacts. https://touchlab.co/touchlab-build-only-what-you-need

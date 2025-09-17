@@ -9,9 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
-import com.adammcneilly.spacenerd.core.designsystem.utils.LocalNavAnimatedVisibilityScope
-import com.adammcneilly.spacenerd.core.designsystem.utils.LocalSharedTransitionScope
-import com.adammcneilly.spacenerd.core.designsystem.utils.currentWindowWidthSizeClass
 
 /**
  * Do not create an instance of this scaffold state directly. Please use

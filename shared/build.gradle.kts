@@ -48,6 +48,7 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(libs.coil.ktor)
             implementation(libs.compose.material3.windowsizeclass)
+            implementation(libs.koin.compose.viewmodel.navigation)
             implementation(libs.koin.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.core)

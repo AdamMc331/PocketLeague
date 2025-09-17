@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
+    implementation(libs.compose.material3.windowsizeclass)
     implementation(libs.compose.ui)
 
     debugImplementation(platform(libs.compose.bom))

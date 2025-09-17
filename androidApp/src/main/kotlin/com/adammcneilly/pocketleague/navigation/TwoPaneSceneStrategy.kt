@@ -1,11 +1,14 @@
 package com.adammcneilly.pocketleague.navigation
 
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.Scene
 import androidx.navigation3.ui.SceneStrategy
-import androidx.window.core.layout.WindowSizeClass
+import com.adammcneilly.pocketleague.shared.ui.currentWindowWidthSizeClass
 
 /**
  * An implementation of [SceneStrategy] that determines if two [AppScreen] entries can appear in a
@@ -18,13 +21,7 @@ class TwoPaneSceneStrategy : SceneStrategy<AppScreen> {
         entries: List<NavEntry<AppScreen>>,
         onBack: (Int) -> Unit,
     ): Scene<AppScreen>? {
-        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-
-        val isMediumOrLargerWidth = windowSizeClass.isWidthAtLeastBreakpoint(
-            widthDpBreakpoint = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND,
-        )
-
-        if (!isMediumOrLargerWidth) {
+        if (isMediumScreenWidthOrWider().value) {
             return null
         }
 
@@ -60,4 +57,24 @@ class TwoPaneSceneStrategy : SceneStrategy<AppScreen> {
             secondEntry = secondEntry,
         )
     }
+}
+
+/**
+ * Access the current [WindowWidthSizeClass] to determine if it's at
+ * a medium or wider width class. This is used to determine whether
+ * we should show a bottom navigation or a navigation rail.
+ */
+@Composable
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+private fun isMediumScreenWidthOrWider(): State<Boolean> {
+    val widthSizeClass = currentWindowWidthSizeClass()
+
+    val mediumOrHigherClasses = listOf(
+        WindowWidthSizeClass.Medium,
+        WindowWidthSizeClass.Expanded,
+    )
+
+    val isMediumScreenWidthOrWider = (widthSizeClass in mediumOrHigherClasses)
+
+    return rememberUpdatedState(isMediumScreenWidthOrWider)
 }

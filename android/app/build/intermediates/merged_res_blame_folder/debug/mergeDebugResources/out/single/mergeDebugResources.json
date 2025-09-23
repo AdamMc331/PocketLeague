@@ -1,0 +1,58 @@
+[
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.adammcneilly.pocketleague.android.app-debug-52:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.adammcneilly.pocketleague.android.app-main-54:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    }
+]

@@ -20,6 +20,7 @@ ktor = "3.3.0"
 leakCanary = "2.14"
 material = "1.13.0"
 minSdk = "21"
+paparazzi = "2.0.0-SNAPSHOT"
 testParameterInjector = "1.19"
 
 [libraries]
@@ -52,6 +53,7 @@ square-leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", ver
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 benmanes-versions = { id = "com.github.ben-manes.versions", version.ref = "gradleVersionsPlugin" }
+cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektGradlePlugin" }
 google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

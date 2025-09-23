@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application).apply(false)
     alias(libs.plugins.android.library).apply(false)
     alias(libs.plugins.benmanes.versions).apply(false)
+    alias(libs.plugins.cash.paparazzi).apply(false)
     alias(libs.plugins.compose.compiler).apply(false)
     alias(libs.plugins.detekt).apply(true) // Needs to be applied at the root, unlike others.
     alias(libs.plugins.google.devtools.ksp).apply(false)
@@ -16,8 +17,6 @@ apply(from = "buildscripts/githooks.gradle")
 apply(from = "buildscripts/versionsplugin.gradle")
 
 subprojects {
-    apply(from = "../buildscripts/detekt.gradle")
-
     apply(plugin = "org.jmailen.kotlinter")
 }
 

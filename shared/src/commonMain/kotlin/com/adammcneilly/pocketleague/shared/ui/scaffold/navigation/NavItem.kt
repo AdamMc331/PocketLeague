@@ -1,7 +1,6 @@
 package com.adammcneilly.pocketleague.shared.ui.scaffold.navigation
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import com.adammcneilly.pocketleague.shared.Parcelize
 
 /**
  * Represents an item in a navigation component, such as a tab bar.
@@ -13,4 +12,4 @@ import kotlinx.parcelize.Parcelize
 data class NavItem(
     val tab: HomeTab,
     val selected: Boolean,
-) : Parcelable
+)

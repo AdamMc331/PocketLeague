@@ -4,7 +4,6 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.LocalNavAnimatedContentScope
 import androidx.navigation3.ui.NavDisplay
@@ -59,7 +58,6 @@ fun AppNavHost() {
                 is AppScreen.Tab -> {
                     homeTabEntry(
                         key = key,
-                        backStack = backStack,
                     )
                 }
             }
@@ -69,10 +67,9 @@ fun AppNavHost() {
 
 private fun homeTabEntry(
     key: AppScreen.Tab,
-    backStack: SnapshotStateList<AppScreen>,
 ): NavEntry<AppScreen> {
     val metadata = if (key.tab.supportsTwoPane) {
-        TwoPaneScene.Companion.twoPane()
+        TwoPaneScene.twoPane()
     } else {
         emptyMap()
     }

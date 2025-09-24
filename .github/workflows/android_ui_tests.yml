@@ -26,4 +26,4 @@ jobs:
         with:
           api-level: 31
           arch: x86_64
-          script: ./gradlew app:connectedCheck
+          script: ./gradlew androidApp:connectedCheck

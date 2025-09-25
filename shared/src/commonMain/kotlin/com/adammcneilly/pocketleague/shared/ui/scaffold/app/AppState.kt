@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
+import com.adammcneilly.pocketleague.shared.Parcelable
+import com.adammcneilly.pocketleague.shared.Parcelize
 import com.adammcneilly.pocketleague.shared.ui.scaffold.navigation.HomeTab
 import com.adammcneilly.pocketleague.shared.ui.scaffold.navigation.NavItem
 
@@ -22,9 +24,10 @@ val LocalAppState = staticCompositionLocalOf<AppState> {
  * class can also be parcelable and persisted across configuration changes
  * using rememberSaveable.
  */
+@Parcelize
 data class AppStateData(
     val navItems: List<NavItem>,
-) {
+) : Parcelable {
     constructor(
         selectedTab: HomeTab = HomeTab.Events,
     ) : this(

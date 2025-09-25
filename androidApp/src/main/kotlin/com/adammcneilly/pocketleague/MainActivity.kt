@@ -19,10 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             enableEdgeToEdge()
 
-            // Commented out because I can't figure out the parcelable KMP stuff
-            // yet.
-//            val appState = rememberSaveable(saver = AppState.saver) {
-            val appState = remember {
+            val appState = rememberSaveable(saver = AppState.saver) {
                 AppState()
             }
 

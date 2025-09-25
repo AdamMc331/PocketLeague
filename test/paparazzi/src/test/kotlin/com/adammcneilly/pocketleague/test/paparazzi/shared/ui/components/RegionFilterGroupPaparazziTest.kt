@@ -1,18 +1,11 @@
 package com.adammcneilly.pocketleague.test.paparazzi.shared.ui.components
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.unit.dp
 import app.cash.paparazzi.Paparazzi
 import com.adammcneilly.pocketleague.shared.models.Region
 import com.adammcneilly.pocketleague.shared.ui.components.RegionFilterGroup
-import com.adammcneilly.pocketleague.shared.ui.theme.RLCS
-import com.adammcneilly.pocketleague.test.paparazzi.BasePaparazziTest
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
@@ -33,7 +26,9 @@ class RegionFilterGroupPaparazziTest {
             CompositionLocalProvider(
                 LocalInspectionMode provides true,
             ) {
-                RLCS {
+                PocketLeagueTheme(
+                    darkTheme = useDarkTheme,
+                ) {
                     RegionFilterGroup(
                         selectedRegions = Region.entries,
                     )
@@ -48,7 +43,9 @@ class RegionFilterGroupPaparazziTest {
             CompositionLocalProvider(
                 LocalInspectionMode provides true,
             ) {
-                RLCS {
+                PocketLeagueTheme(
+                    darkTheme = useDarkTheme,
+                ) {
                     RegionFilterGroup(
                         selectedRegions = listOf(
                             Region.NA,
@@ -65,7 +62,9 @@ class RegionFilterGroupPaparazziTest {
             CompositionLocalProvider(
                 LocalInspectionMode provides true,
             ) {
-                RLCS {
+                PocketLeagueTheme(
+                    darkTheme = useDarkTheme,
+                ) {
                     RegionFilterGroup(
                         selectedRegions = listOf(
                             Region.NA,

@@ -1,24 +1,22 @@
-# Removed until paparazzi tests are actually included.
+name: Paparazzi Tests
 
-#name: Paparazzi Tests
-#
-## This will cancel any in progress workflows for the same PR, if
-## multiple pushes happen in quick succession.
-#concurrency:
-#  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-#  cancel-in-progress: true
-#
-#on: pull_request
-#
-#jobs:
-#  paparazzi-tests:
-#    runs-on: macos-14
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v5
-#
-#      - name: Setup
-#        uses: ./.github/actions/workflow_setup
-#
-#      - name: Run Tests
-#        run: ./gradlew :test:paparazzi:verifyPaparazziDebug
+# This will cancel any in progress workflows for the same PR, if
+# multiple pushes happen in quick succession.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on: pull_request
+
+jobs:
+  paparazzi-tests:
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup
+        uses: ./.github/actions/workflow_setup
+
+      - name: Run Tests
+        run: ./gradlew :test:paparazzi:verifyPaparazziDebug

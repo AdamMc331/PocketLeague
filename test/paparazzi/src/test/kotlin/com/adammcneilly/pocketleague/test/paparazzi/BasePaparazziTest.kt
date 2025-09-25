@@ -11,7 +11,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
-import com.adammcneilly.pocketleague.shared.ui.theme.RLCS
+import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 import com.android.resources.NightMode
 import com.android.resources.ScreenOrientation
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -45,7 +45,7 @@ abstract class BasePaparazziTest {
             CompositionLocalProvider(
                 LocalInspectionMode provides true,
             ) {
-                RLCS {
+                PocketLeagueTheme {
                     Surface(
                         modifier = Modifier
                             .fillMaxSize(),

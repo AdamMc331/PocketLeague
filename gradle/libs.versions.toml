@@ -23,9 +23,8 @@ material = "1.13.0"
 material3Adaptive = "1.2.0-alpha06"
 minSdk = "23"
 nav3Core = "1.0.0-alpha09"
+paparazzi = "2.0.0-SNAPSHOT"
 testParameterInjector = "1.19"
-adaptive = "1.1.0"
-material3WindowSizeClass = "1.3.2"
 
 [libraries]
 android-material = { module = "com.google.android.material:material", version.ref = "material" }
@@ -62,6 +61,7 @@ square-leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", ver
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 benmanes-versions = { id = "com.github.ben-manes.versions", version.ref = "gradleVersionsPlugin" }
+cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektGradlePlugin" }
 google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

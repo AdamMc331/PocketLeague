@@ -14,6 +14,9 @@
     // Ensure we get the latest version and are not pinned to old versions.
     'workarounds:javaLTSVersions',
   ],
+  "ignorePaths": [
+    "**/android_ui_tests.yml",
+  ],
   customManagers: [
     // Update .java-version file with the latest JDK version.
     {

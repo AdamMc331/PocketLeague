@@ -17,7 +17,7 @@ private val lightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun RLCS(
+fun PocketLeagueTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {

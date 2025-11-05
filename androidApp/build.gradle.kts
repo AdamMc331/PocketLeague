@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.google.devtools.ksp)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -57,7 +59,11 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(project(":shared"))
     implementation(libs.android.material)
+    implementation(libs.androidx.adaptive.android)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.compose.material3.adaptive)
     implementation(libs.compose.ui)
 
     debugImplementation(platform(libs.compose.bom))

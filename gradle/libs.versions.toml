@@ -24,7 +24,7 @@ material3Adaptive = "1.2.0"
 minSdk = "23"
 nav3Core = "1.0.0-alpha09"
 paparazzi = "2.0.0-SNAPSHOT"
-testParameterInjector = "1.19"
+testParameterInjector = "1.20"
 
 [libraries]
 android-material = { module = "com.google.android.material:material", version.ref = "material" }

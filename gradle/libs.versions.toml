@@ -22,7 +22,7 @@ leakCanary = "2.14"
 material = "1.13.0"
 material3Adaptive = "1.2.0"
 minSdk = "23"
-nav3Core = "1.0.0-alpha09"
+nav3Core = "1.0.0"
 paparazzi = "2.0.0-alpha02"
 testParameterInjector = "1.20"
 

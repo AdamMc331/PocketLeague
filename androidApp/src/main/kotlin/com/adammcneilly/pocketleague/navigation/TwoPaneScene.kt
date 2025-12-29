@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
-import androidx.navigation3.ui.Scene
+import androidx.navigation3.scene.Scene
 import com.adammcneilly.pocketleague.shared.ui.LocalSceneType
 import com.adammcneilly.pocketleague.shared.ui.SceneType
 

@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.adammcneilly.pocketleague.shared.feature.eventlist.EventListHeader
 import kotlinx.coroutines.delay
 
 // Custom Colors (reusing from previous design)
@@ -76,7 +77,9 @@ data class FilterOption(
 )
 
 @Composable
-fun RocketLeagueEventsScreen() {
+fun RocketLeagueEventsScreen(
+    modifier: Modifier = Modifier,
+) {
     var selectedFilter by remember { mutableStateOf("all") }
 
     val events = remember {
@@ -157,7 +160,7 @@ fun RocketLeagueEventsScreen() {
     }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
@@ -173,7 +176,7 @@ fun RocketLeagueEventsScreen() {
             modifier = Modifier.fillMaxSize(),
         ) {
             // Header - Sticky
-            EventsHeader(
+            EventListHeader(
                 filters = filters,
                 selectedFilter = selectedFilter,
                 onFilterSelected = { selectedFilter = it },
@@ -205,9 +208,18 @@ fun EventsHeader(
     selectedFilter: String,
     onFilterSelected: (String) -> Unit,
 ) {
-    Surface(
-        modifier = Modifier.fillMaxWidth(),
-        color = Color.Transparent,
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                brush = Brush.horizontalGradient(
+                    colors = listOf(
+                        RLColors.Cyan.copy(alpha = 0.2f),
+                        RLColors.Blue.copy(alpha = 0.2f),
+                    ),
+                ),
+            ),
+//        color = Color.Transparent,
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -216,24 +228,25 @@ fun EventsHeader(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 // Glow effect
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(80.dp)
-                        .blur(40.dp)
-                        .background(
-                            brush = Brush.horizontalGradient(
-                                colors = listOf(
-                                    RLColors.Cyan.copy(alpha = 0.2f),
-                                    RLColors.Blue.copy(alpha = 0.2f),
-                                ),
-                            ),
-                        ),
-                )
+//                Box(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .height(80.dp)
+//                        .blur(40.dp)
+//                        .background(
+//                            brush = Brush.horizontalGradient(
+//                                colors = listOf(
+//                                    RLColors.Cyan.copy(alpha = 0.2f),
+//                                    RLColors.Blue.copy(alpha = 0.2f),
+//                                ),
+//                            ),
+//                        ),
+//                )
 
                 // Content
                 Surface(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
+                        .statusBarsPadding(),
                     shape = RoundedCornerShape(16.dp),
                     color = RLColors.SlateBg.copy(alpha = 0.5f),
                     border = BorderStroke(1.dp, RLColors.Cyan.copy(alpha = 0.3f)),
@@ -602,12 +615,14 @@ fun EventTypeBadge(
             borderColor = RLColors.Yellow.copy(alpha = 0.5f),
             textColor = RLColors.Yellow,
         )
+
         EventType.MAJOR -> "MAJOR" to BadgeColors(
             gradientStart = RLColors.Orange.copy(alpha = 0.2f),
             gradientEnd = RLColors.Pink.copy(alpha = 0.2f),
             borderColor = RLColors.Orange.copy(alpha = 0.5f),
             textColor = RLColors.Orange,
         )
+
         else -> return
     }
 
@@ -724,6 +739,7 @@ fun getStatusColors(
             ),
             borderColor = RLColors.Red.copy(alpha = 0.3f),
         )
+
         EventStatus.UPCOMING -> StatusColors(
             glowColors = listOf(
                 RLColors.Cyan.copy(alpha = 0.2f),
@@ -731,6 +747,7 @@ fun getStatusColors(
             ),
             borderColor = RLColors.Cyan.copy(alpha = 0.3f),
         )
+
         EventStatus.SCHEDULED -> StatusColors(
             glowColors = listOf(
                 RLColors.Purple.copy(alpha = 0.2f),

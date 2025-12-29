@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.shared.RocketLeagueEsportsScreen
 import com.adammcneilly.pocketleague.shared.ui.scaffold.PersistentScaffold
 import com.adammcneilly.pocketleague.shared.ui.scaffold.navigation.components.PersistentNavigationBar
 import com.adammcneilly.pocketleague.shared.ui.scaffold.navigation.components.PersistentNavigationRail
@@ -24,11 +25,7 @@ fun EventListScreen(
             PersistentNavigationRail()
         },
         content = { scaffoldPadding ->
-            Text(
-                text = "Event List Screen",
-                modifier = Modifier
-                    .padding(scaffoldPadding),
-            )
+            RocketLeagueEsportsScreen()
         },
     )
 }

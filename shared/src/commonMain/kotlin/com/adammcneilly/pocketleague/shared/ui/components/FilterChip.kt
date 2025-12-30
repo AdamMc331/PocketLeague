@@ -37,7 +37,7 @@ fun FilterChip(
             )
         },
         shadowElevation = if (selected) {
-            8.dp
+            12.dp
         } else {
             0.dp
         },

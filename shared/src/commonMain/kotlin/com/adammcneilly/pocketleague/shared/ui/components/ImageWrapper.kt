@@ -28,6 +28,7 @@ fun ImageWrapper(
                 modifier = modifier,
             )
         }
+
         is UiImage.Remote -> {
             RemoteImage(
                 image = image,

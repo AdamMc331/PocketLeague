@@ -11,6 +11,7 @@ import com.adammcneilly.pocketleague.shared.feature.eventlist.EventListScreen
 import com.adammcneilly.pocketleague.shared.ui.scaffold.LocalNavAnimatedVisibilityScope
 import com.adammcneilly.pocketleague.shared.ui.scaffold.app.LocalAppState
 import com.adammcneilly.pocketleague.shared.ui.scaffold.navigation.HomeTab
+import com.adammcneilly.pocketleague.shared.ui.utils.isMediumScreenWidthOrWider
 
 @Composable
 fun AppNavHost() {
@@ -52,7 +53,9 @@ fun AppNavHost() {
                 appState.onNavItemSelected(newTab)
             }
         },
-        sceneStrategy = TwoPaneSceneStrategy(),
+        sceneStrategy = TwoPaneSceneStrategy(
+            isMediumOrLargerWidth = isMediumScreenWidthOrWider().value,
+        ),
         entryProvider = { key ->
             when (key) {
                 is AppScreen.Tab -> {

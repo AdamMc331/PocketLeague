@@ -31,9 +31,16 @@ fun FilterChip(
         border = if (selected) {
             null
         } else {
-            BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
+            BorderStroke(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.outline,
+            )
         },
-        shadowElevation = if (selected) 8.dp else 0.dp,
+        shadowElevation = if (selected) {
+            8.dp
+        } else {
+            0.dp
+        },
     ) {
         Box(
             modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),

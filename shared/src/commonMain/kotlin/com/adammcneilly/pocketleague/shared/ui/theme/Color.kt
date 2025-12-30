@@ -106,7 +106,7 @@ private val InversePrimaryLight = Color(0xFF22D3EE) // Cyan 400
  * This is a custom set of colors that we can use within the Pocket League design system, that are not
  * a part of the Material 3 color scheme.
  */
-class PocketLeagueColors(
+data class PocketLeagueColors(
     val live: Color,
     val liveContainer: Color,
     val upcoming: Color,

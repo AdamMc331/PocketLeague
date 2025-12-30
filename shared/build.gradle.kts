@@ -45,6 +45,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.androidx.navigation3.ui.kmp)
             implementation(libs.coil.compose)
             implementation(libs.coil.ktor)
             implementation(libs.compose.material3.adaptive)

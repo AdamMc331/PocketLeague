@@ -3,7 +3,7 @@ package com.adammcneilly.pocketleague.shared.displaymodels
 import com.adammcneilly.pocketleague.shared.models.EventType
 
 data class EventDisplayModel(
-    val id: Int,
+    val id: String,
     val name: String,
     val date: String,
     val time: String,

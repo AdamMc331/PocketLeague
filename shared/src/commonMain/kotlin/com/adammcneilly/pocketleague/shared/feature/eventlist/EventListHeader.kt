@@ -6,12 +6,15 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -57,12 +60,13 @@ fun EventListHeader(
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                    .fillMaxWidth(),
             ) {
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .padding(top = 16.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
@@ -136,13 +140,17 @@ private fun FilterRow(
     onFilterSelected: (EventFilter) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Row(
+    LazyRow(
         modifier = modifier
-            .fillMaxWidth()
-            .horizontalScroll(rememberScrollState()),
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(
+            start = 16.dp,
+            end = 16.dp,
+            bottom = 16.dp,
+        ),
     ) {
-        EventFilter.entries.forEach { filter ->
+        items(EventFilter.entries) { filter ->
             FilterChip(
                 label = filter.label,
                 selected = selectedFilter == filter,

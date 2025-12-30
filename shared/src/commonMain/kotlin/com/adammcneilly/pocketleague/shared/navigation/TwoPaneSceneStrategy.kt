@@ -1,21 +1,22 @@
 package com.adammcneilly.pocketleague.shared.navigation
 
 import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.scene.Scene
 import androidx.navigation3.scene.SceneStrategy
 import androidx.navigation3.scene.SceneStrategyScope
 
 /**
- * An implementation of [SceneStrategy] that determines if two [AppScreen] entries can appear in a
+ * An implementation of [SceneStrategy] that determines if two [NavKey] entries can appear in a
  * two pane scene together.
  */
 class TwoPaneSceneStrategy(
     private val isMediumOrLargerWidth: Boolean,
-) : SceneStrategy<AppScreen> {
+) : SceneStrategy<NavKey> {
     @Suppress("ReturnCount")
-    override fun SceneStrategyScope<AppScreen>.calculateScene(
-        entries: List<NavEntry<AppScreen>>,
-    ): Scene<AppScreen>? {
+    override fun SceneStrategyScope<NavKey>.calculateScene(
+        entries: List<NavEntry<NavKey>>,
+    ): Scene<NavKey>? {
         if (!isMediumOrLargerWidth) {
             return null
         }

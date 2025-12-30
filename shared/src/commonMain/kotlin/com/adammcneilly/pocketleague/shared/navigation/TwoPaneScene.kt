@@ -7,21 +7,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.scene.Scene
 import com.adammcneilly.pocketleague.shared.ui.LocalSceneType
 import com.adammcneilly.pocketleague.shared.ui.SceneType
 
 /**
- * Custom [Scene] implementation that will be used to render two [AppScreen] entries
+ * Custom [Scene] implementation that will be used to render two [NavKey] entries
  * side by side, as long as they're supported by [TwoPaneSceneStrategy].
  */
 class TwoPaneScene(
     override val key: Any,
-    override val previousEntries: List<NavEntry<AppScreen>>,
-    val firstEntry: NavEntry<AppScreen>,
-    val secondEntry: NavEntry<AppScreen>,
-) : Scene<AppScreen> {
-    override val entries: List<NavEntry<AppScreen>> = listOf(
+    override val previousEntries: List<NavEntry<NavKey>>,
+    val firstEntry: NavEntry<NavKey>,
+    val secondEntry: NavEntry<NavKey>,
+) : Scene<NavKey> {
+    override val entries: List<NavEntry<NavKey>> = listOf(
         firstEntry,
         secondEntry,
     )

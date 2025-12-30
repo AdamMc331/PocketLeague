@@ -31,19 +31,6 @@ import androidx.compose.ui.unit.sp
 import com.adammcneilly.pocketleague.shared.models.EventFilter
 import com.adammcneilly.pocketleague.shared.ui.components.FilterChip
 
-// Color definitions from the palette
-object EventsColors {
-    val Background = Color(0xFF0F172A) // Slate 900
-    val Surface = Color(0xFF0F172A) // Slate 900
-    val SurfaceBorder = Color(0xFF334155) // Slate 700
-    val Primary = Color(0xFF22D3EE) // Cyan 400
-    val PrimaryDim = Color(0xFF67E8F9).copy(alpha = 0.7f) // Cyan 300 with opacity
-    val OnPrimary = Color(0xFF020617) // Slate 950
-    val TextPrimary = Color(0xFFE2E8F0) // Slate 200
-    val TextSecondary = Color(0xFFCBD5E1) // Slate 300
-    val ChipBackground = Color(0xFF1E293B) // Slate 800
-}
-
 @Composable
 fun EventListHeader(
     selectedFilter: EventFilter,
@@ -52,7 +39,7 @@ fun EventListHeader(
 ) {
     Surface(
         modifier = modifier.fillMaxWidth(),
-        color = EventsColors.Background,
+        color = MaterialTheme.colorScheme.background, // Maybe surface?
         shadowElevation = 8.dp,
     ) {
         Column(
@@ -64,8 +51,8 @@ fun EventListHeader(
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                color = EventsColors.Surface,
-                border = BorderStroke(1.dp, EventsColors.Primary.copy(alpha = 0.3f)),
+                color = MaterialTheme.colorScheme.surface,
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
                 shadowElevation = 16.dp,
                 tonalElevation = 0.dp,
             ) {
@@ -86,12 +73,12 @@ fun EventListHeader(
                                 text = "Events",
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = EventsColors.Primary,
+                                color = MaterialTheme.colorScheme.primary,
                             )
                             Text(
                                 text = "RLCS 2024-25",
                                 fontSize = 12.sp,
-                                color = EventsColors.PrimaryDim,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
                             )
                         }
 
@@ -101,19 +88,19 @@ fun EventListHeader(
                             modifier = Modifier
                                 .size(40.dp)
                                 .background(
-                                    EventsColors.ChipBackground,
+                                    MaterialTheme.colorScheme.surfaceVariant,
                                     RoundedCornerShape(8.dp),
                                 )
                                 .border(
                                     1.dp,
-                                    EventsColors.SurfaceBorder,
+                                    MaterialTheme.colorScheme.outline,
                                     RoundedCornerShape(8.dp),
                                 ),
                         ) {
                             Icon(
                                 imageVector = Icons.Default.FilterList,
                                 contentDescription = "Filter",
-                                tint = EventsColors.Primary,
+                                tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(16.dp),
                             )
                         }

@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.adammcneilly.pocketleague.shared.feature.eventlist.EventsColors
 
 @Composable
 fun FilterChip(
@@ -24,8 +23,16 @@ fun FilterChip(
     Surface(
         onClick = onClick,
         shape = RoundedCornerShape(8.dp),
-        color = if (selected) EventsColors.Primary else EventsColors.ChipBackground,
-        border = if (selected) null else BorderStroke(1.dp, EventsColors.SurfaceBorder),
+        color = if (selected) {
+            MaterialTheme.colorScheme.primary
+        } else {
+            MaterialTheme.colorScheme.surfaceVariant
+        },
+        border = if (selected) {
+            null
+        } else {
+            BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
+        },
         shadowElevation = if (selected) 8.dp else 0.dp,
     ) {
         Box(
@@ -36,7 +43,11 @@ fun FilterChip(
                 text = label,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.SemiBold,
-                color = if (selected) EventsColors.OnPrimary else EventsColors.TextSecondary,
+                color = if (selected) {
+                    MaterialTheme.colorScheme.onPrimary
+                } else {
+                    MaterialTheme.colorScheme.onSurfaceVariant
+                },
             )
         }
     }

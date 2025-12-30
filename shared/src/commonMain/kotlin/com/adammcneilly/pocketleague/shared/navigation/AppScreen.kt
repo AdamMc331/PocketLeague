@@ -1,4 +1,4 @@
-package com.adammcneilly.pocketleague.navigation
+package com.adammcneilly.pocketleague.shared.navigation
 
 import androidx.navigation3.runtime.NavKey
 import com.adammcneilly.pocketleague.shared.ui.scaffold.navigation.HomeTab

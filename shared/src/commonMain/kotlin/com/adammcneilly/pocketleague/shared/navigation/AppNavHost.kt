@@ -1,23 +1,37 @@
-package com.adammcneilly.pocketleague.navigation
+package com.adammcneilly.pocketleague.shared.navigation
 
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.LocalNavAnimatedContentScope
 import androidx.navigation3.ui.NavDisplay
+import androidx.savedstate.serialization.SavedStateConfiguration
 import com.adammcneilly.pocketleague.shared.feature.eventlist.EventListScreen
 import com.adammcneilly.pocketleague.shared.ui.scaffold.LocalNavAnimatedVisibilityScope
 import com.adammcneilly.pocketleague.shared.ui.scaffold.app.LocalAppState
 import com.adammcneilly.pocketleague.shared.ui.scaffold.navigation.HomeTab
 import com.adammcneilly.pocketleague.shared.ui.utils.isMediumScreenWidthOrWider
+import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.polymorphic
+
+private val config = SavedStateConfiguration {
+    serializersModule = SerializersModule {
+        polymorphic(NavKey::class) {
+            subclass(AppScreen.Tab::class, AppScreen.Tab.serializer())
+        }
+    }
+}
 
 @Composable
 fun AppNavHost() {
     val startDestination = AppScreen.Tab(HomeTab.Events)
 
-    val backStack = rememberNavBackStack<AppScreen>(
+    val backStack = rememberNavBackStack(
+        config,
         startDestination,
     )
 
@@ -57,6 +71,8 @@ fun AppNavHost() {
             isMediumOrLargerWidth = isMediumScreenWidthOrWider().value,
         ),
         entryProvider = { key ->
+            require(key is AppScreen)
+
             when (key) {
                 is AppScreen.Tab -> {
                     homeTabEntry(
@@ -70,7 +86,7 @@ fun AppNavHost() {
 
 private fun homeTabEntry(
     key: AppScreen.Tab,
-): NavEntry<AppScreen> {
+): NavEntry<NavKey> {
     val metadata = if (key.tab.supportsTwoPane) {
         TwoPaneScene.twoPane()
     } else {

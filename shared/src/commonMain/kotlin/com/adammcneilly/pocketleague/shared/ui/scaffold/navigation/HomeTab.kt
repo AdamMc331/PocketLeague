@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Newspaper
 import androidx.compose.material.icons.filled.RocketLaunch
 import androidx.compose.material.icons.filled.SatelliteAlt
 import androidx.compose.ui.graphics.vector.ImageVector
+import kotlinx.serialization.Serializable
 
 /**
  * Defines a tab that will be shown on the home screen in a navigation container.
@@ -17,6 +18,7 @@ enum class HomeTab(
     val icon: ImageVector,
     val supportsTwoPane: Boolean,
 ) {
+    @Serializable
     Events(
         label = "Events",
         icon = Icons.Default.Event,

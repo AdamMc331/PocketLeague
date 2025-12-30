@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import com.adammcneilly.pocketleague.shared.navigation.AppNavHost
 import com.adammcneilly.pocketleague.shared.ui.scaffold.LocalSharedTransitionScope
 import com.adammcneilly.pocketleague.shared.ui.theme.PocketLeagueTheme
 import org.koin.compose.KoinApplication
@@ -14,10 +16,12 @@ import org.koin.compose.KoinApplication
 @Composable
 @OptIn(ExperimentalSharedTransitionApi::class)
 fun App(
-    appState: AppState,
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit,
 ) {
+    val appState = rememberSaveable(saver = AppState.saver) {
+        AppState()
+    }
+
     KoinApplication(
         application = {
             modules()
@@ -33,7 +37,7 @@ fun App(
                         LocalSharedTransitionScope provides this,
                         LocalAppState provides appState,
                     ) {
-                        content()
+                        AppNavHost()
                     }
                 }
             }

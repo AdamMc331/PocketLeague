@@ -32,6 +32,7 @@ import com.adammcneilly.pocketleague.shared.models.EventFilter
 import com.adammcneilly.pocketleague.shared.ui.components.FilterChip
 
 @Composable
+@Suppress("LongMethod")
 fun EventListHeader(
     selectedFilter: EventFilter,
     onFilterSelected: (EventFilter) -> Unit,

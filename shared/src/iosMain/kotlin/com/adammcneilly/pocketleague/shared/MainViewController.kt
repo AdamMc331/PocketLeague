@@ -1,12 +1,10 @@
 package com.adammcneilly.pocketleague.shared
 
-import androidx.compose.material3.Text
 import androidx.compose.ui.window.ComposeUIViewController
+import com.adammcneilly.pocketleague.shared.ui.scaffold.app.App
 
 @Suppress("ktlint:standard:function-naming", "FunctionNaming")
 fun MainViewController() =
     ComposeUIViewController {
-        Text(
-            text = "iOS Support Coming Soon",
-        )
+        App()
     }

@@ -23,7 +23,7 @@ material = "1.14.0"
 material3Adaptive = "1.2.0"
 minSdk = "23"
 nav3Kmp = "1.0.0-alpha06"
-paparazzi = "2.0.0-alpha02"
+paparazzi = "2.0.0-SNAPSHOT"
 testParameterInjector = "1.22"
 
 [libraries]
